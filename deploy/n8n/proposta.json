@@ -1,0 +1,260 @@
+{
+ "name": "Site · Proposta (formulário)",
+ "nodes": [
+  {
+   "id": "1744ac47-8e5a-4e0e-9622-30109bfc52db",
+   "name": "Formulário do site",
+   "type": "n8n-nodes-base.webhook",
+   "typeVersion": 2,
+   "position": [
+    0,
+    0
+   ],
+   "parameters": {
+    "httpMethod": "POST",
+    "path": "proposta",
+    "responseMode": "responseNode",
+    "options": {}
+   },
+   "webhookId": "3cc5c528-5bc4-454d-b0c3-4d4f715c5b2a"
+  },
+  {
+   "id": "ae060926-2b69-4a3a-95ca-e083406cd627",
+   "name": "É um pedido válido?",
+   "type": "n8n-nodes-base.if",
+   "typeVersion": 2.2,
+   "position": [
+    240,
+    0
+   ],
+   "parameters": {
+    "conditions": {
+     "options": {
+      "caseSensitive": true,
+      "leftValue": "",
+      "typeValidation": "loose",
+      "version": 2
+     },
+     "conditions": [
+      {
+       "id": "39a12f80-f993-42d8-a19d-f81fd977e857",
+       "leftValue": "={{ $json.body['bot-field'] || '' }}",
+       "rightValue": "",
+       "operator": {
+        "type": "string",
+        "operation": "empty",
+        "singleValue": true
+       }
+      },
+      {
+       "id": "e5edd1a6-852f-4c93-8c85-54e0a45f6d54",
+       "leftValue": "={{ $json.body.nome || '' }}",
+       "rightValue": "",
+       "operator": {
+        "type": "string",
+        "operation": "notEmpty",
+        "singleValue": true
+       }
+      },
+      {
+       "id": "3d8a32c0-1876-4d88-ad97-1a7b080a6342",
+       "leftValue": "={{ $json.body.contato || '' }}",
+       "rightValue": "",
+       "operator": {
+        "type": "string",
+        "operation": "notEmpty",
+        "singleValue": true
+       }
+      },
+      {
+       "id": "cbe39587-e4fc-4cc9-8810-bc858a992b66",
+       "leftValue": "={{ $json.body.consentimento || '' }}",
+       "rightValue": "",
+       "operator": {
+        "type": "string",
+        "operation": "notEmpty",
+        "singleValue": true
+       }
+      }
+     ],
+     "combinator": "and"
+    },
+    "options": {}
+   }
+  },
+  {
+   "id": "f74ccb94-9133-45eb-9fdf-cec46631ab82",
+   "name": "Montar lead",
+   "type": "n8n-nodes-base.set",
+   "typeVersion": 3.4,
+   "position": [
+    480,
+    -100
+   ],
+   "parameters": {
+    "assignments": {
+     "assignments": [
+      {
+       "id": "9450dbfa-a626-4def-83cb-b29339ba0569",
+       "name": "recebido_em",
+       "value": "={{ $now.toISO() }}",
+       "type": "string"
+      },
+      {
+       "id": "65e07f1b-5a9a-47c3-bc38-3933acbb5afd",
+       "name": "nome",
+       "value": "={{ $json.body['nome'] || '' }}",
+       "type": "string"
+      },
+      {
+       "id": "d7a7c4f6-2a77-4ccd-9b02-55cfa0815c90",
+       "name": "empresa",
+       "value": "={{ $json.body['empresa'] || '' }}",
+       "type": "string"
+      },
+      {
+       "id": "f8ec9cbb-b46b-4e01-aafc-45ea622a2baa",
+       "name": "contato",
+       "value": "={{ $json.body['contato'] || '' }}",
+       "type": "string"
+      },
+      {
+       "id": "b878bf4b-960d-436c-90a2-b692fb783843",
+       "name": "tipo",
+       "value": "={{ $json.body['tipo'] || '' }}",
+       "type": "string"
+      },
+      {
+       "id": "17bde559-5dfa-423c-9563-20d0c5eab197",
+       "name": "selecao",
+       "value": "={{ $json.body['selecao'] || '' }}",
+       "type": "string"
+      },
+      {
+       "id": "6229cfae-192e-477d-b7da-a443a3aca85d",
+       "name": "quantidade",
+       "value": "={{ $json.body['quantidade'] || '' }}",
+       "type": "string"
+      },
+      {
+       "id": "8c0a227a-f0a3-45d7-a7a9-e402fce79276",
+       "name": "data",
+       "value": "={{ $json.body['data'] || '' }}",
+       "type": "string"
+      },
+      {
+       "id": "6bbfb2a1-b00a-463f-8a2e-4804279cf207",
+       "name": "orcamento",
+       "value": "={{ $json.body['orcamento'] || '' }}",
+       "type": "string"
+      },
+      {
+       "id": "9e0f83c4-d4cf-4d91-940f-ac50f6ce3f71",
+       "name": "objetivo",
+       "value": "={{ $json.body['objetivo'] || '' }}",
+       "type": "string"
+      },
+      {
+       "id": "a6203d48-0b0d-4512-ae59-7a0acec38f53",
+       "name": "consentimento",
+       "value": "={{ $json.body['consentimento'] || '' }}",
+       "type": "string"
+      },
+      {
+       "id": "1c34bc47-f8eb-4004-8553-d35e0d55e70b",
+       "name": "ip",
+       "value": "={{ $json.headers['x-real-ip'] || '' }}",
+       "type": "string"
+      },
+      {
+       "id": "91a85d25-050c-4152-9451-d1b7f1e8252d",
+       "name": "origem",
+       "value": "site · solicitar proposta",
+       "type": "string"
+      }
+     ]
+    },
+    "options": {}
+   }
+  },
+  {
+   "id": "7c40a1e6-be58-4f3b-8955-19f084653882",
+   "name": "Recebido (200)",
+   "type": "n8n-nodes-base.respondToWebhook",
+   "typeVersion": 1.1,
+   "position": [
+    960,
+    -100
+   ],
+   "parameters": {
+    "respondWith": "json",
+    "responseBody": "={{ { ok: true } }}",
+    "options": {
+     "responseCode": 200
+    }
+   }
+  },
+  {
+   "id": "317a08a2-3e21-4d3b-b4b6-7e96beb8f6a8",
+   "name": "Ignorado (200)",
+   "type": "n8n-nodes-base.respondToWebhook",
+   "typeVersion": 1.1,
+   "position": [
+    480,
+    120
+   ],
+   "parameters": {
+    "respondWith": "json",
+    "responseBody": "={{ { ok: true } }}",
+    "options": {
+     "responseCode": 200
+    }
+   }
+  }
+ ],
+ "connections": {
+  "Formulário do site": {
+   "main": [
+    [
+     {
+      "node": "É um pedido válido?",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "É um pedido válido?": {
+   "main": [
+    [
+     {
+      "node": "Montar lead",
+      "type": "main",
+      "index": 0
+     }
+    ],
+    [
+     {
+      "node": "Ignorado (200)",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Montar lead": {
+   "main": [
+    [
+     {
+      "node": "Recebido (200)",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  }
+ },
+ "settings": {
+  "executionOrder": "v1"
+ }
+}

@@ -36,6 +36,7 @@
         "Couro"
       ],
       "tecnicas": [
+        "Hot stamping",
         "Baixo relevo"
       ],
       "cores": [
@@ -78,7 +79,7 @@
       "cores": [
         [
           "Verde-musgo",
-          "#546447"
+          "#6d6744"
         ],
         [
           "Azul",
@@ -405,8 +406,8 @@
       ],
       "cores": [
         [
-          "Verde",
-          "#38553b"
+          "Terracota",
+          "#d26d4f"
         ],
         [
           "Areia",
@@ -658,8 +659,8 @@
       ],
       "cores": [
         [
-          "Verde",
-          "#294737"
+          "Verde-oliva",
+          "#5b563e"
         ],
         [
           "Azul",
@@ -690,12 +691,13 @@
         "Couro"
       ],
       "tecnicas": [
+        "Hot stamping",
         "Baixo relevo"
       ],
       "cores": [
         [
-          "Verde",
-          "#334d3b"
+          "Verde-escuro",
+          "#3a3d2e"
         ],
         [
           "Café",

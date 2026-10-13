@@ -99,11 +99,34 @@
     }
     setSel(sel);
   }
+  function variant(slug, color) {
+    var c = CAT[slug];
+    return c && c.v ? c.v[color] : null;   // [stem, widths, alt]
+  }
+  function srcset(v, ext) {
+    return v[1].map(function (w) { return '/img/' + v[0] + '-' + w + '.' + ext + ' ' + w + 'w'; }).join(', ');
+  }
+  function swapPicture(pic, v) {
+    pic.querySelectorAll('source').forEach(function (s) {
+      var ext = (s.getAttribute('type') || '').split('/')[1];
+      if (ext) s.setAttribute('srcset', srcset(v, ext));
+    });
+    var img = pic.querySelector('img');
+    if (img) {
+      var fb = v[1].filter(function (w) { return w >= 640; })[0] || v[1][v[1].length - 1];
+      img.setAttribute('srcset', srcset(v, 'jpg'));
+      img.setAttribute('src', '/img/' + v[0] + '-' + fb + '.jpg');
+      img.setAttribute('alt', v[2]);
+    }
+  }
   function paintColor(slug, color) {
+    var v = variant(slug, color);
     document.querySelectorAll('.product[data-slug="' + slug + '"]').forEach(function (card) {
       card.setAttribute('data-color', color);
       card.querySelectorAll('.swatch').forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-color') === color)); });
       var n = card.querySelector('.color-name'); if (n) n.textContent = color;
+      var pic = card.querySelector('.prod-media picture');
+      if (v && pic) swapPicture(pic, v);   // show the product in the chosen colour
     });
   }
   function setColor(slug, color) {
@@ -113,7 +136,8 @@
     track('select_color', { item: slug, color: color });
   }
   function thumb(x) {
-    if (CAT[x.s].i) { var img = document.createElement('img'); img.src = CAT[x.s].i; img.alt = ''; img.width = 52; img.height = 48; img.loading = 'lazy'; return img; }
+    var v = x.c ? variant(x.s, x.c) : null;
+    if (CAT[x.s].i) { var img = document.createElement('img'); img.src = v ? '/img/' + v[0] + '-' + v[1][0] + '.webp' : CAT[x.s].i; img.alt = ''; img.width = 52; img.height = 48; img.loading = 'lazy'; return img; }
     var ph = document.createElement('span'); ph.className = 'ph'; ph.setAttribute('aria-hidden', 'true'); ph.textContent = '✦'; return ph;
   }
   function fillList(ul, sel) {
@@ -162,6 +186,12 @@
   });
   function syncLightbox() {
     document.getElementById('lb-pick').setAttribute('aria-pressed', String(find(getSel(), lbSlug) !== -1));
+    var lbCard = document.querySelector('.product[data-slug="' + lbSlug + '"]');
+    if (lbCard) {
+      var lbImg = document.getElementById('lb-img'), src = lbCard.querySelector('source[type="image/webp"]'), ci = lbCard.querySelector('.prod-media img');
+      if (src && lbImg.getAttribute('srcset') !== src.getAttribute('srcset')) lbImg.srcset = src.getAttribute('srcset');
+      if (ci) lbImg.alt = ci.alt;
+    }
     var color = cardColor(lbSlug);
     document.querySelectorAll('#lb-swatches .swatch').forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-color') === color)); });
   }
@@ -173,7 +203,7 @@
     img.srcset = card.querySelector('source[type="image/webp"]').getAttribute('srcset');
     img.sizes = '(max-width: 760px) 90vw, 480px';
     img.src = CAT[slug].i;
-    img.alt = 'Fotografia conceitual: ' + CAT[slug].n;
+    img.alt = card.querySelector('.prod-media img').alt;
     document.getElementById('lb-title').textContent = CAT[slug].n;
     document.getElementById('lb-desc').textContent = card.querySelector('.prod-desc').textContent;
     document.getElementById('lb-meta').textContent = card.querySelector('.prod-meta').textContent;
@@ -401,7 +431,7 @@
     var body = new URLSearchParams(new FormData(form)).toString();
     var controller = 'AbortController' in window ? new AbortController() : null;
     var timer = controller ? setTimeout(function () { controller.abort(); }, 15000) : null;
-    fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: body, signal: controller ? controller.signal : undefined })
+    fetch(form.getAttribute('data-endpoint') || '/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: body, signal: controller ? controller.signal : undefined })
       .then(function (r) {
         if (!r.ok) throw new Error('HTTP ' + r.status);
         statusEl.textContent = '';

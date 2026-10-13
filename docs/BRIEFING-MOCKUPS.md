@@ -114,3 +114,19 @@ Na evolução anterior (ver `RELATORIO.md`), a regra era **mostrar mockups com o
 2. Rode `python tools/sync_mockups.py`. Ele copia as versões web para `img/marca/` e grava os textos alternativos em `src/data/mockups.json`.
 3. Rode `python build.py`. O build usa as imagens de `img/marca/` no lugar das fotos de mesmo nome em `img/v2/` porque `site.config.json` tem `"mockups_marca": true`.
 4. Para voltar às fotos sem marca, use `"mockups_marca": false` (ou a variável `MOCKUPS_MARCA=0`) e gere de novo.
+
+## 8. Segunda rodada (13/10/2026): mais destaque e foto por cor
+
+A pedido do usuário ("imagens sem a marca ou só com a pétala"), a regra de equilíbrio do briefing foi relaxada.
+
+- **Marca visível em todo card:** toda peça tem a assinatura completa legível num card de ~300 px.
+  - Bandejas: hot stamping dourado na lateral.
+  - Boné e polo: assinatura bordada.
+  - Envelopes: hot stamping.
+  - Tampas e faixas: maiores.
+- **Foto por cor:** cada uma das 21 peças tem a foto nas 3 cores alternativas do card, ou seja, 63 variantes geradas por recoloração do produto, preservando luz, textura e marca.
+  - No site, clicar na cor troca a foto no card, na foto ampliada e na gaveta da seleção.
+  - Os arquivos ficam em `img/marca/<foto>~<cor>.webp` e em `midia/mockups/web/`.
+- **Listas de cores ajustadas** para começar pela cor fotografada: kit de papelaria (Terracota), organizador (Verde-escuro), uniforme (Verde-oliva) e garrafa (tom do Verde-musgo).
+- **Cache:** os nomes públicos das imagens agora levam um código do conteúdo (`/img/<nome>.<hash>-<largura>.<ext>`). Uma imagem atualizada ganha uma URL nova, mesmo com o cache de 1 ano.
+

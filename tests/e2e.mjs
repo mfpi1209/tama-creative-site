@@ -73,6 +73,8 @@ try {
   // Depois da rolagem anterior o chip pode ficar sob o cabeçalho fixo (o clique cairia num link do menu): centraliza antes.
   await page.$eval('[data-rail-filter="rail-home"][data-value="todas"]', el => el.scrollIntoView({ block: 'center' }));
   await page.click('[data-rail-filter="rail-home"][data-value="todas"]');
+  await page.click('#rail-home .product[data-slug="bandeja-em-couro"] .swatch[data-color="Café"]');
+  ok(await page.$eval('#rail-home .product[data-slug="bandeja-em-couro"] .prod-media img', i => (i.getAttribute('srcset') || '').includes('bandeja-couro~cafe')), 'trocar a cor mostra a foto do produto na cor escolhida');
   ok(await page.$eval('[data-rail-filter="rail-home"][data-value="todas"]', b => b.getAttribute('aria-pressed') === 'true'), 'filtro Todas volta a mostrar a vitrine inteira');
   await page.click('#rail-home [data-zoom="caneca-de-ceramica"]');
   ok(await page.$eval('#lightbox', d => d.open && d.querySelector('#lb-title').textContent === 'Caneca de cerâmica'), 'foto ampliada abre com a peça certa');
@@ -135,7 +137,7 @@ try {
   await page.setRequestInterception(true);
   let mode = 'fail', posted = '';
   page.on('request', req => {
-    if (req.method() === 'POST' && new URL(req.url()).pathname === '/') {
+    if (req.method() === 'POST' && ['/', '/api/proposta'].includes(new URL(req.url()).pathname)) {
       posted = req.postData() || '';
       return req.respond(mode === 'ok' ? { status: 200, contentType: 'text/html', body: 'ok' } : { status: 500, contentType: 'text/plain', body: 'erro' });
     }

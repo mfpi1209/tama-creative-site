@@ -2,6 +2,49 @@
 
 Guias que atraem quem procura brindes, kits e presentes corporativos e levam essas pessoas à curadoria e ao pedido de proposta. Cada artigo é um arquivo Markdown em `src/blog/`; o build gera as páginas, o RSS, o sitemap e os dados estruturados.
 
+## Editor visual (/admin/)
+
+Endereço: **https://tamacreative.netlify.app/admin/**. Depois da troca de DNS, também funciona em **https://tamacreative.com.br/admin/**. O login é feito com a conta do GitHub.
+
+O editor é o Decap CMS 3.16.3, servido pelo próprio site, sem script de terceiros. Ele grava no repositório privado **mfpi1209/tama-creative-site**. Só entra quem tem acesso de escrita ao repositório; para dar acesso a outra pessoa, adicione o GitHub dela como colaboradora.
+
+### Como publicar pelo editor
+
+1. **Entrar:** "Entrar com o GitHub".
+2. **Novo artigo:** "Artigos do blog" › "+ artigo". Preencha os campos; cada um traz uma dica, e os limites de SEO são validados na hora.
+3. **Texto:** use "Título 2" para as seções (entram no sumário) e "Título 3" para subseções. O botão **+** insere "Chamada para proposta" e imagens.
+   - Imagens: só fotos próprias ou licenciadas, enviadas pela biblioteca de mídia (ficam em `img/blog/`).
+   - Notas de fonte: no modo **Markdown**, escreva `texto[^id]` e, no fim, `[^id]: Fonte. [Link](https://…)`.
+4. **Prévia ao lado:** mostra o artigo com o visual do site e um painel de SEO:
+   - como o artigo aparece no Google;
+   - tamanhos do título e da descrição;
+   - palavra-chave no título, na descrição e no primeiro parágrafo;
+   - seções, número de palavras, chamada para proposta, serviço e texto alternativo da capa.
+5. **Salvar:** cria um rascunho no fluxo editorial ("Fluxo de trabalho"). Por trás, é um pull request no GitHub. O Netlify gera uma **prévia com endereço próprio**; o link aparece no editor ("Ver prévia"). A prévia fica fora do Google.
+6. **Revisar e aprovar:** mova o card para "Em revisão" e depois para "Pronto". **"Publicar" é a aprovação:** o editor faz o merge na `main`, o Netlify gera o site e a produção é atualizada em alguns minutos.
+7. Se o build encontrar um erro (por exemplo, link quebrado ou descrição longa demais), a publicação não acontece e a produção continua como estava. O motivo aparece no log de deploy do Netlify.
+
+Rascunho também pode ser marcado com a chave "Rascunho (não publicar)": ele não vai ao ar nem se for publicado.
+
+### Configuração única (feita pelo responsável pela conta)
+
+| Passo | Onde | O quê |
+|---|---|---|
+| 1 | GitHub › Settings › Developer settings › OAuth Apps › New OAuth App | Nome: `Editor do blog TaMa`. Homepage: `https://tamacreative.netlify.app`. Authorization callback URL: `https://api.netlify.com/auth/done`. Gere o Client secret |
+| 2 | Netlify › site tamacreative › Site configuration › Access & security › OAuth › Install provider | GitHub. Cole o Client ID e o Client secret do passo 1 |
+| 3 | Netlify › Site configuration › Build & deploy › Continuous deployment › Link repository | GitHub › `mfpi1209/tama-creative-site`, branch `main`. Comando e pasta vêm do `netlify.toml`. Deixe "Deploy Previews" ligado para pull requests |
+
+O passo 3 dispara o primeiro build da `main` e publica em produção. Em 13/10/2026, o conteúdo do repositório era o mesmo da produção, mais o editor: as 18 páginas foram comparadas uma a uma.
+
+### Publicação depois da ligação com o Git
+
+- **Produção = branch `main`.** Cada push ou merge na `main` gera e publica o site. Para mudar o site, commite e envie (`git push`) só depois do OK.
+- O `netlify deploy --prod` pela linha de comando continua funcionando, mas é sobrescrito pelo próximo build da `main`. Prefira o Git.
+- Rascunhos com alias (`netlify deploy --alias …`) continuam valendo para aprovações fora do editor.
+- O build no Netlify usa Python 3.13 (`netlify.toml`). O plugin `netlify/plugins/cache-imagens` guarda `.cache/` entre builds. Com cache, o build leva segundos; sem cache, cerca de 2 minutos.
+- Os logos oficiais têm cópia versionada em `brand/logos/`, porque o Netlify só enxerga o repositório. Se os SVGs de `tama-creative-logos/svg` mudarem, o build local avisa; copie os arquivos e faça commit.
+- Os masters dos mockups (`midia/mockups/mestre/`, 51 MB) ficam fora do Git, só neste computador.
+
 ## Estrutura
 
 | URL | O que é |
@@ -22,18 +65,22 @@ Cada artigo traz:
 
 | Arquivo | Papel |
 |---|---|
-| `blog.py` | Lê, valida e gera o blog. Chamado por `build.py` com dois ganchos: `blog.pages()` e `blog.finalize()` |
+| `blog.py` | Lê, valida e gera o blog e o editor. Ganchos em `build.py`: `blog.image_sources()`, `blog.pages()`, `blog.finalize()` e `blog.post_static()` |
 | `src/blog.css` | Estilos do blog, carregados só nas páginas do blog |
-| `src/blog/*.md` | Um arquivo por artigo |
-| `src/blog/_modelo.md` | Modelo para copiar. Arquivos com `_` no início não são publicados |
+| `src/blog/*.md` | Um arquivo por artigo. O nome do arquivo é o endereço: `kit-de-boas-vindas.md` → `/blog/kit-de-boas-vindas/` |
+| `src/admin/` | Editor: `index.html`, `admin.js` (prévia, painel de SEO, bloco "Chamada para proposta") e `vendor/decap-cms-3.16.3/` |
+| `img/blog/` | Imagens enviadas pelo editor. O build gera AVIF/WebP/JPEG como nas outras fotos |
+| `docs/blog-modelo.md` | Modelo para escrever sem o editor |
 
-Em `build.py` o blog ocupa só o import, o item do menu e do rodapé, `og_type`/`og_image`/`head` no `shell()`, o `lastmod` do sitemap e os dois ganchos. Dependência nova: `Markdown` (em `requirements.txt`).
+Gerados a cada build: `dist/admin/config.yml`, `preview.css` e `logo.svg`. O `config.yml` é montado com os temas, as ocasiões, as peças da curadoria e as imagens do site, então o editor só oferece valores que o build aceita.
 
-## Publicar um artigo novo, passo a passo
+Em `build.py` o blog ocupa só o import, o item do menu e do rodapé, `og_type`/`og_image`/`head` no `shell()`, o `lastmod` do sitemap e os ganchos. Dependências: `Markdown` e `PyYAML` (em `requirements.txt`).
+
+## Publicar um artigo sem o editor (arquivo + Git)
 
 1. **Escolha a pauta** na "Estratégia editorial" de `docs/SEO.md`. Um artigo responde uma consulta principal e aponta para uma página de serviço.
-2. **Copie o modelo:** `src/blog/_modelo.md` → `src/blog/AAAA-MM-DD-slug.md`. O slug vira a URL; use minúsculas, sem acentos, com hífens.
-3. **Preencha o front matter** (tabela abaixo) e deixe `draft: true` enquanto escreve.
+2. **Copie o modelo:** `docs/blog-modelo.md` → `src/blog/endereco-do-artigo.md`. O nome vira a URL; use minúsculas, sem acentos, com hífens.
+3. **Preencha o front matter** (tabela abaixo; é YAML, então textos com dois-pontos vão entre aspas) e deixe `draft: true` enquanto escreve.
 4. **Escreva em Markdown.** Use `##` para seções e `###` para subseções; o H1 vem do `title`, então não use `#` no texto.
 5. **Cite as fontes.** Todo fato externo (lei, número, estudo) leva nota de rodapé `[^id]` com o link oficial. As notas viram a seção "Fontes". Enquanto falta fonte, escreva `[fonte?]`: o build recusa publicar.
 6. **Veja localmente** (rascunhos aparecem com aviso e `noindex`):
@@ -48,10 +95,7 @@ Em `build.py` o blog ocupa só o import, o item do menu e do rodapé, `og_type`/
    ```bash
    netlify deploy --no-build --dir dist --functions netlify/functions --alias blog-rascunho
    ```
-10. **Produção, depois do OK:**
-    ```bash
-    netlify deploy --no-build --prod --dir dist --functions netlify/functions
-    ```
+10. **Produção, depois do OK:** `git add src/blog/… && git commit && git push`. Com o Netlify ligado ao repositório, o push na `main` publica. Antes da ligação, use `netlify deploy --no-build --prod --dir dist --functions netlify/functions`.
     No Search Console, peça a indexação da URL nova.
 
 ### Campos do front matter
@@ -70,7 +114,8 @@ Em `build.py` o blog ocupa só o import, o item do menu e do rodapé, `og_type`/
 | `servico` | não | Página de serviço ligada ao artigo (botão no quadro do autor) |
 | `proposta` | não | Tipo pré-selecionado no formulário: `brindes`, `kits`, `confeccoes`, `branding`, `integrado` |
 | `palavra_chave` | não | Consulta principal; vai para `keywords` do JSON-LD |
-| `capa` | sim | Nome de uma imagem de `img/` (`.jpg`) ou `img/v2/` (`.webp`), sem extensão |
+| `capa` | sim, ou `capa_arquivo` | Nome de uma imagem de `img/` (`.jpg`) ou `img/v2/` (`.webp`), sem extensão |
+| `capa_arquivo` | não | Imagem enviada pelo editor (`/img/blog/arquivo.jpg`). Quando preenchida, substitui `capa` |
 | `capa_alt` | sim | Descrição da foto. Com `capa_conceitual` (padrão), o site acrescenta "Fotografia conceitual:" e a legenda |
 | `capa_conceitual` | não | `false` só para fotos reais de trabalhos entregues |
 | `capa_posicao` | não | Enquadramento CSS, por exemplo `50% 40%` |
@@ -128,6 +173,10 @@ Quando um tema chegar a 3 artigos, a página `/blog/tema/<tema>/` aparece sozinh
 
 ## Verificações (12/10/2026, rascunho blog-rascunho)
 
+- Editor (13/10/2026): 71/71 no `tests/e2e.mjs`, com 4 novos do `/admin/`. Também testei de ponta a ponta com o servidor local do Decap:
+  - um artigo editado no modo visual e salvo gera exatamente o mesmo HTML (notas de fonte, tabela e `[[cta]]` preservados);
+  - capa enviada e foto no texto viram imagens otimizadas com legenda;
+  - no rascunho `editor-rascunho`, o `/admin/` abre sem erros, com a política de segurança própria.
 - `tests/e2e.mjs`: 67/67 aprovados, dos quais 26 são do blog. Cobrem:
   - índice com 4 artigos e o destaque certo;
   - Blog no menu e no rodapé;

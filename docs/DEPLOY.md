@@ -55,6 +55,9 @@ Payload enviado ao n8n:
 ```
 Sem `N8N_WEBHOOK_URL`, os pedidos continuam chegando por e-mail e ficam em Forms no painel. Depois de criar a variável, publique de novo para a função passar a usá-la.
 
+## Repositório Git e deploy contínuo
+O site está no repositório privado **github.com/mfpi1209/tama-creative-site** (branch `main`). Depois de ligar o Netlify ao repositório (passo a passo em `BLOG.md` › "Configuração única"), **cada push na `main` publica em produção** e cada pull request ganha uma prévia. Commite só os seus próprios arquivos e faça `git push` só depois do OK. O editor do blog (`/admin/`) usa esse mesmo fluxo.
+
 ## Deploy (CLI)
 ```bash
 netlify deploy --no-build --dir dist --functions netlify/functions            # rascunho (URL de teste, noindex)

@@ -576,3 +576,41 @@ body:has(.wa-float) .float-bag { bottom: calc(88px + env(safe-area-inset-bottom,
 .brand-compare figcaption { font-size: .75rem; font-weight: 600; color: var(--amber-ink); }
 .prod-seal { margin: 0 0 4px; font-size: .6875rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--amber-ink); }
 @media (max-width: 760px) { .brand-note { grid-template-columns: 1fr; } }
+
+/* ---- Simulador "Veja sua marca": link nos cards, faixa da home/curadoria e convite de saída ---- */
+.prod-actions { flex-wrap: wrap; }
+.sim-link { display: inline-flex; align-items: center; min-height: 32px; font-size: .75rem; font-weight: 700; color: var(--wine); text-decoration: underline; text-decoration-color: rgba(80, 27, 43, .35); text-underline-offset: 4px; }
+.sim-link:hover { text-decoration-color: currentColor; }
+.lightbox .sim-link { min-height: 38px; padding-inline: 4px; }
+.brand-compare.trio { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.brand-compare.solo { grid-template-columns: minmax(0, 220px); justify-content: center; }
+.your-brand { position: relative; display: block; overflow: hidden; border-radius: calc(var(--radius) - 4px); outline-offset: 3px; }
+.your-brand img { width: 100%; height: auto; aspect-ratio: 850 / 780; object-fit: cover; filter: saturate(.9); transition: transform .5s ease; }
+.your-brand:hover img { transform: scale(1.04); }
+.your-brand span { position: absolute; inset: 28% 16% auto; display: grid; justify-items: center; gap: 4px; padding: 10px 8px; border: 1.5px dashed rgba(255, 248, 236, .9); border-radius: 6px; background: rgba(37, 30, 26, .38); color: #fff; font-size: .75rem; font-weight: 700; text-align: center; line-height: 1.25; }
+.your-brand .arc { width: 16px; height: 16px; color: #F2907F; }
+.exit-modal { width: min(760px, calc(100% - 32px)); max-height: calc(100dvh - 32px); border-radius: 12px; overflow: auto; }
+.exit-grid { display: grid; grid-template-columns: minmax(0, 250px) minmax(0, 1fr); }
+.exit-media { background: var(--sand); }
+.exit-media picture, .exit-media img { width: 100%; height: 100%; object-fit: cover; }
+.exit-body { display: grid; gap: 14px; align-content: start; padding: clamp(24px, 3.5vw, 36px); }
+.exit-body h2 { font-size: clamp(1.75rem, 1.3rem + 1.6vw, 2.4rem); padding-right: 36px; }
+.exit-close { position: absolute; top: 10px; right: 10px; z-index: 1; background: var(--surface); }
+.exit-form { display: grid; gap: 10px; padding-top: 14px; border-top: 1px solid var(--line); }
+.exit-alt { font-size: .875rem; font-weight: 600; }
+.exit-row { display: flex; gap: 8px; }
+.exit-row input { flex: 1; }
+.exit-row .btn { flex: none; min-height: 48px; }
+.exit-check { font-size: .8125rem; line-height: 1.5; }
+.exit-later { justify-self: start; min-height: 44px; padding: 0 2px; border: 0; background: none; color: var(--muted); font-size: .875rem; font-weight: 600; text-decoration: underline; text-underline-offset: 4px; cursor: pointer; }
+.exit-done { display: grid; gap: 6px; padding: 14px 16px; border-radius: var(--radius); background: var(--ivory); }
+@media (max-width: 640px) {
+  .exit-modal { width: 100%; max-width: none; max-height: 88dvh; margin: auto 0 0; border-radius: 16px 16px 0 0; }
+  .exit-grid { grid-template-columns: 1fr; }
+  .exit-media { display: none; }
+  .exit-row { flex-direction: column; }
+}
+@media (max-width: 560px) { .brand-compare.trio { gap: 8px; } .your-brand span { inset: 22% 8% auto; font-size: .6875rem; } }
+.field label.check { text-transform: none; letter-spacing: 0; font-weight: 400; font-size: .875rem; line-height: 1.5; color: var(--muted); }
+.result[hidden] { display: none; }
+.exit-media img { object-position: 22% center; }

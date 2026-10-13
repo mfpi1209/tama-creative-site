@@ -11,6 +11,7 @@ Documentação:
 - `docs/SEO.md` — títulos e descriptions, mapa de palavras-chave, plano editorial, checklist Search Console/GA4
 - `docs/DEPLOY.md` — configuração, variáveis de ambiente, n8n, domínio, testes
 - `docs/BLOG.md` — blog (/blog/): estrutura, passo a passo para publicar artigos, regras editoriais
+- `docs/SIMULADOR.md` — simulador "Veja sua marca" (/veja-sua-marca/): como funciona, n8n (SMTP, OpenAI, tabela), LGPD e manutenção
 - `docs/PENDENCIAS.md` — informações e fotos que faltam
 - `docs/PLANO-REFATORACAO.md` — plano a partir da análise do creativedesign.com.br
 

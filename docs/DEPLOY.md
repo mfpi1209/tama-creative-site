@@ -6,12 +6,15 @@ tama-site/
   build.py                  gerador estático (Python)
   site.config.json          configuração pública (domínio, contatos, GA4)
   src/styles.css            estilos e tokens de design
-  src/site.js               comportamento (menu, filtros, seleção, formulário, analytics)
+  src/site.js               comportamento (menu, filtros, seleção, formulário, convite de saída, analytics)
+  src/simulador.js/.css     simulador "Veja sua marca" (/veja-sua-marca/): ver docs/SIMULADOR.md
   src/data/curadoria.json   38 itens: 21 peças com foto (pecas) + 17 além do óbvio (alem); cores, materiais, técnicas, ocasiões
   src/fonts/                fontes DM Sans e Playfair Display (woff2, OFL)
   img/                      imagens-fonte; img/v2/ = fotos conceituais da v2; img/marca/ = as mesmas com a marca aplicada (o build gera AVIF/WebP/JPEG em vários tamanhos)
   midia/mockups/            mockups com a marca: mestre (alta), web, miniatura e manifest.json (não vai para o site)
   tools/sync_mockups.py     copia midia/mockups/web para img/marca/ e grava src/data/mockups.json
+  tools/mockup-engine/      motor dos mockups (Python) e export das fotos-base do simulador (img/simulador/, src/data/simulador.json)
+  deploy/n8n/               workflows do n8n para importar (proposta.json, simulador.json)
   netlify/functions/        função submission-created (repasse ao n8n)
   netlify.toml              configuração do Netlify
   tests/e2e.mjs             testes de fluxos críticos
@@ -36,6 +39,8 @@ O build falha se encontrar placeholders (`[WhatsApp]` etc.) no HTML.
 | `instagram` / `INSTAGRAM` | Link e `sameAs` no JSON-LD | `tamacreative` |
 | `ga4_id` / `GA4_ID` | Ativa GA4 com banner de consentimento | `G-XXXXXXX` |
 | `redirect_netlify_subdomain` / `REDIRECT_NETLIFY_SUBDOMAIN` | Redireciona o .netlify.app para o domínio | `true` (só depois do DNS) |
+| `simulador_endpoint` / `SIMULADOR_ENDPOINT` | Para onde o simulador e o convite de saída enviam (o Nginx repassa ao n8n) | `/api/simulador` (padrão) |
+| `simulador_ia` / `SIMULADOR_IA` | Ligue só junto com o render premium da OpenAI no n8n: acrescenta a OpenAI ao consentimento e à política de privacidade | `false` (padrão) |
 | `mockups_marca` / `MOCKUPS_MARCA` | Usa as imagens com a marca (`img/marca/`), o bloco "Sua marca é a protagonista", o selo nos cards e os avisos de mockup | `true` (em produção desde 12/10/2026) |
 
 Contato vazio = o elemento não aparece. Nada disso é segredo.

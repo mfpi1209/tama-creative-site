@@ -1,0 +1,93 @@
+/* Simulador "Veja sua marca em nossos produtos" (/veja-sua-marca/). Inline só nesta página (build.py: page_simulador). */
+.sim-head { padding-bottom: clamp(20px, 3vw, 32px); }
+.sim-progress { list-style: none; margin: clamp(22px, 3vw, 32px) 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px 28px; font-size: .875rem; font-weight: 600; color: var(--muted); }
+.sim-progress li { display: inline-flex; align-items: center; gap: 10px; }
+.sim-dot { display: inline-grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; border: 1px solid var(--line-strong); font: 400 1rem/1 var(--f-serif); color: var(--muted); background: var(--surface); }
+.sim-progress li[aria-current="step"] { color: var(--wine); }
+.sim-progress li[aria-current="step"] .sim-dot { background: var(--wine); border-color: var(--wine); color: #fff; }
+.sim-progress li.is-done .sim-dot { border-color: var(--forest); color: var(--forest); }
+.sim-section { padding-top: 0; }
+.sim { display: grid; gap: 14px; }
+.sim-noscript, .sim-pre { padding: 14px 18px; border-radius: var(--radius); background: var(--ivory); color: var(--ink); font-size: .9375rem; }
+.sim-noscript a, .sim .inline, .sim-band .inline { color: var(--wine); font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+.sim-step { min-width: 0; background: var(--surface); border: 1px solid #EAE3DC; border-radius: 10px; padding: clamp(18px, 2.6vw, 30px); scroll-margin-top: calc(var(--header-h) + 16px); }
+.sim-step[data-state="current"] { border-color: var(--line-strong); box-shadow: var(--shadow); }
+.sim-step[data-state="locked"] { background: transparent; }
+.sim-step-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 18px; }
+.sim-step h2 { display: flex; align-items: center; gap: 14px; font-size: clamp(1.5rem, 1.2rem + 1vw, 2rem); }
+.sim-step[data-state="locked"] h2 { color: var(--muted); }
+.sim-n { display: inline-grid; place-items: center; flex: none; width: 36px; height: 36px; border-radius: 50%; background: var(--sand); font: 400 1.125rem/1 var(--f-serif); color: var(--wine); }
+.sim-step[data-state="current"] .sim-n { background: var(--wine); color: #fff; }
+.sim-step[data-state="done"] .sim-n { background: var(--forest); color: #fff; }
+.sim-step-summary { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px; font-size: .9375rem; color: var(--ink); min-width: 0; overflow-wrap: anywhere; }
+.sim-step-summary .link { background: none; border: 0; border-bottom: 1px solid currentColor; cursor: pointer; min-height: 32px; padding: 0; }
+.sim-step-locked { margin-left: 50px; }
+.sim-step-body { display: grid; gap: 18px; margin-top: 22px; }
+.sim-step-body[hidden] { display: none; }
+.sim-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+
+/* passo 1: arquivo */
+.sim-drop { position: relative; border: 1.5px dashed var(--line-strong); border-radius: 10px; background: var(--bg); transition: border-color .2s ease, background .2s ease; }
+.sim-drop:hover, .sim-drop.is-over { border-color: var(--wine-2); background: #FBF4EE; }
+.sim-drop:focus-within { outline: 2px solid var(--wine-2); outline-offset: 3px; }
+.sim-file { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer; min-height: 0; padding: 0; }
+.sim-drop-label { display: grid; justify-items: center; gap: 6px; padding: clamp(24px, 4vw, 40px) 16px; text-align: center; cursor: pointer; }
+.sim-drop-label svg { width: 34px; height: 34px; fill: none; stroke: var(--wine); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.sim-drop-title { font-weight: 700; color: var(--wine); font-size: 1rem; }
+.sim-drop-sub { font-size: .875rem; color: var(--muted); }
+.sim .hint { font-size: .8125rem; color: var(--muted); }
+.sim-logo { display: grid; grid-template-columns: minmax(0, 280px) minmax(0, 1fr); gap: 18px 24px; align-items: center; }
+.sim-logo[hidden] { display: none; }
+.sim-logo-view { display: grid; place-items: center; min-height: 140px; padding: 16px; border-radius: 8px; border: 1px solid var(--line);
+  background: #fff linear-gradient(45deg, #EEE7DF 25%, transparent 25%, transparent 75%, #EEE7DF 75%) 0 0 / 18px 18px,
+              linear-gradient(45deg, #EEE7DF 25%, #fff 25%, #fff 75%, #EEE7DF 75%) 9px 9px / 18px 18px; }
+.sim-logo-view canvas { max-width: 100%; height: auto; max-height: 160px; }
+.sim-logo-info { display: grid; gap: 10px; min-width: 0; }
+.sim-logo-name { font-weight: 700; overflow-wrap: anywhere; }
+.sim-notes { padding-left: 1.1em; display: grid; gap: 4px; font-size: .875rem; color: var(--muted); }
+.sim-notes:empty { display: none; }
+
+/* passo 2: peça e cor */
+.sim .fieldset legend { margin-bottom: 4px; }
+.sim-prods { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 138px), 1fr)); gap: 10px; }
+.sim-prod { position: relative; display: grid; gap: 6px; align-content: start; padding: 6px 6px 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); cursor: pointer; font-size: .8125rem; font-weight: 600; line-height: 1.3; transition: border-color .2s ease, box-shadow .2s ease; }
+.sim-prod:hover { border-color: var(--wine-2); }
+.sim-prod input { position: absolute; opacity: 0; width: 1px; height: 1px; min-height: 0; padding: 0; }
+.sim-prod img { width: 100%; aspect-ratio: 850 / 780; object-fit: cover; border-radius: 5px; background: var(--sand); }
+.sim-prod span { padding-inline: 4px; }
+.sim-prod:has(input:checked) { border-color: var(--wine); box-shadow: inset 0 0 0 1.5px var(--wine); color: var(--wine); }
+.sim-prod:has(input:focus-visible) { outline: 2px solid var(--wine-2); outline-offset: 3px; }
+.sim-colors { display: flex; flex-wrap: wrap; gap: 8px; }
+.sim-color { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; padding: 6px 14px 6px 8px; border: 1px solid var(--line-strong); border-radius: 999px; background: var(--surface); cursor: pointer; font-size: .875rem; font-weight: 600; }
+.sim-color input { position: absolute; opacity: 0; width: 1px; height: 1px; min-height: 0; padding: 0; }
+.sim-swatch { width: 26px; height: 26px; border-radius: 50%; background: var(--c); box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .14); }
+.sim-color:has(input:checked) { border-color: var(--wine); box-shadow: inset 0 0 0 1px var(--wine); color: var(--wine); }
+.sim-color:has(input:focus-visible) { outline: 2px solid var(--wine-2); outline-offset: 3px; }
+
+/* passo 3: prévia, ajustes e envio */
+.sim-result { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: clamp(22px, 3.5vw, 48px); align-items: start; }
+.sim-view { display: grid; gap: 18px; min-width: 0; }
+.sim-figure { margin: 0; display: grid; gap: 8px; }
+.sim-figure canvas { width: 100%; height: auto; aspect-ratio: 850 / 780; border-radius: 8px; background: var(--sand); }
+.sim-figure figcaption { font-size: .75rem; color: var(--muted); }
+.sim[aria-busy="true"] .sim-figure canvas { opacity: .82; }
+.sim-tune { display: grid; gap: 16px; }
+.sim-seg { display: inline-flex; flex-wrap: wrap; gap: 6px; }
+.sim-seg label { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 16px; border: 1px solid var(--line-strong); border-radius: 999px; cursor: pointer; font-size: .875rem; font-weight: 600; background: var(--surface); }
+.sim-seg input { width: 18px; height: 18px; min-height: 0; padding: 0; accent-color: var(--wine); }
+.sim-seg label:has(input:checked) { border-color: var(--wine); color: var(--wine); box-shadow: inset 0 0 0 1px var(--wine); }
+.sim-range { display: flex; align-items: center; gap: 14px; }
+.sim-range input { flex: 1; min-width: 0; min-height: 44px; padding: 0; border: 0; background: transparent; accent-color: var(--wine); }
+.sim-range output { min-width: 3.2em; font-weight: 700; font-variant-numeric: tabular-nums; }
+.sim-lead { display: grid; gap: 12px; align-content: start; min-width: 0; padding: clamp(18px, 2.6vw, 28px); border-radius: 10px; background: var(--ivory); }
+.sim-lead h3 { font-size: clamp(1.4rem, 1.15rem + .8vw, 1.75rem); }
+.sim-lead .form { gap: 18px; margin-top: 4px; }
+.sim-lead .result h3 { font-size: 1.5rem; }
+.sim-lead .form-grid { gap: 14px 16px; }
+@media (max-width: 980px) { .sim-result { grid-template-columns: 1fr; } }
+@media (max-width: 560px) {
+  .sim-logo { grid-template-columns: 1fr; }
+  .sim-step-locked { margin-left: 0; }
+  .sim-prods { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .sim-step-body .btn { width: 100%; }
+}

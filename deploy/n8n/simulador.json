@@ -1,0 +1,782 @@
+{
+ "name": "Site · Simulador \"Veja sua marca\"",
+ "nodes": [
+  {
+   "id": "1b642551-fd14-5179-8106-6e81302aa6c7",
+   "name": "Recebe envio",
+   "type": "n8n-nodes-base.webhook",
+   "typeVersion": 2,
+   "position": [
+    0,
+    0
+   ],
+   "parameters": {
+    "httpMethod": "POST",
+    "path": "simulador",
+    "responseMode": "responseNode",
+    "options": {}
+   },
+   "webhookId": "28a6ddf4-f646-5de5-aa15-c68c115e6e68"
+  },
+  {
+   "id": "181f7bf4-8fd3-50ac-b16a-e9ed504927ee",
+   "name": "Configuração",
+   "type": "n8n-nodes-base.set",
+   "typeVersion": 3.4,
+   "position": [
+    220,
+    0
+   ],
+   "parameters": {
+    "mode": "manual",
+    "includeOtherFields": true,
+    "include": "all",
+    "options": {},
+    "assignments": {
+     "assignments": [
+      {
+       "id": "0f8b9528-4c78-512d-b892-abec0dd6bfc7",
+       "name": "cfg_remetente",
+       "value": "",
+       "type": "string"
+      },
+      {
+       "id": "de7dab94-de2e-5164-b7e7-cd42b0ad9b6d",
+       "name": "cfg_email_equipe",
+       "value": "",
+       "type": "string"
+      },
+      {
+       "id": "b8c508a7-2b7f-5810-bf53-84dbac59c966",
+       "name": "cfg_site",
+       "value": "https://tamacreative.com.br",
+       "type": "string"
+      },
+      {
+       "id": "49fa25e4-aadc-57e3-9ae8-1914b9046d9c",
+       "name": "cfg_whatsapp",
+       "value": "5511932279301",
+       "type": "string"
+      },
+      {
+       "id": "720a3651-fe8a-5975-a5a8-402c7eaaef55",
+       "name": "cfg_ia_ativa",
+       "value": false,
+       "type": "boolean"
+      },
+      {
+       "id": "f53da8d4-05c2-56bc-bc45-c5311e7d2281",
+       "name": "cfg_ia_enviar_ao_cliente",
+       "value": false,
+       "type": "boolean"
+      },
+      {
+       "id": "e80ea600-b09f-5fdd-b713-a48c43fc32c6",
+       "name": "cfg_ia_modelo",
+       "value": "gpt-image-1.5",
+       "type": "string"
+      },
+      {
+       "id": "63454af3-e513-568d-88e4-8a4131d6c538",
+       "name": "cfg_ia_qualidade",
+       "value": "medium",
+       "type": "string"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "id": "073114df-8abc-525e-a871-718914178575",
+   "name": "Validar envio",
+   "type": "n8n-nodes-base.code",
+   "typeVersion": 2,
+   "position": [
+    440,
+    0
+   ],
+   "parameters": {
+    "mode": "runOnceForAllItems",
+    "language": "javaScript",
+    "jsCode": "// Valida o envio do site (/api/simulador). Segunda barreira: o site já valida e sanitiza o SVG.\nconst H = (typeof helpers !== 'undefined') ? helpers : this.helpers;\nconst item = $input.first();\nconst j = item.json, b = j.body || {}, bin = item.binary || {};\nconst s = (v, n = 200) => String(v ?? '').replace(/[\\u0000-\\u001f]/g, ' ').trim().slice(0, n);\nconst lead = {\n  recebido_em: new Date().toISOString(),\n  etapa: s(b.etapa, 20), nome: s(b.nome, 120), email: s(b.email, 160).toLowerCase(), empresa: s(b.empresa, 160),\n  whatsapp: s(b.whatsapp, 40), produto: s(b.produto, 80), produto_nome: s(b.produto_nome, 120), cor: s(b.cor, 60),\n  cor_hex: s(b.cor_hex, 9), tecnica: s(b.tecnica, 160), material: s(b.material, 160), aplicacao: s(b.aplicacao, 10),\n  tamanho: s(b.tamanho, 4), pagina: s(b.pagina, 200), consentimento: s(b.consentimento, 5),\n  ip: s((j.headers || {})['x-real-ip'], 60), logo_arquivo: '', logo_tipo: '', logo_bytes: 0,\n};\nconst cfg = {\n  remetente: s(j.cfg_remetente, 200), email_equipe: s(j.cfg_email_equipe, 200), site: s(j.cfg_site, 200).replace(/\\/$/, ''),\n  whatsapp: s(j.cfg_whatsapp, 20).replace(/\\D/g, ''), ia_ativa: j.cfg_ia_ativa === true || j.cfg_ia_ativa === 'true',\n  ia_enviar_ao_cliente: j.cfg_ia_enviar_ao_cliente === true || j.cfg_ia_enviar_ao_cliente === 'true',\n  ia_modelo: s(j.cfg_ia_modelo, 60), ia_qualidade: s(j.cfg_ia_qualidade, 10),\n};\nconst bot = s(b['bot-field']) !== '';\nlet motivo = '';\nif (!['mockup', 'lembrete'].includes(lead.etapa)) motivo = 'etapa';\nelse if (lead.consentimento !== 'sim') motivo = 'consentimento';\nelse if (!/^[^\\s@]+@[^\\s@]+\\.[^\\s@]{2,}$/.test(lead.email)) motivo = 'email';\nconst binary = {};\nif (!motivo && lead.etapa === 'mockup') {\n  const lg = bin.logo, mk = bin.mockup;\n  if (lead.nome.length < 2) motivo = 'nome';\n  else if (!/^[a-z0-9-]{3,60}$/.test(lead.produto)) motivo = 'produto';\n  else if (!lg || !mk) motivo = 'arquivos';\n  else if (!['image/png', 'image/jpeg', 'image/svg+xml'].includes(lg.mimeType) || Number(lg.bytes || 0) > 5 * 1024 * 1024) motivo = 'logo';\n  else if (!['image/jpeg', 'image/png', 'image/webp'].includes(mk.mimeType) || Number(mk.bytes || 0) > 4 * 1024 * 1024) motivo = 'mockup';\n  else {\n    const lb = await H.getBinaryDataBuffer(0, 'logo');\n    if (lg.mimeType === 'image/svg+xml') {\n      const t = lb.toString('utf8');\n      if (!/<svg[\\s>]/i.test(t) || /<script|<foreignObject|<iframe|<!ENTITY|\\son[a-z]+\\s*=|javascript:|href\\s*=\\s*[\"'](?!#|data:image\\/)/i.test(t)) motivo = 'logo';\n    } else if (!((lb[0] === 0x89 && lb[1] === 0x50 && lb[2] === 0x4E) || (lb[0] === 0xFF && lb[1] === 0xD8))) motivo = 'logo';\n    const mb = await H.getBinaryDataBuffer(0, 'mockup');\n    if (!((mb[0] === 0xFF && mb[1] === 0xD8) || (mb[0] === 0x89 && mb[1] === 0x50) || mb.subarray(8, 12).toString() === 'WEBP')) motivo = motivo || 'mockup';\n    if (!motivo) {\n      const ext = { 'image/png': 'png', 'image/jpeg': 'jpg', 'image/svg+xml': 'svg' }[lg.mimeType];\n      const slug = x => x.normalize('NFKD').replace(/[^\\w-]+/g, '-').replace(/^-+|-+$/g, '').toLowerCase().slice(0, 40) || 'x';\n      lead.logo_arquivo = s(lg.fileName, 120); lead.logo_tipo = lg.mimeType; lead.logo_bytes = Number(lg.bytes || lb.length);\n      binary.logo = { ...lg, fileName: `logo-${slug(lead.empresa || lead.nome)}.${ext}` };\n      binary.mockup = { ...mk, fileName: `mockup-${lead.produto}-${slug(lead.cor)}.jpg` };\n    }\n  }\n}\nconst configurado = !!(cfg.remetente && cfg.email_equipe);\nif (!bot && !motivo && !configurado) motivo = 'configuracao';\nreturn [{ json: { ...lead, cfg, bot, motivo: bot ? 'bot' : motivo, valido: !bot && !motivo }, binary }];\n"
+   }
+  },
+  {
+   "id": "53478ed9-197a-5466-9140-cc14896eb879",
+   "name": "Envio válido?",
+   "type": "n8n-nodes-base.if",
+   "typeVersion": 2.2,
+   "position": [
+    660,
+    0
+   ],
+   "parameters": {
+    "conditions": {
+     "options": {
+      "caseSensitive": true,
+      "leftValue": "",
+      "typeValidation": "loose",
+      "version": 2
+     },
+     "conditions": [
+      {
+       "id": "40f9d815-3674-5e60-88f6-461c0c0b9d1b",
+       "leftValue": "={{ $json.valido }}",
+       "rightValue": "",
+       "operator": {
+        "type": "boolean",
+        "operation": "true",
+        "singleValue": true
+       }
+      }
+     ],
+     "combinator": "and"
+    },
+    "options": {}
+   }
+  },
+  {
+   "id": "be697402-3f0f-58aa-a96f-95a6a1538098",
+   "name": "Responde recusa",
+   "type": "n8n-nodes-base.respondToWebhook",
+   "typeVersion": 1.1,
+   "position": [
+    880,
+    200
+   ],
+   "parameters": {
+    "respondWith": "json",
+    "responseBody": "={{ $json.bot ? { ok: true } : { ok: false, erro: $json.motivo } }}",
+    "options": {
+     "responseCode": "={{ $json.bot ? 200 : ($json.motivo === 'configuracao' ? 503 : 422) }}"
+    }
+   }
+  },
+  {
+   "id": "5f2f0e24-14c4-5ade-bfd8-1e0bbcf99e55",
+   "name": "Linha do lead",
+   "type": "n8n-nodes-base.set",
+   "typeVersion": 3.4,
+   "position": [
+    880,
+    -100
+   ],
+   "parameters": {
+    "mode": "manual",
+    "includeOtherFields": false,
+    "options": {},
+    "assignments": {
+     "assignments": [
+      {
+       "id": "20569a77-0e84-588b-b87e-51f816ec0238",
+       "name": "recebido_em",
+       "value": "={{ String($json.recebido_em ?? \"\") }}",
+       "type": "string"
+      },
+      {
+       "id": "10b15762-59ec-5aef-8197-df6d0c967f3e",
+       "name": "etapa",
+       "value": "={{ String($json.etapa ?? \"\") }}",
+       "type": "string"
+      },
+      {
+       "id": "9acce138-5739-54b8-8b08-eb424b6dcbc2",
+       "name": "nome",
+       "value": "={{ String($json.nome ?? \"\") }}",
+       "type": "string"
+      },
+      {
+       "id": "c73b8933-2674-5132-b27c-339f426a3fd3",
+       "name": "email",
+       "value": "={{ String($json.email ?? \"\") }}",
+       "type": "string"
+      },
+      {
+       "id": "0a3b6698-23e9-52f7-a625-3bbd24b66b3c",
+       "name": "empresa",
+       "value": "={{ String($json.empresa ?? \"\") }}",
+       "type": "string"
+      },
+      {
+       "id": "ca49c68c-080d-5ee9-8cc8-c65bec575576",
+       "name": "whatsapp",
+       "value": "={{ String($json.whatsapp ?? \"\") }}",
+       "type": "string"
+      },
+      {
+       "id": "b6fea495-d6ee-57fe-8235-f010d398bb0e",
+       "name": "produto",
+       "value": "={{ String($json.produto ?? \"\") }}",
+       "type": "string"
+      },
+      {
+       "id": "da04b2a4-46a6-5cc2-aa8f-efac5fa24ab5",
+       "name": "cor",
+       "value": "={{ String($json.cor ?? \"\") }}",
+       "type": "string"
+      },
+      {
+       "id": "63fec3bb-db52-509b-805d-b1f323d6781b",
+       "name": "aplicacao",
+       "value": "={{ String($json.aplicacao ?? \"\") }}",
+       "type": "string"
+      },
+      {
+       "id": "c93d8317-9fba-5397-b511-b51d3039264f",
+       "name": "pagina",
+       "value": "={{ String($json.pagina ?? \"\") }}",
+       "type": "string"
+      },
+      {
+       "id": "f4d77394-6eb6-5e4e-bfc2-dbf231ce6aaf",
+       "name": "logo_arquivo",
+       "value": "={{ String($json.logo_arquivo ?? \"\") }}",
+       "type": "string"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "id": "550ac26d-bcb3-5c18-bc2e-2f3a5ac9f07a",
+   "name": "Registrar lead",
+   "type": "n8n-nodes-base.dataTable",
+   "typeVersion": 1,
+   "position": [
+    1100,
+    -100
+   ],
+   "parameters": {
+    "resource": "row",
+    "operation": "insert",
+    "dataTableId": {
+     "__rl": true,
+     "mode": "name",
+     "value": "simulador_leads"
+    },
+    "columns": {
+     "mappingMode": "autoMapInputData",
+     "value": {},
+     "matchingColumns": [],
+     "schema": [],
+     "attemptToConvertTypes": false,
+     "convertFieldsToString": false
+    },
+    "options": {}
+   },
+   "onError": "continueRegularOutput"
+  },
+  {
+   "id": "481af25d-02d7-5bfa-b8ef-77df431b3707",
+   "name": "Responde ao site (200)",
+   "type": "n8n-nodes-base.respondToWebhook",
+   "typeVersion": 1.1,
+   "position": [
+    1320,
+    -100
+   ],
+   "parameters": {
+    "respondWith": "json",
+    "responseBody": "={{ { ok: true } }}",
+    "options": {
+     "responseCode": 200
+    }
+   }
+  },
+  {
+   "id": "f29840b6-04c8-5f89-8062-24122a085544",
+   "name": "É pedido de mockup?",
+   "type": "n8n-nodes-base.if",
+   "typeVersion": 2.2,
+   "position": [
+    1540,
+    -100
+   ],
+   "parameters": {
+    "conditions": {
+     "options": {
+      "caseSensitive": true,
+      "leftValue": "",
+      "typeValidation": "loose",
+      "version": 2
+     },
+     "conditions": [
+      {
+       "id": "7e64584e-17bd-5fe7-86db-7a4842f7878c",
+       "leftValue": "={{ $('Validar envio').first().json.etapa }}",
+       "rightValue": "mockup",
+       "operator": {
+        "type": "string",
+        "operation": "equals"
+       }
+      }
+     ],
+     "combinator": "and"
+    },
+    "options": {}
+   }
+  },
+  {
+   "id": "b1b1b9a0-9ec1-5220-a8ab-3eca841ce7d1",
+   "name": "IA ativa?",
+   "type": "n8n-nodes-base.if",
+   "typeVersion": 2.2,
+   "position": [
+    1760,
+    -200
+   ],
+   "parameters": {
+    "conditions": {
+     "options": {
+      "caseSensitive": true,
+      "leftValue": "",
+      "typeValidation": "loose",
+      "version": 2
+     },
+     "conditions": [
+      {
+       "id": "9889899d-0e6b-5974-a9d1-5415b616ec3d",
+       "leftValue": "={{ $('Validar envio').first().json.cfg.ia_ativa }}",
+       "rightValue": "",
+       "operator": {
+        "type": "boolean",
+        "operation": "true",
+        "singleValue": true
+       }
+      }
+     ],
+     "combinator": "and"
+    },
+    "options": {}
+   }
+  },
+  {
+   "id": "76f38d49-7b51-507a-8505-38ec1fa6f28a",
+   "name": "Prepara render premium",
+   "type": "n8n-nodes-base.code",
+   "typeVersion": 2,
+   "position": [
+    1980,
+    -300
+   ],
+   "parameters": {
+    "mode": "runOnceForAllItems",
+    "language": "javaScript",
+    "jsCode": "// Entrada da IA: a composição determinística (mockup) é a base; o prompt pede para não mexer no logo nem no produto.\nconst v = $('Validar envio').first();\nconst prompt = [\n  'Photorealistic product photograph retouch. Keep everything exactly as it is: the product, its shape, colour, materials,',\n  'camera angle, background, framing and lighting direction. The logo already applied on the product must stay identical:',\n  'same shapes, letters, colours, proportions, size and position. Only refine how the logo application sits on the material',\n  `(${v.json.tecnica || 'brand application'} on ${v.json.material || 'the product'}): realistic texture, subtle relief and natural light interaction.`,\n  'Do not add, remove or rewrite any text, logo, object or watermark.',\n].join(' ');\nreturn [{ json: { prompt, modelo: v.json.cfg.ia_modelo || 'gpt-image-1.5', qualidade: v.json.cfg.ia_qualidade || 'medium' }, binary: { mockup: v.binary.mockup } }];\n"
+   }
+  },
+  {
+   "id": "58921873-4f51-5e93-ad5a-34becf06d2ed",
+   "name": "Render premium (OpenAI)",
+   "type": "n8n-nodes-base.httpRequest",
+   "typeVersion": 4.2,
+   "position": [
+    2200,
+    -300
+   ],
+   "parameters": {
+    "method": "POST",
+    "url": "https://api.openai.com/v1/images/edits",
+    "authentication": "predefinedCredentialType",
+    "nodeCredentialType": "openAiApi",
+    "sendBody": true,
+    "contentType": "multipart-form-data",
+    "bodyParameters": {
+     "parameters": [
+      {
+       "parameterType": "formBinaryData",
+       "name": "image",
+       "inputDataFieldName": "mockup"
+      },
+      {
+       "parameterType": "formData",
+       "name": "model",
+       "value": "={{ $json.modelo }}"
+      },
+      {
+       "parameterType": "formData",
+       "name": "prompt",
+       "value": "={{ $json.prompt }}"
+      },
+      {
+       "parameterType": "formData",
+       "name": "quality",
+       "value": "={{ $json.qualidade }}"
+      },
+      {
+       "parameterType": "formData",
+       "name": "size",
+       "value": "auto"
+      },
+      {
+       "parameterType": "formData",
+       "name": "output_format",
+       "value": "jpeg"
+      },
+      {
+       "parameterType": "formData",
+       "name": "input_fidelity",
+       "value": "high"
+      }
+     ]
+    },
+    "options": {
+     "response": {
+      "response": {
+       "responseFormat": "json"
+      }
+     },
+     "timeout": 180000
+    }
+   },
+   "onError": "continueRegularOutput"
+  },
+  {
+   "id": "34f25112-75ca-5237-ba09-48863de58204",
+   "name": "Imagem premium",
+   "type": "n8n-nodes-base.code",
+   "typeVersion": 2,
+   "position": [
+    2420,
+    -300
+   ],
+   "parameters": {
+    "mode": "runOnceForAllItems",
+    "language": "javaScript",
+    "jsCode": "// Converte a resposta da OpenAI (base64) em arquivo. Se a IA falhar, o fluxo segue só com o mockup determinístico.\nconst H = (typeof helpers !== 'undefined') ? helpers : this.helpers;\nconst r = $input.first().json || {};\nconst b64 = r.data && r.data[0] && r.data[0].b64_json;\nif (!b64) return [{ json: { premium: false, ia_erro: String((r.error && (r.error.message || r.error)) || 'sem imagem').slice(0, 300) } }];\nconst premium = await H.prepareBinaryData(Buffer.from(b64, 'base64'), 'mockup-ilustrativo-ia.jpg', 'image/jpeg');\nreturn [{ json: { premium: true, ia_erro: '' }, binary: { premium } }];\n"
+   }
+  },
+  {
+   "id": "79d10e7c-a60c-5748-83f8-c2aa7da2d3a5",
+   "name": "Montar e-mails",
+   "type": "n8n-nodes-base.code",
+   "typeVersion": 2,
+   "position": [
+    2640,
+    -100
+   ],
+   "parameters": {
+    "mode": "runOnceForAllItems",
+    "language": "javaScript",
+    "jsCode": "// Monta os dois e-mails do pedido de mockup: ao cliente (mockup em alta) e à equipe TaMa (dados + arquivos).\nconst v = $('Validar envio').first(), d = v.json, c = d.cfg;\nconst inp = $input.first();\nconst temIA = !!(inp.json && inp.json.premium && inp.binary && inp.binary.premium);\nconst e = x => String(x ?? '').replace(/[&<>\"']/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '\"': '&quot;', \"'\": '&#39;' }[ch]));\nconst wa = c.whatsapp ? `https://wa.me/${c.whatsapp}` : '';\nconst iaCliente = temIA && c.ia_enviar_ao_cliente;\nconst p = t => `<p style=\"margin:0 0 14px;font:15px/1.6 Arial,sans-serif;color:#282322\">${t}</p>`;\nconst htmlCliente = `<div style=\"max-width:560px\">` +\n  p(`Olá, ${e(d.nome.split(' ')[0])}!`) +\n  p(`Em anexo está o mockup em alta resolução de <strong>${e(d.produto_nome)}</strong> na cor <strong>${e(d.cor)}</strong>, com a sua marca aplicada.`) +\n  p(`É um mockup ilustrativo: cores, técnica de personalização, tamanho e posição da marca são definidos e aprovados na proposta, antes da produção.`) +\n  (iaCliente ? p(`Também enviamos uma versão com acabamento ilustrativo gerado por IA. Ela pode alterar detalhes do logo ou do produto; a referência é o mockup principal.`) : '') +\n  p(`Quer levar a ideia adiante? Responda este e-mail ou <a href=\"${c.site}/solicitar-proposta/\" style=\"color:#501B2B\">peça uma proposta</a>${wa ? ` ou fale no <a href=\"${wa}\" style=\"color:#501B2B\">WhatsApp</a>` : ''}.`) +\n  p(`Equipe TaMa Creative<br><a href=\"${c.site}\" style=\"color:#501B2B\">${e(c.site.replace(/^https?:\\/\\//, ''))}</a>`) +\n  `<p style=\"margin:24px 0 0;font:12px/1.5 Arial,sans-serif;color:#6B625D\">Você recebeu este e-mail porque pediu um mockup em ${e(c.site.replace(/^https?:\\/\\//, ''))}/veja-sua-marca/. O seu logo é usado só para este mockup e para a proposta, se você pedir, e é apagado em até 30 dias. <a href=\"${c.site}/privacidade/#simulador\" style=\"color:#6B625D\">Privacidade</a>.</p></div>`;\nconst textoCliente = `Olá, ${d.nome.split(' ')[0]}!\\n\\nEm anexo está o mockup em alta resolução de ${d.produto_nome} na cor ${d.cor}, com a sua marca aplicada.\\n\\nÉ um mockup ilustrativo: cores, técnica de personalização, tamanho e posição da marca são definidos e aprovados na proposta, antes da produção.\\n${iaCliente ? '\\nTambém enviamos uma versão com acabamento ilustrativo gerado por IA. Ela pode alterar detalhes do logo ou do produto; a referência é o mockup principal.\\n' : ''}\\nQuer levar a ideia adiante? Responda este e-mail ou peça uma proposta: ${c.site}/solicitar-proposta/${wa ? `\\nWhatsApp: ${wa}` : ''}\\n\\nEquipe TaMa Creative\\n\\nVocê recebeu este e-mail porque pediu um mockup em ${c.site}/veja-sua-marca/. O seu logo é usado só para este mockup e para a proposta, se você pedir, e é apagado em até 30 dias. Privacidade: ${c.site}/privacidade/#simulador`;\nconst linhas = [['Nome', d.nome], ['E-mail', d.email], ['Empresa', d.empresa], ['WhatsApp', d.whatsapp], ['Peça', `${d.produto_nome} (${d.produto})`],\n  ['Cor', d.cor], ['Técnica de referência', d.tecnica], ['Aplicação do logo', d.aplicacao === 'cores' ? 'cores do logo' : 'um tom'], ['Tamanho', d.tamanho ? d.tamanho + '%' : ''],\n  ['Página', d.pagina], ['Logo enviado', `${d.logo_arquivo} (${d.logo_tipo}, ${Math.round(d.logo_bytes / 1024)} KB)`],\n  ['Render IA', c.ia_ativa ? (temIA ? (iaCliente ? 'gerado e enviado ao cliente' : 'gerado, só para a equipe revisar') : 'falhou: ' + (inp.json.ia_erro || '')) : 'desligado'],\n  ['Recebido em', d.recebido_em]];\nconst htmlEquipe = `<div style=\"font:14px/1.5 Arial,sans-serif;color:#282322\"><p><strong>Novo lead do simulador \"Veja sua marca\".</strong> O mockup e o logo estão em anexo.</p><table cellpadding=\"6\" style=\"border-collapse:collapse\">` +\n  linhas.filter(l => l[1]).map(l => `<tr><td style=\"color:#6B625D;border-bottom:1px solid #E6DDD3\">${e(l[0])}</td><td style=\"border-bottom:1px solid #E6DDD3\">${e(l[1])}</td></tr>`).join('') +\n  `</table><p style=\"color:#6B625D;font-size:12px\">LGPD: apague este e-mail e os anexos em até 30 dias, salvo se o cliente contratar o projeto (política em ${e(c.site)}/privacidade/#simulador).</p></div>`;\nconst textoEquipe = 'Novo lead do simulador \"Veja sua marca\". O mockup e o logo estão em anexo.\\n\\n' + linhas.filter(l => l[1]).map(l => `${l[0]}: ${l[1]}`).join('\\n') +\n  '\\n\\nLGPD: apague este e-mail e os anexos em até 30 dias, salvo se o cliente contratar o projeto.';\nconst binary = { mockup: v.binary.mockup, logo: v.binary.logo };\nif (temIA) binary.premium = inp.binary.premium;\nreturn [{ json: {\n  remetente: c.remetente, equipe: c.email_equipe, cliente: d.email,\n  assunto_cliente: `Seu mockup TaMa: ${d.produto_nome} com a sua marca`,\n  assunto_equipe: `Simulador: ${d.nome}${d.empresa ? ' (' + d.empresa + ')' : ''} · ${d.produto_nome}, ${d.cor}`,\n  html_cliente: htmlCliente, texto_cliente: textoCliente, html_equipe: htmlEquipe, texto_equipe: textoEquipe,\n  anexos_cliente: iaCliente ? 'mockup,premium' : 'mockup', anexos_equipe: temIA ? 'mockup,logo,premium' : 'mockup,logo',\n}, binary }];\n"
+   }
+  },
+  {
+   "id": "652ec066-e39a-5ac9-8bbf-c76b690f3445",
+   "name": "E-mail ao cliente",
+   "type": "n8n-nodes-base.emailSend",
+   "typeVersion": 2.1,
+   "position": [
+    2860,
+    -200
+   ],
+   "parameters": {
+    "fromEmail": "={{ $json.remetente }}",
+    "toEmail": "={{ $json.cliente }}",
+    "subject": "={{ $json.assunto_cliente }}",
+    "emailFormat": "both",
+    "html": "={{ $json.html_cliente }}",
+    "text": "={{ $json.texto_cliente }}",
+    "options": {
+     "appendAttribution": false,
+     "attachments": "={{ $json.anexos_cliente }}",
+     "replyTo": "={{ $json.equipe }}"
+    }
+   },
+   "onError": "continueRegularOutput"
+  },
+  {
+   "id": "e8785f70-ea4c-523b-853b-677bd2b9c65b",
+   "name": "Aviso à equipe",
+   "type": "n8n-nodes-base.emailSend",
+   "typeVersion": 2.1,
+   "position": [
+    2860,
+    0
+   ],
+   "parameters": {
+    "fromEmail": "={{ $json.remetente }}",
+    "toEmail": "={{ $json.equipe }}",
+    "subject": "={{ $json.assunto_equipe }}",
+    "emailFormat": "both",
+    "html": "={{ $json.html_equipe }}",
+    "text": "={{ $json.texto_equipe }}",
+    "options": {
+     "appendAttribution": false,
+     "attachments": "={{ $json.anexos_equipe }}",
+     "replyTo": "={{ $json.cliente }}"
+    }
+   },
+   "onError": "continueRegularOutput"
+  },
+  {
+   "id": "55b759eb-b5b7-5bb6-ad0c-5b4feb4fa4ee",
+   "name": "Montar e-mail do link",
+   "type": "n8n-nodes-base.code",
+   "typeVersion": 2,
+   "position": [
+    1760,
+    100
+   ],
+   "parameters": {
+    "mode": "runOnceForAllItems",
+    "language": "javaScript",
+    "jsCode": "// Pedido do convite de saída: só o e-mail. Envia o link do simulador e avisa a equipe.\nconst d = $('Validar envio').first().json, c = d.cfg;\nconst url = `${c.site}/veja-sua-marca/`;\nconst p = t => `<p style=\"margin:0 0 14px;font:15px/1.6 Arial,sans-serif;color:#282322\">${t}</p>`;\nreturn [{ json: {\n  remetente: c.remetente, equipe: c.email_equipe, cliente: d.email,\n  assunto_cliente: 'Seu link para ver a sua marca nos produtos TaMa',\n  html_cliente: `<div style=\"max-width:560px\">` + p('Olá!') + p(`Como combinado, aqui está o link do simulador: envie o logo, escolha a peça e a cor, e veja a prévia na hora.`) +\n    p(`<a href=\"${url}\" style=\"display:inline-block;padding:12px 22px;border-radius:999px;background:#501B2B;color:#fff;text-decoration:none;font-weight:bold\">Ver com a minha marca</a>`) +\n    p(`Equipe TaMa Creative`) + `<p style=\"margin:24px 0 0;font:12px/1.5 Arial,sans-serif;color:#6B625D\">Você recebeu este e-mail porque pediu o link em ${c.site.replace(/^https?:\\/\\//, '')}. <a href=\"${c.site}/privacidade/#simulador\" style=\"color:#6B625D\">Privacidade</a>.</p></div>`,\n  texto_cliente: `Olá!\\n\\nComo combinado, aqui está o link do simulador: ${url}\\nEnvie o logo, escolha a peça e a cor, e veja a prévia na hora.\\n\\nEquipe TaMa Creative\\n\\nVocê recebeu este e-mail porque pediu o link em ${c.site}. Privacidade: ${c.site}/privacidade/#simulador`,\n  assunto_equipe: `Simulador: pedido de link (${d.email})`,\n  html_equipe: `<p style=\"font:14px/1.5 Arial,sans-serif\">Um visitante pediu o link do simulador pelo convite de saída.</p><p style=\"font:14px/1.5 Arial,sans-serif\">E-mail: ${d.email.replace(/[<>&\"]/g, '')}<br>Página: ${String(d.pagina).replace(/[<>&\"]/g, '')}<br>Recebido em: ${d.recebido_em}</p>`,\n  texto_equipe: `Um visitante pediu o link do simulador pelo convite de saída.\\nE-mail: ${d.email}\\nPágina: ${d.pagina}\\nRecebido em: ${d.recebido_em}`,\n} }];\n"
+   }
+  },
+  {
+   "id": "34509c23-2565-569b-872b-89fc29a65eef",
+   "name": "E-mail com o link",
+   "type": "n8n-nodes-base.emailSend",
+   "typeVersion": 2.1,
+   "position": [
+    1980,
+    0
+   ],
+   "parameters": {
+    "fromEmail": "={{ $json.remetente }}",
+    "toEmail": "={{ $json.cliente }}",
+    "subject": "={{ $json.assunto_cliente }}",
+    "emailFormat": "both",
+    "html": "={{ $json.html_cliente }}",
+    "text": "={{ $json.texto_cliente }}",
+    "options": {
+     "appendAttribution": false,
+     "replyTo": "={{ $json.equipe }}"
+    }
+   },
+   "onError": "continueRegularOutput"
+  },
+  {
+   "id": "128276ee-9949-58a9-9b38-4f88ef946d06",
+   "name": "Aviso à equipe (link)",
+   "type": "n8n-nodes-base.emailSend",
+   "typeVersion": 2.1,
+   "position": [
+    1980,
+    200
+   ],
+   "parameters": {
+    "fromEmail": "={{ $json.remetente }}",
+    "toEmail": "={{ $json.equipe }}",
+    "subject": "={{ $json.assunto_equipe }}",
+    "emailFormat": "both",
+    "html": "={{ $json.html_equipe }}",
+    "text": "={{ $json.texto_equipe }}",
+    "options": {
+     "appendAttribution": false,
+     "replyTo": "={{ $json.cliente }}"
+    }
+   },
+   "onError": "continueRegularOutput"
+  },
+  {
+   "id": "ebf273cb-cc8a-5281-9588-c89deea4dd13",
+   "name": "Leia antes de ativar",
+   "type": "n8n-nodes-base.stickyNote",
+   "typeVersion": 1,
+   "position": [
+    0,
+    -420
+   ],
+   "parameters": {
+    "content": "## Simulador \"Veja sua marca\"\n1. **Configuração**: preencha `cfg_remetente` (o mesmo e-mail da conta SMTP) e `cfg_email_equipe`. Sem os dois, o site recebe 503 e mostra erro.\n2. **SMTP**: nos nós de e-mail, crie a credencial SMTP (Credentials > New > SMTP).\n3. **Data table** `simulador_leads` com as colunas de texto: recebido_em, etapa, nome, email, empresa, whatsapp, produto, cor, aplicacao, pagina, logo_arquivo.\n4. **IA (opcional)**: `cfg_ia_ativa` = true e credencial OpenAI no nó \"Render premium (OpenAI)\". Por padrão o render IA vai só para a equipe.\nDetalhes: docs/SIMULADOR.md no repositório do site.",
+    "height": 300,
+    "width": 560
+   }
+  }
+ ],
+ "connections": {
+  "Recebe envio": {
+   "main": [
+    [
+     {
+      "node": "Configuração",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Configuração": {
+   "main": [
+    [
+     {
+      "node": "Validar envio",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Validar envio": {
+   "main": [
+    [
+     {
+      "node": "Envio válido?",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Envio válido?": {
+   "main": [
+    [
+     {
+      "node": "Linha do lead",
+      "type": "main",
+      "index": 0
+     }
+    ],
+    [
+     {
+      "node": "Responde recusa",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Linha do lead": {
+   "main": [
+    [
+     {
+      "node": "Registrar lead",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Registrar lead": {
+   "main": [
+    [
+     {
+      "node": "Responde ao site (200)",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Responde ao site (200)": {
+   "main": [
+    [
+     {
+      "node": "É pedido de mockup?",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "É pedido de mockup?": {
+   "main": [
+    [
+     {
+      "node": "IA ativa?",
+      "type": "main",
+      "index": 0
+     }
+    ],
+    [
+     {
+      "node": "Montar e-mail do link",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "IA ativa?": {
+   "main": [
+    [
+     {
+      "node": "Prepara render premium",
+      "type": "main",
+      "index": 0
+     }
+    ],
+    [
+     {
+      "node": "Montar e-mails",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Prepara render premium": {
+   "main": [
+    [
+     {
+      "node": "Render premium (OpenAI)",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Render premium (OpenAI)": {
+   "main": [
+    [
+     {
+      "node": "Imagem premium",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Imagem premium": {
+   "main": [
+    [
+     {
+      "node": "Montar e-mails",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Montar e-mails": {
+   "main": [
+    [
+     {
+      "node": "E-mail ao cliente",
+      "type": "main",
+      "index": 0
+     },
+     {
+      "node": "Aviso à equipe",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Montar e-mail do link": {
+   "main": [
+    [
+     {
+      "node": "E-mail com o link",
+      "type": "main",
+      "index": 0
+     },
+     {
+      "node": "Aviso à equipe (link)",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  }
+ },
+ "settings": {
+  "executionOrder": "v1",
+  "saveDataSuccessExecution": "none",
+  "saveDataErrorExecution": "all",
+  "saveManualExecutions": true
+ }
+}

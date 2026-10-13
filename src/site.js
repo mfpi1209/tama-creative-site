@@ -125,10 +125,12 @@
       card.setAttribute('data-color', color);
       card.querySelectorAll('.swatch').forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-color') === color)); });
       var n = card.querySelector('.color-name'); if (n) n.textContent = color;
+      var sl = card.querySelector('[data-sim-link]'); if (sl) sl.href = simHref(slug, color);
       var pic = card.querySelector('.prod-media picture');
       if (v && pic) swapPicture(pic, v);   // show the product in the chosen colour
     });
   }
+  function simHref(slug, color) { return '/veja-sua-marca/?produto=' + encodeURIComponent(slug) + (color ? '&cor=' + encodeURIComponent(color) : ''); }
   function setColor(slug, color) {
     paintColor(slug, color);
     var sel = getSel(), i = find(sel, slug);
@@ -193,6 +195,8 @@
       if (ci) lbImg.alt = ci.alt;
     }
     var color = cardColor(lbSlug);
+    var lbSim = document.getElementById('lb-sim');
+    if (lbSim) lbSim.href = simHref(lbSlug, color);
     document.querySelectorAll('#lb-swatches .swatch').forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-color') === color)); });
   }
   function openLightbox(slug) {
@@ -341,6 +345,81 @@
   }
 
   render();
+
+  /* ---------- Convite de saída: "Veja sua marca em nossos produtos." ----------
+     Computador: o mouse sai pelo topo da janela. Celular: rolagem rápida para cima depois de ler parte da página,
+     ou tempo de leitura. Uma vez por sessão; fechado, volta só depois de 7 dias; nunca depois de usar o simulador. */
+  var exitBox = document.getElementById('exit-modal');
+  if (exitBox && typeof exitBox.showModal === 'function') (function () {
+    var T = Object.assign({ dwell: 8000, mobileDwell: 15000, timer: 75000, minScroll: 0.35, upPx: 140, upMs: 300 }, window.TAMA_EXIT_TEST || {});
+    var t0 = Date.now(), lastFocus = null, converted = false, shown = false;
+    function ss(k, v) { try { if (v === undefined) return sessionStorage.getItem(k); sessionStorage.setItem(k, v); } catch (e) { return null; } }
+    function can(dwell) {
+      if (shown || ss('tama-exit-sessao')) return false;
+      if (+(store('tama-exit-ate') || 0) > Date.now() || store('tama-sim-usado')) return false;
+      if (document.querySelector('dialog[open]') || (nav && nav.classList.contains('is-open'))) return false;
+      var a = document.activeElement;
+      if (a && /^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName)) return false;
+      return Date.now() - t0 >= dwell;
+    }
+    function show(trigger, dwell) {
+      if (!can(dwell)) return;
+      shown = true; ss('tama-exit-sessao', '1');
+      lastFocus = document.activeElement;
+      exitBox.showModal();
+      track('exit_intent_open', { trigger: trigger, page: location.pathname });
+    }
+    exitBox.addEventListener('close', function () {
+      if (!converted) store('tama-exit-ate', String(Date.now() + 7 * 864e5));
+      track('exit_intent_close', { converted: converted });
+      if (lastFocus && lastFocus.focus && document.contains(lastFocus)) lastFocus.focus({ preventScroll: true });
+    });
+    exitBox.querySelector('a[href^="/veja-sua-marca/"]').addEventListener('click', function () { converted = true; });
+    var fine = window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    if (fine) {
+      document.addEventListener('mouseout', function (e) {
+        if (!e.relatedTarget && e.clientY <= 0) show('mouse', T.dwell);
+      });
+    } else {
+      var maxY = 0, lastY = window.scrollY, lastT = Date.now(), timer = null, scrolled = false;
+      window.addEventListener('scroll', function () {
+        var y = window.scrollY, now = Date.now(), doc = document.documentElement.scrollHeight - window.innerHeight;
+        if (y > maxY) maxY = y;
+        if (y > 40) scrolled = true;
+        if (lastY - y >= T.upPx && now - lastT <= T.upMs && y > 120 && maxY >= Math.min(doc * T.minScroll, 1400)) show('rolagem', T.mobileDwell);
+        if (now - lastT > T.upMs || y > lastY) { lastY = y; lastT = now; }
+      }, { passive: true });
+      var tick = function () { if (document.visibilityState === 'visible' && scrolled) show('tempo', 0); else timer = setTimeout(tick, 5000); };
+      timer = setTimeout(tick, Math.min(T.timer, 2147483647));
+    }
+    var ef = document.getElementById('exit-form');
+    if (!ef) return;
+    var err = function (id, msg) { var i = document.getElementById(id), m = document.getElementById(id + '-error'); i.setAttribute('aria-invalid', msg ? 'true' : 'false'); m.textContent = msg || ''; return !msg; };
+    ef.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var okMail = err('exit-email', /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(ef.email.value.trim()) ? '' : 'Informe um e-mail válido.');
+      var okCons = err('exit-consent', ef.consentimento.checked ? '' : 'Precisamos do seu consentimento para enviar o link.');
+      var st = document.getElementById('exit-status');
+      if (!okMail || !okCons) { document.getElementById(okMail ? 'exit-consent' : 'exit-email').focus(); st.textContent = ''; return; }
+      var fd = new FormData(ef);
+      fd.set('consentimento', 'sim');
+      fd.append('form-name', 'simulador'); fd.append('etapa', 'lembrete'); fd.append('pagina', location.pathname);
+      var btn = ef.querySelector('button[type="submit"]'); btn.disabled = true; st.textContent = 'Enviando…';
+      fetch(ef.getAttribute('data-endpoint'), { method: 'POST', body: fd }).then(function (r) {
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        converted = true; store('tama-sim-usado', String(Date.now()));
+        var box = document.createElement('div'); box.className = 'exit-done'; box.setAttribute('tabindex', '-1');
+        var h = document.createElement('p'); h.innerHTML = '<strong>Pronto! Enviamos o link para </strong>'; h.querySelector('strong').appendChild(document.createTextNode(ef.email.value.trim() + '.'));
+        var p2 = document.createElement('p'); p2.className = 'muted'; p2.textContent = 'Quando estiver com o logo, é só abrir o link do e-mail.';
+        box.appendChild(h); box.appendChild(p2);
+        ef.replaceWith(box); box.focus();
+        track('exit_intent_submit', { page: location.pathname });
+      }).catch(function () {
+        st.textContent = 'Não conseguimos enviar agora. Tente de novo em instantes.';
+        btn.disabled = false;
+      });
+    });
+  })();
 
   /* ---------- Formulário de proposta ---------- */
   var form = document.getElementById('proposal-form');

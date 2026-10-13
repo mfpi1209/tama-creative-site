@@ -8,5 +8,6 @@
   "ga4_id": "",
   "redirect_netlify_subdomain": false,
   "netlify_subdomain": "https://tamacreative.netlify.app",
-  "mockups_marca": true
+  "mockups_marca": true,
+  "simulador_ia": false
 }

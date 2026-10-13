@@ -19,10 +19,10 @@ LOGOS_OFICIAIS = os.path.join(ROOT, '..', 'tama-creative-logos', 'svg')
 
 # ------------------------------------------------------------------ config
 CFG = json.load(open(os.path.join(ROOT, 'site.config.json'), encoding='utf-8'))
-for key in ('site_url', 'whatsapp', 'email', 'instagram', 'ga4_id', 'redirect_netlify_subdomain', 'form_endpoint'):
+for key in ('site_url', 'whatsapp', 'email', 'instagram', 'ga4_id', 'redirect_netlify_subdomain', 'form_endpoint', 'simulador_endpoint', 'simulador_ia'):
     env = os.environ.get(key.upper())
     if env is not None:
-        CFG[key] = env.lower() in ('1', 'true', 'yes') if key == 'redirect_netlify_subdomain' else env
+        CFG[key] = env.lower() in ('1', 'true', 'yes') if key in ('redirect_netlify_subdomain', 'simulador_ia') else env
 SITE = CFG['site_url'].rstrip('/')
 WA = re.sub(r'\D', '', CFG.get('whatsapp') or '')
 EMAIL = (CFG.get('email') or '').strip()
@@ -33,6 +33,10 @@ FORM_ENDPOINT = (CFG.get('form_endpoint') or '/').strip() or '/'
 NETLIFY_FORMS = FORM_ENDPOINT == '/'
 # Branded mockups (img/marca/ + src/data/mockups.json). Off unless MOCKUPS_MARCA=1 or "mockups_marca": true.
 MOCKUPS = str(os.environ.get('MOCKUPS_MARCA', CFG.get('mockups_marca', ''))).lower() in ('1', 'true', 'yes')
+# Simulador "Veja sua marca" (/veja-sua-marca/): o Nginx repassa este caminho ao webhook do n8n (deploy/nginx.conf).
+SIM_ENDPOINT = (CFG.get('simulador_endpoint') or '/api/simulador').strip()
+# true só quando o render premium da OpenAI estiver ligado no n8n: muda o consentimento e a política de privacidade.
+SIM_IA = str(CFG.get('simulador_ia', '')).lower() in ('1', 'true', 'yes')
 BUILD_DATE = date.today().isoformat()
 esc = lambda s: html.escape(s, quote=True)
 
@@ -189,6 +193,89 @@ def preload_image(name, sizes):
     return f'<link rel="preload" as="image" type="image/avif" imagesrcset="{srcset}" imagesizes="{sizes}" fetchpriority="high">'
 
 
+# ------------------------------------------------------------------ simulador "Veja sua marca"
+# Fotos-base sem marca (img/simulador/<foto>~<cor>.webp, 1600 px) e áreas de aplicação (src/data/simulador.json),
+# geradas por tools/mockup-engine/simulador_export.py. O navegador compõe o logo do cliente (src/simulador.js).
+_SIM_JSON = os.path.join(SRC, 'data', 'simulador.json')
+SIM_DATA = json.load(open(_SIM_JSON, encoding='utf-8')) if os.path.exists(_SIM_JSON) else None
+SIM_BASES = {}   # '<foto>~<cor>' -> {'t': 320 px, 'p': 720 px (prévia), 'f': 1600 px (alta)}
+SIM_PATH = '/veja-sua-marca/'
+SIM_EYEBROW = 'Sua marca. Nossa criatividade.'
+SIM_TITLE = 'Veja sua marca em nossos produtos.'
+SIM_LEAD = 'Envie o logo, escolha a peça e a cor. A prévia aparece na hora e o mockup em alta chega no seu e-mail.'
+SIM_CTA = 'Ver com a minha marca'
+
+
+def build_sim_images():
+    if not SIM_DATA:
+        return
+    from PIL import Image
+    src_dir = os.path.join(IMG_SRC, 'simulador')
+    out = os.path.join(DIST, 'img')
+    cache = os.path.join(ROOT, '.cache', 'img', 'sim')
+    os.makedirs(cache, exist_ok=True)
+    missing = []
+    for p in SIM_DATA['produtos']:
+        for c in p['cores']:
+            name = f"{p['img']}~{c['s']}"
+            src = os.path.join(src_dir, name + '.webp')
+            if not os.path.exists(src):
+                missing.append(name)
+                continue
+            raw = open(src, 'rb').read()
+            stem = f"sim-{name}.{hashlib.md5(raw).hexdigest()[:8]}"
+            urls, im = {}, None
+            for key, w in (('t', 320), ('p', 720), ('f', 1600)):
+                fn = f'{stem}-{w}.webp'
+                cached = os.path.join(cache, fn)
+                if not os.path.exists(cached):
+                    if im is None:
+                        im = Image.open(src).convert('RGB')
+                    if w >= im.width:
+                        open(cached, 'wb').write(raw)
+                    else:
+                        im.resize((w, round(im.height * w / im.width)), Image.LANCZOS).save(cached, 'WEBP', quality=80, method=6)
+                shutil.copy2(cached, os.path.join(out, fn))
+                urls[key] = '/img/' + fn
+            SIM_BASES[name] = urls
+    if missing:
+        raise SystemExit(f'Simulador: faltam {len(missing)} fotos-base em img/simulador/ (ex.: {missing[0]}). '
+                         'Rode: python -I tools/mockup-engine/simulador_export.py')
+
+
+def sim_href(produto=None):
+    return SIM_PATH + (f'?produto={produto}' if produto else '')
+
+
+def sim_link(label=SIM_CTA, cls='btn btn-wine', track_label=None, produto=None, arrow=True):
+    tl = f' data-track-label="{esc(track_label)}"' if track_label else ''
+    return f'<a class="{cls}" href="{sim_href(produto)}" data-track="cta_simulador"{tl}>{label}{" " + ARROW if arrow else ""}</a>'
+
+
+def sim_band(track_label):
+    """Faixa "Veja sua marca em nossos produtos." (home e curadoria): convite ao simulador, com a comparação de marcas."""
+    tiles = ''
+    if SIM_BASES and 'caderno-azul~marinho' in SIM_BASES:
+        sz = '(max-width: 760px) 30vw, 190px'
+        yours = (f'<a class="your-brand" href="{sim_href("agenda-executiva")}" data-track="cta_simulador" data-track-label="{track_label}-tile">'
+                 f'<img src="{SIM_BASES["caderno-azul~marinho"]["t"]}" alt="" width="320" height="294" loading="lazy" decoding="async">'
+                 f'<span>{arc()}Sua marca aqui</span></a>')
+        if MOCKUPS and 'caderno-azul--casa-mirelo' in IMAGES and 'caderno-azul' in IMAGES:
+            tiles = (f'<div class="brand-compare trio"><figure>{picture("caderno-azul", "x", sz)}<figcaption>TaMa Creative</figcaption></figure>'
+                     f'<figure>{picture("caderno-azul--casa-mirelo", "x", sz)}<figcaption>Casa Mirelo · marca fictícia</figcaption></figure>'
+                     f'<figure>{yours}<figcaption>A sua marca</figcaption></figure></div>')
+        else:
+            tiles = f'<div class="brand-compare solo"><figure>{yours}<figcaption>A sua marca</figcaption></figure></div>'
+    intro = ('As peças desta página mostram a identidade TaMa Creative como exemplo de personalização.' if MOCKUPS
+             else 'As fotos desta página são conceituais.')
+    return f'''<div class="brand-note sim-band">
+  <div class="stack" style="gap:12px"><p class="eyebrow">{SIM_EYEBROW}</p><h2 class="section-title">{SIM_TITLE}</h2>
+  <p class="muted">{intro} {SIM_LEAD}</p>
+  <div class="actions">{sim_link(track_label=track_label)}</div></div>
+  {tiles}
+</div>'''
+
+
 # ------------------------------------------------------------------ catalog helpers
 PECA = {p['slug']: p for p in PECAS}
 
@@ -238,6 +325,7 @@ def product_card(p, sizes='(max-width: 760px) 46vw, (max-width: 1180px) 22vw, 20
     <p class="prod-meta">{', '.join(p['materiais'])} · {', '.join(p['tecnicas'])}</p>
     <div class="prod-actions">
       <button class="pick" type="button" data-slug="{p['slug']}" aria-pressed="false"><span class="when-off">+ Selecionar</span><span class="when-on">✓ Selecionado</span><span class="visually-hidden">: {p['nome']}</span></button>
+      {f'<a class="sim-link" href="{sim_href(p["slug"])}" data-sim-link data-track="cta_simulador" data-track-label="card">{SIM_CTA}<span class="visually-hidden">: {p["nome"]}</span></a>' if SIM_DATA else ''}
     </div>
   </div>
 </article>'''
@@ -374,7 +462,7 @@ def fmt_phone(d):
 
 
 def footer():
-    sol = ''.join(f'<li><a href="{p}">{t}</a></li>' for p, t in [('/brindes-corporativos/', 'Brindes corporativos'), ('/kits-corporativos/', 'Kits corporativos'), ('/brindes-corporativos-premium/', 'Curadoria'), ('/confeccoes-personalizadas/', 'Confecções'), ('/branding-identidade-visual/', 'Branding e identidade')])
+    sol = ''.join(f'<li><a href="{p}">{t}</a></li>' for p, t in [('/brindes-corporativos/', 'Brindes corporativos'), ('/kits-corporativos/', 'Kits corporativos'), ('/brindes-corporativos-premium/', 'Curadoria'), ('/confeccoes-personalizadas/', 'Confecções'), ('/branding-identidade-visual/', 'Branding e identidade')] + ([(SIM_PATH, 'Veja sua marca')] if SIM_DATA else []))
     contacts = contact_lines()
     contact_col = ''.join(f'<li>{c}</li>' for c in contacts) or '<li><a href="/solicitar-proposta/">Solicitar proposta</a></li>'
     return f'''<footer class="site-footer">
@@ -523,6 +611,8 @@ def minify_css(css):
 
 CSS = None
 JS_FILE = None
+SIM_CSS = ''
+SIM_JS_FILE = None
 
 DIALOGS = '''<dialog class="drawer" id="drawer" aria-labelledby="drawer-t">
   <div class="drawer-inner">
@@ -534,7 +624,7 @@ DIALOGS = '''<dialog class="drawer" id="drawer" aria-labelledby="drawer-t">
 </dialog>
 <dialog class="lightbox" id="lightbox" aria-labelledby="lb-title">
   <button class="icon-btn lightbox-close" type="button" data-close-dialog aria-label="Fechar foto"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
-  <div class="lightbox-body"><img id="lb-img" alt="" width="850" height="780"><div><p class="eyebrow">{CAP + (' · personalizável com a sua marca' if MOCKUPS else '')}</p><h2 id="lb-title"></h2><p class="muted" id="lb-desc"></p><div id="lb-swatches"></div><p class="prod-meta" id="lb-meta"></p><div class="actions" style="margin-top:16px"><button class="pick" type="button" id="lb-pick" aria-pressed="false"><span class="when-off">+ Selecionar</span><span class="when-on">✓ Selecionado</span></button></div></div></div>
+  <div class="lightbox-body"><img id="lb-img" alt="" width="850" height="780"><div><p class="eyebrow">{LBCAP}</p><h2 id="lb-title"></h2><p class="muted" id="lb-desc"></p><div id="lb-swatches"></div><p class="prod-meta" id="lb-meta"></p><div class="actions" style="margin-top:16px"><button class="pick" type="button" id="lb-pick" aria-pressed="false"><span class="when-off">+ Selecionar</span><span class="when-on">✓ Selecionado</span></button>{LBSIM}</div></div></div>
 </dialog>
 <button class="float-bag" type="button" data-open-drawer hidden>''' + BAG_SVG + '''<span><span data-sel-count-text>0 peças</span> na seleção</span></button>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>'''
@@ -589,6 +679,7 @@ def shell(page, body):
 <script id="tama-config" type="application/json">{config}</script>
 {catalog_json()}
 <script src="/assets/{JS_FILE}" defer></script>
+{page.get('scripts', '')}
 </head>
 <body{service_attr}>
 {SPRITE}
@@ -598,7 +689,8 @@ def shell(page, body):
 {body}
 </main>
 {footer()}
-{DIALOGS.replace('{ARROW}', ARROW)}
+{DIALOGS.replace('{ARROW}', ARROW).replace('{LBCAP}', CAP + (' · personalizável com a sua marca' if MOCKUPS else '')).replace('{LBSIM}', f'<a class="sim-link" id="lb-sim" href="{SIM_PATH}" data-track="cta_simulador" data-track-label="foto-ampliada">{SIM_CTA}</a>' if SIM_DATA else '')}
+{exit_modal() if page.get('exit', True) and SIM_DATA else ''}
 {wa_float}
 {consent}
 </body>
@@ -668,7 +760,7 @@ def page_home():
 
 <section class="section" aria-labelledby="cur-t">
   <div class="wrap">
-    {brand_note()}
+    {sim_band('home') if SIM_DATA else brand_note()}
     {product_rail(ALL_SLUGS, 'rail-home', f'<p class="eyebrow">Curadoria autoral</p><h2 id="cur-t" class="section-title">{len(PECAS)} peças para transformar sua marca em experiência.</h2>',
                   'Sua marca tem uma cor. Seu público, muitas possibilidades. Escolha a cor de referência de cada peça e monte sua seleção.', chips=True,
                   more=('/brindes-corporativos-premium/', f'Ver curadoria completa e {len(ALEM)} ideias além do óbvio'))}
@@ -827,11 +919,12 @@ def page_curadoria():
     <p class="eyebrow">Curadoria autoral</p>
     <h1>Brindes corporativos premium: {total} ideias para a sua marca</h1>
     <p class="lead">Peças fotografadas com cores de referência e ideias além do óbvio que quase ninguém usa como brinde. Escolha, combine e envie a seleção junto com o pedido de proposta.</p>
+    {'<div class="actions">' + sim_link(cls='btn btn-wine', track_label='curadoria-head') + '<a class="btn btn-line" href="#pecas">Ver as peças</a></div>' if SIM_DATA else ''}
   </div></div>
 </section>
 <section class="section ivory" id="pecas" style="padding-top:clamp(32px,4vw,52px)" aria-label="Peças da curadoria">
   <div class="wrap">
-    {brand_note()}
+    {sim_band('curadoria') if SIM_DATA else brand_note()}
     <div class="stack" style="gap:12px;margin-bottom:26px">
       <div class="filters" role="group" aria-label="Filtrar por categoria" style="flex-wrap:wrap">{cat_chips}</div>
       <div class="filters" role="group" aria-label="Filtrar por ocasião" style="flex-wrap:wrap">{occ_chips}</div>
@@ -1074,7 +1167,7 @@ def page_proposta():
     return {
         'path': '/solicitar-proposta/', 'title': 'Solicitar proposta | TaMa Creative',
         'description': 'Peça uma proposta de brindes corporativos, kits, uniformes ou identidade visual. Conte a ocasião e a TaMa Creative propõe as possibilidades.',
-        'trail': [('/', 'Início'), ('/solicitar-proposta/', 'Solicitar proposta')], 'wp_type': 'ContactPage',
+        'trail': [('/', 'Início'), ('/solicitar-proposta/', 'Solicitar proposta')], 'wp_type': 'ContactPage', 'exit': False,
         'body': f'''<section class="page-head" style="padding-bottom:clamp(24px,4vw,40px)">
   <div class="wrap"><div class="section-head" style="margin:0;max-width:50rem"><p class="eyebrow">Solicitar proposta</p><h1>Vamos dar forma à sua ideia?</h1><p class="lead">Conte a ocasião. A TaMa propõe as possibilidades. O formulário leva cerca de dois minutos.</p></div></div>
 </section>
@@ -1116,7 +1209,7 @@ def page_proposta():
 
 def page_obrigado():
     return {
-        'path': '/obrigado/', 'title': 'Pedido recebido | TaMa Creative', 'index': False,
+        'path': '/obrigado/', 'title': 'Pedido recebido | TaMa Creative', 'index': False, 'exit': False,
         'description': 'Recebemos o seu pedido de proposta. A TaMa Creative responde pelo contato informado.',
         'body': '''<section class="section"><div class="wrap"><div class="section-head" style="max-width:44rem"><p class="eyebrow">Pedido enviado</p><h1>Recebemos o seu pedido</h1><p class="lead">Vamos responder pelo contato informado. Enquanto isso, conheça a curadoria.</p><div class="actions"><a class="btn btn-wine" href="/brindes-corporativos-premium/">Ver a curadoria</a><a class="btn btn-line" href="/">Voltar ao início</a></div></div></div></section>''',
     }
@@ -1124,17 +1217,32 @@ def page_obrigado():
 
 def page_privacidade():
     contato = EMAIL and f'pelo e-mail <a href="mailto:{esc(EMAIL)}">{esc(EMAIL)}</a>' or 'pelo formulário de <a href="/solicitar-proposta/">solicitação de proposta</a>'
+    ul = '<ul style="padding-left:1.2em;display:grid;gap:6px">'
+    host = ('<li>Netlify, que hospeda o site e recebe o formulário.</li>' if NETLIFY_FORMS else
+            '<li>O servidor (VPS) contratado pela TaMa, onde ficam o site e a automação que recebe os formulários (n8n).</li>')
+    sim_share = ('<li>O provedor de e-mail usado para enviar o mockup e as respostas.</li>' if SIM_DATA else '')
+    ia_share = ('<li>OpenAI, somente quando o acabamento ilustrativo por IA do simulador estiver ativo: a imagem do mockup é processada nos Estados Unidos. '
+                'Pela política da OpenAI para a API, esses dados não são usados para treinar modelos e são guardados por até 30 dias para segurança.</li>' if SIM_IA else '')
+    sim = ''
+    if SIM_DATA:
+        sim = f'''
+  <h2 id="simulador" style="font-size:1.6rem">Simulador “Veja sua marca”</h2>
+  <p>Em <a href="{SIM_PATH}">{SIM_PATH}</a>, o logo que você escolhe é lido e aplicado nas fotos pelo próprio navegador. Nada é enviado enquanto você monta a prévia.</p>
+  {ul}<li><strong>Quando você pede o mockup em alta</strong>, enviamos à TaMa: o arquivo do logo, a imagem do mockup, a peça e a cor escolhidas, nome, e-mail e, se você informar, empresa e WhatsApp.</li>
+  <li><strong>Para que usamos o logo:</strong> só para gerar e enviar o seu mockup e, se você pedir, preparar a proposta. Não usamos o seu logo em materiais da TaMa nem o compartilhamos para outros fins.</li>
+  <li><strong>Prazo dos arquivos:</strong> o logo e os mockups enviados são apagados em até 30 dias, inclusive as cópias que a equipe recebe por e-mail. Se você contratar um projeto, a arte passa a fazer parte dele com a sua autorização.</li>
+  <li><strong>Link por e-mail:</strong> se você pedir só o link do simulador, guardamos o e-mail para enviá-lo e falar sobre este pedido.</li>{"<li><strong>Acabamento por IA:</strong> quando ativo, uma versão ilustrativa do mockup é gerada pela OpenAI a partir da composição. Ela é sempre identificada como ilustrativa.</li>" if SIM_IA else ""}</ul>'''
     return {
         'path': '/privacidade/', 'title': 'Política de privacidade | TaMa Creative',
-        'description': 'Como a TaMa Creative trata os dados enviados pelo formulário de proposta, conforme a Lei Geral de Proteção de Dados (LGPD).',
-        'trail': [('/', 'Início'), ('/privacidade/', 'Privacidade')],
+        'description': 'Como a TaMa Creative trata os dados enviados pelos formulários e pelo simulador de mockups, conforme a Lei Geral de Proteção de Dados (LGPD).',
+        'trail': [('/', 'Início'), ('/privacidade/', 'Privacidade')], 'exit': False,
         'body': f'''<section class="section"><div class="wrap" style="max-width:52rem"><div class="stack">
   <p class="eyebrow">Privacidade</p><h1>Política de privacidade</h1><p class="muted">Atualizada em {BUILD_DATE}.</p>
-  <h2 style="font-size:1.6rem">Quais dados coletamos</h2><p>Apenas o que você informa no formulário de proposta: nome, empresa, e-mail ou WhatsApp, tipo de projeto, quantidade, data desejada, orçamento estimado, peças e cores de interesse e a descrição do objetivo.</p>
+  <h2 style="font-size:1.6rem">Quais dados coletamos</h2><p>Apenas o que você informa: no formulário de proposta, nome, empresa, e-mail ou WhatsApp, tipo de projeto, quantidade, data desejada, orçamento estimado, peças e cores de interesse e a descrição do objetivo{"; no simulador de mockups, os dados descritos na seção abaixo" if SIM_DATA else ""}.</p>
   <h2 style="font-size:1.6rem">Para que usamos</h2><p>Para responder ao seu pedido e preparar a proposta. Não vendemos nem compartilhamos esses dados para fins de marketing de terceiros.</p>
-  <h2 style="font-size:1.6rem">Com quem os dados são compartilhados</h2><ul style="padding-left:1.2em;display:grid;gap:6px"><li>Netlify, que hospeda o site e recebe o formulário.</li><li>Ferramentas de automação e de gestão de clientes usadas pela TaMa para organizar e responder pedidos.</li>{"<li>Google Analytics, somente se você aceitar os cookies de análise.</li>" if GA4 else ""}</ul>
-  <h2 style="font-size:1.6rem">Seleção de peças no navegador</h2><p>As peças que você seleciona ficam guardadas apenas no seu navegador até o envio do pedido, e são apagadas depois de um envio confirmado.</p>
-  <h2 style="font-size:1.6rem">Por quanto tempo guardamos</h2><p>Pelo tempo necessário para tratar o pedido e manter o histórico comercial, ou até você pedir a exclusão.</p>
+  <h2 style="font-size:1.6rem">Com quem os dados são compartilhados</h2>{ul}{host}<li>Ferramentas de automação e de gestão de clientes usadas pela TaMa para organizar e responder pedidos.</li>{sim_share}{ia_share}{"<li>Google Analytics, somente se você aceitar os cookies de análise.</li>" if GA4 else ""}</ul>{sim}
+  <h2 style="font-size:1.6rem">Seleção de peças no navegador</h2><p>As peças que você seleciona ficam guardadas apenas no seu navegador até o envio do pedido, e são apagadas depois de um envio confirmado. O navegador também guarda se você já viu ou fechou o convite do simulador, para não repeti-lo.</p>
+  <h2 style="font-size:1.6rem">Por quanto tempo guardamos</h2><p>Os dados de contato, pelo tempo necessário para tratar o pedido e manter o histórico comercial, ou até você pedir a exclusão.{" Os arquivos enviados ao simulador, por até 30 dias." if SIM_DATA else ""}</p>
   <h2 style="font-size:1.6rem">Seus direitos</h2><p>Pela LGPD (Lei 13.709/2018), você pode pedir acesso, correção ou exclusão dos seus dados e revogar o consentimento a qualquer momento, {contato}.</p>
 </div></div></section>''',
     }
@@ -1142,13 +1250,189 @@ def page_privacidade():
 
 def page_404():
     return {
-        'path': '/404.html', 'title': 'Página não encontrada | TaMa Creative', 'index': False,
+        'path': '/404.html', 'title': 'Página não encontrada | TaMa Creative', 'index': False, 'exit': False,
         'description': 'A página que você procurou não existe ou mudou de endereço.',
         'body': '''<section class="section"><div class="wrap"><div class="section-head" style="max-width:44rem"><p class="eyebrow">Erro 404</p><h1>Esta página não existe ou mudou de lugar</h1><p class="lead">O site da TaMa foi reorganizado. Comece por um destes caminhos:</p><div class="actions"><a class="btn btn-wine" href="/">Página inicial</a><a class="btn btn-line" href="/brindes-corporativos-premium/">Curadoria</a><a class="btn btn-line" href="/solicitar-proposta/">Solicitar proposta</a></div></div></div></section>''',
     }
 
 
-PAGES = [page_home, page_brindes, page_kits, page_curadoria, page_confeccoes, page_branding, page_projetos, page_case, page_sobre, page_proposta, page_obrigado, page_privacidade, page_404]
+CLOSE_SVG = '<svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>'
+UPLOAD_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 15V4M7.5 8.5 12 4l4.5 4.5"/><path d="M4 14v4.5A1.5 1.5 0 0 0 5.5 20h13a1.5 1.5 0 0 0 1.5-1.5V14"/></svg>'
+
+
+def sim_consent_text(lembrete=False):
+    if lembrete:
+        return ('Concordo que a TaMa use meu e-mail para enviar o link do simulador e falar sobre este pedido, '
+                'conforme a <a href="/privacidade/#simulador">política de privacidade</a>.')
+    ia = ' Se houver acabamento ilustrativo por IA, a imagem passa pela OpenAI.' if SIM_IA else ''
+    return ('Concordo que a TaMa use meus dados e o logo enviado para gerar este mockup e falar comigo sobre ele, '
+            'conforme a <a href="/privacidade/#simulador">política de privacidade</a>. O logo é apagado em até 30 dias.' + ia)
+
+
+def exit_modal():
+    """Convite de saída: aparece uma vez por sessão quando o visitante vai sair (site.js); fechado, volta só após 7 dias."""
+    media = ''
+    if MOCKUPS and 'caderno-azul--casa-mirelo' in IMAGES:
+        media = f'<div class="exit-media" aria-hidden="true">{picture("caderno-azul--casa-mirelo", "", "260px")}</div>'
+    return f'''<dialog class="exit-modal" id="exit-modal" aria-labelledby="exit-t" aria-describedby="exit-d">
+  <button class="icon-btn exit-close" type="button" data-close-dialog aria-label="Fechar convite">{CLOSE_SVG}</button>
+  <div class="exit-grid">{media}
+    <div class="exit-body">
+      <p class="eyebrow">{SIM_EYEBROW}</p>
+      <h2 id="exit-t">{SIM_TITLE}</h2>
+      <p class="muted" id="exit-d">{SIM_LEAD}</p>
+      <div class="actions">{sim_link(track_label='saida')}</div>
+      <form class="exit-form" id="exit-form" data-endpoint="{SIM_ENDPOINT}" novalidate>
+        <p class="exit-alt">Sem o logo à mão? Receba o link por e-mail e teste quando quiser.</p>
+        <p hidden><label>Não preencha este campo <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+        <div class="field"><label for="exit-email">Seu e-mail</label>
+          <div class="exit-row"><input id="exit-email" name="email" type="email" autocomplete="email" inputmode="email" required aria-describedby="exit-email-error"><button class="btn btn-line" type="submit">Enviar o link</button></div>
+          <p class="field-error" id="exit-email-error"></p></div>
+        <div class="field"><label class="check exit-check" for="exit-consent"><input type="checkbox" id="exit-consent" name="consentimento" value="sim" required aria-describedby="exit-consent-error"> <span>{sim_consent_text(True)}</span></label>
+          <p class="field-error" id="exit-consent-error"></p></div>
+        <p class="form-status" id="exit-status" role="status" aria-live="polite"></p>
+      </form>
+      <button class="exit-later" type="button" data-close-dialog>Agora não</button>
+    </div>
+  </div>
+</dialog>'''
+
+
+def page_simulador():
+    if not SIM_DATA:
+        return None
+    sim = dict(SIM_DATA, bases=SIM_BASES)
+    prods = ''.join(
+        f'<label class="sim-prod"><input type="radio" name="sim-produto" value="{p["slug"]}">'
+        f'<img src="{SIM_BASES[p["img"] + "~" + p["cores"][0]["s"]]["t"]}" alt="" width="320" height="294" loading="lazy" decoding="async">'
+        f'<span>{p["nome"]}</span></label>' for p in SIM_DATA['produtos'])
+    wa = (f'<a class="btn btn-line" href="https://wa.me/{WA}" data-track="whatsapp_click" data-track-label="simulador-erro" rel="noopener">{CHAT} Falar no WhatsApp</a>' if WA else '')
+    js = '<script src="/assets/' + SIM_JS_FILE + '" defer></script>'
+    data = '<script id="tama-sim" type="application/json">' + json.dumps(sim, ensure_ascii=False, separators=(',', ':')) + '</script>'
+    howto = {'@type': 'HowTo', 'name': 'Como ver a sua marca em um produto da TaMa Creative', 'inLanguage': 'pt-BR',
+             'step': [{'@type': 'HowToStep', 'position': i + 1, 'name': n, 'text': t} for i, (n, t) in enumerate([
+                 ('Envie o seu logo', 'Arquivo em SVG, PNG ou JPG, com até 5 MB.'),
+                 ('Escolha a peça e a cor', 'Uma das peças fotografadas da curadoria TaMa, na cor de referência que preferir.'),
+                 ('Receba o mockup', 'A prévia aparece na hora; o mockup em alta resolução chega no seu e-mail.')])]}
+    locked = '<p class="sim-step-locked note">{}</p>'
+    return {
+        'path': SIM_PATH, 'title': 'Veja sua marca em nossos produtos | TaMa Creative',
+        'og_title': 'Veja sua marca em nossos produtos · TaMa Creative',
+        'description': 'Envie o logo da sua empresa, escolha um brinde da curadoria TaMa e a cor, e veja a prévia na hora. O mockup em alta resolução chega no seu e-mail.',
+        'trail': [('/', 'Início'), ('/brindes-corporativos-premium/', 'Curadoria'), (SIM_PATH, 'Veja sua marca')],
+        'ld_extra': [howto], 'exit': False,
+        'head': '<style>' + SIM_CSS + '</style>' + data,
+        'scripts': js,
+        'body': f'''<section class="page-head sim-head">
+  <div class="wrap">
+    <div class="section-head" style="margin:0;max-width:52rem"><p class="eyebrow">{SIM_EYEBROW}</p><h1>{SIM_TITLE}</h1><p class="lead">{SIM_LEAD}</p></div>
+    <ol class="sim-progress" aria-label="Etapas do simulador">
+      <li data-step="1" aria-current="step"><span class="sim-dot" aria-hidden="true">1</span>Logo</li>
+      <li data-step="2"><span class="sim-dot" aria-hidden="true">2</span>Peça e cor</li>
+      <li data-step="3"><span class="sim-dot" aria-hidden="true">3</span>Prévia e envio</li>
+    </ol>
+  </div>
+</section>
+<section class="section sim-section" aria-label="Simulador">
+  <div class="wrap">
+    <noscript><p class="sim-noscript">O simulador precisa de JavaScript ativado no navegador. Se preferir, <a href="/solicitar-proposta/">peça uma proposta</a> e envie o seu logo para a TaMa.</p></noscript>
+    <div class="sim" id="sim">
+      <p class="sim-pre" id="sim-pre" hidden></p>
+      <p class="visually-hidden" id="sim-status" role="status" aria-live="polite"></p>
+
+      <section class="sim-step" id="sim-step-1" aria-labelledby="sim-h1" data-state="current">
+        <div class="sim-step-head">
+          <h2 id="sim-h1" tabindex="-1"><span class="sim-n" aria-hidden="true">1</span>Envie o seu logo</h2>
+          <p class="sim-step-summary" hidden><span id="sim-sum-logo"></span> <button class="link" type="button" data-sim-edit="1">Trocar<span class="visually-hidden"> o logo</span></button></p>
+        </div>
+        <div class="sim-step-body">
+          <div class="sim-drop" id="sim-drop">
+            <input class="sim-file" type="file" id="sim-file" accept=".svg,.png,.jpg,.jpeg,image/svg+xml,image/png,image/jpeg" aria-describedby="sim-file-hint sim-file-error">
+            <label class="sim-drop-label" for="sim-file">{UPLOAD_SVG}<span class="sim-drop-title">Escolher arquivo do logo</span><span class="sim-drop-sub">ou arraste o arquivo para cá</span></label>
+          </div>
+          <p class="hint" id="sim-file-hint">SVG, PNG ou JPG, até 5 MB. Prefira SVG ou PNG com fundo transparente.</p>
+          <p class="field-error" id="sim-file-error" role="alert"></p>
+          <div class="sim-logo" id="sim-logo" hidden>
+            <div class="sim-logo-view"><canvas id="sim-logo-canvas" width="1" height="1" role="img" aria-label="Seu logo"></canvas></div>
+            <div class="sim-logo-info"><p class="sim-logo-name" id="sim-logo-name"></p><ul class="sim-notes" id="sim-logo-notes"></ul>
+              <label class="check" id="sim-bg-wrap" for="sim-bg" hidden><input type="checkbox" id="sim-bg"> <span>Remover o fundo da imagem</span></label></div>
+          </div>
+          <div class="sim-actions"><button class="btn btn-wine" type="button" id="sim-next-1" disabled>Continuar {ARROW}</button></div>
+          <p class="note">O logo é usado só para montar o mockup e fica no seu navegador até você pedir a versão em alta. <a class="inline" href="/privacidade/#simulador">Privacidade</a></p>
+        </div>
+      </section>
+
+      <section class="sim-step" id="sim-step-2" aria-labelledby="sim-h2" data-state="locked">
+        <div class="sim-step-head">
+          <h2 id="sim-h2" tabindex="-1"><span class="sim-n" aria-hidden="true">2</span>Escolha a peça e a cor</h2>
+          <p class="sim-step-summary" hidden><span id="sim-sum-prod"></span> <button class="link" type="button" data-sim-edit="2">Alterar<span class="visually-hidden"> a peça ou a cor</span></button></p>
+          {locked.format('Disponível depois de enviar o logo.')}
+        </div>
+        <div class="sim-step-body" hidden>
+          <fieldset class="fieldset"><legend>Peça da curadoria</legend><div class="sim-prods">{prods}</div></fieldset>
+          <fieldset class="fieldset" id="sim-color-field" hidden><legend>Cor da peça</legend><div class="sim-colors" id="sim-colors"></div><p class="note" id="sim-tech"></p></fieldset>
+          <div class="sim-actions"><button class="btn btn-wine" type="button" id="sim-produce" disabled>Produzir prévia {ARROW}</button></div>
+        </div>
+      </section>
+
+      <section class="sim-step" id="sim-step-3" aria-labelledby="sim-h3" data-state="locked">
+        <div class="sim-step-head">
+          <h2 id="sim-h3" tabindex="-1"><span class="sim-n" aria-hidden="true">3</span>Sua prévia</h2>
+          {locked.format('Disponível depois de escolher a peça.')}
+        </div>
+        <div class="sim-step-body" hidden>
+          <div class="sim-result">
+            <div class="sim-view">
+              <figure class="sim-figure" id="sim-figure"><canvas id="sim-canvas" width="720" height="661" role="img" aria-label="Prévia do mockup"></canvas>
+                <figcaption>Prévia em baixa resolução, com marca-d’água. Mockup ilustrativo: cores, técnica, tamanho e posição são confirmados na proposta.</figcaption></figure>
+              <div class="sim-tune">
+                <fieldset class="fieldset"><legend>Cor da peça</legend><div class="sim-colors" id="sim-colors-3"></div></fieldset>
+                <fieldset class="fieldset" id="sim-mode-field"><legend>Aplicação do logo</legend>
+                  <div class="sim-seg"><label><input type="radio" name="sim-modo" value="cores"> Cores do logo</label><label><input type="radio" name="sim-modo" value="tom"> Um tom</label></div>
+                  <p class="note">“Um tom” usa a cor indicada para a técnica nesta peça.</p></fieldset>
+                <div class="field"><label for="sim-size">Tamanho do logo</label>
+                  <div class="sim-range"><input type="range" id="sim-size" min="70" max="115" step="5" value="100"><output id="sim-size-out" for="sim-size">100%</output></div></div>
+              </div>
+            </div>
+            <div class="sim-lead">
+              <h3>Receba o mockup em alta</h3>
+              <p class="muted">Enviamos a imagem em alta resolução, sem marca-d’água, para o seu e-mail.</p>
+              <form class="form" id="sim-form" data-endpoint="{SIM_ENDPOINT}" novalidate>
+                <p hidden><label>Não preencha este campo <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+                <div class="form-grid">
+                  <div class="field"><label for="sim-nome">Nome <span class="req" aria-hidden="true">*</span></label><input id="sim-nome" name="nome" autocomplete="name" required aria-describedby="sim-nome-error"><p class="field-error" id="sim-nome-error"></p></div>
+                  <div class="field"><label for="sim-empresa">Empresa</label><input id="sim-empresa" name="empresa" autocomplete="organization"></div>
+                  <div class="field full"><label for="sim-email">E-mail <span class="req" aria-hidden="true">*</span></label><input id="sim-email" name="email" type="email" autocomplete="email" inputmode="email" required aria-describedby="sim-email-hint sim-email-error"><p class="hint" id="sim-email-hint">É para onde enviamos o mockup em alta.</p><p class="field-error" id="sim-email-error"></p></div>
+                  <div class="field full"><label for="sim-whats">WhatsApp (opcional)</label><input id="sim-whats" name="whatsapp" type="tel" autocomplete="tel" inputmode="tel" aria-describedby="sim-whats-error"><p class="field-error" id="sim-whats-error"></p></div>
+                </div>
+                <div class="field"><label class="check" for="sim-consent"><input type="checkbox" id="sim-consent" name="consentimento" value="sim" required aria-describedby="sim-consent-error"> <span>{sim_consent_text()}</span></label><p class="field-error" id="sim-consent-error"></p></div>
+                <div class="form-foot"><button class="btn btn-wine" type="submit" id="sim-submit">Receber o mockup em alta {ARROW}</button><p class="form-status" id="sim-form-status" role="status" aria-live="polite"></p></div>
+              </form>
+              <div class="result" id="sim-done" hidden></div>
+              <template id="sim-tpl-ok"><p class="eyebrow">Pedido recebido</p><h3>O mockup em alta segue para <span data-email></span>.</h3><p class="muted">Chega em alguns minutos. Se não aparecer, confira a caixa de spam. Quer levar a ideia adiante? Peça uma proposta com esta peça já selecionada.</p><div class="actions"><a class="btn btn-wine" href="/solicitar-proposta/" data-sim-proposta data-track="cta_solicitar_proposta" data-track-label="simulador">Pedir proposta com esta peça {ARROW}</a><button class="btn btn-line" type="button" data-sim-again>Ver em outra peça</button></div></template>
+              <template id="sim-tpl-error"><p class="eyebrow">Envio não concluído</p><h3>Não conseguimos enviar agora</h3><p class="muted">O pedido não chegou até nós. Tente de novo em instantes{' ou fale com a TaMa pelo WhatsApp' if WA else ''}.</p><div class="actions"><button class="btn btn-wine" type="button" data-sim-retry>Tentar de novo</button>{wa}</div></template>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</section>
+<section class="section ivory" aria-labelledby="sim-faq-t" style="padding-block:clamp(48px,6vw,80px)">
+  <div class="wrap faq-grid">
+    <div class="stack" style="gap:12px"><p class="eyebrow">Dúvidas</p><h2 id="sim-faq-t" class="section-title">Sobre o simulador</h2></div>
+    <div class="faq-list">
+      <details><summary>O mockup mostra exatamente como a peça vai ficar?</summary><p>Não. É um mockup ilustrativo para você visualizar a ideia. Cores, técnica de personalização, tamanho e posição da marca são definidos e aprovados na proposta, antes da produção.</p></details>
+      <details><summary>O que acontece com o meu logo?</summary><p>Ele fica no seu navegador para montar a prévia. Só chega à TaMa se você pedir o mockup em alta, e é usado apenas para isso e para a proposta, se você quiser uma. Os arquivos são apagados em até 30 dias.</p></details>
+      <details><summary>Que arquivo funciona melhor?</summary><p>SVG ou PNG com fundo transparente. JPG também serve: o fundo liso é removido automaticamente, e você pode desligar essa opção.</p></details>
+      <details><summary>A peça que eu quero não está aqui.</summary><p>O simulador usa as peças fotografadas da curadoria. Para outras ideias, <a class="inline" href="/solicitar-proposta/">peça uma proposta</a> e conte o que você imaginou.</p></details>
+    </div>
+  </div>
+</section>''',
+    }
+
+
+PAGES = [page_home, page_brindes, page_kits, page_curadoria, page_simulador, page_confeccoes, page_branding, page_projetos, page_case, page_sobre, page_proposta, page_obrigado, page_privacidade, page_404]
 
 
 # ------------------------------------------------------------------ static files
@@ -1222,7 +1506,7 @@ BUILT = []
 
 
 def main():
-    global CSS, JS_FILE
+    global CSS, JS_FILE, SIM_CSS, SIM_JS_FILE
     # Limpa o conteúdo de dist/ sem remover a pasta (um servidor local pode estar usando-a).
     os.makedirs(DIST, exist_ok=True)
     for entry in os.listdir(DIST):
@@ -1233,14 +1517,22 @@ def main():
         if dif:
             print(f'AVISO: brand/logos/ difere de tama-creative-logos/svg em {len(dif)} arquivo(s). Copie os SVGs oficiais para brand/logos/ e faça commit.')
     build_images()
+    build_sim_images()
     fonts_css = open(os.path.join(SRC, 'fonts', 'fonts.css'), encoding='utf-8').read()
     masks = f':root{{--arc-mask:url("{ARC_MASK}");--pattern-mask:url("{pattern_uri()}")}}'
     CSS = minify_css(fonts_css + masks + open(os.path.join(SRC, 'styles.css'), encoding='utf-8').read())
     js = open(os.path.join(SRC, 'site.js'), encoding='utf-8').read()
     JS_FILE = f'site.{hashlib.md5(js.encode()).hexdigest()[:8]}.js'
     write('assets/' + JS_FILE, js)
+    if SIM_DATA:   # simulador: JS e CSS próprios, carregados só em /veja-sua-marca/
+        sjs = open(os.path.join(SRC, 'simulador.js'), encoding='utf-8').read()
+        SIM_JS_FILE = f'simulador.{hashlib.md5(sjs.encode()).hexdigest()[:8]}.js'
+        write('assets/' + SIM_JS_FILE, sjs)
+        SIM_CSS = minify_css(open(os.path.join(SRC, 'simulador.css'), encoding='utf-8').read())
     for fn in PAGES + blog.pages(sys.modules[__name__]):
         page = fn()
+        if not page:
+            continue
         BUILT.append(page)
         rel = page['path'] if page['path'].endswith('.html') else page['path'] + 'index.html'
         write(rel, shell(page, page['body']))

@@ -36,7 +36,10 @@ try {
   await page.goto(BASE + '/', { waitUntil: 'networkidle0' });
   const links = await page.$$eval('a[href^="/"]', as => [...new Set(as.map(a => a.getAttribute('href').split('#')[0].split('?')[0]))]);
   const broken = [];
-  for (const l of links) { const r = await fetch(BASE + l); if (r.status !== 200) broken.push(l + ' ' + r.status); }
+  // /brindes/ é outro app (catálogo de brindes em quantidade), fora deste build
+  for (const l of links.filter(l => !l.startsWith('/brindes/'))) { const r = await fetch(BASE + l); if (r.status !== 200) broken.push(l + ' ' + r.status); }
+  const brindesHref = await page.$eval('#site-nav', n => [...n.querySelectorAll('a')].map(a => [a.textContent.trim(), a.getAttribute('href')]).find(([t]) => t === 'Brindes')?.[1]);
+  ok(brindesHref === '/brindes/', `menu "Brindes" abre o catálogo /brindes/ (${brindesHref})`);
   ok(broken.length === 0, `${links.length} links internos respondem 200${broken.length ? ' — quebrados: ' + broken.join(', ') : ''}`);
   await page.click('#menu-btn');
   ok(await page.$eval('#site-nav', n => n.classList.contains('is-open')), 'menu mobile abre');

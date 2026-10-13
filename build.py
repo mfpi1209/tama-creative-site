@@ -321,7 +321,7 @@ def collections_block(title='Coleções por ocasião'):
 
 # ------------------------------------------------------------------ navigation and shared blocks
 NAV = [
-    ('/brindes-corporativos/', 'Brindes'),
+    ('/brindes/', 'Brindes'),  # catálogo de brindes em quantidade (app "brindes" em tamacreative.com.br/brindes/)
     ('/kits-corporativos/', 'Kits'),
     ('/brindes-corporativos-premium/', 'Curadoria'),
     ('/confeccoes-personalizadas/', 'Confecções'),
@@ -339,7 +339,12 @@ def cta_link(label='Solicitar proposta', tipo=None, cls='btn btn-wine', arrow=Tr
 
 
 def header(path):
-    links = ''.join(f'<a class="nav-link" href="{p}"{" aria-current=\"page\"" if path.startswith(p) else ""}>{t}</a>' for p, t in NAV)
+    def current(p):
+        if path.startswith(p):
+            return ' aria-current="page"'
+        # a página de brindes corporativos faz parte da frente "Brindes"
+        return ' aria-current="true"' if p == '/brindes/' and path.startswith('/brindes-corporativos/') else ''
+    links = ''.join(f'<a class="nav-link" href="{p}"{current(p)}>{t}</a>' for p, t in NAV)
     return f'''<a class="skip" href="#conteudo">Pular para o conteúdo</a>
 <aside class="announce" aria-label="Destaques da TaMa"><div class="wrap"><p>Ideias criativas que valorizam pessoas e fortalecem marcas.</p><ul><li>Atendimento consultivo</li><li>Projetos sob medida</li><li>Criação e produção</li></ul></div></aside>
 <header class="site-header">
@@ -374,7 +379,7 @@ def fmt_phone(d):
 
 
 def footer():
-    sol = ''.join(f'<li><a href="{p}">{t}</a></li>' for p, t in [('/brindes-corporativos/', 'Brindes corporativos'), ('/kits-corporativos/', 'Kits corporativos'), ('/brindes-corporativos-premium/', 'Curadoria'), ('/confeccoes-personalizadas/', 'Confecções'), ('/branding-identidade-visual/', 'Branding e identidade')])
+    sol = ''.join(f'<li><a href="{p}">{t}</a></li>' for p, t in [('/brindes/', 'Brindes em quantidade'), ('/brindes-corporativos/', 'Brindes corporativos'), ('/kits-corporativos/', 'Kits corporativos'), ('/brindes-corporativos-premium/', 'Curadoria'), ('/confeccoes-personalizadas/', 'Confecções'), ('/branding-identidade-visual/', 'Branding e identidade')])
     contacts = contact_lines()
     contact_col = ''.join(f'<li>{c}</li>' for c in contacts) or '<li><a href="/solicitar-proposta/">Solicitar proposta</a></li>'
     return f'''<footer class="site-footer">
@@ -1182,11 +1187,11 @@ def build_static():
     write('og-default.jpg', buf.getvalue(), 'wb')
 
     indexable = [p for p in BUILT if p.get('index', True) and p['path'] != '/404.html']
-    write('robots.txt', f'User-agent: *\nAllow: /\n\nSitemap: {SITE}/sitemap.xml\n')
+    write('robots.txt', f'User-agent: *\nAllow: /\n\nSitemap: {SITE}/sitemap.xml\nSitemap: {SITE}/brindes/sitemap.xml\n')
     urls = ''.join(f'<url><loc>{SITE}{p["path"]}</loc><lastmod>{p.get("lastmod", BUILD_DATE)}</lastmod></url>' for p in indexable)
     write('sitemap.xml', f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{urls}</urlset>\n')
     redirects = [
-        '/brindes            /brindes-corporativos/          301',
+        '/brindes            /brindes/                       301',
         '/kits               /kits-corporativos/             301',
         '/curadoria          /brindes-corporativos-premium/  301',
         '/confeccoes         /confeccoes-personalizadas/     301',

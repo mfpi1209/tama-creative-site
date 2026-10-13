@@ -491,7 +491,12 @@ dialog::backdrop { background: rgba(30, 22, 18, .5); }
 .float-bag { position: fixed; right: 18px; bottom: calc(18px + env(safe-area-inset-bottom, 0px)); z-index: 46; display: inline-flex; align-items: center; gap: 10px; min-height: 52px; padding: 0 20px; border-radius: 999px; border: 0; background: var(--wine); color: #fff; font-weight: 700; font-size: .875rem; box-shadow: var(--shadow-lg); cursor: pointer; }
 .float-bag svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
 .float-bag[hidden] { display: none !important; }
-.wa-float { position: fixed; left: 18px; bottom: calc(18px + env(safe-area-inset-bottom, 0px)); z-index: 45; display: inline-flex; align-items: center; gap: 8px; min-height: 52px; padding: 0 18px; border-radius: 999px; background: var(--forest); color: #fff; font-weight: 700; font-size: .875rem; box-shadow: var(--shadow-lg); }
+.wa-float { position: fixed; right: 18px; bottom: calc(18px + env(safe-area-inset-bottom, 0px)); z-index: 45; display: inline-flex; align-items: center; justify-content: center; width: 58px; height: 58px; border-radius: 50%; background: #25D366; color: #fff; box-shadow: 0 6px 18px rgba(37, 30, 26, .25), 0 0 0 1px rgba(0, 0, 0, .06); transition: transform .2s ease, box-shadow .2s ease; }
+.wa-float .wa-icon { width: 32px; height: 32px; }
+.wa-float:hover { transform: scale(1.06); box-shadow: 0 10px 24px rgba(37, 30, 26, .3); }
+.wa-float:focus-visible { outline: 3px solid var(--wine); outline-offset: 3px; }
+body:has(.wa-float) .float-bag { bottom: calc(88px + env(safe-area-inset-bottom, 0px)); }
+@media (prefers-reduced-motion: reduce) { .wa-float { transition: none; } .wa-float:hover { transform: none; } }
 .wa-icon { width: 1.15em; height: 1.15em; fill: currentColor; }
 .consent { position: fixed; left: 16px; right: 16px; bottom: calc(16px + env(safe-area-inset-bottom, 0px)); z-index: 60; max-width: 560px; display: grid; gap: 12px; padding: 20px; background: var(--surface); border: 1px solid var(--line-strong); border-radius: 8px; box-shadow: var(--shadow-lg); font-size: .875rem; }
 
@@ -555,7 +560,6 @@ dialog::backdrop { background: rgba(30, 22, 18, .5); }
   .brand .logo { height: 34px; }
   .prod-info { padding: 11px; }
   .prod-desc { min-height: 0; }
-  .wa-float span { display: none; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }

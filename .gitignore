@@ -1,0 +1,8 @@
+dist/
+.cache/
+node_modules/
+__pycache__/
+.netlify/
+*.log
+# Masters dos mockups (51 MB): ficam só neste computador; o site usa as versões web em img/marca/.
+midia/mockups/mestre/

@@ -1,0 +1,12 @@
+{
+  "_doc": "Configuração pública do site. Variáveis de ambiente com o mesmo nome em maiúsculas sobrescrevem estes valores no build (ex.: SITE_URL, WHATSAPP). Nada aqui é segredo: o webhook do n8n NÃO entra neste arquivo, ele fica só na variável N8N_WEBHOOK_URL do Netlify.",
+  "site_url": "https://tamacreative.com.br",
+  "brand": "TaMa Creative",
+  "whatsapp": "",
+  "email": "",
+  "instagram": "",
+  "ga4_id": "",
+  "redirect_netlify_subdomain": false,
+  "netlify_subdomain": "https://tamacreative.netlify.app",
+  "mockups_marca": true
+}

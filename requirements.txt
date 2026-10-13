@@ -1,0 +1,4 @@
+Pillow>=11.3
+resvg-py>=0.2
+Markdown>=3.5
+PyYAML>=6.0

@@ -1,0 +1,19 @@
+# Site TaMa Creative — publicação no Netlify.
+# Com o site ligado ao repositório GitHub (mfpi1209/tama-site), cada push na branch main gera o site e publica.
+# O editor do blog (/admin/) grava no repositório: cada artigo vira um pull request com prévia (Deploy Preview);
+# "Publicar" no editor faz o merge e a produção é atualizada pelo build abaixo.
+# Deploy manual (sem Git) continua possível:  python build.py  e  netlify deploy --prod --dir dist --functions netlify/functions
+[build]
+  command = "pip install -r requirements.txt && python build.py"
+  publish = "dist"
+
+[build.environment]
+  PYTHON_VERSION = "3.13"
+
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+
+# Guarda .cache/ (imagens AVIF/WebP/JPEG já geradas) entre builds: o build não recodifica as fotos a cada artigo.
+[[plugins]]
+  package = "./netlify/plugins/cache-imagens"

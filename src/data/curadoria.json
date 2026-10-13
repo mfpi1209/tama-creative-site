@@ -1,0 +1,1107 @@
+{
+  "categorias": {
+    "escritorio": "Escritório",
+    "bebidas": "Bebidas",
+    "casa": "Casa e ritual",
+    "vestuario": "Vestuário",
+    "bolsas": "Bolsas",
+    "kits": "Kits",
+    "branding": "Branding"
+  },
+  "categorias_alem": {
+    "mesa": "Mesa e escritório",
+    "casa": "Casa e ritual",
+    "bemestar": "Bem-estar",
+    "vestir": "Vestir a marca",
+    "jogo": "Jogo e hobby",
+    "tech": "Tech discreto"
+  },
+  "ocasioes": {
+    "boas-vindas": "Boas-vindas",
+    "eventos": "Eventos",
+    "executivos": "Presentes executivos",
+    "campanhas": "Campanhas e ativações",
+    "lancamentos": "Lançamentos",
+    "fim-de-ano": "Fim de ano",
+    "reconhecimento": "Reconhecimento"
+  },
+  "pecas": [
+    {
+      "slug": "bandeja-em-couro",
+      "nome": "Bandeja em couro",
+      "categoria": "escritorio",
+      "img": "bandeja-couro",
+      "descricao": "Organização e elegância para o dia a dia.",
+      "materiais": [
+        "Couro"
+      ],
+      "tecnicas": [
+        "Baixo relevo"
+      ],
+      "cores": [
+        [
+          "Terracota",
+          "#aa5834"
+        ],
+        [
+          "Café",
+          "#553321"
+        ],
+        [
+          "Oliva",
+          "#4d6345"
+        ],
+        [
+          "Azul-marinho",
+          "#203454"
+        ]
+      ],
+      "ocasioes": [
+        "executivos",
+        "reconhecimento",
+        "fim-de-ano"
+      ],
+      "selo": true
+    },
+    {
+      "slug": "garrafa-termica",
+      "nome": "Garrafa térmica",
+      "categoria": "bebidas",
+      "img": "garrafa-termica",
+      "descricao": "Para acompanhar cada momento.",
+      "materiais": [
+        "Aço inox"
+      ],
+      "tecnicas": [
+        "Gravação"
+      ],
+      "cores": [
+        [
+          "Verde-musgo",
+          "#546447"
+        ],
+        [
+          "Azul",
+          "#1c3c78"
+        ],
+        [
+          "Ocre",
+          "#be8234"
+        ],
+        [
+          "Areia",
+          "#d9c3a7"
+        ]
+      ],
+      "ocasioes": [
+        "boas-vindas",
+        "eventos",
+        "campanhas"
+      ],
+      "selo": false
+    },
+    {
+      "slug": "caderno-premium",
+      "nome": "Caderno premium",
+      "categoria": "escritorio",
+      "img": "caderno-premium",
+      "descricao": "Ideias que acompanham pessoas.",
+      "materiais": [
+        "Capa premium"
+      ],
+      "tecnicas": [
+        "Gravação"
+      ],
+      "cores": [
+        [
+          "Azul-marinho",
+          "#23385b"
+        ],
+        [
+          "Terracota",
+          "#bc6241"
+        ],
+        [
+          "Preto",
+          "#252425"
+        ],
+        [
+          "Verde",
+          "#33583e"
+        ]
+      ],
+      "ocasioes": [
+        "boas-vindas",
+        "eventos",
+        "executivos"
+      ],
+      "selo": false
+    },
+    {
+      "slug": "caneca-de-ceramica",
+      "nome": "Caneca de cerâmica",
+      "categoria": "bebidas",
+      "img": "caneca-ceramica",
+      "descricao": "Uma pausa cheia de personalidade.",
+      "materiais": [
+        "Cerâmica"
+      ],
+      "tecnicas": [
+        "Impressão"
+      ],
+      "cores": [
+        [
+          "Mostarda",
+          "#d29b35"
+        ],
+        [
+          "Verde",
+          "#315846"
+        ],
+        [
+          "Azul",
+          "#315e8a"
+        ],
+        [
+          "Creme",
+          "#e7dac5"
+        ]
+      ],
+      "ocasioes": [
+        "boas-vindas",
+        "campanhas"
+      ],
+      "selo": false
+    },
+    {
+      "slug": "kit-boas-vindas",
+      "nome": "Kit boas-vindas",
+      "categoria": "kits",
+      "img": "kit-presente",
+      "descricao": "Uma recepção para lembrar.",
+      "materiais": [
+        "Mix de peças"
+      ],
+      "tecnicas": [
+        "Embalagem personalizada"
+      ],
+      "cores": [
+        [
+          "Terracota",
+          "#bf623e"
+        ],
+        [
+          "Verde",
+          "#2c5242"
+        ],
+        [
+          "Marinho",
+          "#25364c"
+        ],
+        [
+          "Areia",
+          "#beaa90"
+        ]
+      ],
+      "ocasioes": [
+        "boas-vindas"
+      ],
+      "selo": true
+    },
+    {
+      "slug": "moletom-exclusivo",
+      "nome": "Moletom exclusivo",
+      "categoria": "vestuario",
+      "img": "hoodie-azul",
+      "descricao": "Conforto com identidade.",
+      "materiais": [
+        "Algodão"
+      ],
+      "tecnicas": [
+        "Bordado"
+      ],
+      "cores": [
+        [
+          "Azul-royal",
+          "#143e98"
+        ],
+        [
+          "Vinho",
+          "#752c45"
+        ],
+        [
+          "Verde",
+          "#294e41"
+        ],
+        [
+          "Preto",
+          "#29272c"
+        ]
+      ],
+      "ocasioes": [
+        "boas-vindas",
+        "eventos",
+        "campanhas"
+      ],
+      "selo": true
+    },
+    {
+      "slug": "polo-personalizada",
+      "nome": "Polo personalizada",
+      "categoria": "vestuario",
+      "img": "polo-offwhite",
+      "descricao": "Elegância que veste a equipe.",
+      "materiais": [
+        "Malha premium"
+      ],
+      "tecnicas": [
+        "Bordado"
+      ],
+      "cores": [
+        [
+          "Off-white",
+          "#e9dfca"
+        ],
+        [
+          "Marinho",
+          "#223554"
+        ],
+        [
+          "Verde",
+          "#315b49"
+        ],
+        [
+          "Preto",
+          "#292727"
+        ]
+      ],
+      "ocasioes": [
+        "eventos",
+        "boas-vindas"
+      ],
+      "selo": false
+    },
+    {
+      "slug": "bolsa-tote-estruturada",
+      "nome": "Bolsa tote estruturada",
+      "categoria": "bolsas",
+      "img": "bolsa-terracota",
+      "descricao": "Prática, marcante e versátil.",
+      "materiais": [
+        "Lona"
+      ],
+      "tecnicas": [
+        "Silk ou bordado"
+      ],
+      "cores": [
+        [
+          "Terracota",
+          "#b65f3c"
+        ],
+        [
+          "Azul",
+          "#26436d"
+        ],
+        [
+          "Verde",
+          "#395843"
+        ],
+        [
+          "Natural",
+          "#c7ae8b"
+        ]
+      ],
+      "ocasioes": [
+        "eventos",
+        "campanhas",
+        "boas-vindas"
+      ],
+      "selo": false
+    },
+    {
+      "slug": "bone-premium",
+      "nome": "Boné premium",
+      "categoria": "vestuario",
+      "img": "bone-verde",
+      "descricao": "Presença e atitude em cada detalhe.",
+      "materiais": [
+        "Sarja"
+      ],
+      "tecnicas": [
+        "Bordado"
+      ],
+      "cores": [
+        [
+          "Verde-floresta",
+          "#1e4939"
+        ],
+        [
+          "Azul",
+          "#234d84"
+        ],
+        [
+          "Bege",
+          "#c8b38e"
+        ],
+        [
+          "Vinho",
+          "#792743"
+        ]
+      ],
+      "ocasioes": [
+        "eventos",
+        "campanhas"
+      ],
+      "selo": false
+    },
+    {
+      "slug": "sacola-corporativa",
+      "nome": "Sacola corporativa",
+      "categoria": "bolsas",
+      "img": "sacola-verde",
+      "descricao": "Uma embalagem que vira parte do presente.",
+      "materiais": [
+        "Papel especial"
+      ],
+      "tecnicas": [
+        "Impressão"
+      ],
+      "cores": [
+        [
+          "Verde",
+          "#344e38"
+        ],
+        [
+          "Terracota",
+          "#ca664e"
+        ],
+        [
+          "Azul",
+          "#264a6d"
+        ],
+        [
+          "Creme",
+          "#e1d1b6"
+        ]
+      ],
+      "ocasioes": [
+        "lancamentos",
+        "executivos",
+        "fim-de-ano"
+      ],
+      "selo": false
+    },
+    {
+      "slug": "kit-de-papelaria",
+      "nome": "Kit de papelaria",
+      "categoria": "branding",
+      "img": "kit-papelaria",
+      "descricao": "O cuidado aparece nos pequenos detalhes.",
+      "materiais": [
+        "Papel texturizado"
+      ],
+      "tecnicas": [
+        "Hot stamping"
+      ],
+      "cores": [
+        [
+          "Verde",
+          "#38553b"
+        ],
+        [
+          "Areia",
+          "#d3bfa5"
+        ],
+        [
+          "Mostarda",
+          "#c69439"
+        ],
+        [
+          "Azul-marinho",
+          "#203961"
+        ]
+      ],
+      "ocasioes": [
+        "lancamentos",
+        "boas-vindas"
+      ],
+      "selo": true
+    },
+    {
+      "slug": "caixa-rigida-premium",
+      "nome": "Caixa rígida premium",
+      "categoria": "branding",
+      "img": "caixa-terracota",
+      "descricao": "O momento de abrir faz parte da experiência.",
+      "materiais": [
+        "Papel rígido"
+      ],
+      "tecnicas": [
+        "Acabamento especial"
+      ],
+      "cores": [
+        [
+          "Terracota",
+          "#d06b4b"
+        ],
+        [
+          "Verde",
+          "#2d5239"
+        ],
+        [
+          "Azul",
+          "#233e65"
+        ],
+        [
+          "Bordô",
+          "#6d2c42"
+        ]
+      ],
+      "ocasioes": [
+        "executivos",
+        "fim-de-ano",
+        "lancamentos"
+      ],
+      "selo": false
+    },
+    {
+      "slug": "cartoes-de-marca",
+      "nome": "Cartões de marca",
+      "categoria": "branding",
+      "img": "cartoes-colors",
+      "descricao": "Uma linguagem visual em cada ponto de contato.",
+      "materiais": [
+        "Papéis especiais"
+      ],
+      "tecnicas": [
+        "Impressão"
+      ],
+      "cores": [
+        [
+          "Mostarda",
+          "#b88a36"
+        ],
+        [
+          "Bordô",
+          "#773443"
+        ],
+        [
+          "Oliva",
+          "#53624b"
+        ],
+        [
+          "Azul",
+          "#344b7d"
+        ]
+      ],
+      "ocasioes": [
+        "lancamentos"
+      ],
+      "selo": false
+    },
+    {
+      "slug": "agenda-executiva",
+      "nome": "Agenda executiva",
+      "categoria": "escritorio",
+      "img": "caderno-azul",
+      "descricao": "Presença diária na mesa de trabalho.",
+      "materiais": [
+        "Capa dura"
+      ],
+      "tecnicas": [
+        "Gravação"
+      ],
+      "cores": [
+        [
+          "Marinho",
+          "#273e67"
+        ],
+        [
+          "Verde",
+          "#345943"
+        ],
+        [
+          "Café",
+          "#765340"
+        ],
+        [
+          "Preto",
+          "#222528"
+        ]
+      ],
+      "ocasioes": [
+        "executivos",
+        "fim-de-ano"
+      ],
+      "selo": false
+    },
+    {
+      "slug": "embalagem-presente",
+      "nome": "Embalagem presente",
+      "categoria": "kits",
+      "img": "embalagem-presente",
+      "descricao": "Encantar começa antes de abrir.",
+      "materiais": [
+        "Caixa e fita"
+      ],
+      "tecnicas": [
+        "Impressão"
+      ],
+      "cores": [
+        [
+          "Terracota",
+          "#bd633d"
+        ],
+        [
+          "Bordô",
+          "#7a3448"
+        ],
+        [
+          "Verde",
+          "#2c5641"
+        ],
+        [
+          "Creme",
+          "#dfcdb5"
+        ]
+      ],
+      "ocasioes": [
+        "fim-de-ano",
+        "executivos"
+      ],
+      "selo": false
+    },
+    {
+      "slug": "manta-de-aconchego",
+      "nome": "Manta de aconchego",
+      "categoria": "casa",
+      "img": "manta-textil",
+      "descricao": "Textura e conforto numa lembrança útil.",
+      "materiais": [
+        "Tecido macio"
+      ],
+      "tecnicas": [
+        "Etiqueta personalizada"
+      ],
+      "cores": [
+        [
+          "Oliva",
+          "#71745a"
+        ],
+        [
+          "Lilás",
+          "#a49ab5"
+        ],
+        [
+          "Terracota",
+          "#b76646"
+        ],
+        [
+          "Areia",
+          "#d2bea1"
+        ]
+      ],
+      "ocasioes": [
+        "fim-de-ano",
+        "reconhecimento",
+        "executivos"
+      ],
+      "selo": false
+    },
+    {
+      "slug": "caneta-executiva",
+      "nome": "Caneta executiva",
+      "categoria": "escritorio",
+      "img": "caneta-executiva",
+      "descricao": "Uma assinatura com propósito.",
+      "materiais": [
+        "Metal"
+      ],
+      "tecnicas": [
+        "Gravação a laser"
+      ],
+      "cores": [
+        [
+          "Preto",
+          "#25252a"
+        ],
+        [
+          "Marinho",
+          "#1e3d63"
+        ],
+        [
+          "Cobre",
+          "#b6764e"
+        ],
+        [
+          "Verde",
+          "#3c6446"
+        ]
+      ],
+      "ocasioes": [
+        "executivos",
+        "reconhecimento"
+      ],
+      "selo": false
+    },
+    {
+      "slug": "uniforme-personalizado",
+      "nome": "Uniforme personalizado",
+      "categoria": "vestuario",
+      "img": "uniforme-verde",
+      "descricao": "Estilo e pertencimento para o time.",
+      "materiais": [
+        "Malha"
+      ],
+      "tecnicas": [
+        "Bordado"
+      ],
+      "cores": [
+        [
+          "Verde",
+          "#294737"
+        ],
+        [
+          "Azul",
+          "#24466b"
+        ],
+        [
+          "Creme",
+          "#dfceaf"
+        ],
+        [
+          "Preto",
+          "#2e2c2b"
+        ]
+      ],
+      "ocasioes": [
+        "eventos",
+        "boas-vindas"
+      ],
+      "selo": false
+    },
+    {
+      "slug": "organizador-de-mesa",
+      "nome": "Organizador de mesa",
+      "categoria": "escritorio",
+      "img": "couro-verde",
+      "descricao": "Sofisticação nos gestos cotidianos.",
+      "materiais": [
+        "Couro"
+      ],
+      "tecnicas": [
+        "Baixo relevo"
+      ],
+      "cores": [
+        [
+          "Verde",
+          "#334d3b"
+        ],
+        [
+          "Café",
+          "#78543c"
+        ],
+        [
+          "Terracota",
+          "#bd704d"
+        ],
+        [
+          "Marinho",
+          "#263e61"
+        ]
+      ],
+      "ocasioes": [
+        "executivos",
+        "reconhecimento"
+      ],
+      "selo": false
+    },
+    {
+      "slug": "kit-vestuario",
+      "nome": "Kit vestuário",
+      "categoria": "kits",
+      "img": "look-corporativo",
+      "descricao": "Peças selecionadas para cada ocasião.",
+      "materiais": [
+        "Malha e lona"
+      ],
+      "tecnicas": [
+        "Bordado"
+      ],
+      "cores": [
+        [
+          "Azul",
+          "#1c4591"
+        ],
+        [
+          "Off-white",
+          "#ded1b9"
+        ],
+        [
+          "Verde",
+          "#30513b"
+        ],
+        [
+          "Terracota",
+          "#b76342"
+        ]
+      ],
+      "ocasioes": [
+        "eventos",
+        "campanhas"
+      ],
+      "selo": false
+    },
+    {
+      "slug": "paleta-e-aplicacoes",
+      "nome": "Paleta e aplicações",
+      "categoria": "branding",
+      "img": "papelaria-cores",
+      "descricao": "Da ideia à identidade que ganha forma.",
+      "materiais": [
+        "Papel e embalagem"
+      ],
+      "tecnicas": [
+        "Conceito de marca"
+      ],
+      "cores": [
+        [
+          "Mostarda",
+          "#cc973f"
+        ],
+        [
+          "Bordô",
+          "#8c3d50"
+        ],
+        [
+          "Azul",
+          "#34577a"
+        ],
+        [
+          "Verde",
+          "#3d6149"
+        ]
+      ],
+      "ocasioes": [
+        "lancamentos"
+      ],
+      "selo": false
+    }
+  ],
+  "alem": [
+    {
+      "slug": "objeto-mesa-pedra",
+      "nome": "Objeto de mesa em pedra",
+      "categoria": "mesa",
+      "icone": "pedra",
+      "descricao": "Peso de papel com o símbolo da marca recortado. Uma pedra ninguém joga fora.",
+      "materiais": [
+        "Mármore",
+        "Quartzito"
+      ],
+      "tecnicas": [
+        "Corte e gravação a laser"
+      ],
+      "ocasioes": [
+        "executivos",
+        "reconhecimento",
+        "lancamentos"
+      ]
+    },
+    {
+      "slug": "calendario-perpetuo",
+      "nome": "Calendário perpétuo",
+      "categoria": "mesa",
+      "icone": "calendario",
+      "descricao": "Blocos que a pessoa vira a cada manhã. Funciona por anos, não só em janeiro.",
+      "materiais": [
+        "Madeira"
+      ],
+      "tecnicas": [
+        "Gravação a laser"
+      ],
+      "ocasioes": [
+        "fim-de-ano",
+        "boas-vindas"
+      ]
+    },
+    {
+      "slug": "vela-fragrancia-assinada",
+      "nome": "Vela com fragrância assinada",
+      "categoria": "casa",
+      "icone": "vela",
+      "descricao": "A marca vira um cheiro que a pessoa reacende em casa. O recipiente continua útil depois da vela.",
+      "materiais": [
+        "Cerâmica ou concreto",
+        "Cera vegetal"
+      ],
+      "tecnicas": [
+        "Rótulo em relevo",
+        "Tampografia"
+      ],
+      "ocasioes": [
+        "executivos",
+        "fim-de-ano",
+        "boas-vindas"
+      ]
+    },
+    {
+      "slug": "ritual-de-cafe",
+      "nome": "Ritual de café",
+      "categoria": "casa",
+      "icone": "cafe",
+      "descricao": "Coador, xícara e café de pequeno produtor. Um gesto diário no lugar de mais uma caneca.",
+      "materiais": [
+        "Cerâmica",
+        "Café especial"
+      ],
+      "tecnicas": [
+        "Gravação na cerâmica",
+        "Rótulo personalizado"
+      ],
+      "ocasioes": [
+        "boas-vindas",
+        "executivos",
+        "fim-de-ano"
+      ]
+    },
+    {
+      "slug": "cha-em-latas",
+      "nome": "Chá em latas",
+      "categoria": "casa",
+      "icone": "cha",
+      "descricao": "Blends com nomes criados para a marca, em latas que ficam na cozinha depois do último sachê.",
+      "materiais": [
+        "Lata metálica",
+        "Chás e infusões"
+      ],
+      "tecnicas": [
+        "Lata impressa",
+        "Rótulo personalizado"
+      ],
+      "ocasioes": [
+        "fim-de-ano",
+        "executivos",
+        "eventos"
+      ]
+    },
+    {
+      "slug": "tabua-de-queijos",
+      "nome": "Tábua de queijos",
+      "categoria": "casa",
+      "icone": "tabua",
+      "descricao": "Madeira nobre e faca de queijo. Aparece em todo encontro de fim de semana.",
+      "materiais": [
+        "Madeira",
+        "Aço inox"
+      ],
+      "tecnicas": [
+        "Gravação a laser"
+      ],
+      "ocasioes": [
+        "fim-de-ano",
+        "executivos"
+      ]
+    },
+    {
+      "slug": "guardanapos-de-linho",
+      "nome": "Guardanapos de linho",
+      "categoria": "casa",
+      "icone": "linho",
+      "descricao": "Jogo de quatro com bordado tom sobre tom. Discreto, durável e raro como brinde.",
+      "materiais": [
+        "Linho"
+      ],
+      "tecnicas": [
+        "Bordado tonal"
+      ],
+      "ocasioes": [
+        "fim-de-ano",
+        "executivos"
+      ]
+    },
+    {
+      "slug": "mascara-de-olhos",
+      "nome": "Máscara de olhos com peso",
+      "categoria": "bemestar",
+      "icone": "mascara",
+      "descricao": "Enchimento de lavanda e linho. Um convite para desacelerar, assinado pela marca.",
+      "materiais": [
+        "Linho",
+        "Lavanda"
+      ],
+      "tecnicas": [
+        "Etiqueta tecida"
+      ],
+      "ocasioes": [
+        "reconhecimento",
+        "eventos"
+      ]
+    },
+    {
+      "slug": "garrafa-vidro-cortica",
+      "nome": "Garrafa de vidro com cortiça",
+      "categoria": "bemestar",
+      "icone": "garrafa",
+      "descricao": "Vidro borossilicato e capa de cortiça. Sai da gaveta de squeezes e vai para a mesa.",
+      "materiais": [
+        "Vidro borossilicato",
+        "Cortiça"
+      ],
+      "tecnicas": [
+        "Gravação na cortiça"
+      ],
+      "ocasioes": [
+        "boas-vindas",
+        "eventos"
+      ]
+    },
+    {
+      "slug": "meias-padrao-arcos",
+      "nome": "Meias com o padrão da marca",
+      "categoria": "vestir",
+      "icone": "meia",
+      "descricao": "O padrão gráfico da marca vestido, sem logo à vista. Funciona como peça de moda.",
+      "materiais": [
+        "Algodão penteado"
+      ],
+      "tecnicas": [
+        "Tecelagem com desenho exclusivo"
+      ],
+      "ocasioes": [
+        "boas-vindas",
+        "eventos",
+        "lancamentos"
+      ]
+    },
+    {
+      "slug": "lenco-estampado",
+      "nome": "Lenço estampado",
+      "categoria": "vestir",
+      "icone": "lenco",
+      "descricao": "Estampa exclusiva nas cores da marca. Um presente para usar fora do trabalho.",
+      "materiais": [
+        "Seda ou viscose"
+      ],
+      "tecnicas": [
+        "Estampa digital"
+      ],
+      "ocasioes": [
+        "executivos",
+        "reconhecimento"
+      ]
+    },
+    {
+      "slug": "baralho-exclusivo",
+      "nome": "Baralho exclusivo",
+      "categoria": "jogo",
+      "icone": "baralho",
+      "descricao": "Verso com o padrão da marca e caixa rígida. São 54 cartas e 54 vezes a marca na mesa.",
+      "materiais": [
+        "Papel cartão",
+        "Caixa rígida"
+      ],
+      "tecnicas": [
+        "Impressão integral"
+      ],
+      "ocasioes": [
+        "fim-de-ano",
+        "eventos",
+        "executivos"
+      ]
+    },
+    {
+      "slug": "domino-madeira",
+      "nome": "Dominó em madeira",
+      "categoria": "jogo",
+      "icone": "domino",
+      "descricao": "Peças gravadas em estojo de madeira. Junta família e amigos em volta da marca.",
+      "materiais": [
+        "Madeira"
+      ],
+      "tecnicas": [
+        "Gravação a laser"
+      ],
+      "ocasioes": [
+        "fim-de-ano",
+        "reconhecimento"
+      ]
+    },
+    {
+      "slug": "kit-horta",
+      "nome": "Kit horta",
+      "categoria": "jogo",
+      "icone": "horta",
+      "descricao": "Vaso, sementes e marcador gravado. A marca cresce na janela de quem recebe.",
+      "materiais": [
+        "Cerâmica",
+        "Sementes",
+        "Papel-semente"
+      ],
+      "tecnicas": [
+        "Gravação",
+        "Impressão em papel-semente"
+      ],
+      "ocasioes": [
+        "boas-vindas",
+        "eventos",
+        "lancamentos"
+      ]
+    },
+    {
+      "slug": "postais-ilustrados",
+      "nome": "Postais ilustrados",
+      "categoria": "jogo",
+      "icone": "postal",
+      "descricao": "Série curta desenhada por artista convidado. Vai para a geladeira, o mural e o porta-retrato.",
+      "materiais": [
+        "Papel de algodão"
+      ],
+      "tecnicas": [
+        "Ilustração exclusiva",
+        "Impressão fine art"
+      ],
+      "ocasioes": [
+        "fim-de-ano",
+        "executivos",
+        "eventos"
+      ]
+    },
+    {
+      "slug": "carregador-sem-fio",
+      "nome": "Carregador sem fio em pedra",
+      "categoria": "tech",
+      "icone": "carregador",
+      "descricao": "Base de pedra ou madeira que carrega o celular sem parecer eletrônico.",
+      "materiais": [
+        "Pedra ou madeira"
+      ],
+      "tecnicas": [
+        "Gravação a laser"
+      ],
+      "ocasioes": [
+        "executivos",
+        "reconhecimento",
+        "boas-vindas"
+      ]
+    },
+    {
+      "slug": "cabo-estojo-couro",
+      "nome": "Cabo em estojo de couro",
+      "categoria": "tech",
+      "icone": "cabo",
+      "descricao": "Cabo trançado guardado em estojo de couro. Acaba com o emaranhado de fios na bolsa.",
+      "materiais": [
+        "Couro",
+        "Cabo trançado"
+      ],
+      "tecnicas": [
+        "Hot stamping"
+      ],
+      "ocasioes": [
+        "boas-vindas",
+        "eventos"
+      ]
+    }
+  ]
+}

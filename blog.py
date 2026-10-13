@@ -28,7 +28,10 @@ BLOG_SRC = os.path.join(ROOT, 'src', 'blog')
 BLOG_CSS = os.path.join(ROOT, 'src', 'blog.css')
 ADMIN_SRC = os.path.join(ROOT, 'src', 'admin')
 CMS_REPO = os.environ.get('CMS_REPO', 'mfpi1209/tama-creative-site')   # repositório GitHub (privado) que o editor edita
-CMS_SITE_DOMAIN = 'tamacreative.netlify.app'                    # site do Netlify que faz o login (OAuth GitHub)
+CMS_BRANCH = os.environ.get('CMS_BRANCH', 'main')            # branch de produção: "Publicar" no editor grava aqui
+# Login GitHub do editor: serviço deploy/cms-auth no Easypanel, exposto pelo Nginx do site em /api/cms-auth/.
+CMS_AUTH_BASE = os.environ.get('CMS_AUTH_BASE', '')           # vazio = o próprio site (site_url)
+CMS_AUTH_ENDPOINT = os.environ.get('CMS_AUTH_ENDPOINT', 'api/cms-auth/auth')
 IMG_EXT = ('.jpg', '.jpeg', '.png', '.webp')
 BLOG_IMG = {}  # chave -> arquivo de img/blog/ (imagens enviadas pelo editor)
 DRAFTS = os.environ.get('BLOG_DRAFTS', '').lower() in ('1', 'true', 'yes')
@@ -676,8 +679,8 @@ def cms_config(b):
                   'Use o bloco "Chamada para proposta" uma vez no meio do texto.')},
     ]
     cfg = {
-        'backend': {'name': 'github', 'repo': CMS_REPO, 'branch': 'main', 'base_url': 'https://api.netlify.com',
-                    'auth_endpoint': 'auth', 'site_domain': CMS_SITE_DOMAIN, 'squash_merges': True,
+        'backend': {'name': 'github', 'repo': CMS_REPO, 'branch': CMS_BRANCH, 'base_url': CMS_AUTH_BASE or b.SITE,
+                    'auth_endpoint': CMS_AUTH_ENDPOINT, 'squash_merges': True,
                     'commit_messages': {'create': 'Blog: cria {{slug}}', 'update': 'Blog: atualiza {{slug}}', 'delete': 'Blog: remove {{slug}}',
                                         'uploadMedia': 'Blog: envia imagem {{path}}', 'deleteMedia': 'Blog: remove imagem {{path}}',
                                         'openAuthoring': 'Blog: {{message}}'}},
@@ -689,7 +692,8 @@ def cms_config(b):
         'slug': {'encoding': 'ascii', 'clean_accents': True, 'sanitize_replacement': '-'},
         'collections': [{
             'name': 'blog', 'label': 'Artigos do blog', 'label_singular': 'artigo',
-            'description': 'Guias do blog. Cada artigo publicado vai para tamacreative.com.br/blog/ depois do build (alguns minutos).',
+            'description': ('Guias do blog. "Publicar" grava o artigo no repositório; o GitHub Actions gera o site e o Easypanel '
+                            'atualiza tamacreative.com.br/blog/ em alguns minutos. Use a prévia ao lado para conferir antes.'),
             'folder': 'src/blog', 'create': True, 'extension': 'md', 'format': 'frontmatter',
             'identifier_field': 'breadcrumb', 'slug': '{{slug}}',
             'preview_path': 'blog/{{slug}}/', 'summary': '{{title}} · {{date}}',

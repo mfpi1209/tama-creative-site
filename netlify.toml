@@ -1,5 +1,5 @@
 # Site TaMa Creative — publicação no Netlify.
-# Com o site ligado ao repositório GitHub (mfpi1209/tama-site), cada push na branch main gera o site e publica.
+# Com o site ligado ao repositório GitHub privado (mfpi1209/tama-creative-site), cada push na branch main gera o site e publica.
 # O editor do blog (/admin/) grava no repositório: cada artigo vira um pull request com prévia (Deploy Preview);
 # "Publicar" no editor faz o merge e a produção é atualizada pelo build abaixo.
 # Deploy manual (sem Git) continua possível:  python build.py  e  netlify deploy --prod --dir dist --functions netlify/functions

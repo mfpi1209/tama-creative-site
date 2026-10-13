@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+  <title>Blog TaMa Creative</title>
+  <link>https://tamacreative.com.br/blog/</link>
+  <atom:link href="https://tamacreative.com.br/blog/feed.xml" rel="self" type="application/rss+xml"/>
+  <description>Guias sobre brindes corporativos, kits e presentes de empresa.</description>
+  <language>pt-BR</language>
+  <lastBuildDate>Mon, 12 Oct 2026 09:00:00 -0300</lastBuildDate>
+  <item>
+    <title>Brindes de fim de ano para clientes: como escolher sem parecer propaganda</title>
+    <link>https://tamacreative.com.br/blog/brindes-de-fim-de-ano-para-clientes/</link>
+    <guid isPermaLink="true">https://tamacreative.com.br/blog/brindes-de-fim-de-ano-para-clientes/</guid>
+    <pubDate>Mon, 12 Oct 2026 09:00:00 -0300</pubDate>
+    <category>Fim de ano</category>
+    <description>Como escolher brindes de fim de ano para clientes que sejam usados e lembrados: utilidade, marca na medida certa, embalagem, mensagem e regras de quem recebe.</description>
+  </item>
+  <item>
+    <title>Brindes e compliance: limites de valor e política de presentes</title>
+    <link>https://tamacreative.com.br/blog/brindes-e-compliance-politica-de-presentes/</link>
+    <guid isPermaLink="true">https://tamacreative.com.br/blog/brindes-e-compliance-politica-de-presentes/</guid>
+    <pubDate>Mon, 12 Oct 2026 09:00:00 -0300</pubDate>
+    <category>Compliance e políticas</category>
+    <description>Brinde, presente ou hospitalidade? O que diz a regra federal sobre valor, o que a Lei Anticorrupção exige das empresas e como montar a sua política de brindes.</description>
+  </item>
+  <item>
+    <title>O que colocar no kit de boas-vindas, inclusive para quem trabalha remoto</title>
+    <link>https://tamacreative.com.br/blog/o-que-colocar-no-kit-de-boas-vindas/</link>
+    <guid isPermaLink="true">https://tamacreative.com.br/blog/o-que-colocar-no-kit-de-boas-vindas/</guid>
+    <pubDate>Mon, 12 Oct 2026 09:00:00 -0300</pubDate>
+    <category>Boas-vindas</category>
+    <description>O que colocar no kit de boas-vindas: peças de uso diário, um gesto de afeto, a cultura da empresa e os cuidados para enviar o kit a quem trabalha remoto.</description>
+  </item>
+  <item>
+    <title>Presente de Natal para funcionários: ideias além da cesta</title>
+    <link>https://tamacreative.com.br/blog/presente-de-natal-para-funcionarios/</link>
+    <guid isPermaLink="true">https://tamacreative.com.br/blog/presente-de-natal-para-funcionarios/</guid>
+    <pubDate>Mon, 12 Oct 2026 09:00:00 -0300</pubDate>
+    <category>Fim de ano</category>
+    <description>Ideias de presente de Natal para funcionários além da cesta: rituais de casa, peças de uso diário, vestuário da marca e kits para equipes diversas.</description>
+  </item>
+</channel>
+</rss>

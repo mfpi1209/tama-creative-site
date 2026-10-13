@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://tamacreative.com.br/sitemap.xml
+Sitemap: https://tamacreative.com.br/brindes/sitemap.xml

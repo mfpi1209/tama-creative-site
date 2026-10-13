@@ -1,0 +1,419 @@
+# Gerado por blog.py a cada build (não editar à mão): opções vindas de TEMAS, curadoria.json e das imagens do site.
+backend:
+  name: github
+  repo: mfpi1209/tama-creative-site
+  branch: main
+  base_url: https://api.netlify.com
+  auth_endpoint: auth
+  site_domain: tamacreative.netlify.app
+  squash_merges: true
+  commit_messages:
+    create: 'Blog: cria {{slug}}'
+    update: 'Blog: atualiza {{slug}}'
+    delete: 'Blog: remove {{slug}}'
+    uploadMedia: 'Blog: envia imagem {{path}}'
+    deleteMedia: 'Blog: remove imagem {{path}}'
+    openAuthoring: 'Blog: {{message}}'
+local_backend: true
+publish_mode: editorial_workflow
+locale: pt
+site_url: https://tamacreative.com.br
+display_url: https://tamacreative.com.br
+logo_url: /admin/logo.svg
+media_folder: img/blog
+public_folder: /img/blog
+slug:
+  encoding: ascii
+  clean_accents: true
+  sanitize_replacement: '-'
+collections:
+- name: blog
+  label: Artigos do blog
+  label_singular: artigo
+  description: Guias do blog. Cada artigo publicado vai para tamacreative.com.br/blog/ depois do build (alguns minutos).
+  folder: src/blog
+  create: true
+  extension: md
+  format: frontmatter
+  identifier_field: breadcrumb
+  slug: '{{slug}}'
+  preview_path: blog/{{slug}}/
+  summary: '{{title}} · {{date}}'
+  sortable_fields:
+  - date
+  - title
+  view_groups:
+  - label: Tema
+    field: tema
+  fields:
+  - label: Título do artigo (H1)
+    name: title
+    widget: string
+    hint: Responde à busca principal com naturalidade. Até 110 caracteres.
+    pattern:
+    - ^.{10,110}$
+    - Use de 10 a 110 caracteres
+  - label: Título curto
+    name: breadcrumb
+    widget: string
+    hint: 'Aparece no caminho (Início / Blog / …) e forma o endereço do artigo. Ex.: Kit de boas-vindas'
+    pattern:
+    - ^.{3,60}$
+    - Use de 3 a 60 caracteres
+  - label: Título no Google (SEO)
+    name: seo_title
+    widget: string
+    hint: O que aparece no resultado de busca. Comece pela palavra-chave e termine com " | TaMa". Ideal até 65 caracteres.
+    pattern:
+    - ^.{20,70}$
+    - Use de 20 a 70 caracteres (ideal até 65)
+  - label: Descrição (SEO)
+    name: description
+    widget: text
+    hint: Resumo que aparece no Google, nos cards do blog e abaixo do título. De 70 a 160 caracteres.
+    pattern:
+    - ^[\s\S]{70,160}$
+    - Use de 70 a 160 caracteres
+  - label: Palavra-chave principal
+    name: palavra_chave
+    widget: string
+    hint: A busca que o artigo responde, como as pessoas digitam. Use-a no título, na descrição e no primeiro parágrafo.
+  - widget: datetime
+    format: YYYY-MM-DD
+    date_format: DD/MM/YYYY
+    time_format: false
+    picker_utc: true
+    label: Data de publicação
+    name: date
+    hint: Data futura = o artigo só aparece a partir desse dia (no próximo build).
+  - widget: datetime
+    format: YYYY-MM-DD
+    date_format: DD/MM/YYYY
+    time_format: false
+    picker_utc: true
+    label: Atualizado em
+    name: updated
+    required: false
+    default: ''
+    hint: Preencha só quando revisar o conteúdo de verdade (o Google mostra a data de atualização).
+  - label: Destaque no blog
+    name: destaque
+    widget: boolean
+    default: false
+    required: false
+    hint: Coloca o artigo em destaque entre os publicados no mesmo dia.
+  - label: Tema
+    name: tema
+    widget: select
+    options:
+    - label: Fim de ano
+      value: fim-de-ano
+    - label: Boas-vindas
+      value: boas-vindas
+    - label: Compliance e políticas
+      value: politicas
+    - label: Eventos
+      value: eventos
+    - label: Sustentabilidade
+      value: sustentabilidade
+    - label: Marca e identidade
+      value: marca
+    - label: Uniformes e confecções
+      value: uniformes
+  - label: Ocasião da curadoria
+    name: ocasiao
+    widget: select
+    required: false
+    options:
+    - label: Boas-vindas
+      value: boas-vindas
+    - label: Eventos
+      value: eventos
+    - label: Presentes executivos
+      value: executivos
+    - label: Campanhas e ativações
+      value: campanhas
+    - label: Lançamentos
+      value: lancamentos
+    - label: Fim de ano
+      value: fim-de-ano
+    - label: Reconhecimento
+      value: reconhecimento
+    hint: Liga o artigo à curadoria filtrada (/brindes-corporativos-premium/?ocasiao=…).
+  - label: Página de serviço
+    name: servico
+    widget: select
+    required: false
+    options:
+    - label: Brindes corporativos
+      value: /brindes-corporativos/
+    - label: Kits corporativos
+      value: /kits-corporativos/
+    - label: A curadoria
+      value: /brindes-corporativos-premium/
+    - label: Confecções
+      value: /confeccoes-personalizadas/
+    - label: Branding
+      value: /branding-identidade-visual/
+    hint: Botão para o serviço no fim do artigo. Todo artigo deve apontar para um serviço.
+  - label: Tipo de proposta
+    name: proposta
+    widget: select
+    required: false
+    options:
+    - label: Brindes ou presentes
+      value: brindes
+    - label: Kits corporativos
+      value: kits
+    - label: Confecções e uniformes
+      value: confeccoes
+    - label: Branding e identidade
+      value: branding
+    - label: Projeto integrado
+      value: integrado
+    hint: Já vem marcado no formulário quando o leitor clica em Solicitar proposta.
+  - label: 'Capa: imagem da biblioteca do site'
+    name: capa
+    widget: select
+    required: false
+    options:
+    - bandeja-couro
+    - bandeja-couro~azul-marinho
+    - bandeja-couro~cafe
+    - bandeja-couro~oliva
+    - bolsa-terracota
+    - bolsa-terracota~azul
+    - bolsa-terracota~natural
+    - bolsa-terracota~verde
+    - bone-verde
+    - bone-verde~azul
+    - bone-verde~bege
+    - bone-verde~vinho
+    - brindes
+    - caderno-azul
+    - caderno-azul--casa-mirelo
+    - caderno-azul~cafe
+    - caderno-azul~preto
+    - caderno-azul~verde
+    - caderno-premium
+    - caderno-premium~preto
+    - caderno-premium~terracota
+    - caderno-premium~verde
+    - caixa-terracota
+    - caixa-terracota~azul
+    - caixa-terracota~bordo
+    - caixa-terracota~verde
+    - caneca-ceramica
+    - caneca-ceramica~azul
+    - caneca-ceramica~creme
+    - caneca-ceramica~verde
+    - caneta-executiva
+    - caneta-executiva~cobre
+    - caneta-executiva~marinho
+    - caneta-executiva~verde
+    - cartoes-colors
+    - cartoes-colors~azul
+    - cartoes-colors~bordo
+    - cartoes-colors~oliva
+    - confeccoes
+    - couro-verde
+    - couro-verde~cafe
+    - couro-verde~marinho
+    - couro-verde~terracota
+    - detalhe-caderno
+    - detalhe-garrafa
+    - detalhe-polo
+    - embalagem-presente
+    - embalagem-presente~bordo
+    - embalagem-presente~creme
+    - embalagem-presente~verde
+    - garrafa-termica
+    - garrafa-termica~areia
+    - garrafa-termica~azul
+    - garrafa-termica~ocre
+    - hero-brand
+    - hero-gift
+    - hero-wear
+    - hoodie-azul
+    - hoodie-azul~preto
+    - hoodie-azul~verde
+    - hoodie-azul~vinho
+    - kit-papelaria
+    - kit-papelaria~areia
+    - kit-papelaria~azul-marinho
+    - kit-papelaria~mostarda
+    - kit-presente
+    - kit-presente~areia
+    - kit-presente~marinho
+    - kit-presente~verde
+    - look-corporativo
+    - look-corporativo~off-white
+    - look-corporativo~terracota
+    - look-corporativo~verde
+    - manta-textil
+    - manta-textil~areia
+    - manta-textil~lilas
+    - manta-textil~terracota
+    - marcas
+    - papelaria-cores
+    - papelaria-cores~azul
+    - papelaria-cores~bordo
+    - papelaria-cores~verde
+    - polo-offwhite
+    - polo-offwhite~marinho
+    - polo-offwhite~preto
+    - polo-offwhite~verde
+    - sacola-verde
+    - sacola-verde~azul
+    - sacola-verde~creme
+    - sacola-verde~terracota
+    - totebag
+    - totebag--ondora
+    - uniforme-verde
+    - uniforme-verde~azul
+    - uniforme-verde~creme
+    - uniforme-verde~preto
+    hint: Fotografias conceituais e mockups já usados no site. Ou envie uma imagem nova no campo abaixo.
+  - label: 'Capa: enviar imagem nova'
+    name: capa_arquivo
+    widget: image
+    required: false
+    choose_url: false
+    hint: Só fotos próprias ou com licença de uso. Mínimo de 1600 px de largura. Se preenchida, substitui a da biblioteca.
+  - label: Descrição da capa (texto alternativo)
+    name: capa_alt
+    widget: string
+    hint: 'O que aparece na foto, para leitores de tela e para o Google. Ex.: caixa terracota com caderno e garrafa verde.'
+  - label: A capa é uma fotografia conceitual
+    name: capa_conceitual
+    widget: boolean
+    default: true
+    required: false
+    hint: Desmarque só para fotos reais de trabalhos entregues. Conceituais aparecem identificadas no site.
+  - label: Enquadramento da capa
+    name: capa_posicao
+    widget: string
+    required: false
+    hint: 'Opcional. Ex.: 50% 40% (horizontal e vertical) para mostrar outra parte da foto.'
+  - label: Peças da curadoria
+    name: pecas
+    widget: select
+    multiple: true
+    required: false
+    max: 9
+    options:
+    - label: Bandeja em couro (com foto)
+      value: bandeja-em-couro
+    - label: Garrafa térmica (com foto)
+      value: garrafa-termica
+    - label: Caderno premium (com foto)
+      value: caderno-premium
+    - label: Caneca de cerâmica (com foto)
+      value: caneca-de-ceramica
+    - label: Kit boas-vindas (com foto)
+      value: kit-boas-vindas
+    - label: Moletom exclusivo (com foto)
+      value: moletom-exclusivo
+    - label: Polo personalizada (com foto)
+      value: polo-personalizada
+    - label: Bolsa tote estruturada (com foto)
+      value: bolsa-tote-estruturada
+    - label: Boné premium (com foto)
+      value: bone-premium
+    - label: Sacola corporativa (com foto)
+      value: sacola-corporativa
+    - label: Kit de papelaria (com foto)
+      value: kit-de-papelaria
+    - label: Caixa rígida premium (com foto)
+      value: caixa-rigida-premium
+    - label: Cartões de marca (com foto)
+      value: cartoes-de-marca
+    - label: Agenda executiva (com foto)
+      value: agenda-executiva
+    - label: Embalagem presente (com foto)
+      value: embalagem-presente
+    - label: Manta de aconchego (com foto)
+      value: manta-de-aconchego
+    - label: Caneta executiva (com foto)
+      value: caneta-executiva
+    - label: Uniforme personalizado (com foto)
+      value: uniforme-personalizado
+    - label: Organizador de mesa (com foto)
+      value: organizador-de-mesa
+    - label: Kit vestuário (com foto)
+      value: kit-vestuario
+    - label: Paleta e aplicações (com foto)
+      value: paleta-e-aplicacoes
+    - label: Objeto de mesa em pedra (além do óbvio)
+      value: objeto-mesa-pedra
+    - label: Calendário perpétuo (além do óbvio)
+      value: calendario-perpetuo
+    - label: Vela com fragrância assinada (além do óbvio)
+      value: vela-fragrancia-assinada
+    - label: Ritual de café (além do óbvio)
+      value: ritual-de-cafe
+    - label: Chá em latas (além do óbvio)
+      value: cha-em-latas
+    - label: Tábua de queijos (além do óbvio)
+      value: tabua-de-queijos
+    - label: Guardanapos de linho (além do óbvio)
+      value: guardanapos-de-linho
+    - label: Máscara de olhos com peso (além do óbvio)
+      value: mascara-de-olhos
+    - label: Garrafa de vidro com cortiça (além do óbvio)
+      value: garrafa-vidro-cortica
+    - label: Meias com o padrão da marca (além do óbvio)
+      value: meias-padrao-arcos
+    - label: Lenço estampado (além do óbvio)
+      value: lenco-estampado
+    - label: Baralho exclusivo (além do óbvio)
+      value: baralho-exclusivo
+    - label: Dominó em madeira (além do óbvio)
+      value: domino-madeira
+    - label: Kit horta (além do óbvio)
+      value: kit-horta
+    - label: Postais ilustrados (além do óbvio)
+      value: postais-ilustrados
+    - label: Carregador sem fio em pedra (além do óbvio)
+      value: carregador-sem-fio
+    - label: Cabo em estojo de couro (além do óbvio)
+      value: cabo-estojo-couro
+    hint: Aparecem no fim do artigo com o botão "+ Selecionar" (levam o leitor à proposta). Até 9.
+  - label: Outros guias (relacionados)
+    name: relacionados
+    widget: relation
+    collection: blog
+    search_fields:
+    - title
+    value_field: '{{slug}}'
+    display_fields:
+    - title
+    multiple: true
+    required: false
+    max: 3
+    hint: Até 3. Sem escolha, o site mostra os do mesmo tema e os mais recentes.
+  - label: Rascunho (não publicar)
+    name: draft
+    widget: boolean
+    default: false
+    required: false
+    hint: Marcado, o artigo não vai ao ar mesmo se for publicado no editor.
+  - label: Texto
+    name: body
+    widget: markdown
+    modes:
+    - rich_text
+    - raw
+    buttons:
+    - bold
+    - italic
+    - link
+    - heading-two
+    - heading-three
+    - quote
+    - bulleted-list
+    - numbered-list
+    editor_components:
+    - image
+    - cta
+    hint: 'Use "Título 2" para as seções (entram no sumário) e "Título 3" para subseções. Fato externo sempre com fonte: no modo Markdown, escreva texto[^id] e, no fim, [^id]: Fonte. [Link](https://…). Use o bloco "Chamada para proposta" uma vez no meio do texto.'

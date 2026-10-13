@@ -64,6 +64,9 @@
 .prose dd { color: var(--muted); }
 .prose sup { line-height: 0; }
 .prose .footnote-ref { display: inline-block; min-width: 1.4em; padding: 0 2px; font-size: .75rem; font-weight: 700; text-align: center; }
+.post-figure { margin-block: 2.2em; }
+.post-figure img { width: 100%; height: auto; border-radius: var(--radius); }
+.post-figure figcaption { margin-top: 10px; font-size: .8125rem; line-height: 1.5; color: var(--muted); }
 .table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
 .prose table { width: 100%; min-width: 34rem; border-collapse: collapse; font-size: .9375rem; line-height: 1.55; }
 .prose th, .prose td { padding: 12px 14px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--line); }

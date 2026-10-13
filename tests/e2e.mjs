@@ -215,6 +215,15 @@ try {
   ok(items.length === 4 && items.every(p => idx.posts.includes(p)), `RSS com os 4 artigos (${items.length})`);
   const sitemap = await (await fetch(BASE + '/sitemap.xml')).text();
   ok(['/blog/', ...idx.posts].every(p => sitemap.includes(p + '</loc>')), 'sitemap inclui o blog e os artigos');
+
+  console.log('Editor do blog (/admin/)');
+  const admHtml = await (await fetch(BASE + '/admin/')).text();
+  const cfg = await (await fetch(BASE + '/admin/config.yml')).text();
+  const vendor = admHtml.match(/src="(\/admin\/vendor\/[^"]+)"/)?.[1];
+  ok(admHtml.includes('noindex') && vendor && (await fetch(BASE + vendor)).status === 200, 'editor publicado com noindex e Decap servido pelo próprio site');
+  ok(['publish_mode: editorial_workflow', 'folder: src/blog', 'media_folder: img/blog', 'name: github'].every(s => cfg.includes(s)), 'config do editor: GitHub, fluxo editorial, pasta do blog e mídia em img/blog');
+  ok(['value: fim-de-ano', 'value: bandeja-em-couro', "pattern:"].every(s => cfg.includes(s)) && !cfg.includes('heading-one'), 'editor só oferece temas e peças válidos, com limites de SEO e sem H1 no texto');
+  ok(!sitemap.includes('/admin/'), 'editor fora do sitemap');
   await bp.close();
 } finally {
   await browser.close();

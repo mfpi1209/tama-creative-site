@@ -16,6 +16,7 @@ import os
 import re
 import shutil
 import unicodedata
+import urllib.parse
 from datetime import date, datetime, timedelta, timezone
 from email.utils import format_datetime
 
@@ -61,7 +62,7 @@ def _err(msg):
 # ------------------------------------------------------------------ imagens enviadas pelo editor (img/blog/)
 def image_key(filename):
     """Nome interno (e das URLs geradas) de uma imagem de img/blog/: 'Foto Kit.JPG' -> 'blog-foto-kit'."""
-    stem = os.path.splitext(os.path.basename(str(filename)))[0]
+    stem = os.path.splitext(os.path.basename(urllib.parse.unquote(str(filename))))[0]
     stem = unicodedata.normalize('NFKD', stem).encode('ascii', 'ignore').decode('ascii').lower()
     return 'blog-' + (re.sub(r'[^a-z0-9]+', '-', stem).strip('-') or 'imagem')
 
@@ -151,7 +152,8 @@ def render_markdown(b, body, a):
     out = re.sub(r'<div class="footnote">\s*<hr\s*/?>\s*(.*)</div>\s*$',
                  r'<section class="sources" aria-labelledby="fontes-t"><h2 id="fontes-t">Fontes</h2>\1</section>', out, flags=re.S)
     # Imagens no texto: só de img/blog/ (enviadas pelo editor), com texto alternativo; viram <picture> otimizado
-    def figure(m, wrap):
+    def figure(m):
+        wrap = m.group(1) is not None
         tag = m.group(1) if wrap else m.group(0)
         src = (re.search(r'src="([^"]*)"', tag) or [None, ''])[1]
         alt = html.unescape((re.search(r'alt="([^"]*)"', tag) or [None, ''])[1])
@@ -166,8 +168,7 @@ def render_markdown(b, body, a):
         if not wrap:
             return pic
         return f'<figure class="post-figure">{pic}' + (f'<figcaption>{title}</figcaption>' if title else '') + '</figure>'
-    out = re.sub(r'<p>\s*(<img [^>]*>)\s*</p>', lambda m: figure(m, True), out)
-    out = re.sub(r'<img [^>]*>', lambda m: figure(m, False), out)
+    out = re.sub(r'<p>\s*(<img [^>]*>)\s*</p>|<img [^>]*>', figure, out)  # uma passada: o <img> gerado não é reprocessado
     # Tabelas roláveis no celular
     out = re.sub(r'<table>', '<div class="table-wrap" role="region" tabindex="0" aria-label="Tabela (role para ver tudo)"><table>', out)
     out = out.replace('</table>', '</table></div>')
@@ -683,7 +684,7 @@ def cms_config(b):
         'local_backend': True,
         'publish_mode': 'editorial_workflow',
         'locale': 'pt',
-        'site_url': b.SITE, 'display_url': b.SITE, 'logo_url': '/logo-512.png',
+        'site_url': b.SITE, 'display_url': b.SITE, 'logo_url': '/admin/logo.svg',
         'media_folder': 'img/blog', 'public_folder': '/img/blog',
         'slug': {'encoding': 'ascii', 'clean_accents': True, 'sanitize_replacement': '-'},
         'collections': [{
@@ -706,6 +707,7 @@ def post_static(b):
         return
     out = os.path.join(b.DIST, 'admin')
     shutil.copytree(ADMIN_SRC, out, dirs_exist_ok=True)
+    shutil.copy2(os.path.join(b.LOGOS, 'tama-logo-horizontal-positivo.svg'), os.path.join(out, 'logo.svg'))  # logo oficial no login
     b.write('/admin/config.yml', cms_config(b))
     b.write('/admin/preview.css', b.CSS + b.minify_css(open(BLOG_CSS, encoding='utf-8').read()))
     with open(os.path.join(b.DIST, '_headers'), 'a', encoding='utf-8') as f:

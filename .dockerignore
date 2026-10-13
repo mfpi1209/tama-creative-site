@@ -1,0 +1,9 @@
+dist
+.cache
+node_modules
+.git
+.netlify
+midia/mockups/mestre
+prototipo
+**/__pycache__
+*.log

@@ -1,0 +1,53 @@
+# Gera o site e publica a imagem no GitHub Container Registry; o Easypanel puxa a imagem.
+name: Publicar site
+on:
+  push:
+    branches: [main, master, 'migracao-*']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      IMAGE: ghcr.io/${{ github.repository_owner }}/tama-creative-site
+      FORM_ENDPOINT: /api/proposta
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - name: Cache das imagens geradas
+        uses: actions/cache@v4
+        with:
+          path: .cache
+          key: img-${{ hashFiles('img/**') }}
+          restore-keys: img-
+      - run: pip install -r requirements.txt
+      - name: Gerar o site
+        run: python build.py
+      - name: Montar contexto da imagem
+        run: |
+          mkdir -p ctx/deploy
+          cp -r dist ctx/dist
+          cp deploy/nginx.conf deploy/security-headers.conf deploy/Dockerfile.static ctx/deploy/
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Construir e enviar a imagem
+        run: |
+          IMG=$(echo "$IMAGE" | tr '[:upper:]' '[:lower:]')
+          docker build -f ctx/deploy/Dockerfile.static -t "$IMG:latest" -t "$IMG:${GITHUB_SHA::7}" ctx
+          docker push "$IMG:latest"
+          docker push "$IMG:${GITHUB_SHA::7}"
+      - name: Avisar o Easypanel (se o webhook estiver configurado)
+        env:
+          HOOK: ${{ secrets.EASYPANEL_DEPLOY_WEBHOOK }}
+        if: env.HOOK != ''
+        run: curl -fsS -X POST "$HOOK"

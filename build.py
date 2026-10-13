@@ -19,7 +19,7 @@ LOGOS_OFICIAIS = os.path.join(ROOT, '..', 'tama-creative-logos', 'svg')
 
 # ------------------------------------------------------------------ config
 CFG = json.load(open(os.path.join(ROOT, 'site.config.json'), encoding='utf-8'))
-for key in ('site_url', 'whatsapp', 'email', 'instagram', 'ga4_id', 'redirect_netlify_subdomain'):
+for key in ('site_url', 'whatsapp', 'email', 'instagram', 'ga4_id', 'redirect_netlify_subdomain', 'form_endpoint'):
     env = os.environ.get(key.upper())
     if env is not None:
         CFG[key] = env.lower() in ('1', 'true', 'yes') if key == 'redirect_netlify_subdomain' else env
@@ -28,6 +28,9 @@ WA = re.sub(r'\D', '', CFG.get('whatsapp') or '')
 EMAIL = (CFG.get('email') or '').strip()
 IG = (CFG.get('instagram') or '').strip().lstrip('@')
 GA4 = (CFG.get('ga4_id') or '').strip()
+# '/' = Netlify Forms (POST para a própria página). Fora do Netlify: '/api/proposta' (Nginx repassa ao webhook do n8n).
+FORM_ENDPOINT = (CFG.get('form_endpoint') or '/').strip() or '/'
+NETLIFY_FORMS = FORM_ENDPOINT == '/'
 # Branded mockups (img/marca/ + src/data/mockups.json). Off unless MOCKUPS_MARCA=1 or "mockups_marca": true.
 MOCKUPS = str(os.environ.get('MOCKUPS_MARCA', CFG.get('mockups_marca', ''))).lower() in ('1', 'true', 'yes')
 BUILD_DATE = date.today().isoformat()
@@ -137,6 +140,8 @@ def build_images():
     for name, src in sorted(sources):
         im = Image.open(src).convert('RGB')
         widths = [w for w in (420, 640, 960, 1280, 1920) if w < im.width - 40] + [im.width]
+        if '~' in name:   # colour variants: cards and lightbox never need more than 1280 px
+            widths = [w for w in widths if w <= 1280]
         cdir = os.path.join(cache, 'marca') if os.path.basename(os.path.dirname(src)) == 'marca' else cache
         os.makedirs(cdir, exist_ok=True)
         # content hash in the public file name: /img/* is cached for a year (immutable), so an updated image needs a new URL
@@ -188,8 +193,25 @@ def preload_image(name, sizes):
 PECA = {p['slug']: p for p in PECAS}
 
 
+def color_slug(s):
+    import unicodedata
+    s = unicodedata.normalize('NFKD', s).encode('ascii', 'ignore').decode().lower()
+    return '-'.join(''.join(c if c.isalnum() else ' ' for c in s).split())
+
+
+def color_images(p):
+    """{colour name: [stem, widths, alt]} for every colour that has its own photo (the first colour is the base photo)."""
+    out = {}
+    for i, (nome, _) in enumerate(p['cores']):
+        name = p['img'] if i == 0 else f"{p['img']}~{color_slug(nome)}"
+        if name in IMAGES:
+            alt = MOCK_DATA.get(name, {}).get('alt') or f"{p['nome']} na cor {nome.lower()}. Mockup ilustrativo."
+            out[nome] = [IMAGES[name]['stem'], IMAGES[name]['widths'], alt]
+    return out if len(out) > 1 else {}
+
+
 def catalog_json():
-    data = {p['slug']: {'n': p['nome'], 'i': img_url(p['img'], 'webp', 420), 'c': p['cores']} for p in PECAS}
+    data = {p['slug']: {'n': p['nome'], 'i': img_url(p['img'], 'webp', 420), 'c': p['cores'], 'v': color_images(p)} for p in PECAS}
     data.update({it['slug']: {'n': it['nome'], 'i': None, 'c': []} for it in ALEM})
     return '<script id="tama-catalog" type="application/json">' + json.dumps(data, ensure_ascii=False, separators=(',', ':')) + '</script>'
 
@@ -1059,7 +1081,7 @@ def page_proposta():
 <section class="section" style="padding-top:0">
   <div class="wrap contact-grid">
     <div>
-      <form class="form" id="proposal-form" name="proposta" method="POST" action="/obrigado/" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+      <form class="form" id="proposal-form" name="proposta" method="POST" action="{'/obrigado/' if NETLIFY_FORMS else FORM_ENDPOINT}" data-endpoint="{FORM_ENDPOINT}"{' data-netlify="true" netlify-honeypot="bot-field"' if NETLIFY_FORMS else ''} novalidate>
         <input type="hidden" name="form-name" value="proposta">
         <p hidden><label>Não preencha este campo <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
         <div class="form-grid">

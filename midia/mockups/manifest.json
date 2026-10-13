@@ -15,7 +15,7 @@
       "baixo-relevo",
       "impressão"
     ],
-    "alt": "Kit de presentes corporativos sobre degraus de travertino: caderno azul-marinho e caixa terracota com a assinatura TaMa em dourado, garrafa verde-oliva gravada a laser, bandeja de couro com a pétala em baixo-relevo e faixa lilás personalizada. Mockup ilustrativo.",
+    "alt": "Kit de presentes corporativos sobre degraus de travertino: caderno azul-marinho e bandeja de couro com a assinatura TaMa em dourado, garrafa verde-oliva gravada a laser, caixa terracota com o logo dourado na tampa e faixa lilás estampada TaMa Creative. Mockup ilustrativo.",
     "mestre": {
       "arquivo": "mestre/hero-gift-tama.jpg",
       "largura": 3200,
@@ -53,7 +53,7 @@
       "silk",
       "bordado"
     ],
-    "alt": "Moletom azul, camisa polo off-white, ecobag terracota e boné verde sobre degraus de pedra, cada peça com a marca TaMa Creative aplicada em silk ou bordado. Mockup ilustrativo.",
+    "alt": "Moletom azul, camisa polo off-white, ecobag terracota e boné verde sobre degraus de pedra, cada peça com a assinatura TaMa Creative em silk ou bordado. Mockup ilustrativo.",
     "mestre": {
       "arquivo": "mestre/hero-wear-tama.jpg",
       "largura": 3200,
@@ -92,7 +92,7 @@
       "hot stamping",
       "gravação a laser"
     ],
-    "alt": "Composição editorial de brindes TaMa Creative: sacola verde, caixa terracota e caderno azul com logo, cartões bordô e garrafa com pétala gravada. Mockup ilustrativo.",
+    "alt": "Composição editorial de brindes TaMa Creative: sacola verde, caixa terracota, envelope mostarda e caderno azul com logo, cartões bordô e garrafa com pétala gravada. Mockup ilustrativo.",
     "mestre": {
       "arquivo": "mestre/hero-brand-tama.jpg",
       "largura": 3200,
@@ -123,12 +123,13 @@
     "marca": "TaMa Creative",
     "marca_ficticia": false,
     "nivel": [
+      1,
       2
     ],
     "tecnicas": [
       "baixo-relevo"
     ],
-    "alt": "Bandeja de couro caramelo com a pétala TaMa em baixo-relevo no fundo, sobre travertino. Mockup ilustrativo.",
+    "alt": "Bandeja de couro caramelo com a assinatura TaMa Creative em hot stamping dourado na lateral e a pétala em baixo-relevo no fundo, sobre travertino. Mockup ilustrativo.",
     "mestre": {
       "arquivo": "mestre/bandeja-couro-tama.jpg",
       "largura": 2550,
@@ -144,7 +145,24 @@
       "arquivo": "miniatura/bandeja-couro-tama.webp",
       "largura": 480,
       "altura": 440
-    }
+    },
+    "variantes": [
+      {
+        "cor": "azul-marinho",
+        "webp": "web/bandeja-couro-tama~azul-marinho.webp",
+        "miniatura": "miniatura/bandeja-couro-tama~azul-marinho.webp"
+      },
+      {
+        "cor": "cafe",
+        "webp": "web/bandeja-couro-tama~cafe.webp",
+        "miniatura": "miniatura/bandeja-couro-tama~cafe.webp"
+      },
+      {
+        "cor": "oliva",
+        "webp": "web/bandeja-couro-tama~oliva.webp",
+        "miniatura": "miniatura/bandeja-couro-tama~oliva.webp"
+      }
+    ]
   },
   {
     "arquivo": "garrafa-termica-tama",
@@ -174,7 +192,24 @@
       "arquivo": "miniatura/garrafa-termica-tama.webp",
       "largura": 480,
       "altura": 440
-    }
+    },
+    "variantes": [
+      {
+        "cor": "areia",
+        "webp": "web/garrafa-termica-tama~areia.webp",
+        "miniatura": "miniatura/garrafa-termica-tama~areia.webp"
+      },
+      {
+        "cor": "azul",
+        "webp": "web/garrafa-termica-tama~azul.webp",
+        "miniatura": "miniatura/garrafa-termica-tama~azul.webp"
+      },
+      {
+        "cor": "ocre",
+        "webp": "web/garrafa-termica-tama~ocre.webp",
+        "miniatura": "miniatura/garrafa-termica-tama~ocre.webp"
+      }
+    ]
   },
   {
     "arquivo": "caderno-premium-tama",
@@ -190,7 +225,7 @@
       "hot stamping",
       "baixo-relevo"
     ],
-    "alt": "Caderno azul-marinho com a assinatura TaMa Creative em hot stamping dourado na capa, acompanhado de caneta preta e bandeja de couro caramelo com a pétala em baixo-relevo. Mockup ilustrativo.",
+    "alt": "Caderno azul-marinho com a assinatura TaMa Creative em hot stamping dourado na capa e bandeja de couro caramelo com a assinatura dourada na lateral, acompanhados de caneta preta. Mockup ilustrativo.",
     "mestre": {
       "arquivo": "mestre/caderno-premium-tama.jpg",
       "largura": 2550,
@@ -206,7 +241,24 @@
       "arquivo": "miniatura/caderno-premium-tama.webp",
       "largura": 480,
       "altura": 440
-    }
+    },
+    "variantes": [
+      {
+        "cor": "preto",
+        "webp": "web/caderno-premium-tama~preto.webp",
+        "miniatura": "miniatura/caderno-premium-tama~preto.webp"
+      },
+      {
+        "cor": "terracota",
+        "webp": "web/caderno-premium-tama~terracota.webp",
+        "miniatura": "miniatura/caderno-premium-tama~terracota.webp"
+      },
+      {
+        "cor": "verde",
+        "webp": "web/caderno-premium-tama~verde.webp",
+        "miniatura": "miniatura/caderno-premium-tama~verde.webp"
+      }
+    ]
   },
   {
     "arquivo": "caneca-ceramica-ficticia-casa-mirelo",
@@ -236,7 +288,24 @@
       "arquivo": "miniatura/caneca-ceramica-ficticia-casa-mirelo.webp",
       "largura": 480,
       "altura": 440
-    }
+    },
+    "variantes": [
+      {
+        "cor": "azul",
+        "webp": "web/caneca-ceramica-ficticia-casa-mirelo~azul.webp",
+        "miniatura": "miniatura/caneca-ceramica-ficticia-casa-mirelo~azul.webp"
+      },
+      {
+        "cor": "creme",
+        "webp": "web/caneca-ceramica-ficticia-casa-mirelo~creme.webp",
+        "miniatura": "miniatura/caneca-ceramica-ficticia-casa-mirelo~creme.webp"
+      },
+      {
+        "cor": "verde",
+        "webp": "web/caneca-ceramica-ficticia-casa-mirelo~verde.webp",
+        "miniatura": "miniatura/caneca-ceramica-ficticia-casa-mirelo~verde.webp"
+      }
+    ]
   },
   {
     "arquivo": "kit-presente-tama",
@@ -253,7 +322,7 @@
       "impressão",
       "baixo-relevo"
     ],
-    "alt": "Kit presente TaMa com caixa terracota com logo dourado na tampa, manta oliva com faixa lilás personalizada e caixa verde com alça de couro com pétala gravada. Mockup ilustrativo.",
+    "alt": "Kit presente TaMa com caixa terracota com logo em hot stamping dourado na tampa, manta oliva com faixa lilás estampada TaMa Creative e alça de couro com pétala em baixo-relevo. Mockup ilustrativo.",
     "mestre": {
       "arquivo": "mestre/kit-presente-tama.jpg",
       "largura": 2550,
@@ -269,7 +338,24 @@
       "arquivo": "miniatura/kit-presente-tama.webp",
       "largura": 480,
       "altura": 440
-    }
+    },
+    "variantes": [
+      {
+        "cor": "areia",
+        "webp": "web/kit-presente-tama~areia.webp",
+        "miniatura": "miniatura/kit-presente-tama~areia.webp"
+      },
+      {
+        "cor": "marinho",
+        "webp": "web/kit-presente-tama~marinho.webp",
+        "miniatura": "miniatura/kit-presente-tama~marinho.webp"
+      },
+      {
+        "cor": "verde",
+        "webp": "web/kit-presente-tama~verde.webp",
+        "miniatura": "miniatura/kit-presente-tama~verde.webp"
+      }
+    ]
   },
   {
     "arquivo": "hoodie-azul-tama",
@@ -283,7 +369,7 @@
     "tecnicas": [
       "silk"
     ],
-    "alt": "Moletom azul royal dobrado com a assinatura vertical TaMa Creative em silk creme no peito, entre os cordões do capuz. Mockup ilustrativo.",
+    "alt": "Moletom azul royal dobrado com a assinatura vertical TaMa Creative em silk creme no peito, logo abaixo dos cordões do capuz. Mockup ilustrativo.",
     "mestre": {
       "arquivo": "mestre/hoodie-azul-tama.jpg",
       "largura": 2550,
@@ -299,7 +385,24 @@
       "arquivo": "miniatura/hoodie-azul-tama.webp",
       "largura": 480,
       "altura": 440
-    }
+    },
+    "variantes": [
+      {
+        "cor": "preto",
+        "webp": "web/hoodie-azul-tama~preto.webp",
+        "miniatura": "miniatura/hoodie-azul-tama~preto.webp"
+      },
+      {
+        "cor": "verde",
+        "webp": "web/hoodie-azul-tama~verde.webp",
+        "miniatura": "miniatura/hoodie-azul-tama~verde.webp"
+      },
+      {
+        "cor": "vinho",
+        "webp": "web/hoodie-azul-tama~vinho.webp",
+        "miniatura": "miniatura/hoodie-azul-tama~vinho.webp"
+      }
+    ]
   },
   {
     "arquivo": "polo-offwhite-tama",
@@ -308,12 +411,12 @@
     "marca": "TaMa Creative",
     "marca_ficticia": false,
     "nivel": [
-      2
+      1
     ],
     "tecnicas": [
       "bordado"
     ],
-    "alt": "Camisa polo off-white dobrada com a pétala TaMa bordada em coral no peito esquerdo, ao lado de um boné verde com a pétala bordada em creme. Mockup ilustrativo.",
+    "alt": "Camisa polo off-white dobrada com a assinatura TaMa Creative bordada em vinho no peito esquerdo, ao lado de um boné verde com a assinatura bordada em creme. Mockup ilustrativo.",
     "mestre": {
       "arquivo": "mestre/polo-offwhite-tama.jpg",
       "largura": 2550,
@@ -329,7 +432,24 @@
       "arquivo": "miniatura/polo-offwhite-tama.webp",
       "largura": 480,
       "altura": 440
-    }
+    },
+    "variantes": [
+      {
+        "cor": "marinho",
+        "webp": "web/polo-offwhite-tama~marinho.webp",
+        "miniatura": "miniatura/polo-offwhite-tama~marinho.webp"
+      },
+      {
+        "cor": "preto",
+        "webp": "web/polo-offwhite-tama~preto.webp",
+        "miniatura": "miniatura/polo-offwhite-tama~preto.webp"
+      },
+      {
+        "cor": "verde",
+        "webp": "web/polo-offwhite-tama~verde.webp",
+        "miniatura": "miniatura/polo-offwhite-tama~verde.webp"
+      }
+    ]
   },
   {
     "arquivo": "bolsa-terracota-tama",
@@ -359,7 +479,24 @@
       "arquivo": "miniatura/bolsa-terracota-tama.webp",
       "largura": 480,
       "altura": 440
-    }
+    },
+    "variantes": [
+      {
+        "cor": "azul",
+        "webp": "web/bolsa-terracota-tama~azul.webp",
+        "miniatura": "miniatura/bolsa-terracota-tama~azul.webp"
+      },
+      {
+        "cor": "natural",
+        "webp": "web/bolsa-terracota-tama~natural.webp",
+        "miniatura": "miniatura/bolsa-terracota-tama~natural.webp"
+      },
+      {
+        "cor": "verde",
+        "webp": "web/bolsa-terracota-tama~verde.webp",
+        "miniatura": "miniatura/bolsa-terracota-tama~verde.webp"
+      }
+    ]
   },
   {
     "arquivo": "totebag-tama",
@@ -398,12 +535,12 @@
     "marca": "TaMa Creative",
     "marca_ficticia": false,
     "nivel": [
-      2
+      1
     ],
     "tecnicas": [
       "bordado"
     ],
-    "alt": "Boné verde-floresta com a pétala TaMa bordada em creme na frente. Mockup ilustrativo.",
+    "alt": "Boné verde-floresta com a assinatura vertical TaMa Creative bordada em creme na frente. Mockup ilustrativo.",
     "mestre": {
       "arquivo": "mestre/bone-verde-tama.jpg",
       "largura": 2550,
@@ -419,7 +556,24 @@
       "arquivo": "miniatura/bone-verde-tama.webp",
       "largura": 480,
       "altura": 440
-    }
+    },
+    "variantes": [
+      {
+        "cor": "azul",
+        "webp": "web/bone-verde-tama~azul.webp",
+        "miniatura": "miniatura/bone-verde-tama~azul.webp"
+      },
+      {
+        "cor": "bege",
+        "webp": "web/bone-verde-tama~bege.webp",
+        "miniatura": "miniatura/bone-verde-tama~bege.webp"
+      },
+      {
+        "cor": "vinho",
+        "webp": "web/bone-verde-tama~vinho.webp",
+        "miniatura": "miniatura/bone-verde-tama~vinho.webp"
+      }
+    ]
   },
   {
     "arquivo": "sacola-verde-tama",
@@ -435,7 +589,7 @@
       "impressão",
       "gravação a laser"
     ],
-    "alt": "Sacola de papel verde com a assinatura vertical TaMa Creative impressa em creme e garrafa verde-oliva com a pétala gravada a laser, ao lado de uma caixa terracota. Mockup ilustrativo.",
+    "alt": "Sacola de papel verde com logo TaMa Creative impresso em creme e garrafa com pétala gravada a laser. Mockup ilustrativo.",
     "mestre": {
       "arquivo": "mestre/sacola-verde-tama.jpg",
       "largura": 2550,
@@ -451,7 +605,24 @@
       "arquivo": "miniatura/sacola-verde-tama.webp",
       "largura": 480,
       "altura": 440
-    }
+    },
+    "variantes": [
+      {
+        "cor": "azul",
+        "webp": "web/sacola-verde-tama~azul.webp",
+        "miniatura": "miniatura/sacola-verde-tama~azul.webp"
+      },
+      {
+        "cor": "creme",
+        "webp": "web/sacola-verde-tama~creme.webp",
+        "miniatura": "miniatura/sacola-verde-tama~creme.webp"
+      },
+      {
+        "cor": "terracota",
+        "webp": "web/sacola-verde-tama~terracota.webp",
+        "miniatura": "miniatura/sacola-verde-tama~terracota.webp"
+      }
+    ]
   },
   {
     "arquivo": "kit-papelaria-tama",
@@ -467,7 +638,7 @@
       "hot stamping",
       "relevo seco"
     ],
-    "alt": "Kit de papelaria TaMa com caixa terracota com logo em hot stamping dourado, cartão bordô com pétala dourada e envelope mostarda com selo em relevo seco. Mockup ilustrativo.",
+    "alt": "Kit de papelaria TaMa com caixa terracota com logo em hot stamping dourado, envelope mostarda com assinatura TaMa Creative em ameixa e cartão bordô com pétala dourada. Mockup ilustrativo.",
     "mestre": {
       "arquivo": "mestre/kit-papelaria-tama.jpg",
       "largura": 2550,
@@ -483,7 +654,24 @@
       "arquivo": "miniatura/kit-papelaria-tama.webp",
       "largura": 480,
       "altura": 440
-    }
+    },
+    "variantes": [
+      {
+        "cor": "areia",
+        "webp": "web/kit-papelaria-tama~areia.webp",
+        "miniatura": "miniatura/kit-papelaria-tama~areia.webp"
+      },
+      {
+        "cor": "azul-marinho",
+        "webp": "web/kit-papelaria-tama~azul-marinho.webp",
+        "miniatura": "miniatura/kit-papelaria-tama~azul-marinho.webp"
+      },
+      {
+        "cor": "mostarda",
+        "webp": "web/kit-papelaria-tama~mostarda.webp",
+        "miniatura": "miniatura/kit-papelaria-tama~mostarda.webp"
+      }
+    ]
   },
   {
     "arquivo": "caixa-terracota-tama",
@@ -498,7 +686,7 @@
     "tecnicas": [
       "hot stamping"
     ],
-    "alt": "Caixa rígida terracota com a assinatura TaMa Creative em hot stamping dourado na frente, cartão bordô com a pétala dourada, envelope mostarda e pilha de cartões. Mockup ilustrativo.",
+    "alt": "Caixa rígida terracota com logo TaMa Creative em hot stamping dourado na face frontal e cartão bordô com pétala dourada. Mockup ilustrativo.",
     "mestre": {
       "arquivo": "mestre/caixa-terracota-tama.jpg",
       "largura": 2550,
@@ -514,7 +702,24 @@
       "arquivo": "miniatura/caixa-terracota-tama.webp",
       "largura": 480,
       "altura": 440
-    }
+    },
+    "variantes": [
+      {
+        "cor": "azul",
+        "webp": "web/caixa-terracota-tama~azul.webp",
+        "miniatura": "miniatura/caixa-terracota-tama~azul.webp"
+      },
+      {
+        "cor": "bordo",
+        "webp": "web/caixa-terracota-tama~bordo.webp",
+        "miniatura": "miniatura/caixa-terracota-tama~bordo.webp"
+      },
+      {
+        "cor": "verde",
+        "webp": "web/caixa-terracota-tama~verde.webp",
+        "miniatura": "miniatura/caixa-terracota-tama~verde.webp"
+      }
+    ]
   },
   {
     "arquivo": "cartoes-colors-tama",
@@ -530,7 +735,7 @@
       "hot stamping",
       "relevo seco"
     ],
-    "alt": "Pilha de cartões bordô com TaMa Creative em hot stamping dourado, envelope mostarda com pétala em relevo seco e leque de cores. Mockup ilustrativo.",
+    "alt": "Envelope mostarda com logo TaMa Creative em hot stamping ameixa, pilha de cartões bordô com TaMa Creative dourado e leque de cores. Mockup ilustrativo.",
     "mestre": {
       "arquivo": "mestre/cartoes-colors-tama.jpg",
       "largura": 2550,
@@ -546,7 +751,24 @@
       "arquivo": "miniatura/cartoes-colors-tama.webp",
       "largura": 480,
       "altura": 440
-    }
+    },
+    "variantes": [
+      {
+        "cor": "azul",
+        "webp": "web/cartoes-colors-tama~azul.webp",
+        "miniatura": "miniatura/cartoes-colors-tama~azul.webp"
+      },
+      {
+        "cor": "bordo",
+        "webp": "web/cartoes-colors-tama~bordo.webp",
+        "miniatura": "miniatura/cartoes-colors-tama~bordo.webp"
+      },
+      {
+        "cor": "oliva",
+        "webp": "web/cartoes-colors-tama~oliva.webp",
+        "miniatura": "miniatura/cartoes-colors-tama~oliva.webp"
+      }
+    ]
   },
   {
     "arquivo": "caderno-azul-tama",
@@ -576,7 +798,24 @@
       "arquivo": "miniatura/caderno-azul-tama.webp",
       "largura": 480,
       "altura": 440
-    }
+    },
+    "variantes": [
+      {
+        "cor": "cafe",
+        "webp": "web/caderno-azul-tama~cafe.webp",
+        "miniatura": "miniatura/caderno-azul-tama~cafe.webp"
+      },
+      {
+        "cor": "preto",
+        "webp": "web/caderno-azul-tama~preto.webp",
+        "miniatura": "miniatura/caderno-azul-tama~preto.webp"
+      },
+      {
+        "cor": "verde",
+        "webp": "web/caderno-azul-tama~verde.webp",
+        "miniatura": "miniatura/caderno-azul-tama~verde.webp"
+      }
+    ]
   },
   {
     "arquivo": "embalagem-presente-tama",
@@ -593,7 +832,7 @@
       "impressão",
       "baixo-relevo"
     ],
-    "alt": "Embalagem presente TaMa com tampa terracota com logo em hot stamping dourado, faixa lilás personalizada e alça de couro com pétala em baixo-relevo. Mockup ilustrativo.",
+    "alt": "Embalagem presente TaMa em terracota com logo em hot stamping dourado na tampa e faixa lilás personalizada com TaMa Creative. Mockup ilustrativo.",
     "mestre": {
       "arquivo": "mestre/embalagem-presente-tama.jpg",
       "largura": 2550,
@@ -609,7 +848,24 @@
       "arquivo": "miniatura/embalagem-presente-tama.webp",
       "largura": 480,
       "altura": 440
-    }
+    },
+    "variantes": [
+      {
+        "cor": "bordo",
+        "webp": "web/embalagem-presente-tama~bordo.webp",
+        "miniatura": "miniatura/embalagem-presente-tama~bordo.webp"
+      },
+      {
+        "cor": "creme",
+        "webp": "web/embalagem-presente-tama~creme.webp",
+        "miniatura": "miniatura/embalagem-presente-tama~creme.webp"
+      },
+      {
+        "cor": "verde",
+        "webp": "web/embalagem-presente-tama~verde.webp",
+        "miniatura": "miniatura/embalagem-presente-tama~verde.webp"
+      }
+    ]
   },
   {
     "arquivo": "manta-textil-tama",
@@ -623,7 +879,7 @@
     "tecnicas": [
       "impressão (etiqueta)"
     ],
-    "alt": "Manta oliva em caixa terracota com faixa lilás com etiqueta TaMa Creative estampada em ameixa. Mockup ilustrativo.",
+    "alt": "Manta oliva em caixa terracota com faixa lilás estampada com a assinatura TaMa Creative em ameixa. Mockup ilustrativo.",
     "mestre": {
       "arquivo": "mestre/manta-textil-tama.jpg",
       "largura": 2550,
@@ -639,7 +895,24 @@
       "arquivo": "miniatura/manta-textil-tama.webp",
       "largura": 480,
       "altura": 440
-    }
+    },
+    "variantes": [
+      {
+        "cor": "areia",
+        "webp": "web/manta-textil-tama~areia.webp",
+        "miniatura": "miniatura/manta-textil-tama~areia.webp"
+      },
+      {
+        "cor": "lilas",
+        "webp": "web/manta-textil-tama~lilas.webp",
+        "miniatura": "miniatura/manta-textil-tama~lilas.webp"
+      },
+      {
+        "cor": "terracota",
+        "webp": "web/manta-textil-tama~terracota.webp",
+        "miniatura": "miniatura/manta-textil-tama~terracota.webp"
+      }
+    ]
   },
   {
     "arquivo": "caneta-executiva-tama",
@@ -648,13 +921,14 @@
     "marca": "TaMa Creative",
     "marca_ficticia": false,
     "nivel": [
+      1,
       2
     ],
     "tecnicas": [
       "gravação a laser",
       "baixo-relevo"
     ],
-    "alt": "Caneta preta com a pétala TaMa gravada a laser na tampa, ao lado de uma bandeja de couro caramelo com a pétala em baixo-relevo e de um caderno azul-marinho. Mockup ilustrativo.",
+    "alt": "Bandeja de couro caramelo com a assinatura TaMa Creative em hot stamping dourado na lateral, ao lado de uma caneta preta com a pétala gravada a laser e de um caderno azul-marinho. Mockup ilustrativo.",
     "mestre": {
       "arquivo": "mestre/caneta-executiva-tama.jpg",
       "largura": 2550,
@@ -670,7 +944,24 @@
       "arquivo": "miniatura/caneta-executiva-tama.webp",
       "largura": 480,
       "altura": 440
-    }
+    },
+    "variantes": [
+      {
+        "cor": "cobre",
+        "webp": "web/caneta-executiva-tama~cobre.webp",
+        "miniatura": "miniatura/caneta-executiva-tama~cobre.webp"
+      },
+      {
+        "cor": "marinho",
+        "webp": "web/caneta-executiva-tama~marinho.webp",
+        "miniatura": "miniatura/caneta-executiva-tama~marinho.webp"
+      },
+      {
+        "cor": "verde",
+        "webp": "web/caneta-executiva-tama~verde.webp",
+        "miniatura": "miniatura/caneta-executiva-tama~verde.webp"
+      }
+    ]
   },
   {
     "arquivo": "uniforme-verde-ficticia-ondora",
@@ -684,7 +975,7 @@
     "tecnicas": [
       "bordado"
     ],
-    "alt": "Camisa polo verde-oliva de uniforme com o símbolo da marca Ondora bordado em creme no peito. Mockup ilustrativo com marca fictícia.",
+    "alt": "Camisa polo verde-oliva de uniforme com o logotipo da marca Ondora bordado em creme no peito. Mockup ilustrativo com marca fictícia.",
     "mestre": {
       "arquivo": "mestre/uniforme-verde-ficticia-ondora.jpg",
       "largura": 2550,
@@ -700,7 +991,24 @@
       "arquivo": "miniatura/uniforme-verde-ficticia-ondora.webp",
       "largura": 480,
       "altura": 440
-    }
+    },
+    "variantes": [
+      {
+        "cor": "azul",
+        "webp": "web/uniforme-verde-ficticia-ondora~azul.webp",
+        "miniatura": "miniatura/uniforme-verde-ficticia-ondora~azul.webp"
+      },
+      {
+        "cor": "creme",
+        "webp": "web/uniforme-verde-ficticia-ondora~creme.webp",
+        "miniatura": "miniatura/uniforme-verde-ficticia-ondora~creme.webp"
+      },
+      {
+        "cor": "preto",
+        "webp": "web/uniforme-verde-ficticia-ondora~preto.webp",
+        "miniatura": "miniatura/uniforme-verde-ficticia-ondora~preto.webp"
+      }
+    ]
   },
   {
     "arquivo": "couro-verde-tama",
@@ -709,12 +1017,13 @@
     "marca": "TaMa Creative",
     "marca_ficticia": false,
     "nivel": [
+      1,
       2
     ],
     "tecnicas": [
       "hot stamping em couro"
     ],
-    "alt": "Bandeja de couro verde-escuro com a pétala TaMa em hot stamping dourado no fundo, envolta por uma fita verde-oliva sobre travertino. Mockup ilustrativo.",
+    "alt": "Bandeja de couro verde-escuro com a assinatura TaMa Creative em hot stamping dourado na lateral, envolta por uma fita verde-oliva sobre travertino. Mockup ilustrativo.",
     "mestre": {
       "arquivo": "mestre/couro-verde-tama.jpg",
       "largura": 2550,
@@ -730,7 +1039,24 @@
       "arquivo": "miniatura/couro-verde-tama.webp",
       "largura": 480,
       "altura": 440
-    }
+    },
+    "variantes": [
+      {
+        "cor": "cafe",
+        "webp": "web/couro-verde-tama~cafe.webp",
+        "miniatura": "miniatura/couro-verde-tama~cafe.webp"
+      },
+      {
+        "cor": "marinho",
+        "webp": "web/couro-verde-tama~marinho.webp",
+        "miniatura": "miniatura/couro-verde-tama~marinho.webp"
+      },
+      {
+        "cor": "terracota",
+        "webp": "web/couro-verde-tama~terracota.webp",
+        "miniatura": "miniatura/couro-verde-tama~terracota.webp"
+      }
+    ]
   },
   {
     "arquivo": "look-corporativo-tama",
@@ -746,7 +1072,7 @@
       "silk",
       "bordado"
     ],
-    "alt": "Moletom azul e camisa polo off-white dobrados lado a lado, com a assinatura TaMa em silk creme no moletom e a pétala bordada em coral na polo. Mockup ilustrativo.",
+    "alt": "Moletom azul e camisa polo off-white dobrados lado a lado, com a assinatura TaMa Creative em silk creme no moletom e bordada em vinho na polo. Mockup ilustrativo.",
     "mestre": {
       "arquivo": "mestre/look-corporativo-tama.jpg",
       "largura": 2550,
@@ -762,7 +1088,24 @@
       "arquivo": "miniatura/look-corporativo-tama.webp",
       "largura": 480,
       "altura": 440
-    }
+    },
+    "variantes": [
+      {
+        "cor": "off-white",
+        "webp": "web/look-corporativo-tama~off-white.webp",
+        "miniatura": "miniatura/look-corporativo-tama~off-white.webp"
+      },
+      {
+        "cor": "terracota",
+        "webp": "web/look-corporativo-tama~terracota.webp",
+        "miniatura": "miniatura/look-corporativo-tama~terracota.webp"
+      },
+      {
+        "cor": "verde",
+        "webp": "web/look-corporativo-tama~verde.webp",
+        "miniatura": "miniatura/look-corporativo-tama~verde.webp"
+      }
+    ]
   },
   {
     "arquivo": "papelaria-cores-tama",
@@ -778,7 +1121,7 @@
       "hot stamping",
       "relevo seco"
     ],
-    "alt": "Conjunto de papelaria TaMa com caixa terracota, cartão bordô e caderno azul com logo dourado em hot stamping e envelope mostarda com pétala em relevo seco. Mockup ilustrativo.",
+    "alt": "Envelope mostarda com assinatura TaMa Creative em hot stamping ameixa, caixa terracota e caderno azul com logo dourado e cartão bordô com pétala. Mockup ilustrativo.",
     "mestre": {
       "arquivo": "mestre/papelaria-cores-tama.jpg",
       "largura": 2550,
@@ -794,7 +1137,24 @@
       "arquivo": "miniatura/papelaria-cores-tama.webp",
       "largura": 480,
       "altura": 440
-    }
+    },
+    "variantes": [
+      {
+        "cor": "azul",
+        "webp": "web/papelaria-cores-tama~azul.webp",
+        "miniatura": "miniatura/papelaria-cores-tama~azul.webp"
+      },
+      {
+        "cor": "bordo",
+        "webp": "web/papelaria-cores-tama~bordo.webp",
+        "miniatura": "miniatura/papelaria-cores-tama~bordo.webp"
+      },
+      {
+        "cor": "verde",
+        "webp": "web/papelaria-cores-tama~verde.webp",
+        "miniatura": "miniatura/papelaria-cores-tama~verde.webp"
+      }
+    ]
   },
   {
     "arquivo": "caderno-azul-ficticia-casa-mirelo",

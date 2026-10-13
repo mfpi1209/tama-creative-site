@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   packages: write
 
 jobs:
@@ -35,6 +35,16 @@ jobs:
           mkdir -p ctx/deploy
           cp -r dist ctx/dist
           cp deploy/nginx.conf deploy/security-headers.conf deploy/Dockerfile.static ctx/deploy/
+      - name: Publicar branch deploy (site pronto + Dockerfile, usada pelo Easypanel)
+        run: |
+          cd ctx
+          cp deploy/Dockerfile.static Dockerfile
+          git init -q -b deploy
+          git config user.name "github-actions"
+          git config user.email "github-actions@users.noreply.github.com"
+          git add -A
+          git commit -q -m "Site gerado de ${GITHUB_SHA::7}"
+          git push -q -f "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" deploy
       - uses: docker/login-action@v3
         with:
           registry: ghcr.io

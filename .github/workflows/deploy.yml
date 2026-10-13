@@ -2,7 +2,7 @@
 name: Publicar site
 on:
   push:
-    branches: [main, master, 'migracao-*']
+    branches: [main]
   workflow_dispatch:
 
 permissions:

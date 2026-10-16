@@ -4,13 +4,17 @@ Guias que atraem quem procura brindes, kits e presentes corporativos e levam ess
 
 ## Editor visual (/admin/)
 
-Endereço: **https://tamacreative.netlify.app/admin/**. Depois da troca de DNS, também funciona em **https://tamacreative.com.br/admin/**. O login é feito com a conta do GitHub.
+Endereço: **https://tamacreative.com.br/admin/**. O login é feito com a conta do GitHub.
 
-O editor é o Decap CMS 3.16.3, servido pelo próprio site, sem script de terceiros. Ele grava no repositório privado **mfpi1209/tama-creative-site**. Só entra quem tem acesso de escrita ao repositório; para dar acesso a outra pessoa, adicione o GitHub dela como colaboradora.
+O editor é o Decap CMS 3.16.3, servido pelo próprio site, sem script de terceiros. Tudo roda no servidor do Easypanel:
+- o Nginx do site serve o `/admin/`, com política de segurança própria;
+- o login passa pelo app **cms-auth** (`deploy/cms-auth/`), em `/api/cms-auth/`.
+
+O conteúdo fica no repositório privado **mfpi1209/tama-creative-site**. Só entra quem tem acesso de escrita ao repositório; para dar acesso a outra pessoa, adicione o GitHub dela como colaboradora.
 
 ### Como publicar pelo editor
 
-1. **Entrar:** "Entrar com o GitHub".
+1. **Entrar:** "Entrar com o GitHub". Abre uma janela do GitHub; autorize na primeira vez.
 2. **Novo artigo:** "Artigos do blog" › "+ artigo". Preencha os campos; cada um traz uma dica, e os limites de SEO são validados na hora.
 3. **Texto:** use "Título 2" para as seções (entram no sumário) e "Título 3" para subseções. O botão **+** insere "Chamada para proposta" e imagens.
    - Imagens: só fotos próprias ou licenciadas, enviadas pela biblioteca de mídia (ficam em `img/blog/`).
@@ -20,30 +24,35 @@ O editor é o Decap CMS 3.16.3, servido pelo próprio site, sem script de tercei
    - tamanhos do título e da descrição;
    - palavra-chave no título, na descrição e no primeiro parágrafo;
    - seções, número de palavras, chamada para proposta, serviço e texto alternativo da capa.
-5. **Salvar:** cria um rascunho no fluxo editorial ("Fluxo de trabalho"). Por trás, é um pull request no GitHub. O Netlify gera uma **prévia com endereço próprio**; o link aparece no editor ("Ver prévia"). A prévia fica fora do Google.
-6. **Revisar e aprovar:** mova o card para "Em revisão" e depois para "Pronto". **"Publicar" é a aprovação:** o editor faz o merge na `main`, o Netlify gera o site e a produção é atualizada em alguns minutos.
-7. Se o build encontrar um erro (por exemplo, link quebrado ou descrição longa demais), a publicação não acontece e a produção continua como estava. O motivo aparece no log de deploy do Netlify.
+5. **Salvar:** cria um rascunho no "Fluxo de trabalho". Por trás, é um pull request no GitHub; nada vai ao ar.
+6. **Revisar e aprovar:** mova o card para "Em revisão" e depois para "Pronto". **"Publicar" é a aprovação:**
+   - o editor grava o artigo na branch `main`;
+   - o GitHub Actions (`.github/workflows/deploy.yml`) gera o site;
+   - o Easypanel atualiza tamacreative.com.br em alguns minutos.
+7. Se o build encontrar um erro (por exemplo, link quebrado ou descrição longa demais), a publicação não acontece e o site continua como estava. O motivo aparece na aba **Actions** do repositório no GitHub.
 
 Rascunho também pode ser marcado com a chave "Rascunho (não publicar)": ele não vai ao ar nem se for publicado.
 
-### Configuração única (feita pelo responsável pela conta)
+### Configuração única (feita pelo responsável pelas contas)
 
 | Passo | Onde | O quê |
 |---|---|---|
-| 1 | GitHub › Settings › Developer settings › OAuth Apps › New OAuth App | Nome: `Editor do blog TaMa`. Homepage: `https://tamacreative.netlify.app`. Authorization callback URL: `https://api.netlify.com/auth/done`. Gere o Client secret |
-| 2 | Netlify › site tamacreative › Site configuration › Access & security › OAuth › Install provider | GitHub. Cole o Client ID e o Client secret do passo 1 |
-| 3 | Netlify › Site configuration › Build & deploy › Continuous deployment › Link repository | GitHub › `mfpi1209/tama-creative-site`, branch `main`. Comando e pasta vêm do `netlify.toml`. Deixe "Deploy Previews" ligado para pull requests |
+| 1 | GitHub › Settings › Developer settings › OAuth Apps › **New OAuth App** (https://github.com/settings/applications/new) | Nome: `Editor do blog TaMa`. Homepage URL: `https://tamacreative.com.br`. Authorization callback URL: `https://tamacreative.com.br/api/cms-auth/callback`. Depois de registrar, copie o **Client ID** e gere o **Client secret** |
+| 2 | Easypanel › projeto do site (o mesmo do n8n) › **+ Service › App**, nome **`cms-auth`** | Source: GitHub `mfpi1209/tama-creative-site`, branch `main`, Build path `/deploy/cms-auth`, Build: Dockerfile |
+| 3 | Easypanel › `cms-auth` › **Environment** | `GITHUB_CLIENT_ID=` (passo 1) e `GITHUB_CLIENT_SECRET=` (passo 1). Salve e faça **Deploy**. Não precisa de domínio: o acesso é pela rede interna |
+| 4 | Easypanel › app do site › **Deploy** | Republica o site com o Nginx novo, que encaminha `/api/cms-auth/` para `cms-auth` |
 
-O passo 3 dispara o primeiro build da `main` e publica em produção. Em 13/10/2026, o conteúdo do repositório era o mesmo da produção, mais o editor: as 18 páginas foram comparadas uma a uma.
+O Nginx procura o serviço pelo nome interno **`tama_cms-auth`** (formato `projeto_serviço` do Easypanel, como o `tama_n8n` do formulário). Se o projeto ou o serviço tiverem outro nome, ajuste `set $cms_auth_upstream` em `deploy/nginx.conf`.
 
-### Publicação depois da ligação com o Git
+Teste rápido: https://tamacreative.com.br/api/cms-auth/health deve responder `ok`. Antes do passo 3, `/api/cms-auth/auth` responde que o login ainda não foi configurado.
 
-- **Produção = branch `main`.** Cada push ou merge na `main` gera e publica o site. Para mudar o site, commite e envie (`git push`) só depois do OK.
-- O `netlify deploy --prod` pela linha de comando continua funcionando, mas é sobrescrito pelo próximo build da `main`. Prefira o Git.
-- Rascunhos com alias (`netlify deploy --alias …`) continuam valendo para aprovações fora do editor.
-- O build no Netlify usa Python 3.13 (`netlify.toml`). O plugin `netlify/plugins/cache-imagens` guarda `.cache/` entre builds. Com cache, o build leva segundos; sem cache, cerca de 2 minutos.
-- Os logos oficiais têm cópia versionada em `brand/logos/`, porque o Netlify só enxerga o repositório. Se os SVGs de `tama-creative-logos/svg` mudarem, o build local avisa; copie os arquivos e faça commit.
+### Publicação pelo Git
+
+- **Produção = branch `main`** (também `master` e `migracao-*`, conforme o `deploy.yml`). Cada push gera o site e o Easypanel atualiza. Commite só os seus arquivos e faça `git push` só depois do OK.
+- O build no GitHub Actions usa Python 3.12 e guarda `.cache/` (imagens otimizadas) entre execuções.
+- Os logos oficiais têm cópia versionada em `brand/logos/`, porque o build só enxerga o repositório. Se os SVGs de `tama-creative-logos/svg` mudarem, o build local avisa; copie os arquivos e faça commit.
 - Os masters dos mockups (`midia/mockups/mestre/`, 51 MB) ficam fora do Git, só neste computador.
+- Os arquivos do Netlify (`netlify.toml`, `netlify/`, o bloco `/admin/*` do `_headers`) ficaram como plano B e não são usados no Easypanel.
 
 ## Estrutura
 

@@ -107,7 +107,7 @@ O convite de saída usa o mesmo webhook com `etapa=lembrete`. Ele leva só o e-m
 **Nova peça ou nova cor na curadoria.** O build avisa se faltar foto-base.
 1. Acrescente a especificação da foto em `tools/mockup-engine/specs*.py` (o mesmo formato dos mockups do site).
 2. Rode o export. Ele usa numpy, scipy, Pillow e resvg-py.
-   - Sem as bases ampliadas 4x em `midia/mockups/x4/` (349 MB, fora do Git), o motor amplia com LANCZOS, o que basta para 1600 px.
+   - As bases ampliadas 4x ficam em `../tama-mockups/motor/x4/` (349 MB, fora do Git; ou `MOCKUP_X4=<pasta>`). Sem elas, o motor amplia com LANCZOS, o que basta para 1600 px.
 ```bash
 pip install numpy scipy
 python -I tools/mockup-engine/simulador_export.py        # gera só o que falta

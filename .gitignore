@@ -6,5 +6,5 @@ __pycache__/
 *.log
 # Masters dos mockups (51 MB): ficam só neste computador; o site usa as versões web em img/marca/.
 midia/mockups/mestre/
-# Bases ampliadas 4x do motor de mockups (349 MB): só neste computador (tools/mockup-engine).
+# Bases ampliadas 4x do motor de mockups (349 MB): ficam em ../tama-mockups/motor/x4 (tools/mockup-engine).
 midia/mockups/x4/

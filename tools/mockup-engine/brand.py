@@ -14,9 +14,11 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(os.path.dirname(HERE))                      # tama-site/
 LOGOS = os.path.join(ROOT, 'brand', 'logos') + os.sep              # SVGs oficiais (cópia versionada)
 SRC_DIR = os.path.join(ROOT, 'img', 'v2') + os.sep                 # fotos-base do site (850x780)
-# Bases ampliadas 4x (Real-ESRGAN, ver upscale.py). Ficam só no computador (349 MB, fora do Git): sem elas o motor
-# amplia com LANCZOS, o que basta para as bases do simulador (1600 px).
-X4_DIR = os.environ.get('MOCKUP_X4', os.path.join(ROOT, 'midia', 'mockups', 'x4'))
+# Bases ampliadas 4x (Real-ESRGAN, ver upscale.py). Ficam só no computador (349 MB, fora do Git), na pasta de trabalho
+# dos mockups (../tama-mockups/motor/x4). Sem elas o motor amplia com LANCZOS, o que basta para o simulador (1600 px).
+X4_DIR = os.environ.get('MOCKUP_X4') or next(
+    (d for d in (os.path.join(ROOT, 'midia', 'mockups', 'x4'), os.path.join(ROOT, '..', 'tama-mockups', 'motor', 'x4')) if os.path.isdir(d)),
+    os.path.join(ROOT, '..', 'tama-mockups', 'motor', 'x4'))
 BRANDS = os.path.join(HERE, 'brands')                              # marcas fictícias usadas em alguns mockups
 
 # ---------------------------------------------------------------- logos

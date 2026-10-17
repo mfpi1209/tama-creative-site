@@ -260,46 +260,62 @@
   var hero = document.getElementById('hero');
   if (hero) {
     var slides = hero.querySelectorAll('.slide'), dots = hero.querySelectorAll('.dot');
-    var pauseBtn = hero.querySelector('[data-hero-pause]');
-    var idx = 0, timer = null, userPaused = !!reduceMotion, hover = false;
+    var pauseBtn = hero.querySelector('[data-hero-pause]'), count = hero.querySelector('[data-hero-count]');
+    // A troca automática conta o tempo que falta: ao pausar (hover, foco, aba oculta ou botão) o progresso do ponto
+    // ativo congela e, ao voltar, continua de onde parou.
+    var DUR = 7000, idx = 0, timer = null, userPaused = !!reduceMotion, hover = false, focused = false, hidden = false;
+    var left = DUR, startedAt = 0;
+    hero.style.setProperty('--hero-dur', DUR / 1000 + 's');
     var go = function (n) {
       idx = (n + slides.length) % slides.length;
+      hero.classList.add('is-live');
       slides.forEach(function (s, i) {
         var on = i === idx;
         s.classList.toggle('is-active', on);
         if (on) { s.removeAttribute('aria-hidden'); s.removeAttribute('inert'); } else { s.setAttribute('aria-hidden', 'true'); s.setAttribute('inert', ''); }
       });
-      dots.forEach(function (d, i) { if (i === idx) d.setAttribute('aria-current', 'true'); else d.removeAttribute('aria-current'); });
+      dots.forEach(function (d) { d.removeAttribute('aria-current'); });
+      void hero.offsetWidth;   // reinicia a barra de progresso mesmo quando o ponto ativo é o mesmo
+      dots[idx].setAttribute('aria-current', 'true');
+      count.textContent = (idx < 9 ? '0' : '') + (idx + 1);
+      left = DUR; startedAt = 0;
     };
     var schedule = function () {
-      clearInterval(timer);
-      if (!userPaused && !hover) timer = setInterval(function () { go(idx + 1); }, 7000);
+      clearTimeout(timer);
+      if (startedAt) { left = Math.max(0, left - (Date.now() - startedAt)); startedAt = 0; }
+      var held = hover || focused || hidden;
+      hero.classList.toggle('is-stopped', userPaused);
+      hero.classList.toggle('is-held', held);
+      if (userPaused || held) return;
+      startedAt = Date.now();
+      timer = setTimeout(function () { go(idx + 1); schedule(); }, left);
     };
     var syncPause = function () {
       pauseBtn.setAttribute('aria-pressed', String(userPaused));
       pauseBtn.setAttribute('aria-label', userPaused ? 'Retomar troca automática' : 'Pausar troca automática');
     };
-    hero.querySelector('[data-hero-prev]').addEventListener('click', function () { go(idx - 1); schedule(); });
-    hero.querySelector('[data-hero-next]').addEventListener('click', function () { go(idx + 1); schedule(); });
-    dots.forEach(function (d) { d.addEventListener('click', function () { go(+d.getAttribute('data-slide')); schedule(); }); });
+    var step = function (n) { go(n); schedule(); };
+    hero.querySelector('[data-hero-prev]').addEventListener('click', function () { step(idx - 1); });
+    hero.querySelector('[data-hero-next]').addEventListener('click', function () { step(idx + 1); });
+    dots.forEach(function (d) { d.addEventListener('click', function () { step(+d.getAttribute('data-slide')); }); });
     pauseBtn.addEventListener('click', function () { userPaused = !userPaused; syncPause(); schedule(); });
     hero.addEventListener('mouseenter', function () { hover = true; schedule(); });
     hero.addEventListener('mouseleave', function () { hover = false; schedule(); });
-    hero.addEventListener('focusin', function () { hover = true; schedule(); });
-    hero.addEventListener('focusout', function () { hover = false; schedule(); });
+    hero.addEventListener('focusin', function () { focused = true; schedule(); });
+    hero.addEventListener('focusout', function (e) { if (!hero.contains(e.relatedTarget)) { focused = false; schedule(); } });
     hero.addEventListener('keydown', function (e) {
-      if (e.key === 'ArrowRight') { go(idx + 1); schedule(); }
-      if (e.key === 'ArrowLeft') { go(idx - 1); schedule(); }
+      if (e.key === 'ArrowRight') step(idx + 1);
+      if (e.key === 'ArrowLeft') step(idx - 1);
     });
     var tx = null;
     hero.addEventListener('touchstart', function (e) { tx = e.touches[0].clientX; }, { passive: true });
     hero.addEventListener('touchend', function (e) {
       if (tx === null) return;
       var dx = e.changedTouches[0].clientX - tx;
-      if (Math.abs(dx) > 50) { go(idx + (dx < 0 ? 1 : -1)); schedule(); }
+      if (Math.abs(dx) > 50) step(idx + (dx < 0 ? 1 : -1));
       tx = null;
     });
-    document.addEventListener('visibilitychange', function () { hover = document.hidden; schedule(); });
+    document.addEventListener('visibilitychange', function () { hidden = document.hidden; schedule(); });
     syncPause();
     schedule();
   }

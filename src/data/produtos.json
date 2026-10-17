@@ -2,6 +2,80 @@
  "observacao": "Banco de imagens de produto da TaMa Creative. Uma entrada por imagem; id = <produto>[-<modelo>]~<cor>. As imagens são ilustrativas (geradas com IA a partir da identidade TaMa): não mostram o produto final de um fornecedor. Cores são referências, sem declaração de estoque. material/tecnica com status a_confirmar não entram como especificação definitiva no site. aprovacao: revisao → aprovada | substituir (gerar outra) | retirada (saiu de uso; substitui aponta a nova). sku, fornecedor e estoque ficam vazios nesta fase (catálogo consultivo, sem marketplace); já existem para a fase seguinte.",
  "imagens": [
   {
+   "id": "agenda-couro~azul-marinho",
+   "produto": "Agenda",
+   "categoria": "canetas-escritorio",
+   "modelo": "Capa em couro com fecho de pressão",
+   "cor": {
+    "nome": "Azul-marinho",
+    "hex": "#1E2A4A"
+   },
+   "material": {
+    "valor": "Couro ou sintético",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Baixo-relevo",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Agenda com capa em couro azul-marinho, fecho de pressão e a marca TaMa em baixo-relevo.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base agenda-couro~caramelo.",
+   "arquivo": "img/produtos/agenda-couro~azul-marinho.webp",
+   "mestre": "midia/produtos/mestre/agenda-couro~azul-marinho.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "e44a9f2268849ec1ef474a4ed6bcc5009c8c12f6680b365853059b8d1e7ceb10",
+   "bytes": 1854713,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "agenda-couro~cafe",
+   "produto": "Agenda",
+   "categoria": "canetas-escritorio",
+   "modelo": "Capa em couro com fecho de pressão",
+   "cor": {
+    "nome": "Café",
+    "hex": "#4A2E22"
+   },
+   "material": {
+    "valor": "Couro ou sintético",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Baixo-relevo",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Agenda com capa em couro café, fecho de pressão e a marca TaMa em baixo-relevo.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base agenda-couro~caramelo.",
+   "arquivo": "img/produtos/agenda-couro~cafe.webp",
+   "mestre": "midia/produtos/mestre/agenda-couro~cafe.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "ff5432179c128b3fb845432721ef817b1ffd636940dfd258388749c9435b5d93",
+   "bytes": 1701429,
+   "atualizado_em": "2026-10-17"
+  },
+  {
    "id": "agenda-couro~caramelo",
    "produto": "Agenda",
    "categoria": "canetas-escritorio",
@@ -38,6 +112,80 @@
    "altura": 1254,
    "sha256": "9b62192c8b5dae03a7326ad63302d718965c14a6ff87df554f615ea90d795299",
    "bytes": 2536525,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "agenda-couro~preto",
+   "produto": "Agenda",
+   "categoria": "canetas-escritorio",
+   "modelo": "Capa em couro com fecho de pressão",
+   "cor": {
+    "nome": "Preto",
+    "hex": "#1E1E1E"
+   },
+   "material": {
+    "valor": "Couro ou sintético",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Baixo-relevo",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Agenda com capa em couro preto, fecho de pressão e a marca TaMa em baixo-relevo.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base agenda-couro~caramelo.",
+   "arquivo": "img/produtos/agenda-couro~preto.webp",
+   "mestre": "midia/produtos/mestre/agenda-couro~preto.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "9ffa9bee29e8866ddba7d3cf245502e79317bda0e93502767a6bc6b94838d875",
+   "bytes": 1782912,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "avental~cru",
+   "produto": "Avental personalizado",
+   "categoria": "vestuario",
+   "modelo": "Jeans com alças e bolso duplo",
+   "cor": {
+    "nome": "Cru",
+    "hex": "#EDE3D0"
+   },
+   "material": {
+    "valor": "Jeans",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado ou silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Avental cru com alças caramelo e a marca TaMa aplicada no bolso.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base avental~jeans.",
+   "arquivo": "img/produtos/avental~cru.webp",
+   "mestre": "midia/produtos/mestre/avental~cru.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "2c123c5a5c6b7b1641f29699f3f924dce818b3dfe899ad1556d777d121bbb5d0",
+   "bytes": 1235605,
    "atualizado_em": "2026-10-17"
   },
   {
@@ -79,6 +227,80 @@
    "atualizado_em": "2026-10-17"
   },
   {
+   "id": "avental~preto",
+   "produto": "Avental personalizado",
+   "categoria": "vestuario",
+   "modelo": "Jeans com alças e bolso duplo",
+   "cor": {
+    "nome": "Preto",
+    "hex": "#1E1E1E"
+   },
+   "material": {
+    "valor": "Jeans",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado ou silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Avental preto com alças caramelo e a marca TaMa aplicada no bolso.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base avental~jeans.",
+   "arquivo": "img/produtos/avental~preto.webp",
+   "mestre": "midia/produtos/mestre/avental~preto.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "aa5b47563028f43e19a37fd8a70d452ff8717ef305a0d0cfd9394468d038c2d5",
+   "bytes": 1575037,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "avental~vermelho",
+   "produto": "Avental personalizado",
+   "categoria": "vestuario",
+   "modelo": "Jeans com alças e bolso duplo",
+   "cor": {
+    "nome": "Vermelho",
+    "hex": "#C8202F"
+   },
+   "material": {
+    "valor": "Jeans",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado ou silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Avental vermelho com alças caramelo e a marca TaMa aplicada no bolso.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base avental~jeans.",
+   "arquivo": "img/produtos/avental~vermelho.webp",
+   "mestre": "midia/produtos/mestre/avental~vermelho.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "0a502397b4abd498ecc522f03c3e02e0a8e455fa895f81fce92adfcf81989e25",
+   "bytes": 1486516,
+   "atualizado_em": "2026-10-17"
+  },
+  {
    "id": "caderno~azul-royal",
    "produto": "Caderno de anotações",
    "categoria": "canetas-escritorio",
@@ -115,6 +337,157 @@
    "altura": 1254,
    "sha256": "c7708c74d1bc4713984b8f130624e36f6d84ae834d42b82d5274f2626da8c2fc",
    "bytes": 2457020,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "caderno~preto",
+   "produto": "Caderno de anotações",
+   "categoria": "canetas-escritorio",
+   "modelo": "Capa dura A5 com elástico e marcador",
+   "cor": {
+    "nome": "Preto",
+    "hex": "#1E1E1E"
+   },
+   "material": {
+    "valor": "Capa dura",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk ou hot stamping",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Caderno de capa dura preto com elástico e a marca TaMa em branco.",
+   "uso": [
+    "home",
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base caderno~azul-royal.",
+   "arquivo": "img/produtos/caderno~preto.webp",
+   "mestre": "midia/produtos/mestre/caderno~preto.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "042680ebba338ae786e6c17f42871f90fc131b29dd84997388ebe35b10d45a51",
+   "bytes": 1582996,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "caderno~verde",
+   "produto": "Caderno de anotações",
+   "categoria": "canetas-escritorio",
+   "modelo": "Capa dura A5 com elástico e marcador",
+   "cor": {
+    "nome": "Verde",
+    "hex": "#1F6B45"
+   },
+   "material": {
+    "valor": "Capa dura",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk ou hot stamping",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Caderno de capa dura verde com elástico e a marca TaMa em branco.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base caderno~azul-royal.",
+   "arquivo": "img/produtos/caderno~verde.webp",
+   "mestre": "midia/produtos/mestre/caderno~verde.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "0e3c9346f0badbcfa29e2cc421107e8d928247c8d42ad2bc06d54999f93e24b9",
+   "bytes": 1729177,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "caderno~vermelho",
+   "produto": "Caderno de anotações",
+   "categoria": "canetas-escritorio",
+   "modelo": "Capa dura A5 com elástico e marcador",
+   "cor": {
+    "nome": "Vermelho",
+    "hex": "#C8202F"
+   },
+   "material": {
+    "valor": "Capa dura",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk ou hot stamping",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Caderno de capa dura vermelho com elástico e a marca TaMa em branco.",
+   "uso": [
+    "home",
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base caderno~azul-royal.",
+   "arquivo": "img/produtos/caderno~vermelho.webp",
+   "mestre": "midia/produtos/mestre/caderno~vermelho.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "9706a8eb95d21c4114cda2715861c3a977050ee7a7ce6a81e57e90fff584a332",
+   "bytes": 1696764,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "caixa-personalizada~azul-marinho",
+   "produto": "Caixa personalizada",
+   "categoria": "bolsas-embalagens",
+   "modelo": "Caixa rígida com tampa e interior creme",
+   "cor": {
+    "nome": "Azul-marinho",
+    "hex": "#1E2A4A"
+   },
+   "material": {
+    "valor": "Papel rígido",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Hot stamping",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Caixa rígida azul-marinho com tampa, interior creme e a marca TaMa em dourado.",
+   "uso": [
+    "home",
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base caixa-personalizada~bordo.",
+   "arquivo": "img/produtos/caixa-personalizada~azul-marinho.webp",
+   "mestre": "midia/produtos/mestre/caixa-personalizada~azul-marinho.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "253d6d9f02223a13aedb18199245d7b34b8aad7310822e1e7f07576c3c613ce4",
+   "bytes": 1473913,
    "atualizado_em": "2026-10-17"
   },
   {
@@ -158,6 +531,235 @@
    "atualizado_em": "2026-10-17"
   },
   {
+   "id": "caixa-personalizada~cru",
+   "produto": "Caixa personalizada",
+   "categoria": "bolsas-embalagens",
+   "modelo": "Caixa rígida com tampa e interior creme",
+   "cor": {
+    "nome": "Cru",
+    "hex": "#EDE3D0"
+   },
+   "material": {
+    "valor": "Papel rígido",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Hot stamping",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Caixa rígida cru com tampa, interior creme e a marca TaMa em dourado.",
+   "uso": [
+    "home",
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base caixa-personalizada~bordo.",
+   "arquivo": "img/produtos/caixa-personalizada~cru.webp",
+   "mestre": "midia/produtos/mestre/caixa-personalizada~cru.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "732d92a3397ff1d6a1bd4e0a7b81353e85ddfcbb9a59280b6fd9966b33059331",
+   "bytes": 1295107,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "caixa-personalizada~preto",
+   "produto": "Caixa personalizada",
+   "categoria": "bolsas-embalagens",
+   "modelo": "Caixa rígida com tampa e interior creme",
+   "cor": {
+    "nome": "Preto",
+    "hex": "#1E1E1E"
+   },
+   "material": {
+    "valor": "Papel rígido",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Hot stamping",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Caixa rígida preto com tampa, interior creme e a marca TaMa em dourado.",
+   "uso": [
+    "home",
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base caixa-personalizada~bordo.",
+   "arquivo": "img/produtos/caixa-personalizada~preto.webp",
+   "mestre": "midia/produtos/mestre/caixa-personalizada~preto.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "b705155af87d15997839238aee20e7fbfcb925456a3f20ec6391538419eb4268",
+   "bytes": 1428027,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "camiseta-feminina~azul-royal",
+   "produto": "Camiseta feminina",
+   "categoria": "vestuario",
+   "modelo": "Gola careca, modelagem feminina",
+   "cor": {
+    "nome": "Azul royal",
+    "hex": "#1F4FB8"
+   },
+   "material": {
+    "valor": "Algodão",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta feminina vermelha com a marca TaMa em silk branco no peito.",
+   "uso": [
+    "home",
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base camiseta-feminina~vermelho.",
+   "arquivo": "img/produtos/camiseta-feminina~azul-royal.webp",
+   "mestre": "midia/produtos/mestre/camiseta-feminina~azul-royal.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "ae835eea299aa14aaa14d65a93f6bba74db63ce00351b23b95a4bb6a2c09afbf",
+   "bytes": 1458284,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "camiseta-feminina~branco",
+   "produto": "Camiseta feminina",
+   "categoria": "vestuario",
+   "modelo": "Gola careca, modelagem feminina",
+   "cor": {
+    "nome": "Branco",
+    "hex": "#F7F5F0"
+   },
+   "material": {
+    "valor": "Algodão",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta feminina vermelha com a marca TaMa em silk branco no peito.",
+   "uso": [
+    "home",
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base camiseta-feminina~vermelho.",
+   "arquivo": "img/produtos/camiseta-feminina~branco.webp",
+   "mestre": "midia/produtos/mestre/camiseta-feminina~branco.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "531891c3137a9c480a9dc8ced460a7a9293cba243824508bff40cedae4a359d1",
+   "bytes": 1235363,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "camiseta-feminina~preto",
+   "produto": "Camiseta feminina",
+   "categoria": "vestuario",
+   "modelo": "Gola careca, modelagem feminina",
+   "cor": {
+    "nome": "Preto",
+    "hex": "#1E1E1E"
+   },
+   "material": {
+    "valor": "Algodão",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta feminina vermelha com a marca TaMa em silk branco no peito.",
+   "uso": [
+    "home",
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base camiseta-feminina~vermelho.",
+   "arquivo": "img/produtos/camiseta-feminina~preto.webp",
+   "mestre": "midia/produtos/mestre/camiseta-feminina~preto.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "985e5aff646e73bacd52a6f7a14987848027c433f6aeddbb59ec56e277aec761",
+   "bytes": 1433320,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "camiseta-feminina~vermelho",
+   "produto": "Camiseta feminina",
+   "categoria": "vestuario",
+   "modelo": "Gola careca, modelagem feminina",
+   "cor": {
+    "nome": "Vermelho",
+    "hex": "#C8202F"
+   },
+   "material": {
+    "valor": "Algodão",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta feminina vermelha com a marca TaMa em silk branco no peito.",
+   "uso": [
+    "home",
+    "confeccoes",
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Imagem gerada com IA (ferramenta informada: Sol 6.1 Leve) em 17/10/2026, a partir da identidade TaMa. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "img/produtos/camiseta-feminina~vermelho.webp",
+   "mestre": "midia/produtos/mestre/camiseta-feminina~vermelho.png",
+   "largura": 1254,
+   "altura": 1254,
+   "sha256": "b639e987d482b42b8a059abcb5547b7792627fd34022c6662bc84cd1437ca5f7",
+   "bytes": 1925752,
+   "atualizado_em": "2026-10-17"
+  },
+  {
    "id": "camiseta~azul-royal",
    "produto": "Camiseta masculina",
    "categoria": "vestuario",
@@ -197,10 +799,86 @@
    "atualizado_em": "2026-10-17"
   },
   {
-   "id": "camiseta~vermelho",
-   "produto": "Camiseta feminina",
+   "id": "camiseta~branco",
+   "produto": "Camiseta masculina",
    "categoria": "vestuario",
-   "modelo": "Gola careca, modelagem feminina",
+   "modelo": "Gola careca",
+   "cor": {
+    "nome": "Branco",
+    "hex": "#F7F5F0"
+   },
+   "material": {
+    "valor": "Algodão",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta masculina vermelha com a marca TaMa em silk branco no peito.",
+   "uso": [
+    "home",
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base camiseta~azul-royal.",
+   "arquivo": "img/produtos/camiseta~branco.webp",
+   "mestre": "midia/produtos/mestre/camiseta~branco.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "141ccc64584cbd1dc759ba1749c2257f654c1fa715574da0a99ac57475c646a1",
+   "bytes": 1206809,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "camiseta~preto",
+   "produto": "Camiseta masculina",
+   "categoria": "vestuario",
+   "modelo": "Gola careca",
+   "cor": {
+    "nome": "Preto",
+    "hex": "#1E1E1E"
+   },
+   "material": {
+    "valor": "Algodão",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta masculina vermelha com a marca TaMa em silk branco no peito.",
+   "uso": [
+    "home",
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base camiseta~azul-royal.",
+   "arquivo": "img/produtos/camiseta~preto.webp",
+   "mestre": "midia/produtos/mestre/camiseta~preto.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "23b4bae143790dfc34ee3fdd46d90c968f90165c2bcf38bfcf8821007ac3eb8d",
+   "bytes": 1449698,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "camiseta~vermelho",
+   "produto": "Camiseta masculina",
+   "categoria": "vestuario",
+   "modelo": "Gola careca",
    "cor": {
     "nome": "Vermelho",
     "hex": "#C8202F"
@@ -216,23 +894,22 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Camiseta feminina vermelha com a marca TaMa em silk branco no peito.",
+   "alt": "Camiseta masculina vermelho com a marca TaMa em silk branco no peito.",
    "uso": [
     "home",
-    "confeccoes",
     "catalogo"
    ],
    "ilustrativa": true,
    "aprovacao": "revisao",
-   "origem": "Imagem gerada com IA (ferramenta informada: Sol 6.1 Leve) em 17/10/2026, a partir da identidade TaMa. Ilustrativa: não é foto do produto final.",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
    "substitui": null,
-   "observacao": "",
+   "observacao": "Variação de cor gerada a partir da foto-base camiseta~azul-royal.",
    "arquivo": "img/produtos/camiseta~vermelho.webp",
    "mestre": "midia/produtos/mestre/camiseta~vermelho.png",
-   "largura": 1254,
-   "altura": 1254,
-   "sha256": "b639e987d482b42b8a059abcb5547b7792627fd34022c6662bc84cd1437ca5f7",
-   "bytes": 1925752,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "c3834a3b27a9ffebaa406f23ffc43405a05d67260796363faec83d1487194c64",
+   "bytes": 1503135,
    "atualizado_em": "2026-10-17"
   },
   {
@@ -466,6 +1143,80 @@
    "atualizado_em": "2026-10-17"
   },
   {
+   "id": "caneta-executiva-estojo~azul-marinho",
+   "produto": "Caneta executiva com estojo",
+   "categoria": "canetas-escritorio",
+   "modelo": "Metal, em estojo forrado",
+   "cor": {
+    "nome": "Azul-marinho",
+    "hex": "#1E2A4A"
+   },
+   "material": {
+    "valor": "Metal e estojo",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Gravação a laser; estojo em silk ou hot stamping",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Caneta executiva preta em estojo forrado com a marca TaMa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base caneta-executiva-estojo~preto.",
+   "arquivo": "img/produtos/caneta-executiva-estojo~azul-marinho.webp",
+   "mestre": "midia/produtos/mestre/caneta-executiva-estojo~azul-marinho.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "c26e98c3254de4baacef06a549ce63b0887000514961464f544bcd78e4a7d414",
+   "bytes": 1521831,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "caneta-executiva-estojo~bordo",
+   "produto": "Caneta executiva com estojo",
+   "categoria": "canetas-escritorio",
+   "modelo": "Metal, em estojo forrado",
+   "cor": {
+    "nome": "Bordô",
+    "hex": "#6B1E33"
+   },
+   "material": {
+    "valor": "Metal e estojo",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Gravação a laser; estojo em silk ou hot stamping",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Caneta executiva preta em estojo forrado com a marca TaMa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base caneta-executiva-estojo~preto.",
+   "arquivo": "img/produtos/caneta-executiva-estojo~bordo.webp",
+   "mestre": "midia/produtos/mestre/caneta-executiva-estojo~bordo.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "8e8a4def11edaff9aeacf5f5b855881f69c6f11270621b53fdc4a85dac4fb2c9",
+   "bytes": 1529079,
+   "atualizado_em": "2026-10-17"
+  },
+  {
    "id": "caneta-executiva-estojo~preto",
    "produto": "Caneta executiva com estojo",
    "categoria": "canetas-escritorio",
@@ -505,6 +1256,117 @@
    "atualizado_em": "2026-10-17"
   },
   {
+   "id": "caneta-executiva~azul-marinho",
+   "produto": "Caneta executiva esferográfica",
+   "categoria": "canetas-escritorio",
+   "modelo": "Metal com detalhes cromados",
+   "cor": {
+    "nome": "Azul-marinho",
+    "hex": "#1E2A4A"
+   },
+   "material": {
+    "valor": "Metal",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Gravação a laser",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Caneta executiva preta esferográfica com a marca TaMa gravada.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base caneta-executiva~preto.",
+   "arquivo": "img/produtos/caneta-executiva~azul-marinho.webp",
+   "mestre": "midia/produtos/mestre/caneta-executiva~azul-marinho.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "1e89ba829d0dbae0a83e77b436ae476c0d0b06b0944262dd71960c4bfd7c76b1",
+   "bytes": 1204643,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "caneta-executiva~bordo",
+   "produto": "Caneta executiva esferográfica",
+   "categoria": "canetas-escritorio",
+   "modelo": "Metal com detalhes cromados",
+   "cor": {
+    "nome": "Bordô",
+    "hex": "#6B1E33"
+   },
+   "material": {
+    "valor": "Metal",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Gravação a laser",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Caneta executiva preta esferográfica com a marca TaMa gravada.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base caneta-executiva~preto.",
+   "arquivo": "img/produtos/caneta-executiva~bordo.webp",
+   "mestre": "midia/produtos/mestre/caneta-executiva~bordo.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "72c40262b9903fa113b26476c36818ed94181af09472f8d43c6accad874db17c",
+   "bytes": 1226027,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "caneta-executiva~prata",
+   "produto": "Caneta executiva esferográfica",
+   "categoria": "canetas-escritorio",
+   "modelo": "Metal com detalhes cromados",
+   "cor": {
+    "nome": "Prata",
+    "hex": "#B8B8B5"
+   },
+   "material": {
+    "valor": "Metal",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Gravação a laser",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Caneta executiva preta esferográfica com a marca TaMa gravada.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base caneta-executiva~preto.",
+   "arquivo": "img/produtos/caneta-executiva~prata.webp",
+   "mestre": "midia/produtos/mestre/caneta-executiva~prata.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "2a3ab1ac8bff914a7e9e4fea1b9739d6ff3aaa092c45e5b864a17b437a0a41cb",
+   "bytes": 1283429,
+   "atualizado_em": "2026-10-17"
+  },
+  {
    "id": "caneta-executiva~preto",
    "produto": "Caneta executiva esferográfica",
    "categoria": "canetas-escritorio",
@@ -539,6 +1401,117 @@
    "altura": 1254,
    "sha256": "429cb77c2ba92b4bbf4fec3e847ad5c82cfa251f011fb9efbc73aed65e7b4305",
    "bytes": 1733223,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "caneta-giro~azul-royal",
+   "produto": "Caneta metálica com giro",
+   "categoria": "canetas-escritorio",
+   "modelo": "Metal, acionamento por giro",
+   "cor": {
+    "nome": "Azul royal",
+    "hex": "#1F4FB8"
+   },
+   "material": {
+    "valor": "Metal",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Gravação a laser",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Caneta metálica vermelha de giro com a marca TaMa gravada.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base caneta-giro~vermelho.",
+   "arquivo": "img/produtos/caneta-giro~azul-royal.webp",
+   "mestre": "midia/produtos/mestre/caneta-giro~azul-royal.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "0f278a90671608d2f0c0dc38e6a031de7699dd38a4a1bb3540efefb76e67bcff",
+   "bytes": 1273800,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "caneta-giro~prata",
+   "produto": "Caneta metálica com giro",
+   "categoria": "canetas-escritorio",
+   "modelo": "Metal, acionamento por giro",
+   "cor": {
+    "nome": "Prata",
+    "hex": "#B8B8B5"
+   },
+   "material": {
+    "valor": "Metal",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Gravação a laser",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Caneta metálica vermelha de giro com a marca TaMa gravada.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base caneta-giro~vermelho.",
+   "arquivo": "img/produtos/caneta-giro~prata.webp",
+   "mestre": "midia/produtos/mestre/caneta-giro~prata.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "44c0acfc863e898d9d8e75207b7ca267714419df11e34da9263844daab65afca",
+   "bytes": 1288511,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "caneta-giro~preto",
+   "produto": "Caneta metálica com giro",
+   "categoria": "canetas-escritorio",
+   "modelo": "Metal, acionamento por giro",
+   "cor": {
+    "nome": "Preto",
+    "hex": "#1E1E1E"
+   },
+   "material": {
+    "valor": "Metal",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Gravação a laser",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Caneta metálica vermelha de giro com a marca TaMa gravada.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base caneta-giro~vermelho.",
+   "arquivo": "img/produtos/caneta-giro~preto.webp",
+   "mestre": "midia/produtos/mestre/caneta-giro~preto.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "0d165f430bf8687a677e91957db6255f9488f9219f4ae788c7d753a4d9e124f2",
+   "bytes": 1272483,
    "atualizado_em": "2026-10-17"
   },
   {
@@ -614,6 +1587,117 @@
    "altura": 1254,
    "sha256": "e42a96c26f61b79e90812bf10f9e5b05654edadca609d7298732f0a4398c2a15",
    "bytes": 1723083,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "caneta-grip~branco",
+   "produto": "Caneta plástica com grip",
+   "categoria": "canetas-escritorio",
+   "modelo": "Plástica com grip emborrachado",
+   "cor": {
+    "nome": "Branco",
+    "hex": "#F7F5F0"
+   },
+   "material": {
+    "valor": "Plástico",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk ou tampografia",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Caneta plástica azul com grip preto e a marca TaMa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base caneta-grip~azul.",
+   "arquivo": "img/produtos/caneta-grip~branco.webp",
+   "mestre": "midia/produtos/mestre/caneta-grip~branco.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "8abcd2f4e7ba0093ff018f22f7c671f0dbe4bc4ca2ae31ae42df5a151c290d78",
+   "bytes": 1210792,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "caneta-grip~preto",
+   "produto": "Caneta plástica com grip",
+   "categoria": "canetas-escritorio",
+   "modelo": "Plástica com grip emborrachado",
+   "cor": {
+    "nome": "Preto",
+    "hex": "#1E1E1E"
+   },
+   "material": {
+    "valor": "Plástico",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk ou tampografia",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Caneta plástica azul com grip preto e a marca TaMa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base caneta-grip~azul.",
+   "arquivo": "img/produtos/caneta-grip~preto.webp",
+   "mestre": "midia/produtos/mestre/caneta-grip~preto.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "d58665ff967f43fdfa3dd71fd5f777af8543535c5bf88f5c743fd2bb7facbcf8",
+   "bytes": 1203440,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "caneta-grip~vermelho",
+   "produto": "Caneta plástica com grip",
+   "categoria": "canetas-escritorio",
+   "modelo": "Plástica com grip emborrachado",
+   "cor": {
+    "nome": "Vermelho",
+    "hex": "#C8202F"
+   },
+   "material": {
+    "valor": "Plástico",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk ou tampografia",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Caneta plástica azul com grip preto e a marca TaMa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base caneta-grip~azul.",
+   "arquivo": "img/produtos/caneta-grip~vermelho.webp",
+   "mestre": "midia/produtos/mestre/caneta-grip~vermelho.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "5cff5e1d6c002426c0da6bee33e0805e5f54cf5cb217f33425f3962e201add7c",
+   "bytes": 1172224,
    "atualizado_em": "2026-10-17"
   },
   {
@@ -693,6 +1777,228 @@
    "atualizado_em": "2026-10-17"
   },
   {
+   "id": "caneta-metalica~prata",
+   "produto": "Caneta metálica de alumínio",
+   "categoria": "canetas-escritorio",
+   "modelo": "Alumínio com detalhes cromados",
+   "cor": {
+    "nome": "Prata",
+    "hex": "#B8B8B5"
+   },
+   "material": {
+    "valor": "Alumínio",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Gravação a laser",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Caneta metálica azul com a marca TaMa gravada.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base caneta-metalica~azul.",
+   "arquivo": "img/produtos/caneta-metalica~prata.webp",
+   "mestre": "midia/produtos/mestre/caneta-metalica~prata.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "b9e773a27909386a45a925410aa71bc312af8de65a17d3d4d9097ec625296cb2",
+   "bytes": 1246751,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "caneta-metalica~preto",
+   "produto": "Caneta metálica de alumínio",
+   "categoria": "canetas-escritorio",
+   "modelo": "Alumínio com detalhes cromados",
+   "cor": {
+    "nome": "Preto",
+    "hex": "#1E1E1E"
+   },
+   "material": {
+    "valor": "Alumínio",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Gravação a laser",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Caneta metálica azul com a marca TaMa gravada.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base caneta-metalica~azul.",
+   "arquivo": "img/produtos/caneta-metalica~preto.webp",
+   "mestre": "midia/produtos/mestre/caneta-metalica~preto.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "0123969609e093049d5ed9badbf4e87be936c587af3e19e18ce7481b26985df2",
+   "bytes": 1268571,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "caneta-metalica~vermelho",
+   "produto": "Caneta metálica de alumínio",
+   "categoria": "canetas-escritorio",
+   "modelo": "Alumínio com detalhes cromados",
+   "cor": {
+    "nome": "Vermelho",
+    "hex": "#C8202F"
+   },
+   "material": {
+    "valor": "Alumínio",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Gravação a laser",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Caneta metálica azul com a marca TaMa gravada.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base caneta-metalica~azul.",
+   "arquivo": "img/produtos/caneta-metalica~vermelho.webp",
+   "mestre": "midia/produtos/mestre/caneta-metalica~vermelho.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "88aa0fcbf53632bb25dd9e0f6bdf9da6e0072253f829baf638e578275d515d8e",
+   "bytes": 1278492,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "caneta-plastica~azul-royal",
+   "produto": "Caneta plástica básica",
+   "categoria": "canetas-escritorio",
+   "modelo": "Plástica",
+   "cor": {
+    "nome": "Azul royal",
+    "hex": "#1F4FB8"
+   },
+   "material": {
+    "valor": "Plástico",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk ou tampografia",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Caneta plástica vermelha com a marca TaMa em branco.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base caneta-plastica~vermelho.",
+   "arquivo": "img/produtos/caneta-plastica~azul-royal.webp",
+   "mestre": "midia/produtos/mestre/caneta-plastica~azul-royal.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "df4848726cf2b7d208030fc0a8e7c93ec2e63041b07da7fea7aea7588cc8d281",
+   "bytes": 1222887,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "caneta-plastica~branco",
+   "produto": "Caneta plástica básica",
+   "categoria": "canetas-escritorio",
+   "modelo": "Plástica",
+   "cor": {
+    "nome": "Branco",
+    "hex": "#F7F5F0"
+   },
+   "material": {
+    "valor": "Plástico",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk ou tampografia",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Caneta plástica vermelha com a marca TaMa em branco.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base caneta-plastica~vermelho.",
+   "arquivo": "img/produtos/caneta-plastica~branco.webp",
+   "mestre": "midia/produtos/mestre/caneta-plastica~branco.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "f7496c20dc71a71fcac33050b09ecfd69a1fd644772134c377a150767f2e88a5",
+   "bytes": 1072654,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "caneta-plastica~preto",
+   "produto": "Caneta plástica básica",
+   "categoria": "canetas-escritorio",
+   "modelo": "Plástica",
+   "cor": {
+    "nome": "Preto",
+    "hex": "#1E1E1E"
+   },
+   "material": {
+    "valor": "Plástico",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk ou tampografia",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Caneta plástica vermelha com a marca TaMa em branco.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base caneta-plastica~vermelho.",
+   "arquivo": "img/produtos/caneta-plastica~preto.webp",
+   "mestre": "midia/produtos/mestre/caneta-plastica~preto.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "e319cafd36b4df754c4510efae25d493a71afc796afa17a9b8d0d15e263df824",
+   "bytes": 1183005,
+   "atualizado_em": "2026-10-17"
+  },
+  {
    "id": "caneta-plastica~vermelho",
    "produto": "Caneta plástica básica",
    "categoria": "canetas-escritorio",
@@ -727,6 +2033,43 @@
    "altura": 1254,
    "sha256": "0dcc98c9798f718dfcbaf6e96e9a0fceda150fe048ccdb7376309c99a38e15dd",
    "bytes": 1339648,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "caneta-roller~azul-marinho",
+   "produto": "Caneta executiva roller",
+   "categoria": "canetas-escritorio",
+   "modelo": "Metal, tampa com clipe",
+   "cor": {
+    "nome": "Azul-marinho",
+    "hex": "#1E2A4A"
+   },
+   "material": {
+    "valor": "Metal",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Gravação a laser",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Caneta executiva roller azul-marinho com a marca TaMa gravada.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base caneta-roller~bordo.",
+   "arquivo": "img/produtos/caneta-roller~azul-marinho.webp",
+   "mestre": "midia/produtos/mestre/caneta-roller~azul-marinho.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "475a0a3e12cf0021756af9fa890f597f2e85a5509cd7deb9b1fa8633b0c12bd1",
+   "bytes": 1299231,
    "atualizado_em": "2026-10-17"
   },
   {
@@ -768,6 +2111,154 @@
    "atualizado_em": "2026-10-17"
   },
   {
+   "id": "caneta-roller~prata",
+   "produto": "Caneta executiva roller",
+   "categoria": "canetas-escritorio",
+   "modelo": "Metal, tampa com clipe",
+   "cor": {
+    "nome": "Prata",
+    "hex": "#B8B8B5"
+   },
+   "material": {
+    "valor": "Metal",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Gravação a laser",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Caneta executiva roller prata com a marca TaMa gravada.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base caneta-roller~bordo.",
+   "arquivo": "img/produtos/caneta-roller~prata.webp",
+   "mestre": "midia/produtos/mestre/caneta-roller~prata.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "cb6ad86fe0884433b24614bcc659c6b388dd8a0c242f28036ba8a2c23c88cd79",
+   "bytes": 1276548,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "caneta-roller~preto",
+   "produto": "Caneta executiva roller",
+   "categoria": "canetas-escritorio",
+   "modelo": "Metal, tampa com clipe",
+   "cor": {
+    "nome": "Preto",
+    "hex": "#1E1E1E"
+   },
+   "material": {
+    "valor": "Metal",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Gravação a laser",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Caneta executiva roller preto com a marca TaMa gravada.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base caneta-roller~bordo.",
+   "arquivo": "img/produtos/caneta-roller~preto.webp",
+   "mestre": "midia/produtos/mestre/caneta-roller~preto.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "a982187b385a997967384cf26d8f8c661a7322b9b164d27b7fb782a5576e74b2",
+   "bytes": 1348660,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "caneta-touch~azul-royal",
+   "produto": "Caneta metálica com ponta touch",
+   "categoria": "canetas-escritorio",
+   "modelo": "Metal com ponta touch",
+   "cor": {
+    "nome": "Azul royal",
+    "hex": "#1F4FB8"
+   },
+   "material": {
+    "valor": "Metal",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Gravação a laser",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Caneta metálica preta com ponta touch e a marca TaMa gravada.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base caneta-touch~preto.",
+   "arquivo": "img/produtos/caneta-touch~azul-royal.webp",
+   "mestre": "midia/produtos/mestre/caneta-touch~azul-royal.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "df54d692ab5996b1fb10e63e88bd86bddb75e8674735155785cdc60fbe390aeb",
+   "bytes": 1248641,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "caneta-touch~prata",
+   "produto": "Caneta metálica com ponta touch",
+   "categoria": "canetas-escritorio",
+   "modelo": "Metal com ponta touch",
+   "cor": {
+    "nome": "Prata",
+    "hex": "#B8B8B5"
+   },
+   "material": {
+    "valor": "Metal",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Gravação a laser",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Caneta metálica preta com ponta touch e a marca TaMa gravada.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base caneta-touch~preto.",
+   "arquivo": "img/produtos/caneta-touch~prata.webp",
+   "mestre": "midia/produtos/mestre/caneta-touch~prata.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "9dfae6df237a5ad7a263355d4524f47dd6f8753aba119b84f31c120ffa3c0d78",
+   "bytes": 1241494,
+   "atualizado_em": "2026-10-17"
+  },
+  {
    "id": "caneta-touch~preto",
    "produto": "Caneta metálica com ponta touch",
    "categoria": "canetas-escritorio",
@@ -802,6 +2293,43 @@
    "altura": 1254,
    "sha256": "c68651fe35cf5723f3d49af0d11460dc9c2d5162c5fec0ded71c8265df4e9029",
    "bytes": 1543688,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "caneta-touch~vermelho",
+   "produto": "Caneta metálica com ponta touch",
+   "categoria": "canetas-escritorio",
+   "modelo": "Metal com ponta touch",
+   "cor": {
+    "nome": "Vermelho",
+    "hex": "#C8202F"
+   },
+   "material": {
+    "valor": "Metal",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Gravação a laser",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Caneta metálica preta com ponta touch e a marca TaMa gravada.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base caneta-touch~preto.",
+   "arquivo": "img/produtos/caneta-touch~vermelho.webp",
+   "mestre": "midia/produtos/mestre/caneta-touch~vermelho.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "239597158b97966f8701fa2c89b21c91dd3980fd6448016480efedcb7b1c969d",
+   "bytes": 1203226,
    "atualizado_em": "2026-10-17"
   },
   {
@@ -842,6 +2370,191 @@
    "atualizado_em": "2026-10-17"
   },
   {
+   "id": "cardapio~cafe",
+   "produto": "Cardápio personalizado",
+   "categoria": "hotelaria-gastronomia",
+   "modelo": "Capa com cantoneiras metálicas",
+   "cor": {
+    "nome": "Café",
+    "hex": "#4A2E22"
+   },
+   "material": {
+    "valor": "Sintético texturizado",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Baixo-relevo",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Capa de cardápio café com cantoneiras metálicas e a marca TaMa em baixo-relevo.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base cardapio~bordo.",
+   "arquivo": "img/produtos/cardapio~cafe.webp",
+   "mestre": "midia/produtos/mestre/cardapio~cafe.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "1edb5eebf8e4174a8e414f668ec0f1ae6bab31b406b6a5c2b9883c5b9a654096",
+   "bytes": 1601629,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "cardapio~preto",
+   "produto": "Cardápio personalizado",
+   "categoria": "hotelaria-gastronomia",
+   "modelo": "Capa com cantoneiras metálicas",
+   "cor": {
+    "nome": "Preto",
+    "hex": "#1E1E1E"
+   },
+   "material": {
+    "valor": "Sintético texturizado",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Baixo-relevo",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Capa de cardápio preto com cantoneiras metálicas e a marca TaMa em baixo-relevo.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base cardapio~bordo.",
+   "arquivo": "img/produtos/cardapio~preto.webp",
+   "mestre": "midia/produtos/mestre/cardapio~preto.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "4bb8009203bf66c1c4c41fc3ef1b85ef996c10a844161c0819dfe02625d0f775",
+   "bytes": 1629751,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "cardapio~verde-escuro",
+   "produto": "Cardápio personalizado",
+   "categoria": "hotelaria-gastronomia",
+   "modelo": "Capa com cantoneiras metálicas",
+   "cor": {
+    "nome": "Verde-escuro",
+    "hex": "#1F4A35"
+   },
+   "material": {
+    "valor": "Sintético texturizado",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Baixo-relevo",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Capa de cardápio verde-escuro com cantoneiras metálicas e a marca TaMa em baixo-relevo.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base cardapio~bordo.",
+   "arquivo": "img/produtos/cardapio~verde-escuro.webp",
+   "mestre": "midia/produtos/mestre/cardapio~verde-escuro.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "30b8b172d414a3c5d9b40e26bbb6296fdd5a977b6bc0a3a53a3237ed7773900d",
+   "bytes": 1670903,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "carteira~cafe",
+   "produto": "Carteira",
+   "categoria": "acessorios",
+   "modelo": "Bifold",
+   "cor": {
+    "nome": "Café",
+    "hex": "#4A2E22"
+   },
+   "material": {
+    "valor": "Couro ou sintético",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Baixo-relevo",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Carteira de couro preta com o símbolo TaMa em baixo-relevo.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base carteira~preto.",
+   "arquivo": "img/produtos/carteira~cafe.webp",
+   "mestre": "midia/produtos/mestre/carteira~cafe.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "aa86d696d5737fe3fe2096ccb11f69058c406617d5ba36357d4e6c080803ef18",
+   "bytes": 1703132,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "carteira~caramelo",
+   "produto": "Carteira",
+   "categoria": "acessorios",
+   "modelo": "Bifold",
+   "cor": {
+    "nome": "Caramelo",
+    "hex": "#A0623A"
+   },
+   "material": {
+    "valor": "Couro ou sintético",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Baixo-relevo",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Carteira de couro preta com o símbolo TaMa em baixo-relevo.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base carteira~preto.",
+   "arquivo": "img/produtos/carteira~caramelo.webp",
+   "mestre": "midia/produtos/mestre/carteira~caramelo.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "33ec3fa03ec5fd4431fa4093de405b1e166840d52db3a93f0e8b4ec639b2e031",
+   "bytes": 1743056,
+   "atualizado_em": "2026-10-17"
+  },
+  {
    "id": "carteira~preto",
    "produto": "Carteira",
    "categoria": "acessorios",
@@ -879,6 +2592,117 @@
    "atualizado_em": "2026-10-17"
   },
   {
+   "id": "chaveiro-abridor~azul-royal",
+   "produto": "Chaveiro abridor de garrafa",
+   "categoria": "acessorios",
+   "modelo": "Alumínio",
+   "cor": {
+    "nome": "Azul royal",
+    "hex": "#1F4FB8"
+   },
+   "material": {
+    "valor": "Alumínio",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Gravação a laser",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Chaveiro abridor de garrafa em alumínio azul royal com a marca TaMa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base chaveiro-abridor~vermelho.",
+   "arquivo": "img/produtos/chaveiro-abridor~azul-royal.webp",
+   "mestre": "midia/produtos/mestre/chaveiro-abridor~azul-royal.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "aeb30f3e37203e3bcdfb94256799eecf1fd45eda01dff42d6ec8073f1447647e",
+   "bytes": 1310278,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "chaveiro-abridor~prata",
+   "produto": "Chaveiro abridor de garrafa",
+   "categoria": "acessorios",
+   "modelo": "Alumínio",
+   "cor": {
+    "nome": "Prata",
+    "hex": "#B8B8B5"
+   },
+   "material": {
+    "valor": "Alumínio",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Gravação a laser",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Chaveiro abridor de garrafa em alumínio prata com a marca TaMa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base chaveiro-abridor~vermelho.",
+   "arquivo": "img/produtos/chaveiro-abridor~prata.webp",
+   "mestre": "midia/produtos/mestre/chaveiro-abridor~prata.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "c1effd9b3df55ffeac37b2e118053cfec59be2dcb280d20249161de3095a5424",
+   "bytes": 1262195,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "chaveiro-abridor~preto",
+   "produto": "Chaveiro abridor de garrafa",
+   "categoria": "acessorios",
+   "modelo": "Alumínio",
+   "cor": {
+    "nome": "Preto",
+    "hex": "#1E1E1E"
+   },
+   "material": {
+    "valor": "Alumínio",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Gravação a laser",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Chaveiro abridor de garrafa em alumínio preto com a marca TaMa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base chaveiro-abridor~vermelho.",
+   "arquivo": "img/produtos/chaveiro-abridor~preto.webp",
+   "mestre": "midia/produtos/mestre/chaveiro-abridor~preto.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "5964d9fa42233bca2dab0994d61cd9a1bdb846bc5394ae0f133925065fecdd6a",
+   "bytes": 1278540,
+   "atualizado_em": "2026-10-17"
+  },
+  {
    "id": "chaveiro-abridor~vermelho",
    "produto": "Chaveiro abridor de garrafa",
    "categoria": "acessorios",
@@ -913,6 +2737,43 @@
    "altura": 1254,
    "sha256": "e3745bfd8120c2bf5f760653feb8a9e874c4794646ba176ca0dabf4fa5901894",
    "bytes": 1838189,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "chaveiro-couro~cafe",
+   "produto": "Chaveiro de couro",
+   "categoria": "acessorios",
+   "modelo": "Tira de couro com argola",
+   "cor": {
+    "nome": "Café",
+    "hex": "#4A2E22"
+   },
+   "material": {
+    "valor": "Couro ou sintético",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Baixo-relevo",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Chaveiro em couro café com argola e o símbolo TaMa em baixo-relevo.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base chaveiro-couro~caramelo.",
+   "arquivo": "img/produtos/chaveiro-couro~cafe.webp",
+   "mestre": "midia/produtos/mestre/chaveiro-couro~cafe.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "5c35ed1b61f51b1bd5ded92aac7cd8427a87a5bbf3ea174afca02be7a051bf77",
+   "bytes": 1354868,
    "atualizado_em": "2026-10-17"
   },
   {
@@ -954,6 +2815,117 @@
    "atualizado_em": "2026-10-17"
   },
   {
+   "id": "chaveiro-couro~preto",
+   "produto": "Chaveiro de couro",
+   "categoria": "acessorios",
+   "modelo": "Tira de couro com argola",
+   "cor": {
+    "nome": "Preto",
+    "hex": "#1E1E1E"
+   },
+   "material": {
+    "valor": "Couro ou sintético",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Baixo-relevo",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Chaveiro em couro preto com argola e o símbolo TaMa em baixo-relevo.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base chaveiro-couro~caramelo.",
+   "arquivo": "img/produtos/chaveiro-couro~preto.webp",
+   "mestre": "midia/produtos/mestre/chaveiro-couro~preto.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "760a42122a5c0528c270c06a7e1b1d9bc189e6d3c2874c212e6b92e27a9f4b1f",
+   "bytes": 1431428,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "copo-acrilico-360~azul-marinho",
+   "produto": "Copo com impressão 360°",
+   "categoria": "garrafas-copos",
+   "modelo": "Copo reutilizável 430 ml, acrílico, estampa envolvente",
+   "cor": {
+    "nome": "Azul-marinho",
+    "hex": "#1E2A4A"
+   },
+   "material": {
+    "valor": "Acrílico",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Impressão 360° (sem limite de cores)",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Copo acrílico com estampa azul-marinho envolvente e a marca TaMa em creme.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base copo-acrilico-360~terracota.",
+   "arquivo": "img/produtos/copo-acrilico-360~azul-marinho.webp",
+   "mestre": "midia/produtos/mestre/copo-acrilico-360~azul-marinho.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "8840a88ef27241d4a9c61396955e84d7c232ee205e62fbf6b0794a6945f16c15",
+   "bytes": 1196812,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "copo-acrilico-360~bordo",
+   "produto": "Copo com impressão 360°",
+   "categoria": "garrafas-copos",
+   "modelo": "Copo reutilizável 430 ml, acrílico, estampa envolvente",
+   "cor": {
+    "nome": "Bordô",
+    "hex": "#6B1E33"
+   },
+   "material": {
+    "valor": "Acrílico",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Impressão 360° (sem limite de cores)",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Copo acrílico com estampa bordô envolvente e a marca TaMa em creme.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base copo-acrilico-360~terracota.",
+   "arquivo": "img/produtos/copo-acrilico-360~bordo.webp",
+   "mestre": "midia/produtos/mestre/copo-acrilico-360~bordo.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "130f27797c0289fc668e4547aaeaa3c0c28e4a7044fed52c22c279b7c81c4094",
+   "bytes": 1212811,
+   "atualizado_em": "2026-10-17"
+  },
+  {
    "id": "copo-acrilico-360~terracota",
    "produto": "Copo com impressão 360°",
    "categoria": "garrafas-copos",
@@ -991,6 +2963,80 @@
    "atualizado_em": "2026-10-17"
   },
   {
+   "id": "copo-acrilico-360~verde-escuro",
+   "produto": "Copo com impressão 360°",
+   "categoria": "garrafas-copos",
+   "modelo": "Copo reutilizável 430 ml, acrílico, estampa envolvente",
+   "cor": {
+    "nome": "Verde-escuro",
+    "hex": "#1F4A35"
+   },
+   "material": {
+    "valor": "Acrílico",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Impressão 360° (sem limite de cores)",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Copo acrílico com estampa verde-escuro envolvente e a marca TaMa em creme.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base copo-acrilico-360~terracota.",
+   "arquivo": "img/produtos/copo-acrilico-360~verde-escuro.webp",
+   "mestre": "midia/produtos/mestre/copo-acrilico-360~verde-escuro.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "5d2f8a61eda46b1fe266219a36f77874826dbbb72f68168ccc8eff364f904526",
+   "bytes": 1300047,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "copo-cafe-inox~branco",
+   "produto": "Copo de café em inox",
+   "categoria": "garrafas-copos",
+   "modelo": "Copo espresso 180 ml, parede dupla, sem alça",
+   "cor": {
+    "nome": "Branco",
+    "hex": "#F7F5F0"
+   },
+   "material": {
+    "valor": "Aço inox",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Gravação a laser",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Copo de café em aço branco escovado com a marca TaMa gravada.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base copo-cafe-inox~inox.",
+   "arquivo": "img/produtos/copo-cafe-inox~branco.webp",
+   "mestre": "midia/produtos/mestre/copo-cafe-inox~branco.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "506612f6a32f3b3a7f0519e5d6b7bc0530d07a27cac1618e9a0dce55d842e978",
+   "bytes": 1140012,
+   "atualizado_em": "2026-10-17"
+  },
+  {
    "id": "copo-cafe-inox~inox",
    "produto": "Copo de café em inox",
    "categoria": "garrafas-copos",
@@ -1025,6 +3071,117 @@
    "altura": 1024,
    "sha256": "52ef45ca8221b24cc1af0242550c23bda5293db4405cb7a215b71f4debbb26d7",
    "bytes": 1242069,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "copo-cafe-inox~preto",
+   "produto": "Copo de café em inox",
+   "categoria": "garrafas-copos",
+   "modelo": "Copo espresso 180 ml, parede dupla, sem alça",
+   "cor": {
+    "nome": "Preto",
+    "hex": "#1E1E1E"
+   },
+   "material": {
+    "valor": "Aço inox",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Gravação a laser",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Copo de café em aço preto escovado com a marca TaMa gravada.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base copo-cafe-inox~inox.",
+   "arquivo": "img/produtos/copo-cafe-inox~preto.webp",
+   "mestre": "midia/produtos/mestre/copo-cafe-inox~preto.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "1c574e7c6030c727d48d0d0bee6c6a83f02dabe530a99b8e9103d2ad4a8cb951",
+   "bytes": 1248956,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "copo-papel~branco",
+   "produto": "Copo de papel com tampa",
+   "categoria": "garrafas-copos",
+   "modelo": "Copo 300 ml, parede dupla, tampa plástica",
+   "cor": {
+    "nome": "Branco",
+    "hex": "#F7F5F0"
+   },
+   "material": {
+    "valor": "Papel",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Impressão",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Copo de papel branco com tampa e a marca TaMa em branco.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base copo-papel~preto.",
+   "arquivo": "img/produtos/copo-papel~branco.webp",
+   "mestre": "midia/produtos/mestre/copo-papel~branco.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "bacf43f5e6ef48b8c5658e5767717cb63e526d3f4ac73967bf29bcc9a8ba15c8",
+   "bytes": 1231280,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "copo-papel~kraft",
+   "produto": "Copo de papel com tampa",
+   "categoria": "garrafas-copos",
+   "modelo": "Copo 300 ml, parede dupla, tampa plástica",
+   "cor": {
+    "nome": "Kraft",
+    "hex": "#C4A07A"
+   },
+   "material": {
+    "valor": "Papel",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Impressão",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Copo de papel kraft com tampa e a marca TaMa em branco.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base copo-papel~preto.",
+   "arquivo": "img/produtos/copo-papel~kraft.webp",
+   "mestre": "midia/produtos/mestre/copo-papel~kraft.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "5ce75b8d949e0d13e5eee277934efedfe4ddf63a413682d2ba30468b61455989",
+   "bytes": 1341286,
    "atualizado_em": "2026-10-17"
   },
   {
@@ -1099,6 +3256,117 @@
    "altura": 1024,
    "sha256": "ad9aefa3bfa8b6fc9f0db7ef92c363974398279ae7989dd8a720b4f209436152",
    "bytes": 563723,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "copo-termico-vinho~preto",
+   "produto": "Copo térmico de vinho",
+   "categoria": "garrafas-copos",
+   "modelo": "Copo 350 ml, aço inox com tampa transparente",
+   "cor": {
+    "nome": "Preto",
+    "hex": "#1E1E1E"
+   },
+   "material": {
+    "valor": "Aço inox",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Gravação a laser",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Copo térmico de vinho preto com tampa e a marca TaMa gravada.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base copo-termico-vinho~azul-marinho.",
+   "arquivo": "img/produtos/copo-termico-vinho~preto.webp",
+   "mestre": "midia/produtos/mestre/copo-termico-vinho~preto.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "b06b75f1e592d27e6468faf5e53e04443dea2c6f825468a1e9e7fe40f3feceb2",
+   "bytes": 479587,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "copo-termico-vinho~verde",
+   "produto": "Copo térmico de vinho",
+   "categoria": "garrafas-copos",
+   "modelo": "Copo 350 ml, aço inox com tampa transparente",
+   "cor": {
+    "nome": "Verde",
+    "hex": "#1F6B45"
+   },
+   "material": {
+    "valor": "Aço inox",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Gravação a laser",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Copo térmico de vinho verde com tampa e a marca TaMa gravada.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base copo-termico-vinho~azul-marinho.",
+   "arquivo": "img/produtos/copo-termico-vinho~verde.webp",
+   "mestre": "midia/produtos/mestre/copo-termico-vinho~verde.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "4e06cd995b8f1166083392bd47947c3f26d309d6e8ec44dc4e36adda798c6262",
+   "bytes": 543927,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "copo-termico-vinho~vermelho",
+   "produto": "Copo térmico de vinho",
+   "categoria": "garrafas-copos",
+   "modelo": "Copo 350 ml, aço inox com tampa transparente",
+   "cor": {
+    "nome": "Vermelho",
+    "hex": "#C8202F"
+   },
+   "material": {
+    "valor": "Aço inox",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Gravação a laser",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Copo térmico de vinho vermelho com tampa e a marca TaMa gravada.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base copo-termico-vinho~azul-marinho.",
+   "arquivo": "img/produtos/copo-termico-vinho~vermelho.webp",
+   "mestre": "midia/produtos/mestre/copo-termico-vinho~vermelho.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "3eec1a097d8c30e81a17d9564d30e2743088cb7ee24ba74299d66e593e8a1703",
+   "bytes": 556197,
    "atualizado_em": "2026-10-17"
   },
   {
@@ -1288,6 +3556,43 @@
    "atualizado_em": "2026-10-17"
   },
   {
+   "id": "difusor~ambar",
+   "produto": "Aromatizador de ambiente",
+   "categoria": "casa-bem-estar",
+   "modelo": "Difusor em vidro com varetas",
+   "cor": {
+    "nome": "Âmbar",
+    "hex": "#B8742A"
+   },
+   "material": {
+    "valor": "Vidro",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Rótulo personalizado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Difusor de aromas em vidro com varetas e rótulo TaMa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base difusor~natural.",
+   "arquivo": "img/produtos/difusor~ambar.webp",
+   "mestre": "midia/produtos/mestre/difusor~ambar.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "1c9d3b80ce0e5575f8dbdeaa3e2311345e1521cb12833f21d2dfd9b2682a6ec8",
+   "bytes": 1155514,
+   "atualizado_em": "2026-10-17"
+  },
+  {
    "id": "difusor~natural",
    "produto": "Aromatizador de ambiente",
    "categoria": "casa-bem-estar",
@@ -1322,6 +3627,44 @@
    "altura": 1254,
    "sha256": "000390b27d26a16e09cb87838bcbec3a7d8d144767920ab2a1f43b16a0460c31",
    "bytes": 1614109,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "dolma~azul-marinho",
+   "produto": "Dólmã profissional",
+   "categoria": "vestuario",
+   "modelo": "Botões pretos",
+   "cor": {
+    "nome": "Azul-marinho",
+    "hex": "#1E2A4A"
+   },
+   "material": {
+    "valor": "Tecido profissional",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Dólmã branca com botões pretos e a marca TaMa bordada.",
+   "uso": [
+    "home",
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base dolma~branco.",
+   "arquivo": "img/produtos/dolma~azul-marinho.webp",
+   "mestre": "midia/produtos/mestre/dolma~azul-marinho.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "d2656b437a46870d57611cd9a9afcb8a0c6f0af1a05a3c6b06333817c4b9a9d6",
+   "bytes": 1348060,
    "atualizado_em": "2026-10-17"
   },
   {
@@ -1364,6 +3707,82 @@
    "atualizado_em": "2026-10-17"
   },
   {
+   "id": "dolma~jeans",
+   "produto": "Dólmã profissional",
+   "categoria": "vestuario",
+   "modelo": "Botões pretos",
+   "cor": {
+    "nome": "Jeans",
+    "hex": "#2F4470"
+   },
+   "material": {
+    "valor": "Tecido profissional",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Dólmã branca com botões pretos e a marca TaMa bordada.",
+   "uso": [
+    "home",
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base dolma~branco.",
+   "arquivo": "img/produtos/dolma~jeans.webp",
+   "mestre": "midia/produtos/mestre/dolma~jeans.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "ab62fe1c58fc8e45918736f6c2dc767fff69a95c7ec67cfa7f9eaff8f3b2c10b",
+   "bytes": 1525611,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "dolma~preto",
+   "produto": "Dólmã profissional",
+   "categoria": "vestuario",
+   "modelo": "Botões pretos",
+   "cor": {
+    "nome": "Preto",
+    "hex": "#1E1E1E"
+   },
+   "material": {
+    "valor": "Tecido profissional",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Dólmã branca com botões pretos e a marca TaMa bordada.",
+   "uso": [
+    "home",
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base dolma~branco.",
+   "arquivo": "img/produtos/dolma~preto.webp",
+   "mestre": "midia/produtos/mestre/dolma~preto.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "f9e0ee8159a201a0b2d2c7bd06081f5c84455ec2251c2b64035da2971829cd91",
+   "bytes": 1329902,
+   "atualizado_em": "2026-10-17"
+  },
+  {
    "id": "ecobag~cru",
    "produto": "Ecobag",
    "categoria": "bolsas-embalagens",
@@ -1402,6 +3821,192 @@
    "atualizado_em": "2026-10-17"
   },
   {
+   "id": "ecobag~preto",
+   "produto": "Ecobag",
+   "categoria": "bolsas-embalagens",
+   "modelo": "Algodão com alças coloridas",
+   "cor": {
+    "nome": "Preto",
+    "hex": "#1E1E1E"
+   },
+   "material": {
+    "valor": "Algodão",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Ecobag de algodão preto com alças vermelhas e a marca TaMa estampada.",
+   "uso": [
+    "home",
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base ecobag~cru.",
+   "arquivo": "img/produtos/ecobag~preto.webp",
+   "mestre": "midia/produtos/mestre/ecobag~preto.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "f42ddc785cbd4de81ac6f6bfa230fe389bbd931542267330671221784ee800ad",
+   "bytes": 1402998,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "ecobag~verde",
+   "produto": "Ecobag",
+   "categoria": "bolsas-embalagens",
+   "modelo": "Algodão com alças coloridas",
+   "cor": {
+    "nome": "Verde",
+    "hex": "#1F6B45"
+   },
+   "material": {
+    "valor": "Algodão",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Ecobag de algodão verde com alças vermelhas e a marca TaMa estampada.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base ecobag~cru.",
+   "arquivo": "img/produtos/ecobag~verde.webp",
+   "mestre": "midia/produtos/mestre/ecobag~verde.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "314ddaad51895bfb9a3682e66fa2745fd3756dcde1ff79204de4295555be37fc",
+   "bytes": 1422745,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "ecobag~vermelho",
+   "produto": "Ecobag",
+   "categoria": "bolsas-embalagens",
+   "modelo": "Algodão com alças coloridas",
+   "cor": {
+    "nome": "Vermelho",
+    "hex": "#C8202F"
+   },
+   "material": {
+    "valor": "Algodão",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Ecobag de algodão vermelho com alças vermelhas e a marca TaMa estampada.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base ecobag~cru.",
+   "arquivo": "img/produtos/ecobag~vermelho.webp",
+   "mestre": "midia/produtos/mestre/ecobag~vermelho.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "918f3735c7342c1d56a639b2b16c95cec31f6f65d475bd1adb4399e5f6275a20",
+   "bytes": 1470292,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "estojo-couro~azul-marinho",
+   "produto": "Estojo de escritório",
+   "categoria": "canetas-escritorio",
+   "modelo": "Estojo com zíper",
+   "cor": {
+    "nome": "Azul-marinho",
+    "hex": "#1E2A4A"
+   },
+   "material": {
+    "valor": "Couro ou sintético",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Baixo-relevo",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Estojo de couro azul-marinho com zíper e a marca TaMa em baixo-relevo.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base estojo-couro~caramelo.",
+   "arquivo": "img/produtos/estojo-couro~azul-marinho.webp",
+   "mestre": "midia/produtos/mestre/estojo-couro~azul-marinho.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "7201203d8ce202374536cdfde0cd54c3c0195c1e445cc6c29e232155300529d3",
+   "bytes": 1336750,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "estojo-couro~cafe",
+   "produto": "Estojo de escritório",
+   "categoria": "canetas-escritorio",
+   "modelo": "Estojo com zíper",
+   "cor": {
+    "nome": "Café",
+    "hex": "#4A2E22"
+   },
+   "material": {
+    "valor": "Couro ou sintético",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Baixo-relevo",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Estojo de couro café com zíper e a marca TaMa em baixo-relevo.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base estojo-couro~caramelo.",
+   "arquivo": "img/produtos/estojo-couro~cafe.webp",
+   "mestre": "midia/produtos/mestre/estojo-couro~cafe.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "b352904fd99a827584dc05ab4f31993fa0a0bd3fde1126db2ae102fb7ce11ba5",
+   "bytes": 1333426,
+   "atualizado_em": "2026-10-17"
+  },
+  {
    "id": "estojo-couro~caramelo",
    "produto": "Estojo de escritório",
    "categoria": "canetas-escritorio",
@@ -1436,6 +4041,43 @@
    "altura": 1254,
    "sha256": "9145030205253e21544051beca42cec0d757f42937da6deb25c79ece64f78f8b",
    "bytes": 2075959,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "estojo-couro~preto",
+   "produto": "Estojo de escritório",
+   "categoria": "canetas-escritorio",
+   "modelo": "Estojo com zíper",
+   "cor": {
+    "nome": "Preto",
+    "hex": "#1E1E1E"
+   },
+   "material": {
+    "valor": "Couro ou sintético",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Baixo-relevo",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Estojo de couro preto com zíper e a marca TaMa em baixo-relevo.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base estojo-couro~caramelo.",
+   "arquivo": "img/produtos/estojo-couro~preto.webp",
+   "mestre": "midia/produtos/mestre/estojo-couro~preto.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "4a99dd3577266b4afc74d3cb8f692b372564d46c07840479d0f43120cdc31842",
+   "bytes": 1363174,
    "atualizado_em": "2026-10-17"
   },
   {
@@ -1631,6 +4273,43 @@
    "atualizado_em": "2026-10-17"
   },
   {
+   "id": "guarda-chuva~azul-marinho",
+   "produto": "Guarda-chuva",
+   "categoria": "acessorios",
+   "modelo": "Automático",
+   "cor": {
+    "nome": "Azul-marinho",
+    "hex": "#1E2A4A"
+   },
+   "material": {
+    "valor": "Poliéster",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Guarda-chuva automático azul-marinho com a marca TaMa em um gomo.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base guarda-chuva~preto.",
+   "arquivo": "img/produtos/guarda-chuva~azul-marinho.webp",
+   "mestre": "midia/produtos/mestre/guarda-chuva~azul-marinho.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "8a0a8462b2d361c3632817fe06debcdceb03393e334fad1657de5b98ad91da8b",
+   "bytes": 1336363,
+   "atualizado_em": "2026-10-17"
+  },
+  {
    "id": "guarda-chuva~preto",
    "produto": "Guarda-chuva",
    "categoria": "acessorios",
@@ -1665,6 +4344,191 @@
    "altura": 1254,
    "sha256": "3c66d370e85ab29952d255a083e3a5e26b40bc335c6f6da87125ea2bf9d43cb9",
    "bytes": 1720912,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "guarda-chuva~verde",
+   "produto": "Guarda-chuva",
+   "categoria": "acessorios",
+   "modelo": "Automático",
+   "cor": {
+    "nome": "Verde",
+    "hex": "#1F6B45"
+   },
+   "material": {
+    "valor": "Poliéster",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Guarda-chuva automático verde com a marca TaMa em um gomo.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base guarda-chuva~preto.",
+   "arquivo": "img/produtos/guarda-chuva~verde.webp",
+   "mestre": "midia/produtos/mestre/guarda-chuva~verde.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "5bf657c6e218e98649f0dfb28c74164fecb3af8383ac6f9f70804e15f126b956",
+   "bytes": 1273189,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "guarda-chuva~vermelho",
+   "produto": "Guarda-chuva",
+   "categoria": "acessorios",
+   "modelo": "Automático",
+   "cor": {
+    "nome": "Vermelho",
+    "hex": "#C8202F"
+   },
+   "material": {
+    "valor": "Poliéster",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Guarda-chuva automático vermelho com a marca TaMa em um gomo.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base guarda-chuva~preto.",
+   "arquivo": "img/produtos/guarda-chuva~vermelho.webp",
+   "mestre": "midia/produtos/mestre/guarda-chuva~vermelho.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "62d3d7fea3b78c12fa8da774debaf10998383e598f9ed4f7378b9360c24221a0",
+   "bytes": 1241412,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "jogo-americano-impresso~azul-marinho",
+   "produto": "Jogo americano impresso",
+   "categoria": "hotelaria-gastronomia",
+   "modelo": "Retangular, papel laminado, cantos arredondados",
+   "cor": {
+    "nome": "Azul-marinho",
+    "hex": "#1E2A4A"
+   },
+   "material": {
+    "valor": "Papel laminado",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Impressão",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Jogo americano retangular azul-marinho impresso com a marca TaMa no canto.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base jogo-americano-impresso~vermelho.",
+   "arquivo": "img/produtos/jogo-americano-impresso~azul-marinho.webp",
+   "mestre": "midia/produtos/mestre/jogo-americano-impresso~azul-marinho.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "a693eb0f1a55c83f9413a3c728cb4d7e308c38fdc3342f36e5695dfa66a31bea",
+   "bytes": 1187601,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "jogo-americano-impresso~preto",
+   "produto": "Jogo americano impresso",
+   "categoria": "hotelaria-gastronomia",
+   "modelo": "Retangular, papel laminado, cantos arredondados",
+   "cor": {
+    "nome": "Preto",
+    "hex": "#1E1E1E"
+   },
+   "material": {
+    "valor": "Papel laminado",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Impressão",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Jogo americano retangular preto impresso com a marca TaMa no canto.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base jogo-americano-impresso~vermelho.",
+   "arquivo": "img/produtos/jogo-americano-impresso~preto.webp",
+   "mestre": "midia/produtos/mestre/jogo-americano-impresso~preto.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "133f780ad0a6b91a846a63a8352f2995d4433bec0d2bfc28da35ce007d64374d",
+   "bytes": 1178769,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "jogo-americano-impresso~verde-escuro",
+   "produto": "Jogo americano impresso",
+   "categoria": "hotelaria-gastronomia",
+   "modelo": "Retangular, papel laminado, cantos arredondados",
+   "cor": {
+    "nome": "Verde-escuro",
+    "hex": "#1F4A35"
+   },
+   "material": {
+    "valor": "Papel laminado",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Impressão",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Jogo americano retangular verde-escuro impresso com a marca TaMa no canto.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base jogo-americano-impresso~vermelho.",
+   "arquivo": "img/produtos/jogo-americano-impresso~verde-escuro.webp",
+   "mestre": "midia/produtos/mestre/jogo-americano-impresso~verde-escuro.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "ee519546eae8f689be3e65320809d9f1e5eaa1364a1c45f9f026a2fa132acae7",
+   "bytes": 1213768,
    "atualizado_em": "2026-10-17"
   },
   {
@@ -1705,6 +4569,80 @@
    "atualizado_em": "2026-10-17"
   },
   {
+   "id": "jogo-americano-oval~bordo",
+   "produto": "Jogo americano oval",
+   "categoria": "hotelaria-gastronomia",
+   "modelo": "Oval costurado",
+   "cor": {
+    "nome": "Bordô",
+    "hex": "#6B1E33"
+   },
+   "material": {
+    "valor": "Sintético texturizado",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Baixo-relevo",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Jogo americano oval bordô com a marca TaMa em baixo-relevo.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base jogo-americano-oval~taupe.",
+   "arquivo": "img/produtos/jogo-americano-oval~bordo.webp",
+   "mestre": "midia/produtos/mestre/jogo-americano-oval~bordo.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "d78351863509eb51ea0531f81a3dacb2497885d968e90857691e6b5b04f9cbc1",
+   "bytes": 1647413,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "jogo-americano-oval~preto",
+   "produto": "Jogo americano oval",
+   "categoria": "hotelaria-gastronomia",
+   "modelo": "Oval costurado",
+   "cor": {
+    "nome": "Preto",
+    "hex": "#1E1E1E"
+   },
+   "material": {
+    "valor": "Sintético texturizado",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Baixo-relevo",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Jogo americano oval preto com a marca TaMa em baixo-relevo.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base jogo-americano-oval~taupe.",
+   "arquivo": "img/produtos/jogo-americano-oval~preto.webp",
+   "mestre": "midia/produtos/mestre/jogo-americano-oval~preto.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "140f96c9382b6e91c77d6f52f0f4f7ca274385f36111aa9b396213456eafe09c",
+   "bytes": 1796830,
+   "atualizado_em": "2026-10-17"
+  },
+  {
    "id": "jogo-americano-oval~taupe",
    "produto": "Jogo americano oval",
    "categoria": "hotelaria-gastronomia",
@@ -1742,6 +4680,80 @@
    "atualizado_em": "2026-10-17"
   },
   {
+   "id": "jogo-americano-oval~verde-escuro",
+   "produto": "Jogo americano oval",
+   "categoria": "hotelaria-gastronomia",
+   "modelo": "Oval costurado",
+   "cor": {
+    "nome": "Verde-escuro",
+    "hex": "#1F4A35"
+   },
+   "material": {
+    "valor": "Sintético texturizado",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Baixo-relevo",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Jogo americano oval verde-escuro com a marca TaMa em baixo-relevo.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base jogo-americano-oval~taupe.",
+   "arquivo": "img/produtos/jogo-americano-oval~verde-escuro.webp",
+   "mestre": "midia/produtos/mestre/jogo-americano-oval~verde-escuro.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "463646cf3fcf6902d254bf353282624049f33ba5119a2929f803786927d963a2",
+   "bytes": 1926252,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "jogo-americano-retangular~bordo",
+   "produto": "Jogo americano retangular",
+   "categoria": "hotelaria-gastronomia",
+   "modelo": "Retangular costurado",
+   "cor": {
+    "nome": "Bordô",
+    "hex": "#6B1E33"
+   },
+   "material": {
+    "valor": "Sintético texturizado",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Baixo-relevo",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Jogo americano retangular bordô com a marca TaMa em baixo-relevo no canto.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base jogo-americano-retangular~havana.",
+   "arquivo": "img/produtos/jogo-americano-retangular~bordo.webp",
+   "mestre": "midia/produtos/mestre/jogo-americano-retangular~bordo.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "265b40661afc0f66b5d293b1cb0793c1125a1ee07a0615d7724a02f18009585a",
+   "bytes": 1658356,
+   "atualizado_em": "2026-10-17"
+  },
+  {
    "id": "jogo-americano-retangular~havana",
    "produto": "Jogo americano retangular",
    "categoria": "hotelaria-gastronomia",
@@ -1776,6 +4788,156 @@
    "altura": 1254,
    "sha256": "43c70a2b2e9990ad4cae88676c3623a15de9e0bdae44468244a7d33f429a1515",
    "bytes": 2458783,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "jogo-americano-retangular~preto",
+   "produto": "Jogo americano retangular",
+   "categoria": "hotelaria-gastronomia",
+   "modelo": "Retangular costurado",
+   "cor": {
+    "nome": "Preto",
+    "hex": "#1E1E1E"
+   },
+   "material": {
+    "valor": "Sintético texturizado",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Baixo-relevo",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Jogo americano retangular preto com a marca TaMa em baixo-relevo no canto.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base jogo-americano-retangular~havana.",
+   "arquivo": "img/produtos/jogo-americano-retangular~preto.webp",
+   "mestre": "midia/produtos/mestre/jogo-americano-retangular~preto.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "bf2d8ad1da4fb320d9f8bbabdc4e76d62e09206d0828a12a2c86e59d6040f5b2",
+   "bytes": 1591539,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "jogo-americano-retangular~verde-escuro",
+   "produto": "Jogo americano retangular",
+   "categoria": "hotelaria-gastronomia",
+   "modelo": "Retangular costurado",
+   "cor": {
+    "nome": "Verde-escuro",
+    "hex": "#1F4A35"
+   },
+   "material": {
+    "valor": "Sintético texturizado",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Baixo-relevo",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Jogo americano retangular verde-escuro com a marca TaMa em baixo-relevo no canto.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base jogo-americano-retangular~havana.",
+   "arquivo": "img/produtos/jogo-americano-retangular~verde-escuro.webp",
+   "mestre": "midia/produtos/mestre/jogo-americano-retangular~verde-escuro.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "e82a2536a7c7b91ca102fd72dd065f5a1cb1874013984442ca755e153ced1d28",
+   "bytes": 1668703,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "moletom~azul-royal",
+   "produto": "Moletom personalizado",
+   "categoria": "vestuario",
+   "modelo": "Canguru com capuz",
+   "cor": {
+    "nome": "Azul royal",
+    "hex": "#1F4FB8"
+   },
+   "material": {
+    "valor": "Moletom",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado ou silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Moletom azul royal com capuz e a marca TaMa no peito.",
+   "uso": [
+    "home",
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base moletom~preto.",
+   "arquivo": "img/produtos/moletom~azul-royal.webp",
+   "mestre": "midia/produtos/mestre/moletom~azul-royal.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "42fe080283c5f5ab3ab658364d4d6778cc84acad9aede4e73280eddc03131efd",
+   "bytes": 1610508,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "moletom~cinza",
+   "produto": "Moletom personalizado",
+   "categoria": "vestuario",
+   "modelo": "Canguru com capuz",
+   "cor": {
+    "nome": "Cinza",
+    "hex": "#9A9A98"
+   },
+   "material": {
+    "valor": "Moletom",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado ou silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Moletom cinza com capuz e a marca TaMa no peito.",
+   "uso": [
+    "home",
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base moletom~preto.",
+   "arquivo": "img/produtos/moletom~cinza.webp",
+   "mestre": "midia/produtos/mestre/moletom~cinza.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "2d4fffcf513fbc792862c12806931fdb04455041f136b9b9fcb28fe08f6abc47",
+   "bytes": 1593997,
    "atualizado_em": "2026-10-17"
   },
   {
@@ -1818,6 +4980,155 @@
    "atualizado_em": "2026-10-17"
   },
   {
+   "id": "moletom~vermelho",
+   "produto": "Moletom personalizado",
+   "categoria": "vestuario",
+   "modelo": "Canguru com capuz",
+   "cor": {
+    "nome": "Vermelho",
+    "hex": "#C8202F"
+   },
+   "material": {
+    "valor": "Moletom",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado ou silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Moletom vermelho com capuz e a marca TaMa no peito.",
+   "uso": [
+    "home",
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base moletom~preto.",
+   "arquivo": "img/produtos/moletom~vermelho.webp",
+   "mestre": "midia/produtos/mestre/moletom~vermelho.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "d967acee02c062c19219664c916672f555b8ec9c05385483c95d6d23e4b6fa7e",
+   "bytes": 1535523,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "necessaire~azul-marinho",
+   "produto": "Nécessaire",
+   "categoria": "bolsas-embalagens",
+   "modelo": "Com alça lateral e zíper",
+   "cor": {
+    "nome": "Azul-marinho",
+    "hex": "#1E2A4A"
+   },
+   "material": {
+    "valor": "Couro ou sintético",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Baixo-relevo",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Nécessaire azul-marinho com alça lateral e a marca TaMa em baixo-relevo.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base necessaire~terracota.",
+   "arquivo": "img/produtos/necessaire~azul-marinho.webp",
+   "mestre": "midia/produtos/mestre/necessaire~azul-marinho.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "9e44603fd1242927d59e1da38231341f3b08051ce1999c8bf155c1b80660f3fb",
+   "bytes": 1375549,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "necessaire~caramelo",
+   "produto": "Nécessaire",
+   "categoria": "bolsas-embalagens",
+   "modelo": "Com alça lateral e zíper",
+   "cor": {
+    "nome": "Caramelo",
+    "hex": "#A0623A"
+   },
+   "material": {
+    "valor": "Couro ou sintético",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Baixo-relevo",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Nécessaire caramelo com alça lateral e a marca TaMa em baixo-relevo.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base necessaire~terracota.",
+   "arquivo": "img/produtos/necessaire~caramelo.webp",
+   "mestre": "midia/produtos/mestre/necessaire~caramelo.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "4b98a08404696c71bb1788201ddd644b19ce2c272d018b3d58c5ed33ba572284",
+   "bytes": 1340062,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "necessaire~preto",
+   "produto": "Nécessaire",
+   "categoria": "bolsas-embalagens",
+   "modelo": "Com alça lateral e zíper",
+   "cor": {
+    "nome": "Preto",
+    "hex": "#1E1E1E"
+   },
+   "material": {
+    "valor": "Couro ou sintético",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Baixo-relevo",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Nécessaire preto com alça lateral e a marca TaMa em baixo-relevo.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base necessaire~terracota.",
+   "arquivo": "img/produtos/necessaire~preto.webp",
+   "mestre": "midia/produtos/mestre/necessaire~preto.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "de81ab708af9dfc86bee9dae2ea908ca92f7794b9d5743b37c9fe7650e89d8e2",
+   "bytes": 1332598,
+   "atualizado_em": "2026-10-17"
+  },
+  {
    "id": "necessaire~terracota",
    "produto": "Nécessaire",
    "categoria": "bolsas-embalagens",
@@ -1857,7 +5168,7 @@
    "atualizado_em": "2026-10-17"
   },
   {
-   "id": "polo~azul-royal",
+   "id": "polo-feminina~azul-royal",
    "produto": "Polo feminina",
    "categoria": "vestuario",
    "modelo": "Piquet, modelagem feminina",
@@ -1887,12 +5198,240 @@
    "origem": "Imagem gerada com IA (ferramenta informada: Sol 6.1 Leve) em 17/10/2026, a partir da identidade TaMa. Ilustrativa: não é foto do produto final.",
    "substitui": null,
    "observacao": "",
-   "arquivo": "img/produtos/polo~azul-royal.webp",
-   "mestre": "midia/produtos/mestre/polo~azul-royal.png",
+   "arquivo": "img/produtos/polo-feminina~azul-royal.webp",
+   "mestre": "midia/produtos/mestre/polo-feminina~azul-royal.png",
    "largura": 1254,
    "altura": 1254,
    "sha256": "7529593aad7d9c0a1a11eb41f68f40927ce63b0a10850db352b147a749216e86",
    "bytes": 2972501,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "polo-feminina~branco",
+   "produto": "Polo feminina",
+   "categoria": "vestuario",
+   "modelo": "Piquet, modelagem feminina",
+   "cor": {
+    "nome": "Branco",
+    "hex": "#F7F5F0"
+   },
+   "material": {
+    "valor": "Piquet",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Polo feminina branco com a marca TaMa bordada no peito.",
+   "uso": [
+    "home",
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base polo-feminina~azul-royal.",
+   "arquivo": "img/produtos/polo-feminina~branco.webp",
+   "mestre": "midia/produtos/mestre/polo-feminina~branco.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "b1b8ec81a47b155a2d829628f62afa261347b381b1a35e6259e7066244fe36f2",
+   "bytes": 1354342,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "polo-feminina~preto",
+   "produto": "Polo feminina",
+   "categoria": "vestuario",
+   "modelo": "Piquet, modelagem feminina",
+   "cor": {
+    "nome": "Preto",
+    "hex": "#1E1E1E"
+   },
+   "material": {
+    "valor": "Piquet",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Polo feminina preto com a marca TaMa bordada no peito.",
+   "uso": [
+    "home",
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base polo-feminina~azul-royal.",
+   "arquivo": "img/produtos/polo-feminina~preto.webp",
+   "mestre": "midia/produtos/mestre/polo-feminina~preto.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "af04fdf4bd96d3811a1f6fea7b22fb28bc0ab79b7027cfb85b9fde90d653a9d4",
+   "bytes": 1623119,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "polo-feminina~vermelho",
+   "produto": "Polo feminina",
+   "categoria": "vestuario",
+   "modelo": "Piquet, modelagem feminina",
+   "cor": {
+    "nome": "Vermelho",
+    "hex": "#C8202F"
+   },
+   "material": {
+    "valor": "Piquet",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Polo feminina vermelho com a marca TaMa bordada no peito.",
+   "uso": [
+    "home",
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base polo-feminina~azul-royal.",
+   "arquivo": "img/produtos/polo-feminina~vermelho.webp",
+   "mestre": "midia/produtos/mestre/polo-feminina~vermelho.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "cf421887ab036d92886a19e1fcfe064c19a3dcebc8415cbe3ddbdb8b1acb391f",
+   "bytes": 1649465,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "polo~azul-royal",
+   "produto": "Polo masculina",
+   "categoria": "vestuario",
+   "modelo": "Piquet",
+   "cor": {
+    "nome": "Azul royal",
+    "hex": "#1F4FB8"
+   },
+   "material": {
+    "valor": "Piquet",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Polo masculina vermelha com a marca TaMa bordada no peito.",
+   "uso": [
+    "home",
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base polo~vermelho.",
+   "arquivo": "img/produtos/polo~azul-royal.webp",
+   "mestre": "midia/produtos/mestre/polo~azul-royal.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "4971e3348e0cef13620ceb97692ce9cea9b4662864648597a6a30d4a0952900a",
+   "bytes": 1536566,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "polo~branco",
+   "produto": "Polo masculina",
+   "categoria": "vestuario",
+   "modelo": "Piquet",
+   "cor": {
+    "nome": "Branco",
+    "hex": "#F7F5F0"
+   },
+   "material": {
+    "valor": "Piquet",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Polo masculina branco com a marca TaMa bordada no peito.",
+   "uso": [
+    "home",
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base polo~vermelho.",
+   "arquivo": "img/produtos/polo~branco.webp",
+   "mestre": "midia/produtos/mestre/polo~branco.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "bf4a9a3d3c1a57923eadf6a3369ff7ce327c9398a20cfa533259567b191b46a2",
+   "bytes": 1171276,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "polo~preto",
+   "produto": "Polo masculina",
+   "categoria": "vestuario",
+   "modelo": "Piquet",
+   "cor": {
+    "nome": "Preto",
+    "hex": "#1E1E1E"
+   },
+   "material": {
+    "valor": "Piquet",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Polo masculina preto com a marca TaMa bordada no peito.",
+   "uso": [
+    "home",
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base polo~vermelho.",
+   "arquivo": "img/produtos/polo~preto.webp",
+   "mestre": "midia/produtos/mestre/polo~preto.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "154ec90a088d84bc9f3d7d976c1c1938625f91a389b77930cd1f09484824c68a",
+   "bytes": 1511938,
    "atualizado_em": "2026-10-17"
   },
   {
@@ -1972,6 +5511,191 @@
    "atualizado_em": "2026-10-17"
   },
   {
+   "id": "porta-contas~bordo",
+   "produto": "Porta-contas personalizado",
+   "categoria": "hotelaria-gastronomia",
+   "modelo": "Dobrável",
+   "cor": {
+    "nome": "Bordô",
+    "hex": "#6B1E33"
+   },
+   "material": {
+    "valor": "Sintético texturizado",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Baixo-relevo",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Porta-contas dobrável bordô com a marca TaMa em baixo-relevo.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base porta-contas~azul-marinho.",
+   "arquivo": "img/produtos/porta-contas~bordo.webp",
+   "mestre": "midia/produtos/mestre/porta-contas~bordo.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "a297497a308f2e28e0edeef7bf95ea9e6f4d72046b1e3e4702b51f34c2a31223",
+   "bytes": 1863723,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "porta-contas~cafe",
+   "produto": "Porta-contas personalizado",
+   "categoria": "hotelaria-gastronomia",
+   "modelo": "Dobrável",
+   "cor": {
+    "nome": "Café",
+    "hex": "#4A2E22"
+   },
+   "material": {
+    "valor": "Sintético texturizado",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Baixo-relevo",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Porta-contas dobrável café com a marca TaMa em baixo-relevo.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base porta-contas~azul-marinho.",
+   "arquivo": "img/produtos/porta-contas~cafe.webp",
+   "mestre": "midia/produtos/mestre/porta-contas~cafe.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "30868af2e254be761cc6e6b1c8109a8b01c68616592d4c03a50dd6ca660fd8af",
+   "bytes": 1809485,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "porta-contas~preto",
+   "produto": "Porta-contas personalizado",
+   "categoria": "hotelaria-gastronomia",
+   "modelo": "Dobrável",
+   "cor": {
+    "nome": "Preto",
+    "hex": "#1E1E1E"
+   },
+   "material": {
+    "valor": "Sintético texturizado",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Baixo-relevo",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Porta-contas dobrável preto com a marca TaMa em baixo-relevo.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base porta-contas~azul-marinho.",
+   "arquivo": "img/produtos/porta-contas~preto.webp",
+   "mestre": "midia/produtos/mestre/porta-contas~preto.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "74ffe251af8accbd8096d96a3edc70814d8aca6eae6b85081adac0fe325af181",
+   "bytes": 1763715,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "porta-lapis~azul-marinho",
+   "produto": "Porta-canetas",
+   "categoria": "canetas-escritorio",
+   "modelo": "Quadrado em couro",
+   "cor": {
+    "nome": "Azul-marinho",
+    "hex": "#1E2A4A"
+   },
+   "material": {
+    "valor": "Couro ou sintético",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Baixo-relevo",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Porta-lápis quadrado em couro azul-marinho com a marca TaMa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base porta-lapis~caramelo.",
+   "arquivo": "img/produtos/porta-lapis~azul-marinho.webp",
+   "mestre": "midia/produtos/mestre/porta-lapis~azul-marinho.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "a23b7f09eaa094a64b920f4e1770c866849bbec842cde4db501263f863c436e0",
+   "bytes": 1487068,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "porta-lapis~cafe",
+   "produto": "Porta-canetas",
+   "categoria": "canetas-escritorio",
+   "modelo": "Quadrado em couro",
+   "cor": {
+    "nome": "Café",
+    "hex": "#4A2E22"
+   },
+   "material": {
+    "valor": "Couro ou sintético",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Baixo-relevo",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Porta-lápis quadrado em couro café com a marca TaMa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base porta-lapis~caramelo.",
+   "arquivo": "img/produtos/porta-lapis~cafe.webp",
+   "mestre": "midia/produtos/mestre/porta-lapis~cafe.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "2949d4820bc48021003d1100a89733130e0bc4bbb647f244b73d8fffe05cd367",
+   "bytes": 1378521,
+   "atualizado_em": "2026-10-17"
+  },
+  {
    "id": "porta-lapis~caramelo",
    "produto": "Porta-canetas",
    "categoria": "canetas-escritorio",
@@ -2006,6 +5730,43 @@
    "altura": 1254,
    "sha256": "e2aaea0d93e5c612413da4e8a4e3383f137dcb4a73812ddb40f0bfe386f7a18d",
    "bytes": 2185015,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "porta-lapis~preto",
+   "produto": "Porta-canetas",
+   "categoria": "canetas-escritorio",
+   "modelo": "Quadrado em couro",
+   "cor": {
+    "nome": "Preto",
+    "hex": "#1E1E1E"
+   },
+   "material": {
+    "valor": "Couro ou sintético",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Baixo-relevo",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Porta-lápis quadrado em couro preto com a marca TaMa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base porta-lapis~caramelo.",
+   "arquivo": "img/produtos/porta-lapis~preto.webp",
+   "mestre": "midia/produtos/mestre/porta-lapis~preto.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "43d8211637f46894f2b33c2b30d9a73a8c55f653b4b1b65b89646439eb52b18f",
+   "bytes": 1384892,
    "atualizado_em": "2026-10-17"
   },
   {
@@ -2081,6 +5842,117 @@
    "altura": 1254,
    "sha256": "e32fa840a78e4b60f2e8f19b942956b327cb0f7abefc4e18681f418b509fbaf4",
    "bytes": 1986606,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "sacola-presente~cru",
+   "produto": "Sacola personalizada",
+   "categoria": "bolsas-embalagens",
+   "modelo": "Sacola de presente com alça de cordão",
+   "cor": {
+    "nome": "Cru",
+    "hex": "#EDE3D0"
+   },
+   "material": {
+    "valor": "Papel",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk ou hot stamping",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Sacola de presente cru com alças de cordão e a marca TaMa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base sacola-presente~azul-royal.",
+   "arquivo": "img/produtos/sacola-presente~cru.webp",
+   "mestre": "midia/produtos/mestre/sacola-presente~cru.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "e5b9212a15fd9e77568976a7126a454bcc611e90e4c0c78e1e2e6dd3d68a327b",
+   "bytes": 1290117,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "sacola-presente~preto",
+   "produto": "Sacola personalizada",
+   "categoria": "bolsas-embalagens",
+   "modelo": "Sacola de presente com alça de cordão",
+   "cor": {
+    "nome": "Preto",
+    "hex": "#1E1E1E"
+   },
+   "material": {
+    "valor": "Papel",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk ou hot stamping",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Sacola de presente preto com alças de cordão e a marca TaMa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base sacola-presente~azul-royal.",
+   "arquivo": "img/produtos/sacola-presente~preto.webp",
+   "mestre": "midia/produtos/mestre/sacola-presente~preto.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "4f68393e91c022aa7b6986547e0d3e5a39557f6f6038039ccf21ca9788376217",
+   "bytes": 1455287,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "sacola-presente~vermelho",
+   "produto": "Sacola personalizada",
+   "categoria": "bolsas-embalagens",
+   "modelo": "Sacola de presente com alça de cordão",
+   "cor": {
+    "nome": "Vermelho",
+    "hex": "#C8202F"
+   },
+   "material": {
+    "valor": "Papel",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk ou hot stamping",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Sacola de presente vermelho com alças de cordão e a marca TaMa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base sacola-presente~azul-royal.",
+   "arquivo": "img/produtos/sacola-presente~vermelho.webp",
+   "mestre": "midia/produtos/mestre/sacola-presente~vermelho.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "ffd59e77fe91fdd31ef82b3c83ef5ab620a90d8f5b54d6b8407e5cd03e155569",
+   "bytes": 1504386,
    "atualizado_em": "2026-10-17"
   },
   {
@@ -2270,6 +6142,117 @@
    "atualizado_em": "2026-10-17"
   },
   {
+   "id": "taca-champagne-acrilico~azul-royal",
+   "produto": "Taça de champagne em acrílico",
+   "categoria": "garrafas-copos",
+   "modelo": "Flute 160 ml, acrílico",
+   "cor": {
+    "nome": "Azul royal",
+    "hex": "#1F4FB8"
+   },
+   "material": {
+    "valor": "Acrílico",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Taça de champagne em acrílico azul royal com a marca TaMa em branco.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base taca-champagne-acrilico~vermelho.",
+   "arquivo": "img/produtos/taca-champagne-acrilico~azul-royal.webp",
+   "mestre": "midia/produtos/mestre/taca-champagne-acrilico~azul-royal.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "ca2b1d60c0e4f447851a84469160e10e9b09d4e21e9ec6942fabaec35931abf5",
+   "bytes": 1093049,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "taca-champagne-acrilico~branco",
+   "produto": "Taça de champagne em acrílico",
+   "categoria": "garrafas-copos",
+   "modelo": "Flute 160 ml, acrílico",
+   "cor": {
+    "nome": "Branco",
+    "hex": "#F7F5F0"
+   },
+   "material": {
+    "valor": "Acrílico",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Taça de champagne em acrílico branco com a marca TaMa em branco.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base taca-champagne-acrilico~vermelho.",
+   "arquivo": "img/produtos/taca-champagne-acrilico~branco.webp",
+   "mestre": "midia/produtos/mestre/taca-champagne-acrilico~branco.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "ffcd7062669ac4464d6a0cc0002193f858dc5b3eac2e9d2c92ab523a3af6d8f2",
+   "bytes": 1133907,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "taca-champagne-acrilico~preto",
+   "produto": "Taça de champagne em acrílico",
+   "categoria": "garrafas-copos",
+   "modelo": "Flute 160 ml, acrílico",
+   "cor": {
+    "nome": "Preto",
+    "hex": "#1E1E1E"
+   },
+   "material": {
+    "valor": "Acrílico",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Taça de champagne em acrílico preto com a marca TaMa em branco.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base taca-champagne-acrilico~vermelho.",
+   "arquivo": "img/produtos/taca-champagne-acrilico~preto.webp",
+   "mestre": "midia/produtos/mestre/taca-champagne-acrilico~preto.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "3a1016367ea502bab02c7652177ddedcd5a19a9230d1845e35708db85f8f5e8f",
+   "bytes": 1185724,
+   "atualizado_em": "2026-10-17"
+  },
+  {
    "id": "taca-champagne-acrilico~vermelho",
    "produto": "Taça de champagne em acrílico",
    "categoria": "garrafas-copos",
@@ -2304,6 +6287,117 @@
    "altura": 1024,
    "sha256": "7ae5264c1f384b7b124d82e61a73a7dc2f0a9463d1d8d0ea2f4771bc785ec1a7",
    "bytes": 1109934,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "taca-gin-acrilico~azul-royal",
+   "produto": "Taça de gin em acrílico",
+   "categoria": "garrafas-copos",
+   "modelo": "Taça balão 600 ml, acrílico",
+   "cor": {
+    "nome": "Azul royal",
+    "hex": "#1F4FB8"
+   },
+   "material": {
+    "valor": "Acrílico",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Taça de gin em acrílico azul royal com a marca TaMa em branco no bojo.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base taca-gin-acrilico~vermelho.",
+   "arquivo": "img/produtos/taca-gin-acrilico~azul-royal.webp",
+   "mestre": "midia/produtos/mestre/taca-gin-acrilico~azul-royal.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "32c49c81ff9001c002a85dfbc65246b12c7b69cf8d5e3eed5adf9f6c8f4fa255",
+   "bytes": 1148358,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "taca-gin-acrilico~branco",
+   "produto": "Taça de gin em acrílico",
+   "categoria": "garrafas-copos",
+   "modelo": "Taça balão 600 ml, acrílico",
+   "cor": {
+    "nome": "Branco",
+    "hex": "#F7F5F0"
+   },
+   "material": {
+    "valor": "Acrílico",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Taça de gin em acrílico branco com a marca TaMa em branco no bojo.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base taca-gin-acrilico~vermelho.",
+   "arquivo": "img/produtos/taca-gin-acrilico~branco.webp",
+   "mestre": "midia/produtos/mestre/taca-gin-acrilico~branco.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "8b4e1751da6eb67bd54d04c41b75d7ad5d15eef039b965adaa0113be0bbb2ec0",
+   "bytes": 1110559,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "taca-gin-acrilico~preto",
+   "produto": "Taça de gin em acrílico",
+   "categoria": "garrafas-copos",
+   "modelo": "Taça balão 600 ml, acrílico",
+   "cor": {
+    "nome": "Preto",
+    "hex": "#1E1E1E"
+   },
+   "material": {
+    "valor": "Acrílico",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Taça de gin em acrílico preto com a marca TaMa em branco no bojo.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base taca-gin-acrilico~vermelho.",
+   "arquivo": "img/produtos/taca-gin-acrilico~preto.webp",
+   "mestre": "midia/produtos/mestre/taca-gin-acrilico~preto.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "9d1b18b295d65545faecf5ee4542ab9a696f92218246897af9342146d998fbc5",
+   "bytes": 1194968,
    "atualizado_em": "2026-10-17"
   },
   {
@@ -2344,6 +6438,43 @@
    "atualizado_em": "2026-10-17"
   },
   {
+   "id": "taca-vinho-acrilico~azul-royal",
+   "produto": "Taça de vinho em acrílico",
+   "categoria": "garrafas-copos",
+   "modelo": "Taça 400 ml, acrílico",
+   "cor": {
+    "nome": "Azul royal",
+    "hex": "#1F4FB8"
+   },
+   "material": {
+    "valor": "Acrílico",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Taça de vinho em acrílico azul royal com a marca TaMa em branco.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base taca-vinho-acrilico~bordo.",
+   "arquivo": "img/produtos/taca-vinho-acrilico~azul-royal.webp",
+   "mestre": "midia/produtos/mestre/taca-vinho-acrilico~azul-royal.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "1688284ff9f48e522a7d59c8522b7b66b1fb8fa315d367b36203706d89c4ada0",
+   "bytes": 1191049,
+   "atualizado_em": "2026-10-17"
+  },
+  {
    "id": "taca-vinho-acrilico~bordo",
    "produto": "Taça de vinho em acrílico",
    "categoria": "garrafas-copos",
@@ -2378,6 +6509,117 @@
    "altura": 1024,
    "sha256": "a0b3cdbfa450f8898f42ede3905f21d35b99ef03051f9d25b385b5879b50f347",
    "bytes": 1171115,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "taca-vinho-acrilico~branco",
+   "produto": "Taça de vinho em acrílico",
+   "categoria": "garrafas-copos",
+   "modelo": "Taça 400 ml, acrílico",
+   "cor": {
+    "nome": "Branco",
+    "hex": "#F7F5F0"
+   },
+   "material": {
+    "valor": "Acrílico",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Taça de vinho em acrílico branco com a marca TaMa em branco.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base taca-vinho-acrilico~bordo.",
+   "arquivo": "img/produtos/taca-vinho-acrilico~branco.webp",
+   "mestre": "midia/produtos/mestre/taca-vinho-acrilico~branco.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "56e1d9e1b2b6a1e4817f091b70ac9a29a700ade6008f359fa43d1080900a330d",
+   "bytes": 1090123,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "taca-vinho-acrilico~preto",
+   "produto": "Taça de vinho em acrílico",
+   "categoria": "garrafas-copos",
+   "modelo": "Taça 400 ml, acrílico",
+   "cor": {
+    "nome": "Preto",
+    "hex": "#1E1E1E"
+   },
+   "material": {
+    "valor": "Acrílico",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Taça de vinho em acrílico preto com a marca TaMa em branco.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base taca-vinho-acrilico~bordo.",
+   "arquivo": "img/produtos/taca-vinho-acrilico~preto.webp",
+   "mestre": "midia/produtos/mestre/taca-vinho-acrilico~preto.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "2df1ada56d3dad56901609120a64adb57eaff9e688cb17cf7fa0437e986666e9",
+   "bytes": 1220845,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "vela~cafe",
+   "produto": "Vela",
+   "categoria": "casa-bem-estar",
+   "modelo": "Vidro com cinta de couro e pavio de madeira",
+   "cor": {
+    "nome": "Café",
+    "hex": "#4A2E22"
+   },
+   "material": {
+    "valor": "Vidro e couro",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Baixo-relevo na cinta",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Vela em vidro com cinta de couro café e a marca TaMa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base vela~couro.",
+   "arquivo": "img/produtos/vela~cafe.webp",
+   "mestre": "midia/produtos/mestre/vela~cafe.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "3f1c0add1e0a02edc5344fe47cc0b05cfb4066c58a732d8da0f79b6b897fd1a8",
+   "bytes": 1328366,
    "atualizado_em": "2026-10-17"
   },
   {
@@ -2417,6 +6659,43 @@
    "altura": 1254,
    "sha256": "4beb3f418ba11f595df13ac8fa212154467be453335df00d2a5fc3ca3d7ec87a",
    "bytes": 1886046,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "vela~preto",
+   "produto": "Vela",
+   "categoria": "casa-bem-estar",
+   "modelo": "Vidro com cinta de couro e pavio de madeira",
+   "cor": {
+    "nome": "Preto",
+    "hex": "#1E1E1E"
+   },
+   "material": {
+    "valor": "Vidro e couro",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Baixo-relevo na cinta",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Vela em vidro com cinta de couro preto e a marca TaMa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base vela~couro.",
+   "arquivo": "img/produtos/vela~preto.webp",
+   "mestre": "midia/produtos/mestre/vela~preto.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "805980073909763c85d1f7388c75edc39406ad74a12b6b2055f575250d8624b5",
+   "bytes": 1328921,
    "atualizado_em": "2026-10-17"
   }
  ]

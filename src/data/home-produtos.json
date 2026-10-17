@@ -12,11 +12,15 @@
    "cores": [
     [
      "Vermelho",
-     "#C8202F"
+     "#C8202F",
+     "polo~vermelho",
+     "polo masculina vermelha com a marca tama bordada no peito"
     ],
     [
      "Azul royal",
-     "#1F4FB8"
+     "#1F4FB8",
+     "polo~azul-royal",
+     "polo masculina vermelha com a marca tama bordada no peito"
     ],
     [
      "Azul-marinho",
@@ -24,11 +28,15 @@
     ],
     [
      "Preto",
-     "#1E1E1E"
+     "#1E1E1E",
+     "polo~preto",
+     "polo masculina preto com a marca tama bordada no peito"
     ],
     [
      "Branco",
-     "#F7F5F0"
+     "#F7F5F0",
+     "polo~branco",
+     "polo masculina branco com a marca tama bordada no peito"
     ],
     [
      "Cinza",
@@ -43,7 +51,7 @@
   {
    "slug": "linha-polo-feminina",
    "nome": "Polo feminina",
-   "img": "polo~azul-royal",
+   "img": "polo-feminina~azul-royal",
    "tipo": "confeccoes",
    "descricao": "Piquet com modelagem feminina.",
    "meta": "Bordado ou silk",
@@ -51,11 +59,15 @@
    "cores": [
     [
      "Azul royal",
-     "#1F4FB8"
+     "#1F4FB8",
+     "polo-feminina~azul-royal",
+     "polo feminina azul royal com a marca tama bordada no peito"
     ],
     [
      "Vermelho",
-     "#C8202F"
+     "#C8202F",
+     "polo-feminina~vermelho",
+     "polo feminina vermelho com a marca tama bordada no peito"
     ],
     [
      "Azul-marinho",
@@ -63,11 +75,15 @@
     ],
     [
      "Preto",
-     "#1E1E1E"
+     "#1E1E1E",
+     "polo-feminina~preto",
+     "polo feminina preto com a marca tama bordada no peito"
     ],
     [
      "Branco",
-     "#F7F5F0"
+     "#F7F5F0",
+     "polo-feminina~branco",
+     "polo feminina branco com a marca tama bordada no peito"
     ],
     [
      "Cinza",
@@ -90,11 +106,15 @@
    "cores": [
     [
      "Azul royal",
-     "#1F4FB8"
+     "#1F4FB8",
+     "camiseta~azul-royal",
+     "camiseta masculina azul royal com a marca tama em silk branco no peito"
     ],
     [
      "Vermelho",
-     "#C8202F"
+     "#C8202F",
+     "camiseta~vermelho",
+     "camiseta masculina vermelho com a marca tama em silk branco no peito"
     ],
     [
      "Azul-marinho",
@@ -102,11 +122,15 @@
     ],
     [
      "Preto",
-     "#1E1E1E"
+     "#1E1E1E",
+     "camiseta~preto",
+     "camiseta masculina vermelha com a marca tama em silk branco no peito"
     ],
     [
      "Branco",
-     "#F7F5F0"
+     "#F7F5F0",
+     "camiseta~branco",
+     "camiseta masculina vermelha com a marca tama em silk branco no peito"
     ],
     [
      "Cinza",
@@ -121,7 +145,7 @@
   {
    "slug": "linha-camiseta-feminina",
    "nome": "Camiseta feminina",
-   "img": "camiseta~vermelho",
+   "img": "camiseta-feminina~vermelho",
    "tipo": "confeccoes",
    "descricao": "Gola careca com modelagem feminina.",
    "meta": "Silk",
@@ -129,11 +153,15 @@
    "cores": [
     [
      "Vermelho",
-     "#C8202F"
+     "#C8202F",
+     "camiseta-feminina~vermelho",
+     "camiseta feminina vermelha com a marca tama em silk branco no peito"
     ],
     [
      "Azul royal",
-     "#1F4FB8"
+     "#1F4FB8",
+     "camiseta-feminina~azul-royal",
+     "camiseta feminina vermelha com a marca tama em silk branco no peito"
     ],
     [
      "Azul-marinho",
@@ -141,11 +169,15 @@
     ],
     [
      "Preto",
-     "#1E1E1E"
+     "#1E1E1E",
+     "camiseta-feminina~preto",
+     "camiseta feminina vermelha com a marca tama em silk branco no peito"
     ],
     [
      "Branco",
-     "#F7F5F0"
+     "#F7F5F0",
+     "camiseta-feminina~branco",
+     "camiseta feminina vermelha com a marca tama em silk branco no peito"
     ],
     [
      "Cinza",
@@ -168,15 +200,21 @@
    "cores": [
     [
      "Preto",
-     "#1E1E1E"
+     "#1E1E1E",
+     "moletom~preto",
+     "moletom preto com capuz e a marca tama no peito"
     ],
     [
      "Vermelho",
-     "#C8202F"
+     "#C8202F",
+     "moletom~vermelho",
+     "moletom vermelho com capuz e a marca tama no peito"
     ],
     [
      "Azul royal",
-     "#1F4FB8"
+     "#1F4FB8",
+     "moletom~azul-royal",
+     "moletom azul royal com capuz e a marca tama no peito"
     ],
     [
      "Azul-marinho",
@@ -188,7 +226,9 @@
     ],
     [
      "Cinza",
-     "#9A9A98"
+     "#9A9A98",
+     "moletom~cinza",
+     "moletom cinza com capuz e a marca tama no peito"
     ],
     [
      "Verde",
@@ -207,19 +247,27 @@
    "cores": [
     [
      "Branco",
-     "#F7F5F0"
+     "#F7F5F0",
+     "dolma~branco",
+     "dólmã branca com botões pretos e a marca tama bordada"
     ],
     [
      "Preto",
-     "#1E1E1E"
+     "#1E1E1E",
+     "dolma~preto",
+     "dólmã branca com botões pretos e a marca tama bordada"
     ],
     [
      "Azul-marinho",
-     "#1E2A4A"
+     "#1E2A4A",
+     "dolma~azul-marinho",
+     "dólmã branca com botões pretos e a marca tama bordada"
     ],
     [
      "Jeans",
-     "#3D5A80"
+     "#3D5A80",
+     "dolma~jeans",
+     "dólmã branca com botões pretos e a marca tama bordada"
     ]
    ]
   },
@@ -293,11 +341,15 @@
     ],
     [
      "Vermelho",
-     "#C8202F"
+     "#C8202F",
+     "caderno~vermelho",
+     "caderno de capa dura vermelho com elástico e a marca tama em branco"
     ],
     [
      "Preto",
-     "#1E1E1E"
+     "#1E1E1E",
+     "caderno~preto",
+     "caderno de capa dura preto com elástico e a marca tama em branco"
     ],
     [
      "Azul-marinho",
@@ -357,11 +409,15 @@
    "cores": [
     [
      "Cru",
-     "#EDE3D0"
+     "#EDE3D0",
+     "ecobag~cru",
+     "ecobag de algodão cru com alças vermelhas e a marca tama estampada"
     ],
     [
      "Preto",
-     "#1E1E1E"
+     "#1E1E1E",
+     "ecobag~preto",
+     "ecobag de algodão preto com alças vermelhas e a marca tama estampada"
     ],
     [
      "Oliva",
@@ -425,15 +481,21 @@
    "cores": [
     [
      "Bordô",
-     "#6B1E33"
+     "#6B1E33",
+     "caixa-personalizada~bordo",
+     "caixa rígida bordô com tampa, interior creme e a marca tama em dourado"
     ],
     [
      "Preto",
-     "#1E1E1E"
+     "#1E1E1E",
+     "caixa-personalizada~preto",
+     "caixa rígida preto com tampa, interior creme e a marca tama em dourado"
     ],
     [
      "Azul-marinho",
-     "#1E2A4A"
+     "#1E2A4A",
+     "caixa-personalizada~azul-marinho",
+     "caixa rígida azul-marinho com tampa, interior creme e a marca tama em dourado"
     ],
     [
      "Verde",
@@ -441,7 +503,9 @@
     ],
     [
      "Cru",
-     "#EDE3D0"
+     "#EDE3D0",
+     "caixa-personalizada~cru",
+     "caixa rígida cru com tampa, interior creme e a marca tama em dourado"
     ]
    ]
   }

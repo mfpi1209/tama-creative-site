@@ -1,0 +1,224 @@
+{
+ "observacao": "Paleta de cores com foto por produto do catálogo. Chave = id da foto-base (a que já existe no banco); valor = cores que o produto deve ter com foto própria. tools/gerar_cores.py gera as que faltam com tools/variacoes.py e importa no banco. Produtos ausentes aqui ficam só com a cor da foto (ex.: bambu, kraft, pouch transparente, difusor).",
+ "cores": {
+  "Vermelho": "#C8202F",
+  "Azul royal": "#1F4FB8",
+  "Azul-marinho": "#1E2A4A",
+  "Preto": "#1E1E1E",
+  "Branco": "#F7F5F0",
+  "Verde": "#1F6B45",
+  "Cinza": "#9A9A98",
+  "Bordô": "#6B1E33",
+  "Vinho": "#6B1E33",
+  "Caramelo": "#A0623A",
+  "Café": "#4A2E22",
+  "Cru": "#EDE3D0",
+  "Terracota": "#B5603A",
+  "Prata": "#B8B8B5",
+  "Inox": "#B8B8B5",
+  "Havana": "#7A4A2E",
+  "Jeans": "#2F4470",
+  "Kraft": "#C4A07A",
+  "Âmbar": "#B8742A",
+  "Verde-escuro": "#1F4A35"
+ },
+ "paleta": {
+  "polo~vermelho": [
+   "Azul royal",
+   "Preto",
+   "Branco"
+  ],
+  "polo-feminina~azul-royal": [
+   "Vermelho",
+   "Preto",
+   "Branco"
+  ],
+  "camiseta~azul-royal": [
+   "Vermelho",
+   "Preto",
+   "Branco"
+  ],
+  "camiseta-feminina~vermelho": [
+   "Azul royal",
+   "Preto",
+   "Branco"
+  ],
+  "moletom~preto": [
+   "Azul royal",
+   "Vermelho",
+   "Cinza"
+  ],
+  "dolma~branco": [
+   "Preto",
+   "Azul-marinho",
+   "Jeans"
+  ],
+  "avental~jeans": [
+   "Preto",
+   "Vermelho",
+   "Cru"
+  ],
+  "caderno~azul-royal": [
+   "Vermelho",
+   "Preto",
+   "Verde"
+  ],
+  "agenda-couro~caramelo": [
+   "Café",
+   "Preto",
+   "Azul-marinho"
+  ],
+  "estojo-couro~caramelo": [
+   "Café",
+   "Preto",
+   "Azul-marinho"
+  ],
+  "porta-lapis~caramelo": [
+   "Café",
+   "Preto",
+   "Azul-marinho"
+  ],
+  "caneta-metalica~azul": [
+   "Preto",
+   "Vermelho",
+   "Prata"
+  ],
+  "caneta-grip~azul": [
+   "Preto",
+   "Vermelho",
+   "Branco"
+  ],
+  "caneta-plastica~vermelho": [
+   "Azul royal",
+   "Preto",
+   "Branco"
+  ],
+  "caneta-executiva~preto": [
+   "Azul-marinho",
+   "Bordô",
+   "Prata"
+  ],
+  "caneta-executiva-estojo~preto": [
+   "Azul-marinho",
+   "Bordô"
+  ],
+  "caneta-roller~bordo": [
+   "Preto",
+   "Azul-marinho",
+   "Prata"
+  ],
+  "caneta-touch~preto": [
+   "Azul royal",
+   "Vermelho",
+   "Prata"
+  ],
+  "caneta-giro~vermelho": [
+   "Preto",
+   "Azul royal",
+   "Prata"
+  ],
+  "caixa-personalizada~bordo": [
+   "Preto",
+   "Azul-marinho",
+   "Cru"
+  ],
+  "ecobag~cru": [
+   "Preto",
+   "Vermelho",
+   "Verde"
+  ],
+  "necessaire~terracota": [
+   "Preto",
+   "Caramelo",
+   "Azul-marinho"
+  ],
+  "sacola-presente~azul-royal": [
+   "Vermelho",
+   "Preto",
+   "Cru"
+  ],
+  "taca-gin-acrilico~vermelho": [
+   "Azul royal",
+   "Preto",
+   "Branco"
+  ],
+  "taca-champagne-acrilico~vermelho": [
+   "Azul royal",
+   "Preto",
+   "Branco"
+  ],
+  "taca-vinho-acrilico~bordo": [
+   "Azul royal",
+   "Preto",
+   "Branco"
+  ],
+  "copo-acrilico-360~terracota": [
+   "Bordô",
+   "Azul-marinho",
+   "Verde-escuro"
+  ],
+  "copo-cafe-inox~inox": [
+   "Preto",
+   "Branco"
+  ],
+  "copo-papel~preto": [
+   "Branco",
+   "Kraft"
+  ],
+  "copo-termico-vinho~azul-marinho": [
+   "Preto",
+   "Vermelho",
+   "Verde"
+  ],
+  "carteira~preto": [
+   "Café",
+   "Caramelo"
+  ],
+  "chaveiro-couro~caramelo": [
+   "Café",
+   "Preto"
+  ],
+  "chaveiro-abridor~vermelho": [
+   "Azul royal",
+   "Preto",
+   "Prata"
+  ],
+  "guarda-chuva~preto": [
+   "Azul-marinho",
+   "Vermelho",
+   "Verde"
+  ],
+  "vela~couro": [
+   "Café",
+   "Preto"
+  ],
+  "difusor~natural": [
+   "Âmbar"
+  ],
+  "cardapio~bordo": [
+   "Preto",
+   "Verde-escuro",
+   "Café"
+  ],
+  "porta-contas~azul-marinho": [
+   "Preto",
+   "Bordô",
+   "Café"
+  ],
+  "jogo-americano-retangular~havana": [
+   "Preto",
+   "Verde-escuro",
+   "Bordô"
+  ],
+  "jogo-americano-oval~taupe": [
+   "Preto",
+   "Verde-escuro",
+   "Bordô"
+  ],
+  "jogo-americano-impresso~vermelho": [
+   "Azul-marinho",
+   "Preto",
+   "Verde-escuro"
+  ]
+ }
+}

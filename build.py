@@ -252,8 +252,14 @@ def color_images(p):
     return out if len(out) > 1 else {}
 
 
+def card_colors(p):
+    """Mesma regra do catálogo no card da curadoria e dos trilhos: só as cores com foto própria (mais a primeira, a foto-base)."""
+    v = color_images(p)
+    return [c for i, c in enumerate(p['cores']) if i == 0 or c[0] in v]
+
+
 def catalog_json():
-    data = {p['slug']: {'n': p['nome'], 'i': img_url(p['img'], 'webp', 420), 'c': p['cores'], 'v': color_images(p)} for p in PECAS}
+    data = {p['slug']: {'n': p['nome'], 'i': img_url(p['img'], 'webp', 420), 'c': card_colors(p), 'v': color_images(p)} for p in PECAS}
     data.update({it['slug']: {'n': it['nome'], 'i': None, 'c': []} for it in ALEM})
     data.update({h['slug']: {'n': h['nome'], 'i': img_url(h['img'], 'webp', 420), 'c': home_colors(h), 'v': home_variants(h)} for h in HOME_PRODS})
     data.update({c['slug']: {'n': c['nome'], 'i': img_url(c['img'], 'webp', 420), 'c': home_colors(c), 'v': home_variants(c)} for c in CATALOGO if c['slug'] not in data})
@@ -281,7 +287,7 @@ def product_card(p, sizes='(max-width: 760px) 46vw, (max-width: 1180px) 22vw, 20
   <div class="prod-info">
     {seal}<h3>{p['nome']}</h3>
     <p class="prod-desc">{p['descricao']}</p>
-    <div class="swatch-row">{swatches(p)}<span class="color-name">{p['cores'][0][0]}</span></div>
+    <div class="swatch-row">{swatches(dict(p, cores=card_colors(p)))}<span class="color-name">{p['cores'][0][0]}</span></div>
     <p class="prod-meta">{', '.join(p['materiais'])} · {', '.join(p['tecnicas'])}</p>
     <div class="prod-actions">
       <button class="pick" type="button" data-slug="{p['slug']}" aria-pressed="false"><span class="when-off">+ Selecionar</span><span class="when-on">✓ Selecionado</span><span class="visually-hidden">: {p['nome']}</span></button>

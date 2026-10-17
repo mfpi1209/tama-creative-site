@@ -14,6 +14,11 @@ const PORT = +process.env.E2E_PORT || 9335;
 let pass = 0, fail = 0;
 const ok = (cond, msg) => { if (cond) { pass++; console.log('  ✓ ' + msg); } else { fail++; console.log('  ✗ ' + msg); } };
 const sleep = ms => new Promise(r => setTimeout(r, ms));
+// toda bolinha de cor dos cards tem foto própria no JSON tama-catalog (campo v); card com uma cor só não troca a foto
+const colorsHavePhoto = (page, sel) => page.evaluate(sel => {
+  const cat = JSON.parse(document.getElementById('tama-catalog').textContent), cards = [...document.querySelectorAll(sel)];
+  return cards.length > 0 && cards.every(p => { const sw = [...p.querySelectorAll('.swatch')].map(b => b.dataset.color); const v = cat[p.dataset.slug].v || {}; return sw.length < 2 || sw.every(c => c in v); });
+}, sel);
 
 async function start() {
   const prof = fs.mkdtempSync(path.join(os.tmpdir(), 'tama-e2e-'));
@@ -105,6 +110,7 @@ try {
   await page.goto(BASE + '/brindes-corporativos-premium/', { waitUntil: 'networkidle0' });
   const visible = () => page.$$eval('#gift-grid .product, #idea-grid .idea', g => g.filter(x => !x.hidden && getComputedStyle(x).display !== 'none').length);
   ok(await visible() === 36, '36 peças sem filtro (19 com foto + 17 além do óbvio)');
+  ok(await colorsHavePhoto(page, '#gift-grid .product'), 'toda cor mostrada na curadoria tem foto própria (nenhuma bolinha sem efeito)');
   await page.click('.chip[data-filter="cat"][data-value="alem"]');
   await page.click('.chip[data-filter="occ"][data-value="fim-de-ano"]');
   const n1 = await visible();
@@ -121,7 +127,7 @@ try {
   ok(await page.$$eval('h1', h => h.length === 1 && /48 modelos/.test(h[0].textContent)), 'página do catálogo tem H1 com o total');
   ok(await catVisible() === 48 && await page.$$eval('#catalogo-grid .product img', i => i.every(x => x.alt.length > 15)), 'catálogo mostra os 48 modelos do banco, com texto alternativo');
   ok(await page.$$eval('#catalogo-grid .product[data-slug="cat-caneca"] .swatch', s => s.length === 5), 'caneca tem 5 cores com foto');
-  ok(await page.evaluate(() => { const cat = JSON.parse(document.getElementById('tama-catalog').textContent); return [...document.querySelectorAll('#catalogo-grid .product.studio')].every(p => { const sw = [...p.querySelectorAll('.swatch')].map(b => b.dataset.color); const v = cat[p.dataset.slug].v || {}; return sw.length < 2 || sw.every(c => c in v); }); }), 'toda cor mostrada no catálogo tem foto própria (nenhuma bolinha sem efeito)');
+  ok(await colorsHavePhoto(page, '#catalogo-grid .product.studio'), 'toda cor mostrada no catálogo tem foto própria (nenhuma bolinha sem efeito)');
   await page.$eval('#catalogo-grid .product[data-slug="cat-caneca"]', el => el.scrollIntoView({ block: 'center' }));
   await page.click('#catalogo-grid .product[data-slug="cat-caneca"] .swatch[data-color="Verde"]');
   ok(await page.$eval('#catalogo-grid .product[data-slug="cat-caneca"] .prod-media img', i => (i.getAttribute('srcset') || '').includes('caneca~verde')), 'trocar a cor mostra a foto da caneca verde (variação gerada)');
@@ -138,12 +144,17 @@ try {
   ok(await catVisible() === 7 && await page.$eval('[data-rail-filter="catalogo-grid"][data-value="vestuario"]', b => b.getAttribute('aria-pressed') === 'true'), '?categoria=vestuario abre o catálogo já filtrado (7 peças de vestuário)');
   await page.goto(BASE + '/brindes-corporativos/', { waitUntil: 'networkidle0' });
   ok(await page.$$eval('.studio-grid .product.studio', c => c.length === 8), 'brindes: 8 modelos em estúdio');
+  ok(await colorsHavePhoto(page, '#rail-brindes .product'), 'trilho de brindes: toda cor mostrada tem foto própria');
   await page.goto(BASE + '/kits-corporativos/', { waitUntil: 'networkidle0' });
   ok(await page.$$eval('.studio-grid .product.studio', c => c.length === 8), 'kits: 8 modelos do catálogo em estúdio');
+  ok(await colorsHavePhoto(page, '#rail-kits .product'), 'trilho de kits: toda cor mostrada tem foto própria');
   ok(await page.$$eval('#site-nav a', a => a.map(x => x.textContent.trim()).join()) === 'Catálogo,Kits,Curadoria,Confecções,Sobre,Blog', 'menu sem Marcas e sem Projetos');
   ok(await page.$$eval('a[href^="/branding-identidade-visual/"], a[href^="/projetos/"]', a => a.length === 0), 'nenhum link para branding ou projetos');
   await page.goto(BASE + '/confeccoes-personalizadas/', { waitUntil: 'networkidle0' });
   ok(await page.$$eval('.studio-grid .product.studio', c => c.length === 7) && await page.$eval('.studio-grid', g => !!g.closest('section').querySelector('a[href="/catalogo/?categoria=vestuario"]')), 'confecções: 7 peças em estúdio com link para o catálogo filtrado');
+  ok(await colorsHavePhoto(page, '#rail-conf .product'), 'trilho de confecções: toda cor mostrada tem foto própria');
+  await page.goto(BASE + '/blog/o-que-colocar-no-kit-de-boas-vindas/', { waitUntil: 'networkidle0' });
+  ok(await colorsHavePhoto(page, '#rail-post .product'), 'trilho do post do blog: toda cor mostrada tem foto própria');
   // tira só o modelo do catálogo da seleção: a seleção anterior segue para os testes do formulário
   await page.evaluate(() => localStorage.setItem('tama-selecao', JSON.stringify(JSON.parse(localStorage.getItem('tama-selecao')).filter(x => x.s !== 'cat-caneca'))));
   await page.goto(BASE + '/brindes-corporativos-premium/', { waitUntil: 'networkidle0' });

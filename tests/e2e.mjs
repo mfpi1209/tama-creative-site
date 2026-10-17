@@ -64,7 +64,24 @@ try {
   ok(await page.$$eval('#hero .slide-copy', s => s.every(x => !x.querySelector('.hero-meta'))) && await page.$$eval('.assurances li', l => l.length === 3), 'frases de confiança saem do banner e ficam na faixa abaixo do carrossel');
   ok(await page.$$eval('.home-prods .product.studio', c => c.length === 12 && c.every(x => x.querySelector('img').alt.length > 15 && x.querySelectorAll('.swatch').length >= 4)), 'destaques: 12 peças em estúdio claro, com texto alternativo e cores de referência');
   ok(await page.$$eval('.home-prods .product.studio h3', h => h.slice(0, 4).map(x => x.textContent).join('|') === 'Polo masculina|Polo feminina|Camiseta masculina|Camiseta feminina'), 'polo e camiseta aparecem em pares masculina/feminina, lado a lado');
-  ok(await page.$$eval('.home-prods .product.studio', c => [c[0], c[1], c[2], c[3]].map(x => x.querySelector('img').currentSrc.split('/').pop().split('.')[0]).join('|') === 'polo~vermelho|polo-feminina~azul-royal|camiseta~azul-royal|camiseta-feminina~vermelho'), 'a peça feminina ao lado vem em outra cor (azul royal × vermelho)');
+  ok(await page.$$eval('.home-prods .product.studio', c => [c[0], c[1], c[2], c[3]].map(x => x.querySelector('img').currentSrc.split('/').pop().split('.')[0]).join('|') === 'polo~vermelho|polo-feminina~azul-royal|camiseta~branco|camiseta-feminina~preto'), 'a peça feminina ao lado vem em outra cor (azul royal × vermelho)');
+  // nenhuma peça abre na mesma cor da vizinha (lado a lado ou logo abaixo), no computador e no celular
+  for (const w of [1440, 390]) {
+    await page.setViewport({ width: w, height: 900 });
+    const rep = await page.$$eval('.home-prods .product.studio', cards => {
+      const pos = cards.map(c => ({ r: c.getBoundingClientRect(), cor: c.querySelector('.color-name').textContent, n: c.querySelector('h3').textContent }));
+      const out = [];
+      pos.forEach((a, i) => pos.forEach((b, j) => {
+        if (j <= i) return;
+        const lado = Math.abs(a.r.top - b.r.top) < 5 && Math.abs(a.r.right - b.r.left) < 40;
+        const baixo = Math.abs(a.r.left - b.r.left) < 5 && Math.abs(a.r.bottom - b.r.top) < 40;
+        if ((lado || baixo) && a.cor === b.cor) out.push(`${a.n}/${b.n}: ${a.cor}`);
+      }));
+      return out;
+    });
+    ok(rep.length === 0, `destaques vizinhos abrem em cores diferentes em ${w} px${rep.length ? ' — ' + rep.join('; ') : ''}`);
+  }
+  await page.setViewport({ width: 1280, height: 900 });
   ok(await page.$eval('.home-prods .section-head a.link', a => a.getAttribute('href') === '/catalogo/' && /Acessar o catálogo completo/.test(a.textContent)), 'destaques levam ao catálogo completo');
   await page.$eval('.product.studio[data-slug="linha-polo"]', el => el.scrollIntoView({ block: 'center' }));
   await page.click('.product.studio[data-slug="linha-polo"] .swatch[data-color="Preto"]');

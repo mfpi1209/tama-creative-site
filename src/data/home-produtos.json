@@ -110,12 +110,18 @@
   {
    "slug": "linha-camiseta",
    "nome": "Camiseta masculina",
-   "img": "camiseta~azul-royal",
+   "img": "camiseta~branco",
    "tipo": "confeccoes",
    "descricao": "Gola careca, para ações, campanhas e eventos.",
    "meta": "Silk",
-   "alt": "Camiseta masculina azul royal com a marca TaMa em silk branco no peito.",
+   "alt": "Camiseta masculina branca com a marca TaMa no peito.",
    "cores": [
+    [
+     "Branco",
+     "#F7F5F0",
+     "camiseta~branco",
+     "camiseta masculina vermelha com a marca tama em silk branco no peito"
+    ],
     [
      "Azul royal",
      "#1F4FB8",
@@ -141,12 +147,6 @@
      "camiseta masculina vermelha com a marca tama em silk branco no peito"
     ],
     [
-     "Branco",
-     "#F7F5F0",
-     "camiseta~branco",
-     "camiseta masculina vermelha com a marca tama em silk branco no peito"
-    ],
-    [
      "Cinza",
      "#9A9A98",
      "camiseta~cinza",
@@ -163,12 +163,18 @@
   {
    "slug": "linha-camiseta-feminina",
    "nome": "Camiseta feminina",
-   "img": "camiseta-feminina~vermelho",
+   "img": "camiseta-feminina~preto",
    "tipo": "confeccoes",
    "descricao": "Gola careca com modelagem feminina.",
    "meta": "Silk",
-   "alt": "Camiseta feminina vermelha com a marca TaMa em silk branco no peito.",
+   "alt": "Camiseta feminina preta com a marca TaMa em silk branco no peito.",
    "cores": [
+    [
+     "Preto",
+     "#1E1E1E",
+     "camiseta-feminina~preto",
+     "camiseta feminina vermelha com a marca tama em silk branco no peito"
+    ],
     [
      "Vermelho",
      "#C8202F",
@@ -185,12 +191,6 @@
      "Azul-marinho",
      "#1E2A4A",
      "camiseta-feminina~azul-marinho",
-     "camiseta feminina vermelha com a marca tama em silk branco no peito"
-    ],
-    [
-     "Preto",
-     "#1E1E1E",
-     "camiseta-feminina~preto",
      "camiseta feminina vermelha com a marca tama em silk branco no peito"
     ],
     [
@@ -216,12 +216,18 @@
   {
    "slug": "linha-moletom",
    "nome": "Moletom personalizado",
-   "img": "moletom~preto",
+   "img": "moletom~cinza",
    "tipo": "confeccoes",
    "descricao": "Conforto com identidade para equipes e presentes.",
    "meta": "Bordado ou silk",
-   "alt": "Moletom preto com capuz e a marca TaMa no peito.",
+   "alt": "Moletom cinza com capuz e a marca TaMa no peito.",
    "cores": [
+    [
+     "Cinza",
+     "#9A9A98",
+     "moletom~cinza",
+     "moletom cinza com capuz e a marca tama no peito"
+    ],
     [
      "Preto",
      "#1E1E1E",
@@ -251,12 +257,6 @@
      "#F7F5F0",
      "moletom~branco",
      "moletom branco com capuz e a marca tama no peito"
-    ],
-    [
-     "Cinza",
-     "#9A9A98",
-     "moletom~cinza",
-     "moletom cinza com capuz e a marca tama no peito"
     ],
     [
      "Verde",

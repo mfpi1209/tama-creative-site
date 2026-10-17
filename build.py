@@ -826,7 +826,7 @@ def hero_carousel(slides=None, label='Destaques da TaMa Creative', assurances=Tr
     # slide (creme, sálvia, rosé, linho); o texto fica numa coluna própria, sem encostar nos produtos. No celular o texto
     # vem acima da foto. frame: enquadramento da foto (--fx no computador, --fx-m no celular) e largura (--pw).
     slides = slides or [
-        ('tone-cream', 'hero-v3-brindes', '--fx:100%;--fx-m:92%', 'Ecobag cru, guarda-chuva preto, chaveiro de couro e garrafa vermelha com a marca TaMa.', 'Brindes corporativos', 'Sua marca, presente no <em>dia a dia</em>.',
+        ('tone-cream', 'hero-brindes', '--fx:100%;--fx-m:96%', 'Ecobag de algodão cru com alças de couro bordô, squeeze bordô com tampa dourada, agenda com caneta dourada e power bank preto com a marca TaMa.', 'Brindes corporativos', 'Sua marca, presente no <em>dia a dia</em>.',
          'Peças personalizadas para acompanhar pessoas e criar conexões.',
          cta_link('Solicitar proposta', track_label='hero-1') + '<a class="btn btn-line" href="/brindes-corporativos-premium/">Explorar produtos ' + ARROW + '</a>'),
         ('tone-sage', 'hero-v3-confeccoes', '--fx:72%;--fx-m:72%', 'Polo vermelha, moletom azul royal e camiseta branca com a marca TaMa.', 'Confecções personalizadas', 'Identidade que <em>veste</em> sua equipe.',
@@ -873,7 +873,7 @@ def page_home():
         'path': '/', 'title': 'TaMa Creative | Brindes corporativos premium, kits e confecções',
         'og_title': 'TaMa Creative · Presentes que fortalecem marcas',
         'description': 'Estúdio criativo que transforma a identidade da sua empresa em brindes corporativos premium, kits e uniformes. Solicite uma proposta.',
-        'preload': preload_image('hero-v3-brindes', '(max-width: 760px) 200vw, (max-width: 1100px) 140vw, 100vw'),
+        'preload': preload_image('hero-brindes', '(max-width: 760px) 200vw, (max-width: 1100px) 140vw, 100vw'),
         'body': hero_carousel() + f'''
 <section class="services" aria-label="Frentes da TaMa">
   <div class="wrap service-grid">

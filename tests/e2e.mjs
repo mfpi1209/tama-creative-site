@@ -229,6 +229,12 @@ try {
   ok(['publish_mode: editorial_workflow', 'folder: src/blog', 'media_folder: img/blog', 'name: github'].every(s => cfg.includes(s)), 'config do editor: GitHub, fluxo editorial, pasta do blog e mídia em img/blog');
   ok(['value: fim-de-ano', 'value: bandeja-em-couro', "pattern:"].every(s => cfg.includes(s)) && !cfg.includes('heading-one'), 'editor só oferece temas e peças válidos, com limites de SEO e sem H1 no texto');
   ok(!sitemap.includes('/admin/'), 'editor fora do sitemap');
+  ok(['name: pautas', 'folder: src/pautas', 'name: revisar_em'].every(s => cfg.includes(s)), 'editor com a coleção de pautas e a data de revisão do artigo');
+  const painel = await (await fetch(BASE + '/admin/painel/')).text();
+  const painelDados = await (await fetch(BASE + '/admin/painel/site.json')).json();
+  ok(admHtml.includes('href="/admin/painel/"') && painel.includes('noindex') && !painel.includes('palavra_chave'), 'Painel de SEO ligado ao editor, com noindex e sem dados na página');
+  ok(painelDados.paginas.length >= 8 && painelDados.temas['fim-de-ano'] && !JSON.stringify(painelDados).includes('src/pautas'), 'dados públicos do painel: só páginas do site e opções, sem pautas');
+  ok((await fetch(BASE + '/pautas/')).status === 404 && (await fetch(BASE + '/src/pautas/')).status === 404, 'pautas não são publicadas');
   await bp.close();
 } finally {
   await browser.close();

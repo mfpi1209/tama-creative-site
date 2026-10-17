@@ -12,6 +12,7 @@ Variável de ambiente BLOG_DRAFTS=1 inclui rascunhos (draft: true) e datas futur
 """
 import html
 import io
+import json
 import os
 import re
 import shutil
@@ -51,7 +52,31 @@ BRT = timezone(timedelta(hours=-3))
 FEED_PATH = '/blog/feed.xml'
 SLUG_RE = re.compile(r'^[a-z0-9]+(?:-[a-z0-9]+)*$')
 
+# Pautas (src/pautas/*.md): planejamento editorial editado em /admin/ e lido pelo painel /admin/painel/.
+# Ficam só no repositório (privado): o build valida, mas não publica nada delas.
+PAUTAS_SRC = os.path.join(ROOT, 'src', 'pautas')
+STATUS_PAUTA = {
+    'ideia': 'Ideia', 'aprovada': 'Aprovada', 'escrevendo': 'Escrevendo', 'revisao': 'Em revisão',
+    'publicada': 'Publicada', 'espera': 'Em espera', 'descartada': 'Descartada',
+}
+PRIORIDADES = {'alta': 'Alta', 'media': 'Média', 'baixa': 'Baixa'}
+INTENCOES = {'informacional': 'Informacional', 'comercial': 'Comercial', 'transacional': 'Transacional'}
+
+# Consulta principal e secundárias de cada página do site (mapa de palavras-chave de docs/SEO.md).
+# O painel compara artigos e pautas com estas consultas para apontar canibalização.
+CONSULTAS_PAGINAS = {
+    '/': ('estúdio de brindes corporativos e branding', ['brindes, kits e uniformes personalizados para empresas']),
+    '/brindes-corporativos/': ('brindes corporativos personalizados', ['brindes personalizados para empresas', 'curadoria de brindes corporativos']),
+    '/brindes-corporativos-premium/': ('brindes corporativos premium', ['ideias de brindes corporativos premium', 'presentes corporativos exclusivos', 'brindes para clientes VIP']),
+    '/kits-corporativos/': ('kit corporativo personalizado', ['kit onboarding personalizado', 'kit de boas-vindas para colaboradores', 'kit para eventos corporativos']),
+    '/confeccoes-personalizadas/': ('uniformes corporativos personalizados', ['confecção personalizada para empresas', 'camisa polo bordada para empresa']),
+    '/branding-identidade-visual/': ('criação de identidade visual para empresas', ['branding para empresas', 'identidade visual corporativa', 'manual de marca']),
+    '/sobre/': ('TaMa Creative', ['estúdio criativo trade marketing']),
+    '/solicitar-proposta/': ('orçamento de brindes corporativos', ['orçamento de kit corporativo']),
+}
+
 ARTS = []      # artigos publicados nesta build (mais recentes primeiro)
+SLUGS = set()  # todos os artigos de src/blog/, inclusive rascunhos
 ERRORS = []
 
 
@@ -249,6 +274,10 @@ def load(b):
                 _err(f'{fn}: peça {s!r} não existe em src/data/curadoria.json')
         a['relacionados'] = [re.sub(r'^\d{4}-\d{2}-\d{2}-', '', s) for s in (meta.get('relacionados') or [])]
         a['palavra_chave'] = meta.get('palavra_chave') or ''
+        a['revisar_em'] = _date(meta['revisar_em'], fn, 'revisar_em') if meta.get('revisar_em') else None
+        a['revisar_motivo'] = str(meta.get('revisar_motivo') or '')
+        if a['revisar_motivo'] and not a['revisar_em']:
+            _err(f'{fn}: revisar_motivo sem revisar_em (informe a data da próxima revisão)')
         a['draft'] = meta.get('draft') is True
         a['destaque'] = meta.get('destaque') is True
         scheduled = a['date'] > today
@@ -265,6 +294,38 @@ def load(b):
         for s in a['relacionados']:
             if s not in seen:
                 _err(f'{a["file"]}: relacionado {s!r} não existe')
+    SLUGS.clear()
+    SLUGS.update(seen)
+    load_pautas(b)
+
+
+def load_pautas(b):
+    """Valida src/pautas/*.md (só os campos com opções fixas; o resto é livre). Nada delas vai para dist/."""
+    if not os.path.isdir(PAUTAS_SRC):
+        return
+    for fname in sorted(os.listdir(PAUTAS_SRC)):
+        if not fname.endswith('.md') or fname.startswith(('_', '.')):
+            continue
+        fn = 'src/pautas/' + fname
+        meta, _ = parse_front(open(os.path.join(PAUTAS_SRC, fname), encoding='utf-8').read(), fn)
+        if not meta:
+            continue
+        for field in ('titulo', 'palavra_chave', 'status'):
+            if not meta.get(field):
+                _err(f'{fn}: campo obrigatório ausente: {field}')
+        checks = (('status', STATUS_PAUTA), ('tema', TEMAS), ('prioridade', PRIORIDADES), ('intencao', INTENCOES), ('destino', SERVICOS))
+        for field, opts in checks:
+            if meta.get(field) and meta[field] not in opts:
+                _err(f'{fn}: {field} {meta[field]!r} inválido (opções: {", ".join(opts)})')
+        if meta.get('artigo') and meta['artigo'] not in SLUGS:
+            _err(f'{fn}: artigo {meta["artigo"]!r} não existe em src/blog/')
+        if meta.get('status') == 'publicada' and not meta.get('artigo'):
+            _err(f'{fn}: pauta publicada precisa indicar o artigo')
+        if meta.get('prazo'):
+            _date(meta['prazo'], fn, 'prazo')
+        for m in meta.get('pico') or []:
+            if m not in MESES:
+                _err(f'{fn}: mês de pico {m!r} inválido (use o nome do mês em minúsculas)')
 
 
 def tema_label(key):
@@ -640,6 +701,10 @@ def cms_config(b):
         dict(date_fmt, label='Data de publicação', name='date', hint='Data futura = o artigo só aparece a partir desse dia (no próximo build).'),
         dict(date_fmt, label='Atualizado em', name='updated', required=False, default='',
              hint='Preencha só quando revisar o conteúdo de verdade (o Google mostra a data de atualização).'),
+        dict(date_fmt, label='Próxima revisão', name='revisar_em', required=False, default='',
+             hint='Opcional. Quando conferir o artigo de novo (lei, valor ou dado que pode mudar). Aparece no Painel de SEO.'),
+        {'label': 'O que revisar', 'name': 'revisar_motivo', 'widget': 'string', 'required': False,
+         'hint': 'Ex.: conferir o valor do limite de brindes (1% do subsídio do STF).'},
         {'label': 'Destaque no blog', 'name': 'destaque', 'widget': 'boolean', 'default': False, 'required': False,
          'hint': 'Coloca o artigo em destaque entre os publicados no mesmo dia.'},
         {'label': 'Tema', 'name': 'tema', 'widget': 'select', 'options': [_opt(v[0], k) for k, v in TEMAS.items()]},
@@ -695,10 +760,63 @@ def cms_config(b):
             'preview_path': 'blog/{{slug}}/', 'summary': '{{title}} · {{date}}',
             'sortable_fields': ['date', 'title'], 'view_groups': [{'label': 'Tema', 'field': 'tema'}],
             'fields': fields,
+        }, {
+            'name': 'pautas', 'label': 'Pautas', 'label_singular': 'pauta',
+            'description': 'Planejamento editorial: uma pauta por consulta de busca. Não aparece no site; o Painel de SEO (/admin/painel/) organiza o calendário e aponta conflitos.',
+            'folder': 'src/pautas', 'create': True, 'extension': 'md', 'format': 'frontmatter',
+            'identifier_field': 'titulo', 'slug': '{{slug}}', 'summary': '{{titulo}} · {{status}}',
+            'sortable_fields': ['titulo', 'prazo', 'status'], 'view_groups': [{'label': 'Status', 'field': 'status'}],
+            'fields': [
+                {'label': 'Título provisório', 'name': 'titulo', 'widget': 'string'},
+                {'label': 'Consulta-alvo (palavra-chave)', 'name': 'palavra_chave', 'widget': 'string',
+                 'hint': 'Uma consulta por artigo, como as pessoas digitam. O painel avisa se outra página ou pauta já disputa a mesma busca.'},
+                {'label': 'Consultas secundárias', 'name': 'secundarias', 'widget': 'list', 'required': False,
+                 'hint': 'Variações que o mesmo artigo pode responder. Uma por linha.'},
+                {'label': 'Status', 'name': 'status', 'widget': 'select', 'default': 'ideia',
+                 'options': [_opt(v, k) for k, v in STATUS_PAUTA.items()]},
+                {'label': 'Prioridade', 'name': 'prioridade', 'widget': 'select', 'required': False,
+                 'options': [_opt(v, k) for k, v in PRIORIDADES.items()]},
+                {'label': 'Intenção de busca', 'name': 'intencao', 'widget': 'select', 'required': False,
+                 'options': [_opt(v, k) for k, v in INTENCOES.items()],
+                 'hint': 'Informacional = quer aprender; comercial = compara opções; transacional = quer comprar ou orçar.'},
+                {'label': 'Tema', 'name': 'tema', 'widget': 'select', 'required': False,
+                 'options': [_opt(v[0], k) for k, v in TEMAS.items()]},
+                {'label': 'Página de destino do link', 'name': 'destino', 'widget': 'select', 'required': False,
+                 'options': [_opt(v.replace('Ver ', '').capitalize(), k) for k, v in SERVICOS.items()]},
+                dict(date_fmt, label='Publicar até', name='prazo', required=False, default='',
+                     hint='Para pautas sazonais, publique semanas antes do pico de busca.'),
+                {'label': 'Meses de pico de busca', 'name': 'pico', 'widget': 'select', 'multiple': True, 'required': False,
+                 'options': list(MESES), 'hint': 'Só com base em dado (Search Console, Keyword Planner ou Google Trends).'},
+                {'label': 'Precisa de fontes externas', 'name': 'precisa_fontes', 'widget': 'boolean', 'default': False, 'required': False,
+                 'hint': 'Lei, número ou estudo citado: cada fato com fonte oficial em nota.'},
+                {'label': 'Responsável', 'name': 'responsavel', 'widget': 'string', 'required': False},
+                {'label': 'Artigo', 'name': 'artigo', 'widget': 'relation', 'collection': 'blog', 'required': False,
+                 'search_fields': ['title'], 'value_field': '{{slug}}', 'display_fields': ['title'],
+                 'hint': 'Ligue a pauta ao artigo quando ele for criado.'},
+                {'label': 'Motivo da espera ou observação', 'name': 'observacao', 'widget': 'string', 'required': False},
+                {'label': 'Briefing e esboço', 'name': 'body', 'widget': 'markdown', 'required': False, 'modes': ['raw', 'rich_text'],
+                 'default': ('## Para quem\n\n\n\n## Perguntas que o artigo responde\n\n- \n\n## Esboço (Título 2)\n\n1. \n\n'
+                             '## Links internos\n\n- \n\n## Fontes a confirmar\n\n- \n'),
+                 'hint': 'Público, perguntas da busca, seções, links internos e fontes. Serve de roteiro para quem escreve.'},
+            ],
         }],
     }
     return ('# Gerado por blog.py a cada build (não editar à mão): opções vindas de TEMAS, curadoria.json e das imagens do site.\n'
             + yaml.safe_dump(cfg, allow_unicode=True, sort_keys=False, width=1000))
+
+
+def painel_dados(b):
+    """Dados públicos do Painel de SEO (/admin/painel/): opções do editor e páginas do site.
+    Artigos e pautas não entram aqui: o painel lê do repositório com o login do GitHub."""
+    titulos = {p['path']: p.get('title', '') for p in b.BUILT}
+    return {
+        'site': b.SITE, 'repo': CMS_REPO, 'tema_min': TEMA_MIN, 'meses': list(MESES),
+        'temas': {k: v[0] for k, v in TEMAS.items()},
+        'servicos': {k: v.replace('Ver ', '').capitalize() for k, v in SERVICOS.items()},
+        'status': STATUS_PAUTA, 'prioridades': PRIORIDADES, 'intencoes': INTENCOES,
+        'paginas': [{'path': path, 'titulo': titulos.get(path, path), 'consulta': c, 'secundarias': sec}
+                    for path, (c, sec) in CONSULTAS_PAGINAS.items()],
+    }
 
 
 def post_static(b):
@@ -710,5 +828,6 @@ def post_static(b):
     shutil.copy2(os.path.join(b.LOGOS, 'tama-logo-horizontal-positivo.svg'), os.path.join(out, 'logo.svg'))  # logo oficial no login
     b.write('/admin/config.yml', cms_config(b))
     b.write('/admin/preview.css', b.CSS + b.minify_css(open(BLOG_CSS, encoding='utf-8').read()))
+    b.write('/admin/painel/site.json', json.dumps(painel_dados(b), ensure_ascii=False))
     with open(os.path.join(b.DIST, '_headers'), 'a', encoding='utf-8') as f:
         f.write(f'/admin/*\n  X-Robots-Tag: noindex, nofollow\n  Cache-Control: no-cache\n  Content-Security-Policy: {ADMIN_CSP}\n')

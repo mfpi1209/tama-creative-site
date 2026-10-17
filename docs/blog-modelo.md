@@ -21,6 +21,8 @@ pecas:
 - caderno-premium
 - garrafa-termica
 relacionados: []
+# revisar_em: 2027-01-31          # opcional: próxima revisão (lei, valor ou dado que pode mudar)
+# revisar_motivo: o que conferir   # opcional; exige revisar_em
 draft: true
 ---
 

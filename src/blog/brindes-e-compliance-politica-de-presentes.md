@@ -5,6 +5,8 @@ seo_title: 'Política de brindes e presentes: limites e compliance | TaMa'
 description: Brinde, presente ou hospitalidade? O que diz a regra federal sobre valor, o que a Lei Anticorrupção exige das empresas e como montar a sua política de brindes.
 palavra_chave: política de brindes e presentes
 date: 2026-10-12
+revisar_em: 2027-01-31
+revisar_motivo: 'Conferir o valor do limite de brinde (1% do subsídio dos ministros do STF, hoje R$ 46.366,19); se mudar, atualizar texto, nota e updated'
 destaque: false
 tema: politicas
 servico: /brindes-corporativos/

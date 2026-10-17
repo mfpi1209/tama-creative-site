@@ -26,6 +26,40 @@ O editor é o Decap CMS 3.16.3, servido pelo próprio site, sem script de tercei
 
 Rascunho também pode ser marcado com a chave "Rascunho (não publicar)": ele não vai ao ar nem se for publicado.
 
+## Painel de SEO (/admin/painel/)
+
+Endereço: **https://tamacreative.netlify.app/admin/painel/**, ou o botão "Painel de SEO" no canto do editor. Usa o mesmo login do editor: entre primeiro em `/admin/`.
+
+A página não traz dados. Ela lê os artigos (`src/blog/`), as pautas (`src/pautas/`) e os rascunhos do fluxo editorial direto do repositório privado, com o token do GitHub que o editor guarda no navegador. Só vê quem tem acesso ao repositório. O build publica apenas `/admin/painel/site.json`, com as opções do editor e as consultas das páginas do site (públicas de qualquer forma).
+
+| Aba | O que mostra |
+|---|---|
+| Visão geral | Números do blog, "O que fazer agora" (revisões e prazos dos próximos 30 dias, erros que o build recusa, conflitos de palavra-chave, pautas desalinhadas com o artigo), rascunhos no fluxo editorial e o progresso de cada tema até a página própria |
+| Pautas | Quadro por status (ideia → aprovada → escrevendo → em revisão → publicada; em espera e descartadas à parte), com tema, prioridade, prazo e pico. "Começar artigo" abre um artigo novo já com título, palavra-chave, tema e serviço |
+| Calendário | Próximos 12 meses: prazos das pautas, publicações agendadas, revisões e meses de pico. Itens vencidos aparecem em "Atrasados" |
+| Palavras-chave | Todas as consultas (páginas do site, artigos e pautas) e os conflitos: mesma consulta = alto; 75% ou mais dos termos em comum = médio |
+| Auditoria | Cada artigo, inclusive rascunhos, com as checagens do painel de SEO do editor, links internos, citações por outros artigos e conflitos |
+| Revisões | Artigos publicados por data da próxima revisão |
+
+As consultas das páginas do site ficam em `CONSULTAS_PAGINAS`, no `blog.py`. Ao mudar o mapa de palavras-chave de `docs/SEO.md`, atualize as duas.
+
+### Pautas
+
+Cada pauta é um arquivo em `src/pautas/`, editado em "Pautas" no editor: título provisório, consulta-alvo, consultas secundárias, status, prioridade, intenção de busca, tema, página de destino, prazo ("Publicar até"), meses de pico, se precisa de fontes, responsável, artigo ligado, observação e um briefing (público, perguntas, esboço, links internos e fontes).
+
+- Pautas passam pelo mesmo fluxo do editor (rascunho → revisão → publicar). "Publicar" só grava no repositório: nada de pauta vai para o site.
+- Quando o artigo for criado, preencha o campo "Artigo" da pauta. Sem ele, o painel liga pela consulta-alvo e lembra de ligar.
+- Meses de pico só com dado (Search Console, Keyword Planner ou Google Trends).
+- O build confere status, tema, destino, prioridade, intenção, meses e artigo das pautas. Uma pauta inválida impede o build, como um artigo inválido.
+
+### Revisão dos artigos
+
+Os campos "Próxima revisão" (`revisar_em`) e "O que revisar" (`revisar_motivo`) marcam quando conferir de novo um artigo com lei, valor ou dado que pode mudar. Depois de revisar, atualize "Atualizado em" e marque a próxima data.
+
+### Testar o painel localmente
+
+Rode o build, sirva `dist/` e, na pasta do projeto, `npx decap-server` (porta 8081). Sem login do GitHub, o painel em `localhost` lê os arquivos por esse servidor. O fluxo editorial (pull requests) só aparece com o login do GitHub.
+
 ### Configuração única (feita pelo responsável pela conta)
 
 | Passo | Onde | O quê |
@@ -69,6 +103,8 @@ Cada artigo traz:
 | `src/blog.css` | Estilos do blog, carregados só nas páginas do blog |
 | `src/blog/*.md` | Um arquivo por artigo. O nome do arquivo é o endereço: `kit-de-boas-vindas.md` → `/blog/kit-de-boas-vindas/` |
 | `src/admin/` | Editor: `index.html`, `admin.js` (prévia, painel de SEO, bloco "Chamada para proposta") e `vendor/decap-cms-3.16.3/` |
+| `src/admin/painel/` | Painel de SEO (`/admin/painel/`), com `vendor/js-yaml-4.1.0/` para ler o front matter |
+| `src/pautas/*.md` | Pautas do planejamento editorial. Ficam só no repositório |
 | `img/blog/` | Imagens enviadas pelo editor. O build gera AVIF/WebP/JPEG como nas outras fotos |
 | `docs/blog-modelo.md` | Modelo para escrever sem o editor |
 
@@ -121,6 +157,8 @@ Em `build.py` o blog ocupa só o import, o item do menu e do rodapé, `og_type`/
 | `capa_posicao` | não | Enquadramento CSS, por exemplo `50% 40%` |
 | `pecas` | não | Slugs de `src/data/curadoria.json`: peças com foto entram na vitrine (com "+ Selecionar"); ideias "além do óbvio" entram como cards |
 | `relacionados` | não | Slugs de artigos para "Outros guias". Sem ele: mesmo tema primeiro, depois os mais recentes |
+| `revisar_em` | não | Próxima revisão (`AAAA-MM-DD`). Aparece no Painel de SEO |
+| `revisar_motivo` | não | O que conferir na revisão. Exige `revisar_em` |
 | `draft` | não | `true` = não publica |
 
 ### Recursos no texto

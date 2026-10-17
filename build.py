@@ -878,7 +878,7 @@ def page_home():
       <p>Um caderno aberto todos os dias. Um uniforme usado com orgulho. Uma caixa guardada na estante. A TaMa conecta a essência da marca às escolhas de produto, material, cor e acabamento, com a visão de Trade Marketing de quem pensa no público e na ocasião antes da peça.</p>
       <div class="actions">{cta_link('Vamos criar juntos?', track_label='editorial')}<a class="btn btn-line" href="/sobre/">Conheça a TaMa</a></div>
     </div>
-    <div class="editorial-photo">{picture('kitp-kit-completo', 'Kit completo em bordô com pasta, agenda, garrafa, caneca, guarda-chuva e acessórios com a marca TaMa.', '(max-width: 760px) 92vw, 55vw')}</div>
+    <div class="editorial-photo">{picture('editorial-kit-cores', 'Kit corporativo em cores variadas com a marca TaMa: pasta conhaque, agenda azul-petróleo, garrafa mostarda, caneca creme, caixa verde-floresta, guarda-chuva marinho, power bank rosé, carregador terracota e caderno vinho.', '(max-width: 760px) 92vw, 55vw')}</div>
   </div>
 </section>
 {process_band()}

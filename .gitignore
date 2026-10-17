@@ -6,3 +6,11 @@ __pycache__/
 *.log
 # Masters dos mockups (51 MB): ficam só neste computador; o site usa as versões web em img/marca/.
 midia/mockups/mestre/
+
+# Originais das fotos de produto (PNG, 1254 px): ficam só neste computador; o site usa img/produtos/*.webp.
+midia/produtos/mestre/
+midia/produtos/indice.html
+
+# chave da OpenAI para tools/variacoes.py: fica só neste computador
+.openai.env
+midia/produtos/geradas/

@@ -205,6 +205,8 @@ main { overflow-x: clip; }
 .rail-track { display: flex; gap: 16px; }
 .rail .product { flex: 0 0 calc((100% - 80px) / 6); scroll-snap-align: start; }
 .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 230px), 1fr)); gap: 16px; }
+/* filtros escondem cards com o atributo hidden; a regra abaixo garante que display:flex/grid não o anule */
+.product[hidden], .idea[hidden], .collection[hidden] { display: none !important; }
 .product { position: relative; min-width: 0; display: flex; flex-direction: column; background: var(--surface); border: 1px solid #EAE3DC; border-radius: var(--radius); overflow: hidden; scroll-margin-top: calc(var(--header-h) + 24px); transition: box-shadow .2s ease; }
 .product:hover { box-shadow: var(--shadow); }
 .product:target { border-color: var(--wine-2); }
@@ -576,3 +578,86 @@ body:has(.wa-float) .float-bag { bottom: calc(88px + env(safe-area-inset-bottom,
 .brand-compare figcaption { font-size: .75rem; font-weight: 600; color: var(--amber-ink); }
 .prod-seal { margin: 0 0 4px; font-size: .6875rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--amber-ink); }
 @media (max-width: 760px) { .brand-note { grid-template-columns: 1fr; } }
+
+/* Home clara (tama-home-v2): fotos de estúdio em fundo claro; o texto fica na área livre à esquerda e, no celular,
+   acima da foto, sem cobrir os produtos. Só a home usa .hero.light, .kits-home e .kit-card. */
+.hero.light { height: clamp(500px, 37vw, 640px); min-height: 0; background: #F4EFE8; color: var(--ink); }
+.hero.light .slide img { object-position: right center; }
+.hero.light .slide::after { background: linear-gradient(90deg, rgba(246, 242, 236, .95) 0%, rgba(246, 242, 236, .82) 30%, rgba(246, 242, 236, 0) 56%); }
+.hero.light .slide-copy { max-width: 620px; padding-block: 28px 76px; }
+.hero.light .eyebrow { color: var(--wine); }
+.hero.light .slide-title { color: var(--wine); font-size: clamp(2.4rem, 1.4rem + 2.8vw, 3.75rem); margin: 14px 0 16px; }
+.hero.light .slide-desc { color: var(--muted); max-width: 420px; margin-bottom: 24px; }
+.hero.light .hero-meta { margin-top: 28px; color: var(--muted); }
+.hero.light .hero-meta .arc { color: var(--wine); }
+.hero.light .dot::before { background: rgba(80, 27, 43, .22); }
+.hero.light .dot[aria-current="true"]::before { background: var(--wine); }
+.hero.light .hero-arrow, .hero.light .hero-pause { border-color: var(--line-strong); background: rgba(255, 255, 255, .78); color: var(--ink); }
+.hero.light .hero-arrow:hover, .hero.light .hero-pause:hover { background: var(--wine); border-color: var(--wine); color: #fff; }
+.hero.light .hero-caption { background: rgba(255, 255, 255, .8); color: var(--muted); }
+/* cards de serviço da home: texto à esquerda e foto à direita, sem sobreposição */
+.service-card.split { display: grid; grid-template-columns: minmax(0, 1fr) 44%; background: #F6F1EA; color: var(--ink); }
+.service-card.split::after { content: none; }
+.service-card.split picture { position: relative; inset: auto; order: 2; height: 100%; overflow: hidden; }
+.service-card.split .service-info { position: static; width: auto; align-content: start; padding: 26px 18px 22px 26px; }
+.service-card.split .service-info p { color: var(--muted); }
+/* faixa de confiança logo abaixo do carrossel */
+.assurances { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px clamp(24px, 5vw, 72px); margin: 0 auto; padding-block: 18px; list-style: none; border-bottom: 1px solid var(--line); font-size: .8125rem; color: var(--muted); }
+.assurances li { display: inline-flex; align-items: center; gap: 10px; }
+.assurances svg { width: 22px; height: 22px; flex: none; fill: none; stroke: var(--wine); stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+/* destaques de produto em estúdio claro: 4 por linha no computador, 2 no celular */
+.studio-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(14px, 1.8vw, 22px); }
+.product.studio { border-color: var(--line); }
+.product.studio:hover { box-shadow: 0 14px 34px -22px rgba(60, 30, 30, .45); }
+.product.studio .prod-media { aspect-ratio: 1 / 1; background: #F3EEE7; }
+.product.studio .prod-media:hover img { transform: scale(1.03); }
+.product.studio .prod-info { gap: 8px; padding: 16px 16px 18px; }
+.product.studio h3 { font: 400 1.25rem/1.2 var(--f-serif); letter-spacing: -.01em; }
+.product.studio .prod-desc { font-size: .8125rem; color: var(--muted); }
+.product.studio .prod-meta { font-size: .75rem; color: var(--muted); }
+.home-prods .note { margin-top: 18px; }
+.product.studio .swatch-row { display: grid; gap: 4px; justify-content: start; }
+.product.studio .swatches { flex-wrap: wrap; row-gap: 4px; }
+.product.studio .color-name::before { content: "Cor de referência: "; }
+.kit-grid { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: clamp(14px, 2vw, 24px); }
+.kit-card { grid-column: span 2; display: flex; flex-direction: column; overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius); background: #FFFDF9; }
+.kit-card.big { grid-column: span 3; }
+.kit-card picture, .kit-card img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; }
+.kit-copy { display: grid; gap: 6px; padding: 18px 20px 22px; }
+.kit-copy h3 { font-size: 1.45rem; }
+.kit-card.big .kit-copy h3 { font-size: 1.75rem; }
+.kit-copy p:not(.eyebrow) { font-size: .875rem; line-height: 1.6; color: var(--muted); }
+.kit-foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 24px; margin-top: 28px; }
+.kit-occ { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.kit-occ span { margin-right: 4px; font-size: .8125rem; color: var(--muted); }
+.kit-occ .chip { display: inline-flex; align-items: center; }
+.kits-home .note { margin-top: 18px; }
+@media (max-width: 1080px) {
+  .studio-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width: 860px) {
+  .kit-card, .kit-card.big { grid-column: span 3; }
+}
+@media (max-width: 760px) {
+  .hero.light { height: 680px; }
+  .hero.light .slide picture { inset: auto 0 0 0; height: 290px; }
+  .hero.light .slide picture img { object-position: 80% center; }
+  .hero.light .slide::after { background: linear-gradient(180deg, #F4EFE8 0, #F4EFE8 380px, rgba(244, 239, 232, 0) 410px); }
+  .hero.light .slide-inner { align-items: flex-start; }
+  .hero.light .slide-copy { padding-block: 30px 0; }
+  .hero.light .slide-title { font-size: clamp(2.1rem, 1.4rem + 3.4vw, 2.6rem); margin: 10px 0 12px; }
+  .hero.light .hero-meta { display: none; }
+  .hero.light .hero-controls { bottom: 12px; }
+  .hero.light .hero-caption { display: none; }
+}
+@media (max-width: 760px) {
+  .studio-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .product.studio .prod-info { padding: 12px 12px 14px; }
+  .product.studio h3 { font-size: 1.05rem; }
+  .service-card.split { height: auto; min-height: 180px; }
+  .assurances { justify-content: flex-start; font-size: .75rem; }
+}
+@media (max-width: 560px) {
+  .kit-grid { grid-template-columns: 1fr; }
+  .kit-card, .kit-card.big { grid-column: auto; }
+}

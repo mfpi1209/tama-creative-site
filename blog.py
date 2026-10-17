@@ -395,7 +395,7 @@ def article_page(b, a):
         if a['servico']:
             servico = f'<a class="btn btn-line" href="{a["servico"]}">{SERVICOS.get(a["servico"], "Conhecer o serviço")}</a>'
         author = f'''<div class="post-author">{b.SELO}<div class="stack" style="gap:8px"><p><strong>TaMa Creative</strong></p>
-      <p class="muted">Estúdio criativo de brindes corporativos premium, kits, confecções e branding, com visão de Trade Marketing: o público e a ocasião vêm antes da peça.</p>
+      <p class="muted">Estúdio criativo de brindes corporativos premium, kits e confecções, com visão de Trade Marketing: o público e a ocasião vêm antes da peça.</p>
       <div class="actions">{b.cta_link(tipo=a['proposta'], track_label='blog-autor-' + a['slug'])}{servico}</div></div></div>'''
         body = f'''<article class="post">
   <div class="wrap"><header class="post-head">
@@ -432,7 +432,6 @@ SERVICOS = {
     '/kits-corporativos/': 'Ver kits corporativos',
     '/brindes-corporativos-premium/': 'Ver a curadoria',
     '/confeccoes-personalizadas/': 'Ver confecções',
-    '/branding-identidade-visual/': 'Ver branding',
 }
 
 
@@ -621,7 +620,7 @@ def cms_config(b):
     pecas = ([_opt(f'{p["nome"]} (com foto)', p['slug']) for p in b.PECAS]
              + [_opt(f'{it["nome"]} (além do óbvio)', it['slug']) for it in b.ALEM])
     tipos = {'brindes': 'Brindes ou presentes', 'kits': 'Kits corporativos', 'confeccoes': 'Confecções e uniformes',
-             'branding': 'Branding e identidade', 'integrado': 'Projeto integrado'}
+             'integrado': 'Projeto integrado'}
     fields = [
         {'label': 'Título do artigo (H1)', 'name': 'title', 'widget': 'string',
          'hint': 'Responde à busca principal com naturalidade. Até 110 caracteres.',

@@ -5,8 +5,7 @@
     "casa": "Casa e ritual",
     "vestuario": "Vestuário",
     "bolsas": "Bolsas",
-    "kits": "Kits",
-    "branding": "Branding"
+    "kits": "Kits"
   },
   "categorias_alem": {
     "mesa": "Mesa e escritório",
@@ -395,7 +394,7 @@
     {
       "slug": "kit-de-papelaria",
       "nome": "Kit de papelaria",
-      "categoria": "branding",
+      "categoria": "escritorio",
       "img": "kit-papelaria",
       "descricao": "O cuidado aparece nos pequenos detalhes.",
       "materiais": [
@@ -431,7 +430,7 @@
     {
       "slug": "caixa-rigida-premium",
       "nome": "Caixa rígida premium",
-      "categoria": "branding",
+      "categoria": "kits",
       "img": "caixa-terracota",
       "descricao": "O momento de abrir faz parte da experiência.",
       "materiais": [
@@ -468,7 +467,7 @@
     {
       "slug": "cartoes-de-marca",
       "nome": "Cartões de marca",
-      "categoria": "branding",
+      "categoria": "escritorio",
       "img": "cartoes-colors",
       "descricao": "Uma linguagem visual em cada ponto de contato.",
       "materiais": [
@@ -498,7 +497,8 @@
       "ocasioes": [
         "lancamentos"
       ],
-      "selo": false
+      "selo": false,
+      "oculto": true
     },
     {
       "slug": "agenda-executiva",
@@ -757,7 +757,7 @@
     {
       "slug": "paleta-e-aplicacoes",
       "nome": "Paleta e aplicações",
-      "categoria": "branding",
+      "categoria": "escritorio",
       "img": "papelaria-cores",
       "descricao": "Da ideia à identidade que ganha forma.",
       "materiais": [
@@ -787,7 +787,8 @@
       "ocasioes": [
         "lancamentos"
       ],
-      "selo": false
+      "selo": false,
+      "oculto": true
     }
   ],
   "alem": [

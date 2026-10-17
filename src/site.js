@@ -67,7 +67,7 @@
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape' && nav && nav.classList.contains('is-open')) { setMenu(false); menuBtn.focus(); }
   });
-  var legacy = { brindes: '/brindes-corporativos/', curadoria: '/brindes-corporativos-premium/', confeccoes: '/confeccoes-personalizadas/', marcas: '/branding-identidade-visual/', sobre: '/sobre/', contato: '/solicitar-proposta/', colecoes: '/brindes-corporativos-premium/' };
+  var legacy = { brindes: '/brindes-corporativos/', curadoria: '/brindes-corporativos-premium/', confeccoes: '/confeccoes-personalizadas/', marcas: '/catalogo/', sobre: '/sobre/', contato: '/solicitar-proposta/', colecoes: '/brindes-corporativos-premium/' };
   function legacyRedirect() { var h = location.hash.replace('#', ''); if (location.pathname === '/' && legacy[h]) location.replace(legacy[h]); }
   legacyRedirect();
   window.addEventListener('hashchange', legacyRedirect);
@@ -252,6 +252,9 @@
       rail.scrollLeft = 0;
     });
   });
+  // catálogo da curadoria: ?categoria= na URL já abre filtrado (ex.: link "Ver no catálogo" das confecções)
+  var catParam = new URLSearchParams(location.search).get('categoria');
+  if (catParam) document.querySelectorAll('[data-rail-filter="catalogo-grid"]').forEach(function (c) { if (c.getAttribute('data-value') === catParam) c.click(); });
 
   /* ---------- Carrossel da abertura ---------- */
   var hero = document.getElementById('hero');

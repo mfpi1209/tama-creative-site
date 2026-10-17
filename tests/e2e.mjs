@@ -37,9 +37,9 @@ try {
   const links = await page.$$eval('a[href^="/"]', as => [...new Set(as.map(a => a.getAttribute('href').split('#')[0].split('?')[0]))]);
   const broken = [];
   // /brindes/ é outro app (catálogo de brindes em quantidade), fora deste build
-  for (const l of links.filter(l => !l.startsWith('/brindes/'))) { const r = await fetch(BASE + l); if (r.status !== 200) broken.push(l + ' ' + r.status); }
-  const brindesHref = await page.$eval('#site-nav', n => [...n.querySelectorAll('a')].map(a => [a.textContent.trim(), a.getAttribute('href')]).find(([t]) => t === 'Brindes')?.[1]);
-  ok(brindesHref === '/brindes/', `menu "Brindes" abre o catálogo /brindes/ (${brindesHref})`);
+  for (const l of links) { const r = await fetch(BASE + l); if (r.status !== 200) broken.push(l + ' ' + r.status); }
+  const catHref = await page.$eval('#site-nav', n => [...n.querySelectorAll('a')].map(a => [a.textContent.trim(), a.getAttribute('href')]).find(([t]) => t === 'Catálogo')?.[1]);
+  ok(catHref === '/catalogo/', `menu "Catálogo" abre /catalogo/ (${catHref})`);
   ok(broken.length === 0, `${links.length} links internos respondem 200${broken.length ? ' — quebrados: ' + broken.join(', ') : ''}`);
   await page.click('#menu-btn');
   ok(await page.$eval('#site-nav', n => n.classList.contains('is-open')), 'menu mobile abre');
@@ -52,20 +52,38 @@ try {
   console.log('Carrossel da abertura');
   await page.setViewport({ width: 1280, height: 900 });
   await page.goto(BASE + '/', { waitUntil: 'networkidle0' });
-  ok(await page.$$eval('h1', h => h.length) === 1, 'home tem um único H1 com 3 slides');
+  ok(await page.$$eval('h1', h => h.length) === 1 && await page.$$eval('#hero .slide', s => s.length) === 4, 'home tem um único H1 com 4 slides');
+  ok(await page.$$eval('#hero .slide .btn-line', a => a.map(x => x.getAttribute('href')).join()) === '/brindes-corporativos-premium/,/confeccoes-personalizadas/,/kits-corporativos/,/brindes-corporativos-premium/?categoria=escritorio#pecas', 'slides levam a rotas reais do site (curadoria, confecções, kits, escritório)');
+  ok(await page.$$eval('.kits-home .kit-card', k => k.length === 5 && k.filter(x => x.classList.contains('big')).length === 2 && k.every(x => x.querySelector('img').alt.length > 20)), 'kits premium: dois destaques e três menores, com texto alternativo');
+  ok(await page.$$eval('.kits-home .kit-occ a', a => a.length === 6 && a.every(x => /^\/brindes-corporativos-premium\/\?ocasiao=[a-z-]+#pecas$/.test(x.getAttribute('href')))), 'atalhos por ocasião continuam levando à curadoria filtrada');
+  ok(await page.$$eval('#hero .slide-copy', s => s.every(x => !x.querySelector('.hero-meta'))) && await page.$$eval('.assurances li', l => l.length === 3), 'frases de confiança saem do banner e ficam na faixa abaixo do carrossel');
+  ok(await page.$$eval('.home-prods .product.studio', c => c.length === 12 && c.every(x => x.querySelector('img').alt.length > 15 && x.querySelectorAll('.swatch').length >= 4)), 'destaques: 12 peças em estúdio claro, com texto alternativo e cores de referência');
+  ok(await page.$$eval('.home-prods .product.studio h3', h => h.slice(0, 4).map(x => x.textContent).join('|') === 'Polo masculina|Polo feminina|Camiseta masculina|Camiseta feminina'), 'polo e camiseta aparecem em pares masculina/feminina, lado a lado');
+  ok(await page.$$eval('.home-prods .product.studio', c => [c[0], c[1], c[2], c[3]].map(x => x.querySelector('img').currentSrc.split('/').pop().split('.')[0]).join('|') === 'polo~vermelho|polo~azul-royal|camiseta~azul-royal|camiseta~vermelho'), 'a peça feminina ao lado vem em outra cor (azul royal × vermelho)');
+  ok(await page.$eval('.home-prods .section-head a.link', a => a.getAttribute('href') === '/catalogo/' && /Acessar o catálogo completo/.test(a.textContent)), 'destaques levam ao catálogo completo');
+  await page.$eval('.product.studio[data-slug="linha-polo"]', el => el.scrollIntoView({ block: 'center' }));
+  await page.click('.product.studio[data-slug="linha-polo"] .swatch[data-color="Preto"]');
+  ok(await page.$eval('.product.studio[data-slug="linha-polo"] .color-name', n => n.textContent === 'Preto'), 'cor de referência muda só o nome da cor (a foto não é recolorida)');
+  await page.click('.pick[data-slug="linha-polo"]');
+  await page.goto(BASE + '/solicitar-proposta/', { waitUntil: 'networkidle0' });
+  ok(await page.$eval('#f-selecao', i => i.value.includes('Polo masculina (Preto)')), 'destaque selecionado chega ao pedido de proposta com a cor');
+  await page.evaluate(() => localStorage.clear());
+  await page.goto(BASE + '/', { waitUntil: 'networkidle0' });
   await page.click('[data-hero-next]');
   ok(await page.$eval('#slide-2', s => s.classList.contains('is-active') && !s.hasAttribute('aria-hidden')), 'seta avança para o slide 2');
   ok(await page.$eval('#slide-1', s => s.hasAttribute('inert')), 'slide inativo fica inerte (fora do foco)');
   ok(await page.$eval('[data-hero-pause]', b => b.getAttribute('aria-pressed') === 'true'), 'com movimento reduzido, a troca automática começa pausada');
 
   console.log('Vitrine, cores e seleção');
+  // a vitrine das 21 peças fica na curadoria; a home mostra os destaques em estúdio claro
+  await page.goto(BASE + '/brindes-corporativos-premium/', { waitUntil: 'networkidle0' });
   await page.evaluate(() => localStorage.clear());
   await page.reload({ waitUntil: 'networkidle0' });
-  await page.click('[data-rail-filter="rail-home"][data-value="bebidas"]');
-  ok(await page.$$eval('#rail-home .product', p => p.filter(x => !x.hidden).length) === 2, 'filtro Bebidas na vitrine mostra 2 peças');
-  await page.click('#rail-home .product[data-slug="garrafa-termica"] .swatch[data-color="Azul"]');
-  ok(await page.$eval('#rail-home .product[data-slug="garrafa-termica"] .color-name', e => e.textContent === 'Azul'), 'troca de cor atualiza o nome da cor');
-  await page.click('#rail-home .pick[data-slug="garrafa-termica"]');
+  const G = '#gift-grid';
+  await page.$eval(`${G} .product[data-slug="garrafa-termica"]`, el => el.scrollIntoView({ block: 'center' }));
+  await page.click(`${G} .product[data-slug="garrafa-termica"] .swatch[data-color="Azul"]`);
+  ok(await page.$eval(`${G} .product[data-slug="garrafa-termica"] .color-name`, e => e.textContent === 'Azul'), 'troca de cor atualiza o nome da cor');
+  await page.click(`${G} .pick[data-slug="garrafa-termica"]`);
   const sel = await page.evaluate(() => JSON.parse(localStorage.getItem('tama-selecao')));
   ok(sel.length === 1 && sel[0].s === 'garrafa-termica' && sel[0].c === 'Azul', 'peça entra na seleção com a cor escolhida');
   ok(await page.$eval('.site-header [data-sel-count]', e => !e.hidden && e.textContent === '1'), 'contador do cabeçalho mostra 1');
@@ -73,13 +91,11 @@ try {
   ok(await page.$eval('#drawer', d => d.open && d.textContent.includes('Garrafa térmica') && d.textContent.includes('Azul')), 'gaveta lista a peça com a cor');
   await page.keyboard.press('Escape');
   ok(!(await page.$eval('#drawer', d => d.open)), 'Esc fecha a gaveta');
-  // Depois da rolagem anterior o chip pode ficar sob o cabeçalho fixo (o clique cairia num link do menu): centraliza antes.
-  await page.$eval('[data-rail-filter="rail-home"][data-value="todas"]', el => el.scrollIntoView({ block: 'center' }));
-  await page.click('[data-rail-filter="rail-home"][data-value="todas"]');
-  await page.click('#rail-home .product[data-slug="bandeja-em-couro"] .swatch[data-color="Café"]');
-  ok(await page.$eval('#rail-home .product[data-slug="bandeja-em-couro"] .prod-media img', i => (i.getAttribute('srcset') || '').includes('bandeja-couro~cafe')), 'trocar a cor mostra a foto do produto na cor escolhida');
-  ok(await page.$eval('[data-rail-filter="rail-home"][data-value="todas"]', b => b.getAttribute('aria-pressed') === 'true'), 'filtro Todas volta a mostrar a vitrine inteira');
-  await page.click('#rail-home [data-zoom="caneca-de-ceramica"]');
+  await page.$eval(`${G} .product[data-slug="bandeja-em-couro"]`, el => el.scrollIntoView({ block: 'center' }));
+  await page.click(`${G} .product[data-slug="bandeja-em-couro"] .swatch[data-color="Café"]`);
+  ok(await page.$eval(`${G} .product[data-slug="bandeja-em-couro"] .prod-media img`, i => (i.getAttribute('srcset') || '').includes('bandeja-couro~cafe')), 'trocar a cor mostra a foto do produto na cor escolhida');
+  await page.$eval(`${G} [data-zoom="caneca-de-ceramica"]`, el => el.scrollIntoView({ block: 'center' }));
+  await page.click(`${G} [data-zoom="caneca-de-ceramica"]`);
   ok(await page.$eval('#lightbox', d => d.open && d.querySelector('#lb-title').textContent === 'Caneca de cerâmica'), 'foto ampliada abre com a peça certa');
   await page.click('#lb-pick');
   ok((await page.evaluate(() => JSON.parse(localStorage.getItem('tama-selecao')).length)) === 2, 'selecionar pela foto ampliada adiciona a peça');
@@ -87,8 +103,8 @@ try {
 
   console.log('Curadoria completa');
   await page.goto(BASE + '/brindes-corporativos-premium/', { waitUntil: 'networkidle0' });
-  const visible = () => page.$$eval('#gift-grid .product, #idea-grid .idea', g => g.filter(x => !x.hidden).length);
-  ok(await visible() === 38, '38 peças sem filtro (21 com foto + 17 além do óbvio)');
+  const visible = () => page.$$eval('#gift-grid .product, #idea-grid .idea', g => g.filter(x => !x.hidden && getComputedStyle(x).display !== 'none').length);
+  ok(await visible() === 36, '36 peças sem filtro (19 com foto + 17 além do óbvio)');
   await page.click('.chip[data-filter="cat"][data-value="alem"]');
   await page.click('.chip[data-filter="occ"][data-value="fim-de-ano"]');
   const n1 = await visible();
@@ -97,7 +113,39 @@ try {
   await page.click('.chip[data-filter="cat"][data-value="bebidas"]');
   ok(await page.$eval('#gift-empty', e => !e.hidden), 'combinação sem resultados mostra estado vazio');
   await page.click('#gift-reset');
-  ok(await visible() === 38, 'limpar filtros volta às 38 peças');
+  ok(await visible() === 36, 'limpar filtros volta às 36 peças');
+  // catálogo em estúdio (banco de imagens de produto): página própria, chamada a partir da curadoria
+  ok(await page.$eval('a.btn[href="/catalogo/"]', a => /Acessar o catálogo completo/.test(a.textContent)), 'curadoria chama o catálogo completo');
+  await page.goto(BASE + '/catalogo/', { waitUntil: 'networkidle0' });
+  const catVisible = () => page.$$eval('#catalogo-grid .product', g => g.filter(x => !x.hidden && getComputedStyle(x).display !== 'none').length);   // conta o que está mesmo na tela
+  ok(await page.$$eval('h1', h => h.length === 1 && /48 modelos/.test(h[0].textContent)), 'página do catálogo tem H1 com o total');
+  ok(await catVisible() === 48 && await page.$$eval('#catalogo-grid .product img', i => i.every(x => x.alt.length > 15)), 'catálogo mostra os 48 modelos do banco, com texto alternativo');
+  ok(await page.$$eval('#catalogo-grid .product[data-slug="cat-caneca"] .swatch', s => s.length === 5), 'caneca tem 5 cores com foto');
+  await page.$eval('#catalogo-grid .product[data-slug="cat-caneca"]', el => el.scrollIntoView({ block: 'center' }));
+  await page.click('#catalogo-grid .product[data-slug="cat-caneca"] .swatch[data-color="Verde"]');
+  ok(await page.$eval('#catalogo-grid .product[data-slug="cat-caneca"] .prod-media img', i => (i.getAttribute('srcset') || '').includes('caneca~verde')), 'trocar a cor mostra a foto da caneca verde (variação gerada)');
+  await page.click('#catalogo-grid .product[data-slug="cat-caneca"] .swatch[data-color="Branco"]');
+  ok(await page.$$eval('#catalogo-grid .prod-meta', m => m.every(x => x.textContent === 'Material e técnica sob consulta')), 'material e técnica a confirmar não saem como especificação');
+  await page.$eval('[data-rail-filter="catalogo-grid"][data-value="hotelaria-gastronomia"]', el => el.scrollIntoView({ block: 'center' }));
+  await page.click('[data-rail-filter="catalogo-grid"][data-value="hotelaria-gastronomia"]');
+  ok(await catVisible() === 5, 'filtro Hotelaria e gastronomia mostra 5 modelos');
+  await page.click('[data-rail-filter="catalogo-grid"][data-value="todas"]');
+  await page.$eval('#catalogo-grid .product[data-slug="cat-caneca"]', el => el.scrollIntoView({ block: 'center' }));
+  await page.click('#catalogo-grid .pick[data-slug="cat-caneca"]');
+  ok((await page.evaluate(() => JSON.parse(localStorage.getItem('tama-selecao')))).some(x => x.s === 'cat-caneca' && x.c === 'Branco'), 'modelo do catálogo entra na seleção com a cor da foto');
+  await page.goto(BASE + '/catalogo/?categoria=vestuario', { waitUntil: 'networkidle0' });
+  ok(await catVisible() === 7 && await page.$eval('[data-rail-filter="catalogo-grid"][data-value="vestuario"]', b => b.getAttribute('aria-pressed') === 'true'), '?categoria=vestuario abre o catálogo já filtrado (7 peças de vestuário)');
+  await page.goto(BASE + '/brindes-corporativos/', { waitUntil: 'networkidle0' });
+  ok(await page.$$eval('.studio-grid .product.studio', c => c.length === 8), 'brindes: 8 modelos em estúdio');
+  await page.goto(BASE + '/kits-corporativos/', { waitUntil: 'networkidle0' });
+  ok(await page.$$eval('.studio-grid .product.studio', c => c.length === 8), 'kits: 8 modelos do catálogo em estúdio');
+  ok(await page.$$eval('#site-nav a', a => a.map(x => x.textContent.trim()).join()) === 'Catálogo,Kits,Curadoria,Confecções,Sobre,Blog', 'menu sem Marcas e sem Projetos');
+  ok(await page.$$eval('a[href^="/branding-identidade-visual/"], a[href^="/projetos/"]', a => a.length === 0), 'nenhum link para branding ou projetos');
+  await page.goto(BASE + '/confeccoes-personalizadas/', { waitUntil: 'networkidle0' });
+  ok(await page.$$eval('.studio-grid .product.studio', c => c.length === 7) && await page.$eval('.studio-grid', g => !!g.closest('section').querySelector('a[href="/catalogo/?categoria=vestuario"]')), 'confecções: 7 peças em estúdio com link para o catálogo filtrado');
+  // tira só o modelo do catálogo da seleção: a seleção anterior segue para os testes do formulário
+  await page.evaluate(() => localStorage.setItem('tama-selecao', JSON.stringify(JSON.parse(localStorage.getItem('tama-selecao')).filter(x => x.s !== 'cat-caneca'))));
+  await page.goto(BASE + '/brindes-corporativos-premium/', { waitUntil: 'networkidle0' });
   await page.goto(BASE + '/brindes-corporativos-premium/?ocasiao=eventos#pecas', { waitUntil: 'networkidle0' });
   const n2 = await visible();
   ok(n2 === 16, `link de coleção (?ocasiao=eventos) já abre filtrado (${n2})`);
@@ -122,8 +170,9 @@ try {
   ok(await page.$eval('#picked-list', l => l.children.length === 3), 'as 3 peças selecionadas aparecem no formulário');
   const selecao = await page.$eval('#f-selecao', i => i.value);
   ok(selecao.includes('Garrafa térmica (Azul)') && selecao.includes('Baralho exclusivo'), 'campo enviado leva peças e cores');
-  await page.click('input[name="tipo"][value="branding"]');
-  ok(await page.$eval('#f-qtd', i => i.disabled && i.closest('[data-show-for]').hidden), 'branding esconde quantidade e data');
+  ok(await page.$$eval('input[name="tipo"]', l => l.map(i => i.value).join()) === 'brindes,kits,confeccoes,integrado', 'formulário sem o tipo branding');
+  await page.click('input[name="tipo"][value="kits"]');
+  ok(await page.$eval('#f-qtd', i => !i.disabled && !i.closest('[data-show-for]').hidden), 'kits mostra quantidade e data');
   await page.click('input[name="tipo"][value="kits"]');
   await page.click('#submit-btn');
   const errs = await page.$$eval('.field-error', e => e.filter(x => x.textContent.trim()).length);

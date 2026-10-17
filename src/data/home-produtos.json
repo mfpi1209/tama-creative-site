@@ -1,0 +1,449 @@
+{
+ "observacao": "Destaques da home, na ordem do mockup aprovado, com as peças de vestuário separadas em masculina e feminina. Fotos de estúdio em img/produtos/ (uma peça por foto, fundo claro, 1254 px). Em cores: [nome, hex, foto (opcional), descrição da foto (opcional)]. A primeira cor é a da foto principal (img). Cor com foto própria troca a imagem; sem foto, muda só a referência (a foto não é recolorida). Cores são referências, sem declaração de estoque; modelos, materiais e técnicas são confirmados na proposta.",
+ "produtos": [
+  {
+   "slug": "linha-polo",
+   "nome": "Polo masculina",
+   "img": "polo~vermelho",
+   "tipo": "confeccoes",
+   "descricao": "Piquet, para equipes, eventos e uniformes do dia a dia.",
+   "meta": "Bordado ou silk",
+   "alt": "Polo masculina vermelha com a marca TaMa bordada no peito.",
+   "cores": [
+    [
+     "Vermelho",
+     "#C8202F"
+    ],
+    [
+     "Azul royal",
+     "#1F4FB8"
+    ],
+    [
+     "Azul-marinho",
+     "#1E2A4A"
+    ],
+    [
+     "Preto",
+     "#1E1E1E"
+    ],
+    [
+     "Branco",
+     "#F7F5F0"
+    ],
+    [
+     "Cinza",
+     "#9A9A98"
+    ],
+    [
+     "Verde",
+     "#1F6B45"
+    ]
+   ]
+  },
+  {
+   "slug": "linha-polo-feminina",
+   "nome": "Polo feminina",
+   "img": "polo~azul-royal",
+   "tipo": "confeccoes",
+   "descricao": "Piquet com modelagem feminina.",
+   "meta": "Bordado ou silk",
+   "alt": "Polo feminina azul royal com a marca TaMa bordada no peito.",
+   "cores": [
+    [
+     "Azul royal",
+     "#1F4FB8"
+    ],
+    [
+     "Vermelho",
+     "#C8202F"
+    ],
+    [
+     "Azul-marinho",
+     "#1E2A4A"
+    ],
+    [
+     "Preto",
+     "#1E1E1E"
+    ],
+    [
+     "Branco",
+     "#F7F5F0"
+    ],
+    [
+     "Cinza",
+     "#9A9A98"
+    ],
+    [
+     "Verde",
+     "#1F6B45"
+    ]
+   ]
+  },
+  {
+   "slug": "linha-camiseta",
+   "nome": "Camiseta masculina",
+   "img": "camiseta~azul-royal",
+   "tipo": "confeccoes",
+   "descricao": "Gola careca, para ações, campanhas e eventos.",
+   "meta": "Silk",
+   "alt": "Camiseta masculina azul royal com a marca TaMa em silk branco no peito.",
+   "cores": [
+    [
+     "Azul royal",
+     "#1F4FB8"
+    ],
+    [
+     "Vermelho",
+     "#C8202F"
+    ],
+    [
+     "Azul-marinho",
+     "#1E2A4A"
+    ],
+    [
+     "Preto",
+     "#1E1E1E"
+    ],
+    [
+     "Branco",
+     "#F7F5F0"
+    ],
+    [
+     "Cinza",
+     "#9A9A98"
+    ],
+    [
+     "Verde",
+     "#1F6B45"
+    ]
+   ]
+  },
+  {
+   "slug": "linha-camiseta-feminina",
+   "nome": "Camiseta feminina",
+   "img": "camiseta~vermelho",
+   "tipo": "confeccoes",
+   "descricao": "Gola careca com modelagem feminina.",
+   "meta": "Silk",
+   "alt": "Camiseta feminina vermelha com a marca TaMa em silk branco no peito.",
+   "cores": [
+    [
+     "Vermelho",
+     "#C8202F"
+    ],
+    [
+     "Azul royal",
+     "#1F4FB8"
+    ],
+    [
+     "Azul-marinho",
+     "#1E2A4A"
+    ],
+    [
+     "Preto",
+     "#1E1E1E"
+    ],
+    [
+     "Branco",
+     "#F7F5F0"
+    ],
+    [
+     "Cinza",
+     "#9A9A98"
+    ],
+    [
+     "Verde",
+     "#1F6B45"
+    ]
+   ]
+  },
+  {
+   "slug": "linha-moletom",
+   "nome": "Moletom personalizado",
+   "img": "moletom~preto",
+   "tipo": "confeccoes",
+   "descricao": "Conforto com identidade para equipes e presentes.",
+   "meta": "Bordado ou silk",
+   "alt": "Moletom preto com capuz e a marca TaMa no peito.",
+   "cores": [
+    [
+     "Preto",
+     "#1E1E1E"
+    ],
+    [
+     "Vermelho",
+     "#C8202F"
+    ],
+    [
+     "Azul royal",
+     "#1F4FB8"
+    ],
+    [
+     "Azul-marinho",
+     "#1E2A4A"
+    ],
+    [
+     "Branco",
+     "#F7F5F0"
+    ],
+    [
+     "Cinza",
+     "#9A9A98"
+    ],
+    [
+     "Verde",
+     "#1F6B45"
+    ]
+   ]
+  },
+  {
+   "slug": "linha-dolma",
+   "nome": "Dólmã profissional",
+   "img": "dolma~branco",
+   "tipo": "confeccoes",
+   "descricao": "Para gastronomia e hotelaria, em cores e jeans.",
+   "meta": "Bordado",
+   "alt": "Dólmã branca com botões pretos e a marca TaMa bordada.",
+   "cores": [
+    [
+     "Branco",
+     "#F7F5F0"
+    ],
+    [
+     "Preto",
+     "#1E1E1E"
+    ],
+    [
+     "Azul-marinho",
+     "#1E2A4A"
+    ],
+    [
+     "Jeans",
+     "#3D5A80"
+    ]
+   ]
+  },
+  {
+   "slug": "linha-canetas",
+   "nome": "Canetas",
+   "img": "caneta-executiva-estojo~preto",
+   "tipo": "brindes",
+   "descricao": "Dez modelos, do básico ao executivo. Toque na cor para ver outros modelos.",
+   "meta": "Gravação, silk ou tampografia",
+   "alt": "Caneta executiva preta em estojo forrado com a marca TaMa.",
+   "cores": [
+    [
+     "Preto",
+     "#1E1E1E",
+     "caneta-executiva-estojo~preto",
+     "caneta executiva preta em estojo"
+    ],
+    [
+     "Vinho",
+     "#6B1E33",
+     "caneta-roller~bordo",
+     "caneta executiva roller bordô"
+    ],
+    [
+     "Azul",
+     "#1F4FB8",
+     "caneta-metalica~azul",
+     "caneta metálica azul"
+    ],
+    [
+     "Vermelho",
+     "#C8202F",
+     "caneta-giro~vermelho",
+     "caneta metálica de giro vermelha"
+    ],
+    [
+     "Bambu",
+     "#C9A86A",
+     "caneta-bambu~natural",
+     "caneta de bambu com gravação"
+    ],
+    [
+     "Kraft",
+     "#C4A07A",
+     "caneta-kraft~natural",
+     "caneta ecológica em kraft"
+    ]
+   ]
+  },
+  {
+   "slug": "linha-cadernos",
+   "nome": "Cadernos e agendas",
+   "img": "caderno~azul-royal",
+   "tipo": "brindes",
+   "descricao": "Cadernos de anotações e agendas para a rotina.",
+   "meta": "Capa dura ou couro",
+   "alt": "Caderno de capa dura azul royal com elástico e a marca TaMa em branco.",
+   "cores": [
+    [
+     "Azul royal",
+     "#1F4FB8",
+     "caderno~azul-royal",
+     "caderno de capa dura azul royal"
+    ],
+    [
+     "Caramelo",
+     "#A0623A",
+     "agenda-couro~caramelo",
+     "agenda com capa em couro caramelo e fecho"
+    ],
+    [
+     "Vermelho",
+     "#C8202F"
+    ],
+    [
+     "Preto",
+     "#1E1E1E"
+    ],
+    [
+     "Azul-marinho",
+     "#1E2A4A"
+    ]
+   ]
+  },
+  {
+   "slug": "linha-garrafa",
+   "nome": "Garrafa térmica",
+   "img": "garrafa-termica~vermelho",
+   "tipo": "brindes",
+   "descricao": "Para levar a marca ao longo do dia.",
+   "meta": "Aço inox · Gravação ou silk",
+   "alt": "Garrafa térmica vermelha de aço inox com a marca TaMa.",
+   "cores": [
+    [
+     "Vermelho",
+     "#C8202F",
+     "garrafa-termica~vermelho",
+     "garrafa térmica vermelha"
+    ],
+    [
+     "Azul royal",
+     "#1F4FB8",
+     "garrafa-termica~azul-royal",
+     "garrafa térmica azul royal"
+    ],
+    [
+     "Preto",
+     "#1E1E1E",
+     "garrafa-termica~preto",
+     "garrafa térmica preta"
+    ],
+    [
+     "Branco",
+     "#F7F5F0",
+     "garrafa-termica~branco",
+     "garrafa térmica branca"
+    ],
+    [
+     "Verde",
+     "#1F6B45",
+     "garrafa-termica~verde",
+     "garrafa térmica verde"
+    ]
+   ]
+  },
+  {
+   "slug": "linha-ecobag",
+   "nome": "Ecobag",
+   "img": "ecobag~cru",
+   "tipo": "brindes",
+   "descricao": "Para eventos, lojas e kits de boas-vindas.",
+   "meta": "Algodão · Silk",
+   "alt": "Ecobag de algodão cru com alças vermelhas e a marca TaMa estampada.",
+   "cores": [
+    [
+     "Cru",
+     "#EDE3D0"
+    ],
+    [
+     "Preto",
+     "#1E1E1E"
+    ],
+    [
+     "Oliva",
+     "#6B6B45"
+    ],
+    [
+     "Vinho",
+     "#6B1E33"
+    ]
+   ]
+  },
+  {
+   "slug": "cat-caneca",
+   "nome": "Caneca",
+   "img": "caneca~branco",
+   "tipo": "brindes",
+   "descricao": "Cerâmica para o café de todo dia. Toque na cor para ver.",
+   "meta": "Cerâmica · Sublimação",
+   "alt": "Caneca branca de cerâmica com a marca TaMa em cores.",
+   "cores": [
+    [
+     "Branco",
+     "#F7F5F0",
+     "caneca~branco",
+     "caneca branca"
+    ],
+    [
+     "Azul royal",
+     "#1F4FB8",
+     "caneca~azul-royal",
+     "caneca azul royal"
+    ],
+    [
+     "Vermelho",
+     "#C8202F",
+     "caneca~vermelho",
+     "caneca vermelha"
+    ],
+    [
+     "Preto",
+     "#1E1E1E",
+     "caneca~preto",
+     "caneca preta"
+    ],
+    [
+     "Verde",
+     "#1F6B45",
+     "caneca~verde",
+     "caneca verde"
+    ]
+   ]
+  },
+  {
+   "slug": "cat-caixa-personalizada",
+   "nome": "Caixa personalizada",
+   "img": "caixa-personalizada~bordo",
+   "tipo": "brindes",
+   "descricao": "Embalagem rígida para kits e presentes.",
+   "meta": "Papel rígido · Hot stamping",
+   "alt": "Caixa rígida bordô com tampa e a marca TaMa em hot stamping dourado.",
+   "cores": [
+    [
+     "Bordô",
+     "#6B1E33"
+    ],
+    [
+     "Preto",
+     "#1E1E1E"
+    ],
+    [
+     "Azul-marinho",
+     "#1E2A4A"
+    ],
+    [
+     "Verde",
+     "#1F4A35"
+    ],
+    [
+     "Cru",
+     "#EDE3D0"
+    ]
+   ]
+  }
+ ]
+}

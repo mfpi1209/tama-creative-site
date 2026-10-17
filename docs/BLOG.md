@@ -6,6 +6,8 @@ Guias que atraem quem procura brindes, kits e presentes corporativos e levam ess
 
 Endereço: **https://tamacreative.netlify.app/admin/**. Depois da troca de DNS, também funciona em **https://tamacreative.com.br/admin/**. O login é feito com a conta do GitHub.
 
+O mesmo editor também administra o **catálogo de produtos** (fotos, cores, material e técnica): ver `docs/BANCO-IMAGENS.md` › Editor do catálogo. `/adm` redireciona para `/admin/`.
+
 O editor é o Decap CMS 3.16.3, servido pelo próprio site, sem script de terceiros. Ele grava no repositório privado **mfpi1209/tama-creative-site**. Só entra quem tem acesso de escrita ao repositório; para dar acesso a outra pessoa, adicione o GitHub dela como colaboradora.
 
 ### Como publicar pelo editor

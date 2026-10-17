@@ -36,7 +36,6 @@ try {
   await page.goto(BASE + '/', { waitUntil: 'networkidle0' });
   const links = await page.$$eval('a[href^="/"]', as => [...new Set(as.map(a => a.getAttribute('href').split('#')[0].split('?')[0]))]);
   const broken = [];
-  // /brindes/ é outro app (catálogo de brindes em quantidade), fora deste build
   for (const l of links) { const r = await fetch(BASE + l); if (r.status !== 200) broken.push(l + ' ' + r.status); }
   const catHref = await page.$eval('#site-nav', n => [...n.querySelectorAll('a')].map(a => [a.textContent.trim(), a.getAttribute('href')]).find(([t]) => t === 'Catálogo')?.[1]);
   ok(catHref === '/catalogo/', `menu "Catálogo" abre /catalogo/ (${catHref})`);
@@ -121,7 +120,7 @@ try {
   ok(await page.$$eval('h1', h => h.length === 1 && /48 modelos/.test(h[0].textContent)), 'página do catálogo tem H1 com o total');
   ok(await catVisible() === 48 && await page.$$eval('#catalogo-grid .product img', i => i.every(x => x.alt.length > 15)), 'catálogo mostra os 48 modelos do banco, com texto alternativo');
   ok(await page.$$eval('#catalogo-grid .product[data-slug="cat-caneca"] .swatch', s => s.length === 5), 'caneca tem 5 cores com foto');
-  ok(await page.evaluate(() => { const cat = JSON.parse(document.getElementById('tama-catalog').textContent); return [...document.querySelectorAll('#catalogo-grid .product.studio')].every(p => { const sw = [...p.querySelectorAll('.swatch')].map(b => b.dataset.color); const v = cat[p.dataset.slug].v || {}; return sw.length < 2 || sw.every(c => c in v); }); }), 'toda cor mostrada no catálogo tem foto própria (nenhuma bolinha sem efeito)');
+  ok(await page.evaluate(() => { const cat = window.TAMA_CAT; return [...document.querySelectorAll('#catalogo-grid .product.studio')].every(p => { const sw = [...p.querySelectorAll('.swatch')].map(b => b.dataset.color); const v = cat[p.dataset.slug].v || {}; return sw.length < 2 || sw.every(c => c in v); }); }), 'toda cor mostrada no catálogo tem foto própria (nenhuma bolinha sem efeito)');
   await page.$eval('#catalogo-grid .product[data-slug="cat-caneca"]', el => el.scrollIntoView({ block: 'center' }));
   await page.click('#catalogo-grid .product[data-slug="cat-caneca"] .swatch[data-color="Verde"]');
   ok(await page.$eval('#catalogo-grid .product[data-slug="cat-caneca"] .prod-media img', i => (i.getAttribute('srcset') || '').includes('caneca~verde')), 'trocar a cor mostra a foto da caneca verde (variação gerada)');
@@ -279,6 +278,9 @@ try {
   ok(['publish_mode: editorial_workflow', 'folder: src/blog', 'media_folder: img/blog', 'name: github'].every(s => cfg.includes(s)), 'config do editor: GitHub, fluxo editorial, pasta do blog e mídia em img/blog');
   ok(['value: fim-de-ano', 'value: bandeja-em-couro', "pattern:"].every(s => cfg.includes(s)) && !cfg.includes('heading-one'), 'editor só oferece temas e peças válidos, com limites de SEO e sem H1 no texto');
   ok(!sitemap.includes('/admin/'), 'editor fora do sitemap');
+  ok(['file: src/data/produtos.json', 'widget: color', 'media_folder: /img/produtos', 'value: confirmado', 'value: a_confirmar'].every(x => cfg.includes(x)), 'editor tem o catálogo: foto, cor, material e técnica com situação');
+  const rob = await (await fetch(BASE + '/robots.txt')).text();
+  ok(rob.includes('Disallow: /admin/') && !rob.includes('/brindes/'), 'robots.txt sem o app /brindes/ e com o editor fora da busca');
   await bp.close();
 } finally {
   await browser.close();

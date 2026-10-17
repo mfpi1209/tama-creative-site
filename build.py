@@ -136,8 +136,7 @@ def build_catalogo():
         first = ims[0]
         cores = [[i['cor']['nome'], i['cor']['hex'], i['id'], i['alt']] for i in ims]
         vistos = {c[0] for c in cores}
-        mat, tec = first.get('material') or {}, first.get('tecnica') or {}
-        meta = (f"{mat['valor']} · {tec['valor']}" if mat.get('status') == 'confirmado' and tec.get('status') == 'confirmado' else 'Material e técnica sob consulta')
+        meta = spec_line(first)
         out.append({'slug': slug, 'nome': nome, 'img': first['id'], 'categoria': first['categoria'], 'descricao': first.get('modelo') or '', 'meta': meta, 'alt': first['alt'], 'cores': cores})
     ordem = list(CAT_PROD)
     out.sort(key=lambda c: (ordem.index(c['categoria']), c['nome'].replace(' masculina', ' 1').replace(' feminina', ' 2')))   # masculina antes de feminina
@@ -169,7 +168,11 @@ def build_images():
     produtos = os.path.join(IMG_SRC, 'produtos')   # banco de imagens de produto (src/data/produtos.json); só as usadas entram no site
     if os.path.isdir(produtos):
         usadas = {h['img'] for h in HOME_PRODS} | {c[2] for h in HOME_PRODS for c in h['cores'] if len(c) > 2} | {i['id'] for i in PRODUTOS if i.get('uso')}
-        sources += [(fn[:-5], os.path.join(produtos, fn)) for fn in os.listdir(produtos) if fn.lower().endswith('.webp') and fn[:-5] in usadas]
+        arquivo = {i['id']: os.path.join(ROOT, i['arquivo'].lstrip('/')) for i in PRODUTOS if i.get('arquivo')}
+        for n in sorted(usadas):
+            f = arquivo.get(n, os.path.join(produtos, n + '.webp'))
+            if os.path.isfile(f):
+                sources.append((n, f))
     sources += blog.image_sources(IMG_SRC)  # img/blog/: imagens enviadas pelo editor do blog
     marca = os.path.join(IMG_SRC, 'marca')
     if MOCKUPS and os.path.isdir(marca):  # branded versions replace the v2 photo of the same name
@@ -237,6 +240,53 @@ def color_slug(s):
     return '-'.join(''.join(c if c.isalnum() else ' ' for c in s).split())
 
 
+def preparar_produtos():
+    """Entradas criadas no editor (/admin/ › Catálogo): gera o id quando vazio, usa o catálogo como destino padrão e
+    barra dado inválido (o build falha e a produção continua como estava)."""
+    erros, vistos = [], set()
+    for n, im in enumerate(PRODUTOS, 1):
+        cor = im.get('cor') or {}
+        if not im.get('id'):
+            base, tom = color_slug(im.get('produto') or ''), color_slug(cor.get('nome') or '')
+            im['id'] = f'{base}~{tom}' if f'{base}~{tom}' not in vistos else f"{base}-{color_slug(im.get('modelo') or str(n))[:40]}~{tom}"
+        vistos.add(im['id'])
+        im['uso'] = im.get('uso') or ['catalogo']
+        nome = f"{im['id']} (item {n})"
+        if im.get('categoria') not in CAT_PROD:
+            erros.append(f'{nome}: categoria inválida')
+        if not re.fullmatch(r'#[0-9A-Fa-f]{6}', cor.get('hex') or ''):
+            erros.append(f'{nome}: cor sem hexadecimal (#RRGGBB)')
+        if not (im.get('produto') and cor.get('nome') and im.get('alt')):
+            erros.append(f'{nome}: produto, nome da cor e texto alternativo são obrigatórios')
+        arq = (im.get('arquivo') or '').lstrip('/')
+        if arq and not os.path.isfile(os.path.join(ROOT, arq)):
+            erros.append(f'{nome}: foto não encontrada ({arq})')
+        for k in ('material', 'tecnica'):
+            if (im.get(k) or {}).get('status', 'a_confirmar') not in ('a_confirmar', 'confirmado'):
+                erros.append(f'{nome}: {k} com status inválido')
+    if len(vistos) < len(PRODUTOS):
+        erros.append('há ids repetidos no catálogo')
+    if erros:
+        raise SystemExit('Catálogo (src/data/produtos.json) com erro:\n  ' + '\n  '.join(erros))
+
+
+def spec_line(im):
+    """Material e técnica só aparecem como especificação quando confirmados (status no editor); o resto fica sob consulta."""
+    mat, tec = im.get('material') or {}, im.get('tecnica') or {}
+    m_ok, t_ok = mat.get('status') == 'confirmado' and mat.get('valor'), tec.get('status') == 'confirmado' and tec.get('valor')
+    if m_ok and t_ok:
+        return f"{mat['valor']} · {tec['valor']}"
+    if m_ok:
+        return f"{mat['valor']} · técnica sob consulta"
+    if t_ok:
+        return f"Material sob consulta · {tec['valor']}"
+    return 'Material e técnica sob consulta'
+
+
+preparar_produtos()
+PRODUTOS_BY = {i['id']: i for i in PRODUTOS}
+for _h in HOME_PRODS:   # destaques da home: material e técnica vêm do catálogo (o campo meta do JSON não vale mais)
+    _h['meta'] = spec_line(PRODUTOS_BY[_h['img']]) if _h['img'] in PRODUTOS_BY else 'Material e técnica sob consulta'
 CATALOGO = build_catalogo()   # depois de color_slug
 CATALOGO_BY = {c['slug']: c for c in CATALOGO}
 
@@ -253,6 +303,7 @@ def color_images(p):
 
 
 def catalog_json():
+    """Dados das peças para a seleção e a foto ampliada: um arquivo só (/assets/catalogo.<hash>.js), em cache entre páginas."""
     data = {p['slug']: {'n': p['nome'], 'i': img_url(p['img'], 'webp', 420), 'c': p['cores'], 'v': color_images(p)} for p in PECAS}
     data.update({it['slug']: {'n': it['nome'], 'i': None, 'c': []} for it in ALEM})
     data.update({h['slug']: {'n': h['nome'], 'i': img_url(h['img'], 'webp', 420), 'c': home_colors(h), 'v': home_variants(h)} for h in HOME_PRODS})
@@ -260,7 +311,7 @@ def catalog_json():
     for c in CATALOGO:   # destaque da home que também está no catálogo: junta as fotos por cor dos dois cards
         if c['slug'] in data:
             data[c['slug']]['v'] = {**home_variants(c), **(data[c['slug']].get('v') or {})}
-    return '<script id="tama-catalog" type="application/json">' + json.dumps(data, ensure_ascii=False, separators=(',', ':')) + '</script>'
+    return 'window.TAMA_CAT=' + json.dumps(data, ensure_ascii=False, separators=(',', ':')).replace('</', '<\\/') + ';\n'
 
 
 def swatches(p):
@@ -310,12 +361,12 @@ def home_variants(h):
     return out if len(out) > 1 else {}
 
 
-def home_product_card(h):
+def home_product_card(h, eager=False):
     """Card de estúdio (home e catálogo): mesma estrutura do card da curadoria (seleção, cor de referência e foto
     ampliada), com foto em fundo claro. A cor muda só a referência; a foto não é recolorida."""
     cat = f' data-cat="{h["categoria"]}"' if h.get('categoria') in CAT_PROD else ''
     return f'''<article class="product studio" id="{h['slug']}" data-slug="{h['slug']}"{cat}>
-  <button class="prod-media" type="button" data-zoom="{h['slug']}" aria-label="Ampliar foto de {esc(h['nome'])}">{picture(h['img'], h['alt'], '(max-width: 760px) 46vw, (max-width: 1180px) 30vw, 290px')}<span class="prod-zoom" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M8 3v10M3 8h10"/></svg></span></button>
+  <button class="prod-media" type="button" data-zoom="{h['slug']}" aria-label="Ampliar foto de {esc(h['nome'])}">{picture(h['img'], h['alt'], '(max-width: 760px) 46vw, (max-width: 1180px) 30vw, 290px', eager=eager)}<span class="prod-zoom" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M8 3v10M3 8h10"/></svg></span></button>
   <div class="prod-info">
     <h3>{h['nome']}</h3>
     <p class="prod-desc">{h['descricao']}</p>
@@ -336,7 +387,7 @@ def catalogo_block():
   <div class="wrap">
     <h2 id="catalogo-t" class="visually-hidden">Modelos</h2>
     <div class="filters" role="group" aria-label="Filtrar o catálogo por categoria" style="flex-wrap:wrap;margin-bottom:22px">{chips}</div>
-    <div class="studio-grid" id="catalogo-grid">{''.join(home_product_card(c) for c in CATALOGO)}</div>
+    <div class="studio-grid" id="catalogo-grid">{''.join(home_product_card(c, eager=i < 2) for i, c in enumerate(CATALOGO))}</div>
     <p class="note" style="margin-top:18px">Imagens ilustrativas geradas a partir da identidade TaMa; não mostram o produto final de um fornecedor. Cores de referência, sem declaração de estoque.</p>
   </div>
 </section>'''
@@ -509,7 +560,7 @@ def kits_block():
 
 # ------------------------------------------------------------------ navigation and shared blocks
 NAV = [
-    ('/catalogo/', 'Catálogo'),  # catálogo de modelos do banco de imagens (o app "brindes" em /brindes/ ainda não está no ar)
+    ('/catalogo/', 'Catálogo'),  # catálogo de modelos do banco de imagens (src/data/produtos.json, editado em /admin/)
     ('/kits-corporativos/', 'Kits'),
     ('/brindes-corporativos-premium/', 'Curadoria'),
     ('/confeccoes-personalizadas/', 'Confecções'),
@@ -533,7 +584,7 @@ def header(path):
         return ' aria-current="true"' if p == '/catalogo/' and path.startswith('/brindes-corporativos/') else ''
     links = ''.join(f'<a class="nav-link" href="{p}"{current(p)}>{t}</a>' for p, t in NAV)
     return f'''<a class="skip" href="#conteudo">Pular para o conteúdo</a>
-<aside class="announce" aria-label="Destaques da TaMa"><div class="wrap"><p>Ideias criativas que valorizam pessoas e fortalecem marcas.</p><ul><li>Atendimento consultivo</li><li>Projetos sob medida</li><li>Criação e produção</li></ul></div></aside>
+<aside class="announce" aria-label="Destaques da TaMa"><div class="wrap"><p>Ideias criativas que valorizam pessoas e fortalecem marcas.</p><ul><li>Atendimento consultivo</li><li>Seleção sob medida</li><li>Personalização e produção</li></ul></div></aside>
 <header class="site-header">
   <div class="wrap header-row">
     <a class="brand" href="/" aria-label="TaMa Creative, página inicial">{LOGO_DECOR}</a>
@@ -714,6 +765,8 @@ def minify_css(css):
 
 
 CSS = None
+CSS_FILE = None
+CAT_FILE = None
 JS_FILE = None
 
 DIALOGS = '''<dialog class="drawer" id="drawer" aria-labelledby="drawer-t">
@@ -775,11 +828,11 @@ def shell(page, body):
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<style>{CSS}</style>
+<link rel="stylesheet" href="/assets/{CSS_FILE}">
 {page.get('head', '')}
 <script type="application/ld+json">{jsonld(page)}</script>
 <script id="tama-config" type="application/json">{config}</script>
-{catalog_json()}
+<script src="/assets/{CAT_FILE}" defer></script>
 <script src="/assets/{JS_FILE}" defer></script>
 </head>
 <body{service_attr}>
@@ -1268,7 +1321,7 @@ def page_sobre():
     <div class="cols-2">
       <div class="item">{arc()}<div><h3>Visão de Trade Marketing</h3><p>Público, ocasião de uso e execução vêm antes da escolha de qualquer peça.</p></div></div>
       <div class="item">{arc()}<div><h3>Curadoria sob medida</h3><p>Seleção alinhada ao público, à ocasião e ao orçamento, longe do catálogo genérico.</p></div></div>
-      <div class="item">{arc()}<div><h3>Proposta integrada</h3><p>Criação, brindes e vestuário no mesmo projeto, com uma única linguagem.</p></div></div>
+      <div class="item">{arc()}<div><h3>Tudo em um pedido</h3><p>Brindes, kits e vestuário no mesmo pedido, com uma única linguagem.</p></div></div>
       <div class="item">{arc()}<div><h3>Da arte à entrega</h3><p>Arte e especificações aprovadas antes da produção e materiais conferidos antes da entrega.</p></div></div>
     </div>
     <p class="pull">O arco é um círculo que ainda está sendo desenhado. <em>A TaMa é quem termina o traço.</em></p>
@@ -1279,7 +1332,7 @@ def page_sobre():
 
 
 def page_proposta():
-    tipos = [('brindes', 'Brindes ou presentes'), ('kits', 'Kits corporativos'), ('confeccoes', 'Confecções e uniformes'), ('integrado', 'Projeto integrado')]
+    tipos = [('brindes', 'Brindes ou presentes'), ('kits', 'Kits corporativos'), ('confeccoes', 'Confecções e uniformes'), ('integrado', 'Mais de um tipo')]
     choices = ''.join(f'<label class="choice"><input type="radio" name="tipo" value="{v}" required> {t}</label>' for v, t in tipos)
     contacts = contact_lines()
     contact_block = f'<div class="stack" style="gap:10px"><p class="eyebrow">Fale direto</p><div class="contact-lines">{"".join(contacts)}</div></div>' if contacts else ''
@@ -1397,11 +1450,13 @@ def build_static():
     write('og-default.jpg', buf.getvalue(), 'wb')
 
     indexable = [p for p in BUILT if p.get('index', True) and p['path'] != '/404.html']
-    write('robots.txt', f'User-agent: *\nAllow: /\n\nSitemap: {SITE}/sitemap.xml\nSitemap: {SITE}/brindes/sitemap.xml\n')
+    write('robots.txt', f'User-agent: *\nAllow: /\nDisallow: /admin/\n\nSitemap: {SITE}/sitemap.xml\n')
     urls = ''.join(f'<url><loc>{SITE}{p["path"]}</loc><lastmod>{p.get("lastmod", BUILD_DATE)}</lastmod></url>' for p in indexable)
     write('sitemap.xml', f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{urls}</urlset>\n')
     redirects = [
-        '/brindes            /brindes/                       301',
+        '/brindes            /catalogo/                      301',
+        '/brindes/*          /catalogo/                      301',
+        '/adm                /admin/                         301',
         '/kits               /kits-corporativos/             301',
         '/curadoria          /brindes-corporativos-premium/  301',
         '/confeccoes         /confeccoes-personalizadas/     301',
@@ -1420,6 +1475,12 @@ def build_static():
            "img-src 'self' data: https://*.google-analytics.com https://www.googletagmanager.com; font-src 'self'; "
            "connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com; "
            "form-action 'self'; frame-ancestors 'self'; base-uri 'self'; object-src 'none'")
+    # originais do catálogo no mesmo caminho do campo "arquivo": o editor (/admin/) mostra a foto por esse endereço
+    for im in PRODUTOS:
+        arq = (im.get('arquivo') or '').lstrip('/')
+        if arq.startswith('img/produtos/') and os.path.isfile(os.path.join(ROOT, arq)):
+            os.makedirs(os.path.join(DIST, os.path.dirname(arq)), exist_ok=True)
+            shutil.copy2(os.path.join(ROOT, arq), os.path.join(DIST, arq))
     write('_headers', f'''/*
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
@@ -1428,6 +1489,8 @@ def build_static():
   Content-Security-Policy: {csp}
 /img/*
   Cache-Control: public, max-age=31536000, immutable
+/img/produtos/*
+  X-Robots-Tag: noindex
 /fonts/*
   Cache-Control: public, max-age=31536000, immutable
 /assets/*
@@ -1439,7 +1502,7 @@ BUILT = []
 
 
 def main():
-    global CSS, JS_FILE
+    global CSS, CSS_FILE, CAT_FILE, JS_FILE
     # Limpa o conteúdo de dist/ sem remover a pasta (um servidor local pode estar usando-a).
     os.makedirs(DIST, exist_ok=True)
     for entry in os.listdir(DIST):
@@ -1453,6 +1516,11 @@ def main():
     fonts_css = open(os.path.join(SRC, 'fonts', 'fonts.css'), encoding='utf-8').read()
     masks = f':root{{--arc-mask:url("{ARC_MASK}");--pattern-mask:url("{pattern_uri()}")}}'
     CSS = minify_css(fonts_css + masks + open(os.path.join(SRC, 'styles.css'), encoding='utf-8').read())
+    CSS_FILE = f'site.{hashlib.md5(CSS.encode()).hexdigest()[:8]}.css'
+    write('assets/' + CSS_FILE, CSS)
+    cat = catalog_json()
+    CAT_FILE = f'catalogo.{hashlib.md5(cat.encode()).hexdigest()[:8]}.js'
+    write('assets/' + CAT_FILE, cat)
     js = open(os.path.join(SRC, 'site.js'), encoding='utf-8').read()
     JS_FILE = f'site.{hashlib.md5(js.encode()).hexdigest()[:8]}.js'
     write('assets/' + JS_FILE, js)

@@ -620,7 +620,7 @@ def cms_config(b):
     pecas = ([_opt(f'{p["nome"]} (com foto)', p['slug']) for p in b.PECAS]
              + [_opt(f'{it["nome"]} (além do óbvio)', it['slug']) for it in b.ALEM])
     tipos = {'brindes': 'Brindes ou presentes', 'kits': 'Kits corporativos', 'confeccoes': 'Confecções e uniformes',
-             'integrado': 'Projeto integrado'}
+             'integrado': 'Mais de um tipo'}
     fields = [
         {'label': 'Título do artigo (H1)', 'name': 'title', 'widget': 'string',
          'hint': 'Responde à busca principal com naturalidade. Até 110 caracteres.',
@@ -677,9 +677,10 @@ def cms_config(b):
     cfg = {
         'backend': {'name': 'github', 'repo': CMS_REPO, 'branch': 'main', 'base_url': 'https://api.netlify.com',
                     'auth_endpoint': 'auth', 'site_domain': CMS_SITE_DOMAIN, 'squash_merges': True,
-                    'commit_messages': {'create': 'Blog: cria {{slug}}', 'update': 'Blog: atualiza {{slug}}', 'delete': 'Blog: remove {{slug}}',
-                                        'uploadMedia': 'Blog: envia imagem {{path}}', 'deleteMedia': 'Blog: remove imagem {{path}}',
-                                        'openAuthoring': 'Blog: {{message}}'}},
+                    'commit_messages': {'create': 'Editor ({{collection}}): cria {{slug}}', 'update': 'Editor ({{collection}}): atualiza {{slug}}',
+                                        'delete': 'Editor ({{collection}}): remove {{slug}}',
+                                        'uploadMedia': 'Editor: envia imagem {{path}}', 'deleteMedia': 'Editor: remove imagem {{path}}',
+                                        'openAuthoring': 'Editor: {{message}}'}},
         'local_backend': True,
         'publish_mode': 'editorial_workflow',
         'locale': 'pt',
@@ -694,10 +695,63 @@ def cms_config(b):
             'preview_path': 'blog/{{slug}}/', 'summary': '{{title}} · {{date}}',
             'sortable_fields': ['date', 'title'], 'view_groups': [{'label': 'Tema', 'field': 'tema'}],
             'fields': fields,
-        }],
+        }, catalogo_collection(b)],
     }
     return ('# Gerado por blog.py a cada build (não editar à mão): opções vindas de TEMAS, curadoria.json e das imagens do site.\n'
             + yaml.safe_dump(cfg, allow_unicode=True, sort_keys=False, width=1000))
+
+
+def catalogo_collection(b):
+    """Catálogo de produtos no editor: o próprio src/data/produtos.json (uma entrada por foto: produto, cor, material,
+    técnica, texto alternativo). O build gera /catalogo/, os destaques e as páginas de frente a partir dele."""
+    status = [_opt('A confirmar (o site mostra "sob consulta")', 'a_confirmar'), _opt('Confirmado (aparece no site)', 'confirmado')]
+    def spec(label, name, ex):
+        return {'label': label, 'name': name, 'widget': 'object', 'collapsed': False, 'fields': [
+            {'label': 'Valor', 'name': 'valor', 'widget': 'string', 'required': False, 'hint': ex},
+            {'label': 'Situação', 'name': 'status', 'widget': 'select', 'options': status, 'default': 'a_confirmar'}]}
+    hidden = [{'label': k, 'name': k, 'widget': 'hidden', 'required': False}
+              for k in ('fornecedor', 'sku', 'estoque', 'substitui', 'mestre', 'largura', 'altura', 'sha256', 'bytes', 'atualizado_em')]
+    item = [
+        {'label': 'Foto', 'name': 'arquivo', 'widget': 'image', 'choose_url': False, 'media_folder': '/img/produtos', 'public_folder': '/img/produtos',
+         'hint': 'Fundo claro, peça centralizada, quadrada, de preferência 1254 × 1254 px (mínimo 1000 px). Só fotos próprias ou com licença.'},
+        {'label': 'Produto', 'name': 'produto', 'widget': 'string',
+         'hint': 'Nome no site. Fotos com o mesmo nome formam um único card, com uma bolinha por cor. Ex.: Caneca'},
+        {'label': 'Categoria', 'name': 'categoria', 'widget': 'select', 'options': [_opt(v, k) for k, v in b.CAT_PROD.items()]},
+        {'label': 'Descrição do modelo', 'name': 'modelo', 'widget': 'string', 'required': False,
+         'hint': 'Uma linha abaixo do nome. Não afirme material ou técnica que ainda não foram confirmados.'},
+        {'label': 'Cor', 'name': 'cor', 'widget': 'object', 'collapsed': False, 'fields': [
+            {'label': 'Nome da cor', 'name': 'nome', 'widget': 'string', 'hint': 'Ex.: Azul-marinho'},
+            {'label': 'Cor (bolinha no site)', 'name': 'hex', 'widget': 'color', 'allowInput': True,
+             'pattern': ['^#[0-9A-Fa-f]{6}$', 'Use o formato #RRGGBB']}]},
+        spec('Material', 'material', 'Ex.: Cerâmica, aço inox, algodão. Só aparece no site quando marcado como confirmado.'),
+        spec('Técnica de personalização', 'tecnica', 'Ex.: Bordado, silk, gravação a laser. Só aparece no site quando marcada como confirmada.'),
+        {'label': 'Texto alternativo da foto', 'name': 'alt', 'widget': 'string',
+         'hint': 'O que aparece na foto, para leitores de tela e para o Google. Ex.: Caneca branca de cerâmica com a marca TaMa.'},
+        {'label': 'Foto ilustrativa (gerada ou mockup)', 'name': 'ilustrativa', 'widget': 'boolean', 'default': True, 'required': False,
+         'hint': 'Desmarque só para fotografias reais do produto.'},
+        {'label': 'Situação da foto', 'name': 'aprovacao', 'widget': 'select', 'default': 'revisao', 'options': [
+            _opt('Em revisão (aparece no site)', 'revisao'), _opt('Aprovada', 'aprovada'),
+            _opt('Substituir (sai do site)', 'substituir'), _opt('Retirada (sai do site)', 'retirada')]},
+        {'label': 'Onde é usada', 'name': 'uso', 'widget': 'select', 'multiple': True, 'required': False, 'default': ['catalogo'],
+         'options': [_opt('Catálogo', 'catalogo'), _opt('Home', 'home'), _opt('Brindes', 'brindes'), _opt('Kits', 'kits'), _opt('Confecções', 'confeccoes')]},
+        {'label': 'Identificador', 'name': 'id', 'widget': 'string', 'required': False,
+         'hint': 'Deixe vazio em itens novos: o site gera (produto~cor). Não mude o de itens existentes: a home e as seleções usam esse nome.'},
+        {'label': 'Origem da foto', 'name': 'origem', 'widget': 'string', 'required': False, 'hint': 'Ex.: Fotografia própria em 20/10/2026.'},
+        {'label': 'Observação interna', 'name': 'observacao', 'widget': 'text', 'required': False},
+    ] + hidden
+    return {
+        'name': 'catalogo', 'label': 'Catálogo de produtos', 'label_singular': 'catálogo',
+        'description': 'Fotos, cores, material e técnica das peças do /catalogo/ e dos destaques. Cada alteração passa pelo fluxo de revisão e vai ao ar depois do build.',
+        'editor': {'preview': False}, 'delete': False,
+        'files': [{
+            'name': 'produtos', 'label': 'Catálogo: fotos, cores, material e técnica', 'file': 'src/data/produtos.json',
+            'fields': [
+                {'label': 'Observação', 'name': 'observacao', 'widget': 'hidden', 'required': False},
+                {'label': 'Fotos do catálogo', 'name': 'imagens', 'label_singular': 'foto', 'widget': 'list', 'collapsed': True,
+                 'add_to_top': True, 'summary': '{{fields.produto}} · {{fields.cor.nome}} · {{fields.aprovacao}}', 'fields': item},
+            ],
+        }],
+    }
 
 
 def post_static(b):

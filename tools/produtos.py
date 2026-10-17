@@ -65,7 +65,8 @@ def importar(src, id_, substitui=None, origem=None):
                'fornecedor': None, 'sku': None, 'estoque': None, 'alt': '', 'uso': [], 'ilustrativa': True,
                'aprovacao': 'revisao', 'origem': origem or '', 'substitui': substitui, 'observacao': ''}
         inv['imagens'].append(ent)
-    ent.update({'arquivo': os.path.relpath(web, ROOT), 'mestre': os.path.relpath(mestre, ROOT), 'largura': im.width, 'altura': im.height,
+    ent.update({'arquivo': '/' + os.path.relpath(web, ROOT),   # caminho público (o editor /admin/ mostra a foto por ele)
+                'mestre': os.path.relpath(mestre, ROOT), 'largura': im.width, 'altura': im.height,
                 'sha256': sha256(mestre), 'bytes': os.path.getsize(mestre), 'atualizado_em': datetime.date.today().isoformat()})
     if substitui:
         ent['substitui'] = substitui
@@ -92,7 +93,7 @@ def verificar():
             erros.append(f'{p}: categoria desconhecida "{e["categoria"]}" (válidas: {", ".join(CATEGORIAS)})')
         if e.get('aprovacao') not in APROVACAO:
             erros.append(f'{p}: aprovacao deve ser uma de {APROVACAO}')
-        web = os.path.join(ROOT, e.get('arquivo', ''))
+        web = os.path.join(ROOT, (e.get('arquivo') or '').lstrip('/'))
         if not e.get('arquivo') or not os.path.exists(web):
             erros.append(f'{p}: arquivo web não encontrado ({e.get("arquivo")})')
         mestre = os.path.join(ROOT, e.get('mestre', ''))
@@ -137,7 +138,7 @@ def indice():
             mat, tec = e.get('material') or {}, e.get('tecnica') or {}
             ac = lambda d: ' <span class="ac">(a confirmar)</span>' if d.get('status') == 'a_confirmar' else ''
             cards.append(
-                f'<div class="c"><img src="../../{html.escape(e["arquivo"])}" alt="{html.escape(e.get("alt", ""))}" loading="lazy"><div>'
+                f'<div class="c"><img src="../../{html.escape(e["arquivo"].lstrip("/"))}" alt="{html.escape(e.get("alt", ""))}" loading="lazy"><div>'
                 f'<b>{html.escape(e.get("produto", ""))}</b>{html.escape(e.get("modelo") or "")}<br>'
                 f'<span class="sw" style="background:{html.escape(cor.get("hex", "#fff"))}"></span>{html.escape(cor.get("nome", ""))} · {e.get("largura")}×{e.get("altura")}<br>'
                 f'{html.escape(mat.get("valor") or "material?")}{ac(mat)} · {html.escape(tec.get("valor") or "técnica?")}{ac(tec)}<br>'

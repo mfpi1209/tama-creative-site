@@ -1164,12 +1164,6 @@ def page_confeccoes():
     </div>
   </div>
 </section>
-<section class="section" aria-labelledby="pecas-c-t">
-  <div class="wrap">
-    {product_rail(['moletom-exclusivo', 'polo-personalizada', 'uniforme-personalizado', 'bone-premium', 'kit-vestuario', 'bolsa-tote-estruturada'], 'rail-conf',
-                  '<p class="eyebrow">Peças</p><h2 id="pecas-c-t" class="section-title">Do uniforme do dia a dia à peça do evento</h2>', 'Escolha a cor de referência de cada peça e monte sua seleção.')}
-  </div>
-</section>
 {studio_block(['linha-polo', 'linha-polo-feminina', 'linha-camiseta', 'linha-camiseta-feminina', 'linha-moletom', 'linha-dolma', 'cat-avental-personalizado'],
               'As peças de vestuário em estúdio', 'Catálogo', 'Polo, camiseta, moletom, dólmã e avental, com a marca aplicada como exemplo.', 'estudio-c-t',
               more=('/catalogo/?categoria=vestuario', 'Ver no catálogo'))}

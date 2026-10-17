@@ -34,7 +34,7 @@ jobs:
         run: |
           mkdir -p ctx/deploy
           cp -r dist ctx/dist
-          cp deploy/nginx.conf deploy/security-headers.conf deploy/Dockerfile.static ctx/deploy/
+          cp deploy/nginx.conf deploy/common-headers.conf deploy/security-headers.conf deploy/Dockerfile.static ctx/deploy/
       - name: Publicar branch deploy (site pronto + Dockerfile, usada pelo Easypanel)
         run: |
           cd ctx

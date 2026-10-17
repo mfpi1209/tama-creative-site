@@ -66,6 +66,31 @@ netlify deploy --no-build --prod --dir dist --functions netlify/functions     # 
 ```
 Site Netlify: `tamacreative` (conta tatydalves). Formulário: `proposta`, com aviso por e-mail para tatydalves@gmail.com.
 
+## Easypanel (Nginx): cabeçalhos e /admin/
+No Easypanel o site roda numa imagem Nginx (`Dockerfile` ou `deploy/Dockerfile.static`, montada pelo `.github/workflows/deploy.yml`). O Nginx não lê o `_headers`, então os cabeçalhos ficam em:
+
+| Arquivo | O quê |
+|---|---|
+| `deploy/common-headers.conf` | nosniff, Referrer-Policy, X-Frame-Options, Permissions-Policy (todo o site, inclusive `/admin/`) |
+| `deploy/security-headers.conf` | os comuns + a CSP do site. **Duplicada** da CSP de `build.py` (`_headers`): mude as duas juntas |
+| `dist/_nginx/admin-headers.conf` | **gerado pelo `blog.py`** a partir de `ADMIN_CSP` (a mesma do bloco `/admin/*` do `_headers`): os comuns + CSP do editor (`'unsafe-eval'`, `api.github.com`, `api.netlify.com`), `X-Robots-Tag: noindex, nofollow` e `Cache-Control: no-cache` |
+
+O `deploy/nginx.conf` usa o arquivo gerado em `location /admin/` (editor Decap e Painel de SEO); `/admin` sem barra vira 301 para `/admin/`. Os Dockerfiles movem `admin-headers.conf` para `/etc/nginx/snippets/`, apagam `_nginx/`, `_headers` e `_redirects` da pasta pública e rodam `nginx -t` (a imagem não monta se a configuração estiver errada). Para mudar a CSP do editor, mude só `ADMIN_CSP` no `blog.py`.
+
+Conferir depois de publicar:
+```bash
+curl -sI https://tamacreative.com.br/admin/ | grep -i -E "content-security|x-robots|cache-control"
+curl -sI https://tamacreative.com.br/ | grep -i content-security
+```
+`/admin/` e `/admin/painel/` devem mostrar `'unsafe-eval'` e `api.github.com`; o resto do site, a CSP com `googletagmanager.com`.
+
+**Login do editor fora do Netlify.** O Decap faz o login do GitHub pelo Netlify (`base_url: https://api.netlify.com`, `site_domain: tamacreative.netlify.app` no `config.yml`). Isso funciona em qualquer domínio, inclusive no `tamacreative.com.br` servido pelo Easypanel, desde que:
+1. o site `tamacreative` continue existindo no Netlify (não apague o site, mesmo sem usar a hospedagem);
+2. o provedor GitHub esteja instalado nele (BLOG.md › "Configuração única", passos 1 e 2);
+3. a CSP de `/admin/` libere `api.netlify.com` e `api.github.com` (já libera) e nenhum cabeçalho `Cross-Origin-Opener-Policy` seja adicionado em `/admin/`, porque a janela de login responde ao editor por `window.opener`.
+
+Em 17/10/2026, `https://api.netlify.com/auth?provider=github&site_id=tamacreative.netlify.app` respondia 404, igual a um site inexistente: sinal de que o passo 2 ainda não foi feito (ou foi feito em outro site). Teste o botão "Entrar com o GitHub" em `https://tamacreative.netlify.app/admin/` antes de desligar o Netlify. Se o Netlify for abandonado de vez, a alternativa é um servidor OAuth próprio (por exemplo, um container com `decap-cms-oauth` no Easypanel) e trocar `base_url`/`site_domain` em `blog.py`, com a nova origem no `connect-src` de `ADMIN_CSP`.
+
 ## Domínio
 1. Registro.br › DNS › Alterar servidores DNS: `dns1.p01.nsone.net`, `dns2.p01.nsone.net`, `dns3.p01.nsone.net`, `dns4.p01.nsone.net`.
 2. O Netlify já tem a zona com os registros do site e do `www`; o certificado HTTPS é emitido sozinho.

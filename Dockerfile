@@ -13,6 +13,10 @@ RUN python build.py
 
 FROM nginx:1.27-alpine
 COPY deploy/nginx.conf /etc/nginx/conf.d/default.conf
-COPY deploy/security-headers.conf /etc/nginx/snippets/security-headers.conf
+COPY deploy/common-headers.conf deploy/security-headers.conf /etc/nginx/snippets/
 COPY --from=build /app/dist /usr/share/nginx/html
+# cabeçalhos de /admin/ gerados pelo build (blog.py); arquivos só do Netlify não ficam públicos
+RUN mv /usr/share/nginx/html/_nginx/admin-headers.conf /etc/nginx/snippets/ \
+ && rm -rf /usr/share/nginx/html/_nginx /usr/share/nginx/html/_headers /usr/share/nginx/html/_redirects \
+ && nginx -t
 EXPOSE 80

@@ -831,3 +831,10 @@ def post_static(b):
     b.write('/admin/painel/site.json', json.dumps(painel_dados(b), ensure_ascii=False))
     with open(os.path.join(b.DIST, '_headers'), 'a', encoding='utf-8') as f:
         f.write(f'/admin/*\n  X-Robots-Tag: noindex, nofollow\n  Cache-Control: no-cache\n  Content-Security-Policy: {ADMIN_CSP}\n')
+    # mesmos cabeçalhos para o Nginx do Easypanel (deploy/nginx.conf, location /admin/); o Dockerfile move para /etc/nginx/snippets/
+    b.write('/_nginx/admin-headers.conf',
+            '# Gerado pelo blog.py (post_static) a partir de ADMIN_CSP. Não edite.\n'
+            'include /etc/nginx/snippets/common-headers.conf;\n'
+            'add_header X-Robots-Tag "noindex, nofollow" always;\n'
+            'add_header Cache-Control "no-cache" always;\n'
+            f'add_header Content-Security-Policy "{ADMIN_CSP}" always;\n')

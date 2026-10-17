@@ -4,7 +4,7 @@ Guias que atraem quem procura brindes, kits e presentes corporativos e levam ess
 
 ## Editor visual (/admin/)
 
-Endereço: **https://tamacreative.netlify.app/admin/**. Depois da troca de DNS, também funciona em **https://tamacreative.com.br/admin/**. O login é feito com a conta do GitHub.
+Endereço: **https://tamacreative.netlify.app/admin/**. Depois da troca de DNS, também funciona em **https://tamacreative.com.br/admin/**. O login é feito com a conta do GitHub. No Easypanel, o login continua passando pelo site `tamacreative` do Netlify (não apague esse site); detalhes e cabeçalhos do Nginx em `DEPLOY.md` › "Easypanel (Nginx)".
 
 O editor é o Decap CMS 3.16.3, servido pelo próprio site, sem script de terceiros. Ele grava no repositório privado **mfpi1209/tama-creative-site**. Só entra quem tem acesso de escrita ao repositório; para dar acesso a outra pessoa, adicione o GitHub dela como colaboradora.
 

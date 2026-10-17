@@ -479,12 +479,17 @@ HOME_KITS = [
 ]
 
 
-def kits_block():
-    cards = ''.join(
+def kit_cards():
+    """Os kits premium (home e página de kits): dois destaques e três menores."""
+    return ''.join(
         f'<article class="kit-card{" big" if i < 2 else ""}">'
         f'{picture("kitp-" + slug, f"{name}: {desc}", "(max-width: 760px) 92vw, 46vw" if i < 2 else "(max-width: 760px) 92vw, 31vw")}'
         f'<div class="kit-copy"><p class="eyebrow">Seleção {i + 1:02d}</p><h3>{name}</h3><p>{desc}</p></div></article>'
         for i, (slug, name, desc) in enumerate(HOME_KITS))
+
+
+def kits_block():
+    cards = kit_cards()
     occ = ''.join(f'<a class="chip" href="/brindes-corporativos-premium/?ocasiao={k}#pecas">{t}</a>' for k, t, _d, _img in COLLECTIONS)
     return f'''<section class="section kits-home" aria-labelledby="kits-t">
   <div class="wrap">
@@ -949,11 +954,19 @@ def page_kits():
         'description': 'Kits onboarding, kits para eventos e presentes para clientes, montados com curadoria, embalagem própria e a identidade da sua empresa. Solicite uma proposta.',
         'trail': [('/', 'Início'), ('/kits-corporativos/', 'Kits corporativos')],
         'service': {'key': 'kits', 'name': 'Kits corporativos personalizados', 'type': 'Kits corporativos'},
-        'preload': preload_image('kit-presente', '(max-width: 760px) 92vw, 46vw'),
+        'preload': preload_image('kitp-kit-completo', '(max-width: 760px) 92vw, 46vw'),
         'body': page_head('Kits corporativos', 'Kits corporativos personalizados para cada momento',
                           'Kits de boas-vindas, kits para eventos e presentes para clientes, montados com curadoria, embalagem própria e a identidade da sua empresa.',
-                          cta_link('Montar um kit', tipo='kits', track_label='kits-head') + '<a class="btn btn-line" href="/brindes-corporativos-premium/">Ver peças da curadoria</a>',
-                          'kit-presente', 'Kit de boas-vindas conceitual com peças em terracota, verde e marinho.') + f'''
+                          cta_link('Montar um kit', tipo='kits', track_label='kits-head') + '<a class="btn btn-line" href="#kits">Ver os kits</a>',
+                          'kitp-kit-completo', 'Kit completo em bordô com pasta, agenda, garrafa, caneca, guarda-chuva e acessórios com a marca TaMa.') + f'''
+<section class="section kits-page" id="kits" aria-labelledby="kits-p-t" style="padding-top:clamp(24px,3vw,40px)">
+  <div class="wrap">
+    <div class="section-head"><p class="eyebrow">Kits premium</p><h2 id="kits-p-t" class="section-title">Kits prontos para receber a sua marca</h2><p class="muted">Cinco composições para começar. Peças, embalagem e cartão se ajustam ao seu público, à ocasião e ao investimento.</p></div>
+    <div class="kit-grid">{kit_cards()}</div>
+    <div class="kit-foot"><p class="muted">Gostou de um deles? Diga o nome no pedido e a TaMa adapta a composição.</p>{cta_link('Pedir um kit', tipo='kits', track_label='kits-lista')}</div>
+    <p class="note" style="margin-top:18px">Composições sugeridas: peças, embalagem e personalização são confirmadas na proposta. Imagens ilustrativas.</p>
+  </div>
+</section>
 <section class="section ivory" aria-labelledby="tipos-t">
   <div class="wrap">
     <div class="section-head"><p class="eyebrow">Tipos de kit</p><h2 id="tipos-t" class="section-title">Um kit para cada relação</h2></div>
@@ -983,9 +996,6 @@ def page_kits():
                   '<p class="eyebrow">Peças para compor</p><h2 id="pecas-k-t" class="section-title">Comece pelo que faz sentido</h2>', 'Adicione peças e cores à seleção; a proposta monta a composição.')}
   </div>
 </section>
-{studio_block(['cat-caixa-personalizada', 'cat-sacola-personalizada', 'cat-caneca', 'linha-garrafa', 'linha-cadernos', 'linha-canetas', 'cat-vela', 'cat-necessaire'],
-              'Peças do catálogo que entram em kits', 'Catálogo', 'Embalagem, papelaria, bebidas e bem-estar com a marca aplicada como exemplo.', 'estudio-k-t',
-              more=('/catalogo/', 'Ver o catálogo completo'))}
 <section class="section ivory" aria-labelledby="kit-m-t">
   <div class="wrap">
     <div class="section-head"><p class="eyebrow">Do briefing à entrega</p><h2 id="kit-m-t" class="section-title">Como montamos o seu kit</h2></div>

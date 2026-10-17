@@ -1002,12 +1002,6 @@ def page_kits():
     </div>
   </div>
 </section>
-<section class="section" aria-labelledby="pecas-k-t">
-  <div class="wrap">
-    {product_rail(['kit-boas-vindas', 'kit-vestuario', 'embalagem-presente', 'caixa-rigida-premium', 'garrafa-termica', 'caderno-premium', 'caneca-de-ceramica', 'manta-de-aconchego', 'sacola-corporativa'], 'rail-kits',
-                  '<p class="eyebrow">Peças para compor</p><h2 id="pecas-k-t" class="section-title">Comece pelo que faz sentido</h2>', 'Adicione peças e cores à seleção; a proposta monta a composição.')}
-  </div>
-</section>
 <section class="section ivory" aria-labelledby="kit-m-t">
   <div class="wrap">
     <div class="section-head"><p class="eyebrow">Do briefing à entrega</p><h2 id="kit-m-t" class="section-title">Como montamos o seu kit</h2></div>

@@ -180,7 +180,7 @@ try {
   ok(await colorsHavePhoto(page, '#rail-brindes .product'), 'trilho de brindes: toda cor mostrada tem foto própria');
   await page.goto(BASE + '/kits-corporativos/', { waitUntil: 'networkidle0' });
   ok(await page.$$eval('#kits .kit-card', k => k.length === 5 && k.every(x => x.querySelector('img').alt.length > 20)) && await page.$$eval('.studio-grid', g => g.length === 0), 'kits: os 5 kits premium logo após a abertura, sem bloco do catálogo');
-  ok(await colorsHavePhoto(page, '#rail-kits .product'), 'trilho de kits: toda cor mostrada tem foto própria');
+  ok(!(await page.$('#rail-kits')) && await page.$eval('#comp-t', h => { const next = h.closest('section').nextElementSibling; return next && !!next.querySelector('#kit-m-t'); }), 'kits: depois de "Três camadas" vem direto "Como montamos o seu kit" (sem o bloco de peças)');
   ok(await page.$$eval('#site-nav a', a => a.map(x => x.textContent.trim()).join()) === 'Catálogo,Kits,Curadoria,Confecções,Sobre,Blog', 'menu sem Marcas e sem Projetos');
   ok(await page.$$eval('a[href^="/branding-identidade-visual/"], a[href^="/projetos/"]', a => a.length === 0), 'nenhum link para branding ou projetos');
   await page.goto(BASE + '/confeccoes-personalizadas/', { waitUntil: 'networkidle0' });

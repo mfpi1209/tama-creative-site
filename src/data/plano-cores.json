@@ -26,27 +26,42 @@
   "polo~vermelho": [
    "Azul royal",
    "Preto",
-   "Branco"
+   "Branco",
+   "Azul-marinho",
+   "Cinza",
+   "Verde"
   ],
   "polo-feminina~azul-royal": [
    "Vermelho",
    "Preto",
-   "Branco"
+   "Branco",
+   "Azul-marinho",
+   "Cinza",
+   "Verde"
   ],
   "camiseta~azul-royal": [
    "Vermelho",
    "Preto",
-   "Branco"
+   "Branco",
+   "Azul-marinho",
+   "Cinza",
+   "Verde"
   ],
   "camiseta-feminina~vermelho": [
    "Azul royal",
    "Preto",
-   "Branco"
+   "Branco",
+   "Azul-marinho",
+   "Cinza",
+   "Verde"
   ],
   "moletom~preto": [
    "Azul royal",
    "Vermelho",
-   "Cinza"
+   "Cinza",
+   "Azul-marinho",
+   "Branco",
+   "Verde"
   ],
   "dolma~branco": [
    "Preto",
@@ -56,12 +71,15 @@
   "avental~jeans": [
    "Preto",
    "Vermelho",
-   "Cru"
+   "Cru",
+   "Azul-marinho",
+   "Verde"
   ],
   "caderno~azul-royal": [
    "Vermelho",
    "Preto",
-   "Verde"
+   "Verde",
+   "Azul-marinho"
   ],
   "agenda-couro~caramelo": [
    "Café",
@@ -198,22 +216,30 @@
   "cardapio~bordo": [
    "Preto",
    "Verde-escuro",
-   "Café"
+   "Café",
+   "Caramelo",
+   "Azul-marinho"
   ],
   "porta-contas~azul-marinho": [
    "Preto",
    "Bordô",
-   "Café"
+   "Café",
+   "Caramelo",
+   "Havana"
   ],
   "jogo-americano-retangular~havana": [
    "Preto",
    "Verde-escuro",
-   "Bordô"
+   "Bordô",
+   "Caramelo",
+   "Azul-marinho"
   ],
   "jogo-americano-oval~taupe": [
    "Preto",
    "Verde-escuro",
-   "Bordô"
+   "Bordô",
+   "Caramelo",
+   "Azul-marinho"
   ],
   "jogo-americano-impresso~vermelho": [
    "Azul-marinho",

@@ -121,6 +121,7 @@ try {
   ok(await page.$$eval('h1', h => h.length === 1 && /48 modelos/.test(h[0].textContent)), 'página do catálogo tem H1 com o total');
   ok(await catVisible() === 48 && await page.$$eval('#catalogo-grid .product img', i => i.every(x => x.alt.length > 15)), 'catálogo mostra os 48 modelos do banco, com texto alternativo');
   ok(await page.$$eval('#catalogo-grid .product[data-slug="cat-caneca"] .swatch', s => s.length === 5), 'caneca tem 5 cores com foto');
+  ok(await page.evaluate(() => { const cat = JSON.parse(document.getElementById('tama-catalog').textContent); return [...document.querySelectorAll('#catalogo-grid .product.studio')].every(p => { const sw = [...p.querySelectorAll('.swatch')].map(b => b.dataset.color); const v = cat[p.dataset.slug].v || {}; return sw.length < 2 || sw.every(c => c in v); }); }), 'toda cor mostrada no catálogo tem foto própria (nenhuma bolinha sem efeito)');
   await page.$eval('#catalogo-grid .product[data-slug="cat-caneca"]', el => el.scrollIntoView({ block: 'center' }));
   await page.click('#catalogo-grid .product[data-slug="cat-caneca"] .swatch[data-color="Verde"]');
   ok(await page.$eval('#catalogo-grid .product[data-slug="cat-caneca"] .prod-media img', i => (i.getAttribute('srcset') || '').includes('caneca~verde')), 'trocar a cor mostra a foto da caneca verde (variação gerada)');

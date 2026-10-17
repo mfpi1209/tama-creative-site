@@ -152,6 +152,43 @@
    "atualizado_em": "2026-10-17"
   },
   {
+   "id": "avental~azul-marinho",
+   "produto": "Avental personalizado",
+   "categoria": "vestuario",
+   "modelo": "Jeans com alças e bolso duplo",
+   "cor": {
+    "nome": "Azul-marinho",
+    "hex": "#1E2A4A"
+   },
+   "material": {
+    "valor": "Jeans",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado ou silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Avental azul-marinho com alças caramelo e a marca TaMa aplicada no bolso.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base avental~jeans.",
+   "arquivo": "img/produtos/avental~azul-marinho.webp",
+   "mestre": "midia/produtos/mestre/avental~azul-marinho.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "bc76c4aa0300098461e2aa01fd1c6b41d14b2ad9368520d501d19d2901aacf1c",
+   "bytes": 1489375,
+   "atualizado_em": "2026-10-17"
+  },
+  {
    "id": "avental~cru",
    "produto": "Avental personalizado",
    "categoria": "vestuario",
@@ -264,6 +301,43 @@
    "atualizado_em": "2026-10-17"
   },
   {
+   "id": "avental~verde",
+   "produto": "Avental personalizado",
+   "categoria": "vestuario",
+   "modelo": "Jeans com alças e bolso duplo",
+   "cor": {
+    "nome": "Verde",
+    "hex": "#1F6B45"
+   },
+   "material": {
+    "valor": "Jeans",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado ou silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Avental verde com alças caramelo e a marca TaMa aplicada no bolso.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base avental~jeans.",
+   "arquivo": "img/produtos/avental~verde.webp",
+   "mestre": "midia/produtos/mestre/avental~verde.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "a5f33d4cce6e7ceb6e0baf1a138bb51380f8878bf8da47a00901899c76402868",
+   "bytes": 1570362,
+   "atualizado_em": "2026-10-17"
+  },
+  {
    "id": "avental~vermelho",
    "produto": "Avental personalizado",
    "categoria": "vestuario",
@@ -298,6 +372,44 @@
    "altura": 1024,
    "sha256": "0a502397b4abd498ecc522f03c3e02e0a8e455fa895f81fce92adfcf81989e25",
    "bytes": 1486516,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "caderno~azul-marinho",
+   "produto": "Caderno de anotações",
+   "categoria": "canetas-escritorio",
+   "modelo": "Capa dura A5 com elástico e marcador",
+   "cor": {
+    "nome": "Azul-marinho",
+    "hex": "#1E2A4A"
+   },
+   "material": {
+    "valor": "Capa dura",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk ou hot stamping",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Caderno de capa dura azul-marinho com elástico e a marca TaMa em branco.",
+   "uso": [
+    "home",
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base caderno~azul-royal.",
+   "arquivo": "img/produtos/caderno~azul-marinho.webp",
+   "mestre": "midia/produtos/mestre/caderno~azul-marinho.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "e11a9672dbb5399e3af89db922b0cb8a1e9ea71555be81d77962858a1ac631a7",
+   "bytes": 1586361,
    "atualizado_em": "2026-10-17"
   },
   {
@@ -607,6 +719,44 @@
    "atualizado_em": "2026-10-17"
   },
   {
+   "id": "camiseta-feminina~azul-marinho",
+   "produto": "Camiseta feminina",
+   "categoria": "vestuario",
+   "modelo": "Gola careca, modelagem feminina",
+   "cor": {
+    "nome": "Azul-marinho",
+    "hex": "#1E2A4A"
+   },
+   "material": {
+    "valor": "Algodão",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta feminina vermelha com a marca TaMa em silk branco no peito.",
+   "uso": [
+    "home",
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base camiseta-feminina~vermelho.",
+   "arquivo": "img/produtos/camiseta-feminina~azul-marinho.webp",
+   "mestre": "midia/produtos/mestre/camiseta-feminina~azul-marinho.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "d30ff83bc9557e2e9eb55fede883c5ed82d56a658ec201f1ada2dfdee476d75f",
+   "bytes": 1366251,
+   "atualizado_em": "2026-10-17"
+  },
+  {
    "id": "camiseta-feminina~azul-royal",
    "produto": "Camiseta feminina",
    "categoria": "vestuario",
@@ -683,6 +833,44 @@
    "atualizado_em": "2026-10-17"
   },
   {
+   "id": "camiseta-feminina~cinza",
+   "produto": "Camiseta feminina",
+   "categoria": "vestuario",
+   "modelo": "Gola careca, modelagem feminina",
+   "cor": {
+    "nome": "Cinza",
+    "hex": "#9A9A98"
+   },
+   "material": {
+    "valor": "Algodão",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta feminina vermelha com a marca TaMa em silk branco no peito.",
+   "uso": [
+    "home",
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base camiseta-feminina~vermelho.",
+   "arquivo": "img/produtos/camiseta-feminina~cinza.webp",
+   "mestre": "midia/produtos/mestre/camiseta-feminina~cinza.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "f5cc9438cf47a363a9c7328cf2b9180af2225ec6666a2c9c230973e6d9356671",
+   "bytes": 1504169,
+   "atualizado_em": "2026-10-17"
+  },
+  {
    "id": "camiseta-feminina~preto",
    "produto": "Camiseta feminina",
    "categoria": "vestuario",
@@ -718,6 +906,44 @@
    "altura": 1024,
    "sha256": "985e5aff646e73bacd52a6f7a14987848027c433f6aeddbb59ec56e277aec761",
    "bytes": 1433320,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "camiseta-feminina~verde",
+   "produto": "Camiseta feminina",
+   "categoria": "vestuario",
+   "modelo": "Gola careca, modelagem feminina",
+   "cor": {
+    "nome": "Verde",
+    "hex": "#1F6B45"
+   },
+   "material": {
+    "valor": "Algodão",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta feminina vermelha com a marca TaMa em silk branco no peito.",
+   "uso": [
+    "home",
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base camiseta-feminina~vermelho.",
+   "arquivo": "img/produtos/camiseta-feminina~verde.webp",
+   "mestre": "midia/produtos/mestre/camiseta-feminina~verde.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "9145f6a202f4985ab19a9f9314cdda3ec3d118e4c090b24cc41547272450e230",
+   "bytes": 1463872,
    "atualizado_em": "2026-10-17"
   },
   {
@@ -757,6 +983,44 @@
    "altura": 1254,
    "sha256": "b639e987d482b42b8a059abcb5547b7792627fd34022c6662bc84cd1437ca5f7",
    "bytes": 1925752,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "camiseta~azul-marinho",
+   "produto": "Camiseta masculina",
+   "categoria": "vestuario",
+   "modelo": "Gola careca",
+   "cor": {
+    "nome": "Azul-marinho",
+    "hex": "#1E2A4A"
+   },
+   "material": {
+    "valor": "Algodão",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta masculina azul-marinho com a marca TaMa em silk branco no peito.",
+   "uso": [
+    "home",
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base camiseta~azul-royal.",
+   "arquivo": "img/produtos/camiseta~azul-marinho.webp",
+   "mestre": "midia/produtos/mestre/camiseta~azul-marinho.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "1832021f015bfc3cc63f77ad4277b062f47314d8643940b81e55df923f0b6d9e",
+   "bytes": 1467892,
    "atualizado_em": "2026-10-17"
   },
   {
@@ -837,6 +1101,44 @@
    "atualizado_em": "2026-10-17"
   },
   {
+   "id": "camiseta~cinza",
+   "produto": "Camiseta masculina",
+   "categoria": "vestuario",
+   "modelo": "Gola careca",
+   "cor": {
+    "nome": "Cinza",
+    "hex": "#9A9A98"
+   },
+   "material": {
+    "valor": "Algodão",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta masculina cinza com a marca TaMa em silk branco no peito.",
+   "uso": [
+    "home",
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base camiseta~azul-royal.",
+   "arquivo": "img/produtos/camiseta~cinza.webp",
+   "mestre": "midia/produtos/mestre/camiseta~cinza.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "1c23d233c24c8012937f45bf94bbff4dec1c4c3e98f3b6be0756a7532daceb3a",
+   "bytes": 1597771,
+   "atualizado_em": "2026-10-17"
+  },
+  {
    "id": "camiseta~preto",
    "produto": "Camiseta masculina",
    "categoria": "vestuario",
@@ -872,6 +1174,44 @@
    "altura": 1024,
    "sha256": "23b4bae143790dfc34ee3fdd46d90c968f90165c2bcf38bfcf8821007ac3eb8d",
    "bytes": 1449698,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "camiseta~verde",
+   "produto": "Camiseta masculina",
+   "categoria": "vestuario",
+   "modelo": "Gola careca",
+   "cor": {
+    "nome": "Verde",
+    "hex": "#1F6B45"
+   },
+   "material": {
+    "valor": "Algodão",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta masculina verde com a marca TaMa em silk branco no peito.",
+   "uso": [
+    "home",
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base camiseta~azul-royal.",
+   "arquivo": "img/produtos/camiseta~verde.webp",
+   "mestre": "midia/produtos/mestre/camiseta~verde.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "bcfc59cea96f54074a6ccd383611bd3b39aa86e858bb33d1e8e6a4b753e210f7",
+   "bytes": 1522195,
    "atualizado_em": "2026-10-17"
   },
   {
@@ -2333,6 +2673,43 @@
    "atualizado_em": "2026-10-17"
   },
   {
+   "id": "cardapio~azul-marinho",
+   "produto": "Cardápio personalizado",
+   "categoria": "hotelaria-gastronomia",
+   "modelo": "Capa com cantoneiras metálicas",
+   "cor": {
+    "nome": "Azul-marinho",
+    "hex": "#1E2A4A"
+   },
+   "material": {
+    "valor": "Sintético texturizado",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Baixo-relevo",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Capa de cardápio azul-marinho com cantoneiras metálicas e a marca TaMa em baixo-relevo.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base cardapio~bordo.",
+   "arquivo": "img/produtos/cardapio~azul-marinho.webp",
+   "mestre": "midia/produtos/mestre/cardapio~azul-marinho.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "061f0c1070ce4023d11f288895cd5b8a509276944f46cedc8e777e25830435a7",
+   "bytes": 1803103,
+   "atualizado_em": "2026-10-17"
+  },
+  {
    "id": "cardapio~bordo",
    "produto": "Cardápio personalizado",
    "categoria": "hotelaria-gastronomia",
@@ -2404,6 +2781,43 @@
    "altura": 1024,
    "sha256": "1edb5eebf8e4174a8e414f668ec0f1ae6bab31b406b6a5c2b9883c5b9a654096",
    "bytes": 1601629,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "cardapio~caramelo",
+   "produto": "Cardápio personalizado",
+   "categoria": "hotelaria-gastronomia",
+   "modelo": "Capa com cantoneiras metálicas",
+   "cor": {
+    "nome": "Caramelo",
+    "hex": "#A0623A"
+   },
+   "material": {
+    "valor": "Sintético texturizado",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Baixo-relevo",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Capa de cardápio caramelo com cantoneiras metálicas e a marca TaMa em baixo-relevo.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base cardapio~bordo.",
+   "arquivo": "img/produtos/cardapio~caramelo.webp",
+   "mestre": "midia/produtos/mestre/cardapio~caramelo.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "c3cd15934fdabaa0a5478e1b1c47d86c4bc646df6aed8ce7038f8f467645871a",
+   "bytes": 1623313,
    "atualizado_em": "2026-10-17"
   },
   {
@@ -3880,6 +4294,7 @@
    "estoque": null,
    "alt": "Ecobag de algodão verde com alças vermelhas e a marca TaMa estampada.",
    "uso": [
+    "home",
     "catalogo"
    ],
    "ilustrativa": true,
@@ -3917,6 +4332,7 @@
    "estoque": null,
    "alt": "Ecobag de algodão vermelho com alças vermelhas e a marca TaMa estampada.",
    "uso": [
+    "home",
     "catalogo"
    ],
    "ilustrativa": true,
@@ -4569,6 +4985,43 @@
    "atualizado_em": "2026-10-17"
   },
   {
+   "id": "jogo-americano-oval~azul-marinho",
+   "produto": "Jogo americano oval",
+   "categoria": "hotelaria-gastronomia",
+   "modelo": "Oval costurado",
+   "cor": {
+    "nome": "Azul-marinho",
+    "hex": "#1E2A4A"
+   },
+   "material": {
+    "valor": "Sintético texturizado",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Baixo-relevo",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Jogo americano oval azul-marinho com a marca TaMa em baixo-relevo.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base jogo-americano-oval~taupe.",
+   "arquivo": "img/produtos/jogo-americano-oval~azul-marinho.webp",
+   "mestre": "midia/produtos/mestre/jogo-americano-oval~azul-marinho.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "5b1713e34df76edbef194dbdd1980877e37d9291814254a1e8a5567de84d59f9",
+   "bytes": 1665007,
+   "atualizado_em": "2026-10-17"
+  },
+  {
    "id": "jogo-americano-oval~bordo",
    "produto": "Jogo americano oval",
    "categoria": "hotelaria-gastronomia",
@@ -4603,6 +5056,43 @@
    "altura": 1024,
    "sha256": "d78351863509eb51ea0531f81a3dacb2497885d968e90857691e6b5b04f9cbc1",
    "bytes": 1647413,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "jogo-americano-oval~caramelo",
+   "produto": "Jogo americano oval",
+   "categoria": "hotelaria-gastronomia",
+   "modelo": "Oval costurado",
+   "cor": {
+    "nome": "Caramelo",
+    "hex": "#A0623A"
+   },
+   "material": {
+    "valor": "Sintético texturizado",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Baixo-relevo",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Jogo americano oval caramelo com a marca TaMa em baixo-relevo.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base jogo-americano-oval~taupe.",
+   "arquivo": "img/produtos/jogo-americano-oval~caramelo.webp",
+   "mestre": "midia/produtos/mestre/jogo-americano-oval~caramelo.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "afcac1a273f3561a5f45753e8cf90d7982bff035dcc255c23eae9958a5337798",
+   "bytes": 1746706,
    "atualizado_em": "2026-10-17"
   },
   {
@@ -4717,6 +5207,43 @@
    "atualizado_em": "2026-10-17"
   },
   {
+   "id": "jogo-americano-retangular~azul-marinho",
+   "produto": "Jogo americano retangular",
+   "categoria": "hotelaria-gastronomia",
+   "modelo": "Retangular costurado",
+   "cor": {
+    "nome": "Azul-marinho",
+    "hex": "#1E2A4A"
+   },
+   "material": {
+    "valor": "Sintético texturizado",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Baixo-relevo",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Jogo americano retangular azul-marinho com a marca TaMa em baixo-relevo no canto.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base jogo-americano-retangular~havana.",
+   "arquivo": "img/produtos/jogo-americano-retangular~azul-marinho.webp",
+   "mestre": "midia/produtos/mestre/jogo-americano-retangular~azul-marinho.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "28b4093bde28d6d05f7a780f9acca1b23daeee9baa4ae3ba03a96f0f3c4f2dd3",
+   "bytes": 1660318,
+   "atualizado_em": "2026-10-17"
+  },
+  {
    "id": "jogo-americano-retangular~bordo",
    "produto": "Jogo americano retangular",
    "categoria": "hotelaria-gastronomia",
@@ -4751,6 +5278,43 @@
    "altura": 1024,
    "sha256": "265b40661afc0f66b5d293b1cb0793c1125a1ee07a0615d7724a02f18009585a",
    "bytes": 1658356,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "jogo-americano-retangular~caramelo",
+   "produto": "Jogo americano retangular",
+   "categoria": "hotelaria-gastronomia",
+   "modelo": "Retangular costurado",
+   "cor": {
+    "nome": "Caramelo",
+    "hex": "#A0623A"
+   },
+   "material": {
+    "valor": "Sintético texturizado",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Baixo-relevo",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Jogo americano retangular caramelo com a marca TaMa em baixo-relevo no canto.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base jogo-americano-retangular~havana.",
+   "arquivo": "img/produtos/jogo-americano-retangular~caramelo.webp",
+   "mestre": "midia/produtos/mestre/jogo-americano-retangular~caramelo.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "684990b309dc4379cb457948afbd84b944f9288f354747a19532ceba98c8c8e0",
+   "bytes": 1578794,
    "atualizado_em": "2026-10-17"
   },
   {
@@ -4865,6 +5429,44 @@
    "atualizado_em": "2026-10-17"
   },
   {
+   "id": "moletom~azul-marinho",
+   "produto": "Moletom personalizado",
+   "categoria": "vestuario",
+   "modelo": "Canguru com capuz",
+   "cor": {
+    "nome": "Azul-marinho",
+    "hex": "#1E2A4A"
+   },
+   "material": {
+    "valor": "Moletom",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado ou silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Moletom azul-marinho com capuz e a marca TaMa no peito.",
+   "uso": [
+    "home",
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base moletom~preto.",
+   "arquivo": "img/produtos/moletom~azul-marinho.webp",
+   "mestre": "midia/produtos/mestre/moletom~azul-marinho.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "d7d556799d22817b7d39fb5f8228cbce33e618c2f40824e5ee5397fd3286a9b2",
+   "bytes": 1355982,
+   "atualizado_em": "2026-10-17"
+  },
+  {
    "id": "moletom~azul-royal",
    "produto": "Moletom personalizado",
    "categoria": "vestuario",
@@ -4900,6 +5502,44 @@
    "altura": 1024,
    "sha256": "42fe080283c5f5ab3ab658364d4d6778cc84acad9aede4e73280eddc03131efd",
    "bytes": 1610508,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "moletom~branco",
+   "produto": "Moletom personalizado",
+   "categoria": "vestuario",
+   "modelo": "Canguru com capuz",
+   "cor": {
+    "nome": "Branco",
+    "hex": "#F7F5F0"
+   },
+   "material": {
+    "valor": "Moletom",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado ou silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Moletom branco com capuz e a marca TaMa no peito.",
+   "uso": [
+    "home",
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base moletom~preto.",
+   "arquivo": "img/produtos/moletom~branco.webp",
+   "mestre": "midia/produtos/mestre/moletom~branco.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "b0a805cadca074f25420e41deabc2ab68e4e732d824b5c4c7950ee84920e3d97",
+   "bytes": 1257938,
    "atualizado_em": "2026-10-17"
   },
   {
@@ -4977,6 +5617,44 @@
    "altura": 1254,
    "sha256": "f9c019fe72364e7d9025e476f014ac71820f2e9f8e09d417d4e2690e2bbe1881",
    "bytes": 1983762,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "moletom~verde",
+   "produto": "Moletom personalizado",
+   "categoria": "vestuario",
+   "modelo": "Canguru com capuz",
+   "cor": {
+    "nome": "Verde",
+    "hex": "#1F6B45"
+   },
+   "material": {
+    "valor": "Moletom",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado ou silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Moletom verde com capuz e a marca TaMa no peito.",
+   "uso": [
+    "home",
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base moletom~preto.",
+   "arquivo": "img/produtos/moletom~verde.webp",
+   "mestre": "midia/produtos/mestre/moletom~verde.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "5cd0e87c6c260139154c80977cf1c41b0a8fa5292e8b608552ac12064d7aa1a8",
+   "bytes": 1431086,
    "atualizado_em": "2026-10-17"
   },
   {
@@ -5168,6 +5846,44 @@
    "atualizado_em": "2026-10-17"
   },
   {
+   "id": "polo-feminina~azul-marinho",
+   "produto": "Polo feminina",
+   "categoria": "vestuario",
+   "modelo": "Piquet, modelagem feminina",
+   "cor": {
+    "nome": "Azul-marinho",
+    "hex": "#1E2A4A"
+   },
+   "material": {
+    "valor": "Piquet",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Polo feminina azul-marinho com a marca TaMa bordada no peito.",
+   "uso": [
+    "home",
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base polo-feminina~azul-royal.",
+   "arquivo": "img/produtos/polo-feminina~azul-marinho.webp",
+   "mestre": "midia/produtos/mestre/polo-feminina~azul-marinho.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "4074fb64a82bd77a8fa1ba127b1b76fe16c1a68f072a9f7a5a8819a36313b4d7",
+   "bytes": 1702059,
+   "atualizado_em": "2026-10-17"
+  },
+  {
    "id": "polo-feminina~azul-royal",
    "produto": "Polo feminina",
    "categoria": "vestuario",
@@ -5245,6 +5961,44 @@
    "atualizado_em": "2026-10-17"
   },
   {
+   "id": "polo-feminina~cinza",
+   "produto": "Polo feminina",
+   "categoria": "vestuario",
+   "modelo": "Piquet, modelagem feminina",
+   "cor": {
+    "nome": "Cinza",
+    "hex": "#9A9A98"
+   },
+   "material": {
+    "valor": "Piquet",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Polo feminina cinza com a marca TaMa bordada no peito.",
+   "uso": [
+    "home",
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base polo-feminina~azul-royal.",
+   "arquivo": "img/produtos/polo-feminina~cinza.webp",
+   "mestre": "midia/produtos/mestre/polo-feminina~cinza.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "de85b71b3667311159b7acbd539610b207e4e641218f5af1207c73031eccd735",
+   "bytes": 1891726,
+   "atualizado_em": "2026-10-17"
+  },
+  {
    "id": "polo-feminina~preto",
    "produto": "Polo feminina",
    "categoria": "vestuario",
@@ -5283,6 +6037,44 @@
    "atualizado_em": "2026-10-17"
   },
   {
+   "id": "polo-feminina~verde",
+   "produto": "Polo feminina",
+   "categoria": "vestuario",
+   "modelo": "Piquet, modelagem feminina",
+   "cor": {
+    "nome": "Verde",
+    "hex": "#1F6B45"
+   },
+   "material": {
+    "valor": "Piquet",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Polo feminina verde com a marca TaMa bordada no peito.",
+   "uso": [
+    "home",
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base polo-feminina~azul-royal.",
+   "arquivo": "img/produtos/polo-feminina~verde.webp",
+   "mestre": "midia/produtos/mestre/polo-feminina~verde.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "2f55a6b3883e9b67755512505c7d177f38e5ef88207afc9311986d9287831ade",
+   "bytes": 1638627,
+   "atualizado_em": "2026-10-17"
+  },
+  {
    "id": "polo-feminina~vermelho",
    "produto": "Polo feminina",
    "categoria": "vestuario",
@@ -5318,6 +6110,44 @@
    "altura": 1024,
    "sha256": "cf421887ab036d92886a19e1fcfe064c19a3dcebc8415cbe3ddbdb8b1acb391f",
    "bytes": 1649465,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "polo~azul-marinho",
+   "produto": "Polo masculina",
+   "categoria": "vestuario",
+   "modelo": "Piquet",
+   "cor": {
+    "nome": "Azul-marinho",
+    "hex": "#1E2A4A"
+   },
+   "material": {
+    "valor": "Piquet",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Polo masculina vermelha com a marca TaMa bordada no peito.",
+   "uso": [
+    "home",
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base polo~vermelho.",
+   "arquivo": "img/produtos/polo~azul-marinho.webp",
+   "mestre": "midia/produtos/mestre/polo~azul-marinho.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "6b32297e992bf499b6e96b4cbee71c8b599cae9ddbba14a36c4e54705c56a9b6",
+   "bytes": 1596116,
    "atualizado_em": "2026-10-17"
   },
   {
@@ -5397,6 +6227,44 @@
    "atualizado_em": "2026-10-17"
   },
   {
+   "id": "polo~cinza",
+   "produto": "Polo masculina",
+   "categoria": "vestuario",
+   "modelo": "Piquet",
+   "cor": {
+    "nome": "Cinza",
+    "hex": "#9A9A98"
+   },
+   "material": {
+    "valor": "Piquet",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Polo masculina vermelha com a marca TaMa bordada no peito.",
+   "uso": [
+    "home",
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base polo~vermelho.",
+   "arquivo": "img/produtos/polo~cinza.webp",
+   "mestre": "midia/produtos/mestre/polo~cinza.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "0a0feced12a981e5e50d95fad88f58d08ef2f67b1dc6fc2a7fdcd0fc30a00cc3",
+   "bytes": 1561226,
+   "atualizado_em": "2026-10-17"
+  },
+  {
    "id": "polo~preto",
    "produto": "Polo masculina",
    "categoria": "vestuario",
@@ -5432,6 +6300,44 @@
    "altura": 1024,
    "sha256": "154ec90a088d84bc9f3d7d976c1c1938625f91a389b77930cd1f09484824c68a",
    "bytes": 1511938,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "polo~verde",
+   "produto": "Polo masculina",
+   "categoria": "vestuario",
+   "modelo": "Piquet",
+   "cor": {
+    "nome": "Verde",
+    "hex": "#1F6B45"
+   },
+   "material": {
+    "valor": "Piquet",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Polo masculina vermelha com a marca TaMa bordada no peito.",
+   "uso": [
+    "home",
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base polo~vermelho.",
+   "arquivo": "img/produtos/polo~verde.webp",
+   "mestre": "midia/produtos/mestre/polo~verde.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "c5583bfd3396d66b09b388e9e8482ea36dc3b1e1b644f5a37e33e2e7509452b5",
+   "bytes": 1611883,
    "atualizado_em": "2026-10-17"
   },
   {
@@ -5582,6 +6488,80 @@
    "altura": 1024,
    "sha256": "30868af2e254be761cc6e6b1c8109a8b01c68616592d4c03a50dd6ca660fd8af",
    "bytes": 1809485,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "porta-contas~caramelo",
+   "produto": "Porta-contas personalizado",
+   "categoria": "hotelaria-gastronomia",
+   "modelo": "Dobrável",
+   "cor": {
+    "nome": "Caramelo",
+    "hex": "#A0623A"
+   },
+   "material": {
+    "valor": "Sintético texturizado",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Baixo-relevo",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Porta-contas dobrável caramelo com a marca TaMa em baixo-relevo.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base porta-contas~azul-marinho.",
+   "arquivo": "img/produtos/porta-contas~caramelo.webp",
+   "mestre": "midia/produtos/mestre/porta-contas~caramelo.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "d29518b4809f19020b532a6d0f3e624f62c85233810e1334553576345b57cf16",
+   "bytes": 1870427,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "porta-contas~havana",
+   "produto": "Porta-contas personalizado",
+   "categoria": "hotelaria-gastronomia",
+   "modelo": "Dobrável",
+   "cor": {
+    "nome": "Havana",
+    "hex": "#7A4A2E"
+   },
+   "material": {
+    "valor": "Sintético texturizado",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Baixo-relevo",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Porta-contas dobrável havana com a marca TaMa em baixo-relevo.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base porta-contas~azul-marinho.",
+   "arquivo": "img/produtos/porta-contas~havana.webp",
+   "mestre": "midia/produtos/mestre/porta-contas~havana.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "73d8f6b058ba6d645ccb86973255d4e63e4f45714526ef00733bb4dd2e560a10",
+   "bytes": 1812396,
    "atualizado_em": "2026-10-17"
   },
   {

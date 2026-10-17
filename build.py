@@ -136,7 +136,6 @@ def build_catalogo():
         first = ims[0]
         cores = [[i['cor']['nome'], i['cor']['hex'], i['id'], i['alt']] for i in ims]
         vistos = {c[0] for c in cores}
-        cores += [c for c in CORES_REF.get(first['categoria'], []) if c[0] not in vistos]
         mat, tec = first.get('material') or {}, first.get('tecnica') or {}
         meta = (f"{mat['valor']} · {tec['valor']}" if mat.get('status') == 'confirmado' and tec.get('status') == 'confirmado' else 'Material e técnica sob consulta')
         out.append({'slug': slug, 'nome': nome, 'img': first['id'], 'categoria': first['categoria'], 'descricao': first.get('modelo') or '', 'meta': meta, 'alt': first['alt'], 'cores': cores})
@@ -258,6 +257,9 @@ def catalog_json():
     data.update({it['slug']: {'n': it['nome'], 'i': None, 'c': []} for it in ALEM})
     data.update({h['slug']: {'n': h['nome'], 'i': img_url(h['img'], 'webp', 420), 'c': home_colors(h), 'v': home_variants(h)} for h in HOME_PRODS})
     data.update({c['slug']: {'n': c['nome'], 'i': img_url(c['img'], 'webp', 420), 'c': home_colors(c), 'v': home_variants(c)} for c in CATALOGO if c['slug'] not in data})
+    for c in CATALOGO:   # destaque da home que também está no catálogo: junta as fotos por cor dos dois cards
+        if c['slug'] in data:
+            data[c['slug']]['v'] = {**home_variants(c), **(data[c['slug']].get('v') or {})}
     return '<script id="tama-catalog" type="application/json">' + json.dumps(data, ensure_ascii=False, separators=(',', ':')) + '</script>'
 
 
@@ -289,9 +291,14 @@ def product_card(p, sizes='(max-width: 760px) 46vw, (max-width: 1180px) 22vw, 20
 
 
 
+def colors_with_photo(h):
+    """Só as cores que têm foto própria (mais a primeira, que é a foto-base): nenhuma bolinha de cor fica sem efeito."""
+    return [c for i, c in enumerate(h['cores']) if i == 0 or (len(c) > 2 and c[2] in IMAGES)]
+
+
 def home_colors(h):
     """[[nome, hex], ...]: as cores do destaque sem o nome da foto (formato que swatches() e o site.js esperam)."""
-    return [c[:2] for c in h['cores']]
+    return [c[:2] for c in colors_with_photo(h)]
 
 
 def home_variants(h):

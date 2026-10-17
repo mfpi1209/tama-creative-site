@@ -24,7 +24,9 @@
     ],
     [
      "Azul-marinho",
-     "#1E2A4A"
+     "#1E2A4A",
+     "polo~azul-marinho",
+     "polo masculina vermelha com a marca tama bordada no peito"
     ],
     [
      "Preto",
@@ -40,11 +42,15 @@
     ],
     [
      "Cinza",
-     "#9A9A98"
+     "#9A9A98",
+     "polo~cinza",
+     "polo masculina vermelha com a marca tama bordada no peito"
     ],
     [
      "Verde",
-     "#1F6B45"
+     "#1F6B45",
+     "polo~verde",
+     "polo masculina vermelha com a marca tama bordada no peito"
     ]
    ]
   },
@@ -71,7 +77,9 @@
     ],
     [
      "Azul-marinho",
-     "#1E2A4A"
+     "#1E2A4A",
+     "polo-feminina~azul-marinho",
+     "polo feminina azul-marinho com a marca tama bordada no peito"
     ],
     [
      "Preto",
@@ -87,11 +95,15 @@
     ],
     [
      "Cinza",
-     "#9A9A98"
+     "#9A9A98",
+     "polo-feminina~cinza",
+     "polo feminina cinza com a marca tama bordada no peito"
     ],
     [
      "Verde",
-     "#1F6B45"
+     "#1F6B45",
+     "polo-feminina~verde",
+     "polo feminina verde com a marca tama bordada no peito"
     ]
    ]
   },
@@ -118,7 +130,9 @@
     ],
     [
      "Azul-marinho",
-     "#1E2A4A"
+     "#1E2A4A",
+     "camiseta~azul-marinho",
+     "camiseta masculina azul-marinho com a marca tama em silk branco no peito"
     ],
     [
      "Preto",
@@ -134,11 +148,15 @@
     ],
     [
      "Cinza",
-     "#9A9A98"
+     "#9A9A98",
+     "camiseta~cinza",
+     "camiseta masculina cinza com a marca tama em silk branco no peito"
     ],
     [
      "Verde",
-     "#1F6B45"
+     "#1F6B45",
+     "camiseta~verde",
+     "camiseta masculina verde com a marca tama em silk branco no peito"
     ]
    ]
   },
@@ -165,7 +183,9 @@
     ],
     [
      "Azul-marinho",
-     "#1E2A4A"
+     "#1E2A4A",
+     "camiseta-feminina~azul-marinho",
+     "camiseta feminina vermelha com a marca tama em silk branco no peito"
     ],
     [
      "Preto",
@@ -181,11 +201,15 @@
     ],
     [
      "Cinza",
-     "#9A9A98"
+     "#9A9A98",
+     "camiseta-feminina~cinza",
+     "camiseta feminina vermelha com a marca tama em silk branco no peito"
     ],
     [
      "Verde",
-     "#1F6B45"
+     "#1F6B45",
+     "camiseta-feminina~verde",
+     "camiseta feminina vermelha com a marca tama em silk branco no peito"
     ]
    ]
   },
@@ -218,11 +242,15 @@
     ],
     [
      "Azul-marinho",
-     "#1E2A4A"
+     "#1E2A4A",
+     "moletom~azul-marinho",
+     "moletom azul-marinho com capuz e a marca tama no peito"
     ],
     [
      "Branco",
-     "#F7F5F0"
+     "#F7F5F0",
+     "moletom~branco",
+     "moletom branco com capuz e a marca tama no peito"
     ],
     [
      "Cinza",
@@ -232,7 +260,9 @@
     ],
     [
      "Verde",
-     "#1F6B45"
+     "#1F6B45",
+     "moletom~verde",
+     "moletom verde com capuz e a marca tama no peito"
     ]
    ]
   },
@@ -353,7 +383,9 @@
     ],
     [
      "Azul-marinho",
-     "#1E2A4A"
+     "#1E2A4A",
+     "caderno~azul-marinho",
+     "caderno de capa dura azul-marinho com elástico e a marca tama em branco"
     ]
    ]
   },
@@ -420,12 +452,16 @@
      "ecobag de algodão preto com alças vermelhas e a marca tama estampada"
     ],
     [
-     "Oliva",
-     "#6B6B45"
+     "Vermelho",
+     "#C8202F",
+     "ecobag~vermelho",
+     "ecobag de algodão vermelho com alças vermelhas e a marca tama estampada"
     ],
     [
-     "Vinho",
-     "#6B1E33"
+     "Verde",
+     "#1F6B45",
+     "ecobag~verde",
+     "ecobag de algodão verde com alças vermelhas e a marca tama estampada"
     ]
    ]
   },
@@ -496,10 +532,6 @@
      "#1E2A4A",
      "caixa-personalizada~azul-marinho",
      "caixa rígida azul-marinho com tampa, interior creme e a marca tama em dourado"
-    ],
-    [
-     "Verde",
-     "#1F4A35"
     ],
     [
      "Cru",

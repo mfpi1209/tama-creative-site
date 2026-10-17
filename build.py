@@ -347,9 +347,9 @@ def page_catalogo():
     item_list = {'@type': 'ItemList', '@id': url + '#lista', 'name': 'Catálogo de modelos TaMa Creative', 'numberOfItems': len(CATALOGO),
                  'itemListElement': [{'@type': 'ListItem', 'position': i + 1, 'name': c['nome'], 'url': url + '#' + c['slug']} for i, c in enumerate(CATALOGO)]}
     return {
-        'path': '/catalogo/', 'title': f'Catálogo: {len(CATALOGO)} modelos de brindes, confecções e papelaria | TaMa Creative',
+        'path': '/catalogo/', 'title': f'Catálogo: {len(CATALOGO)} modelos de brindes e confecções | TaMa Creative',
         'og_title': 'Catálogo de modelos · TaMa Creative',
-        'description': f'{len(CATALOGO)} modelos para personalizar com a sua marca: vestuário, canetas e escritório, bolsas e embalagens, garrafas e copos, acessórios, casa e hotelaria. Monte sua seleção e peça uma proposta.',
+        'description': f'{len(CATALOGO)} modelos para personalizar com a sua marca: vestuário, canetas, bolsas, embalagens, garrafas, acessórios e casa. Monte sua seleção e peça uma proposta.',
         'trail': [('/', 'Início'), ('/catalogo/', 'Catálogo')],
         'wp_type': 'CollectionPage', 'ld_extra': [item_list],
         'body': f'''<section class="page-head" style="padding-bottom:clamp(20px,3vw,32px)">
@@ -566,7 +566,7 @@ def footer():
     contact_col = ''.join(f'<li>{c}</li>' for c in contacts) or '<li><a href="/solicitar-proposta/">Solicitar proposta</a></li>'
     return f'''<footer class="site-footer">
   <div class="wrap footer-grid">
-    <div class="footer-brand"><a class="brand" href="/" aria-label="TaMa Creative, página inicial">{LOGO_DECOR}</a><p>Brindes corporativos, confecções e marcas. Criatividade que ganha forma e permanece.</p></div>
+    <div class="footer-brand"><a class="brand" href="/" aria-label="TaMa Creative, página inicial">{LOGO_DECOR}</a><p>Brindes corporativos, kits e confecções. Criatividade que ganha forma e permanece.</p></div>
     <div><p class="footer-title">Soluções</p><ul class="footer-links">{sol}</ul></div>
     <div><p class="footer-title">TaMa</p><ul class="footer-links"><li><a href="/sobre/">Sobre</a></li><li><a href="/blog/">Blog</a></li><li><a href="/solicitar-proposta/">Solicitar proposta</a></li><li><a href="/privacidade/">Privacidade</a></li></ul></div>
     <div><p class="footer-title">Contato</p><ul class="footer-links">{contact_col}</ul></div>
@@ -937,8 +937,8 @@ def page_brindes():
 ''' + faq([
             ('Qual é a quantidade mínima?', 'Varia conforme a peça e a técnica de personalização. Na proposta indicamos as quantidades viáveis para cada item.'),
             ('Quanto tempo leva?', 'Depende da produção e da personalização de cada peça. Por isso pedimos a data desejada já no primeiro contato e confirmamos o prazo na proposta.'),
-            ('Vocês têm catálogo com preços?', 'Não trabalhamos com catálogo fechado. A curadoria parte do seu objetivo, do público e do investimento disponível, e a proposta traz peças, quantidades e condições comerciais.'),
-            ('Posso usar a arte da minha empresa?', 'Sim. Aplicamos a identidade da sua empresa e enviamos a arte para aprovação antes da produção. '),
+            ('Vocês têm catálogo com preços?', 'O catálogo mostra modelos de referência, sem preços. A curadoria parte do seu objetivo, do público e do investimento disponível, e a proposta traz peças, quantidades e condições comerciais.'),
+            ('Posso usar a arte da minha empresa?', 'Sim. Aplicamos a identidade da sua empresa e enviamos a arte para aprovação antes da produção.'),
         ], title='Perguntas sobre brindes', eyebrow='Dúvidas') + end_cta(tipo='brindes'),
     }
 
@@ -1021,7 +1021,7 @@ def page_curadoria():
   <div class="wrap"><div class="section-head" style="margin:0;max-width:54rem">
     <p class="eyebrow">Curadoria autoral</p>
     <h1>Brindes corporativos premium: {total} ideias para a sua marca</h1>
-    <p class="lead">Peças fotografadas com cores de referência e ideias além do óbvio que quase ninguém usa como brinde. Escolha, combine e envie a seleção junto com o pedido de proposta.</p>
+    <p class="lead">Peças com cores de referência e ideias além do óbvio que quase ninguém usa como brinde. Escolha, combine e envie a seleção junto com o pedido de proposta.</p>
   </div></div>
 </section>
 <section class="section ivory" id="pecas" style="padding-top:clamp(32px,4vw,52px)" aria-label="Peças da curadoria">
@@ -1224,12 +1224,12 @@ def page_case():
 def page_sobre():
     return {
         'path': '/sobre/', 'title': 'Sobre a TaMa Creative | Estúdio criativo com visão de Trade Marketing',
-        'description': 'A TaMa Creative é um estúdio criativo que une curadoria, criação e visão de Trade Marketing para transformar marcas em brindes, kits, vestuário e identidade.',
+        'description': 'A TaMa Creative é um estúdio criativo que une curadoria, criação e visão de Trade Marketing para levar a sua marca a brindes, kits e confecções.',
         'trail': [('/', 'Início'), ('/sobre/', 'Sobre')], 'wp_type': 'AboutPage',
         'body': f'''<section class="page-head">
   <div class="wrap split">
     <div class="copy"><p class="eyebrow">Sobre a TaMa</p><h1>Um estúdio criativo nascido do Trade Marketing</h1><p class="lead">Antes de escolher qualquer peça, olhamos para o público, a ocasião de uso e a execução. É a experiência da fundadora em Trade Marketing aplicada a cada projeto, do brinde ao uniforme.</p><div class="actions">{cta_link(track_label='sobre-head')}</div></div>
-    <div class="seal-block">{SELO}<p>Criamos marcas. Personalizamos ideias.</p></div>
+    <div class="seal-block">{SELO}<p>Sua marca ganha forma. Personalizamos ideias.</p></div>
   </div>
 </section>
 <section class="section question" aria-label="A pergunta que abre cada projeto">
@@ -1276,8 +1276,8 @@ def page_proposta():
     wa_retry = f'<a class="btn btn-line" href="https://wa.me/{WA}" data-wa-summary data-track="whatsapp_click" data-track-label="erro-envio" rel="noopener">{CHAT} Enviar pelo WhatsApp</a>' if WA else ''
     alt_contact = 'pelo WhatsApp ou por e-mail' if (WA or EMAIL) else 'mais tarde'
     return {
-        'path': '/solicitar-proposta/', 'title': 'Solicitar proposta | TaMa Creative',
-        'description': 'Peça uma proposta de brindes corporativos, kits, uniformes ou identidade visual. Conte a ocasião e a TaMa Creative propõe as possibilidades.',
+        'path': '/solicitar-proposta/', 'title': 'Solicitar proposta de brindes, kits e confecções | TaMa',
+        'description': 'Peça uma proposta de brindes corporativos, kits ou uniformes. Conte a ocasião e a TaMa Creative propõe as possibilidades.',
         'trail': [('/', 'Início'), ('/solicitar-proposta/', 'Solicitar proposta')], 'wp_type': 'ContactPage',
         'body': f'''<section class="page-head" style="padding-bottom:clamp(24px,4vw,40px)">
   <div class="wrap"><div class="section-head" style="margin:0;max-width:50rem"><p class="eyebrow">Solicitar proposta</p><h1>Vamos dar forma à sua ideia?</h1><p class="lead">Conte a ocasião. A TaMa propõe as possibilidades. O formulário leva cerca de dois minutos.</p></div></div>
@@ -1348,7 +1348,7 @@ def page_404():
     return {
         'path': '/404.html', 'title': 'Página não encontrada | TaMa Creative', 'index': False,
         'description': 'A página que você procurou não existe ou mudou de endereço.',
-        'body': '''<section class="section"><div class="wrap"><div class="section-head" style="max-width:44rem"><p class="eyebrow">Erro 404</p><h1>Esta página não existe ou mudou de lugar</h1><p class="lead">O site da TaMa foi reorganizado. Comece por um destes caminhos:</p><div class="actions"><a class="btn btn-wine" href="/">Página inicial</a><a class="btn btn-line" href="/brindes-corporativos-premium/">Curadoria</a><a class="btn btn-line" href="/solicitar-proposta/">Solicitar proposta</a></div></div></div></section>''',
+        'body': '''<section class="section"><div class="wrap"><div class="section-head" style="max-width:44rem"><p class="eyebrow">Erro 404</p><h1>Esta página não existe ou mudou de lugar</h1><p class="lead">O site da TaMa foi reorganizado. Comece por um destes caminhos:</p><div class="actions"><a class="btn btn-wine" href="/">Página inicial</a><a class="btn btn-line" href="/catalogo/">Catálogo</a><a class="btn btn-line" href="/brindes-corporativos-premium/">Curadoria</a><a class="btn btn-line" href="/solicitar-proposta/">Solicitar proposta</a></div></div></div></section>''',
     }
 
 

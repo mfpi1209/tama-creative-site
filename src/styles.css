@@ -463,7 +463,7 @@ textarea { resize: vertical; min-height: 7.5em; line-height: 1.55; }
 .result h2 { font-size: 1.75rem; }
 .result.ok { border-color: var(--ok); }
 .result textarea { min-height: 11em; font-size: .875rem; background: var(--bg); }
-.aside { display: grid; gap: 26px; padding: clamp(22px, 3vw, 34px); background: var(--ivory); border-radius: var(--radius); }
+.aside { display: grid; grid-template-columns: minmax(0, 1fr); gap: 26px; padding: clamp(22px, 3vw, 34px); background: var(--ivory); border-radius: var(--radius); }
 .aside h2 { font-size: 1.75rem; }
 .aside ol { padding: 0; list-style: none; display: grid; gap: 12px; counter-reset: s; }
 .aside ol li { display: grid; grid-template-columns: 30px minmax(0, 1fr); gap: 10px; counter-increment: s; }
@@ -523,7 +523,7 @@ body:has(.wa-float) .float-bag { bottom: calc(88px + env(safe-area-inset-bottom,
 @media (max-width: 980px) {
   .rail .product { flex-basis: calc((100% - 48px) / 4); }
   .curation-head { grid-template-columns: 1fr; }
-  .contact-grid { grid-template-columns: 1fr; }
+  .contact-grid { grid-template-columns: minmax(0, 1fr); }
   .collection { flex-basis: calc((100% - 16px) / 2); }
   .footer-grid { grid-template-columns: 1fr 1fr; }
   .footer-brand { grid-column: 1 / -1; }
@@ -556,7 +556,7 @@ body:has(.wa-float) .float-bag { bottom: calc(88px + env(safe-area-inset-bottom,
   .lightbox-body img { max-height: 38vh; }
 }
 @media (max-width: 560px) {
-  .form-grid { grid-template-columns: 1fr; }
+  .form-grid { grid-template-columns: minmax(0, 1fr); }
   .pack div { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr; }
   .brand .logo { height: 34px; }

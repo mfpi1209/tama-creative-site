@@ -3,7 +3,7 @@
   'use strict';
   function readJSON(id) { try { return JSON.parse(document.getElementById(id).textContent); } catch (e) { return {}; } }
   var CFG = readJSON('tama-config');
-  var CAT = readJSON('tama-catalog');
+  var CAT = window.TAMA_CAT || {};   // /assets/catalogo.<hash>.js, carregado antes deste arquivo
   var STORE_KEY = 'tama-selecao';
   var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 

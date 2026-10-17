@@ -8,10 +8,30 @@ está preparado para o catálogo completo, a manutenção das fotos e, mais adia
 |---|---|
 | `src/data/produtos.json` | **Inventário: fonte da verdade.** Uma entrada por imagem, com produto, categoria, modelo, cor, material, técnica, texto alternativo, uso, aprovação, origem e hash do original. |
 | `midia/produtos/mestre/<id>.png` | Originais (PNG, 1254 px). Ficam só neste computador (fora do Git, como os masters dos mockups). |
-| `img/produtos/<id>.webp` | Versão web (WebP, qualidade 92) que o build converte em AVIF/WebP/JPEG em vários tamanhos. Só as imagens **em uso** entram no site. |
+| `img/produtos/<id>.webp` | Versão web (WebP, qualidade 92) que o build converte em AVIF/WebP/JPEG em vários tamanhos. O campo `arquivo` guarda o caminho público (`/img/produtos/…`); fotos enviadas pelo editor podem ter outro nome. |
 | `src/data/home-produtos.json` | Apresentação da home: quais imagens aparecem, em que ordem, com que texto. Aponta para os ids do inventário. |
 | `midia/produtos/indice.html` | Índice visual gerado para revisão (não vai para o site). |
 | `tools/produtos.py` | Importar, verificar e gerar o índice. |
+
+## Editor do catálogo (/admin/)
+Endereço: **https://tamacreative.com.br/admin/** (ou `/adm`), login com o GitHub, como no blog (ver `docs/BLOG.md`).
+Em **Catálogo de produtos** fica o próprio `src/data/produtos.json`, uma entrada por foto:
+
+- **Foto**: envia a imagem para `img/produtos/` (fundo claro, quadrada, de preferência 1254 px).
+- **Produto, categoria, descrição do modelo**: fotos com o mesmo nome de produto formam um único card no `/catalogo/`.
+- **Cor**: nome e bolinha (seletor de cor, `#RRGGBB`).
+- **Material e técnica**: valor + situação. Só aparece no site o que estiver **Confirmado**; o resto sai como
+  "sob consulta". Vale para o `/catalogo/` e para os destaques da home (que leem o material e a técnica daqui).
+- **Texto alternativo**, **situação da foto** (Substituir e Retirada tiram a foto do site), **onde é usada**.
+- **Identificador**: deixe vazio em itens novos; o build gera `produto~cor`. Não mude o de itens existentes.
+
+Cada alteração vira um rascunho no fluxo de revisão (pull request com prévia do Netlify) e vai ao ar ao clicar em
+**Publicar**. O build confere categoria, cor, texto alternativo e se a foto existe: com erro, a publicação não acontece
+e o motivo aparece no log de deploy. O editor regrava o JSON com outra ordem de chaves e recuo de 2 espaços; isso não
+muda nada no site, e o `tools/produtos.py` volta ao formato padrão na próxima vez que salvar.
+
+Os originais em `img/produtos/` também são publicados em `/img/produtos/` (sem indexação), só para o editor mostrar a
+foto; o site usa as versões AVIF/WebP/JPEG geradas pelo build.
 
 ## Nome das imagens (id)
 `<produto>[-<modelo>]~<cor>`, só minúsculas, números e hífen. Exemplos: `polo~vermelho`, `caneta-roller~bordo`,

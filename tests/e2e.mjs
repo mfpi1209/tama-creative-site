@@ -16,7 +16,8 @@ const ok = (cond, msg) => { if (cond) { pass++; console.log('  ✓ ' + msg); } e
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 // toda bolinha de cor dos cards tem foto própria no JSON tama-catalog (campo v); card com uma cor só não troca a foto
 const colorsHavePhoto = (page, sel) => page.evaluate(sel => {
-  const cat = JSON.parse(document.getElementById('tama-catalog').textContent), cards = [...document.querySelectorAll(sel)];
+  const el = document.getElementById('tama-catalog');   // dados do catálogo: arquivo em cache (window.TAMA_CAT) ou, antes, embutidos na página
+  const cat = window.TAMA_CAT || (el ? JSON.parse(el.textContent) : {}), cards = [...document.querySelectorAll(sel)];
   return cards.length > 0 && cards.every(p => { const sw = [...p.querySelectorAll('.swatch')].map(b => b.dataset.color); const v = cat[p.dataset.slug].v || {}; return sw.length < 2 || sw.every(c => c in v); });
 }, sel);
 
@@ -41,7 +42,6 @@ try {
   await page.goto(BASE + '/', { waitUntil: 'networkidle0' });
   const links = await page.$$eval('a[href^="/"]', as => [...new Set(as.map(a => a.getAttribute('href').split('#')[0].split('?')[0]))]);
   const broken = [];
-  // /brindes/ é outro app (catálogo de brindes em quantidade), fora deste build
   for (const l of links) { const r = await fetch(BASE + l); if (r.status !== 200) broken.push(l + ' ' + r.status); }
   const catHref = await page.$eval('#site-nav', n => [...n.querySelectorAll('a')].map(a => [a.textContent.trim(), a.getAttribute('href')]).find(([t]) => t === 'Catálogo')?.[1]);
   ok(catHref === '/catalogo/', `menu "Catálogo" abre /catalogo/ (${catHref})`);
@@ -326,6 +326,9 @@ try {
   ok(['publish_mode: editorial_workflow', 'folder: src/blog', 'media_folder: img/blog', 'name: github'].every(s => cfg.includes(s)), 'config do editor: GitHub, fluxo editorial, pasta do blog e mídia em img/blog');
   ok(['value: fim-de-ano', 'value: bandeja-em-couro', "pattern:"].every(s => cfg.includes(s)) && !cfg.includes('heading-one'), 'editor só oferece temas e peças válidos, com limites de SEO e sem H1 no texto');
   ok(!sitemap.includes('/admin/'), 'editor fora do sitemap');
+  ok(['file: src/data/produtos.json', 'widget: color', 'media_folder: /img/produtos', 'value: confirmado', 'value: a_confirmar'].every(x => cfg.includes(x)), 'editor tem o catálogo: foto, cor, material e técnica com situação');
+  const rob = await (await fetch(BASE + '/robots.txt')).text();
+  ok(rob.includes('Disallow: /admin/') && !rob.includes('/brindes/'), 'robots.txt sem o app /brindes/ e com o editor fora da busca');
   await bp.close();
 } finally {
   await browser.close();

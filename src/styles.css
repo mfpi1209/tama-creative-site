@@ -583,7 +583,7 @@ body:has(.wa-float) .float-bag { bottom: calc(88px + env(safe-area-inset-bottom,
 @media (max-width: 760px) { .brand-note { grid-template-columns: 1fr; } }
 
 /* Home clara (tama-home-v2): fotos de estúdio em fundo claro; o texto fica na área livre à esquerda e, no celular,
-   acima da foto, sem cobrir os produtos. Só a home usa .hero.light, .kits-home e .kit-card. */
+   acima da foto, sem cobrir os produtos. .hero.light abre a home e Confecções; .kits-home e .kit-card são da home. */
 .hero.light { display: grid; height: auto; min-height: 0; background: var(--bg); color: var(--ink); }
 .hero.light .slide { grid-area: 1 / 1; position: relative; inset: auto; display: flex; min-height: clamp(520px, 40vw, 640px); background: var(--tone, #F4EFE8); transition: opacity .9s ease, visibility 0s linear .9s; }
 .hero.light .slide.is-active { transition: opacity .9s ease; }
@@ -595,7 +595,7 @@ body:has(.wa-float) .float-bag { bottom: calc(88px + env(safe-area-inset-bottom,
 .hero.light .slide::after { content: none; }
 /* a foto ocupa a direita e se dissolve no tom do slide; o texto nunca passa por cima dos produtos */
 .hero.light .slide-photo { position: absolute; inset: 0 0 0 auto; width: var(--pw, 60%); overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 18%); mask-image: linear-gradient(90deg, transparent, #000 18%); }
-.hero.light .slide img { object-position: var(--fx, right) center; transform-origin: left center; }
+.hero.light .slide img { object-position: var(--fx, right) var(--fy, center); transform-origin: left center; }
 .hero.light .slide.is-active img { animation: hero-drift 10s cubic-bezier(.2, .6, .2, 1) both; }
 .hero.light .slide-inner { width: 100%; height: auto; }
 .hero.light .slide-copy { max-width: min(500px, 40vw); padding-block: 48px 112px; }
@@ -682,7 +682,7 @@ body:has(.wa-float) .float-bag { bottom: calc(88px + env(safe-area-inset-bottom,
   .hero.light .slide-inner { flex: none; }
   .hero.light .slide-copy { max-width: 640px; padding-block: 28px 18px; }
   .hero.light .slide-photo { position: relative; inset: auto; width: 100%; aspect-ratio: 2 / 1; margin-top: auto; -webkit-mask-image: linear-gradient(180deg, transparent, #000 12%); mask-image: linear-gradient(180deg, transparent, #000 12%); }
-  .hero.light .slide img { object-position: var(--fx-m, 80%) center; }
+  .hero.light .slide img { object-position: var(--fx-m, 80%) var(--fy, center); }
   .hero.light .hero-bar { grid-area: 2 / 1; padding-block: 10px 12px; }
   .hero.light .hero-caption { bottom: 14px; }
 }

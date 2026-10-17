@@ -14,3 +14,4 @@ midia/produtos/indice.html
 # chave da OpenAI para tools/variacoes.py: fica só neste computador
 .openai.env
 midia/produtos/geradas/
+midia/cenas/

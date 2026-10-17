@@ -27,9 +27,9 @@ def slug(s):
     return '-'.join(''.join(c if c.isalnum() else ' ' for c in s).split())
 
 
-def edit(key, modelo, qualidade, base_png, prompt, fidelidade='high', extras=()):
+def edit(key, modelo, qualidade, base_png, prompt, fidelidade='high', extras=(), tamanho='1024x1024'):
     boundary = uuid.uuid4().hex
-    fields = {'model': modelo, 'prompt': prompt, 'size': '1024x1024', 'quality': qualidade, 'n': '1'}
+    fields = {'model': modelo, 'prompt': prompt, 'size': tamanho, 'quality': qualidade, 'n': '1'}
     if modelo.startswith('gpt-image'):
         fields['input_fidelity'] = fidelidade
     body = b''

@@ -814,11 +814,18 @@ HOME_FAQ = [
 ]
 
 
-def hero_carousel():
+ASSURANCES = '''<ul class="assurances wrap" aria-label="Como a TaMa trabalha">
+  <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="9" width="16" height="11" rx="1.5"/><path d="M4 13h16M12 9v11"/><path d="M12 9c-1.6-3.6-6-3.6-5.2-.6.4 1.4 3.3.6 5.2.6zM12 9c1.6-3.6 6-3.6 5.2-.6-.4 1.4-3.3.6-5.2.6z"/></svg>Curadoria exclusiva</li>
+  <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5.5c0 4.3-3 7.8-7 9.5-4-1.7-7-5.2-7-9.5V6z"/><path d="M8.8 12.2l2.2 2.2 4.3-4.6"/></svg>Atendimento consultivo</li>
+  <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19c0-8 5-13 14-14-1 9-6 14-14 14z"/><path d="M5 19l7-7"/></svg>Projetos sob medida, pensados para sua marca</li>
+</ul>'''
+
+
+def hero_carousel(slides=None, label='Destaques da TaMa Creative', assurances=True):
     # Fotos claras de estúdio (pacote tama-home-v2). No computador a foto ocupa a metade direita e se funde ao tom do
     # slide (creme, sálvia, rosé, linho); o texto fica numa coluna própria, sem encostar nos produtos. No celular o texto
     # vem acima da foto. frame: enquadramento da foto (--fx no computador, --fx-m no celular) e largura (--pw).
-    slides = [
+    slides = slides or [
         ('tone-cream', 'hero-v3-brindes', '--fx:100%;--fx-m:92%', 'Ecobag cru, guarda-chuva preto, chaveiro de couro e garrafa vermelha com a marca TaMa.', 'Brindes corporativos', 'Sua marca, presente no <em>dia a dia</em>.',
          'Peças personalizadas para acompanhar pessoas e criar conexões.',
          cta_link('Solicitar proposta', track_label='hero-1') + '<a class="btn btn-line" href="/brindes-corporativos-premium/">Explorar produtos ' + ARROW + '</a>'),
@@ -846,7 +853,8 @@ def hero_carousel():
   <div class="slide-photo">{picture(img, alt, '(max-width: 760px) 200vw, (max-width: 1100px) 140vw, 100vw', eager=(i == 0), low=(i > 0))}</div>
 </div>''')
     dots = ''.join(f'<button class="dot" type="button" data-slide="{i}" aria-label="Mostrar slide {i + 1} de {n}" aria-controls="slide-{i + 1}"{" aria-current=\"true\"" if i == 0 else ""}></button>' for i in range(n))
-    return f'''<section class="hero light" aria-roledescription="carrossel" aria-label="Destaques da TaMa Creative" id="hero">
+    strip = ASSURANCES if assurances else ''
+    return f'''<section class="hero light" aria-roledescription="carrossel" aria-label="{label}" id="hero">
   {''.join(out)}
   <div class="hero-bar"><div class="wrap hero-controls">
     <p class="hero-count" aria-hidden="true"><span data-hero-count>01</span> / {n:02d}</p>
@@ -857,11 +865,7 @@ def hero_carousel():
   </div></div>
   <p class="hero-caption">{CAPS}</p>
 </section>
-<ul class="assurances wrap" aria-label="Como a TaMa trabalha">
-  <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="9" width="16" height="11" rx="1.5"/><path d="M4 13h16M12 9v11"/><path d="M12 9c-1.6-3.6-6-3.6-5.2-.6.4 1.4 3.3.6 5.2.6zM12 9c1.6-3.6 6-3.6 5.2-.6-.4 1.4-3.3.6-5.2.6z"/></svg>Curadoria exclusiva</li>
-  <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5.5c0 4.3-3 7.8-7 9.5-4-1.7-7-5.2-7-9.5V6z"/><path d="M8.8 12.2l2.2 2.2 4.3-4.6"/></svg>Atendimento consultivo</li>
-  <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19c0-8 5-13 14-14-1 9-6 14-14 14z"/><path d="M5 19l7-7"/></svg>Projetos sob medida, pensados para sua marca</li>
-</ul>'''
+{strip}'''
 
 
 def page_home():
@@ -1067,17 +1071,36 @@ def page_curadoria():
     }
 
 
+# Abertura de Confecções: pessoas usando as peças com a marca (cenas geradas com IA, ilustrativas; tools/cenas.py).
+# frame: --fx/--fy enquadram a foto no computador, --fx-m no celular.
+CONF_SLIDES = [
+    ('tone-linen', 'conf-evento-polos', '--fx:70%;--fy:35%;--fx-m:68%', 'Homem de polo vermelha e mulher de polo feminina azul royal, as duas com a marca TaMa bordada, conversando em um evento corporativo.',
+     'Confecções personalizadas', 'Uniformes corporativos e <em>confecções personalizadas</em>',
+     'Polos, camisetas, dólmãs e moletons para equipes, eventos e o dia a dia, alinhados à identidade da sua empresa.',
+     cta_link('Conversar sobre confecções', tipo='confeccoes', track_label='conf-hero-1') + '<a class="btn btn-line" href="/catalogo/?categoria=vestuario">Ver as peças ' + ARROW + '</a>'),
+    ('tone-cream', 'conf-chef-dolma', '--fx:78%;--fy:15%;--fx-m:74%', 'Chef de dólmã branca com a marca TaMa bordada finalizando um prato em uma cozinha profissional.',
+     'Gastronomia e hotelaria', 'Dólmãs feitas para o <em>calor da cozinha</em>.',
+     'Dólmãs e aventais bordados com a sua marca, em cores e em jeans.',
+     cta_link('Conversar sobre uniformes', tipo='confeccoes', track_label='conf-hero-2') + '<a class="btn btn-line" href="/catalogo/?categoria=vestuario">Ver dólmãs e aventais ' + ARROW + '</a>'),
+    ('tone-rose', 'conf-evento-camisetas', '--fx:72%;--fy:30%;--fx-m:70%', 'Equipe de evento com camisetas pretas com a marca TaMa em branco entregando um crachá na recepção.',
+     'Eventos e ações', 'Camisetas que viram <em>presença de marca</em>.',
+     'Silk em camisetas para feiras, campanhas e ativações, com a cor e o corte certos para cada equipe.',
+     cta_link('Planejar um evento', tipo='confeccoes', track_label='conf-hero-3') + '<a class="btn btn-line" href="/catalogo/?categoria=vestuario">Ver camisetas ' + ARROW + '</a>'),
+    ('tone-sage', 'conf-escritorio', '--fx:72%;--fy:40%;--fx-m:72%', 'Três colegas de polo azul-marinho e moletom cinza com a marca TaMa trabalhando juntos em um escritório.',
+     'Dia a dia', 'Uniforme que a equipe <em>gosta de vestir</em>.',
+     'Polos e moletons para o escritório, com conforto e a identidade da empresa.',
+     cta_link('Solicitar proposta', tipo='confeccoes', track_label='conf-hero-4') + '<a class="btn btn-line" href="/catalogo/?categoria=vestuario">Ver polos e moletons ' + ARROW + '</a>'),
+]
+
+
 def page_confeccoes():
     return {
         'path': '/confeccoes-personalizadas/', 'title': 'Uniformes corporativos e confecções personalizadas | TaMa Creative',
         'description': 'Uniformes corporativos, polos bordadas, moletons e bonés para equipes e eventos, alinhados à identidade visual da sua empresa e pensados para quem veste.',
         'trail': [('/', 'Início'), ('/confeccoes-personalizadas/', 'Confecções')],
         'service': {'key': 'confeccoes', 'name': 'Confecções personalizadas e uniformes corporativos', 'type': 'Uniformes corporativos personalizados'},
-        'preload': preload_image('hero-wear', '(max-width: 760px) 92vw, 46vw'),
-        'body': page_head('Confecções', 'Uniformes corporativos e confecções personalizadas',
-                          'Uniformes, polos, moletons e peças para campanhas e eventos alinhados à identidade visual da sua empresa. Tecido, modelagem e personalização definidos pelo uso e pelo conforto de quem veste.',
-                          cta_link(tipo='confeccoes', track_label='confeccoes-head'),
-                          'hero-wear', 'Moletom azul, polo off-white, bolsa terracota e boné verde em composição conceitual.') + f'''
+        'preload': preload_image('conf-evento-polos', '100vw'),
+        'body': hero_carousel(CONF_SLIDES, label='Confecções da TaMa Creative', assurances=False) + f'''
 <section class="section ivory" aria-labelledby="uso-t">
   <div class="wrap">
     <div class="section-head"><p class="eyebrow">Definido pelo uso</p><h2 id="uso-t" class="section-title">Cada peça começa pela rotina de quem veste</h2></div>

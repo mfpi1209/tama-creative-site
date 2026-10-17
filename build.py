@@ -810,40 +810,46 @@ HOME_FAQ = [
 
 
 def hero_carousel():
-    # Fotos claras de estúdio (pacote tama-home-v2): o texto fica na área livre à esquerda; no celular, acima da foto.
+    # Fotos claras de estúdio (pacote tama-home-v2). No computador a foto ocupa a metade direita e se funde ao tom do
+    # slide (creme, sálvia, rosé, linho); o texto fica numa coluna própria, sem encostar nos produtos. No celular o texto
+    # vem acima da foto. frame: enquadramento da foto (--fx no computador, --fx-m no celular) e largura (--pw).
     slides = [
-        ('', 'hero-v3-brindes', 'Ecobag cru, guarda-chuva preto, chaveiro de couro e garrafa vermelha com a marca TaMa.', 'Brindes corporativos', 'Sua marca, presente no dia a dia.',
+        ('tone-cream', 'hero-v3-brindes', '--fx:100%;--fx-m:92%', 'Ecobag cru, guarda-chuva preto, chaveiro de couro e garrafa vermelha com a marca TaMa.', 'Brindes corporativos', 'Sua marca, presente no <em>dia a dia</em>.',
          'Peças personalizadas para acompanhar pessoas e criar conexões.',
          cta_link('Solicitar proposta', track_label='hero-1') + '<a class="btn btn-line" href="/brindes-corporativos-premium/">Explorar produtos ' + ARROW + '</a>'),
-        ('', 'hero-v3-confeccoes', 'Polo vermelha, moletom azul royal e camiseta branca com a marca TaMa.', 'Confecções personalizadas', 'Identidade que veste sua equipe.',
+        ('tone-sage', 'hero-v3-confeccoes', '--fx:72%;--fx-m:72%', 'Polo vermelha, moletom azul royal e camiseta branca com a marca TaMa.', 'Confecções personalizadas', 'Identidade que <em>veste</em> sua equipe.',
          'Polos, camisetas, moletons, dólmãs e aventais em diversas cores.',
          cta_link('Conversar sobre confecções', tipo='confeccoes', track_label='hero-2') + '<a class="btn btn-line" href="/confeccoes-personalizadas/">Conhecer soluções ' + ARROW + '</a>'),
-        ('', 'home-kits', 'Caixa bordô aberta com copo térmico, manta, caderno, caneca e meias personalizados.', 'Kits premium', 'Kits pensados de ponta a ponta.',
+        ('tone-rose', 'hero-kits', '--fx:100%;--fx-m:80%', 'Caixa bordô aberta com tábua de madeira, potinhos de cerâmica, geleias, facas de queijo e cartão com a marca TaMa.', 'Kits premium', 'Kits pensados de <em>ponta a ponta</em>.',
          'Caixa, peças e cartão com a sua marca, prontos para surpreender, agradecer e aproximar.',
          cta_link('Montar um kit', tipo='kits', track_label='hero-3') + '<a class="btn btn-line" href="/kits-corporativos/">Conhecer os kits ' + ARROW + '</a>'),
-        ('', 'hero-v3-escritorio', 'Bloco de mesa, porta-lápis, bandeja e mouse pad em couro com a marca TaMa.', 'Escrita e escritório', 'Boas ideias merecem boa companhia.',
+        ('tone-linen', 'home-escritorio', '--fx:100%;--fx-m:68%', 'Caderno azul, canetas, porta-lápis, bandeja e estojo em couro com a marca TaMa.', 'Escrita e escritório', 'Boas ideias merecem <em>boa companhia</em>.',
          'Blocos, cadernos, canetas e acessórios em couro para a rotina profissional.',
          cta_link('Solicitar proposta', track_label='hero-4') + '<a class="btn btn-line" href="/brindes-corporativos-premium/?categoria=escritorio#pecas">Explorar escritório ' + ARROW + '</a>'),
     ]
     n = len(slides)
     out = []
-    for i, (variant, img, alt, eyebrow, title, desc, actions) in enumerate(slides):
+    for i, (tone, img, frame, alt, eyebrow, title, desc, actions) in enumerate(slides):
         tag = 'h1' if i == 0 else 'p'
-        out.append(f'''<div class="slide {variant}{' is-active' if i == 0 else ''}" id="slide-{i + 1}" role="group" aria-roledescription="slide" aria-label="{i + 1} de {n}"{'' if i == 0 else ' aria-hidden="true" inert'}>
-  {picture(img, alt, '100vw', eager=(i == 0), low=(i > 0))}
+        out.append(f'''<div class="slide {tone}{' is-active' if i == 0 else ''}" id="slide-{i + 1}" role="group" aria-roledescription="slide" aria-label="{i + 1} de {n}" style="{frame}"{'' if i == 0 else ' aria-hidden="true" inert'}>
   <div class="wrap slide-inner"><div class="slide-copy">
     <p class="eyebrow">{eyebrow}</p>
     <{tag} class="slide-title">{title}</{tag}>
     <p class="slide-desc">{desc}</p>
     <div class="actions">{actions}</div>
   </div></div>
+  <div class="slide-photo">{picture(img, alt, '(max-width: 760px) 200vw, (max-width: 1100px) 140vw, 100vw', eager=(i == 0), low=(i > 0))}</div>
 </div>''')
     dots = ''.join(f'<button class="dot" type="button" data-slide="{i}" aria-label="Mostrar slide {i + 1} de {n}" aria-controls="slide-{i + 1}"{" aria-current=\"true\"" if i == 0 else ""}></button>' for i in range(n))
     return f'''<section class="hero light" aria-roledescription="carrossel" aria-label="Destaques da TaMa Creative" id="hero">
   {''.join(out)}
-  <button class="hero-arrow prev" type="button" data-hero-prev aria-label="Slide anterior"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></button>
-  <button class="hero-arrow next" type="button" data-hero-next aria-label="Próximo slide"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button>
-  <div class="hero-controls">{dots}<button class="hero-pause" type="button" data-hero-pause aria-pressed="false" aria-label="Pausar troca automática"><svg class="i-pause" viewBox="0 0 24 24"><path d="M9 6v12M15 6v12"/></svg><svg class="i-play" viewBox="0 0 24 24"><path d="M8 5l11 7-11 7z"/></svg></button></div>
+  <div class="hero-bar"><div class="wrap hero-controls">
+    <p class="hero-count" aria-hidden="true"><span data-hero-count>01</span> / {n:02d}</p>
+    <div class="hero-dots">{dots}</div>
+    <button class="hero-arrow prev" type="button" data-hero-prev aria-label="Slide anterior"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></button>
+    <button class="hero-arrow next" type="button" data-hero-next aria-label="Próximo slide"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button>
+    <button class="hero-pause" type="button" data-hero-pause aria-pressed="false" aria-label="Pausar troca automática"><svg class="i-pause" viewBox="0 0 24 24"><path d="M9 6v12M15 6v12"/></svg><svg class="i-play" viewBox="0 0 24 24"><path d="M8 5l11 7-11 7z"/></svg></button>
+  </div></div>
   <p class="hero-caption">{CAPS}</p>
 </section>
 <ul class="assurances wrap" aria-label="Como a TaMa trabalha">
@@ -858,7 +864,7 @@ def page_home():
         'path': '/', 'title': 'TaMa Creative | Brindes corporativos premium, kits e confecções',
         'og_title': 'TaMa Creative · Presentes que fortalecem marcas',
         'description': 'Estúdio criativo que transforma a identidade da sua empresa em brindes corporativos premium, kits e uniformes. Solicite uma proposta.',
-        'preload': preload_image('hero-v3-brindes', '100vw'),
+        'preload': preload_image('hero-v3-brindes', '(max-width: 760px) 200vw, (max-width: 1100px) 140vw, 100vw'),
         'body': hero_carousel() + f'''
 <section class="services" aria-label="Frentes da TaMa">
   <div class="wrap service-grid">

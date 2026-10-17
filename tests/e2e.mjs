@@ -78,6 +78,22 @@ try {
   ok(await page.$eval('#slide-2', s => s.classList.contains('is-active') && !s.hasAttribute('aria-hidden')), 'seta avança para o slide 2');
   ok(await page.$eval('#slide-1', s => s.hasAttribute('inert')), 'slide inativo fica inerte (fora do foco)');
   ok(await page.$eval('[data-hero-pause]', b => b.getAttribute('aria-pressed') === 'true'), 'com movimento reduzido, a troca automática começa pausada');
+  ok(await page.$eval('[data-hero-count]', c => c.textContent === '02'), 'contador acompanha o slide (02 / 04)');
+  ok(await page.$$eval('#hero .slide', s => new Set(s.map(x => getComputedStyle(x).backgroundColor)).size === 4), 'cada slide tem o seu tom de fundo');
+  ok(await page.$$eval('#hero .slide img', i => i[0].loading === 'eager' && i[0].getAttribute('fetchpriority') === 'high' && i.slice(1).every(x => x.loading === 'lazy')), 'só a primeira foto do carrossel é prioritária');
+  ok(await page.$$eval('#hero .slide', s => s.every(x => { const c = x.querySelector('.slide-copy').getBoundingClientRect(), p = x.querySelector('.slide-photo').getBoundingClientRect(); return c.right <= p.left + p.width * 0.18; })), 'no computador o texto não invade a área nítida da foto');
+  await page.click('[data-hero-pause]');
+  ok(await page.$eval('#hero', h => !h.classList.contains('is-stopped') && h.classList.contains('is-held')), 'retomar a troca com o foco no carrossel mantém a pausa enquanto o foco estiver nele');
+  await page.click('[data-hero-pause]');
+  ok(await page.$eval('[data-hero-pause]', b => b.getAttribute('aria-pressed') === 'true' && b.getAttribute('aria-label') === 'Retomar troca automática'), 'botão de pausa alterna e atualiza o rótulo');
+  await page.setViewport({ width: 390, height: 844, isMobile: true, hasTouch: true });
+  await page.goto(BASE + '/', { waitUntil: 'networkidle0' });
+  ok(await page.$$eval('#hero .slide', s => s.every(x => x.querySelector('.slide-photo').getBoundingClientRect().top >= x.querySelector('.slide-copy').getBoundingClientRect().bottom - 1)), 'no celular o texto fica acima da foto, sem sobreposição');
+  for (const w of [320, 768, 1024, 1180, 1440]) {
+    await page.setViewport({ width: w, height: 900 });
+    ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), `carrossel sem rolagem horizontal em ${w} px`);
+  }
+  await page.setViewport({ width: 1280, height: 900 });
 
   console.log('Vitrine, cores e seleção');
   // a vitrine das 21 peças fica na curadoria; a home mostra os destaques em estúdio claro

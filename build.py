@@ -1082,7 +1082,7 @@ CONF_SLIDES = [
      'Gastronomia e hotelaria', 'Dólmãs feitas para o <em>calor da cozinha</em>.',
      'Dólmãs e aventais bordados com a sua marca, em cores e em jeans.',
      cta_link('Conversar sobre uniformes', tipo='confeccoes', track_label='conf-hero-2') + '<a class="btn btn-line" href="/catalogo/?categoria=vestuario">Ver dólmãs e aventais ' + ARROW + '</a>'),
-    ('tone-rose', 'conf-evento-camisetas', '--fx:72%;--fy:30%;--fx-m:70%', 'Equipe de evento com camisetas pretas com a marca TaMa em branco entregando um crachá na recepção.',
+    ('tone-rose', 'conf-evento-camisetas', '--fx:72%;--fy:30%;--fx-m:70%', 'Equipe de evento de camisetas pretas com a marca TaMa entregando uma ecobag com a marca a um visitante.',
      'Eventos e ações', 'Camisetas que viram <em>presença de marca</em>.',
      'Silk em camisetas para feiras, campanhas e ativações, com a cor e o corte certos para cada equipe.',
      cta_link('Planejar um evento', tipo='confeccoes', track_label='conf-hero-3') + '<a class="btn btn-line" href="/catalogo/?categoria=vestuario">Ver camisetas ' + ARROW + '</a>'),

@@ -69,6 +69,9 @@ button { font: inherit; color: inherit; }
 /* Layout */
 .wrap { max-width: 1280px; margin-inline: auto; padding-inline: var(--gutter); }
 .section { padding-block: clamp(60px, 8vw, 104px); }
+/* duas seções seguidas com o mesmo fundo: o respiro da anterior já basta (evita ~200 px de vazio) */
+.section:not(.ivory) + .section:not(.ivory) { padding-top: 0; }
+.services + .section { padding-top: clamp(44px, 5vw, 72px); }
 .section-head { display: grid; gap: 14px; max-width: 46rem; margin-bottom: clamp(30px, 4vw, 48px); }
 .section-head.row { max-width: none; grid-template-columns: minmax(0, 1fr) auto; align-items: end; gap: 24px; }
 .split { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(32px, 6vw, 88px); align-items: center; }

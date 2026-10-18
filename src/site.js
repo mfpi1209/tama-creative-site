@@ -37,6 +37,7 @@
       var v = b.getAttribute('data-consent');
       store('tama-consent', v);
       consentBox.hidden = true;
+      var main = document.getElementById('conteudo'); if (main) main.focus({ preventScroll: true });   // o botão clicado sumiu: o foco não se perde
       if (v === 'granted') loadGA();
       else if (typeof window.gtag === 'function') window.gtag('consent', 'update', { analytics_storage: 'denied' });
     });
@@ -108,6 +109,8 @@
     menuBtn.setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu');
     nav.classList.toggle('is-open', open);
     document.documentElement.classList.toggle('menu-open', open);   // trava a rolagem do fundo enquanto o menu está aberto
+    // altura do menu = da base do cabeçalho até o fim da tela (a faixa do topo varia: temporada, tamanho de fonte)
+    if (open) nav.style.maxHeight = Math.max(200, window.innerHeight - nav.getBoundingClientRect().top) + 'px'; else nav.style.maxHeight = '';
   }
   if (menuBtn) menuBtn.addEventListener('click', function () {
     var abrir = menuBtn.getAttribute('aria-expanded') !== 'true';
@@ -119,12 +122,15 @@
     if (nav.classList.contains('is-open') && e.relatedTarget && !nav.contains(e.relatedTarget) && e.relatedTarget !== menuBtn) setMenu(false);
   });
   /* submenus (Soluções, Ocasiões, Catálogo, Contato): botão com aria-expanded; um aberto por vez */
+  var desk = window.matchMedia ? window.matchMedia('(min-width: 1240px)') : { matches: true };
   var toggles = [].slice.call(document.querySelectorAll('[data-nav-toggle]'));
   function setSub(btn, open) { btn.setAttribute('aria-expanded', String(open)); btn.parentElement.classList.toggle('is-open', open); }
   function closeSubs(except) { toggles.forEach(function (t) { if (t !== except) setSub(t, false); }); }
   toggles.forEach(function (t) {
     t.addEventListener('click', function () { var open = t.getAttribute('aria-expanded') !== 'true'; closeSubs(t); setSub(t, open); });
   });
+  // no computador, passar o mouse em outro grupo fecha o que foi aberto por clique (nunca dois painéis juntos)
+  toggles.forEach(function (t) { t.parentElement.addEventListener('mouseenter', function () { if (desk.matches) closeSubs(t); }); });
   document.addEventListener('keydown', function (e) {
     if (e.key !== 'Escape') return;
     var aberto = toggles.filter(function (t) { return t.getAttribute('aria-expanded') === 'true'; })[0];
@@ -134,7 +140,6 @@
   document.addEventListener('click', function (e) { if (!e.target.closest('.nav-group')) closeSubs(); });
   // Tab para fora de um submenu aberto fecha o submenu, só no computador: no celular (acordeão) fechar no foco
   // encolhe o grupo de cima antes do toque terminar, e o toque cai fora do botão seguinte
-  var desk = window.matchMedia ? window.matchMedia('(min-width: 1240px)') : { matches: true };
   if (nav) nav.addEventListener('focusout', function (e) { var g = e.target.closest('.nav-group'); if (desk.matches && g && e.relatedTarget && !g.contains(e.relatedTarget)) closeSubs(); });
   // toque fora do menu (no fundo da página) fecha o menu do celular
   document.addEventListener('click', function (e) {

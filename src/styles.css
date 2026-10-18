@@ -908,8 +908,9 @@ html.cat-lock { overflow: hidden; }
 /* Foco do botão da foto: o card corta o que fica fora (overflow), então o contorno vai para dentro */
 .prod-media:focus-visible { outline-offset: -3px; }
 /* Carrossel da home: no computador a área da foto tem a proporção da própria imagem (largura = altura × proporção),
-   presa à direita. A foto aparece inteira, como foi composta, e o texto fica sobre a parte vazia da esquerda. */
-@media (min-width: 761px) {
+   presa à direita. A foto aparece inteira, como foi composta, e o texto fica sobre a parte vazia da esquerda.
+   Só acima de 1100 px: no tablet o slide é em coluna e esta regra inflava a largura do slide (texto cortado, foto sumida). */
+@media (min-width: 1101px) {
   .hero.light .slide.inteira .slide-photo { width: auto; max-width: 100%; aspect-ratio: var(--ar, 3 / 2); height: 100%; -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%); mask-image: linear-gradient(90deg, transparent, #000 12%); }
   .hero.light .slide.inteira .slide-photo img { width: 100%; height: 100%; object-fit: cover; }
   .hero.light .slide-copy { position: relative; z-index: 2; }
@@ -1211,4 +1212,37 @@ html.cat-lock { overflow: hidden; }
 /* um CTA principal por página de serviço: rótulos longos ("Solicitar proposta para a sua casa") quebram no celular */
 @media (max-width: 520px) {
   .foto-hero .btn { white-space: normal; text-align: center; line-height: 1.25; padding-block: 12px; }
+}
+/* onda 3: ajustes do QA (desktop) */
+/* home mais curta: as 5 áreas numa linha só no computador; kits mais baixos; sem vão duplo antes da prova */
+@media (min-width: 1100px) {
+  .frentes-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+  .frentes-grid .frente-card, .frentes-grid .frente-card:nth-child(n+4) { grid-column: auto; }
+  .frentes-grid .frente-card picture, .frentes-grid .frente-card:nth-child(n+4) picture { aspect-ratio: 1.25; }
+}
+.kits-home.compacto .kit-card picture, .kits-home.compacto .kit-card img { aspect-ratio: 2 / 1; }
+.frentes + .prova { padding-top: 0; }
+.prova-pair figcaption { font-size: .8125rem; }
+/* cabeçalho com foto: a navegação fica como link de texto ao lado da proposta (cabe na mesma linha) */
+.foto-hero .actions .btn-line { border-color: transparent; background: none; padding-inline: 6px; }
+.foto-hero .actions .btn-line:hover { text-decoration: underline; text-underline-offset: 4px; }
+/* aviso de cookies no computador: à direita, acima do WhatsApp, longe dos controles do carrossel */
+@media (min-width: 761px) {
+  .consent { left: auto; right: 16px; bottom: calc(92px + env(safe-area-inset-bottom, 0px)); max-width: 460px; }
+}
+/* onda 3: ajustes do QA (celular e tablet) */
+.hero.light { grid-template-columns: minmax(0, 1fr); }
+/* o deslocamento da foto do cabeçalho (--desloc inline) só vale no computador; no celular a foto fica alinhada */
+@media (max-width: 1100px) {
+  .foto-hero-photo { right: 0; }
+  .foto-hero-photo figcaption { right: var(--gutter); }
+}
+.occ-chips .chip { min-height: 44px; }
+@media (min-width: 761px) and (max-width: 1100px) {
+  .process-line { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+/* home no celular: as 5 áreas em faixa horizontal (deslizar), em vez de 5 cartões empilhados */
+@media (max-width: 760px) {
+  .frentes-grid { display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 6px; scrollbar-width: thin; }
+  .frentes-grid .frente-card, .frentes-grid .frente-card:nth-child(n+4) { flex: 0 0 78%; scroll-snap-align: start; }
 }

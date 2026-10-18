@@ -13,6 +13,8 @@ Uso:
   --base     id da foto de frente na mesma cor da foto nova (o produto e as outras cores saem do banco)
   --sufixo   vista da foto nova: verso, bordado, angulo…  (saída: <produto>~<cor>-<sufixo>.png)
   --sem-fundo  foto sem fundo creme (close do bordado: o quadro inteiro é tecido)
+  --proteger   não recolore partes de outro tom (alças caramelo, fivela de metal, botões); sem ele, todo o tecido da cor
+               da base muda (evita manchas da cor antiga nas sombras)
 Depois: confira as imagens, importe com tools/produtos.py importar --id <produto>~<cor>-<sufixo> e marque a vista no /admin/.
 """
 import argparse, json, os, sys
@@ -64,7 +66,7 @@ def pesos(lab, sem_fundo, matiz=False):
     else:           # tecido neutro (preto, cinza, branco): o logo é bem mais claro ou bem mais escuro
         claro = np.clip((np.abs(L - medL) - 22) / 6, 0, 1)
     w = tecido * (1 - claro)
-    if matiz and medC > 15:
+    if matiz and medC > 15:   # só com --proteger: peças com partes de outra cor (alças caramelo, fivela de metal)
         h = np.arctan2(lab[..., 2], lab[..., 1])
         h0 = np.arctan2(np.median(lab[..., 2][sel]), np.median(lab[..., 1][sel]))
         dh = np.abs((h - h0 + np.pi) % (2 * np.pi) - np.pi)
@@ -78,9 +80,11 @@ def stats(lab, w):
     return px.mean(0), px.std(0) + 1e-6
 
 
-def recolorir(base_img, alvo_frente, hex_alvo, sem_fundo):
+def recolorir(base_img, alvo_frente, hex_alvo, sem_fundo, proteger=False):
     lab = rgb2lab(np.asarray(base_img.convert('RGB'), dtype=np.float64))
-    w = pesos(lab, sem_fundo, matiz=not sem_fundo)   # no close do bordado o quadro é só tecido: o filtro de tom criaria faixas nos reflexos
+    w = pesos(lab, sem_fundo, matiz=proteger)
+    peca = pesos(lab, sem_fundo) if proteger else w
+    tecido_todo = np.clip((np.linalg.norm(lab - lab[:12, :12].reshape(-1, 3).mean(0), axis=-1) - 10) / 10, 0, 1) if not sem_fundo else np.ones(w.shape)
     mu_s, sd_s = stats(lab, w)
     lab_t = rgb2lab(np.asarray(alvo_frente.convert('RGB').resize((512, 512)), dtype=np.float64))
     w_t = pesos(lab_t, False)
@@ -102,7 +106,15 @@ def recolorir(base_img, alvo_frente, hex_alvo, sem_fundo):
     dh = (h - h_s + np.pi) % (2 * np.pi) - np.pi
     h2 = h_t + 0.25 * dh
     novo = np.stack([L2, C2 * np.cos(h2), C2 * np.sin(h2)], -1)
-    out = lab2rgb(novo) * w[..., None] + np.asarray(base_img.convert('RGB'), dtype=np.float64) * (1 - w[..., None])
+    # o que fica de fora dentro da peça (linha do bordado, sombras) perde o tom herdado da cor da base: sem linha rosada
+    # numa base vermelha. Partes protegidas (--proteger) ficam como estão.
+    neutro = lab.copy()
+    resto = tecido_todo * (1 - w) * (1 - (peca - w).clip(0, 1) if proteger else 1)
+    neutro[..., 1] = lab[..., 1] * 0.15 + 0.6
+    neutro[..., 2] = lab[..., 2] * 0.15 + 2.0
+    base_rgb = np.asarray(base_img.convert('RGB'), dtype=np.float64)
+    fora = lab2rgb(neutro) * resto[..., None] + base_rgb * (1 - resto[..., None])
+    out = lab2rgb(novo) * w[..., None] + fora * (1 - w[..., None])
     return Image.fromarray(out.round().astype(np.uint8)), float(mu_t[0])
 
 
@@ -110,6 +122,7 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument('imagem'); ap.add_argument('--base', required=True); ap.add_argument('--sufixo', required=True)
     ap.add_argument('--sem-fundo', action='store_true'); ap.add_argument('--cores', default='')
+    ap.add_argument('--proteger', action='store_true', help='não recolore partes de outro tom (alças caramelo, fivela, botões)')
     ap.add_argument('--saida', default=os.path.join(ROOT, 'midia', 'produtos', 'geradas'))
     a = ap.parse_args()
     banco = json.load(open(os.path.join(ROOT, 'src', 'data', 'produtos.json'), encoding='utf-8'))['imagens']
@@ -126,7 +139,7 @@ def main():
     for e in frentes:
         cor = e['id'].split('~')[1]
         alvo = Image.open(os.path.join(ROOT, e['arquivo'].lstrip('/')))
-        img, L = recolorir(base, alvo, e['cor']['hex'], a.sem_fundo)
+        img, L = recolorir(base, alvo, e['cor']['hex'], a.sem_fundo, a.proteger)
         if L > 85 and a.sufixo != 'verso':   # peça clara com logo: o bordado branco some; gere pela API
             print(f'pulada: {cor} (cor clara: gere pela API, com o logo nas cores oficiais)'); continue
         dest = os.path.join(a.saida, f'{prefixo}~{cor}-{a.sufixo}.png')

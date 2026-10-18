@@ -177,16 +177,88 @@
    ],
    "ilustrativa": true,
    "aprovacao": "revisao",
-   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
-   "observacao": "Variação de cor gerada a partir da foto-base avental-laco~verde-escuro.",
+   "observacao": "Frente refeita com bordado realista.",
    "arquivo": "/img/produtos/avental-laco~azul-marinho.webp",
    "mestre": "midia/produtos/mestre/avental-laco~azul-marinho.png",
    "largura": 1024,
    "altura": 1024,
    "sha256": "715fad7113a7489195c1b7fdba74093341db6f62374ea3772e7a921842b4b7bc",
    "bytes": 1254114,
-   "atualizado_em": "2026-10-17"
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "produto": "Avental com laço",
+   "categoria": "vestuario",
+   "modelo": "Peitoral com laço na cintura e bolso duplo",
+   "cor": {
+    "nome": "Azul-marinho",
+    "hex": "#1E2A4A"
+   },
+   "material": {
+    "valor": "Sarja",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado ou silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "avental-laco~azul-marinho-bordado",
+   "vista": "detalhe",
+   "alt": "Detalhe do bordado da marca TaMa em linha branca: avental com laço na cor azul-marinho.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/avental-laco~azul-marinho-bordado.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "produto": "Avental com laço",
+   "categoria": "vestuario",
+   "modelo": "Peitoral com laço na cintura e bolso duplo",
+   "cor": {
+    "nome": "Azul-marinho",
+    "hex": "#1E2A4A"
+   },
+   "material": {
+    "valor": "Sarja",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado ou silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "avental-laco~azul-marinho-verso",
+   "vista": "verso",
+   "alt": "Verso: avental com laço na cor azul-marinho, sem marca.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/avental-laco~azul-marinho-verso.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
   },
   {
    "id": "avental-laco~caramelo",
@@ -214,16 +286,88 @@
    ],
    "ilustrativa": true,
    "aprovacao": "revisao",
-   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
-   "observacao": "Variação de cor gerada a partir da foto-base avental-laco~verde-escuro.",
+   "observacao": "Frente refeita com bordado realista.",
    "arquivo": "/img/produtos/avental-laco~caramelo.webp",
    "mestre": "midia/produtos/mestre/avental-laco~caramelo.png",
    "largura": 1024,
    "altura": 1024,
    "sha256": "ea3b8a1a7edc2f8e13697518041412be210911ecd73439e6f11fe886933a2973",
    "bytes": 1312880,
-   "atualizado_em": "2026-10-17"
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "produto": "Avental com laço",
+   "categoria": "vestuario",
+   "modelo": "Peitoral com laço na cintura e bolso duplo",
+   "cor": {
+    "nome": "Caramelo",
+    "hex": "#A0623A"
+   },
+   "material": {
+    "valor": "Sarja",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado ou silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "avental-laco~caramelo-bordado",
+   "vista": "detalhe",
+   "alt": "Detalhe do bordado da marca TaMa em linha branca: avental com laço na cor caramelo.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/avental-laco~caramelo-bordado.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "produto": "Avental com laço",
+   "categoria": "vestuario",
+   "modelo": "Peitoral com laço na cintura e bolso duplo",
+   "cor": {
+    "nome": "Caramelo",
+    "hex": "#A0623A"
+   },
+   "material": {
+    "valor": "Sarja",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado ou silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "avental-laco~caramelo-verso",
+   "vista": "verso",
+   "alt": "Verso: avental com laço na cor caramelo, sem marca.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/avental-laco~caramelo-verso.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
   },
   {
    "id": "avental-laco~cru",
@@ -263,6 +407,42 @@
    "atualizado_em": "2026-10-17"
   },
   {
+   "produto": "Avental com laço",
+   "categoria": "vestuario",
+   "modelo": "Peitoral com laço na cintura e bolso duplo",
+   "cor": {
+    "nome": "Cru",
+    "hex": "#EDE3D0"
+   },
+   "material": {
+    "valor": "Sarja",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado ou silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "avental-laco~cru-verso",
+   "vista": "verso",
+   "alt": "Verso: avental com laço na cor cru, sem marca.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/avental-laco~cru-verso.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
+  },
+  {
    "id": "avental-laco~preto",
    "produto": "Avental com laço",
    "categoria": "vestuario",
@@ -288,16 +468,88 @@
    ],
    "ilustrativa": true,
    "aprovacao": "revisao",
-   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
-   "observacao": "Variação de cor gerada a partir da foto-base avental-laco~verde-escuro.",
+   "observacao": "Frente refeita com bordado realista.",
    "arquivo": "/img/produtos/avental-laco~preto.webp",
    "mestre": "midia/produtos/mestre/avental-laco~preto.png",
    "largura": 1024,
    "altura": 1024,
    "sha256": "8aedf28e8c02fb5f6d9f5d162ca41cddbd7de8a6a9924ad2dd86c377ea623adb",
    "bytes": 1162786,
-   "atualizado_em": "2026-10-17"
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "produto": "Avental com laço",
+   "categoria": "vestuario",
+   "modelo": "Peitoral com laço na cintura e bolso duplo",
+   "cor": {
+    "nome": "Preto",
+    "hex": "#1E1E1E"
+   },
+   "material": {
+    "valor": "Sarja",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado ou silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "avental-laco~preto-bordado",
+   "vista": "detalhe",
+   "alt": "Detalhe do bordado da marca TaMa em linha branca: avental com laço na cor preto.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/avental-laco~preto-bordado.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "produto": "Avental com laço",
+   "categoria": "vestuario",
+   "modelo": "Peitoral com laço na cintura e bolso duplo",
+   "cor": {
+    "nome": "Preto",
+    "hex": "#1E1E1E"
+   },
+   "material": {
+    "valor": "Sarja",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado ou silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "avental-laco~preto-verso",
+   "vista": "verso",
+   "alt": "Verso: avental com laço na cor preto, sem marca.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/avental-laco~preto-verso.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
   },
   {
    "id": "avental-laco~rosa",
@@ -325,16 +577,88 @@
    ],
    "ilustrativa": true,
    "aprovacao": "revisao",
-   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
-   "observacao": "Variação de cor gerada a partir da foto-base avental-laco~verde-escuro.",
+   "observacao": "Frente refeita com bordado realista.",
    "arquivo": "/img/produtos/avental-laco~rosa.webp",
    "mestre": "midia/produtos/mestre/avental-laco~rosa.png",
    "largura": 1024,
    "altura": 1024,
    "sha256": "b3a791747a876c0b47f1d34e8e1e85ddb9f529403483186211d58cebdc23b009",
    "bytes": 1340165,
-   "atualizado_em": "2026-10-17"
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "produto": "Avental com laço",
+   "categoria": "vestuario",
+   "modelo": "Peitoral com laço na cintura e bolso duplo",
+   "cor": {
+    "nome": "Rosa",
+    "hex": "#E07A9B"
+   },
+   "material": {
+    "valor": "Sarja",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado ou silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "avental-laco~rosa-bordado",
+   "vista": "detalhe",
+   "alt": "Detalhe do bordado da marca TaMa em linha branca: avental com laço na cor rosa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/avental-laco~rosa-bordado.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "produto": "Avental com laço",
+   "categoria": "vestuario",
+   "modelo": "Peitoral com laço na cintura e bolso duplo",
+   "cor": {
+    "nome": "Rosa",
+    "hex": "#E07A9B"
+   },
+   "material": {
+    "valor": "Sarja",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado ou silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "avental-laco~rosa-verso",
+   "vista": "verso",
+   "alt": "Verso: avental com laço na cor rosa, sem marca.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/avental-laco~rosa-verso.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
   },
   {
    "id": "avental-laco~verde-escuro",
@@ -362,16 +686,88 @@
    ],
    "ilustrativa": true,
    "aprovacao": "revisao",
-   "origem": "Imagem enviada pela TaMa em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
-   "observacao": "",
+   "observacao": "Frente refeita com bordado realista.",
    "arquivo": "/img/produtos/avental-laco~verde-escuro.webp",
    "mestre": "midia/produtos/mestre/avental-laco~verde-escuro.png",
-   "largura": 1254,
-   "altura": 1254,
+   "largura": 1024,
+   "altura": 1024,
    "sha256": "78e885b5810662ae22a0710f78c88762c7549be009746edda38e4f94b2b26259",
    "bytes": 1680721,
-   "atualizado_em": "2026-10-17"
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "produto": "Avental com laço",
+   "categoria": "vestuario",
+   "modelo": "Peitoral com laço na cintura e bolso duplo",
+   "cor": {
+    "nome": "Verde-escuro",
+    "hex": "#1F4A35"
+   },
+   "material": {
+    "valor": "Sarja",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado ou silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "avental-laco~verde-escuro-bordado",
+   "vista": "detalhe",
+   "alt": "Detalhe do bordado da marca TaMa em linha branca: avental com laço na cor verde-escuro.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/avental-laco~verde-escuro-bordado.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "produto": "Avental com laço",
+   "categoria": "vestuario",
+   "modelo": "Peitoral com laço na cintura e bolso duplo",
+   "cor": {
+    "nome": "Verde-escuro",
+    "hex": "#1F4A35"
+   },
+   "material": {
+    "valor": "Sarja",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado ou silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "avental-laco~verde-escuro-verso",
+   "vista": "verso",
+   "alt": "Verso: avental com laço na cor verde-escuro, sem marca.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/avental-laco~verde-escuro-verso.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
   },
   {
    "id": "avental-laco~vermelho",
@@ -399,16 +795,88 @@
    ],
    "ilustrativa": true,
    "aprovacao": "revisao",
-   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
-   "observacao": "Variação de cor gerada a partir da foto-base avental-laco~verde-escuro.",
+   "observacao": "Frente refeita com bordado realista.",
    "arquivo": "/img/produtos/avental-laco~vermelho.webp",
    "mestre": "midia/produtos/mestre/avental-laco~vermelho.png",
    "largura": 1024,
    "altura": 1024,
    "sha256": "828654af01168e524b525f3f1b9eae8e15e5a294d46200c6df00f932467add74",
    "bytes": 1352708,
-   "atualizado_em": "2026-10-17"
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "produto": "Avental com laço",
+   "categoria": "vestuario",
+   "modelo": "Peitoral com laço na cintura e bolso duplo",
+   "cor": {
+    "nome": "Vermelho",
+    "hex": "#C8202F"
+   },
+   "material": {
+    "valor": "Sarja",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado ou silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "avental-laco~vermelho-bordado",
+   "vista": "detalhe",
+   "alt": "Detalhe do bordado da marca TaMa em linha branca: avental com laço na cor vermelho.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/avental-laco~vermelho-bordado.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "produto": "Avental com laço",
+   "categoria": "vestuario",
+   "modelo": "Peitoral com laço na cintura e bolso duplo",
+   "cor": {
+    "nome": "Vermelho",
+    "hex": "#C8202F"
+   },
+   "material": {
+    "valor": "Sarja",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado ou silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "avental-laco~vermelho-verso",
+   "vista": "verso",
+   "alt": "Verso: avental com laço na cor vermelho, sem marca.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/avental-laco~vermelho-verso.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
   },
   {
    "id": "avental~azul-marinho",
@@ -436,16 +904,52 @@
    ],
    "ilustrativa": true,
    "aprovacao": "revisao",
-   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
-   "observacao": "Variação de cor gerada a partir da foto-base avental~jeans.",
+   "observacao": "Frente refeita com bordado realista.",
    "arquivo": "/img/produtos/avental~azul-marinho.webp",
    "mestre": "midia/produtos/mestre/avental~azul-marinho.png",
    "largura": 1024,
    "altura": 1024,
    "sha256": "bc76c4aa0300098461e2aa01fd1c6b41d14b2ad9368520d501d19d2901aacf1c",
    "bytes": 1489375,
-   "atualizado_em": "2026-10-17"
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "produto": "Avental personalizado",
+   "categoria": "vestuario",
+   "modelo": "Com alças e bolso duplo",
+   "cor": {
+    "nome": "Azul-marinho",
+    "hex": "#1E2A4A"
+   },
+   "material": {
+    "valor": "Jeans",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado ou silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "avental~azul-marinho-bordado",
+   "vista": "detalhe",
+   "alt": "Detalhe do bordado da marca TaMa em linha branca: avental personalizado na cor azul-marinho.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/avental~azul-marinho-bordado.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
   },
   {
    "id": "avental~cru",
@@ -548,16 +1052,52 @@
    ],
    "ilustrativa": true,
    "aprovacao": "revisao",
-   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
-   "observacao": "Variação de cor gerada a partir da foto-base avental~jeans.",
+   "observacao": "Frente refeita com bordado realista.",
    "arquivo": "/img/produtos/avental~preto.webp",
    "mestre": "midia/produtos/mestre/avental~preto.png",
    "largura": 1024,
    "altura": 1024,
    "sha256": "aa5b47563028f43e19a37fd8a70d452ff8717ef305a0d0cfd9394468d038c2d5",
    "bytes": 1575037,
-   "atualizado_em": "2026-10-17"
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "produto": "Avental personalizado",
+   "categoria": "vestuario",
+   "modelo": "Com alças e bolso duplo",
+   "cor": {
+    "nome": "Preto",
+    "hex": "#1E1E1E"
+   },
+   "material": {
+    "valor": "Jeans",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado ou silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "avental~preto-bordado",
+   "vista": "detalhe",
+   "alt": "Detalhe do bordado da marca TaMa em linha branca: avental personalizado na cor preto.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/avental~preto-bordado.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
   },
   {
    "id": "avental~rosa",
@@ -585,16 +1125,52 @@
    ],
    "ilustrativa": true,
    "aprovacao": "revisao",
-   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
-   "observacao": "Variação de cor gerada a partir da foto-base avental~jeans.",
+   "observacao": "Frente refeita com bordado realista.",
    "arquivo": "/img/produtos/avental~rosa.webp",
    "mestre": "midia/produtos/mestre/avental~rosa.png",
    "largura": 1024,
    "altura": 1024,
    "sha256": "f4a1ee2b04cadd1b69e8ed3391adb806feddf1453b285f3ba768534d158aa636",
    "bytes": 1606439,
-   "atualizado_em": "2026-10-17"
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "produto": "Avental personalizado",
+   "categoria": "vestuario",
+   "modelo": "Com alças e bolso duplo",
+   "cor": {
+    "nome": "Rosa",
+    "hex": "#E07A9B"
+   },
+   "material": {
+    "valor": "Jeans",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado ou silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "avental~rosa-bordado",
+   "vista": "detalhe",
+   "alt": "Detalhe do bordado da marca TaMa em linha branca: avental personalizado na cor rosa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/avental~rosa-bordado.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
   },
   {
    "id": "avental~verde",
@@ -622,16 +1198,52 @@
    ],
    "ilustrativa": true,
    "aprovacao": "revisao",
-   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
-   "observacao": "Variação de cor gerada a partir da foto-base avental~jeans.",
+   "observacao": "Frente refeita com bordado realista.",
    "arquivo": "/img/produtos/avental~verde.webp",
    "mestre": "midia/produtos/mestre/avental~verde.png",
    "largura": 1024,
    "altura": 1024,
    "sha256": "a5f33d4cce6e7ceb6e0baf1a138bb51380f8878bf8da47a00901899c76402868",
    "bytes": 1570362,
-   "atualizado_em": "2026-10-17"
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "produto": "Avental personalizado",
+   "categoria": "vestuario",
+   "modelo": "Com alças e bolso duplo",
+   "cor": {
+    "nome": "Verde",
+    "hex": "#1F6B45"
+   },
+   "material": {
+    "valor": "Jeans",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado ou silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "avental~verde-bordado",
+   "vista": "detalhe",
+   "alt": "Detalhe do bordado da marca TaMa em linha branca: avental personalizado na cor verde.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/avental~verde-bordado.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
   },
   {
    "id": "avental~vermelho",
@@ -659,16 +1271,52 @@
    ],
    "ilustrativa": true,
    "aprovacao": "revisao",
-   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
-   "observacao": "Variação de cor gerada a partir da foto-base avental~jeans.",
+   "observacao": "Frente refeita com bordado realista.",
    "arquivo": "/img/produtos/avental~vermelho.webp",
    "mestre": "midia/produtos/mestre/avental~vermelho.png",
    "largura": 1024,
    "altura": 1024,
    "sha256": "0a502397b4abd498ecc522f03c3e02e0a8e455fa895f81fce92adfcf81989e25",
    "bytes": 1486516,
-   "atualizado_em": "2026-10-17"
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "produto": "Avental personalizado",
+   "categoria": "vestuario",
+   "modelo": "Com alças e bolso duplo",
+   "cor": {
+    "nome": "Vermelho",
+    "hex": "#C8202F"
+   },
+   "material": {
+    "valor": "Jeans",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado ou silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "avental~vermelho-bordado",
+   "vista": "detalhe",
+   "alt": "Detalhe do bordado da marca TaMa em linha branca: avental personalizado na cor vermelho.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/avental~vermelho-bordado.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
   },
   {
    "id": "bone~azul-marinho",
@@ -1878,16 +2526,88 @@
    ],
    "ilustrativa": true,
    "aprovacao": "revisao",
-   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
-   "observacao": "Variação de cor gerada a partir da foto-base camiseta-feminina~vermelho.",
+   "observacao": "Frente refeita com bordado realista.",
    "arquivo": "/img/produtos/camiseta-feminina~azul-marinho.webp",
    "mestre": "midia/produtos/mestre/camiseta-feminina~azul-marinho.png",
    "largura": 1024,
    "altura": 1024,
    "sha256": "d30ff83bc9557e2e9eb55fede883c5ed82d56a658ec201f1ada2dfdee476d75f",
    "bytes": 1366251,
-   "atualizado_em": "2026-10-17"
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "produto": "Camiseta feminina",
+   "categoria": "vestuario",
+   "modelo": "Gola careca, modelagem feminina",
+   "cor": {
+    "nome": "Azul-marinho",
+    "hex": "#1E2A4A"
+   },
+   "material": {
+    "valor": "Algodão",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "camiseta-feminina~azul-marinho-bordado",
+   "vista": "detalhe",
+   "alt": "Detalhe do bordado da marca TaMa em linha branca: camiseta feminina na cor azul-marinho.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/camiseta-feminina~azul-marinho-bordado.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "produto": "Camiseta feminina",
+   "categoria": "vestuario",
+   "modelo": "Gola careca, modelagem feminina",
+   "cor": {
+    "nome": "Azul-marinho",
+    "hex": "#1E2A4A"
+   },
+   "material": {
+    "valor": "Algodão",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "camiseta-feminina~azul-marinho-verso",
+   "vista": "verso",
+   "alt": "Verso: camiseta feminina na cor azul-marinho, sem marca.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/camiseta-feminina~azul-marinho-verso.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
   },
   {
    "id": "camiseta-feminina~azul-royal",
@@ -1916,16 +2636,88 @@
    ],
    "ilustrativa": true,
    "aprovacao": "revisao",
-   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
-   "observacao": "Variação de cor gerada a partir da foto-base camiseta-feminina~vermelho.",
+   "observacao": "Frente refeita com bordado realista.",
    "arquivo": "/img/produtos/camiseta-feminina~azul-royal.webp",
    "mestre": "midia/produtos/mestre/camiseta-feminina~azul-royal.png",
    "largura": 1024,
    "altura": 1024,
    "sha256": "ae835eea299aa14aaa14d65a93f6bba74db63ce00351b23b95a4bb6a2c09afbf",
    "bytes": 1458284,
-   "atualizado_em": "2026-10-17"
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "produto": "Camiseta feminina",
+   "categoria": "vestuario",
+   "modelo": "Gola careca, modelagem feminina",
+   "cor": {
+    "nome": "Azul royal",
+    "hex": "#1F4FB8"
+   },
+   "material": {
+    "valor": "Algodão",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "camiseta-feminina~azul-royal-bordado",
+   "vista": "detalhe",
+   "alt": "Detalhe do bordado da marca TaMa em linha branca: camiseta feminina na cor azul royal.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/camiseta-feminina~azul-royal-bordado.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "produto": "Camiseta feminina",
+   "categoria": "vestuario",
+   "modelo": "Gola careca, modelagem feminina",
+   "cor": {
+    "nome": "Azul royal",
+    "hex": "#1F4FB8"
+   },
+   "material": {
+    "valor": "Algodão",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "camiseta-feminina~azul-royal-verso",
+   "vista": "verso",
+   "alt": "Verso: camiseta feminina na cor azul royal, sem marca.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/camiseta-feminina~azul-royal-verso.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
   },
   {
    "id": "camiseta-feminina~branco",
@@ -1966,6 +2758,42 @@
    "atualizado_em": "2026-10-17"
   },
   {
+   "produto": "Camiseta feminina",
+   "categoria": "vestuario",
+   "modelo": "Gola careca, modelagem feminina",
+   "cor": {
+    "nome": "Branco",
+    "hex": "#F7F5F0"
+   },
+   "material": {
+    "valor": "Algodão",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "camiseta-feminina~branco-verso",
+   "vista": "verso",
+   "alt": "Verso: camiseta feminina na cor branco, sem marca.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/camiseta-feminina~branco-verso.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
+  },
+  {
    "id": "camiseta-feminina~cinza",
    "produto": "Camiseta feminina",
    "categoria": "vestuario",
@@ -1992,16 +2820,88 @@
    ],
    "ilustrativa": true,
    "aprovacao": "revisao",
-   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
-   "observacao": "Variação de cor gerada a partir da foto-base camiseta-feminina~vermelho.",
+   "observacao": "Frente refeita com bordado realista.",
    "arquivo": "/img/produtos/camiseta-feminina~cinza.webp",
    "mestre": "midia/produtos/mestre/camiseta-feminina~cinza.png",
    "largura": 1024,
    "altura": 1024,
    "sha256": "f5cc9438cf47a363a9c7328cf2b9180af2225ec6666a2c9c230973e6d9356671",
    "bytes": 1504169,
-   "atualizado_em": "2026-10-17"
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "produto": "Camiseta feminina",
+   "categoria": "vestuario",
+   "modelo": "Gola careca, modelagem feminina",
+   "cor": {
+    "nome": "Cinza",
+    "hex": "#9A9A98"
+   },
+   "material": {
+    "valor": "Algodão",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "camiseta-feminina~cinza-bordado",
+   "vista": "detalhe",
+   "alt": "Detalhe do bordado da marca TaMa em linha branca: camiseta feminina na cor cinza.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/camiseta-feminina~cinza-bordado.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "produto": "Camiseta feminina",
+   "categoria": "vestuario",
+   "modelo": "Gola careca, modelagem feminina",
+   "cor": {
+    "nome": "Cinza",
+    "hex": "#9A9A98"
+   },
+   "material": {
+    "valor": "Algodão",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "camiseta-feminina~cinza-verso",
+   "vista": "verso",
+   "alt": "Verso: camiseta feminina na cor cinza, sem marca.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/camiseta-feminina~cinza-verso.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
   },
   {
    "id": "camiseta-feminina~preto",
@@ -2030,16 +2930,88 @@
    ],
    "ilustrativa": true,
    "aprovacao": "revisao",
-   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
-   "observacao": "Variação de cor gerada a partir da foto-base camiseta-feminina~vermelho.",
+   "observacao": "Frente refeita com bordado realista.",
    "arquivo": "/img/produtos/camiseta-feminina~preto.webp",
    "mestre": "midia/produtos/mestre/camiseta-feminina~preto.png",
    "largura": 1024,
    "altura": 1024,
    "sha256": "985e5aff646e73bacd52a6f7a14987848027c433f6aeddbb59ec56e277aec761",
    "bytes": 1433320,
-   "atualizado_em": "2026-10-17"
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "produto": "Camiseta feminina",
+   "categoria": "vestuario",
+   "modelo": "Gola careca, modelagem feminina",
+   "cor": {
+    "nome": "Preto",
+    "hex": "#1E1E1E"
+   },
+   "material": {
+    "valor": "Algodão",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "camiseta-feminina~preto-bordado",
+   "vista": "detalhe",
+   "alt": "Detalhe do bordado da marca TaMa em linha branca: camiseta feminina na cor preto.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/camiseta-feminina~preto-bordado.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "produto": "Camiseta feminina",
+   "categoria": "vestuario",
+   "modelo": "Gola careca, modelagem feminina",
+   "cor": {
+    "nome": "Preto",
+    "hex": "#1E1E1E"
+   },
+   "material": {
+    "valor": "Algodão",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "camiseta-feminina~preto-verso",
+   "vista": "verso",
+   "alt": "Verso: camiseta feminina na cor preto, sem marca.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/camiseta-feminina~preto-verso.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
   },
   {
    "id": "camiseta-feminina~rosa",
@@ -2068,16 +3040,88 @@
    ],
    "ilustrativa": true,
    "aprovacao": "revisao",
-   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
-   "observacao": "Variação de cor gerada a partir da foto-base camiseta-feminina~vermelho.",
+   "observacao": "Frente refeita com bordado realista.",
    "arquivo": "/img/produtos/camiseta-feminina~rosa.webp",
    "mestre": "midia/produtos/mestre/camiseta-feminina~rosa.png",
    "largura": 1024,
    "altura": 1024,
    "sha256": "4a1a9c599ff16cc683a6787035b99df14a558d7a0abc8d1a9e86141bee08353c",
    "bytes": 1390384,
-   "atualizado_em": "2026-10-17"
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "produto": "Camiseta feminina",
+   "categoria": "vestuario",
+   "modelo": "Gola careca, modelagem feminina",
+   "cor": {
+    "nome": "Rosa",
+    "hex": "#E07A9B"
+   },
+   "material": {
+    "valor": "Algodão",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "camiseta-feminina~rosa-bordado",
+   "vista": "detalhe",
+   "alt": "Detalhe do bordado da marca TaMa em linha branca: camiseta feminina na cor rosa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/camiseta-feminina~rosa-bordado.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "produto": "Camiseta feminina",
+   "categoria": "vestuario",
+   "modelo": "Gola careca, modelagem feminina",
+   "cor": {
+    "nome": "Rosa",
+    "hex": "#E07A9B"
+   },
+   "material": {
+    "valor": "Algodão",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "camiseta-feminina~rosa-verso",
+   "vista": "verso",
+   "alt": "Verso: camiseta feminina na cor rosa, sem marca.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/camiseta-feminina~rosa-verso.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
   },
   {
    "id": "camiseta-feminina~verde",
@@ -2106,16 +3150,88 @@
    ],
    "ilustrativa": true,
    "aprovacao": "revisao",
-   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
-   "observacao": "Variação de cor gerada a partir da foto-base camiseta-feminina~vermelho.",
+   "observacao": "Frente refeita com bordado realista.",
    "arquivo": "/img/produtos/camiseta-feminina~verde.webp",
    "mestre": "midia/produtos/mestre/camiseta-feminina~verde.png",
    "largura": 1024,
    "altura": 1024,
    "sha256": "9145f6a202f4985ab19a9f9314cdda3ec3d118e4c090b24cc41547272450e230",
    "bytes": 1463872,
-   "atualizado_em": "2026-10-17"
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "produto": "Camiseta feminina",
+   "categoria": "vestuario",
+   "modelo": "Gola careca, modelagem feminina",
+   "cor": {
+    "nome": "Verde",
+    "hex": "#1F6B45"
+   },
+   "material": {
+    "valor": "Algodão",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "camiseta-feminina~verde-bordado",
+   "vista": "detalhe",
+   "alt": "Detalhe do bordado da marca TaMa em linha branca: camiseta feminina na cor verde.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/camiseta-feminina~verde-bordado.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "produto": "Camiseta feminina",
+   "categoria": "vestuario",
+   "modelo": "Gola careca, modelagem feminina",
+   "cor": {
+    "nome": "Verde",
+    "hex": "#1F6B45"
+   },
+   "material": {
+    "valor": "Algodão",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "camiseta-feminina~verde-verso",
+   "vista": "verso",
+   "alt": "Verso: camiseta feminina na cor verde, sem marca.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/camiseta-feminina~verde-verso.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
   },
   {
    "id": "camiseta-feminina~vermelho",
@@ -2145,16 +3261,88 @@
    ],
    "ilustrativa": true,
    "aprovacao": "revisao",
-   "origem": "Imagem gerada com IA (ferramenta informada: Sol 6.1 Leve) em 17/10/2026, a partir da identidade TaMa. Ilustrativa: não é foto do produto final.",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
-   "observacao": "",
+   "observacao": "Frente refeita com bordado realista.",
    "arquivo": "/img/produtos/camiseta-feminina~vermelho.webp",
    "mestre": "midia/produtos/mestre/camiseta-feminina~vermelho.png",
-   "largura": 1254,
-   "altura": 1254,
+   "largura": 1024,
+   "altura": 1024,
    "sha256": "b639e987d482b42b8a059abcb5547b7792627fd34022c6662bc84cd1437ca5f7",
    "bytes": 1925752,
-   "atualizado_em": "2026-10-17"
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "produto": "Camiseta feminina",
+   "categoria": "vestuario",
+   "modelo": "Gola careca, modelagem feminina",
+   "cor": {
+    "nome": "Vermelho",
+    "hex": "#C8202F"
+   },
+   "material": {
+    "valor": "Algodão",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "camiseta-feminina~vermelho-bordado",
+   "vista": "detalhe",
+   "alt": "Detalhe do bordado da marca TaMa em linha branca: camiseta feminina na cor vermelho.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/camiseta-feminina~vermelho-bordado.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "produto": "Camiseta feminina",
+   "categoria": "vestuario",
+   "modelo": "Gola careca, modelagem feminina",
+   "cor": {
+    "nome": "Vermelho",
+    "hex": "#C8202F"
+   },
+   "material": {
+    "valor": "Algodão",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "camiseta-feminina~vermelho-verso",
+   "vista": "verso",
+   "alt": "Verso: camiseta feminina na cor vermelho, sem marca.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/camiseta-feminina~vermelho-verso.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
   },
   {
    "id": "camiseta~azul-marinho",
@@ -2183,16 +3371,88 @@
    ],
    "ilustrativa": true,
    "aprovacao": "revisao",
-   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
-   "observacao": "Variação de cor gerada a partir da foto-base camiseta~azul-royal.",
+   "observacao": "Frente refeita com bordado realista.",
    "arquivo": "/img/produtos/camiseta~azul-marinho.webp",
    "mestre": "midia/produtos/mestre/camiseta~azul-marinho.png",
    "largura": 1024,
    "altura": 1024,
    "sha256": "1832021f015bfc3cc63f77ad4277b062f47314d8643940b81e55df923f0b6d9e",
    "bytes": 1467892,
-   "atualizado_em": "2026-10-17"
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "produto": "Camiseta masculina",
+   "categoria": "vestuario",
+   "modelo": "Gola careca",
+   "cor": {
+    "nome": "Azul-marinho",
+    "hex": "#1E2A4A"
+   },
+   "material": {
+    "valor": "Algodão",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "camiseta~azul-marinho-bordado",
+   "vista": "detalhe",
+   "alt": "Detalhe do bordado da marca TaMa em linha branca: camiseta masculina na cor azul-marinho.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/camiseta~azul-marinho-bordado.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "produto": "Camiseta masculina",
+   "categoria": "vestuario",
+   "modelo": "Gola careca",
+   "cor": {
+    "nome": "Azul-marinho",
+    "hex": "#1E2A4A"
+   },
+   "material": {
+    "valor": "Algodão",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "camiseta~azul-marinho-verso",
+   "vista": "verso",
+   "alt": "Verso: camiseta masculina na cor azul-marinho, sem marca.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/camiseta~azul-marinho-verso.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
   },
   {
    "id": "camiseta~azul-royal",
@@ -2222,16 +3482,88 @@
    ],
    "ilustrativa": true,
    "aprovacao": "revisao",
-   "origem": "Imagem gerada com IA (ferramenta informada: Sol 6.1 Leve) em 17/10/2026, a partir da identidade TaMa. Ilustrativa: não é foto do produto final.",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
-   "observacao": "",
+   "observacao": "Frente refeita com bordado realista.",
    "arquivo": "/img/produtos/camiseta~azul-royal.webp",
    "mestre": "midia/produtos/mestre/camiseta~azul-royal.png",
-   "largura": 1254,
-   "altura": 1254,
+   "largura": 1024,
+   "altura": 1024,
    "sha256": "725ddeba5b2fd1e33713af2a4753d655f9e82d52977fc0a9ba5dff5546c16122",
    "bytes": 2096429,
-   "atualizado_em": "2026-10-17"
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "produto": "Camiseta masculina",
+   "categoria": "vestuario",
+   "modelo": "Gola careca",
+   "cor": {
+    "nome": "Azul royal",
+    "hex": "#1F4FB8"
+   },
+   "material": {
+    "valor": "Algodão",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "camiseta~azul-royal-bordado",
+   "vista": "detalhe",
+   "alt": "Detalhe do bordado da marca TaMa em linha branca: camiseta masculina na cor azul royal.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/camiseta~azul-royal-bordado.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "produto": "Camiseta masculina",
+   "categoria": "vestuario",
+   "modelo": "Gola careca",
+   "cor": {
+    "nome": "Azul royal",
+    "hex": "#1F4FB8"
+   },
+   "material": {
+    "valor": "Algodão",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "camiseta~azul-royal-verso",
+   "vista": "verso",
+   "alt": "Verso: camiseta masculina na cor azul royal, sem marca.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/camiseta~azul-royal-verso.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
   },
   {
    "id": "camiseta~branco",
@@ -2272,6 +3604,42 @@
    "atualizado_em": "2026-10-17"
   },
   {
+   "produto": "Camiseta masculina",
+   "categoria": "vestuario",
+   "modelo": "Gola careca",
+   "cor": {
+    "nome": "Branco",
+    "hex": "#F7F5F0"
+   },
+   "material": {
+    "valor": "Algodão",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "camiseta~branco-verso",
+   "vista": "verso",
+   "alt": "Verso: camiseta masculina na cor branco, sem marca.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/camiseta~branco-verso.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
+  },
+  {
    "id": "camiseta~cinza",
    "produto": "Camiseta masculina",
    "categoria": "vestuario",
@@ -2298,16 +3666,88 @@
    ],
    "ilustrativa": true,
    "aprovacao": "revisao",
-   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
-   "observacao": "Variação de cor gerada a partir da foto-base camiseta~azul-royal.",
+   "observacao": "Frente refeita com bordado realista.",
    "arquivo": "/img/produtos/camiseta~cinza.webp",
    "mestre": "midia/produtos/mestre/camiseta~cinza.png",
    "largura": 1024,
    "altura": 1024,
    "sha256": "1c23d233c24c8012937f45bf94bbff4dec1c4c3e98f3b6be0756a7532daceb3a",
    "bytes": 1597771,
-   "atualizado_em": "2026-10-17"
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "produto": "Camiseta masculina",
+   "categoria": "vestuario",
+   "modelo": "Gola careca",
+   "cor": {
+    "nome": "Cinza",
+    "hex": "#9A9A98"
+   },
+   "material": {
+    "valor": "Algodão",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "camiseta~cinza-bordado",
+   "vista": "detalhe",
+   "alt": "Detalhe do bordado da marca TaMa em linha branca: camiseta masculina na cor cinza.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/camiseta~cinza-bordado.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "produto": "Camiseta masculina",
+   "categoria": "vestuario",
+   "modelo": "Gola careca",
+   "cor": {
+    "nome": "Cinza",
+    "hex": "#9A9A98"
+   },
+   "material": {
+    "valor": "Algodão",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "camiseta~cinza-verso",
+   "vista": "verso",
+   "alt": "Verso: camiseta masculina na cor cinza, sem marca.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/camiseta~cinza-verso.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
   },
   {
    "id": "camiseta~preto",
@@ -2336,16 +3776,88 @@
    ],
    "ilustrativa": true,
    "aprovacao": "revisao",
-   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
-   "observacao": "Variação de cor gerada a partir da foto-base camiseta~azul-royal.",
+   "observacao": "Frente refeita com bordado realista.",
    "arquivo": "/img/produtos/camiseta~preto.webp",
    "mestre": "midia/produtos/mestre/camiseta~preto.png",
    "largura": 1024,
    "altura": 1024,
    "sha256": "23b4bae143790dfc34ee3fdd46d90c968f90165c2bcf38bfcf8821007ac3eb8d",
    "bytes": 1449698,
-   "atualizado_em": "2026-10-17"
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "produto": "Camiseta masculina",
+   "categoria": "vestuario",
+   "modelo": "Gola careca",
+   "cor": {
+    "nome": "Preto",
+    "hex": "#1E1E1E"
+   },
+   "material": {
+    "valor": "Algodão",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "camiseta~preto-bordado",
+   "vista": "detalhe",
+   "alt": "Detalhe do bordado da marca TaMa em linha branca: camiseta masculina na cor preto.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/camiseta~preto-bordado.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "produto": "Camiseta masculina",
+   "categoria": "vestuario",
+   "modelo": "Gola careca",
+   "cor": {
+    "nome": "Preto",
+    "hex": "#1E1E1E"
+   },
+   "material": {
+    "valor": "Algodão",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "camiseta~preto-verso",
+   "vista": "verso",
+   "alt": "Verso: camiseta masculina na cor preto, sem marca.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/camiseta~preto-verso.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
   },
   {
    "id": "camiseta~rosa",
@@ -2374,16 +3886,88 @@
    ],
    "ilustrativa": true,
    "aprovacao": "revisao",
-   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
-   "observacao": "Variação de cor gerada a partir da foto-base camiseta~azul-royal.",
+   "observacao": "Frente refeita com bordado realista.",
    "arquivo": "/img/produtos/camiseta~rosa.webp",
    "mestre": "midia/produtos/mestre/camiseta~rosa.png",
    "largura": 1024,
    "altura": 1024,
    "sha256": "a76847e137a0c5da933b01708442decd9dd6957f68c94cf986e649a375b1078f",
    "bytes": 1480172,
-   "atualizado_em": "2026-10-17"
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "produto": "Camiseta masculina",
+   "categoria": "vestuario",
+   "modelo": "Gola careca",
+   "cor": {
+    "nome": "Rosa",
+    "hex": "#E07A9B"
+   },
+   "material": {
+    "valor": "Algodão",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "camiseta~rosa-bordado",
+   "vista": "detalhe",
+   "alt": "Detalhe do bordado da marca TaMa em linha branca: camiseta masculina na cor rosa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/camiseta~rosa-bordado.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "produto": "Camiseta masculina",
+   "categoria": "vestuario",
+   "modelo": "Gola careca",
+   "cor": {
+    "nome": "Rosa",
+    "hex": "#E07A9B"
+   },
+   "material": {
+    "valor": "Algodão",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "camiseta~rosa-verso",
+   "vista": "verso",
+   "alt": "Verso: camiseta masculina na cor rosa, sem marca.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/camiseta~rosa-verso.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
   },
   {
    "id": "camiseta~verde",
@@ -2412,16 +3996,88 @@
    ],
    "ilustrativa": true,
    "aprovacao": "revisao",
-   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
-   "observacao": "Variação de cor gerada a partir da foto-base camiseta~azul-royal.",
+   "observacao": "Frente refeita com bordado realista.",
    "arquivo": "/img/produtos/camiseta~verde.webp",
    "mestre": "midia/produtos/mestre/camiseta~verde.png",
    "largura": 1024,
    "altura": 1024,
    "sha256": "bcfc59cea96f54074a6ccd383611bd3b39aa86e858bb33d1e8e6a4b753e210f7",
    "bytes": 1522195,
-   "atualizado_em": "2026-10-17"
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "produto": "Camiseta masculina",
+   "categoria": "vestuario",
+   "modelo": "Gola careca",
+   "cor": {
+    "nome": "Verde",
+    "hex": "#1F6B45"
+   },
+   "material": {
+    "valor": "Algodão",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "camiseta~verde-bordado",
+   "vista": "detalhe",
+   "alt": "Detalhe do bordado da marca TaMa em linha branca: camiseta masculina na cor verde.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/camiseta~verde-bordado.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "produto": "Camiseta masculina",
+   "categoria": "vestuario",
+   "modelo": "Gola careca",
+   "cor": {
+    "nome": "Verde",
+    "hex": "#1F6B45"
+   },
+   "material": {
+    "valor": "Algodão",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "camiseta~verde-verso",
+   "vista": "verso",
+   "alt": "Verso: camiseta masculina na cor verde, sem marca.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/camiseta~verde-verso.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
   },
   {
    "id": "camiseta~vermelho",
@@ -2450,16 +4106,88 @@
    ],
    "ilustrativa": true,
    "aprovacao": "revisao",
-   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
-   "observacao": "Variação de cor gerada a partir da foto-base camiseta~azul-royal.",
+   "observacao": "Frente refeita com bordado realista.",
    "arquivo": "/img/produtos/camiseta~vermelho.webp",
    "mestre": "midia/produtos/mestre/camiseta~vermelho.png",
    "largura": 1024,
    "altura": 1024,
    "sha256": "c3834a3b27a9ffebaa406f23ffc43405a05d67260796363faec83d1487194c64",
    "bytes": 1503135,
-   "atualizado_em": "2026-10-17"
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "produto": "Camiseta masculina",
+   "categoria": "vestuario",
+   "modelo": "Gola careca",
+   "cor": {
+    "nome": "Vermelho",
+    "hex": "#C8202F"
+   },
+   "material": {
+    "valor": "Algodão",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "camiseta~vermelho-bordado",
+   "vista": "detalhe",
+   "alt": "Detalhe do bordado da marca TaMa em linha branca: camiseta masculina na cor vermelho.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/camiseta~vermelho-bordado.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "produto": "Camiseta masculina",
+   "categoria": "vestuario",
+   "modelo": "Gola careca",
+   "cor": {
+    "nome": "Vermelho",
+    "hex": "#C8202F"
+   },
+   "material": {
+    "valor": "Algodão",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "camiseta~vermelho-verso",
+   "vista": "verso",
+   "alt": "Verso: camiseta masculina na cor vermelho, sem marca.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/camiseta~vermelho-verso.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
   },
   {
    "id": "caneca~azul-royal",
@@ -5329,6 +7057,78 @@
    "atualizado_em": "2026-10-17"
   },
   {
+   "produto": "Dólmã profissional",
+   "categoria": "vestuario",
+   "modelo": "Botões pretos",
+   "cor": {
+    "nome": "Azul-marinho",
+    "hex": "#1E2A4A"
+   },
+   "material": {
+    "valor": "Tecido profissional",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "dolma~azul-marinho-bordado",
+   "vista": "detalhe",
+   "alt": "Detalhe do bordado da marca TaMa em linha branca: dólmã profissional na cor azul-marinho.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/dolma~azul-marinho-bordado.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "produto": "Dólmã profissional",
+   "categoria": "vestuario",
+   "modelo": "Botões pretos",
+   "cor": {
+    "nome": "Azul-marinho",
+    "hex": "#1E2A4A"
+   },
+   "material": {
+    "valor": "Tecido profissional",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "dolma~azul-marinho-verso",
+   "vista": "verso",
+   "alt": "Verso: dólmã profissional na cor azul-marinho, sem marca.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/dolma~azul-marinho-verso.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
+  },
+  {
    "id": "dolma~branco",
    "produto": "Dólmã profissional",
    "categoria": "vestuario",
@@ -5366,6 +7166,42 @@
    "sha256": "7d03554941c71260a65011a5c21424318e5bef2d64c7390270ba7f23e7b4a6b5",
    "bytes": 1797903,
    "atualizado_em": "2026-10-17"
+  },
+  {
+   "produto": "Dólmã profissional",
+   "categoria": "vestuario",
+   "modelo": "Botões pretos",
+   "cor": {
+    "nome": "Branco",
+    "hex": "#F7F5F0"
+   },
+   "material": {
+    "valor": "Tecido profissional",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "dolma~branco-verso",
+   "vista": "verso",
+   "alt": "Verso: dólmã profissional na cor branco, sem marca.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/dolma~branco-verso.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
   },
   {
    "id": "dolma~jeans",
@@ -5406,6 +7242,78 @@
    "atualizado_em": "2026-10-17"
   },
   {
+   "produto": "Dólmã profissional",
+   "categoria": "vestuario",
+   "modelo": "Botões pretos",
+   "cor": {
+    "nome": "Jeans",
+    "hex": "#2F4470"
+   },
+   "material": {
+    "valor": "Tecido profissional",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "dolma~jeans-bordado",
+   "vista": "detalhe",
+   "alt": "Detalhe do bordado da marca TaMa em linha branca: dólmã profissional na cor jeans.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/dolma~jeans-bordado.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "produto": "Dólmã profissional",
+   "categoria": "vestuario",
+   "modelo": "Botões pretos",
+   "cor": {
+    "nome": "Jeans",
+    "hex": "#2F4470"
+   },
+   "material": {
+    "valor": "Tecido profissional",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "dolma~jeans-verso",
+   "vista": "verso",
+   "alt": "Verso: dólmã profissional na cor jeans, sem marca.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/dolma~jeans-verso.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
+  },
+  {
    "id": "dolma~preto",
    "produto": "Dólmã profissional",
    "categoria": "vestuario",
@@ -5444,6 +7352,78 @@
    "atualizado_em": "2026-10-17"
   },
   {
+   "produto": "Dólmã profissional",
+   "categoria": "vestuario",
+   "modelo": "Botões pretos",
+   "cor": {
+    "nome": "Preto",
+    "hex": "#1E1E1E"
+   },
+   "material": {
+    "valor": "Tecido profissional",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "dolma~preto-bordado",
+   "vista": "detalhe",
+   "alt": "Detalhe do bordado da marca TaMa em linha branca: dólmã profissional na cor preto.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/dolma~preto-bordado.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "produto": "Dólmã profissional",
+   "categoria": "vestuario",
+   "modelo": "Botões pretos",
+   "cor": {
+    "nome": "Preto",
+    "hex": "#1E1E1E"
+   },
+   "material": {
+    "valor": "Tecido profissional",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "dolma~preto-verso",
+   "vista": "verso",
+   "alt": "Verso: dólmã profissional na cor preto, sem marca.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/dolma~preto-verso.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
+  },
+  {
    "id": "dolma~rosa",
    "produto": "Dólmã profissional",
    "categoria": "vestuario",
@@ -5480,6 +7460,78 @@
    "sha256": "5f6c82077d5dc5756e2d70192d2fb67f2d7be9fd40f0a23135a28c0157fb694f",
    "bytes": 1236849,
    "atualizado_em": "2026-10-17"
+  },
+  {
+   "produto": "Dólmã profissional",
+   "categoria": "vestuario",
+   "modelo": "Botões pretos",
+   "cor": {
+    "nome": "Rosa",
+    "hex": "#E07A9B"
+   },
+   "material": {
+    "valor": "Tecido profissional",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "dolma~rosa-bordado",
+   "vista": "detalhe",
+   "alt": "Detalhe do bordado da marca TaMa em linha branca: dólmã profissional na cor rosa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/dolma~rosa-bordado.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "produto": "Dólmã profissional",
+   "categoria": "vestuario",
+   "modelo": "Botões pretos",
+   "cor": {
+    "nome": "Rosa",
+    "hex": "#E07A9B"
+   },
+   "material": {
+    "valor": "Tecido profissional",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "dolma~rosa-verso",
+   "vista": "verso",
+   "alt": "Verso: dólmã profissional na cor rosa, sem marca.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/dolma~rosa-verso.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
   },
   {
    "id": "ecobag~cru",
@@ -6778,16 +8830,88 @@
    ],
    "ilustrativa": true,
    "aprovacao": "revisao",
-   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
-   "observacao": "Variação de cor gerada a partir da foto-base moletom~preto.",
+   "observacao": "Frente refeita com bordado realista.",
    "arquivo": "/img/produtos/moletom~azul-marinho.webp",
    "mestre": "midia/produtos/mestre/moletom~azul-marinho.png",
    "largura": 1024,
    "altura": 1024,
    "sha256": "d7d556799d22817b7d39fb5f8228cbce33e618c2f40824e5ee5397fd3286a9b2",
    "bytes": 1355982,
-   "atualizado_em": "2026-10-17"
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "produto": "Moletom personalizado",
+   "categoria": "vestuario",
+   "modelo": "Canguru com capuz",
+   "cor": {
+    "nome": "Azul-marinho",
+    "hex": "#1E2A4A"
+   },
+   "material": {
+    "valor": "Moletom",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado ou silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "moletom~azul-marinho-bordado",
+   "vista": "detalhe",
+   "alt": "Detalhe do bordado da marca TaMa em linha branca: moletom personalizado na cor azul-marinho.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/moletom~azul-marinho-bordado.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "produto": "Moletom personalizado",
+   "categoria": "vestuario",
+   "modelo": "Canguru com capuz",
+   "cor": {
+    "nome": "Azul-marinho",
+    "hex": "#1E2A4A"
+   },
+   "material": {
+    "valor": "Moletom",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado ou silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "moletom~azul-marinho-verso",
+   "vista": "verso",
+   "alt": "Verso: moletom personalizado na cor azul-marinho, sem marca.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/moletom~azul-marinho-verso.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
   },
   {
    "id": "moletom~azul-royal",
@@ -6816,16 +8940,88 @@
    ],
    "ilustrativa": true,
    "aprovacao": "revisao",
-   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
-   "observacao": "Variação de cor gerada a partir da foto-base moletom~preto.",
+   "observacao": "Frente refeita com bordado realista.",
    "arquivo": "/img/produtos/moletom~azul-royal.webp",
    "mestre": "midia/produtos/mestre/moletom~azul-royal.png",
    "largura": 1024,
    "altura": 1024,
    "sha256": "42fe080283c5f5ab3ab658364d4d6778cc84acad9aede4e73280eddc03131efd",
    "bytes": 1610508,
-   "atualizado_em": "2026-10-17"
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "produto": "Moletom personalizado",
+   "categoria": "vestuario",
+   "modelo": "Canguru com capuz",
+   "cor": {
+    "nome": "Azul royal",
+    "hex": "#1F4FB8"
+   },
+   "material": {
+    "valor": "Moletom",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado ou silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "moletom~azul-royal-bordado",
+   "vista": "detalhe",
+   "alt": "Detalhe do bordado da marca TaMa em linha branca: moletom personalizado na cor azul royal.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/moletom~azul-royal-bordado.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "produto": "Moletom personalizado",
+   "categoria": "vestuario",
+   "modelo": "Canguru com capuz",
+   "cor": {
+    "nome": "Azul royal",
+    "hex": "#1F4FB8"
+   },
+   "material": {
+    "valor": "Moletom",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado ou silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "moletom~azul-royal-verso",
+   "vista": "verso",
+   "alt": "Verso: moletom personalizado na cor azul royal, sem marca.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/moletom~azul-royal-verso.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
   },
   {
    "id": "moletom~branco",
@@ -6866,6 +9062,42 @@
    "atualizado_em": "2026-10-17"
   },
   {
+   "produto": "Moletom personalizado",
+   "categoria": "vestuario",
+   "modelo": "Canguru com capuz",
+   "cor": {
+    "nome": "Branco",
+    "hex": "#F7F5F0"
+   },
+   "material": {
+    "valor": "Moletom",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado ou silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "moletom~branco-verso",
+   "vista": "verso",
+   "alt": "Verso: moletom personalizado na cor branco, sem marca.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/moletom~branco-verso.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
+  },
+  {
    "id": "moletom~cinza",
    "produto": "Moletom personalizado",
    "categoria": "vestuario",
@@ -6892,16 +9124,88 @@
    ],
    "ilustrativa": true,
    "aprovacao": "revisao",
-   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
-   "observacao": "Variação de cor gerada a partir da foto-base moletom~preto.",
+   "observacao": "Frente refeita com bordado realista.",
    "arquivo": "/img/produtos/moletom~cinza.webp",
    "mestre": "midia/produtos/mestre/moletom~cinza.png",
    "largura": 1024,
    "altura": 1024,
    "sha256": "2d4fffcf513fbc792862c12806931fdb04455041f136b9b9fcb28fe08f6abc47",
    "bytes": 1593997,
-   "atualizado_em": "2026-10-17"
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "produto": "Moletom personalizado",
+   "categoria": "vestuario",
+   "modelo": "Canguru com capuz",
+   "cor": {
+    "nome": "Cinza",
+    "hex": "#9A9A98"
+   },
+   "material": {
+    "valor": "Moletom",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado ou silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "moletom~cinza-bordado",
+   "vista": "detalhe",
+   "alt": "Detalhe do bordado da marca TaMa em linha branca: moletom personalizado na cor cinza.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/moletom~cinza-bordado.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "produto": "Moletom personalizado",
+   "categoria": "vestuario",
+   "modelo": "Canguru com capuz",
+   "cor": {
+    "nome": "Cinza",
+    "hex": "#9A9A98"
+   },
+   "material": {
+    "valor": "Moletom",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado ou silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "moletom~cinza-verso",
+   "vista": "verso",
+   "alt": "Verso: moletom personalizado na cor cinza, sem marca.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/moletom~cinza-verso.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
   },
   {
    "id": "moletom~preto",
@@ -6931,16 +9235,88 @@
    ],
    "ilustrativa": true,
    "aprovacao": "revisao",
-   "origem": "Imagem gerada com IA (ferramenta informada: Sol 6.1 Leve) em 17/10/2026, a partir da identidade TaMa. Ilustrativa: não é foto do produto final.",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
-   "observacao": "",
+   "observacao": "Frente refeita com bordado realista.",
    "arquivo": "/img/produtos/moletom~preto.webp",
    "mestre": "midia/produtos/mestre/moletom~preto.png",
-   "largura": 1254,
-   "altura": 1254,
+   "largura": 1024,
+   "altura": 1024,
    "sha256": "f9c019fe72364e7d9025e476f014ac71820f2e9f8e09d417d4e2690e2bbe1881",
    "bytes": 1983762,
-   "atualizado_em": "2026-10-17"
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "produto": "Moletom personalizado",
+   "categoria": "vestuario",
+   "modelo": "Canguru com capuz",
+   "cor": {
+    "nome": "Preto",
+    "hex": "#1E1E1E"
+   },
+   "material": {
+    "valor": "Moletom",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado ou silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "moletom~preto-bordado",
+   "vista": "detalhe",
+   "alt": "Detalhe do bordado da marca TaMa em linha branca: moletom personalizado na cor preto.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/moletom~preto-bordado.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "produto": "Moletom personalizado",
+   "categoria": "vestuario",
+   "modelo": "Canguru com capuz",
+   "cor": {
+    "nome": "Preto",
+    "hex": "#1E1E1E"
+   },
+   "material": {
+    "valor": "Moletom",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado ou silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "moletom~preto-verso",
+   "vista": "verso",
+   "alt": "Verso: moletom personalizado na cor preto, sem marca.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/moletom~preto-verso.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
   },
   {
    "id": "moletom~rosa",
@@ -6969,16 +9345,88 @@
    ],
    "ilustrativa": true,
    "aprovacao": "revisao",
-   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
-   "observacao": "Variação de cor gerada a partir da foto-base moletom~preto.",
+   "observacao": "Frente refeita com bordado realista.",
    "arquivo": "/img/produtos/moletom~rosa.webp",
    "mestre": "midia/produtos/mestre/moletom~rosa.png",
    "largura": 1024,
    "altura": 1024,
    "sha256": "009032d566fde9aa22db056af8122c2d624a747a095b4652d58caae053306202",
    "bytes": 1519478,
-   "atualizado_em": "2026-10-17"
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "produto": "Moletom personalizado",
+   "categoria": "vestuario",
+   "modelo": "Canguru com capuz",
+   "cor": {
+    "nome": "Rosa",
+    "hex": "#E07A9B"
+   },
+   "material": {
+    "valor": "Moletom",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado ou silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "moletom~rosa-bordado",
+   "vista": "detalhe",
+   "alt": "Detalhe do bordado da marca TaMa em linha branca: moletom personalizado na cor rosa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/moletom~rosa-bordado.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "produto": "Moletom personalizado",
+   "categoria": "vestuario",
+   "modelo": "Canguru com capuz",
+   "cor": {
+    "nome": "Rosa",
+    "hex": "#E07A9B"
+   },
+   "material": {
+    "valor": "Moletom",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado ou silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "moletom~rosa-verso",
+   "vista": "verso",
+   "alt": "Verso: moletom personalizado na cor rosa, sem marca.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/moletom~rosa-verso.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
   },
   {
    "id": "moletom~verde",
@@ -7007,16 +9455,88 @@
    ],
    "ilustrativa": true,
    "aprovacao": "revisao",
-   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
-   "observacao": "Variação de cor gerada a partir da foto-base moletom~preto.",
+   "observacao": "Frente refeita com bordado realista.",
    "arquivo": "/img/produtos/moletom~verde.webp",
    "mestre": "midia/produtos/mestre/moletom~verde.png",
    "largura": 1024,
    "altura": 1024,
    "sha256": "5cd0e87c6c260139154c80977cf1c41b0a8fa5292e8b608552ac12064d7aa1a8",
    "bytes": 1431086,
-   "atualizado_em": "2026-10-17"
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "produto": "Moletom personalizado",
+   "categoria": "vestuario",
+   "modelo": "Canguru com capuz",
+   "cor": {
+    "nome": "Verde",
+    "hex": "#1F6B45"
+   },
+   "material": {
+    "valor": "Moletom",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado ou silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "moletom~verde-bordado",
+   "vista": "detalhe",
+   "alt": "Detalhe do bordado da marca TaMa em linha branca: moletom personalizado na cor verde.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/moletom~verde-bordado.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "produto": "Moletom personalizado",
+   "categoria": "vestuario",
+   "modelo": "Canguru com capuz",
+   "cor": {
+    "nome": "Verde",
+    "hex": "#1F6B45"
+   },
+   "material": {
+    "valor": "Moletom",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado ou silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "moletom~verde-verso",
+   "vista": "verso",
+   "alt": "Verso: moletom personalizado na cor verde, sem marca.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/moletom~verde-verso.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
   },
   {
    "id": "moletom~vermelho",
@@ -7045,16 +9565,88 @@
    ],
    "ilustrativa": true,
    "aprovacao": "revisao",
-   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
-   "observacao": "Variação de cor gerada a partir da foto-base moletom~preto.",
+   "observacao": "Frente refeita com bordado realista.",
    "arquivo": "/img/produtos/moletom~vermelho.webp",
    "mestre": "midia/produtos/mestre/moletom~vermelho.png",
    "largura": 1024,
    "altura": 1024,
    "sha256": "d967acee02c062c19219664c916672f555b8ec9c05385483c95d6d23e4b6fa7e",
    "bytes": 1535523,
-   "atualizado_em": "2026-10-17"
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "produto": "Moletom personalizado",
+   "categoria": "vestuario",
+   "modelo": "Canguru com capuz",
+   "cor": {
+    "nome": "Vermelho",
+    "hex": "#C8202F"
+   },
+   "material": {
+    "valor": "Moletom",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado ou silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "moletom~vermelho-bordado",
+   "vista": "detalhe",
+   "alt": "Detalhe do bordado da marca TaMa em linha branca: moletom personalizado na cor vermelho.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/moletom~vermelho-bordado.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "produto": "Moletom personalizado",
+   "categoria": "vestuario",
+   "modelo": "Canguru com capuz",
+   "cor": {
+    "nome": "Vermelho",
+    "hex": "#C8202F"
+   },
+   "material": {
+    "valor": "Moletom",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado ou silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "moletom~vermelho-verso",
+   "vista": "verso",
+   "alt": "Verso: moletom personalizado na cor vermelho, sem marca.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/moletom~vermelho-verso.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
   },
   {
    "id": "necessaire~azul-marinho",
@@ -7233,16 +9825,88 @@
    ],
    "ilustrativa": true,
    "aprovacao": "revisao",
-   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
-   "observacao": "Variação de cor gerada a partir da foto-base polo-feminina~azul-royal.",
+   "observacao": "Frente refeita com bordado realista.",
    "arquivo": "/img/produtos/polo-feminina~azul-marinho.webp",
    "mestre": "midia/produtos/mestre/polo-feminina~azul-marinho.png",
    "largura": 1024,
    "altura": 1024,
    "sha256": "4074fb64a82bd77a8fa1ba127b1b76fe16c1a68f072a9f7a5a8819a36313b4d7",
    "bytes": 1702059,
-   "atualizado_em": "2026-10-17"
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "produto": "Polo feminina",
+   "categoria": "vestuario",
+   "modelo": "Modelagem feminina",
+   "cor": {
+    "nome": "Azul-marinho",
+    "hex": "#1E2A4A"
+   },
+   "material": {
+    "valor": "Piquet",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "polo-feminina~azul-marinho-bordado",
+   "vista": "detalhe",
+   "alt": "Detalhe do bordado da marca TaMa em linha branca: polo feminina na cor azul-marinho.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/polo-feminina~azul-marinho-bordado.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "produto": "Polo feminina",
+   "categoria": "vestuario",
+   "modelo": "Modelagem feminina",
+   "cor": {
+    "nome": "Azul-marinho",
+    "hex": "#1E2A4A"
+   },
+   "material": {
+    "valor": "Piquet",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "polo-feminina~azul-marinho-verso",
+   "vista": "verso",
+   "alt": "Verso: polo feminina na cor azul-marinho, sem marca.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/polo-feminina~azul-marinho-verso.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
   },
   {
    "id": "polo-feminina~azul-royal",
@@ -7272,16 +9936,88 @@
    ],
    "ilustrativa": true,
    "aprovacao": "revisao",
-   "origem": "Imagem gerada com IA (ferramenta informada: Sol 6.1 Leve) em 17/10/2026, a partir da identidade TaMa. Ilustrativa: não é foto do produto final.",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
-   "observacao": "",
+   "observacao": "Frente refeita com bordado realista.",
    "arquivo": "/img/produtos/polo-feminina~azul-royal.webp",
    "mestre": "midia/produtos/mestre/polo-feminina~azul-royal.png",
-   "largura": 1254,
-   "altura": 1254,
+   "largura": 1024,
+   "altura": 1024,
    "sha256": "7529593aad7d9c0a1a11eb41f68f40927ce63b0a10850db352b147a749216e86",
    "bytes": 2972501,
-   "atualizado_em": "2026-10-17"
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "produto": "Polo feminina",
+   "categoria": "vestuario",
+   "modelo": "Modelagem feminina",
+   "cor": {
+    "nome": "Azul royal",
+    "hex": "#1F4FB8"
+   },
+   "material": {
+    "valor": "Piquet",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "polo-feminina~azul-royal-bordado",
+   "vista": "detalhe",
+   "alt": "Detalhe do bordado da marca TaMa em linha branca: polo feminina na cor azul royal.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/polo-feminina~azul-royal-bordado.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "produto": "Polo feminina",
+   "categoria": "vestuario",
+   "modelo": "Modelagem feminina",
+   "cor": {
+    "nome": "Azul royal",
+    "hex": "#1F4FB8"
+   },
+   "material": {
+    "valor": "Piquet",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "polo-feminina~azul-royal-verso",
+   "vista": "verso",
+   "alt": "Verso: polo feminina na cor azul royal, sem marca.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/polo-feminina~azul-royal-verso.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
   },
   {
    "id": "polo-feminina~branco",
@@ -7322,6 +10058,42 @@
    "atualizado_em": "2026-10-17"
   },
   {
+   "produto": "Polo feminina",
+   "categoria": "vestuario",
+   "modelo": "Modelagem feminina",
+   "cor": {
+    "nome": "Branco",
+    "hex": "#F7F5F0"
+   },
+   "material": {
+    "valor": "Piquet",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "polo-feminina~branco-verso",
+   "vista": "verso",
+   "alt": "Verso: polo feminina na cor branco, sem marca.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/polo-feminina~branco-verso.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
+  },
+  {
    "id": "polo-feminina~cinza",
    "produto": "Polo feminina",
    "categoria": "vestuario",
@@ -7348,16 +10120,88 @@
    ],
    "ilustrativa": true,
    "aprovacao": "revisao",
-   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
-   "observacao": "Variação de cor gerada a partir da foto-base polo-feminina~azul-royal.",
+   "observacao": "Frente refeita com bordado realista.",
    "arquivo": "/img/produtos/polo-feminina~cinza.webp",
    "mestre": "midia/produtos/mestre/polo-feminina~cinza.png",
    "largura": 1024,
    "altura": 1024,
    "sha256": "de85b71b3667311159b7acbd539610b207e4e641218f5af1207c73031eccd735",
    "bytes": 1891726,
-   "atualizado_em": "2026-10-17"
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "produto": "Polo feminina",
+   "categoria": "vestuario",
+   "modelo": "Modelagem feminina",
+   "cor": {
+    "nome": "Cinza",
+    "hex": "#9A9A98"
+   },
+   "material": {
+    "valor": "Piquet",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "polo-feminina~cinza-bordado",
+   "vista": "detalhe",
+   "alt": "Detalhe do bordado da marca TaMa em linha branca: polo feminina na cor cinza.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/polo-feminina~cinza-bordado.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "produto": "Polo feminina",
+   "categoria": "vestuario",
+   "modelo": "Modelagem feminina",
+   "cor": {
+    "nome": "Cinza",
+    "hex": "#9A9A98"
+   },
+   "material": {
+    "valor": "Piquet",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "polo-feminina~cinza-verso",
+   "vista": "verso",
+   "alt": "Verso: polo feminina na cor cinza, sem marca.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/polo-feminina~cinza-verso.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
   },
   {
    "id": "polo-feminina~preto",
@@ -7386,16 +10230,88 @@
    ],
    "ilustrativa": true,
    "aprovacao": "revisao",
-   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
-   "observacao": "Variação de cor gerada a partir da foto-base polo-feminina~azul-royal.",
+   "observacao": "Frente refeita com bordado realista.",
    "arquivo": "/img/produtos/polo-feminina~preto.webp",
    "mestre": "midia/produtos/mestre/polo-feminina~preto.png",
    "largura": 1024,
    "altura": 1024,
    "sha256": "af04fdf4bd96d3811a1f6fea7b22fb28bc0ab79b7027cfb85b9fde90d653a9d4",
    "bytes": 1623119,
-   "atualizado_em": "2026-10-17"
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "produto": "Polo feminina",
+   "categoria": "vestuario",
+   "modelo": "Modelagem feminina",
+   "cor": {
+    "nome": "Preto",
+    "hex": "#1E1E1E"
+   },
+   "material": {
+    "valor": "Piquet",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "polo-feminina~preto-bordado",
+   "vista": "detalhe",
+   "alt": "Detalhe do bordado da marca TaMa em linha branca: polo feminina na cor preto.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/polo-feminina~preto-bordado.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "produto": "Polo feminina",
+   "categoria": "vestuario",
+   "modelo": "Modelagem feminina",
+   "cor": {
+    "nome": "Preto",
+    "hex": "#1E1E1E"
+   },
+   "material": {
+    "valor": "Piquet",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "polo-feminina~preto-verso",
+   "vista": "verso",
+   "alt": "Verso: polo feminina na cor preto, sem marca.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/polo-feminina~preto-verso.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
   },
   {
    "id": "polo-feminina~rosa",
@@ -7424,16 +10340,88 @@
    ],
    "ilustrativa": true,
    "aprovacao": "revisao",
-   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
-   "observacao": "Variação de cor gerada a partir da foto-base polo-feminina~azul-royal.",
+   "observacao": "Frente refeita com bordado realista.",
    "arquivo": "/img/produtos/polo-feminina~rosa.webp",
    "mestre": "midia/produtos/mestre/polo-feminina~rosa.png",
    "largura": 1024,
    "altura": 1024,
    "sha256": "4207180124458ceabb06fbff15a49606c601b4c569478fbc2c73380e3497bf35",
    "bytes": 1658656,
-   "atualizado_em": "2026-10-17"
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "produto": "Polo feminina",
+   "categoria": "vestuario",
+   "modelo": "Modelagem feminina",
+   "cor": {
+    "nome": "Rosa",
+    "hex": "#E07A9B"
+   },
+   "material": {
+    "valor": "Piquet",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "polo-feminina~rosa-bordado",
+   "vista": "detalhe",
+   "alt": "Detalhe do bordado da marca TaMa em linha branca: polo feminina na cor rosa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/polo-feminina~rosa-bordado.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "produto": "Polo feminina",
+   "categoria": "vestuario",
+   "modelo": "Modelagem feminina",
+   "cor": {
+    "nome": "Rosa",
+    "hex": "#E07A9B"
+   },
+   "material": {
+    "valor": "Piquet",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "polo-feminina~rosa-verso",
+   "vista": "verso",
+   "alt": "Verso: polo feminina na cor rosa, sem marca.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/polo-feminina~rosa-verso.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
   },
   {
    "id": "polo-feminina~verde",
@@ -7462,16 +10450,88 @@
    ],
    "ilustrativa": true,
    "aprovacao": "revisao",
-   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
-   "observacao": "Variação de cor gerada a partir da foto-base polo-feminina~azul-royal.",
+   "observacao": "Frente refeita com bordado realista.",
    "arquivo": "/img/produtos/polo-feminina~verde.webp",
    "mestre": "midia/produtos/mestre/polo-feminina~verde.png",
    "largura": 1024,
    "altura": 1024,
    "sha256": "2f55a6b3883e9b67755512505c7d177f38e5ef88207afc9311986d9287831ade",
    "bytes": 1638627,
-   "atualizado_em": "2026-10-17"
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "produto": "Polo feminina",
+   "categoria": "vestuario",
+   "modelo": "Modelagem feminina",
+   "cor": {
+    "nome": "Verde",
+    "hex": "#1F6B45"
+   },
+   "material": {
+    "valor": "Piquet",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "polo-feminina~verde-bordado",
+   "vista": "detalhe",
+   "alt": "Detalhe do bordado da marca TaMa em linha branca: polo feminina na cor verde.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/polo-feminina~verde-bordado.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "produto": "Polo feminina",
+   "categoria": "vestuario",
+   "modelo": "Modelagem feminina",
+   "cor": {
+    "nome": "Verde",
+    "hex": "#1F6B45"
+   },
+   "material": {
+    "valor": "Piquet",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "polo-feminina~verde-verso",
+   "vista": "verso",
+   "alt": "Verso: polo feminina na cor verde, sem marca.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/polo-feminina~verde-verso.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
   },
   {
    "id": "polo-feminina~vermelho",
@@ -7500,16 +10560,88 @@
    ],
    "ilustrativa": true,
    "aprovacao": "revisao",
-   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
-   "observacao": "Variação de cor gerada a partir da foto-base polo-feminina~azul-royal.",
+   "observacao": "Frente refeita com bordado realista.",
    "arquivo": "/img/produtos/polo-feminina~vermelho.webp",
    "mestre": "midia/produtos/mestre/polo-feminina~vermelho.png",
    "largura": 1024,
    "altura": 1024,
    "sha256": "cf421887ab036d92886a19e1fcfe064c19a3dcebc8415cbe3ddbdb8b1acb391f",
    "bytes": 1649465,
-   "atualizado_em": "2026-10-17"
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "produto": "Polo feminina",
+   "categoria": "vestuario",
+   "modelo": "Modelagem feminina",
+   "cor": {
+    "nome": "Vermelho",
+    "hex": "#C8202F"
+   },
+   "material": {
+    "valor": "Piquet",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "polo-feminina~vermelho-bordado",
+   "vista": "detalhe",
+   "alt": "Detalhe do bordado da marca TaMa em linha branca: polo feminina na cor vermelho.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/polo-feminina~vermelho-bordado.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "produto": "Polo feminina",
+   "categoria": "vestuario",
+   "modelo": "Modelagem feminina",
+   "cor": {
+    "nome": "Vermelho",
+    "hex": "#C8202F"
+   },
+   "material": {
+    "valor": "Piquet",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "polo-feminina~vermelho-verso",
+   "vista": "verso",
+   "alt": "Verso: polo feminina na cor vermelho, sem marca.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/polo-feminina~vermelho-verso.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
   },
   {
    "id": "polo~azul-marinho",

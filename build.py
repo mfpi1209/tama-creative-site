@@ -173,6 +173,11 @@ NOTE_MOCKUPS = ('Os produtos exibidos usam a identidade TaMa Creative como exemp
 IMAGES = {}
 
 
+# largura real da foto do carrossel (fotos 3:2 na metade direita; no celular, um pouco maior que a tela por causa do corte)
+HERO_SIZES = '(max-width: 760px) 120vw, (max-width: 1100px) 90vw, 60vw'
+CARROSSEL_HQ = {'hero-brindes', 'hero-v3-confeccoes', 'hero-kits', 'home-escritorio'}
+
+
 def build_images():
     from PIL import Image
     out = os.path.join(DIST, 'img')
@@ -208,7 +213,8 @@ def build_images():
         IMAGES[name] = {'w': im.width, 'h': im.height, 'widths': widths, 'stem': stem}
         for w in widths:
             h = round(im.height * w / im.width)
-            for ext, kw in (('avif', {'quality': 52}), ('webp', {'quality': 78, 'method': 6}), ('jpg', {'quality': 80, 'optimize': True, 'progressive': True})):
+            hq = name in CARROSSEL_HQ   # fotos do carrossel da home: mais qualidade (detalhes nítidos em tela grande)
+            for ext, kw in (('avif', {'quality': 64 if hq else 52}), ('webp', {'quality': 88 if hq else 78, 'method': 6}), ('jpg', {'quality': 90 if hq else 80, 'optimize': True, 'progressive': True})):
                 # cache pelo hash do conteúdo (stem), não pela data: vale entre máquinas e no build do Netlify (checkout muda as datas)
                 cached = os.path.join(cdir, f'{stem}-{w}.{ext}')
                 if not os.path.exists(cached):
@@ -1180,7 +1186,7 @@ def hero_carousel(slides=None, label='Destaques da TaMa Creative', assurances=Tr
     # slide (creme, sálvia, rosé, linho); o texto fica numa coluna própria, sem encostar nos produtos. No celular o texto
     # vem acima da foto. frame: enquadramento da foto (--fx no computador, --fx-m no celular) e largura (--pw).
     slides = slides or [
-        ('tone-cream', 'hero-brindes', '--fx:100%;--fx-m:96%', 'Ecobag de algodão cru com alças de couro bordô, squeeze bordô, caderno com caneta dourada, power bank, taça de gin bordô e copo personalizado, todos com a marca TaMa.', 'Brindes corporativos', 'Sua marca, presente no <em>dia a dia</em>.',
+        ('tone-cream', 'hero-brindes', '--fx:100%;--fx-m:96%', 'Bolsa cru com alças bordô, caderno creme com caneta dourada, taça e garrafa bordô e copo creme, todos com a marca TaMa.', 'Brindes corporativos', 'Sua marca, presente no <em>dia a dia</em>.',
          'Peças personalizadas para acompanhar pessoas e criar conexões.',
          cta_link('Solicitar proposta', track_label='hero-1') + '<a class="btn btn-line" href="/brindes-corporativos-premium/">Explorar produtos ' + ARROW + '</a>'),
         ('tone-sage', 'hero-v3-confeccoes', '--fx:72%;--fx-m:72%', 'Polo vermelha, moletom azul royal e camiseta branca com a marca TaMa.', 'Confecções personalizadas', 'Identidade que <em>veste</em> sua equipe.',
@@ -1189,8 +1195,8 @@ def hero_carousel(slides=None, label='Destaques da TaMa Creative', assurances=Tr
         ('tone-rose', 'hero-kits', '--fx:100%;--fx-m:80%', 'Caixa bordô aberta com tábua de madeira, potinhos de cerâmica, geleias, facas de queijo e cartão com a marca TaMa.', 'Kits premium', 'Kits pensados de <em>ponta a ponta</em>.',
          'Caixa, peças e cartão com a sua marca, prontos para surpreender, agradecer e aproximar.',
          cta_link('Montar um kit', tipo='kits', track_label='hero-3') + '<a class="btn btn-line" href="/kits-corporativos/">Conhecer os kits ' + ARROW + '</a>'),
-        ('tone-linen', 'home-escritorio', '--fx:100%;--fx-m:68%', 'Caderno azul, canetas, porta-lápis, bandeja e estojo em couro com a marca TaMa.', 'Escrita e escritório', 'Boas ideias merecem <em>boa companhia</em>.',
-         'Blocos, cadernos, canetas e acessórios em couro para a rotina profissional.',
+        ('tone-linen', 'home-escritorio', '--fx:100%;--fx-m:68%', 'Caderno azul, canetas, porta-canetas e estojo caramelo e bandeja creme, com a marca TaMa.', 'Escrita e escritório', 'Boas ideias merecem <em>boa companhia</em>.',
+         'Blocos, cadernos, canetas e acessórios para a rotina profissional.',
          cta_link('Solicitar proposta', track_label='hero-4') + '<a class="btn btn-line" href="/brindes-corporativos-premium/?categoria=escritorio#pecas">Explorar escritório ' + ARROW + '</a>'),
     ]
     n = len(slides)
@@ -1204,7 +1210,7 @@ def hero_carousel(slides=None, label='Destaques da TaMa Creative', assurances=Tr
     <p class="slide-desc">{desc}</p>
     <div class="actions">{actions}</div>
   </div></div>
-  <div class="slide-photo">{picture(img, alt, '(max-width: 760px) 200vw, (max-width: 1100px) 140vw, 100vw', eager=(i == 0), low=(i > 0))}</div>
+  <div class="slide-photo">{picture(img, alt, HERO_SIZES, eager=(i == 0), low=(i > 0))}</div>
 </div>''')
     dots = ''.join(f'<button class="dot" type="button" data-slide="{i}" aria-label="Mostrar slide {i + 1} de {n}" aria-controls="slide-{i + 1}"{" aria-current=\"true\"" if i == 0 else ""}></button>' for i in range(n))
     strip = ASSURANCES if assurances else ''
@@ -1227,7 +1233,7 @@ def page_home():
         'path': '/', 'title': 'TaMa Creative | Brindes corporativos premium, kits e confecções',
         'og_title': 'TaMa Creative · Presentes que fortalecem marcas',
         'description': 'Estúdio criativo que transforma a identidade da sua empresa em brindes corporativos premium, kits e uniformes. Solicite uma proposta.',
-        'preload': preload_image('hero-brindes', '(max-width: 760px) 200vw, (max-width: 1100px) 140vw, 100vw'),
+        'preload': preload_image('hero-brindes', HERO_SIZES),
         'body': hero_carousel() + f'''
 <section class="services" aria-label="Frentes da TaMa">
   <div class="wrap service-grid">
@@ -1453,7 +1459,7 @@ def page_confeccoes():
         'description': 'Uniformes corporativos, polos bordadas, moletons e bonés para equipes e eventos, alinhados à identidade visual da sua empresa e pensados para quem veste.',
         'trail': [('/', 'Início'), ('/confeccoes-personalizadas/', 'Confecções')],
         'service': {'key': 'confeccoes', 'name': 'Confecções personalizadas e uniformes corporativos', 'type': 'Uniformes corporativos personalizados'},
-        'preload': preload_image(CONF_SLIDES[0][1], '(max-width: 760px) 200vw, (max-width: 1100px) 140vw, 100vw'),  # mesma imagem e sizes do slide 1
+        'preload': preload_image(CONF_SLIDES[0][1], HERO_SIZES),  # mesma imagem e sizes do slide 1
         'body': hero_carousel(CONF_SLIDES, label='Confecções da TaMa Creative', assurances=False) + f'''
 <section class="section ivory" aria-labelledby="uso-t">
   <div class="wrap">

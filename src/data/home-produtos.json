@@ -51,6 +51,12 @@
      "#1F6B45",
      "polo~verde",
      "polo masculina vermelha com a marca tama bordada no peito"
+    ],
+    [
+     "Rosa",
+     "#E07A9B",
+     "polo~rosa",
+     "polo masculina rosa com a marca tama bordada no peito"
     ]
    ]
   },
@@ -104,6 +110,12 @@
      "#1F6B45",
      "polo-feminina~verde",
      "polo feminina verde com a marca tama bordada no peito"
+    ],
+    [
+     "Rosa",
+     "#E07A9B",
+     "polo-feminina~rosa",
+     "polo feminina rosa com a marca tama bordada no peito"
     ]
    ]
   },
@@ -157,6 +169,12 @@
      "#1F6B45",
      "camiseta~verde",
      "camiseta masculina verde com a marca tama em silk branco no peito"
+    ],
+    [
+     "Rosa",
+     "#E07A9B",
+     "camiseta~rosa",
+     "camiseta masculina rosa com a marca tama no peito"
     ]
    ]
   },
@@ -210,6 +228,12 @@
      "#1F6B45",
      "camiseta-feminina~verde",
      "camiseta feminina vermelha com a marca tama em silk branco no peito"
+    ],
+    [
+     "Rosa",
+     "#E07A9B",
+     "camiseta-feminina~rosa",
+     "camiseta feminina rosa com a marca tama no peito"
     ]
    ]
   },
@@ -263,6 +287,12 @@
      "#1F6B45",
      "moletom~verde",
      "moletom verde com capuz e a marca tama no peito"
+    ],
+    [
+     "Rosa",
+     "#E07A9B",
+     "moletom~rosa",
+     "moletom rosa com capuz e a marca tama bordada no peito"
     ]
    ]
   },
@@ -298,6 +328,12 @@
      "#3D5A80",
      "dolma~jeans",
      "dólmã branca com botões pretos e a marca tama bordada"
+    ],
+    [
+     "Rosa",
+     "#E07A9B",
+     "dolma~rosa",
+     "dólmã rosa com botões pretos e a marca tama bordada no peito"
     ]
    ]
   },

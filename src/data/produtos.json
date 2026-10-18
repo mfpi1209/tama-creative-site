@@ -152,6 +152,265 @@
    "atualizado_em": "2026-10-17"
   },
   {
+   "id": "avental-laco~azul-marinho",
+   "produto": "Avental com laço",
+   "categoria": "vestuario",
+   "modelo": "Peitoral com laço na cintura e bolso duplo",
+   "cor": {
+    "nome": "Azul-marinho",
+    "hex": "#1E2A4A"
+   },
+   "material": {
+    "valor": "Sarja",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado ou silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Avental azul-marinho com laço na cintura, bolso duplo e a marca TaMa no peito.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base avental-laco~verde-escuro.",
+   "arquivo": "/img/produtos/avental-laco~azul-marinho.webp",
+   "mestre": "midia/produtos/mestre/avental-laco~azul-marinho.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "715fad7113a7489195c1b7fdba74093341db6f62374ea3772e7a921842b4b7bc",
+   "bytes": 1254114,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "avental-laco~caramelo",
+   "produto": "Avental com laço",
+   "categoria": "vestuario",
+   "modelo": "Peitoral com laço na cintura e bolso duplo",
+   "cor": {
+    "nome": "Caramelo",
+    "hex": "#A0623A"
+   },
+   "material": {
+    "valor": "Sarja",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado ou silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Avental caramelo com laço na cintura, bolso duplo e a marca TaMa no peito.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base avental-laco~verde-escuro.",
+   "arquivo": "/img/produtos/avental-laco~caramelo.webp",
+   "mestre": "midia/produtos/mestre/avental-laco~caramelo.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "ea3b8a1a7edc2f8e13697518041412be210911ecd73439e6f11fe886933a2973",
+   "bytes": 1312880,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "avental-laco~cru",
+   "produto": "Avental com laço",
+   "categoria": "vestuario",
+   "modelo": "Peitoral com laço na cintura e bolso duplo",
+   "cor": {
+    "nome": "Cru",
+    "hex": "#EDE3D0"
+   },
+   "material": {
+    "valor": "Sarja",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado ou silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Avental cru com laço na cintura, bolso duplo e a marca TaMa no peito.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base avental-laco~verde-escuro.",
+   "arquivo": "/img/produtos/avental-laco~cru.webp",
+   "mestre": "midia/produtos/mestre/avental-laco~cru.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "3768ca644fd83a00124b4a1522f12ca9f55e8289c813024b8c5e79d1c2ce7651",
+   "bytes": 1211618,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "avental-laco~preto",
+   "produto": "Avental com laço",
+   "categoria": "vestuario",
+   "modelo": "Peitoral com laço na cintura e bolso duplo",
+   "cor": {
+    "nome": "Preto",
+    "hex": "#1E1E1E"
+   },
+   "material": {
+    "valor": "Sarja",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado ou silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Avental preto com laço na cintura, bolso duplo e a marca TaMa no peito.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base avental-laco~verde-escuro.",
+   "arquivo": "/img/produtos/avental-laco~preto.webp",
+   "mestre": "midia/produtos/mestre/avental-laco~preto.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "8aedf28e8c02fb5f6d9f5d162ca41cddbd7de8a6a9924ad2dd86c377ea623adb",
+   "bytes": 1162786,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "avental-laco~rosa",
+   "produto": "Avental com laço",
+   "categoria": "vestuario",
+   "modelo": "Peitoral com laço na cintura e bolso duplo",
+   "cor": {
+    "nome": "Rosa",
+    "hex": "#E07A9B"
+   },
+   "material": {
+    "valor": "Sarja",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado ou silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Avental rosa com laço na cintura, bolso duplo e a marca TaMa no peito.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base avental-laco~verde-escuro.",
+   "arquivo": "/img/produtos/avental-laco~rosa.webp",
+   "mestre": "midia/produtos/mestre/avental-laco~rosa.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "b3a791747a876c0b47f1d34e8e1e85ddb9f529403483186211d58cebdc23b009",
+   "bytes": 1340165,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "avental-laco~verde-escuro",
+   "produto": "Avental com laço",
+   "categoria": "vestuario",
+   "modelo": "Peitoral com laço na cintura e bolso duplo",
+   "cor": {
+    "nome": "Verde-escuro",
+    "hex": "#1F4A35"
+   },
+   "material": {
+    "valor": "Sarja",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado ou silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Avental verde-escuro com laço na cintura, bolso duplo e a marca TaMa no peito.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Imagem enviada pela TaMa em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/avental-laco~verde-escuro.webp",
+   "mestre": "midia/produtos/mestre/avental-laco~verde-escuro.png",
+   "largura": 1254,
+   "altura": 1254,
+   "sha256": "78e885b5810662ae22a0710f78c88762c7549be009746edda38e4f94b2b26259",
+   "bytes": 1680721,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "avental-laco~vermelho",
+   "produto": "Avental com laço",
+   "categoria": "vestuario",
+   "modelo": "Peitoral com laço na cintura e bolso duplo",
+   "cor": {
+    "nome": "Vermelho",
+    "hex": "#C8202F"
+   },
+   "material": {
+    "valor": "Sarja",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado ou silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Avental vermelho com laço na cintura, bolso duplo e a marca TaMa no peito.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base avental-laco~verde-escuro.",
+   "arquivo": "/img/produtos/avental-laco~vermelho.webp",
+   "mestre": "midia/produtos/mestre/avental-laco~vermelho.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "828654af01168e524b525f3f1b9eae8e15e5a294d46200c6df00f932467add74",
+   "bytes": 1352708,
+   "atualizado_em": "2026-10-17"
+  },
+  {
    "id": "avental~azul-marinho",
    "produto": "Avental personalizado",
    "categoria": "vestuario",
@@ -301,6 +560,43 @@
    "atualizado_em": "2026-10-17"
   },
   {
+   "id": "avental~rosa",
+   "produto": "Avental personalizado",
+   "categoria": "vestuario",
+   "modelo": "Jeans com alças e bolso duplo",
+   "cor": {
+    "nome": "Rosa",
+    "hex": "#E07A9B"
+   },
+   "material": {
+    "valor": "Jeans",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado ou silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Avental rosa com alças caramelo e a marca TaMa aplicada no bolso.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base avental~jeans.",
+   "arquivo": "/img/produtos/avental~rosa.webp",
+   "mestre": "midia/produtos/mestre/avental~rosa.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "f4a1ee2b04cadd1b69e8ed3391adb806feddf1453b285f3ba768534d158aa636",
+   "bytes": 1606439,
+   "atualizado_em": "2026-10-17"
+  },
+  {
    "id": "avental~verde",
    "produto": "Avental personalizado",
    "categoria": "vestuario",
@@ -375,6 +671,228 @@
    "atualizado_em": "2026-10-17"
   },
   {
+   "id": "bone~azul-marinho",
+   "produto": "Boné",
+   "categoria": "vestuario",
+   "modelo": "Seis gomos, algodão",
+   "cor": {
+    "nome": "Azul-marinho",
+    "hex": "#1E2A4A"
+   },
+   "material": {
+    "valor": "Algodão",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Boné azul-marinho com a marca TaMa bordada na frente.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base bone~verde.",
+   "arquivo": "/img/produtos/bone~azul-marinho.webp",
+   "mestre": "midia/produtos/mestre/bone~azul-marinho.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "149d4fae9b70ae104c5f51a4dafbf4fd88d6d596a3802f10377103201c870cfc",
+   "bytes": 1392260,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "bone~azul-royal",
+   "produto": "Boné",
+   "categoria": "vestuario",
+   "modelo": "Seis gomos, algodão",
+   "cor": {
+    "nome": "Azul royal",
+    "hex": "#1F4FB8"
+   },
+   "material": {
+    "valor": "Algodão",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Boné azul royal com a marca TaMa bordada na frente.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base bone~verde.",
+   "arquivo": "/img/produtos/bone~azul-royal.webp",
+   "mestre": "midia/produtos/mestre/bone~azul-royal.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "8d673370420c8fbe6e1dc2295a961c9163c0d0b88e583d11895b90f9a3a0d9bb",
+   "bytes": 1494833,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "bone~branco",
+   "produto": "Boné",
+   "categoria": "vestuario",
+   "modelo": "Seis gomos, algodão",
+   "cor": {
+    "nome": "Branco",
+    "hex": "#F7F5F0"
+   },
+   "material": {
+    "valor": "Algodão",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Boné branco com a marca TaMa bordada na frente.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base bone~verde.",
+   "arquivo": "/img/produtos/bone~branco.webp",
+   "mestre": "midia/produtos/mestre/bone~branco.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "f33d8e17b6e8c4623f9643ab567eeff29903d4ce92fa003c597704adf58dc0ba",
+   "bytes": 1370055,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "bone~cinza",
+   "produto": "Boné",
+   "categoria": "vestuario",
+   "modelo": "Seis gomos, algodão",
+   "cor": {
+    "nome": "Cinza",
+    "hex": "#9A9A98"
+   },
+   "material": {
+    "valor": "Algodão",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Boné cinza com a marca TaMa bordada na frente.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base bone~verde.",
+   "arquivo": "/img/produtos/bone~cinza.webp",
+   "mestre": "midia/produtos/mestre/bone~cinza.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "71b8c49e33b70041b4ffbb8126eca0f019fcce6ce7bd8f148c4dfea3d3233721",
+   "bytes": 1553455,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "bone~preto",
+   "produto": "Boné",
+   "categoria": "vestuario",
+   "modelo": "Seis gomos, algodão",
+   "cor": {
+    "nome": "Preto",
+    "hex": "#1E1E1E"
+   },
+   "material": {
+    "valor": "Algodão",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Boné preto com a marca TaMa bordada na frente.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base bone~verde.",
+   "arquivo": "/img/produtos/bone~preto.webp",
+   "mestre": "midia/produtos/mestre/bone~preto.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "fc3b75d48e7bddc0b7309e63b325fe40950c3bba776569504813d984e9be2785",
+   "bytes": 1375926,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "bone~rosa",
+   "produto": "Boné",
+   "categoria": "vestuario",
+   "modelo": "Seis gomos, algodão",
+   "cor": {
+    "nome": "Rosa",
+    "hex": "#E07A9B"
+   },
+   "material": {
+    "valor": "Algodão",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Boné rosa com a marca TaMa bordada na frente.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base bone~verde.",
+   "arquivo": "/img/produtos/bone~rosa.webp",
+   "mestre": "midia/produtos/mestre/bone~rosa.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "b2b33957a45aa2726caef5954e2f2ff427808fc76f6fdc02ae19d51d8d05b10b",
+   "bytes": 1505472,
+   "atualizado_em": "2026-10-17"
+  },
+  {
    "id": "bone~verde",
    "produto": "Boné",
    "categoria": "vestuario",
@@ -410,6 +928,43 @@
    "altura": 1024,
    "sha256": "a102be0440a3fdbac9994a99a537ddcecaaac47e0ab8cb09fef9bab886c7f875",
    "bytes": 1528174,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "bone~vermelho",
+   "produto": "Boné",
+   "categoria": "vestuario",
+   "modelo": "Seis gomos, algodão",
+   "cor": {
+    "nome": "Vermelho",
+    "hex": "#C8202F"
+   },
+   "material": {
+    "valor": "Algodão",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Boné vermelho com a marca TaMa bordada na frente.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base bone~verde.",
+   "arquivo": "/img/produtos/bone~vermelho.webp",
+   "mestre": "midia/produtos/mestre/bone~vermelho.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "bd4970b0c7862f9f4d0dd65cae63e58e3fd1069676129f08ca91955c4e56b430",
+   "bytes": 1531956,
    "atualizado_em": "2026-10-17"
   },
   {
@@ -738,7 +1293,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Caixa rígida preto com tampa, interior creme e a marca TaMa em dourado.",
+   "alt": "Caixa rígida preta com tampa, interior creme e a marca TaMa em dourado.",
    "uso": [
     "home",
     "catalogo"
@@ -944,6 +1499,44 @@
    "altura": 1024,
    "sha256": "985e5aff646e73bacd52a6f7a14987848027c433f6aeddbb59ec56e277aec761",
    "bytes": 1433320,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "camiseta-feminina~rosa",
+   "produto": "Camiseta feminina",
+   "categoria": "vestuario",
+   "modelo": "Gola careca, modelagem feminina",
+   "cor": {
+    "nome": "Rosa",
+    "hex": "#E07A9B"
+   },
+   "material": {
+    "valor": "Algodão",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta feminina rosa com a marca TaMa no peito.",
+   "uso": [
+    "home",
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base camiseta-feminina~vermelho.",
+   "arquivo": "/img/produtos/camiseta-feminina~rosa.webp",
+   "mestre": "midia/produtos/mestre/camiseta-feminina~rosa.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "4a1a9c599ff16cc683a6787035b99df14a558d7a0abc8d1a9e86141bee08353c",
+   "bytes": 1390384,
    "atualizado_em": "2026-10-17"
   },
   {
@@ -1215,6 +1808,44 @@
    "atualizado_em": "2026-10-17"
   },
   {
+   "id": "camiseta~rosa",
+   "produto": "Camiseta masculina",
+   "categoria": "vestuario",
+   "modelo": "Gola careca",
+   "cor": {
+    "nome": "Rosa",
+    "hex": "#E07A9B"
+   },
+   "material": {
+    "valor": "Algodão",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta masculina rosa com a marca TaMa no peito.",
+   "uso": [
+    "home",
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base camiseta~azul-royal.",
+   "arquivo": "/img/produtos/camiseta~rosa.webp",
+   "mestre": "midia/produtos/mestre/camiseta~rosa.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "a76847e137a0c5da933b01708442decd9dd6957f68c94cf986e649a375b1078f",
+   "bytes": 1480172,
+   "atualizado_em": "2026-10-17"
+  },
+  {
    "id": "camiseta~verde",
    "produto": "Camiseta masculina",
    "categoria": "vestuario",
@@ -1272,7 +1903,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Camiseta masculina vermelho com a marca TaMa em silk branco no peito.",
+   "alt": "Camiseta masculina vermelha com a marca TaMa em silk branco no peito.",
    "uso": [
     "home",
     "catalogo"
@@ -2545,7 +3176,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Caneta executiva roller preto com a marca TaMa gravada.",
+   "alt": "Caneta executiva roller preta com a marca TaMa gravada.",
    "uso": [
     "catalogo"
    ],
@@ -2878,7 +3509,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Capa de cardápio preto com cantoneiras metálicas e a marca TaMa em baixo-relevo.",
+   "alt": "Capa de cardápio preta com cantoneiras metálicas e a marca TaMa em baixo-relevo.",
    "uso": [
     "catalogo"
    ],
@@ -2990,7 +3621,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Carteira de couro preta com o símbolo TaMa em baixo-relevo.",
+   "alt": "Carteira de couro café com a marca TaMa em baixo-relevo.",
    "uso": [
     "catalogo"
    ],
@@ -3027,7 +3658,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Carteira de couro preta com o símbolo TaMa em baixo-relevo.",
+   "alt": "Carteira de couro caramelo com a marca TaMa em baixo-relevo.",
    "uso": [
     "catalogo"
    ],
@@ -3064,7 +3695,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Carteira de couro preta com o símbolo TaMa em baixo-relevo.",
+   "alt": "Carteira de couro preta com a marca TaMa em baixo-relevo.",
    "uso": [
     "catalogo"
    ],
@@ -3249,7 +3880,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Chaveiro em couro café com argola e o símbolo TaMa em baixo-relevo.",
+   "alt": "Chaveiro em couro café com argola e a marca TaMa em baixo-relevo.",
    "uso": [
     "catalogo"
    ],
@@ -3286,7 +3917,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Chaveiro em couro caramelo com argola e o símbolo TaMa em baixo-relevo.",
+   "alt": "Chaveiro em couro caramelo com argola e a marca TaMa em baixo-relevo.",
    "uso": [
     "brindes",
     "catalogo"
@@ -3324,7 +3955,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Chaveiro em couro preto com argola e o símbolo TaMa em baixo-relevo.",
+   "alt": "Chaveiro em couro preto com argola e a marca TaMa em baixo-relevo.",
    "uso": [
     "catalogo"
    ],
@@ -4273,6 +4904,44 @@
    "atualizado_em": "2026-10-17"
   },
   {
+   "id": "dolma~rosa",
+   "produto": "Dólmã profissional",
+   "categoria": "vestuario",
+   "modelo": "Botões pretos",
+   "cor": {
+    "nome": "Rosa",
+    "hex": "#E07A9B"
+   },
+   "material": {
+    "valor": "Tecido profissional",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Dólmã rosa com botões pretos e a marca TaMa bordada no peito.",
+   "uso": [
+    "home",
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base dolma~branco.",
+   "arquivo": "/img/produtos/dolma~rosa.webp",
+   "mestre": "midia/produtos/mestre/dolma~rosa.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "5f6c82077d5dc5756e2d70192d2fb67f2d7be9fd40f0a23135a28c0157fb694f",
+   "bytes": 1236849,
+   "atualizado_em": "2026-10-17"
+  },
+  {
    "id": "ecobag~cru",
    "produto": "Ecobag",
    "categoria": "bolsas-embalagens",
@@ -4330,7 +4999,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Ecobag de algodão preto com alças vermelhas e a marca TaMa estampada.",
+   "alt": "Ecobag de algodão preta com alças vermelhas e a marca TaMa estampada.",
    "uso": [
     "home",
     "catalogo"
@@ -4406,7 +5075,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Ecobag de algodão vermelho com alças vermelhas e a marca TaMa estampada.",
+   "alt": "Ecobag de algodão vermelha com alças vermelhas e a marca TaMa estampada.",
    "uso": [
     "home",
     "catalogo"
@@ -5734,6 +6403,44 @@
    "atualizado_em": "2026-10-17"
   },
   {
+   "id": "moletom~rosa",
+   "produto": "Moletom personalizado",
+   "categoria": "vestuario",
+   "modelo": "Canguru com capuz",
+   "cor": {
+    "nome": "Rosa",
+    "hex": "#E07A9B"
+   },
+   "material": {
+    "valor": "Moletom",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado ou silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Moletom rosa com capuz e a marca TaMa bordada no peito.",
+   "uso": [
+    "home",
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base moletom~preto.",
+   "arquivo": "/img/produtos/moletom~rosa.webp",
+   "mestre": "midia/produtos/mestre/moletom~rosa.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "009032d566fde9aa22db056af8122c2d624a747a095b4652d58caae053306202",
+   "bytes": 1519478,
+   "atualizado_em": "2026-10-17"
+  },
+  {
    "id": "moletom~verde",
    "produto": "Moletom personalizado",
    "categoria": "vestuario",
@@ -6056,7 +6763,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Polo feminina branco com a marca TaMa bordada no peito.",
+   "alt": "Polo feminina branca com a marca TaMa bordada no peito.",
    "uso": [
     "home",
     "catalogo"
@@ -6132,7 +6839,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Polo feminina preto com a marca TaMa bordada no peito.",
+   "alt": "Polo feminina preta com a marca TaMa bordada no peito.",
    "uso": [
     "home",
     "catalogo"
@@ -6148,6 +6855,44 @@
    "altura": 1024,
    "sha256": "af04fdf4bd96d3811a1f6fea7b22fb28bc0ab79b7027cfb85b9fde90d653a9d4",
    "bytes": 1623119,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "polo-feminina~rosa",
+   "produto": "Polo feminina",
+   "categoria": "vestuario",
+   "modelo": "Piquet, modelagem feminina",
+   "cor": {
+    "nome": "Rosa",
+    "hex": "#E07A9B"
+   },
+   "material": {
+    "valor": "Piquet",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Polo feminina rosa com a marca TaMa bordada no peito.",
+   "uso": [
+    "home",
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base polo-feminina~azul-royal.",
+   "arquivo": "/img/produtos/polo-feminina~rosa.webp",
+   "mestre": "midia/produtos/mestre/polo-feminina~rosa.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "4207180124458ceabb06fbff15a49606c601b4c569478fbc2c73380e3497bf35",
+   "bytes": 1658656,
    "atualizado_em": "2026-10-17"
   },
   {
@@ -6208,7 +6953,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Polo feminina vermelho com a marca TaMa bordada no peito.",
+   "alt": "Polo feminina vermelha com a marca TaMa bordada no peito.",
    "uso": [
     "home",
     "catalogo"
@@ -6322,7 +7067,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Polo masculina branco com a marca TaMa bordada no peito.",
+   "alt": "Polo masculina branca com a marca TaMa bordada no peito.",
    "uso": [
     "home",
     "catalogo"
@@ -6398,7 +7143,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Polo masculina preto com a marca TaMa bordada no peito.",
+   "alt": "Polo masculina preta com a marca TaMa bordada no peito.",
    "uso": [
     "home",
     "catalogo"
@@ -6414,6 +7159,44 @@
    "altura": 1024,
    "sha256": "154ec90a088d84bc9f3d7d976c1c1938625f91a389b77930cd1f09484824c68a",
    "bytes": 1511938,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "polo~rosa",
+   "produto": "Polo masculina",
+   "categoria": "vestuario",
+   "modelo": "Piquet",
+   "cor": {
+    "nome": "Rosa",
+    "hex": "#E07A9B"
+   },
+   "material": {
+    "valor": "Piquet",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Polo masculina rosa com a marca TaMa bordada no peito.",
+   "uso": [
+    "home",
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base polo~vermelho.",
+   "arquivo": "/img/produtos/polo~rosa.webp",
+   "mestre": "midia/produtos/mestre/polo~rosa.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "53de43c45c46c3ac3a844281d8fdd0e5d212490d234912d6547dbff323f07e31",
+   "bytes": 1659158,
    "atualizado_em": "2026-10-17"
   },
   {
@@ -6995,7 +7778,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Sacola de presente preto com alças de cordão e a marca TaMa.",
+   "alt": "Sacola de presente preta com alças de cordão e a marca TaMa.",
    "uso": [
     "catalogo"
    ],
@@ -7032,7 +7815,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Sacola de presente vermelho com alças de cordão e a marca TaMa.",
+   "alt": "Sacola de presente vermelha com alças de cordão e a marca TaMa.",
    "uso": [
     "catalogo"
    ],

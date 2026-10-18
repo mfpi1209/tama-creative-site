@@ -132,7 +132,8 @@ def build_catalogo():
     out = []
     for nome, ims in grupos.items():
         slug = next((home_by_img[i['id']] for i in ims if i['id'] in home_by_img), 'cat-' + color_slug(nome))
-        ims.sort(key=lambda i: 0 if home_by_img.get(i['id']) == slug else 1)   # a foto-base da home vem primeiro
+        # abre na foto-base da home; senão, na foto original (a que gerou as variações), não na primeira cor do alfabeto
+        ims.sort(key=lambda i: 0 if home_by_img.get(i['id']) == slug else 1 if not (i.get('observacao') or '').startswith('Variação de cor') else 2)
         first = ims[0]
         cores = [[i['cor']['nome'], i['cor']['hex'], i['id'], i['alt']] for i in ims]
         vistos = {c[0] for c in cores}
@@ -140,6 +141,13 @@ def build_catalogo():
         out.append({'slug': slug, 'nome': nome, 'img': first['id'], 'categoria': first['categoria'], 'descricao': first.get('modelo') or '', 'meta': meta, 'alt': first['alt'], 'cores': cores})
     ordem = list(CAT_PROD)
     out.sort(key=lambda c: (ordem.index(c['categoria']), c['nome'].replace(' masculina', ' 1').replace(' feminina', ' 2')))   # masculina antes de feminina
+    # vizinhos na grade não abrem na mesma cor: troca para a próxima cor com foto (destaques da home ficam como estão)
+    for ant, c in zip(out, out[1:]):
+        if c['cores'][0][0] == ant['cores'][0][0] and c['img'] not in home_by_img:
+            alt = next((x for x in c['cores'][1:] if x[0] != ant['cores'][0][0]), None)
+            if alt:
+                c['cores'] = [alt] + [x for x in c['cores'] if x is not alt]
+                c['img'], c['alt'] = alt[2], alt[3]
     return out
 
 _MOCK_JSON = os.path.join(SRC, 'data', 'mockups.json')

@@ -717,3 +717,18 @@ body:has(.wa-float) .float-bag { bottom: calc(88px + env(safe-area-inset-bottom,
   .kit-grid { grid-template-columns: 1fr; }
   .kit-card, .kit-card.big { grid-column: auto; }
 }
+
+/* Home: as cinco frentes (3 em cima, 2 embaixo; 2 colunas no tablet; 1 no celular) */
+.service-grid.cinco { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+.service-grid.cinco > :nth-child(-n+3) { grid-column: span 2; }
+.service-grid.cinco > :nth-child(n+4) { grid-column: span 3; }
+@media (max-width: 1100px) {
+  .service-grid.cinco { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .service-grid.cinco > * { grid-column: auto; }
+  .service-grid.cinco > :last-child { grid-column: 1 / -1; }
+}
+@media (max-width: 760px) {
+  .service-grid.cinco { grid-template-columns: 1fr; }
+  .service-grid.cinco > :last-child { grid-column: auto; }
+}
+.kit-copy .link { justify-self: start; margin-top: 6px; }

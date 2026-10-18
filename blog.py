@@ -306,7 +306,7 @@ def _meta_line(a, author=True):
 
 
 def _cover_alt(a):
-    return ('Fotografia conceitual: ' if a['capa_conceitual'] else '') + a['capa_alt']
+    return ('Imagem ilustrativa: ' if a['capa_conceitual'] else '') + a['capa_alt']
 
 
 def post_card(b, a, level=3, sizes='(max-width: 760px) 92vw, (max-width: 1180px) 30vw, 380px'):
@@ -365,7 +365,7 @@ def article_page(b, a):
         if len(a['toc']) >= 2:
             toc = ('<nav class="post-toc" aria-labelledby="toc-t"><p class="post-toc-t" id="toc-t">Neste guia</p><ol>'
                    + ''.join(f'<li><a href="#{i}">{n}</a></li>' for i, n in a['toc']) + '</ol></nav>')
-        caption = '<figcaption>Fotografia conceitual</figcaption>' if a['capa_conceitual'] else ''
+        caption = '<figcaption>Imagem ilustrativa</figcaption>' if a['capa_conceitual'] else ''
         draft = '<p class="post-draft">Rascunho ou artigo agendado: não aparece no site publicado.</p>' if a['noindex'] else ''
         # Peças do catálogo ligadas ao artigo (a mesma base e o mesmo card do resto do site)
         pecas_html = ''
@@ -389,7 +389,7 @@ def article_page(b, a):
         if a['servico']:
             servico = f'<a class="btn btn-line" href="{a["servico"]}">{SERVICOS.get(a["servico"], "Conhecer o serviço")}</a>'
         author = f'''<div class="post-author">{b.SELO}<div class="stack" style="gap:8px"><p><strong>TaMa Creative</strong></p>
-      <p class="muted">Estúdio criativo de brindes corporativos premium, kits e confecções, com visão de Trade Marketing: o público e a ocasião vêm antes da peça.</p>
+      <p class="muted">Brindes, confecções, kits e ativações para empresas, com visão de Trade Marketing: o público e a ocasião vêm antes da peça.</p>
       <div class="actions">{b.cta_link(tipo=a['proposta'], track_label='blog-autor-' + a['slug'])}{servico}</div></div></div>'''
         body = f'''<article class="post">
   <div class="wrap"><header class="post-head">

@@ -27,6 +27,7 @@ SITE = CFG['site_url'].rstrip('/')
 WA = re.sub(r'\D', '', CFG.get('whatsapp') or '')
 EMAIL = (CFG.get('email') or '').strip()
 IG = (CFG.get('instagram') or '').strip().lstrip('@')
+RAZAO, CNPJ, CIDADE, RESPONSAVEL = ((CFG.get(k) or '').strip() for k in ('razao_social', 'cnpj', 'cidade', 'responsavel_comercial'))
 GA4 = (CFG.get('ga4_id') or '').strip()
 # Envio do formulário: o Nginx repassa /api/proposta ao n8n (docs/PROPOSTAS.md). Não há mais Netlify Forms.
 FORM_ENDPOINT = (CFG.get('form_endpoint') or '/api/proposta').strip() or '/api/proposta'
@@ -141,8 +142,8 @@ def build_catalogo():
 
 _MOCK_JSON = os.path.join(SRC, 'data', 'mockups.json')
 MOCK_DATA = json.load(open(_MOCK_JSON, encoding='utf-8')) if MOCKUPS and os.path.exists(_MOCK_JSON) else {}
-CAP = 'Mockup ilustrativo' if MOCKUPS else 'Fotografia conceitual'
-CAPS = 'Mockups ilustrativos' if MOCKUPS else 'Fotografias conceituais'
+CAP = 'Imagem ilustrativa'
+CAPS = 'Imagens ilustrativas'
 # Nota única sob as grades de produto: a mesma em todo o site.
 NOTE_IMAGENS = ('Imagens ilustrativas com a marca TaMa como exemplo: no seu projeto entram a marca e as cores da sua empresa. '
                 'Cores de referência, sem declaração de estoque. Modelo, material e personalização são confirmados na proposta.')
@@ -337,7 +338,7 @@ def home_variants(h):
     out = {}
     for c in h['cores']:
         if len(c) > 2 and c[2] in IMAGES:
-            out[c[0]] = [IMAGES[c[2]]['stem'], IMAGES[c[2]]['widths'], f"{h['nome']}: {c[3] if len(c) > 3 else c[0].lower()}. Mockup ilustrativo."]
+            out[c[0]] = [IMAGES[c[2]]['stem'], IMAGES[c[2]]['widths'], (c[3] if len(c) > 3 else f"{h['nome']} na cor {c[0].lower()}. Imagem ilustrativa.")]
     return out if len(out) > 1 else {}
 
 
@@ -480,10 +481,10 @@ def collections_block(title='Coleções por ocasião'):
 # As ocasiões continuam como atalhos para a curadoria filtrada.
 HOME_KITS = [
     ('gelato-experience', 'Gelato Experience', 'Duas taças, duas colheres longas, colher de servir e três toppings. Caixa e cartão personalizados.'),
-    ('mesa-de-descobertas', 'Mesa de Descobertas', 'Bandeja, duas peças de cerâmica, espátula, faca, geleia e mel. Caixa e cartões de harmonização.'),
+    ('mesa-de-descobertas', 'Mesa de Descobertas', 'Bandeja, dois potinhos, espátula, faca, geleia e mel. Caixa e cartões de harmonização.'),
     ('kit-pratico', 'Kit Prático', 'Bloco de notas, kit mouse, porta-trecos, porta-lápis, estojo e embalagem personalizada.'),
     ('em-movimento', 'Em Movimento', 'Mochila, nécessaire, pasta executiva, tag de mala e porta-passaporte.'),
-    ('pausa-e-inspiracao', 'Pausa e Inspiração', 'Caderno com capa e amarração em couro, vela em vidro com cinta de couro, caixa e cartão.'),
+    ('pausa-e-inspiracao', 'Pausa e Inspiração', 'Caderno com amarração, vela em copo com cinta, caixa e cartão.'),
 ]
 
 
@@ -492,7 +493,8 @@ def kit_cards():
     return ''.join(
         f'<article class="kit-card{" big" if i < 2 else ""}">'
         f'{picture("kitp-" + slug, f"{name}: {desc}", "(max-width: 760px) 92vw, 46vw" if i < 2 else "(max-width: 760px) 92vw, 31vw")}'
-        f'<div class="kit-copy"><p class="eyebrow">Seleção {i + 1:02d}</p><h3>{name}</h3><p>{desc}</p></div></article>'
+        f'<div class="kit-copy"><p class="eyebrow">Kit {i + 1:02d}</p><h3>{name}</h3><p>{desc}</p>'
+        f'<a class="link" href="/solicitar-proposta/?tipo=kits&amp;interesse={urllib.parse.quote("Kit " + name)}" data-track="cta_solicitar_proposta" data-track-label="kit-{slug}" data-interesse="Kit {name}">Quero este kit {ARROW}</a></div></article>'
         for i, (slug, name, desc) in enumerate(HOME_KITS))
 
 
@@ -510,17 +512,19 @@ def kits_block():
       <nav class="kit-occ" aria-label="Peças por ocasião"><span>Para cada momento:</span>{occ}</nav>
       {cta_link('Montar um kit', tipo='kits', track_label='home-kits')}
     </div>
-    <p class="note">Composições sugeridas: peças, embalagem e personalização são confirmadas na proposta. Imagens ilustrativas.</p>
+    <p class="note">Os kits aparecem na identidade TaMa como exemplo. No seu projeto, caixa, cartão e peças levam a marca e as cores da sua empresa; a composição é ajustada ao público, à ocasião e ao investimento e confirmada na proposta. Imagens ilustrativas.</p>
   </div>
 </section>'''
 
 
 # ------------------------------------------------------------------ navigation and shared blocks
 NAV = [
-    ('/catalogo/', 'Catálogo'),  # catálogo de modelos do banco de imagens (src/data/produtos.json, editado em /admin/)
-    ('/kits-corporativos/', 'Kits'),
-    ('/brindes-corporativos-premium/', 'Curadoria'),
+    ('/brindes-corporativos/', 'Brindes'),
     ('/confeccoes-personalizadas/', 'Confecções'),
+    ('/kits-corporativos/', 'Kits'),
+    ('/ativacoes-promocionais/', 'Ativações'),
+    ('/hotelaria-e-gastronomia/', 'Hotelaria'),
+    ('/catalogo/', 'Catálogo'),   # todos os modelos (src/data/produtos.json, editado em /admin/)
     ('/sobre/', 'Sobre'),
     ('/blog/', 'Blog'),
 ]
@@ -537,11 +541,11 @@ def header(path):
     def current(p):
         if path.startswith(p):
             return ' aria-current="page"'
-        # a página de brindes corporativos faz parte da frente "Brindes"
-        return ' aria-current="true"' if p == '/catalogo/' and path.startswith('/brindes-corporativos/') else ''
+        # as ideias por ocasião fazem parte da frente "Brindes"
+        return ' aria-current="true"' if p == '/brindes-corporativos/' and path.startswith('/brindes-corporativos-premium/') else ''
     links = ''.join(f'<a class="nav-link" href="{p}"{current(p)}>{t}</a>' for p, t in NAV)
     return f'''<a class="skip" href="#conteudo">Pular para o conteúdo</a>
-<aside class="announce" aria-label="Destaques da TaMa"><div class="wrap"><p>Ideias criativas que valorizam pessoas e fortalecem marcas.</p><ul><li>Atendimento consultivo</li><li>Seleção sob medida</li><li>Personalização e produção</li></ul></div></aside>
+<aside class="announce" aria-label="Destaques da TaMa"><div class="wrap"><p>Brindes, confecções, kits e ativações para empresas.</p><ul><li>Atendimento consultivo</li><li>Arte aprovada antes da produção</li><li>Do pedido à entrega</li></ul></div></aside>
 <header class="site-header">
   <div class="wrap header-row">
     <a class="brand" href="/" aria-label="TaMa Creative, página inicial">{LOGO_DECOR}</a>
@@ -573,20 +577,27 @@ def fmt_phone(d):
     return '+' + d
 
 
+def empresa_linha():
+    """Razão social, CNPJ e cidade, só quando informados em site.config.json (nada é inventado nem mostrado vazio)."""
+    partes = [esc(x) for x in (RAZAO, CNPJ and f'CNPJ {CNPJ}', CIDADE) if x]
+    return ' · '.join(partes)
+
+
 def footer():
-    sol = ''.join(f'<li><a href="{p}">{t}</a></li>' for p, t in [('/catalogo/', 'Catálogo'), ('/brindes-corporativos/', 'Brindes corporativos'), ('/kits-corporativos/', 'Kits corporativos'), ('/brindes-corporativos-premium/', 'Curadoria'), ('/confeccoes-personalizadas/', 'Confecções')])
+    sol = ''.join(f'<li><a href="{p}">{t}</a></li>' for p, t in [('/brindes-corporativos/', 'Brindes corporativos'), ('/confeccoes-personalizadas/', 'Confecções personalizadas'), ('/kits-corporativos/', 'Kits premium'), ('/ativacoes-promocionais/', 'Ativações e degustações'), ('/hotelaria-e-gastronomia/', 'Hotelaria e gastronomia'), ('/catalogo/', 'Catálogo'), ('/brindes-corporativos-premium/', 'Ideias por ocasião')])
     contacts = contact_lines()
-    contact_col = ''.join(f'<li>{c}</li>' for c in contacts) or '<li><a href="/solicitar-proposta/">Solicitar proposta</a></li>'
+    contact_col = ''.join(f'<li>{c}</li>' for c in contacts) + '<li><a href="/solicitar-proposta/">Solicitar proposta</a></li>'
+    empresa = empresa_linha()
     return f'''<footer class="site-footer">
   <div class="wrap footer-grid">
-    <div class="footer-brand"><a class="brand" href="/" aria-label="TaMa Creative, página inicial">{LOGO_DECOR}</a><p>Brindes corporativos, kits e confecções. Criatividade que ganha forma e permanece.</p></div>
+    <div class="footer-brand"><a class="brand" href="/" aria-label="TaMa Creative, página inicial">{LOGO_DECOR}</a><p>Brindes, confecções, kits e ativações para empresas. Criamos e coordenamos da escolha das peças à entrega.</p></div>
     <div><p class="footer-title">Soluções</p><ul class="footer-links">{sol}</ul></div>
-    <div><p class="footer-title">TaMa</p><ul class="footer-links"><li><a href="/sobre/">Sobre</a></li><li><a href="/blog/">Blog</a></li><li><a href="/solicitar-proposta/">Solicitar proposta</a></li><li><a href="/privacidade/">Privacidade</a></li></ul></div>
+    <div><p class="footer-title">TaMa</p><ul class="footer-links"><li><a href="/sobre/">Sobre</a></li><li><a href="/blog/">Blog</a></li><li><a href="/privacidade/">Privacidade</a></li></ul></div>
     <div><p class="footer-title">Contato</p><ul class="footer-links">{contact_col}</ul></div>
   </div>
   <div class="wrap footer-bottom">
-    <div class="left">{SELO}<span>© {date.today().year} TaMa Creative</span></div>
-    <span>{NOTE_MOCKUPS if MOCKUPS else 'Fotografias de produtos são conceituais e ilustram possibilidades; não representam estoque nem trabalhos para clientes.'}</span>
+    <div class="left">{SELO}<span>© {date.today().year} TaMa Creative{(' · ' + empresa) if empresa else ''}</span></div>
+    <span>{NOTE_MOCKUPS if MOCKUPS else 'Imagens ilustrativas; não representam estoque nem trabalhos para clientes.'}</span>
   </div>
 </footer>'''
 
@@ -683,9 +694,15 @@ ORG_ID = SITE + '/#org'
 def org():
     o = {'@type': 'Organization', '@id': ORG_ID, 'name': 'TaMa Creative', 'url': SITE + '/', 'logo': SITE + '/logo-512.png',
          'slogan': 'Sua marca ganha forma.',
-         'description': 'Estúdio criativo de brindes corporativos premium, kits corporativos e confecções personalizadas.'}
+         'description': 'Brindes corporativos, confecções personalizadas, kits premium e ativações promocionais para empresas.'}
     if IG:
         o['sameAs'] = [f'https://www.instagram.com/{IG}/']
+    if RAZAO:
+        o['legalName'] = RAZAO
+    if CNPJ:
+        o['taxID'] = CNPJ
+    if CIDADE:
+        o['address'] = {'@type': 'PostalAddress', 'addressLocality': CIDADE, 'addressCountry': 'BR'}
     cp = {}
     if EMAIL:
         cp['email'] = EMAIL
@@ -736,7 +753,7 @@ DIALOGS = '''<dialog class="drawer" id="drawer" aria-labelledby="drawer-t">
 </dialog>
 <dialog class="lightbox" id="lightbox" aria-labelledby="lb-title">
   <button class="icon-btn lightbox-close" type="button" data-close-dialog aria-label="Fechar foto"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
-  <div class="lightbox-body"><img id="lb-img" alt="" width="850" height="780"><div><p class="eyebrow">{CAP + (' · personalizável com a sua marca' if MOCKUPS else '')}</p><h2 id="lb-title"></h2><p class="muted" id="lb-desc"></p><div id="lb-swatches"></div><p class="prod-meta" id="lb-meta"></p><div class="actions" style="margin-top:16px"><button class="pick" type="button" id="lb-pick" aria-pressed="false"><span class="when-off">+ Selecionar</span><span class="when-on">✓ Selecionado</span></button></div></div></div>
+  <div class="lightbox-body"><img id="lb-img" alt="" width="850" height="780"><div><p class="eyebrow">{LB_EYEBROW}</p><h2 id="lb-title"></h2><p class="muted" id="lb-desc"></p><div id="lb-swatches"></div><p class="prod-meta" id="lb-meta"></p><div class="actions" style="margin-top:16px"><button class="pick" type="button" id="lb-pick" aria-pressed="false"><span class="when-off">+ Selecionar</span><span class="when-on">✓ Selecionado</span></button></div></div></div>
 </dialog>
 <button class="float-bag" type="button" data-open-drawer hidden>''' + BAG_SVG + '''<span><span data-sel-count-text>0 peças</span> na seleção</span></button>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>'''
@@ -757,7 +774,7 @@ def shell(page, body):
     if WA:
         msg = urllib.parse.quote('Olá, TaMa! Gostaria de conversar sobre um projeto.')
         wa_float = f'<aside aria-label="Atendimento por WhatsApp"><a class="wa-float" href="https://wa.me/{WA}?text={msg}" target="_blank" data-track="whatsapp_click" data-track-label="flutuante" rel="noopener" aria-label="Conversar com a TaMa no WhatsApp" title="Conversar no WhatsApp">{CHAT}</a></aside>'
-    service_attr = f' data-service="{page["service"]["key"]}"' if page.get('service') else ''
+    service_attr = (f' data-service="{page["service"]["key"]}"' if page.get('service') else '') + (f' data-assunto="{esc(page["assunto"])}"' if page.get('assunto') else '')
     canonical = '' if page['path'].endswith('.html') else f'<link rel="canonical" href="{url}">'
     return f'''<!doctype html>
 <html lang="pt-BR">
@@ -800,7 +817,7 @@ def shell(page, body):
 {body}
 </main>
 {footer()}
-{DIALOGS.replace('{ARROW}', ARROW)}
+{DIALOGS.replace('{ARROW}', ARROW).replace('{LB_EYEBROW}', CAP + ' · personalizável com a sua marca')}
 {wa_float}
 {consent}
 </body>
@@ -810,6 +827,7 @@ def shell(page, body):
 
 # ------------------------------------------------------------------ pages
 HOME_FAQ = [
+    ('O que a TaMa faz?', 'Desenvolve e coordena brindes, confecções, kits personalizados e ativações promocionais para empresas: entende o objetivo, propõe as peças, aplica a sua marca e acompanha a produção com fornecedores até a entrega.'),
     ('Posso personalizar produtos nas cores da minha marca?', 'Sim. A escolha de cores e acabamentos faz parte da proposta de cada projeto. As cores mostradas no site são referências visuais e não significam estoque; a disponibilidade é confirmada na proposta.'),
     ('Vocês desenvolvem kits completos?', 'Sim. A proposta combina curadoria, materiais, embalagem e personalização para criar conjuntos com a mesma linguagem visual.'),
     ('Existe quantidade mínima?', 'Depende do produto e da técnica de personalização. As quantidades viáveis são informadas na proposta comercial.'),
@@ -818,9 +836,9 @@ HOME_FAQ = [
 
 
 ASSURANCES = '''<ul class="assurances wrap" aria-label="Como a TaMa trabalha">
-  <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="9" width="16" height="11" rx="1.5"/><path d="M4 13h16M12 9v11"/><path d="M12 9c-1.6-3.6-6-3.6-5.2-.6.4 1.4 3.3.6 5.2.6zM12 9c1.6-3.6 6-3.6 5.2-.6-.4 1.4-3.3.6-5.2.6z"/></svg>Curadoria exclusiva</li>
-  <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5.5c0 4.3-3 7.8-7 9.5-4-1.7-7-5.2-7-9.5V6z"/><path d="M8.8 12.2l2.2 2.2 4.3-4.6"/></svg>Atendimento consultivo</li>
-  <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19c0-8 5-13 14-14-1 9-6 14-14 14z"/><path d="M5 19l7-7"/></svg>Projetos sob medida, pensados para sua marca</li>
+  <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="9" width="16" height="11" rx="1.5"/><path d="M4 13h16M12 9v11"/><path d="M12 9c-1.6-3.6-6-3.6-5.2-.6.4 1.4 3.3.6 5.2.6zM12 9c1.6-3.6 6-3.6 5.2-.6-.4 1.4-3.3.6-5.2.6z"/></svg>Peças escolhidas com você</li>
+  <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5.5c0 4.3-3 7.8-7 9.5-4-1.7-7-5.2-7-9.5V6z"/><path d="M8.8 12.2l2.2 2.2 4.3-4.6"/></svg>Arte aprovada antes da produção</li>
+  <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19c0-8 5-13 14-14-1 9-6 14-14 14z"/><path d="M5 19l7-7"/></svg>Produção coordenada até a entrega</li>
 </ul>'''
 
 
@@ -829,18 +847,18 @@ def hero_carousel(slides=None, label='Destaques da TaMa Creative', assurances=Tr
     # slide (creme, sálvia, rosé, linho); o texto fica numa coluna própria, sem encostar nos produtos. No celular o texto
     # vem acima da foto. frame: enquadramento da foto (--fx no computador, --fx-m no celular) e largura (--pw).
     slides = slides or [
-        ('tone-cream', 'hero-brindes', '--fx:100%;--fx-m:96%', 'Ecobag de algodão cru com alças de couro bordô, squeeze bordô, caderno com caneta dourada, power bank, taça de gin bordô e copo personalizado, todos com a marca TaMa.', 'Brindes corporativos', 'Sua marca, presente no <em>dia a dia</em>.',
-         'Peças personalizadas para acompanhar pessoas e criar conexões.',
-         cta_link('Solicitar proposta', track_label='hero-1') + '<a class="btn btn-line" href="/brindes-corporativos-premium/">Explorar produtos ' + ARROW + '</a>'),
+        ('tone-cream', 'hero-brindes', '--fx:100%;--fx-m:96%', 'Ecobag, squeeze, caderno com caneta, power bank, taça e copo com a marca TaMa aplicada como exemplo.', 'Para empresas', 'Brindes, confecções e ativações para dar <em>presença à sua marca</em>.',
+         'Criamos e coordenamos soluções personalizadas para empresas, da escolha das peças à entrega.',
+         cta_link('Solicitar proposta', track_label='hero-1') + '<a class="btn btn-line" href="/catalogo/">Ver produtos ' + ARROW + '</a>'),
         ('tone-sage', 'hero-v3-confeccoes', '--fx:72%;--fx-m:72%', 'Polo vermelha, moletom azul royal e camiseta branca com a marca TaMa.', 'Confecções personalizadas', 'Identidade que <em>veste</em> sua equipe.',
          'Polos, camisetas, moletons, dólmãs e aventais em diversas cores.',
          cta_link('Conversar sobre confecções', tipo='confeccoes', track_label='hero-2') + '<a class="btn btn-line" href="/confeccoes-personalizadas/">Conhecer soluções ' + ARROW + '</a>'),
-        ('tone-rose', 'hero-kits', '--fx:100%;--fx-m:80%', 'Caixa bordô aberta com tábua de madeira, potinhos de cerâmica, geleias, facas de queijo e cartão com a marca TaMa.', 'Kits premium', 'Kits pensados de <em>ponta a ponta</em>.',
+        ('tone-rose', 'hero-kits', '--fx:100%;--fx-m:80%', 'Caixa bordô aberta com tábua, potinhos, geleias, facas de queijo e cartão com a marca TaMa.', 'Kits premium', 'Kits pensados de <em>ponta a ponta</em>.',
          'Caixa, peças e cartão com a sua marca, prontos para surpreender, agradecer e aproximar.',
          cta_link('Montar um kit', tipo='kits', track_label='hero-3') + '<a class="btn btn-line" href="/kits-corporativos/">Conhecer os kits ' + ARROW + '</a>'),
-        ('tone-linen', 'home-escritorio', '--fx:100%;--fx-m:68%', 'Caderno azul, canetas, porta-lápis, bandeja e estojo em couro com a marca TaMa.', 'Escrita e escritório', 'Boas ideias merecem <em>boa companhia</em>.',
-         'Blocos, cadernos, canetas e acessórios em couro para a rotina profissional.',
-         cta_link('Solicitar proposta', track_label='hero-4') + '<a class="btn btn-line" href="/brindes-corporativos-premium/?categoria=escritorio#pecas">Explorar escritório ' + ARROW + '</a>'),
+        ('tone-linen', 'conf-degustacao', '--fx:42%;--fx-m:40%', 'Cena ilustrativa: equipe de camiseta e avental com a marca TaMa servindo degustação num supermercado.', 'Ativações e degustações', 'Sua marca perto de quem <em>compra</em>.',
+         'Degustações, ações em feiras e eventos e promoções no ponto de venda, com equipe, materiais e brindes na identidade da sua marca.',
+         cta_link('Planejar uma ativação', tipo='ativacoes', track_label='hero-4') + '<a class="btn btn-line" href="/ativacoes-promocionais/">Conhecer ativações ' + ARROW + '</a>'),
     ]
     n = len(slides)
     out = []
@@ -873,33 +891,26 @@ def hero_carousel(slides=None, label='Destaques da TaMa Creative', assurances=Tr
 
 def page_home():
     return {
-        'path': '/', 'title': 'TaMa Creative | Brindes corporativos premium, kits e confecções',
-        'og_title': 'TaMa Creative · Presentes que fortalecem marcas',
-        'description': 'Estúdio criativo que transforma a identidade da sua empresa em brindes corporativos premium, kits e uniformes. Solicite uma proposta.',
+        'path': '/', 'title': 'TaMa Creative | Brindes, confecções, kits e ativações para empresas',
+        'og_title': 'TaMa Creative · Brindes, confecções e ativações para empresas',
+        'description': 'Brindes corporativos, uniformes, kits e ativações promocionais com a marca da sua empresa. A TaMa cria e coordena da escolha das peças à entrega.',
+        'assunto': 'um projeto para a minha empresa',
         'preload': preload_image('hero-brindes', '(max-width: 760px) 200vw, (max-width: 1100px) 140vw, 100vw'),
         'body': hero_carousel() + f'''
-<section class="services" aria-label="Frentes da TaMa">
-  <div class="wrap service-grid">
-    <a class="service-card split" href="/brindes-corporativos/">{picture('home-card-brindes', '', '(max-width: 760px) 46vw, 16vw', style='object-position:78% center')}<div class="service-info"><h2>Brindes corporativos</h2><p>Presentes que aproximam, encantam e ficam.</p><span class="link">Ver brindes {ARROW}</span></div></a>
-    <a class="service-card split" href="/confeccoes-personalizadas/">{picture('home-confeccoes', '', '(max-width: 760px) 46vw, 16vw', style='object-position:57% 80%')}<div class="service-info"><h2>Confecções personalizadas</h2><p>Peças para equipes, ações e eventos.</p><span class="link">Conhecer opções {ARROW}</span></div></a>
-    <a class="service-card split" href="/kits-corporativos/">{picture('home-kits', '', '(max-width: 760px) 46vw, 16vw', style='object-position:72% center')}<div class="service-info"><h2>Kits premium</h2><p>Caixa, peças e cartão com a sua marca.</p><span class="link">Ver kits {ARROW}</span></div></a>
-  </div>
-</section>
-
-{home_products_block()}
-{kits_block()}
-<section class="editorial" aria-labelledby="ed-t">
-  <div class="wrap editorial-grid">
-    <div class="editorial-text">
-      <p class="eyebrow">O que nos move</p>
-      <h2 id="ed-t">Marca não é o que se diz. <em>É o que fica.</em></h2>
-      <p>Um caderno aberto todos os dias. Um uniforme usado com orgulho. Uma caixa guardada na estante. A TaMa conecta a essência da marca às escolhas de produto, material, cor e acabamento, com a visão de Trade Marketing de quem pensa no público e na ocasião antes da peça.</p>
-      <div class="actions">{cta_link('Vamos criar juntos?', track_label='editorial')}<a class="btn btn-line" href="/sobre/">Conheça a TaMa</a></div>
-    </div>
-    <div class="editorial-photo">{picture('editorial-kit-cores', 'Kit corporativo em cores variadas com a marca TaMa: pasta conhaque, agenda azul-petróleo, garrafa mostarda, caneca creme, caixa verde-floresta, guarda-chuva marinho, power bank rosé, carregador terracota e caderno vinho.', '(max-width: 760px) 92vw, 55vw')}</div>
+<section class="services" aria-labelledby="frentes-t">
+  <h2 id="frentes-t" class="visually-hidden">O que a TaMa faz</h2>
+  <div class="wrap service-grid cinco">
+    <a class="service-card split" href="/brindes-corporativos/">{picture('home-card-brindes', '', '(max-width: 760px) 46vw, 16vw', style='object-position:78% center')}<div class="service-info"><h3>Brindes corporativos</h3><p>Peças para clientes, equipes e eventos.</p><span class="link">Ver brindes {ARROW}</span></div></a>
+    <a class="service-card split" href="/confeccoes-personalizadas/">{picture('home-confeccoes', '', '(max-width: 760px) 46vw, 16vw', style='object-position:57% 80%')}<div class="service-info"><h3>Confecções personalizadas</h3><p>Polos, camisetas, moletons, dólmãs e aventais.</p><span class="link">Ver confecções {ARROW}</span></div></a>
+    <a class="service-card split" href="/kits-corporativos/">{picture('home-kits', '', '(max-width: 760px) 46vw, 16vw', style='object-position:72% center')}<div class="service-info"><h3>Kits premium</h3><p>Caixa, peças e cartão para cada ocasião.</p><span class="link">Ver kits {ARROW}</span></div></a>
+    <a class="service-card split" href="/ativacoes-promocionais/">{picture('conf-degustacao', '', '(max-width: 760px) 46vw, 24vw', style='object-position:40% center')}<div class="service-info"><h3>Ativações e degustações</h3><p>Ações em eventos, feiras e pontos de venda.</p><span class="link">Ver ativações {ARROW}</span></div></a>
+    <a class="service-card split" href="/hotelaria-e-gastronomia/">{picture('conf-chef-dolma', '', '(max-width: 760px) 46vw, 24vw', style='object-position:76% 20%')}<div class="service-info"><h3>Hotelaria e gastronomia</h3><p>Cardápios, porta-contas, jogos americanos e uniformes.</p><span class="link">Ver soluções {ARROW}</span></div></a>
   </div>
 </section>
 {process_band()}
+{home_products_block()}
+{kits_block()}
+{collections_block('Ideias por ocasião')}
 {faq(HOME_FAQ)}
 {end_cta()}''',
     }
@@ -914,8 +925,8 @@ def page_brindes():
         'preload': preload_image('hero-gift', '(max-width: 760px) 92vw, 46vw'),
         'body': page_head('Brindes corporativos', 'Brindes corporativos personalizados, escolhidos para serem usados',
                           'Presentes e brindes para clientes, colaboradores e eventos, com curadoria de materiais, cores da sua marca e acabamento cuidado. Peças que entram na rotina de quem recebe.',
-                          cta_link(tipo='brindes', track_label='brindes-head') + '<a class="btn btn-line" href="/brindes-corporativos-premium/">Ver a curadoria</a>',
-                          'hero-gift', 'Garrafa verde, bandeja em couro, caixas terracota e caneca mostarda em composição conceitual.') + f'''
+                          cta_link(tipo='brindes', track_label='brindes-head') + '<a class="btn btn-line" href="/brindes-corporativos-premium/">Ideias por ocasião</a>',
+                          'hero-gift', 'Garrafa verde, bandeja, caixas terracota e caneca mostarda com a marca TaMa como exemplo. Imagem ilustrativa.') + f'''
 <section class="section ivory" aria-labelledby="escolha-t">
   <div class="wrap">
     <div class="section-head"><p class="eyebrow">Como escolhemos</p><h2 id="escolha-t" class="section-title">Três perguntas antes de qualquer peça</h2><p class="muted">A curadoria começa pelo uso, não pelo catálogo. É o que separa um brinde lembrado de um brinde esquecido na gaveta.</p></div>
@@ -943,7 +954,7 @@ def page_brindes():
 </section>
 <section class="section" aria-labelledby="entrega-t">
   <div class="wrap split">
-    <figure>{picture('embalagem-presente', 'Fotografia conceitual de embalagem de presente com fita.', '(max-width: 760px) 92vw, 46vw', cls='photo')}<figcaption class="caption">{CAP}</figcaption></figure>
+    <figure>{picture('embalagem-presente', 'Embalagem de presente com fita. Imagem ilustrativa.', '(max-width: 760px) 92vw, 46vw', cls='photo')}<figcaption class="caption">{CAP}</figcaption></figure>
     <div class="stack">
       <p class="eyebrow">Apresentação</p><h2 id="entrega-t" class="section-title">A entrega também comunica</h2>
       <p class="muted">O momento de abrir a caixa faz parte do brinde. Cada projeto considera o acabamento por fora e por dentro.</p>
@@ -976,7 +987,7 @@ def page_kits():
     <div class="section-head"><p class="eyebrow">Kits premium</p><h2 id="kits-p-t" class="section-title">Kits prontos para receber a sua marca</h2><p class="muted">Cinco composições para começar. Peças, embalagem e cartão se ajustam ao seu público, à ocasião e ao investimento.</p></div>
     <div class="kit-grid">{kit_cards()}</div>
     <div class="kit-foot"><p class="muted">Gostou de um deles? Diga o nome no pedido e a TaMa adapta a composição.</p>{cta_link('Pedir um kit', tipo='kits', track_label='kits-lista')}</div>
-    <p class="note" style="margin-top:18px">Composições sugeridas: peças, embalagem e personalização são confirmadas na proposta. Imagens ilustrativas.</p>
+    <p class="note" style="margin-top:18px">Os kits aparecem na identidade TaMa como exemplo. No seu projeto, caixa, cartão e peças levam a marca e as cores da sua empresa; a composição é confirmada na proposta. Imagens ilustrativas.</p>
   </div>
 </section>
 <section class="section ivory" aria-labelledby="tipos-t">
@@ -1069,7 +1080,7 @@ def page_curadoria():
 # Abertura de Confecções: pessoas usando as peças com a marca (cenas geradas com IA, ilustrativas; tools/cenas.py).
 # frame: --fx/--fy enquadram a foto no computador, --fx-m no celular.
 CONF_SLIDES = [
-    ('tone-linen', 'conf-equipe-kits', '--fx:58%;--fx-m:52%', 'Equipe de polo azul e camisetas preta e branca com a marca TaMa montando kits num ateliê claro.',
+    ('tone-linen', 'conf-equipe-kits', '--fx:58%;--fx-m:52%', 'Cena ilustrativa: equipe de uma empresa usando polo azul e camisetas preta e branca, com a marca TaMa aplicada como exemplo.',
      'Confecções personalizadas', 'Uniformes corporativos e <em>confecções personalizadas</em>',
      'Polos, camisetas, dólmãs e moletons para equipes, eventos e o dia a dia, alinhados à identidade da sua empresa.',
      cta_link('Solicitar proposta', tipo='confeccoes', track_label='conf-hero-4') + '<a class="btn btn-line" href="/catalogo/?categoria=vestuario">Ver polos e moletons ' + ARROW + '</a>'),
@@ -1084,7 +1095,7 @@ CONF_SLIDES = [
     ('tone-rose', 'conf-degustacao', '--fx:42%;--fx-m:40%', 'Promotoras de camiseta branca e avental verde e terracota com a marca TaMa servindo degustação de queijo num supermercado.',
      'Ativações e degustações', 'Aventais que levam a marca <em>ao ponto de venda</em>.',
      'Aventais, camisetas e toucas para degustações, promoções e equipes de loja.',
-     cta_link('Planejar uma ativação', tipo='confeccoes', track_label='conf-hero-5') + '<a class="btn btn-line" href="/catalogo/?categoria=vestuario">Ver aventais ' + ARROW + '</a>'),
+     cta_link('Planejar uma ativação', tipo='ativacoes', track_label='conf-hero-5') + '<a class="btn btn-line" href="/ativacoes-promocionais/">Conhecer ativações ' + ARROW + '</a>'),
 ]
 
 
@@ -1094,7 +1105,7 @@ def page_confeccoes():
         'description': 'Uniformes corporativos, polos bordadas, moletons e bonés para equipes e eventos, alinhados à identidade visual da sua empresa e pensados para quem veste.',
         'trail': [('/', 'Início'), ('/confeccoes-personalizadas/', 'Confecções')],
         'service': {'key': 'confeccoes', 'name': 'Confecções personalizadas e uniformes corporativos', 'type': 'Uniformes corporativos personalizados'},
-        'preload': preload_image('conf-evento-polos', '100vw'),
+        'preload': preload_image(CONF_SLIDES[0][1], '(max-width: 760px) 200vw, (max-width: 1100px) 140vw, 100vw'),
         'body': hero_carousel(CONF_SLIDES, label='Confecções da TaMa Creative', assurances=False) + f'''
 <section class="section ivory" aria-labelledby="uso-t">
   <div class="wrap">
@@ -1127,21 +1138,158 @@ def page_confeccoes():
     }
 
 
-def page_sobre():
+def page_ativacoes():
     return {
-        'path': '/sobre/', 'title': 'Sobre a TaMa Creative | Estúdio criativo com visão de Trade Marketing',
-        'description': 'A TaMa Creative é um estúdio criativo que une curadoria, criação e visão de Trade Marketing para levar a sua marca a brindes, kits e confecções.',
-        'trail': [('/', 'Início'), ('/sobre/', 'Sobre')], 'wp_type': 'AboutPage',
+        'path': '/ativacoes-promocionais/', 'title': 'Ativações promocionais e degustações para marcas | TaMa Creative',
+        'description': 'Degustações, ações em feiras e eventos e promoções no ponto de venda, com uniformes, brindes e materiais na identidade da sua marca. Peça uma proposta.',
+        'trail': [('/', 'Início'), ('/ativacoes-promocionais/', 'Ativações')],
+        'service': {'key': 'ativacoes', 'name': 'Ativações promocionais e degustações', 'type': 'Ativação promocional'},
+        'assunto': 'uma ativação promocional ou degustação',
+        'preload': preload_image('conf-degustacao', '(max-width: 760px) 92vw, 46vw'),
+        'body': page_head('Ativações promocionais', 'Ativações promocionais e degustações para a sua marca',
+                          'Ações em eventos, feiras e pontos de venda para levar o produto e a marca até quem compra. A TaMa desenvolve a ação com você e coordena o que ela precisa, dos materiais com a sua marca à execução combinada na proposta.',
+                          cta_link('Planejar uma ativação', tipo='ativacoes', track_label='ativacoes-head') + '<a class="btn btn-line" href="#formatos">Ver formatos</a>',
+                          'conf-degustacao', 'Cena ilustrativa: equipe de camiseta e avental com a marca TaMa servindo degustação num supermercado.', obj='object-position:40% center') + f'''
+<section class="section ivory" id="formatos" aria-labelledby="formatos-t">
+  <div class="wrap">
+    <div class="section-head"><p class="eyebrow">Formatos</p><h2 id="formatos-t" class="section-title">Onde a ativação acontece</h2><p class="muted">Cada formato pede peças, equipe e cronograma diferentes. O ponto de partida é o que a ação precisa provocar e em quem.</p></div>
+    <div class="cols-2">
+      <div class="item">{arc()}<div><h3>Degustação no ponto de venda</h3><p>O cliente prova o produto onde decide a compra: supermercados, empórios, lojas e farmácias.</p></div></div>
+      <div class="item">{arc()}<div><h3>Feiras e eventos</h3><p>Estande, recepção e distribuição de brindes para quem visita, com a equipe vestindo a marca.</p></div></div>
+      <div class="item">{arc()}<div><h3>Promoção e amostragem</h3><p>Brindes, amostras e materiais para campanhas de venda, lançamentos e ações com distribuidores.</p></div></div>
+      <div class="item">{arc()}<div><h3>Ações internas</h3><p>Convenções, lançamentos para a equipe e datas da empresa, com kits e peças na mesma linguagem.</p></div></div>
+    </div>
+  </div>
+</section>
+<section class="section" aria-labelledby="ativ-inclui-t">
+  <div class="wrap split" style="align-items:start">
+    <div class="stack" style="gap:12px"><p class="eyebrow">O que pode fazer parte</p><h2 id="ativ-inclui-t" class="section-title">Tudo o que a ação precisa, com a sua marca</h2><p class="muted">O escopo de cada ativação (materiais, equipe, logística e regras do local ou do organizador) é definido com você e confirmado na proposta.</p></div>
+    <dl class="pack">
+      <div><dt>Uniformes da equipe</dt><dd>Camisetas, polos, aventais e bonés. <a class="link" href="/confeccoes-personalizadas/">Ver confecções</a></dd></div>
+      <div><dt>Brindes e amostras</dt><dd>Peças para entregar ao público, do copo à ecobag. <a class="link" href="/catalogo/">Ver o catálogo</a></dd></div>
+      <div><dt>Kits para convidados</dt><dd>Imprensa, parceiros e clientes recebem a ação em casa. <a class="link" href="/kits-corporativos/">Ver kits</a></dd></div>
+      <div><dt>Planejamento e coordenação</dt><dd>Cronograma, produção dos materiais e entrega no local da ação.</dd></div>
+    </dl>
+  </div>
+</section>
+<section class="section ivory" aria-labelledby="ativ-como-t">
+  <div class="wrap">
+    <div class="section-head"><p class="eyebrow">Como planejamos</p><h2 id="ativ-como-t" class="section-title">Da ideia ao dia da ação</h2></div>
+    <ol class="steps light">
+      <li class="step"><b>01</b><strong>Objetivo</strong><span>O que a ação precisa provocar, em quem e onde.</span></li>
+      <li class="step"><b>02</b><strong>Formato</strong><span>Local, duração, público esperado e o que será entregue.</span></li>
+      <li class="step"><b>03</b><strong>Materiais</strong><span>Uniformes, brindes e peças com a marca, com arte aprovada antes da produção.</span></li>
+      <li class="step"><b>04</b><strong>Execução</strong><span>Cronograma, entrega dos materiais e acompanhamento combinados na proposta.</span></li>
+    </ol>
+  </div>
+</section>
+{studio_block(['avental', 'camiseta-masculina', 'camiseta-feminina', 'bone', 'ecobag', 'copo-com-impressao-360', 'squeeze', 'taca-de-champagne'],
+              'Peças que costumam entrar em ativações', 'Catálogo', 'Escolha as cores de referência e adicione à seleção: as peças seguem com o pedido.', 'ativ-pecas-t',
+              more=('/catalogo/', 'Ver o catálogo completo'))}
+''' + faq([
+            ('Que tipo de ativação vocês fazem?', 'Degustações e promoções no ponto de venda, ações em feiras e eventos e ativações internas. Conte o objetivo, o público e o local: a proposta indica o formato e o que entra nele.'),
+            ('Quem cuida da equipe e da logística?', 'Depende do formato. A proposta detalha o que a TaMa coordena e o que fica com a sua empresa, com o local ou com o organizador do evento.'),
+            ('Com quanto tempo de antecedência devo pedir?', 'Quanto antes, mais opções de materiais e de datas. Informe a data da ação no pedido e o prazo é confirmado na proposta.'),
+            ('Precisa de autorização do local?', 'Lojas, supermercados e eventos costumam ter regras próprias para ações. Isso entra no planejamento e na proposta.'),
+        ], title='Perguntas sobre ativações', eyebrow='Dúvidas') + end_cta('Vamos planejar a sua ativação?', 'Conte o produto, o público, o local e a data. A TaMa propõe o formato e os materiais.', tipo='ativacoes', eyebrow='Ativações'),
+    }
+
+
+def page_hotelaria():
+    return {
+        'path': '/hotelaria-e-gastronomia/', 'title': 'Cardápios, porta-contas e uniformes para restaurantes e hotéis | TaMa',
+        'description': 'Cardápios, porta-contas, jogos americanos, dólmãs e aventais com a marca do seu restaurante, bar, café ou hotel. Monte a seleção e peça uma proposta.',
+        'trail': [('/', 'Início'), ('/hotelaria-e-gastronomia/', 'Hotelaria e gastronomia')],
+        'service': {'key': 'hotelaria', 'name': 'Produtos personalizados para hotelaria e gastronomia', 'type': 'Produtos personalizados para restaurantes e hotéis'},
+        'assunto': 'produtos para hotelaria e gastronomia',
+        'preload': preload_image('conf-chef-dolma', '(max-width: 760px) 92vw, 46vw'),
+        'body': page_head('Hotelaria e gastronomia', 'Produtos personalizados para restaurantes, bares e hotéis',
+                          'Cardápios, porta-contas, jogos americanos, dólmãs e aventais com a marca da sua casa. A TaMa ajuda a escolher as peças para o salão, a cozinha e a equipe e coordena a produção.',
+                          cta_link('Solicitar proposta', tipo='hotelaria', track_label='hotelaria-head') + '<a class="btn btn-line" href="#hot-pecas-t">Ver peças</a>',
+                          'conf-chef-dolma', 'Cena ilustrativa: chef de dólmã branca com a marca TaMa bordada finalizando um prato.', obj='object-position:76% 20%') + f'''
+<section class="section ivory" aria-labelledby="ambientes-t">
+  <div class="wrap">
+    <div class="section-head"><p class="eyebrow">Por ambiente</p><h2 id="ambientes-t" class="section-title">A marca em cada ponto de contato</h2></div>
+    <div class="cols-2">
+      <div class="item">{arc()}<div><h3>Salão e mesa</h3><p>Cardápio, porta-contas e jogos americanos: o que o cliente segura durante toda a refeição.</p></div></div>
+      <div class="item">{arc()}<div><h3>Cozinha e equipe</h3><p>Dólmãs e aventais com a marca, em cores definidas no projeto.</p></div></div>
+      <div class="item">{arc()}<div><h3>Bar e eventos</h3><p>Taças, copos e peças para eventos, degustações e datas especiais da casa.</p></div></div>
+      <div class="item">{arc()}<div><h3>Clientes e hóspedes</h3><p>Kits e brindes para receber, agradecer e fidelizar. <a class="link" href="/kits-corporativos/">Ver kits</a></p></div></div>
+    </div>
+  </div>
+</section>
+{studio_block(['cardapio', 'porta-contas', 'jogo-americano-retangular', 'jogo-americano-oval', 'jogo-americano-impresso', 'dolma', 'avental', 'taca-de-vinho'],
+              'Peças para salão, cozinha e equipe', 'Catálogo', 'Toque na cor para ver a foto e adicione à seleção: as peças seguem com o pedido de proposta.', 'hot-pecas-t',
+              more=('/catalogo/?categoria=hotelaria-gastronomia', 'Ver hotelaria no catálogo'))}
+<section class="section ivory" aria-labelledby="hot-considerar-t">
+  <div class="wrap split" style="align-items:start">
+    <div class="stack" style="gap:12px"><p class="eyebrow">Antes de pedir</p><h2 id="hot-considerar-t" class="section-title">O que vale definir</h2></div>
+    <dl class="pack">
+      <div><dt>Uso diário</dt><dd>Peças manuseadas o dia todo: material, acabamento e limpeza são escolhidos e confirmados na proposta.</dd></div>
+      <div><dt>Quantidades e reposição</dt><dd>Informe quantas mesas, pessoas na equipe e a previsão de reposição.</dd></div>
+      <div><dt>Uma linguagem só</dt><dd>Salão, cozinha e equipe com a mesma identidade, da cor do avental ao cardápio.</dd></div>
+    </dl>
+  </div>
+</section>
+''' + faq([
+            ('Quais peças vocês personalizam para restaurantes e hotéis?', 'Cardápios, porta-contas, jogos americanos, dólmãs, aventais, taças e copos, além de kits e brindes para clientes. Se a peça que você procura não está no catálogo, descreva no pedido.'),
+            ('As peças aguentam o uso diário?', 'Material e acabamento são escolhidos conforme o uso e confirmados na proposta, junto com as orientações de cuidado.'),
+            ('Bordado ou estampa nas dólmãs e aventais?', 'O bordado costuma ser usado em peças de uso contínuo; a estampa permite mais cores e áreas maiores. A técnica é definida no projeto.'),
+        ], title='Perguntas sobre hotelaria e gastronomia', eyebrow='Dúvidas') + end_cta('Sua casa com a sua marca em cada detalhe.', 'Conte o tipo de casa, o número de mesas e de pessoas na equipe. A TaMa propõe as peças.', tipo='hotelaria', eyebrow='Hotelaria e gastronomia'),
+    }
+
+
+def page_sobre():
+    dados = ''.join(f'<div><dt>{t}</dt><dd>{esc(v)}</dd></div>' for t, v in (('Razão social', RAZAO), ('CNPJ', CNPJ), ('Cidade', CIDADE), ('Atendimento comercial', RESPONSAVEL), ('E-mail', EMAIL)) if v)
+    dados_html = f'<section class="section" aria-labelledby="dados-t"><div class="wrap split" style="align-items:start"><div class="stack" style="gap:12px"><p class="eyebrow">Dados da empresa</p><h2 id="dados-t" class="section-title">TaMa Creative</h2></div><dl class="pack">{dados}</dl></div></section>' if dados else ''
+    return {
+        'path': '/sobre/', 'title': 'Sobre a TaMa Creative | Brindes, confecções, kits e ativações',
+        'description': 'A TaMa Creative desenvolve e coordena brindes, confecções, kits personalizados e ativações promocionais para empresas, com visão de Trade Marketing.',
+        'trail': [('/', 'Início'), ('/sobre/', 'Sobre')], 'wp_type': 'AboutPage', 'assunto': 'um projeto para a minha empresa',
         'body': f'''<section class="page-head">
   <div class="wrap split">
-    <div class="copy"><p class="eyebrow">Sobre a TaMa</p><h1>Um estúdio criativo nascido do Trade Marketing</h1><p class="lead">Antes de escolher qualquer peça, olhamos para o público, a ocasião de uso e a execução. É a experiência da fundadora em Trade Marketing aplicada a cada projeto, do brinde ao uniforme.</p><div class="actions">{cta_link(track_label='sobre-head')}</div></div>
+    <div class="copy"><p class="eyebrow">Sobre a TaMa</p><h1>Quem é a TaMa Creative</h1><p class="lead">A TaMa Creative desenvolve e coordena brindes, confecções, kits personalizados e ativações promocionais para empresas. Antes de escolher qualquer peça, olhamos para o público, a ocasião e a execução: é a experiência da fundadora em Trade Marketing aplicada a cada projeto.</p><div class="actions">{cta_link(track_label='sobre-head')}</div></div>
     <div class="seal-block">{SELO}<p>Sua marca ganha forma. Personalizamos ideias.</p></div>
   </div>
 </section>
-<section class="section question" aria-label="A pergunta que abre cada projeto">
-  <div class="wrap"><p class="eyebrow light">Ponto de partida</p><blockquote>O que queremos que as pessoas lembrem da sua marca?</blockquote><p style="margin-top:16px;max-width:36rem">É a pergunta que abre cada projeto. A resposta orienta a curadoria, a criação e a execução.</p></div>
+<section class="section ivory" aria-labelledby="faz-t">
+  <div class="wrap">
+    <div class="section-head"><p class="eyebrow">O que fazemos</p><h2 id="faz-t" class="section-title">Cinco frentes, um mesmo cuidado com a marca</h2></div>
+    <div class="cols-2">
+      <div class="item">{arc()}<div><h3><a href="/brindes-corporativos/">Brindes corporativos</a></h3><p>Peças para clientes, equipes e eventos, escolhidas pelo uso.</p></div></div>
+      <div class="item">{arc()}<div><h3><a href="/confeccoes-personalizadas/">Confecções personalizadas</a></h3><p>Polos, camisetas, moletons, dólmãs e aventais com a marca da empresa.</p></div></div>
+      <div class="item">{arc()}<div><h3><a href="/kits-corporativos/">Kits premium</a></h3><p>Caixa, cartão e peças compostos para uma ocasião.</p></div></div>
+      <div class="item">{arc()}<div><h3><a href="/ativacoes-promocionais/">Ativações e degustações</a></h3><p>Ações em eventos, feiras e pontos de venda.</p></div></div>
+      <div class="item">{arc()}<div><h3><a href="/hotelaria-e-gastronomia/">Hotelaria e gastronomia</a></h3><p>Cardápios, porta-contas, jogos americanos e uniformes.</p></div></div>
+    </div>
+  </div>
 </section>
-<section class="section" aria-labelledby="simbolo-t">
+<section class="section" aria-labelledby="como-t">
+  <div class="wrap">
+    <div class="section-head"><p class="eyebrow">Como trabalhamos</p><h2 id="como-t" class="section-title">Da escolha das peças à entrega</h2><p class="muted">A TaMa entende o objetivo, propõe as peças, aplica a sua marca e coordena fornecedores, materiais e execução até a entrega.</p></div>
+    <div class="cols-2">
+      <div class="item">{arc()}<div><h3>Visão de Trade Marketing</h3><p>Público, ocasião de uso e execução vêm antes da escolha de qualquer peça.</p></div></div>
+      <div class="item">{arc()}<div><h3>Seleção sob medida</h3><p>Peças alinhadas ao público, à ocasião e ao investimento, longe do catálogo genérico.</p></div></div>
+      <div class="item">{arc()}<div><h3>Tudo em um pedido</h3><p>Brindes, kits, uniformes e materiais de ativação no mesmo pedido, com uma única linguagem.</p></div></div>
+      <div class="item">{arc()}<div><h3>Da arte à entrega</h3><p>Arte e especificações aprovadas antes da produção e materiais conferidos antes da entrega.</p></div></div>
+    </div>
+  </div>
+</section>
+<section class="section question" aria-label="A pergunta que abre cada projeto">
+  <div class="wrap"><p class="eyebrow light">Ponto de partida</p><blockquote>O que queremos que as pessoas lembrem da sua marca?</blockquote><p style="margin-top:16px;max-width:36rem">É a pergunta que abre cada projeto. A resposta orienta a seleção das peças, a personalização e a execução.</p></div>
+</section>
+<section class="editorial" aria-labelledby="ed-t">
+  <div class="wrap editorial-grid">
+    <div class="editorial-text">
+      <p class="eyebrow">O que nos move</p>
+      <h2 id="ed-t">Marca não é o que se diz. <em>É o que fica.</em></h2>
+      <p>Um caderno aberto todos os dias. Um uniforme usado com orgulho. Uma caixa guardada na estante. A TaMa conecta a essência da marca às escolhas de produto, cor e acabamento, pensando no público e na ocasião antes da peça.</p>
+    </div>
+    <div class="editorial-photo">{picture('editorial-kit-cores', 'Peças em cores variadas com a marca TaMa como exemplo: pasta, agenda, garrafa, caneca, caixa, guarda-chuva, carregador e caderno. Imagem ilustrativa.', '(max-width: 760px) 92vw, 55vw')}</div>
+  </div>
+</section>
+{dados_html}
+<section class="section ivory" aria-labelledby="simbolo-t">
   <div class="wrap split">
     <svg class="arc-diagram" viewBox="-14 -114 228 228" role="img" aria-label="Diagrama: o arco é um segmento de um círculo tracejado, fechado por uma reta diagonal.">
       <circle class="d-circle" cx="100" cy="0" r="100"/><path class="d-arc" d="{ARC}"/><line class="d-chord" x1="0" y1="0" x2="100" y2="100"/>
@@ -1156,18 +1304,6 @@ def page_sobre():
         <div><svg viewBox="0 0 34 20" aria-hidden="true"><line class="k-dash" x1="2" y1="10" x2="32" y2="10"/></svg><p><strong>O tracejado</strong> é o círculo que a TaMa ajuda a fechar.</p></div>
       </div>
     </div>
-  </div>
-</section>
-<section class="section ivory" aria-labelledby="como-t">
-  <div class="wrap">
-    <div class="section-head"><p class="eyebrow">Como trabalhamos</p><h2 id="como-t" class="section-title">O que você pode esperar da TaMa</h2></div>
-    <div class="cols-2">
-      <div class="item">{arc()}<div><h3>Visão de Trade Marketing</h3><p>Público, ocasião de uso e execução vêm antes da escolha de qualquer peça.</p></div></div>
-      <div class="item">{arc()}<div><h3>Curadoria sob medida</h3><p>Seleção alinhada ao público, à ocasião e ao orçamento, longe do catálogo genérico.</p></div></div>
-      <div class="item">{arc()}<div><h3>Tudo em um pedido</h3><p>Brindes, kits e vestuário no mesmo pedido, com uma única linguagem.</p></div></div>
-      <div class="item">{arc()}<div><h3>Da arte à entrega</h3><p>Arte e especificações aprovadas antes da produção e materiais conferidos antes da entrega.</p></div></div>
-    </div>
-    <p class="pull">O arco é um círculo que ainda está sendo desenhado. <em>A TaMa é quem termina o traço.</em></p>
   </div>
 </section>
 {end_cta()}''',
@@ -1237,7 +1373,7 @@ def page_obrigado():
     return {
         'path': '/obrigado/', 'title': 'Pedido recebido | TaMa Creative', 'index': False,
         'description': 'Recebemos o seu pedido de proposta. A TaMa Creative responde pelo contato informado.',
-        'body': '''<section class="section"><div class="wrap"><div class="section-head" style="max-width:44rem"><p class="eyebrow">Pedido enviado</p><h1>Recebemos o seu pedido</h1><p class="lead">Vamos responder pelo contato informado. Enquanto isso, conheça a curadoria.</p><div class="actions"><a class="btn btn-wine" href="/brindes-corporativos-premium/">Ver a curadoria</a><a class="btn btn-line" href="/">Voltar ao início</a></div></div></div></section>''',
+        'body': '''<section class="section"><div class="wrap"><div class="section-head" style="max-width:44rem"><p class="eyebrow">Pedido enviado</p><h1>Recebemos o seu pedido</h1><p class="lead">Vamos responder pelo contato informado. Enquanto isso, veja o catálogo.</p><div class="actions"><a class="btn btn-wine" href="/catalogo/">Ver o catálogo</a><a class="btn btn-line" href="/">Voltar ao início</a></div></div></div></section>''',
     }
 
 
@@ -1249,10 +1385,11 @@ def page_privacidade():
         'trail': [('/', 'Início'), ('/privacidade/', 'Privacidade')],
         'body': f'''<section class="section"><div class="wrap" style="max-width:52rem"><div class="stack">
   <p class="eyebrow">Privacidade</p><h1>Política de privacidade</h1><p class="muted">Atualizada em {BUILD_DATE}.</p>
-  <h2 style="font-size:1.6rem">Quais dados coletamos</h2><p>Apenas o que você informa no formulário de proposta: nome, empresa, e-mail ou WhatsApp, tipo de projeto, quantidade, data desejada, orçamento estimado, peças e cores de interesse e a descrição do objetivo.</p>
+  {f'<h2 style="font-size:1.6rem">Quem é o responsável pelos dados</h2><p>{empresa_linha()}.</p>' if (RAZAO or CNPJ) else ''}
+  <h2 style="font-size:1.6rem">Quais dados coletamos</h2><p>Apenas o que você informa no formulário de proposta: nome, empresa, e-mail ou WhatsApp, tipo de projeto, interesse, quantidade, data desejada, orçamento estimado, peças e cores de interesse e a descrição do objetivo. Junto com o pedido, o site envia a página de onde você veio, a primeira página visitada, o site de referência e os parâmetros de campanha (UTM) do link, quando existirem, para sabermos qual conteúdo gerou o pedido. Nada disso identifica você além do que você mesmo informou.</p>
   <h2 style="font-size:1.6rem">Para que usamos</h2><p>Para responder ao seu pedido e preparar a proposta. Não vendemos nem compartilhamos esses dados para fins de marketing de terceiros.</p>
-  <h2 style="font-size:1.6rem">Com quem os dados são compartilhados</h2><ul style="padding-left:1.2em;display:grid;gap:6px"><li>Netlify, que hospeda o site e recebe o formulário.</li><li>Ferramentas de automação e de gestão de clientes usadas pela TaMa para organizar e responder pedidos.</li>{"<li>Google Analytics, somente se você aceitar os cookies de análise.</li>" if GA4 else ""}</ul>
-  <h2 style="font-size:1.6rem">Seleção de peças no navegador</h2><p>As peças que você seleciona ficam guardadas apenas no seu navegador até o envio do pedido, e são apagadas depois de um envio confirmado.</p>
+  <h2 style="font-size:1.6rem">Com quem os dados são compartilhados</h2><ul style="padding-left:1.2em;display:grid;gap:6px"><li>O provedor de hospedagem do site, por onde o pedido passa.</li><li>A ferramenta de automação (n8n) que registra o pedido e avisa a equipe da TaMa por e-mail.</li><li>Ferramentas de gestão de clientes usadas pela TaMa para organizar e responder pedidos.</li>{"<li>Google Analytics, somente se você aceitar os cookies de análise.</li>" if GA4 else ""}</ul>
+  <h2 style="font-size:1.6rem">Seleção de peças no navegador</h2><p>As peças que você seleciona ficam guardadas apenas no seu navegador até o envio do pedido, e são apagadas depois de um envio confirmado. A página de origem e os parâmetros de campanha ficam só na sessão do navegador e não são enviados a ferramentas de análise.</p>
   <h2 style="font-size:1.6rem">Por quanto tempo guardamos</h2><p>Pelo tempo necessário para tratar o pedido e manter o histórico comercial, ou até você pedir a exclusão.</p>
   <h2 style="font-size:1.6rem">Seus direitos</h2><p>Pela LGPD (Lei 13.709/2018), você pode pedir acesso, correção ou exclusão dos seus dados e revogar o consentimento a qualquer momento, {contato}.</p>
 </div></div></section>''',
@@ -1263,11 +1400,11 @@ def page_404():
     return {
         'path': '/404.html', 'title': 'Página não encontrada | TaMa Creative', 'index': False,
         'description': 'A página que você procurou não existe ou mudou de endereço.',
-        'body': '''<section class="section"><div class="wrap"><div class="section-head" style="max-width:44rem"><p class="eyebrow">Erro 404</p><h1>Esta página não existe ou mudou de lugar</h1><p class="lead">O site da TaMa foi reorganizado. Comece por um destes caminhos:</p><div class="actions"><a class="btn btn-wine" href="/">Página inicial</a><a class="btn btn-line" href="/catalogo/">Catálogo</a><a class="btn btn-line" href="/brindes-corporativos-premium/">Curadoria</a><a class="btn btn-line" href="/solicitar-proposta/">Solicitar proposta</a></div></div></div></section>''',
+        'body': '''<section class="section"><div class="wrap"><div class="section-head" style="max-width:44rem"><p class="eyebrow">Erro 404</p><h1>Esta página não existe ou mudou de lugar</h1><p class="lead">O site da TaMa foi reorganizado. Comece por um destes caminhos:</p><div class="actions"><a class="btn btn-wine" href="/">Página inicial</a><a class="btn btn-line" href="/catalogo/">Catálogo</a><a class="btn btn-line" href="/brindes-corporativos-premium/">Ideias por ocasião</a><a class="btn btn-line" href="/solicitar-proposta/">Solicitar proposta</a></div></div></div></section>''',
     }
 
 
-PAGES = [page_home, page_catalogo, page_brindes, page_kits, page_curadoria, page_confeccoes, page_sobre,   # branding, projetos e case ficam ocultos
+PAGES = [page_home, page_catalogo, page_brindes, page_kits, page_ativacoes, page_hotelaria, page_curadoria, page_confeccoes, page_sobre,
  page_proposta, page_obrigado, page_privacidade, page_404]
 
 

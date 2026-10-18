@@ -117,7 +117,7 @@
     }).filter(function (x) {
       if (!x || !CAT[x.s] || vistos[x.s]) return false;
       vistos[x.s] = true;
-      if (x.c && CAT[x.s].c.length && !CAT[x.s].c.some(function (c) { return c[0] === x.c; })) x.c = CAT[x.s].c[0][0];   // cor que deixou de existir
+      if (CAT[x.s].c.length && !CAT[x.s].c.some(function (c) { return c[0] === x.c; })) x.c = CAT[x.s].c[0][0];   // sem cor ou cor que deixou de existir: a da foto-base
       return true;
     });
   }

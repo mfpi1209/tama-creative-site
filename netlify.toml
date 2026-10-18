@@ -1,19 +1,8 @@
-# Site TaMa Creative — publicação no Netlify.
-# Com o site ligado ao repositório GitHub privado (mfpi1209/tama-creative-site), cada push na branch main gera o site e publica.
-# O editor do blog (/admin/) grava no repositório: cada artigo vira um pull request com prévia (Deploy Preview);
-# "Publicar" no editor faz o merge e a produção é atualizada pelo build abaixo.
-# Deploy manual (sem Git) continua possível:  python build.py  e  netlify deploy --prod --dir dist --functions netlify/functions
+# O site oficial é servido pelo Easypanel (ver docs/DEPLOY.md). O Netlify só redireciona a cópia antiga
+# (tamacreative.netlify.app) para https://tamacreative.com.br, com 301 em todas as URLs, e não publica formulários.
+# Se o Netlify ainda estiver ligado ao repositório, o próximo build já publica só o redirecionamento.
+# Sem ligação com o Git, publicar uma vez:  netlify deploy --prod --dir netlify/redirecionar
+# O login do editor /admin/ (OAuth do Netlify para o GitHub) não depende do conteúdo publicado aqui.
 [build]
-  command = "pip install -r requirements.txt && python build.py"
-  publish = "dist"
-
-[build.environment]
-  PYTHON_VERSION = "3.13"
-
-[functions]
-  directory = "netlify/functions"
-  node_bundler = "esbuild"
-
-# Guarda .cache/ (imagens AVIF/WebP/JPEG já geradas) entre builds: o build não recodifica as fotos a cada artigo.
-[[plugins]]
-  package = "./netlify/plugins/cache-imagens"
+  command = "echo 'Somente redirecionamento para tamacreative.com.br'"
+  publish = "netlify/redirecionar"

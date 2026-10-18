@@ -28,9 +28,8 @@ WA = re.sub(r'\D', '', CFG.get('whatsapp') or '')
 EMAIL = (CFG.get('email') or '').strip()
 IG = (CFG.get('instagram') or '').strip().lstrip('@')
 GA4 = (CFG.get('ga4_id') or '').strip()
-# '/' = Netlify Forms (POST para a própria página). Fora do Netlify: '/api/proposta' (Nginx repassa ao webhook do n8n).
-FORM_ENDPOINT = (CFG.get('form_endpoint') or '/').strip() or '/'
-NETLIFY_FORMS = FORM_ENDPOINT == '/'
+# Envio do formulário: o Nginx repassa /api/proposta ao n8n (docs/PROPOSTAS.md). Não há mais Netlify Forms.
+FORM_ENDPOINT = (CFG.get('form_endpoint') or '/api/proposta').strip() or '/api/proposta'
 # Branded mockups (img/marca/ + src/data/mockups.json). Off unless MOCKUPS_MARCA=1 or "mockups_marca": true.
 MOCKUPS = str(os.environ.get('MOCKUPS_MARCA', CFG.get('mockups_marca', ''))).lower() in ('1', 'true', 'yes')
 BUILD_DATE = date.today().isoformat()
@@ -1401,7 +1400,7 @@ def page_proposta():
 <section class="section" style="padding-top:0">
   <div class="wrap contact-grid">
     <div>
-      <form class="form" id="proposal-form" name="proposta" method="POST" action="{'/obrigado/' if NETLIFY_FORMS else FORM_ENDPOINT}" data-endpoint="{FORM_ENDPOINT}"{' data-netlify="true" netlify-honeypot="bot-field"' if NETLIFY_FORMS else ''} novalidate>
+      <form class="form" id="proposal-form" name="proposta" method="POST" action="{FORM_ENDPOINT}" data-endpoint="{FORM_ENDPOINT}" novalidate>
         <input type="hidden" name="form-name" value="proposta">
         <p hidden><label>Não preencha este campo <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
         <!-- preenchidos pelo site.js: identificador do pedido (o mesmo em cada nova tentativa, para não duplicar), interesse vindo do botão clicado, página de origem e UTMs -->
@@ -1522,9 +1521,13 @@ def build_static():
         '/curadoria          /brindes-corporativos-premium/  301',
         '/confeccoes         /confeccoes-personalizadas/     301',
         '/uniformes          /confeccoes-personalizadas/     301',
-        '/marcas             /catalogo/                      301',
-        '/branding           /catalogo/                      301',
-        '/branding-identidade-visual/*  /catalogo/           301',
+        '/marcas             /                               301',
+        '/branding           /                               301',
+        '/branding-identidade-visual/*  /                    301',
+        '/ativacoes          /ativacoes-promocionais/        301',
+        '/degustacao         /ativacoes-promocionais/        301',
+        '/hotelaria          /hotelaria-e-gastronomia/       301',
+        '/gastronomia        /hotelaria-e-gastronomia/       301',
         '/projetos/*         /sobre/                         301',
         '/contato            /solicitar-proposta/            301',
         '/proposta           /solicitar-proposta/            301',

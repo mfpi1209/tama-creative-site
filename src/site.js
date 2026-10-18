@@ -316,18 +316,22 @@
     var catForm = document.getElementById('cat-form'), catQ = document.getElementById('cat-q');
     var catCards = [].slice.call(catBox.querySelectorAll('#catalogo-grid .product'));
     var catSide = document.getElementById('cat-filtros'), catScrim = catBox.querySelector('.cat-scrim'), catOpener = catBox.querySelector('[data-cat-open]');
-    var catFAM = {};
+    var catFAM = {}, catOCC = {};
     try { catFAM = JSON.parse(catBox.getAttribute('data-familias')); } catch (e) {}
+    try { catOCC = JSON.parse(catBox.getAttribute('data-ocasioes')) || {}; } catch (e) {}
+    // ocasião (?ocasiao=fim-de-ano, vinda das páginas de ocasião): fora do formulário, mostrada como etiqueta removível
+    var catOcc = '', catOccBox = catBox.querySelector('[data-cat-occ]');
     var catNorm = function (s) { return String(s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim(); };
     var catState = function () {
       var c = catForm.querySelector('input[name="categoria"]:checked');
-      return { q: catNorm(catQ.value), cat: c ? c.value : '', cores: [].map.call(catForm.querySelectorAll('input[name="cor"]:checked'), function (i) { return i.value; }) };
+      return { q: catNorm(catQ.value), cat: c ? c.value : '', occ: catOcc, cores: [].map.call(catForm.querySelectorAll('input[name="cor"]:checked'), function (i) { return i.value; }) };
     };
     var catApply = function (push) {
       var st = catState(), n = 0, words = st.q ? st.q.split(' ') : [];
       catCards.forEach(function (p) {
         var hay = p.getAttribute('data-busca') || '', fams = (p.getAttribute('data-cores') || '').split(' ');
         var ok = (!st.cat || p.getAttribute('data-cat') === st.cat)
+          && (!st.occ || (' ' + (p.getAttribute('data-occ') || '') + ' ').indexOf(' ' + st.occ + ' ') !== -1)
           && words.every(function (w) { return hay.indexOf(w) !== -1; })
           && (!st.cores.length || st.cores.some(function (f) { return fams.indexOf(f) !== -1; }));
         p.hidden = !ok;
@@ -341,12 +345,15 @@
       catBox.querySelectorAll('[data-cat-n]').forEach(function (el) { el.textContent = n; });
       document.getElementById('cat-count').lastChild.textContent = n === 1 ? ' modelo' : ' modelos';
       document.getElementById('cat-vazio').hidden = n > 0;
-      var active = (st.cat ? 1 : 0) + st.cores.length, badge = catBox.querySelector('[data-cat-badge]');
+      catOccBox.hidden = !st.occ;
+      catOccBox.querySelector('[data-cat-occ-name]').textContent = st.occ ? catOCC[st.occ] : '';
+      var active = (st.cat ? 1 : 0) + (st.occ ? 1 : 0) + st.cores.length, badge = catBox.querySelector('[data-cat-badge]');
       badge.hidden = !active; badge.textContent = active;
       if (push) {
         var u = new URLSearchParams();
         if (catQ.value.trim()) u.set('q', catQ.value.trim());
         if (st.cat) u.set('categoria', st.cat);
+        if (st.occ) u.set('ocasiao', st.occ);
         if (st.cores.length) u.set('cor', st.cores.join(','));
         history.replaceState(null, '', location.pathname + (u.toString() ? '?' + u : '') + '#catalogo');
       }
@@ -355,9 +362,15 @@
     catQ.addEventListener('input', function () { clearTimeout(catTimerQ); catTimerQ = setTimeout(function () { catApply(true); }, 150); });
     catForm.addEventListener('change', function () { catApply(true); });
     catForm.addEventListener('submit', function (e) { e.preventDefault(); catQ.blur(); });
-    catForm.addEventListener('reset', function () { setTimeout(function () { catApply(true); }, 0); });
-    // URL de entrada: ?categoria=vestuario&cor=azul,verde&catQ=caneca (links internos e compartilhamento)
+    catForm.addEventListener('reset', function () { catOcc = ''; setTimeout(function () { catApply(true); }, 0); });
+    // remover a ocasião: a etiqueta some, então o foco vai para o total de modelos
+    catOccBox.querySelector('[data-cat-occ-clear]').addEventListener('click', function () {
+      catOcc = ''; catApply(true);
+      var cc = document.getElementById('cat-count'); cc.setAttribute('tabindex', '-1'); cc.focus({ preventScroll: true });
+    });
+    // URL de entrada: ?categoria=vestuario&cor=azul,verde&q=caneca&ocasiao=fim-de-ano (links internos e compartilhamento)
     var catParams = new URLSearchParams(location.search);
+    if (catOCC.hasOwnProperty(catParams.get('ocasiao') || '')) catOcc = catParams.get('ocasiao');   // ocasião desconhecida abre sem filtro
     if (catParams.get('q')) catQ.value = catParams.get('q');
     var catPc = catForm.querySelector('input[name="categoria"][value="' + (catParams.get('categoria') || '').replace(/[^a-z-]/g, '') + '"]');
     if (catPc) catPc.checked = true;
@@ -594,7 +607,7 @@
   if (interesse) { var note = document.getElementById('interest-note'); note.textContent = 'Interesse: ' + interesse; note.hidden = false; }
   var origemPagina = paginaAnterior || '';
   // vindo de uma página de frente (ex.: "Montar pedido com a seleção" na Hotelaria), o tipo já vem marcado
-  var tipoPorPagina = { '/brindes-corporativos/': 'brindes', '/brindes-corporativos-premium/': 'brindes', '/kits-corporativos/': 'kits', '/confeccoes-personalizadas/': 'confeccoes', '/ativacoes-promocionais/': 'ativacoes', '/hotelaria-e-gastronomia/': 'hotelaria' };
+  var tipoPorPagina = { '/brindes-corporativos/': 'brindes', '/brindes-corporativos-premium/': 'brindes', '/kits-corporativos/': 'kits', '/confeccoes-personalizadas/': 'confeccoes', '/ativacoes-promocionais/': 'ativacoes', '/hotelaria-e-gastronomia/': 'hotelaria', '/brindes-de-fim-de-ano/': 'kits' };
   if (!form.querySelector('input[name="tipo"]:checked') && tipoPorPagina[origemPagina]) {
     var rt = form.querySelector('input[name="tipo"][value="' + tipoPorPagina[origemPagina] + '"]'); if (rt) { rt.checked = true; syncType(); }
   }

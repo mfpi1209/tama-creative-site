@@ -162,7 +162,8 @@ try {
   await page.goto(BASE + '/catalogo/', { waitUntil: 'networkidle0' });
   const catVisible = () => page.$$eval('#catalogo-grid .product', g => g.filter(x => !x.hidden && getComputedStyle(x).display !== 'none').length);   // conta o que está mesmo na tela
   const nModelos = +(await page.$eval('h1', h => (h.textContent.match(/(\d+) modelos/) || [])[1]));
-  ok(await page.$$eval('h1', h => h.length === 1) && nModelos >= 51, `página do catálogo tem H1 com o total (${nModelos})`);
+  ok(await page.$$eval('h1', h => h.length === 1) && nModelos === 67, `página do catálogo tem H1 com o total de 67 modelos (${nModelos})`);
+  ok(await page.$$eval('#catalogo-grid .product[data-cat="garrafas-copos"]', g => g.length) === 24 && await page.$eval('input[name="categoria"][value="garrafas-copos"]', i => i.parentNode.querySelector('small').textContent === '24'), 'Garrafas e copos tem 24 modelos (11 + 13 de fim de ano)');
   ok(await catVisible() === nModelos && await page.$$eval('#catalogo-grid .product .prod-media > picture img', (i, n) => i.length === n && i.every(x => x.alt.length > 15), nModelos), 'catálogo mostra todos os modelos do banco, com texto alternativo');
   ok(await page.$$eval('#catalogo-grid .product[data-slug="caneca"] .swatch', s => s.length === 5), 'caneca tem 5 cores com foto');
   ok(await colorsHavePhoto(page, '#catalogo-grid .product.studio'), 'toda cor mostrada no catálogo tem foto própria (nenhuma bolinha sem efeito)');
@@ -226,6 +227,20 @@ try {
   ok(await page.$$eval('.studio-grid .product', ps => ps.length === 4 && ps.every(p => p.getAttribute('data-cat') === 'garrafas-copos')), 'página do modelo sugere 4 modelos da mesma categoria');
   await page.goto(BASE + '/catalogo/?categoria=vestuario', { waitUntil: 'networkidle0' });
   ok(await catVisible() === 11 && await page.$eval('input[name="categoria"][value="vestuario"]', i => i.checked), '?categoria=vestuario abre o catálogo já filtrado (11 peças de vestuário)');
+  // ocasião pela URL (links da página de fim de ano): usa o data-occ dos cards, mostra a etiqueta e combina com a categoria
+  await page.goto(BASE + '/catalogo/?ocasiao=fim-de-ano', { waitUntil: 'networkidle0' });
+  const occFim = await page.$$eval('#catalogo-grid .product', g => ({ n: g.filter(x => !x.hidden).length, e: g.filter(x => (x.dataset.occ || '').split(' ').includes('fim-de-ano')).length, fora: g.filter(x => !x.hidden && !(x.dataset.occ || '').split(' ').includes('fim-de-ano')).length }));
+  ok(occFim.n === occFim.e && occFim.fora === 0 && occFim.n >= 20 && await catVisible() === occFim.n, `?ocasiao=fim-de-ano mostra só os modelos de fim de ano (${occFim.n})`);
+  ok(await page.$eval('[data-cat-occ]', b => !b.hidden && b.textContent.includes('Fim de ano')) && await page.$eval('[data-cat-badge]', b => !b.hidden && b.textContent === '1'), 'o filtro de ocasião aparece como etiqueta e conta no botão Filtros');
+  await page.$eval('#cat-filtros input[name="categoria"][value="garrafas-copos"]', el => el.scrollIntoView({ block: 'center' }));
+  await page.click('#cat-filtros input[name="categoria"][value="garrafas-copos"]'); await sleep(200);
+  const occCat = await page.$$eval('#catalogo-grid .product', g => ({ n: g.filter(x => !x.hidden).length, e: g.filter(x => x.dataset.cat === 'garrafas-copos' && (x.dataset.occ || '').split(' ').includes('fim-de-ano')).length }));
+  ok(occCat.n === occCat.e && occCat.n > 0 && occCat.n < occFim.n && /ocasiao=fim-de-ano/.test(await page.evaluate(() => location.search)) && /categoria=garrafas-copos/.test(await page.evaluate(() => location.search)), `ocasião + categoria combinam e ficam na URL (${occCat.n})`);
+  await page.$eval('[data-cat-occ-clear]', el => el.scrollIntoView({ block: 'center' }));
+  await page.click('[data-cat-occ-clear]'); await sleep(200);
+  ok(await page.$eval('[data-cat-occ]', b => b.hidden) && !/ocasiao=/.test(await page.evaluate(() => location.search)) && await catVisible() === 24, 'remover a etiqueta tira só a ocasião (fica Garrafas e copos, 24 modelos)');
+  await page.goto(BASE + '/catalogo/?ocasiao=nao-existe', { waitUntil: 'networkidle0' });
+  ok(await catVisible() === nModelos && await page.$eval('[data-cat-occ]', b => b.hidden), 'ocasião desconhecida na URL abre o catálogo sem filtro');
   await page.goto(BASE + '/brindes-corporativos/', { waitUntil: 'networkidle0' });
   ok(await page.$$eval('.studio-grid .product.studio', c => c.length === 12) && await page.$$eval('.studio-grid', g => g.length === 1), 'brindes: uma grade só, com 12 modelos do catálogo');
   ok(await colorsHavePhoto(page, '.studio-grid .product'), 'brindes: toda cor mostrada tem foto própria');
@@ -335,6 +350,17 @@ try {
        `${path}: um H1, CTA com o tipo ${tipo} e peças do catálogo`);
   }
   ok(await fp.$$eval('.studio-grid .product', c => ['cardapio', 'porta-contas', 'dolma', 'avental'].every(s => c.some(x => x.dataset.slug === s))), 'hotelaria reúne cardápio, porta-contas, dólmã e avental da mesma base');
+  await fp.goto(BASE + '/brindes-de-fim-de-ano/', { waitUntil: 'networkidle0' });
+  ok(await fp.$$eval('h1', h => h.length === 1 && h[0].textContent === 'Brindes de fim de ano para clientes e equipes') && await fp.$eval('.page-head .page-media img', i => i.loading === 'eager' && i.alt.length > 20), 'fim de ano: um H1 e a foto do Kit Brinde na abertura');
+  ok(await fp.$$eval('.page-head .actions a', a => a.map(x => x.getAttribute('href')).join() === '/solicitar-proposta/?tipo=kits,#brindar'), 'fim de ano: "Planejar meu fim de ano" (tipo=kits) e "Ver as taças" (#brindar)');
+  ok(await fp.$$eval('#brindar .product.studio', c => c.length === 8 && c.every(x => (x.dataset.occ || '').split(' ').includes('fim-de-ano'))) && await fp.$eval('#brindar a[href="/catalogo/?ocasiao=fim-de-ano"]', a => /fim de ano no catálogo/.test(a.textContent)), 'fim de ano: 8 taças e copos em #brindar, com link para o catálogo filtrado');
+  ok(await fp.$$eval('.kit-card', k => k.length === 2 && k.every(x => x.classList.contains('big') && x.querySelector('img').alt.length > 20)) && await fp.$$eval('.kit-card a', a => a.map(x => x.getAttribute('href')).join() === '/solicitar-proposta/?tipo=kits&interesse=Kit%20Brinde,/solicitar-proposta/?tipo=kits&interesse=Kit%20Coquetel'), 'fim de ano: Kit Brinde e Kit Coquetel, com "Quero este kit" no pedido');
+  ok(await fp.$$eval('#presentear .product.studio', c => c.map(x => x.dataset.slug).join() === 'agenda,caneta-executiva-com-estojo,vela,caixa-para-presente'), 'fim de ano: 4 peças em "Para presentear"');
+  ok(await fp.$$eval('.steps .step', s => s.length === 4) && await fp.$$eval('.faq-list details', d => d.length === 4) && await fp.$$eval('a[href="/solicitar-proposta/?tipo=kits"]', a => a.length >= 2), 'fim de ano: 4 passos, 4 perguntas e CTA final com tipo=kits');
+  ok(await colorsHavePhoto(fp, '.studio-grid .product'), 'fim de ano: toda cor mostrada tem foto própria');
+  await fp.goto(BASE + '/', { waitUntil: 'networkidle0' });
+  ok(await fp.$$eval('#col-rail a.collection', a => { const f = a.find(x => x.querySelector('h3').textContent === 'Fim de ano'); return !!f && f.getAttribute('href') === '/brindes-de-fim-de-ano/' && (f.querySelector('img').currentSrc || f.querySelector('img').src).includes('kitp-kit-brinde') && a.filter(x => x !== f).every(x => /^\/brindes-corporativos-premium\/\?ocasiao=[a-z-]+#pecas$/.test(x.getAttribute('href'))); }), 'coleção Fim de ano leva à página nova com a foto do Kit Brinde; as outras seguem para as ideias filtradas');
+  ok(await fp.$eval('.site-footer a[href="/brindes-de-fim-de-ano/"]', a => a.textContent === 'Brindes de fim de ano'), 'rodapé lista "Brindes de fim de ano" nas soluções');
   await fp.goto(BASE + '/', { waitUntil: 'networkidle0' });
   ok(await fp.$$eval('.frentes-grid .frente-card', a => a.map(x => x.getAttribute('href')).join() === '/brindes-corporativos/,/confeccoes-personalizadas/,/kits-corporativos/'), 'home apresenta as três frentes do mockup');
   ok(await fp.$eval('h1', h => /Brindes, confecções e ativações/.test(h.textContent)), 'H1 da home diz o que a TaMa oferece');

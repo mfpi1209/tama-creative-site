@@ -7493,6 +7493,265 @@
    "substitui": null
   },
   {
+   "id": "copo-acrilico-colorido~azul",
+   "produto": "Copo colorido texturizado",
+   "categoria": "garrafas-copos",
+   "modelo": "Textura torcida nas paredes",
+   "cor": {
+    "nome": "Azul",
+    "hex": "#1F4FB8"
+   },
+   "material": {
+    "valor": "Acrílico",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk ou tampografia",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Copo azul com textura torcida e a marca TaMa em branco.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base copo-acrilico-colorido~verde-limao.",
+   "arquivo": "/img/produtos/copo-acrilico-colorido~azul.webp",
+   "mestre": "midia/produtos/mestre/copo-acrilico-colorido~azul.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "2d882b21fc2bafd1210180c856e05e2a30689eecb616f4bf393c4dcd5e2e30f7",
+   "bytes": 1067675,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "id": "copo-acrilico-colorido~laranja",
+   "produto": "Copo colorido texturizado",
+   "categoria": "garrafas-copos",
+   "modelo": "Textura torcida nas paredes",
+   "cor": {
+    "nome": "Laranja",
+    "hex": "#E8792B"
+   },
+   "material": {
+    "valor": "Acrílico",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk ou tampografia",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Copo laranja com textura torcida e a marca TaMa em branco.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base copo-acrilico-colorido~verde-limao.",
+   "arquivo": "/img/produtos/copo-acrilico-colorido~laranja.webp",
+   "mestre": "midia/produtos/mestre/copo-acrilico-colorido~laranja.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "6c297897d7381f41bf1e35e9dcead93c7aca98b591aa761a8c6b39e80f80fa56",
+   "bytes": 1117579,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "id": "copo-acrilico-colorido~rosa",
+   "produto": "Copo colorido texturizado",
+   "categoria": "garrafas-copos",
+   "modelo": "Textura torcida nas paredes",
+   "cor": {
+    "nome": "Rosa",
+    "hex": "#E07A9B"
+   },
+   "material": {
+    "valor": "Acrílico",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk ou tampografia",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Copo rosa com textura torcida e a marca TaMa em branco.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base copo-acrilico-colorido~verde-limao.",
+   "arquivo": "/img/produtos/copo-acrilico-colorido~rosa.webp",
+   "mestre": "midia/produtos/mestre/copo-acrilico-colorido~rosa.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "040a254b78667096544df89c23beb5c373fcd9d065e131afc70395684ceb6812",
+   "bytes": 1085744,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "id": "copo-acrilico-colorido~transparente",
+   "produto": "Copo colorido texturizado",
+   "categoria": "garrafas-copos",
+   "modelo": "Textura torcida nas paredes",
+   "cor": {
+    "nome": "Transparente",
+    "hex": "#E9EEF0"
+   },
+   "material": {
+    "valor": "Acrílico",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk ou tampografia",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Copo transparente com textura torcida e a marca TaMa no copo.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base copo-acrilico-colorido~verde-limao.",
+   "arquivo": "/img/produtos/copo-acrilico-colorido~transparente.webp",
+   "mestre": "midia/produtos/mestre/copo-acrilico-colorido~transparente.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "e1d704028566937a71e7541a0c0bb4e9b108f847de05dd81a697f294ebd58f9e",
+   "bytes": 1063118,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "id": "copo-acrilico-colorido~verde-limao",
+   "produto": "Copo colorido texturizado",
+   "categoria": "garrafas-copos",
+   "modelo": "Textura torcida nas paredes",
+   "cor": {
+    "nome": "Verde-limão",
+    "hex": "#B5D334"
+   },
+   "material": {
+    "valor": "Acrílico",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk ou tampografia",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Copo verde-limão com textura torcida e a marca TaMa em branco.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Imagem gerada com IA (OpenAI gpt-image-1.5) em 18/10/2026, a partir da identidade TaMa e de referências de formato enviadas pela TaMa (sem marcas de terceiros). Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Foto-base do fim de ano.",
+   "arquivo": "/img/produtos/copo-acrilico-colorido~verde-limao.webp",
+   "mestre": "midia/produtos/mestre/copo-acrilico-colorido~verde-limao.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "3f37381db2fc4d3304722ce7e34e32fe6cd2eb9bb4984e2f02ca5ff8cfcbf69c",
+   "bytes": 1008893,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "id": "copo-acrilico-colorido~vermelho",
+   "produto": "Copo colorido texturizado",
+   "categoria": "garrafas-copos",
+   "modelo": "Textura torcida nas paredes",
+   "cor": {
+    "nome": "Vermelho",
+    "hex": "#C8202F"
+   },
+   "material": {
+    "valor": "Acrílico",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk ou tampografia",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Copo vermelho com textura torcida e a marca TaMa em branco.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base copo-acrilico-colorido~verde-limao.",
+   "arquivo": "/img/produtos/copo-acrilico-colorido~vermelho.webp",
+   "mestre": "midia/produtos/mestre/copo-acrilico-colorido~vermelho.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "dc4fd64d5487efe7070a1abaf809f7c369a9f4d04833667ba2de36142994dfd9",
+   "bytes": 1124388,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "id": "copo-baixo~transparente",
+   "produto": "Copo baixo",
+   "categoria": "garrafas-copos",
+   "modelo": "Para caipirinha e drinks, com fundo grosso",
+   "cor": {
+    "nome": "Transparente",
+    "hex": "#E9EEF0"
+   },
+   "material": {
+    "valor": "Vidro ou acrílico",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk ou tampografia",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Copo baixo transparente para caipirinha, com a marca TaMa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Imagem gerada com IA (OpenAI gpt-image-1.5) em 18/10/2026, a partir da identidade TaMa e de referências de formato enviadas pela TaMa (sem marcas de terceiros). Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Foto-base do fim de ano.",
+   "arquivo": "/img/produtos/copo-baixo~transparente.webp",
+   "mestre": "midia/produtos/mestre/copo-baixo~transparente.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "09032b156cea9510ea405cca30660100c601e44fce76c10eeb0bee28304495a0",
+   "bytes": 1233613,
+   "atualizado_em": "2026-10-18"
+  },
+  {
    "fornecedor": null,
    "bytes": 1127121,
    "sku": null,
@@ -7604,6 +7863,302 @@
    "substitui": null
   },
   {
+   "id": "copo-cordao~azul",
+   "produto": "Copo com cordão",
+   "categoria": "garrafas-copos",
+   "modelo": "Porta-copo de cordão para eventos",
+   "cor": {
+    "nome": "Azul",
+    "hex": "#1F4FB8"
+   },
+   "material": {
+    "valor": "Plástico reutilizável",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk ou tampografia",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Copo azul com cordão porta-copo e a marca TaMa em branco.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base copo-cordao~verde.",
+   "arquivo": "/img/produtos/copo-cordao~azul.webp",
+   "mestre": "midia/produtos/mestre/copo-cordao~azul.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "861f385f263c864fe19481253c6e2981edbdeb1632e1ec08d9484a5ab3deecdb",
+   "bytes": 1368148,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "id": "copo-cordao~preto",
+   "produto": "Copo com cordão",
+   "categoria": "garrafas-copos",
+   "modelo": "Porta-copo de cordão para eventos",
+   "cor": {
+    "nome": "Preto",
+    "hex": "#1E1E1E"
+   },
+   "material": {
+    "valor": "Plástico reutilizável",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk ou tampografia",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Copo preto com cordão porta-copo e a marca TaMa em branco.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base copo-cordao~verde.",
+   "arquivo": "/img/produtos/copo-cordao~preto.webp",
+   "mestre": "midia/produtos/mestre/copo-cordao~preto.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "0c0a6fe4372d3befed4c3a2f28b9bf6105178a105d1c8fa280387fb46e9071d7",
+   "bytes": 1342286,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "id": "copo-cordao~verde",
+   "produto": "Copo com cordão",
+   "categoria": "garrafas-copos",
+   "modelo": "Porta-copo de cordão para eventos",
+   "cor": {
+    "nome": "Verde",
+    "hex": "#9FD4B4"
+   },
+   "material": {
+    "valor": "Plástico reutilizável",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk ou tampografia",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Copo verde com cordão porta-copo e a marca TaMa em branco.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Imagem gerada com IA (OpenAI gpt-image-1.5) em 18/10/2026, a partir da identidade TaMa e de referências de formato enviadas pela TaMa (sem marcas de terceiros). Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Foto-base do fim de ano.",
+   "arquivo": "/img/produtos/copo-cordao~verde.webp",
+   "mestre": "midia/produtos/mestre/copo-cordao~verde.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "e5702dbeba04fee0e5ad48deff1902fa283bf586a5f0f3c351ea908e96f2fa08",
+   "bytes": 1363385,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "id": "copo-long-drink~azul-claro",
+   "produto": "Copo long drink",
+   "categoria": "garrafas-copos",
+   "modelo": "Alto e reto, para drinks e água",
+   "cor": {
+    "nome": "Azul-claro",
+    "hex": "#9CC3E6"
+   },
+   "material": {
+    "valor": "Acrílico",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk ou tampografia",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Copo long drink azul-claro com a marca TaMa em branco.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base copo-long-drink~rosa.",
+   "arquivo": "/img/produtos/copo-long-drink~azul-claro.webp",
+   "mestre": "midia/produtos/mestre/copo-long-drink~azul-claro.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "83686c1d6913b0f118d6aed7e4df43f6c54f60fd851c9a289c85091b4d74c6a8",
+   "bytes": 371255,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "id": "copo-long-drink~branco",
+   "produto": "Copo long drink",
+   "categoria": "garrafas-copos",
+   "modelo": "Alto e reto, para drinks e água",
+   "cor": {
+    "nome": "Branco",
+    "hex": "#F7F5F0"
+   },
+   "material": {
+    "valor": "Acrílico",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk ou tampografia",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Copo long drink branco com a marca TaMa no copo.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base copo-long-drink~rosa.",
+   "arquivo": "/img/produtos/copo-long-drink~branco.webp",
+   "mestre": "midia/produtos/mestre/copo-long-drink~branco.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "da6365532526f80da80874e79b155fcf23d4e68fb4d1a24f44333c29aa210438",
+   "bytes": 393125,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "id": "copo-long-drink~dourado",
+   "produto": "Copo long drink",
+   "categoria": "garrafas-copos",
+   "modelo": "Alto e reto, para drinks e água",
+   "cor": {
+    "nome": "Dourado",
+    "hex": "#C9A24A"
+   },
+   "material": {
+    "valor": "Acrílico",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk ou tampografia",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Copo long drink dourado com a marca TaMa em branco.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base copo-long-drink~rosa.",
+   "arquivo": "/img/produtos/copo-long-drink~dourado.webp",
+   "mestre": "midia/produtos/mestre/copo-long-drink~dourado.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "cd6fa8e5adb6cbdd3f3890a28f4585186ba1e31ffe308f4ae3003a407733f99e",
+   "bytes": 526273,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "id": "copo-long-drink~rosa",
+   "produto": "Copo long drink",
+   "categoria": "garrafas-copos",
+   "modelo": "Alto e reto, para drinks e água",
+   "cor": {
+    "nome": "Rosa",
+    "hex": "#E8A0B4"
+   },
+   "material": {
+    "valor": "Acrílico",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk ou tampografia",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Copo long drink rosa com a marca TaMa em branco.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Imagem gerada com IA (OpenAI gpt-image-1.5) em 18/10/2026, a partir da identidade TaMa e de referências de formato enviadas pela TaMa (sem marcas de terceiros). Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Foto-base do fim de ano.",
+   "arquivo": "/img/produtos/copo-long-drink~rosa.webp",
+   "mestre": "midia/produtos/mestre/copo-long-drink~rosa.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "d472ec1cc3d13a372e5bd495fb0b7e5ffc6600f904c1ad705d7f4bc298be66ad",
+   "bytes": 382770,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "id": "copo-long-drink~transparente",
+   "produto": "Copo long drink",
+   "categoria": "garrafas-copos",
+   "modelo": "Alto e reto, para drinks e água",
+   "cor": {
+    "nome": "Transparente",
+    "hex": "#E9EEF0"
+   },
+   "material": {
+    "valor": "Acrílico",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk ou tampografia",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Copo long drink transparente com a marca TaMa no copo.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base copo-long-drink~rosa.",
+   "arquivo": "/img/produtos/copo-long-drink~transparente.webp",
+   "mestre": "midia/produtos/mestre/copo-long-drink~transparente.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "4b5b262772e47e76ec93cf13501007490d6bf98c5153827c60e0206a3b7b5f4e",
+   "bytes": 330090,
+   "atualizado_em": "2026-10-18"
+  },
+  {
    "fornecedor": null,
    "bytes": 1166064,
    "sku": null,
@@ -7713,6 +8268,302 @@
    "produto": "Copo para viagem",
    "alt": "Copo de café descartável com tampa, na cor preta, com a marca TaMa na frente.",
    "substitui": null
+  },
+  {
+   "id": "copo-tampa-canudo~azul",
+   "produto": "Copo com tampa e canudo",
+   "categoria": "garrafas-copos",
+   "modelo": "Tampa de encaixe e canudo na mesma cor",
+   "cor": {
+    "nome": "Azul",
+    "hex": "#1F4FB8"
+   },
+   "material": {
+    "valor": "Acrílico",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk ou tampografia",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Copo azul com tampa, canudo e a marca TaMa em branco.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base copo-tampa-canudo~vermelho.",
+   "arquivo": "/img/produtos/copo-tampa-canudo~azul.webp",
+   "mestre": "midia/produtos/mestre/copo-tampa-canudo~azul.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "fdf83e5f8dfbc8c30bd40555adf14e5f9603f56d9eab8b553c8c71211b1f74b0",
+   "bytes": 1215853,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "id": "copo-tampa-canudo~laranja",
+   "produto": "Copo com tampa e canudo",
+   "categoria": "garrafas-copos",
+   "modelo": "Tampa de encaixe e canudo na mesma cor",
+   "cor": {
+    "nome": "Laranja",
+    "hex": "#E8792B"
+   },
+   "material": {
+    "valor": "Acrílico",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk ou tampografia",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Copo laranja com tampa, canudo e a marca TaMa em branco.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base copo-tampa-canudo~vermelho.",
+   "arquivo": "/img/produtos/copo-tampa-canudo~laranja.webp",
+   "mestre": "midia/produtos/mestre/copo-tampa-canudo~laranja.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "ffe822a0e32d78c4858eeb08ee7bfcf09234f8a776ef7645652dc26e436cdf62",
+   "bytes": 1192762,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "id": "copo-tampa-canudo~preto",
+   "produto": "Copo com tampa e canudo",
+   "categoria": "garrafas-copos",
+   "modelo": "Tampa de encaixe e canudo na mesma cor",
+   "cor": {
+    "nome": "Preto",
+    "hex": "#1E1E1E"
+   },
+   "material": {
+    "valor": "Acrílico",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk ou tampografia",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Copo preto com tampa, canudo e a marca TaMa em branco.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base copo-tampa-canudo~vermelho.",
+   "arquivo": "/img/produtos/copo-tampa-canudo~preto.webp",
+   "mestre": "midia/produtos/mestre/copo-tampa-canudo~preto.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "2d4e522f525924ab4476b0a357ed0b9a9f0d8b98da2fcd253cbfc2f19fc0517d",
+   "bytes": 1216645,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "id": "copo-tampa-canudo~rosa",
+   "produto": "Copo com tampa e canudo",
+   "categoria": "garrafas-copos",
+   "modelo": "Tampa de encaixe e canudo na mesma cor",
+   "cor": {
+    "nome": "Rosa",
+    "hex": "#E07A9B"
+   },
+   "material": {
+    "valor": "Acrílico",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk ou tampografia",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Copo rosa com tampa, canudo e a marca TaMa em branco.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base copo-tampa-canudo~vermelho.",
+   "arquivo": "/img/produtos/copo-tampa-canudo~rosa.webp",
+   "mestre": "midia/produtos/mestre/copo-tampa-canudo~rosa.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "e3e9479784eaf59e605b2d9e5e433e4f10b1f401775fe4776f487b31e9e59a9a",
+   "bytes": 1167562,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "id": "copo-tampa-canudo~roxo",
+   "produto": "Copo com tampa e canudo",
+   "categoria": "garrafas-copos",
+   "modelo": "Tampa de encaixe e canudo na mesma cor",
+   "cor": {
+    "nome": "Roxo",
+    "hex": "#6E3FA3"
+   },
+   "material": {
+    "valor": "Acrílico",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk ou tampografia",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Copo roxo com tampa, canudo e a marca TaMa em branco.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base copo-tampa-canudo~vermelho.",
+   "arquivo": "/img/produtos/copo-tampa-canudo~roxo.webp",
+   "mestre": "midia/produtos/mestre/copo-tampa-canudo~roxo.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "74300803c08281e53655eef8f323004fe3b959dee1e27080f319b0849e4d00f7",
+   "bytes": 1206125,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "id": "copo-tampa-canudo~transparente",
+   "produto": "Copo com tampa e canudo",
+   "categoria": "garrafas-copos",
+   "modelo": "Tampa de encaixe e canudo na mesma cor",
+   "cor": {
+    "nome": "Transparente",
+    "hex": "#E9EEF0"
+   },
+   "material": {
+    "valor": "Acrílico",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk ou tampografia",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Copo transparente com tampa, canudo e a marca TaMa no copo.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base copo-tampa-canudo~vermelho.",
+   "arquivo": "/img/produtos/copo-tampa-canudo~transparente.webp",
+   "mestre": "midia/produtos/mestre/copo-tampa-canudo~transparente.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "b7c6b25615d296a4ba8e70d7641ffc308fd6eb3e43bb53dc0e24aca38bd826fc",
+   "bytes": 1154916,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "id": "copo-tampa-canudo~verde",
+   "produto": "Copo com tampa e canudo",
+   "categoria": "garrafas-copos",
+   "modelo": "Tampa de encaixe e canudo na mesma cor",
+   "cor": {
+    "nome": "Verde",
+    "hex": "#1F6B45"
+   },
+   "material": {
+    "valor": "Acrílico",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk ou tampografia",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Copo verde com tampa, canudo e a marca TaMa em branco.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base copo-tampa-canudo~vermelho.",
+   "arquivo": "/img/produtos/copo-tampa-canudo~verde.webp",
+   "mestre": "midia/produtos/mestre/copo-tampa-canudo~verde.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "b50711fd6b86b7963fad886ba4f10489aeb0838765b7ec8bd2bdddd4271783e8",
+   "bytes": 1251698,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "id": "copo-tampa-canudo~vermelho",
+   "produto": "Copo com tampa e canudo",
+   "categoria": "garrafas-copos",
+   "modelo": "Tampa de encaixe e canudo na mesma cor",
+   "cor": {
+    "nome": "Vermelho",
+    "hex": "#C8202F"
+   },
+   "material": {
+    "valor": "Acrílico",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk ou tampografia",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Copo vermelho com tampa, canudo e a marca TaMa em branco.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Imagem gerada com IA (OpenAI gpt-image-1.5) em 18/10/2026, a partir da identidade TaMa e de referências de formato enviadas pela TaMa (sem marcas de terceiros). Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Foto-base do fim de ano.",
+   "arquivo": "/img/produtos/copo-tampa-canudo~vermelho.webp",
+   "mestre": "midia/produtos/mestre/copo-tampa-canudo~vermelho.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "f0dc12eff20bbeb0efdc3eb86addb4f7fbfa83122a6352ca517e0b16da713061",
+   "bytes": 1258469,
+   "atualizado_em": "2026-10-18"
   },
   {
    "fornecedor": null,
@@ -8936,6 +9787,43 @@
    "produto": "Estojo de escritório",
    "alt": "Estojo com zíper, na cor preta, com a marca TaMa em relevo discreto.",
    "substitui": null
+  },
+  {
+   "id": "flute-borda-dourada~transparente",
+   "produto": "Flute com borda dourada",
+   "categoria": "garrafas-copos",
+   "modelo": "Para espumante, com filete dourado na borda",
+   "cor": {
+    "nome": "Transparente",
+    "hex": "#E9EEF0"
+   },
+   "material": {
+    "valor": "Vidro ou acrílico",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk ou tampografia",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Taça flute transparente com borda dourada e a marca TaMa no bojo.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Imagem gerada com IA (OpenAI gpt-image-1.5) em 18/10/2026, a partir da identidade TaMa e de referências de formato enviadas pela TaMa (sem marcas de terceiros). Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Foto-base do fim de ano.",
+   "arquivo": "/img/produtos/flute-borda-dourada~transparente.webp",
+   "mestre": "midia/produtos/mestre/flute-borda-dourada~transparente.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "f5332a762e475a432ea92c4408e617ede8bf9f7384b035c0fd0c9c5916a29305",
+   "bytes": 1167138,
+   "atualizado_em": "2026-10-18"
   },
   {
    "fornecedor": null,
@@ -13446,6 +14334,80 @@
    "substitui": null
   },
   {
+   "id": "taca-champagne-acrilico~transparente",
+   "produto": "Taça de champanhe",
+   "categoria": "garrafas-copos",
+   "modelo": "Modelo flute",
+   "cor": {
+    "nome": "Transparente",
+    "hex": "#E9EEF0"
+   },
+   "material": {
+    "valor": "Acrílico",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Taça de champanhe transparente com a marca TaMa no bojo.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base taca-champagne-acrilico~vermelho.",
+   "arquivo": "/img/produtos/taca-champagne-acrilico~transparente.webp",
+   "mestre": "midia/produtos/mestre/taca-champagne-acrilico~transparente.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "eda93421d852a5a20abf7373b5fc7770c47fc5d4e0b3d2c397b8971a4684038c",
+   "bytes": 1123954,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "id": "taca-champagne-acrilico~turquesa",
+   "produto": "Taça de champanhe",
+   "categoria": "garrafas-copos",
+   "modelo": "Modelo flute",
+   "cor": {
+    "nome": "Turquesa",
+    "hex": "#2BB5A8"
+   },
+   "material": {
+    "valor": "Acrílico",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Taça de champanhe turquesa com a marca TaMa em branco.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base taca-champagne-acrilico~vermelho.",
+   "arquivo": "/img/produtos/taca-champagne-acrilico~turquesa.webp",
+   "mestre": "midia/produtos/mestre/taca-champagne-acrilico~turquesa.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "516bf18755c6a589995c827c35eb3cc59c9a9b2a09681b4460c1ec34aaa10d4f",
+   "bytes": 1079077,
+   "atualizado_em": "2026-10-18"
+  },
+  {
    "fornecedor": null,
    "bytes": 1156254,
    "sku": null,
@@ -13481,6 +14443,117 @@
    "produto": "Taça de champanhe",
    "alt": "Taça flute, na cor vermelha, com a marca TaMa no bojo.",
    "substitui": null
+  },
+  {
+   "id": "taca-coupe~fume",
+   "produto": "Taça coupe canelada",
+   "categoria": "garrafas-copos",
+   "modelo": "Bojo canelado e pé curto",
+   "cor": {
+    "nome": "Fumê",
+    "hex": "#8A8580"
+   },
+   "material": {
+    "valor": "Vidro ou acrílico",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk ou tampografia",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Taça coupe canelada fumê com a marca TaMa em branco.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base taca-coupe~transparente.",
+   "arquivo": "/img/produtos/taca-coupe~fume.webp",
+   "mestre": "midia/produtos/mestre/taca-coupe~fume.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "51fcd3abf04e4fdcd302dc87f50a1d8fd8977b1275230e887d561b7d6316efd9",
+   "bytes": 1178824,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "id": "taca-coupe~rose",
+   "produto": "Taça coupe canelada",
+   "categoria": "garrafas-copos",
+   "modelo": "Bojo canelado e pé curto",
+   "cor": {
+    "nome": "Rosé",
+    "hex": "#E8B4A8"
+   },
+   "material": {
+    "valor": "Vidro ou acrílico",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk ou tampografia",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Taça coupe canelada rosé com a marca TaMa no bojo.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base taca-coupe~transparente.",
+   "arquivo": "/img/produtos/taca-coupe~rose.webp",
+   "mestre": "midia/produtos/mestre/taca-coupe~rose.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "fde1552591a343e7ebe67cecdc09c127377cf0cd5f9d2346b5db6534778b1281",
+   "bytes": 1123166,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "id": "taca-coupe~transparente",
+   "produto": "Taça coupe canelada",
+   "categoria": "garrafas-copos",
+   "modelo": "Bojo canelado e pé curto",
+   "cor": {
+    "nome": "Transparente",
+    "hex": "#E9EEF0"
+   },
+   "material": {
+    "valor": "Vidro ou acrílico",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk ou tampografia",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Taça coupe canelada transparente com a marca TaMa no bojo.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Imagem gerada com IA (OpenAI gpt-image-1.5) em 18/10/2026, a partir da identidade TaMa e de referências de formato enviadas pela TaMa (sem marcas de terceiros). Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Foto-base do fim de ano.",
+   "arquivo": "/img/produtos/taca-coupe~transparente.webp",
+   "mestre": "midia/produtos/mestre/taca-coupe~transparente.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "083737546cc3ac17b097d5355ce520c247bad5aae78063bc80685973536354c2",
+   "bytes": 1194923,
+   "atualizado_em": "2026-10-18"
   },
   {
    "fornecedor": null,
@@ -13594,6 +14667,43 @@
    "substitui": null
   },
   {
+   "id": "taca-gin-acrilico~rosa",
+   "produto": "Taça de gin",
+   "categoria": "garrafas-copos",
+   "modelo": "Bojo largo e haste longa",
+   "cor": {
+    "nome": "Rosa",
+    "hex": "#E07A9B"
+   },
+   "material": {
+    "valor": "Acrílico",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Taça de gin rosa com a marca TaMa em branco.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base taca-gin-acrilico~vermelho.",
+   "arquivo": "/img/produtos/taca-gin-acrilico~rosa.webp",
+   "mestre": "midia/produtos/mestre/taca-gin-acrilico~rosa.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "31da1559cd15e4b73f3713440a1f5404098cc1e6dce2006fb13a39fa1126dac7",
+   "bytes": 1140387,
+   "atualizado_em": "2026-10-18"
+  },
+  {
    "fornecedor": null,
    "bytes": 1213601,
    "sku": null,
@@ -13629,6 +14739,487 @@
    "produto": "Taça de gin",
    "alt": "Taça balão de gin, na cor vermelha, com a marca TaMa no bojo.",
    "substitui": null
+  },
+  {
+   "id": "taca-gin-borda-dourada~branco",
+   "produto": "Taça de gin com borda dourada",
+   "categoria": "garrafas-copos",
+   "modelo": "Bojo largo com filete dourado",
+   "cor": {
+    "nome": "Branco",
+    "hex": "#F7F5F0"
+   },
+   "material": {
+    "valor": "Acrílico",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk ou tampografia",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Taça de gin branca com borda dourada e a marca TaMa no bojo.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base taca-gin-borda-dourada~preto.",
+   "arquivo": "/img/produtos/taca-gin-borda-dourada~branco.webp",
+   "mestre": "midia/produtos/mestre/taca-gin-borda-dourada~branco.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "01ed51e95130a77e3f7e1890873e862834613912e20ac56639188fabc6af383d",
+   "bytes": 1168551,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "id": "taca-gin-borda-dourada~preto",
+   "produto": "Taça de gin com borda dourada",
+   "categoria": "garrafas-copos",
+   "modelo": "Bojo largo com filete dourado",
+   "cor": {
+    "nome": "Preto",
+    "hex": "#1E1E1E"
+   },
+   "material": {
+    "valor": "Acrílico",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk ou tampografia",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Taça de gin preta com borda dourada e a marca TaMa em branco.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Imagem gerada com IA (OpenAI gpt-image-1.5) em 18/10/2026, a partir da identidade TaMa e de referências de formato enviadas pela TaMa (sem marcas de terceiros). Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Foto-base do fim de ano.",
+   "arquivo": "/img/produtos/taca-gin-borda-dourada~preto.webp",
+   "mestre": "midia/produtos/mestre/taca-gin-borda-dourada~preto.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "855dcf68208ac378eb0aa6f371dc7652a7294bdca0d141b18b4e432e108706c8",
+   "bytes": 1178782,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "id": "taca-gin-degrade~branco-e-turquesa",
+   "produto": "Taça de gin degradê",
+   "categoria": "garrafas-copos",
+   "modelo": "Cor em degradê do bojo ao pé",
+   "cor": {
+    "nome": "Branco e turquesa",
+    "hex": "#7FD6CC"
+   },
+   "material": {
+    "valor": "Acrílico",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk ou tampografia",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Taça de gin em degradê de branco para turquesa, com a marca TaMa em branco.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base taca-gin-degrade~rosa-e-azul.",
+   "arquivo": "/img/produtos/taca-gin-degrade~branco-e-turquesa.webp",
+   "mestre": "midia/produtos/mestre/taca-gin-degrade~branco-e-turquesa.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "d371c8845d70679f81d01e7865df9ef7cb65a1c482838e7295e122f73733849a",
+   "bytes": 1130556,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "id": "taca-gin-degrade~rosa-e-azul",
+   "produto": "Taça de gin degradê",
+   "categoria": "garrafas-copos",
+   "modelo": "Cor em degradê do bojo ao pé",
+   "cor": {
+    "nome": "Rosa e azul",
+    "hex": "#D99BC8"
+   },
+   "material": {
+    "valor": "Acrílico",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk ou tampografia",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Taça de gin em degradê de azul para rosa, com a marca TaMa em branco.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Imagem gerada com IA (OpenAI gpt-image-1.5) em 18/10/2026, a partir da identidade TaMa e de referências de formato enviadas pela TaMa (sem marcas de terceiros). Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Foto-base do fim de ano.",
+   "arquivo": "/img/produtos/taca-gin-degrade~rosa-e-azul.webp",
+   "mestre": "midia/produtos/mestre/taca-gin-degrade~rosa-e-azul.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "a5de321eea8e2758e7d926fe7a9f74df3079d81a49dc462b35fb00a83b6b890e",
+   "bytes": 1123982,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "id": "taca-gin-pe-colorido~amarelo",
+   "produto": "Taça de gin com pé colorido",
+   "categoria": "garrafas-copos",
+   "modelo": "Bojo transparente e pé na cor escolhida",
+   "cor": {
+    "nome": "Amarelo",
+    "hex": "#F2C230"
+   },
+   "material": {
+    "valor": "Acrílico",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk ou tampografia",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Taça de gin de bojo transparente e pé amarelo, com a marca TaMa no bojo.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base taca-gin-pe-colorido~vermelho.",
+   "arquivo": "/img/produtos/taca-gin-pe-colorido~amarelo.webp",
+   "mestre": "midia/produtos/mestre/taca-gin-pe-colorido~amarelo.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "161e58e81dddc4fe91c7e269a1f5210da429a2c03cad390e15c252eb0c646e41",
+   "bytes": 1222655,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "id": "taca-gin-pe-colorido~azul",
+   "produto": "Taça de gin com pé colorido",
+   "categoria": "garrafas-copos",
+   "modelo": "Bojo transparente e pé na cor escolhida",
+   "cor": {
+    "nome": "Azul",
+    "hex": "#1F4FB8"
+   },
+   "material": {
+    "valor": "Acrílico",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk ou tampografia",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Taça de gin de bojo transparente e pé azul, com a marca TaMa no bojo.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base taca-gin-pe-colorido~vermelho.",
+   "arquivo": "/img/produtos/taca-gin-pe-colorido~azul.webp",
+   "mestre": "midia/produtos/mestre/taca-gin-pe-colorido~azul.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "72809deb836452c51e33c3cf35b9e907e8a7aaf355194669edcebae35126c323",
+   "bytes": 1248175,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "id": "taca-gin-pe-colorido~pink",
+   "produto": "Taça de gin com pé colorido",
+   "categoria": "garrafas-copos",
+   "modelo": "Bojo transparente e pé na cor escolhida",
+   "cor": {
+    "nome": "Pink",
+    "hex": "#E0408A"
+   },
+   "material": {
+    "valor": "Acrílico",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk ou tampografia",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Taça de gin de bojo transparente e pé pink, com a marca TaMa no bojo.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base taca-gin-pe-colorido~vermelho.",
+   "arquivo": "/img/produtos/taca-gin-pe-colorido~pink.webp",
+   "mestre": "midia/produtos/mestre/taca-gin-pe-colorido~pink.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "26657aca10dc570fa3895e43905c4830c6d868c59b0b55cfc7eac12b1dcda2e1",
+   "bytes": 1170031,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "id": "taca-gin-pe-colorido~verde",
+   "produto": "Taça de gin com pé colorido",
+   "categoria": "garrafas-copos",
+   "modelo": "Bojo transparente e pé na cor escolhida",
+   "cor": {
+    "nome": "Verde",
+    "hex": "#1F6B45"
+   },
+   "material": {
+    "valor": "Acrílico",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk ou tampografia",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Taça de gin de bojo transparente e pé verde, com a marca TaMa no bojo.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base taca-gin-pe-colorido~vermelho.",
+   "arquivo": "/img/produtos/taca-gin-pe-colorido~verde.webp",
+   "mestre": "midia/produtos/mestre/taca-gin-pe-colorido~verde.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "0dcf8112b0d2c2e32435ac5916da71076b5629e1f6dcbf4c329b81cb402820bf",
+   "bytes": 1188336,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "id": "taca-gin-pe-colorido~vermelho",
+   "produto": "Taça de gin com pé colorido",
+   "categoria": "garrafas-copos",
+   "modelo": "Bojo transparente e pé na cor escolhida",
+   "cor": {
+    "nome": "Vermelho",
+    "hex": "#C8202F"
+   },
+   "material": {
+    "valor": "Acrílico",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk ou tampografia",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Taça de gin de bojo transparente e pé vermelho, com a marca TaMa no bojo.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Imagem gerada com IA (OpenAI gpt-image-1.5) em 18/10/2026, a partir da identidade TaMa e de referências de formato enviadas pela TaMa (sem marcas de terceiros). Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Foto-base do fim de ano.",
+   "arquivo": "/img/produtos/taca-gin-pe-colorido~vermelho.webp",
+   "mestre": "midia/produtos/mestre/taca-gin-pe-colorido~vermelho.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "502cac7981624e9a9ab094047e90af58e2d3a5d53132ad67a8827ff3c1bb01a9",
+   "bytes": 1305417,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "id": "taca-gin-pe-colorido~vinho",
+   "produto": "Taça de gin com pé colorido",
+   "categoria": "garrafas-copos",
+   "modelo": "Bojo transparente e pé na cor escolhida",
+   "cor": {
+    "nome": "Vinho",
+    "hex": "#6B1E33"
+   },
+   "material": {
+    "valor": "Acrílico",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk ou tampografia",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Taça de gin de bojo transparente e pé vinho, com a marca TaMa no bojo.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base taca-gin-pe-colorido~vermelho.",
+   "arquivo": "/img/produtos/taca-gin-pe-colorido~vinho.webp",
+   "mestre": "midia/produtos/mestre/taca-gin-pe-colorido~vinho.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "cc4a7a8418c407fccfc74619af14a5878e3edcae79892e2edcc3ae7b09fed8f0",
+   "bytes": 1192952,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "id": "taca-gin-transparente~transparente",
+   "produto": "Taça de gin transparente",
+   "categoria": "garrafas-copos",
+   "modelo": "Bojo largo, para a estampa da marca",
+   "cor": {
+    "nome": "Transparente",
+    "hex": "#E9EEF0"
+   },
+   "material": {
+    "valor": "Vidro ou acrílico",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk ou tampografia",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Taça de gin transparente com a marca TaMa no bojo.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Imagem gerada com IA (OpenAI gpt-image-1.5) em 18/10/2026, a partir da identidade TaMa e de referências de formato enviadas pela TaMa (sem marcas de terceiros). Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Foto-base do fim de ano.",
+   "arquivo": "/img/produtos/taca-gin-transparente~transparente.webp",
+   "mestre": "midia/produtos/mestre/taca-gin-transparente~transparente.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "15b22824554c5ff26a590f4f59823e518f38a3cffa6d6ef7826da7901d2a79c2",
+   "bytes": 1148982,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "id": "taca-margarita~transparente",
+   "produto": "Taça margarita",
+   "categoria": "garrafas-copos",
+   "modelo": "Bojo largo em dois níveis",
+   "cor": {
+    "nome": "Transparente",
+    "hex": "#E9EEF0"
+   },
+   "material": {
+    "valor": "Vidro ou acrílico",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk ou tampografia",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Taça margarita transparente com a marca TaMa no bojo.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Imagem gerada com IA (OpenAI gpt-image-1.5) em 18/10/2026, a partir da identidade TaMa e de referências de formato enviadas pela TaMa (sem marcas de terceiros). Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Foto-base do fim de ano.",
+   "arquivo": "/img/produtos/taca-margarita~transparente.webp",
+   "mestre": "midia/produtos/mestre/taca-margarita~transparente.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "9343a82d85eb0894b619612902a406145fb76c99f191e048adba8d70135982bc",
+   "bytes": 1092275,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "id": "taca-martini~transparente",
+   "produto": "Taça martini",
+   "categoria": "garrafas-copos",
+   "modelo": "Bojo em cone e haste longa",
+   "cor": {
+    "nome": "Transparente",
+    "hex": "#E9EEF0"
+   },
+   "material": {
+    "valor": "Vidro ou acrílico",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Silk ou tampografia",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Taça martini transparente com a marca TaMa no bojo.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Imagem gerada com IA (OpenAI gpt-image-1.5) em 18/10/2026, a partir da identidade TaMa e de referências de formato enviadas pela TaMa (sem marcas de terceiros). Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Foto-base do fim de ano.",
+   "arquivo": "/img/produtos/taca-martini~transparente.webp",
+   "mestre": "midia/produtos/mestre/taca-martini~transparente.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "76b3ba22dbfe72f6aef09636a7cd16443581ea13e5699fb7efdc1eaafa00f423",
+   "bytes": 1204539,
+   "atualizado_em": "2026-10-18"
   },
   {
    "fornecedor": null,

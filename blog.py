@@ -428,6 +428,7 @@ SERVICOS = {
     '/brindes-corporativos/': 'Ver brindes corporativos',
     '/kits-corporativos/': 'Ver kits corporativos',
     '/brindes-corporativos-premium/': 'Ver ideias por ocasião',
+    '/brindes-de-fim-de-ano/': 'Ver brindes de fim de ano',
     '/catalogo/': 'Ver o catálogo',
     '/ativacoes-promocionais/': 'Ver ativações',
     '/hotelaria-e-gastronomia/': 'Ver hotelaria e gastronomia',

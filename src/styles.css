@@ -750,6 +750,13 @@ body:has(.wa-float) .float-bag { bottom: calc(88px + env(safe-area-inset-bottom,
 .cat-open svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; }
 .cat-badge { display: inline-grid; place-items: center; min-width: 20px; height: 20px; padding: 0 6px; border-radius: 999px; background: var(--wine); color: #fff; font-size: .75rem; }
 .cat-badge[hidden] { display: none; }
+.cat-occ { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 14px; font-size: .875rem; color: var(--muted); }
+.cat-occ[hidden] { display: none; }
+.cat-occ-chip { display: inline-flex; align-items: center; gap: 4px; padding: 3px 4px 3px 14px; border: 1px solid var(--wine); border-radius: 999px; background: var(--surface); color: var(--wine); }
+.cat-occ-chip strong { font-weight: 600; }
+.cat-occ-chip button { display: inline-grid; place-items: center; width: 30px; height: 30px; padding: 0; border: 0; border-radius: 50%; background: none; color: inherit; cursor: pointer; }
+.cat-occ-chip button:hover { background: rgba(0, 0, 0, .06); }
+.cat-occ-chip svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; }
 .cat-status { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 14px 0 18px; font-size: .875rem; color: var(--muted); }
 .cat-status strong { color: var(--ink); }
 .studio-grid.cat-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(16px, 2vw, 28px); }

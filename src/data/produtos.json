@@ -64,16 +64,16 @@
    ],
    "ilustrativa": true,
    "aprovacao": "revisao",
-   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "origem": "Logo corrigido com IA (OpenAI gpt-image-1.5, edição com o logo oficial) em 18/10/2026. Ilustrativa.",
    "substitui": null,
-   "observacao": "Variação de cor gerada a partir da foto-base agenda-couro~caramelo.",
+   "observacao": "Logo refeito na revisão de imagens (docs/AUDITORIA-IMAGENS.md).",
    "arquivo": "/img/produtos/agenda-couro~cafe.webp",
    "mestre": "midia/produtos/mestre/agenda-couro~cafe.png",
    "largura": 1024,
    "altura": 1024,
    "sha256": "ff5432179c128b3fb845432721ef817b1ffd636940dfd258388749c9435b5d93",
    "bytes": 1701429,
-   "atualizado_em": "2026-10-17"
+   "atualizado_em": "2026-10-18"
   },
   {
    "id": "agenda-couro~caramelo",
@@ -977,16 +977,16 @@
    ],
    "ilustrativa": true,
    "aprovacao": "revisao",
-   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "origem": "Logo corrigido com IA (OpenAI gpt-image-1.5, edição com o logo oficial) em 18/10/2026. Ilustrativa.",
    "substitui": null,
-   "observacao": "Variação de cor gerada a partir da foto-base avental~jeans.",
+   "observacao": "Logo refeito na revisão de imagens (docs/AUDITORIA-IMAGENS.md).",
    "arquivo": "/img/produtos/avental~cru.webp",
    "mestre": "midia/produtos/mestre/avental~cru.png",
    "largura": 1024,
    "altura": 1024,
    "sha256": "2c123c5a5c6b7b1641f29699f3f924dce818b3dfe899ad1556d777d121bbb5d0",
    "bytes": 1235605,
-   "atualizado_em": "2026-10-17"
+   "atualizado_em": "2026-10-18"
   },
   {
    "id": "avental~jeans",
@@ -1562,16 +1562,16 @@
    ],
    "ilustrativa": true,
    "aprovacao": "revisao",
-   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "origem": "Logo corrigido com IA (OpenAI gpt-image-1.5, edição com o logo oficial) em 18/10/2026. Ilustrativa.",
    "substitui": null,
-   "observacao": "Variação de cor gerada a partir da foto-base bone~verde.",
+   "observacao": "Logo refeito na revisão de imagens (docs/AUDITORIA-IMAGENS.md).",
    "arquivo": "/img/produtos/bone~branco.webp",
    "mestre": "midia/produtos/mestre/bone~branco.png",
    "largura": 1024,
    "altura": 1024,
    "sha256": "f33d8e17b6e8c4623f9643ab567eeff29903d4ce92fa003c597704adf58dc0ba",
    "bytes": 1370055,
-   "atualizado_em": "2026-10-17"
+   "atualizado_em": "2026-10-18"
   },
   {
    "produto": "Boné",
@@ -2450,16 +2450,16 @@
    ],
    "ilustrativa": true,
    "aprovacao": "revisao",
-   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "origem": "Logo corrigido com IA (OpenAI gpt-image-1.5, edição com o logo oficial) em 18/10/2026. Ilustrativa.",
    "substitui": null,
-   "observacao": "Variação de cor gerada a partir da foto-base caixa-personalizada~bordo.",
+   "observacao": "Logo refeito na revisão de imagens (docs/AUDITORIA-IMAGENS.md).",
    "arquivo": "/img/produtos/caixa-personalizada~cru.webp",
    "mestre": "midia/produtos/mestre/caixa-personalizada~cru.png",
    "largura": 1024,
    "altura": 1024,
    "sha256": "732d92a3397ff1d6a1bd4e0a7b81353e85ddfcbb9a59280b6fd9966b33059331",
    "bytes": 1295107,
-   "atualizado_em": "2026-10-17"
+   "atualizado_em": "2026-10-18"
   },
   {
    "id": "caixa-personalizada~preto",
@@ -2746,16 +2746,16 @@
    ],
    "ilustrativa": true,
    "aprovacao": "revisao",
-   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "origem": "Logo corrigido com IA (OpenAI gpt-image-1.5, edição com o logo oficial) em 18/10/2026. Ilustrativa.",
    "substitui": null,
-   "observacao": "Variação de cor gerada a partir da foto-base camiseta-feminina~vermelho.",
+   "observacao": "Logo refeito na revisão de imagens (docs/AUDITORIA-IMAGENS.md).",
    "arquivo": "/img/produtos/camiseta-feminina~branco.webp",
    "mestre": "midia/produtos/mestre/camiseta-feminina~branco.png",
    "largura": 1024,
    "altura": 1024,
    "sha256": "531891c3137a9c480a9dc8ced460a7a9293cba243824508bff40cedae4a359d1",
    "bytes": 1235363,
-   "atualizado_em": "2026-10-17"
+   "atualizado_em": "2026-10-18"
   },
   {
    "produto": "Camiseta feminina",
@@ -4332,16 +4332,16 @@
    ],
    "ilustrativa": true,
    "aprovacao": "revisao",
-   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "origem": "Logo corrigido com IA (OpenAI gpt-image-1.5, edição com o logo oficial) em 18/10/2026. Ilustrativa.",
    "substitui": null,
-   "observacao": "Variação de cor gerada a partir da foto-base caneca~branco.",
+   "observacao": "Logo refeito na revisão de imagens (docs/AUDITORIA-IMAGENS.md).",
    "arquivo": "/img/produtos/caneca~verde.webp",
    "mestre": "midia/produtos/mestre/caneca~verde.png",
    "largura": 1024,
    "altura": 1024,
    "sha256": "8bdb4a359a6aed054f4e2b945fccb8fb17b74c639d080446e964e4dfafd8e7ce",
    "bytes": 1343540,
-   "atualizado_em": "2026-10-17"
+   "atualizado_em": "2026-10-18"
   },
   {
    "id": "caneca~vermelho",
@@ -4408,16 +4408,16 @@
    ],
    "ilustrativa": true,
    "aprovacao": "revisao",
-   "origem": "Imagem gerada com IA (ferramenta informada: Sol 6.1 Leve) em 17/10/2026, a partir da identidade TaMa. Ilustrativa: não é foto do produto final.",
+   "origem": "Logo corrigido com IA (OpenAI gpt-image-1.5, edição com o logo oficial) em 18/10/2026. Ilustrativa.",
    "substitui": null,
-   "observacao": "",
+   "observacao": "Logo refeito na revisão de imagens (docs/AUDITORIA-IMAGENS.md).",
    "arquivo": "/img/produtos/caneta-bambu~natural.webp",
    "mestre": "midia/produtos/mestre/caneta-bambu~natural.png",
    "largura": 1024,
    "altura": 1024,
    "sha256": "e36ec09caf584d27cc0e0a0f4e3e9f7443ea3a4b07832a2e7fd650e19b487cd0",
    "bytes": 1299882,
-   "atualizado_em": "2026-10-17"
+   "atualizado_em": "2026-10-18"
   },
   {
    "id": "caneta-executiva-estojo~azul-marinho",
@@ -5004,16 +5004,16 @@
    ],
    "ilustrativa": true,
    "aprovacao": "revisao",
-   "origem": "Imagem gerada com IA (ferramenta informada: Sol 6.1 Leve) em 17/10/2026, a partir da identidade TaMa. Ilustrativa: não é foto do produto final.",
+   "origem": "Logo corrigido com IA (OpenAI gpt-image-1.5, edição com o logo oficial) em 18/10/2026. Ilustrativa.",
    "substitui": null,
-   "observacao": "",
+   "observacao": "Logo refeito na revisão de imagens (docs/AUDITORIA-IMAGENS.md).",
    "arquivo": "/img/produtos/caneta-kraft~natural.webp",
    "mestre": "midia/produtos/mestre/caneta-kraft~natural.png",
-   "largura": 1254,
-   "altura": 1254,
+   "largura": 1024,
+   "altura": 1024,
    "sha256": "ec21f6cb67581614541debf360a608c0009b91ff77cea0b45a4daad007122f9d",
    "bytes": 1734748,
-   "atualizado_em": "2026-10-17"
+   "atualizado_em": "2026-10-18"
   },
   {
    "id": "caneta-metalica~azul",
@@ -5227,16 +5227,16 @@
    ],
    "ilustrativa": true,
    "aprovacao": "revisao",
-   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "origem": "Logo corrigido com IA (OpenAI gpt-image-1.5, edição com o logo oficial) em 18/10/2026. Ilustrativa.",
    "substitui": null,
-   "observacao": "Variação de cor gerada a partir da foto-base caneta-plastica~vermelho.",
+   "observacao": "Logo refeito na revisão de imagens (docs/AUDITORIA-IMAGENS.md).",
    "arquivo": "/img/produtos/caneta-plastica~branco.webp",
    "mestre": "midia/produtos/mestre/caneta-plastica~branco.png",
    "largura": 1024,
    "altura": 1024,
    "sha256": "f7496c20dc71a71fcac33050b09ecfd69a1fd644772134c377a150767f2e88a5",
    "bytes": 1072654,
-   "atualizado_em": "2026-10-17"
+   "atualizado_em": "2026-10-18"
   },
   {
    "id": "caneta-plastica~preto",
@@ -6229,16 +6229,16 @@
    ],
    "ilustrativa": true,
    "aprovacao": "revisao",
-   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "origem": "Logo corrigido com IA (OpenAI gpt-image-1.5, edição com o logo oficial) em 18/10/2026. Ilustrativa.",
    "substitui": null,
-   "observacao": "Variação de cor gerada a partir da foto-base chaveiro-couro~caramelo.",
+   "observacao": "Logo refeito na revisão de imagens (docs/AUDITORIA-IMAGENS.md).",
    "arquivo": "/img/produtos/chaveiro-couro~preto.webp",
    "mestre": "midia/produtos/mestre/chaveiro-couro~preto.png",
    "largura": 1024,
    "altura": 1024,
    "sha256": "b4dba4368ed5b14515bbe60cb188821dd2673d51ddcc0921804169012c6df92d",
    "bytes": 1450952,
-   "atualizado_em": "2026-10-17"
+   "atualizado_em": "2026-10-18"
   },
   {
    "id": "copo-acrilico-360~azul-marinho",
@@ -6636,16 +6636,16 @@
    ],
    "ilustrativa": true,
    "aprovacao": "revisao",
-   "origem": "Imagem gerada com IA (OpenAI gpt-image-1.5, a partir de descrição, com o logo oficial e uma foto do banco como referência de estilo) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "origem": "Logo corrigido com IA (OpenAI gpt-image-1.5, edição com o logo oficial) em 18/10/2026. Ilustrativa.",
    "substitui": null,
-   "observacao": "Modelo e fornecedor a confirmar.",
+   "observacao": "Logo refeito na revisão de imagens (docs/AUDITORIA-IMAGENS.md).",
    "arquivo": "/img/produtos/copo-termico-vinho~azul-marinho.webp",
    "mestre": "midia/produtos/mestre/copo-termico-vinho~azul-marinho.png",
    "largura": 1024,
    "altura": 1024,
    "sha256": "535ed34ee9fe5e7a2b9b5fb4128928b58edcd053ad55ed61bf4110c00eaaf2ff",
    "bytes": 569161,
-   "atualizado_em": "2026-10-17"
+   "atualizado_em": "2026-10-18"
   },
   {
    "id": "copo-termico-vinho~preto",
@@ -6710,16 +6710,16 @@
    ],
    "ilustrativa": true,
    "aprovacao": "revisao",
-   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "origem": "Logo corrigido com IA (OpenAI gpt-image-1.5, edição com o logo oficial) em 18/10/2026. Ilustrativa.",
    "substitui": null,
-   "observacao": "Variação de cor gerada a partir da foto-base copo-termico-vinho~azul-marinho.",
+   "observacao": "Logo refeito na revisão de imagens (docs/AUDITORIA-IMAGENS.md).",
    "arquivo": "/img/produtos/copo-termico-vinho~verde.webp",
    "mestre": "midia/produtos/mestre/copo-termico-vinho~verde.png",
    "largura": 1024,
    "altura": 1024,
    "sha256": "2bc1c5c997c11d48d77597b6e1fd9234cde4cb7717381925a8fe0ea6a8e0ac79",
    "bytes": 519846,
-   "atualizado_em": "2026-10-17"
+   "atualizado_em": "2026-10-18"
   },
   {
    "id": "copo-termico-vinho~vermelho",
@@ -6822,16 +6822,16 @@
    ],
    "ilustrativa": true,
    "aprovacao": "revisao",
-   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "origem": "Logo corrigido com IA (OpenAI gpt-image-1.5, edição com o logo oficial) em 18/10/2026. Ilustrativa.",
    "substitui": null,
-   "observacao": "Variação de cor gerada a partir da foto-base copo-termico~azul-royal.",
+   "observacao": "Logo refeito na revisão de imagens (docs/AUDITORIA-IMAGENS.md).",
    "arquivo": "/img/produtos/copo-termico~branco.webp",
    "mestre": "midia/produtos/mestre/copo-termico~branco.png",
    "largura": 1024,
    "altura": 1024,
    "sha256": "10b0fe72dbb434b790a4f25b95bbb208bcba29597eb3a11a751db785e813151d",
    "bytes": 1260462,
-   "atualizado_em": "2026-10-17"
+   "atualizado_em": "2026-10-18"
   },
   {
    "id": "copo-termico~preto",
@@ -7898,16 +7898,16 @@
    ],
    "ilustrativa": true,
    "aprovacao": "revisao",
-   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "origem": "Logo corrigido com IA (OpenAI gpt-image-1.5, edição com o logo oficial) em 18/10/2026. Ilustrativa.",
    "substitui": null,
-   "observacao": "Variação de cor gerada a partir da foto-base garrafa-termica~vermelho.",
+   "observacao": "Logo refeito na revisão de imagens (docs/AUDITORIA-IMAGENS.md).",
    "arquivo": "/img/produtos/garrafa-termica~branco.webp",
    "mestre": "midia/produtos/mestre/garrafa-termica~branco.png",
    "largura": 1024,
    "altura": 1024,
    "sha256": "a829dc6aa733c468bf42f7b9b154c3578e0d07bbde54d033a333ec3e19c88819",
    "bytes": 1162235,
-   "atualizado_em": "2026-10-17"
+   "atualizado_em": "2026-10-18"
   },
   {
    "id": "garrafa-termica~preto",
@@ -10890,16 +10890,16 @@
    ],
    "ilustrativa": true,
    "aprovacao": "revisao",
-   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "origem": "Logo corrigido com IA (OpenAI gpt-image-1.5, edição com o logo oficial) em 18/10/2026. Ilustrativa.",
    "substitui": null,
-   "observacao": "Variação de cor gerada a partir da foto-base polo~vermelho.",
+   "observacao": "Logo refeito na revisão de imagens (docs/AUDITORIA-IMAGENS.md).",
    "arquivo": "/img/produtos/polo~branco.webp",
    "mestre": "midia/produtos/mestre/polo~branco.png",
    "largura": 1024,
    "altura": 1024,
    "sha256": "bf4a9a3d3c1a57923eadf6a3369ff7ce327c9398a20cfa533259567b191b46a2",
    "bytes": 1171276,
-   "atualizado_em": "2026-10-17"
+   "atualizado_em": "2026-10-18"
   },
   {
    "produto": "Polo masculina",
@@ -11959,16 +11959,16 @@
    ],
    "ilustrativa": true,
    "aprovacao": "revisao",
-   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "origem": "Logo corrigido com IA (OpenAI gpt-image-1.5, edição com o logo oficial) em 18/10/2026. Ilustrativa.",
    "substitui": null,
-   "observacao": "Variação de cor gerada a partir da foto-base sacola-presente~azul-royal.",
+   "observacao": "Logo refeito na revisão de imagens (docs/AUDITORIA-IMAGENS.md).",
    "arquivo": "/img/produtos/sacola-presente~cru.webp",
    "mestre": "midia/produtos/mestre/sacola-presente~cru.png",
    "largura": 1024,
    "altura": 1024,
    "sha256": "e5b9212a15fd9e77568976a7126a454bcc611e90e4c0c78e1e2e6dd3d68a327b",
    "bytes": 1290117,
-   "atualizado_em": "2026-10-17"
+   "atualizado_em": "2026-10-18"
   },
   {
    "id": "sacola-presente~preto",
@@ -12108,16 +12108,16 @@
    ],
    "ilustrativa": true,
    "aprovacao": "revisao",
-   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "origem": "Logo corrigido com IA (OpenAI gpt-image-1.5, edição com o logo oficial) em 18/10/2026. Ilustrativa.",
    "substitui": null,
-   "observacao": "Variação de cor gerada a partir da foto-base squeeze~azul-royal.",
+   "observacao": "Logo refeito na revisão de imagens (docs/AUDITORIA-IMAGENS.md).",
    "arquivo": "/img/produtos/squeeze~branco.webp",
    "mestre": "midia/produtos/mestre/squeeze~branco.png",
    "largura": 1024,
    "altura": 1024,
    "sha256": "0e308afe17a0d5b1ef63cd0a166a2838da739de055c0fe881ea6bffd3b333a12",
    "bytes": 1091527,
-   "atualizado_em": "2026-10-17"
+   "atualizado_em": "2026-10-18"
   },
   {
    "id": "squeeze~preto",
@@ -12441,16 +12441,16 @@
    ],
    "ilustrativa": true,
    "aprovacao": "revisao",
-   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "origem": "Logo corrigido com IA (OpenAI gpt-image-1.5, edição com o logo oficial) em 18/10/2026. Ilustrativa.",
    "substitui": null,
-   "observacao": "Variação de cor gerada a partir da foto-base taca-gin-acrilico~vermelho.",
+   "observacao": "Logo refeito na revisão de imagens (docs/AUDITORIA-IMAGENS.md).",
    "arquivo": "/img/produtos/taca-gin-acrilico~branco.webp",
    "mestre": "midia/produtos/mestre/taca-gin-acrilico~branco.png",
    "largura": 1024,
    "altura": 1024,
    "sha256": "a33c83bed112e3239c935f44298482fcae1a8f463f70bf1ed8b3aa47af9a2af4",
    "bytes": 1052935,
-   "atualizado_em": "2026-10-17"
+   "atualizado_em": "2026-10-18"
   },
   {
    "id": "taca-gin-acrilico~preto",
@@ -12589,16 +12589,16 @@
    ],
    "ilustrativa": true,
    "aprovacao": "revisao",
-   "origem": "Imagem gerada com IA (OpenAI gpt-image-1.5, a partir de descrição, com o logo oficial e uma foto do banco como referência de estilo) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "origem": "Logo corrigido com IA (OpenAI gpt-image-1.5, edição com o logo oficial) em 18/10/2026. Ilustrativa.",
    "substitui": null,
-   "observacao": "Referência de mercado: taça vinho acrílica 400 ml; modelo e fornecedor a confirmar.",
+   "observacao": "Logo refeito na revisão de imagens (docs/AUDITORIA-IMAGENS.md).",
    "arquivo": "/img/produtos/taca-vinho-acrilico~bordo.webp",
    "mestre": "midia/produtos/mestre/taca-vinho-acrilico~bordo.png",
    "largura": 1024,
    "altura": 1024,
    "sha256": "282d9260d20b4d6f135515dbac1ff18ab647f01477599e0441959add16f13537",
    "bytes": 1170378,
-   "atualizado_em": "2026-10-17"
+   "atualizado_em": "2026-10-18"
   },
   {
    "id": "taca-vinho-acrilico~branco",
@@ -12626,16 +12626,16 @@
    ],
    "ilustrativa": true,
    "aprovacao": "revisao",
-   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "origem": "Logo corrigido com IA (OpenAI gpt-image-1.5, edição com o logo oficial) em 18/10/2026. Ilustrativa.",
    "substitui": null,
-   "observacao": "Variação de cor gerada a partir da foto-base taca-vinho-acrilico~bordo.",
+   "observacao": "Logo refeito na revisão de imagens (docs/AUDITORIA-IMAGENS.md).",
    "arquivo": "/img/produtos/taca-vinho-acrilico~branco.webp",
    "mestre": "midia/produtos/mestre/taca-vinho-acrilico~branco.png",
    "largura": 1024,
    "altura": 1024,
    "sha256": "2e9e585c4f162d2aa4c5480f7efc4662daa8ee27f3d6e9df459aebbd03d549da",
    "bytes": 1075173,
-   "atualizado_em": "2026-10-17"
+   "atualizado_em": "2026-10-18"
   },
   {
    "id": "taca-vinho-acrilico~preto",
@@ -12663,16 +12663,16 @@
    ],
    "ilustrativa": true,
    "aprovacao": "revisao",
-   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "origem": "Logo corrigido com IA (OpenAI gpt-image-1.5, edição com o logo oficial) em 18/10/2026. Ilustrativa.",
    "substitui": null,
-   "observacao": "Variação de cor gerada a partir da foto-base taca-vinho-acrilico~bordo.",
+   "observacao": "Logo refeito na revisão de imagens (docs/AUDITORIA-IMAGENS.md).",
    "arquivo": "/img/produtos/taca-vinho-acrilico~preto.webp",
    "mestre": "midia/produtos/mestre/taca-vinho-acrilico~preto.png",
    "largura": 1024,
    "altura": 1024,
    "sha256": "23999f37936e9ad5bf6388762a9362a65e622adc1d2caafffad931d35bae1dee",
    "bytes": 1199674,
-   "atualizado_em": "2026-10-17"
+   "atualizado_em": "2026-10-18"
   },
   {
    "id": "vela~cafe",

@@ -13,5 +13,11 @@
   "razao_social": "",
   "cnpj": "",
   "cidade": "",
-  "responsavel_comercial": ""
+  "responsavel_comercial": "",
+  "temporada": {
+    "_doc": "Destaque sazonal: entre inicio e fim (MM-DD, data do build) a barra do topo, o menu, o 1º slide da home e um aviso em Brindes, Kits e Catálogo apontam para a página da ocasião. Variável TEMPORADA=off desliga; TEMPORADA=fim-de-ano força.",
+    "chave": "fim-de-ano",
+    "inicio": "10-01",
+    "fim": "12-31"
+  }
 }

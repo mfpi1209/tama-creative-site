@@ -114,7 +114,7 @@ Em `build.py` o blog ocupa só o import, o item do menu e do rodapé, `og_type`/
 | `updated` | não | Última revisão relevante; vira `dateModified` e `lastmod` |
 | `destaque` | não | `true` põe o artigo em destaque no índice entre os do mesmo dia |
 | `tema` | sim | `fim-de-ano`, `boas-vindas`, `politicas`, `eventos`, `sustentabilidade`, `marca`, `uniformes` (lista em `blog.py`, `TEMAS`) |
-| `ocasiao` | não | Chave da curadoria (`boas-vindas`, `eventos`, `executivos`, `campanhas`, `lancamentos`, `fim-de-ano`, `reconhecimento`). Gera o link `/brindes-corporativos-premium/?ocasiao=…` |
+| `ocasiao` | não | Chave da curadoria (`boas-vindas`, `eventos`, `executivos`, `campanhas`, `lancamentos`, `fim-de-ano`, `reconhecimento`). Gera o link `/brindes-por-ocasiao/?ocasiao=…` |
 | `servico` | não | Página de serviço ligada ao artigo (botão no quadro do autor) |
 | `proposta` | não | Tipo pré-selecionado no formulário: `brindes`, `kits`, `confeccoes`, `ativacoes`, `hotelaria`, `integrado` |
 | `palavra_chave` | não | Consulta principal; vai para `keywords` do JSON-LD |
@@ -134,7 +134,7 @@ Em `build.py` o blog ocupa só o import, o item do menu e do rodapé, `og_type`/
 | Chamada para a proposta no meio do texto | Linha sozinha com `[[cta]]` ou `[[cta: texto próprio]]` |
 | Tabelas | Markdown padrão; ficam roláveis no celular |
 | Notas de fonte | `texto.[^id]` no corpo e `[^id]: Fonte. [Link](https://…)` no fim |
-| Links internos | Caminho relativo (`/kits-corporativos/`). O build confere se a página existe, inclusive âncoras de `/brindes-corporativos-premium/` (`#pecas` ou id de modelo) |
+| Links internos | Caminho relativo (`/kits-corporativos/`). O build confere se a página existe, inclusive âncoras de `/brindes-por-ocasiao/` (`#pecas` ou id de modelo) |
 
 ## O que o build verifica
 

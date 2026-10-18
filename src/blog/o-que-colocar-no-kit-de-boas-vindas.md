@@ -115,7 +115,7 @@ Se houver vestuário, inclua a pergunta sobre tamanho no formulário de pré-adm
 
 ## Versões do mesmo kit
 
-Nem todo mundo precisa receber exatamente a mesma caixa. É possível ter versões por área, por cidade ou por modelo de trabalho, mantendo a mesma linguagem visual. Um kit base com peças comuns a todos, mais um ou dois itens específicos, costuma ser mais fácil de manter do que vários kits diferentes.
+Nem todo mundo precisa receber exatamente a mesma caixa. É possível ter versões por área, por cidade ou por modelo de trabalho, mantendo a mesma linguagem visual. Um kit base com peças comuns a todos, mais um ou dois itens específicos, costuma ser mais fácil de manter do que vários kits diferentes. Para montar o seu com a identidade da empresa, conheça os [kits corporativos da TaMa](/kits-corporativos/).
 
 Se as contratações acontecem ao longo do ano, vale combinar na proposta como serão as reposições, para que a pessoa que chega em outubro receba o mesmo cuidado de quem chegou em março.
 

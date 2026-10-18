@@ -107,6 +107,7 @@
     menuBtn.setAttribute('aria-expanded', String(open));
     menuBtn.setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu');
     nav.classList.toggle('is-open', open);
+    document.documentElement.classList.toggle('menu-open', open);   // trava a rolagem do fundo enquanto o menu está aberto
   }
   if (menuBtn) menuBtn.addEventListener('click', function () {
     var abrir = menuBtn.getAttribute('aria-expanded') !== 'true';
@@ -120,7 +121,14 @@
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape' && nav && nav.classList.contains('is-open')) { setMenu(false); menuBtn.focus(); }
   });
-  var legacy = { brindes: '/brindes-corporativos/', curadoria: '/brindes-corporativos-premium/', confeccoes: '/confeccoes-personalizadas/', marcas: '/catalogo/', sobre: '/sobre/', contato: '/solicitar-proposta/', colecoes: '/brindes-corporativos-premium/' };
+  // toque fora do menu (no fundo da página) fecha o menu do celular
+  document.addEventListener('click', function (e) {
+    if (nav && nav.classList.contains('is-open') && !nav.contains(e.target) && !menuBtn.contains(e.target)) setMenu(false);
+  });
+  // ao passar para a largura de computador, o menu do celular não fica aberto por trás
+  if (window.matchMedia) { var mqDesk = window.matchMedia('(min-width: 1240px)'); var fecha = function () { if (mqDesk.matches) setMenu(false); }; if (mqDesk.addEventListener) mqDesk.addEventListener('change', fecha); }
+  // âncoras da home antiga: #brindes e #marcas vão para o mesmo destino que /brindes e /marcas no deploy/nginx.conf
+  var legacy = { brindes: '/brindes-corporativos/', curadoria: '/brindes-por-ocasiao/', ocasioes: '/brindes-por-ocasiao/', confeccoes: '/confeccoes-personalizadas/', marcas: '/catalogo/', sobre: '/sobre/', contato: '/solicitar-proposta/', colecoes: '/brindes-por-ocasiao/' };
   function legacyRedirect() { var h = location.hash.replace('#', ''); if (location.pathname === '/' && legacy[h]) location.replace(legacy[h]); }
   legacyRedirect();
   window.addEventListener('hashchange', legacyRedirect);
@@ -561,8 +569,13 @@
   var grid = document.getElementById('gift-grid');
   if (grid) {
     var params = new URLSearchParams(location.search);
-    var valido = function (f, v) { return v && document.querySelector('.chip[data-filter="' + f + '"][data-value="' + v.replace(/[^a-z-]/g, '') + '"]') ? v : 'todas'; };
-    var state = { cat: valido('cat', params.get('categoria')), occ: valido('occ', params.get('ocasiao')) };   // links antigos com categorias que mudaram abrem sem filtro
+    // categorias antigas que ainda circulam em links: abrem a categoria atual equivalente
+    var ANTIGOS = { cat: { escritorio: 'canetas-escritorio', bebidas: 'garrafas-copos', casa: 'casa-bem-estar', bolsas: 'bolsas-embalagens', embalagem: 'bolsas-embalagens' }, occ: {} };
+    var valido = function (f, v) {
+      if (v && Object.prototype.hasOwnProperty.call(ANTIGOS[f], v)) v = ANTIGOS[f][v];
+      return v && document.querySelector('.chip[data-filter="' + f + '"][data-value="' + v.replace(/[^a-z-]/g, '') + '"]') ? v : 'todas';
+    };
+    var state = { cat: valido('cat', params.get('categoria')), occ: valido('occ', params.get('ocasiao')) };   // valores desconhecidos abrem sem filtro
     var cards = document.querySelectorAll('#gift-grid .product, #idea-grid .idea');
     var countEl = document.getElementById('gift-count'), emptyEl = document.getElementById('gift-empty');
     var alemHead = document.getElementById('alem-head');
@@ -642,7 +655,7 @@
   if (interesse) { var note = document.getElementById('interest-note'); note.textContent = 'Interesse: ' + interesse; note.hidden = false; }
   var origemPagina = paginaAnterior || '';
   // vindo de uma página de frente (ex.: "Montar pedido com a seleção" na Hotelaria), o tipo já vem marcado
-  var tipoPorPagina = { '/brindes-corporativos/': 'brindes', '/brindes-corporativos-premium/': 'brindes', '/kits-corporativos/': 'kits', '/confeccoes-personalizadas/': 'confeccoes', '/ativacoes-promocionais/': 'ativacoes', '/hotelaria-e-gastronomia/': 'hotelaria', '/brindes-de-fim-de-ano/': 'kits' };
+  var tipoPorPagina = { '/brindes-corporativos/': 'brindes', '/brindes-por-ocasiao/': 'brindes', '/kits-corporativos/': 'kits', '/confeccoes-personalizadas/': 'confeccoes', '/ativacoes-promocionais/': 'ativacoes', '/hotelaria-e-gastronomia/': 'hotelaria', '/brindes-de-fim-de-ano/': 'kits' };
   if (!form.querySelector('input[name="tipo"]:checked') && tipoPorPagina[origemPagina]) {
     var rt = form.querySelector('input[name="tipo"][value="' + tipoPorPagina[origemPagina] + '"]'); if (rt) { rt.checked = true; syncType(); }
   }

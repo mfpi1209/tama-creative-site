@@ -1,7 +1,7 @@
 # Banco de imagens de produto
 
 Uma entrada por foto, fundo claro uniforme, quadrada (1024 ou 1254 px), com a identidade TaMa aplicada como exemplo.
-É a **base única** do catálogo: a home, o `/catalogo/`, a página de ocasiões (`/brindes-corporativos-premium/`), as
+É a **base única** do catálogo: a home, o `/catalogo/`, a página de ocasiões (`/brindes-por-ocasiao/`), as
 páginas de frente e os artigos do blog leem os mesmos modelos daqui. Está preparado para, mais adiante, um marketplace.
 
 ## Onde está cada coisa
@@ -61,7 +61,7 @@ foto; o site usa as versões AVIF/WebP/JPEG geradas pelo build.
 | `home` | Modelos que aparecem na home, na ordem. |
 | `prioridade` | Ordem dos modelos dentro de cada categoria no catálogo (os que não estão na lista vêm depois, em ordem alfabética). |
 | `foto_base` | A foto que abre o card de um modelo (`modelo: id da foto`). Sem ela, abre a foto original do modelo (a que não é variação de cor). |
-| `ocasioes` | As ocasiões da página `/brindes-corporativos-premium/` (chave e nome). |
+| `ocasioes` | As ocasiões da página `/brindes-por-ocasiao/` (chave e nome). |
 | `ocasioes_por_modelo` | Em quais ocasiões cada modelo aparece. Modelo sem ocasião não entra nessa página (continua no catálogo). |
 | `aliases` | Slugs antigos (da home, da antiga curadoria e do catálogo) → id atual. Mantém funcionando seleções salvas no navegador, links antigos e peças de artigos. |
 

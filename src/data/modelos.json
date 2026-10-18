@@ -196,7 +196,7 @@
   {
    "produto": "Caneta com acionamento por giro",
    "genero": "f",
-   "resumo": "O acionamento por giro dá a esta caneta metálica um gesto discreto, sem cliques durante as reuniões. Ela é indicada para presentes a clientes, kits para lideranças e eventos corporativos, e fica no bolso ou na mesa de quem a recebe, levando a marca para a rotina de trabalho.",
+   "resumo": "O acionamento por giro dá a esta caneta um gesto discreto, sem cliques durante as reuniões. Ela é indicada para presentes a clientes, kits para lideranças e eventos corporativos, e fica no bolso ou na mesa de quem a recebe, levando a marca para a rotina de trabalho. Material a confirmar na proposta.",
    "usos": [
     "Presentes para clientes",
     "Kits para lideranças",
@@ -212,7 +212,7 @@
   {
    "produto": "Caneta com grip",
    "genero": "f",
-   "resumo": "Com grip emborrachado na área de apoio dos dedos, esta caneta é pensada para quem escreve bastante, seja em treinamentos, cursos e provas, seja no dia a dia do escritório. Funciona bem em kits de integração e em eventos com muitos participantes, levando a marca para cada anotação.",
+   "resumo": "Com grip na área de apoio dos dedos, esta caneta é pensada para quem escreve bastante, seja em treinamentos, cursos e provas, seja no dia a dia do escritório. Funciona bem em kits de integração e em eventos com muitos participantes, levando a marca para cada anotação.",
    "usos": [
     "Treinamentos e cursos",
     "Kits de integração",
@@ -291,8 +291,9 @@
   },
   {
    "produto": "Caneta natural",
+   "nome": "Caneta de corpo claro",
    "genero": "f",
-   "resumo": "De visual natural e leve, a caneta natural combina com empresas que procuram um brinde diferente do comum para o dia a dia. Funciona bem em congressos, feiras e kits de boas-vindas, e acompanha quem a recebe no escritório, levando a marca para cada anotação e cada reunião.",
+   "resumo": "De corpo claro e detalhes prateados, esta caneta tem um visual leve, que foge do brinde comum. Funciona bem em congressos, feiras e kits de boas-vindas, e acompanha quem a recebe no escritório, levando a marca para cada anotação e cada reunião. Material a confirmar na proposta.",
    "usos": [
     "Congressos e feiras",
     "Kits de boas-vindas",
@@ -307,8 +308,9 @@
   },
   {
    "produto": "Caneta parda",
+   "nome": "Caneta de corpo pardo",
    "genero": "f",
-   "resumo": "Simples e simpática, a caneta parda é uma opção para distribuir em feiras, congressos, palestras e treinamentos, onde muitas pessoas passam pelo estande ou pela sala. O tom kraft com detalhes pretos se destaca na mesa e combina com kits de boas-vindas e materiais de eventos. Em cada anotação, a marca segue junto.",
+   "resumo": "Simples e simpática, a caneta de corpo pardo é uma opção para distribuir em feiras, congressos, palestras e treinamentos, onde muitas pessoas passam pelo estande ou pela sala. O tom pardo com detalhes pretos se destaca na mesa e combina com kits de boas-vindas e materiais de eventos. Material a confirmar na proposta.",
    "usos": [
     "Feiras e congressos",
     "Palestras e treinamentos",
@@ -419,8 +421,9 @@
   },
   {
    "produto": "Copo 360°",
+   "nome": "Copo com estampa 360°",
    "genero": "m",
-   "resumo": "A estampa envolvente ocupa toda a volta do copo e abre espaço para a marca aparecer com mais presença. É uma boa escolha para festas, confraternizações, feiras e eventos de grande público, em que o copo circula entre muitas pessoas e segue com elas depois. Cor, material e aplicação da marca são definidos na proposta.",
+   "resumo": "A estampa 360° ocupa toda a volta do copo e abre espaço para a marca aparecer com mais presença. É uma boa escolha para festas, confraternizações, feiras e eventos de grande público, em que o copo circula entre muitas pessoas e segue com elas depois. Cor, material e aplicação da marca são definidos na proposta.",
    "usos": [
     "Festas e confraternizações",
     "Feiras e eventos",
@@ -484,7 +487,7 @@
   {
    "produto": "Copo com tampa",
    "genero": "m",
-   "resumo": "Um copo com tampa com tampa para levar a bebida da mesa de trabalho para reuniões, deslocamentos e eventos. Funciona bem em kits de integração, ações de endomarketing e presentes para clientes, colocando a marca em um objeto que circula pelo dia a dia de quem recebe.",
+   "resumo": "Um copo com tampa para levar a bebida da mesa de trabalho para reuniões, deslocamentos e eventos. Funciona bem em kits de integração, ações de endomarketing e presentes para clientes, colocando a marca em um objeto que circula pelo dia a dia de quem recebe. Material a confirmar na proposta.",
    "usos": [
     "Kits de integração",
     "Ações de endomarketing",
@@ -643,8 +646,9 @@
   },
   {
    "produto": "Flute com borda dourada",
+   "nome": "Taça flute com borda dourada",
    "genero": "f",
-   "resumo": "Alta e esguia, a flute com filete dourado na borda acompanha o espumante nos brindes de fim de ano, nas inaugurações e nas comemorações de metas. Entra bem em kits para clientes e parceiros, com a marca presente no momento do brinde. Cor, material e aplicação da marca são definidos na proposta.",
+   "resumo": "Alta e esguia, a taça flute com filete dourado na borda acompanha o espumante nos brindes de fim de ano, nas inaugurações e nas comemorações de metas. Entra bem em kits para clientes e parceiros, com a marca presente no momento do brinde. Cor, material e aplicação da marca são definidos na proposta.",
    "usos": [
     "Brindes de fim de ano",
     "Inaugurações",
@@ -676,7 +680,7 @@
   {
    "produto": "Guarda-chuva",
    "genero": "m",
-   "resumo": "Em dia de chuva, poucos brindes são tão bem-vindos quanto um guarda-chuva automático, que abre com praticidade na saída do escritório ou de um evento. Ele leva a marca para a rua, em lugares de grande circulação, e é indicado para presentes a clientes, convenções e ações de relacionamento.",
+   "resumo": "Em dia de chuva, poucos brindes são tão bem-vindos quanto um guarda-chuva, que acompanha a saída do escritório ou de um evento. Ele leva a marca para a rua, em lugares de grande circulação, e é indicado para presentes a clientes, convenções e ações de relacionamento.",
    "usos": [
     "Presentes para clientes",
     "Convenções corporativas",
@@ -883,8 +887,9 @@
   },
   {
    "produto": "Squeeze",
-   "genero": "m",
-   "resumo": "Translúcido e com bico, o squeeze é companheiro de treinos, corridas e eventos ao ar livre. Combina com ações de bem-estar, semanas de saúde, maratonas corporativas e kits para participantes de eventos esportivos, deixando a marca visível em momentos de movimento. Cor, material e aplicação da marca são definidos na proposta.",
+   "nome": "Garrafa squeeze",
+   "genero": "f",
+   "resumo": "Translúcida e com bico, a garrafa squeeze é companheira de treinos, corridas e eventos ao ar livre. Combina com ações de bem-estar, semanas de saúde, maratonas corporativas e kits para participantes de eventos esportivos, deixando a marca visível em momentos de movimento. Cor, material e aplicação da marca são definidos na proposta.",
    "usos": [
     "Eventos esportivos",
     "Ações de bem-estar",
@@ -915,8 +920,9 @@
   },
   {
    "produto": "Taça de champanhe",
+   "nome": "Taça flute",
    "genero": "f",
-   "resumo": "Clássica dos brindes, a taça de champanhe acompanha inaugurações, lançamentos, festas de fim de ano e comemorações de metas. Pode compor kits de espumante para clientes e parceiros ou ser entregue aos convidados de um evento, levando a marca para o momento do brinde.",
+   "resumo": "Alta e esguia, a taça flute é a clássica dos brindes e acompanha inaugurações, lançamentos, festas de fim de ano e comemorações de metas. Pode compor kits de espumante para clientes e parceiros ou ser entregue aos convidados de um evento, levando a marca para o momento do brinde. Cor, material e aplicação da marca são definidos na proposta.",
    "usos": [
     "Brindes de lançamento",
     "Festas da empresa",
@@ -931,8 +937,9 @@
   },
   {
    "produto": "Taça de gin",
+   "nome": "Taça de gin colorida",
    "genero": "f",
-   "resumo": "A taça balão de gin é um presente com clima de celebração, pensado para confraternizações, lançamentos e encontros com clientes. Também enriquece kits de drinks e presentes de fim de ano, levando a marca para momentos de brinde e para a casa de quem recebe.",
+   "resumo": "Inteira na mesma cor, do bojo ao pé, a taça de gin colorida traz clima de celebração para confraternizações, lançamentos e encontros com clientes. Também enriquece kits de drinks e presentes de fim de ano, levando a marca para momentos de brinde e para a casa de quem recebe. Cor, material e aplicação da marca são definidos na proposta.",
    "usos": [
     "Kits de drinks",
     "Confraternizações",
@@ -1059,8 +1066,9 @@
   },
   {
    "produto": "Vela",
+   "nome": "Vela aromática em copo",
    "genero": "f",
-   "resumo": "Presente que acolhe, a vela personalizada leva a marca para um momento de pausa de quem recebe, em casa ou no escritório. Combina com kits de fim de ano, ações de bem-estar para colaboradores e agradecimentos a clientes e parceiros. A cinta pode trazer o nome ou a marca da empresa.",
+   "resumo": "Presente que acolhe, a vela aromática em copo leva a marca para um momento de pausa de quem recebe, em casa ou no escritório. Combina com kits de fim de ano, ações de bem-estar para colaboradores e agradecimentos a clientes e parceiros. A cinta pode trazer o nome ou a marca da empresa. Fragrância, cor e materiais são definidos na proposta.",
    "usos": [
     "Presentes de fim de ano",
     "Ações de bem-estar",

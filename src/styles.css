@@ -129,7 +129,7 @@ main { overflow-x: clip; }
 .bag-count { position: absolute; top: -2px; right: -2px; min-width: 20px; height: 20px; padding: 0 5px; border-radius: 999px; background: var(--wine); color: #fff; font-size: .6875rem; font-weight: 700; line-height: 20px; text-align: center; }
 .bag-count[hidden], .result[hidden], .consent[hidden] { display: none !important; }
 .menu-btn { display: none; }
-@media (max-width: 1080px) {
+@media (max-width: 1239px) {
   .menu-btn { display: inline-grid; }
   .site-nav { display: none; position: absolute; inset: 100% 0 auto 0; flex-direction: column; align-items: stretch; gap: 0; max-height: calc(100dvh - var(--header-h)); overflow-y: auto; padding: 6px var(--gutter) 24px; background: var(--bg); box-shadow: var(--shadow-lg); }
   .site-nav.is-open { display: flex; }
@@ -144,6 +144,12 @@ main { overflow-x: clip; }
 .crumbs ol { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
 .crumbs li + li::before { content: "/"; margin-right: 6px; color: var(--line-strong); }
 .crumbs a:hover { color: var(--wine); text-decoration: underline; text-underline-offset: 3px; }
+/* Toque: link da trilha com 44px de altura; o respiro de cima diminui para o texto ficar no mesmo lugar */
+@media (max-width: 760px), (pointer: coarse) {
+  .crumbs { padding-top: 5px; }
+  .crumbs ol { align-items: center; }
+  .crumbs a { display: inline-flex; align-items: center; min-height: 44px; }
+}
 
 /* Hero carousel */
 .hero { position: relative; height: min(640px, 66vw); min-height: 520px; background: var(--forest); color: #fff; overflow: hidden; }
@@ -534,11 +540,21 @@ body:has(.wa-float) .float-bag { bottom: calc(88px + env(safe-area-inset-bottom,
 .link-btn { background: none; border: 0; padding: 0; font: inherit; color: inherit; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
 .footer-links .link-btn { text-decoration: none; padding-block: 5px; }
 .footer-links .link-btn:hover { text-decoration: underline; }
-@media (max-width: 560px) { .consent { left: 10px; right: 10px; bottom: calc(10px + env(safe-area-inset-bottom, 0px)); padding: 16px; gap: 10px; font-size: .8125rem; } .consent .consent-title { font-size: 1.125rem; } }
+/* Celular: aviso de cookies em barra compacta (~140px em 375x812), título só para leitor de tela, botões lado a lado.
+   O .wa-float vem antes do .consent no HTML, por isso o :has() no body; ele sobe enquanto o aviso estiver aberto. */
+@media (max-width: 560px) {
+  .consent { left: 10px; right: 10px; bottom: calc(10px + env(safe-area-inset-bottom, 0px)); padding: 10px 12px; gap: 8px; font-size: .75rem; line-height: 1.35; }
+  .consent .consent-title { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  .consent .actions { flex-wrap: nowrap; gap: 8px; }
+  .consent .actions .btn { flex: 1 1 0; min-width: 0; min-height: 44px; padding-inline: 10px; }
+  body:has(.consent:not([hidden])) .wa-float { bottom: calc(176px + env(safe-area-inset-bottom, 0px)); }
+}
+/* Entre 561 e 760px o aviso (até 560px de largura) encostava no WhatsApp: deixa a faixa da direita livre */
+@media (min-width: 561px) and (max-width: 760px) { body:has(.wa-float) .consent { right: 74px; } }
 
 /* Footer */
 .site-footer { --logo-name: #F6EAE1; --logo-accent: #F2907F; background: var(--dark); color: #F6EAE1; }
-.footer-grid { display: grid; grid-template-columns: minmax(0, 1.4fr) repeat(3, minmax(0, 1fr)); gap: 36px; padding-block: clamp(48px, 6vw, 72px) 36px; border-bottom: 1px solid rgba(255, 255, 255, .17); }
+.footer-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) repeat(4, minmax(0, 1fr)); gap: 28px; padding-block: clamp(48px, 6vw, 72px) 36px; border-bottom: 1px solid rgba(255, 255, 255, .17); }
 .footer-brand { display: grid; gap: 16px; align-content: start; }
 .footer-brand .logo { height: 46px; width: auto; }
 .footer-brand p { color: #C8B9AC; font-size: .875rem; max-width: 26em; }
@@ -546,11 +562,20 @@ body:has(.wa-float) .float-bag { bottom: calc(88px + env(safe-area-inset-bottom,
 .footer-links { list-style: none; padding: 0; display: grid; gap: 2px; font-size: .875rem; }
 .footer-links a { display: inline-block; padding-block: 5px; }
 .footer-links a:hover { text-decoration: underline; text-underline-offset: 4px; }
+/* Toque: links do rodapé com 44px de altura (no desktop com mouse continuam com 33px) */
+@media (max-width: 760px), (pointer: coarse) {
+  .footer-links a, .footer-links .link-btn { display: inline-flex; align-items: center; min-height: 44px; padding-block: 0; }
+}
 .footer-bottom { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; padding-block: 20px 28px; font-size: .75rem; color: #BAAB9F; }
 .footer-bottom .left { display: flex; align-items: center; gap: 14px; }
 .footer-bottom .selo { width: 54px; height: auto; }
 
 /* Responsive */
+/* Abaixo de 1240px as 4 colunas ao lado da marca ficam estreitas (o WhatsApp do contato quebrava): marca em cima, 4 colunas embaixo */
+@media (max-width: 1239px) {
+  .footer-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .footer-brand { grid-column: 1 / -1; }
+}
 @media (max-width: 1180px) {
   .rail .product { flex-basis: calc((100% - 64px) / 5); }
 }
@@ -876,7 +901,7 @@ html.cat-lock { overflow: hidden; }
 [hidden] { display: none !important; }
 /* Botão de proposta dentro do menu: só no menu do celular */
 .site-nav .nav-cta { display: none; }
-@media (max-width: 1080px) { .site-nav .nav-cta { display: inline-flex; justify-content: center; margin-top: 14px; } }
+@media (max-width: 1239px) { .site-nav .nav-cta { display: inline-flex; justify-content: center; margin-top: 14px; } }
 /* Celular: a sacola do cabeçalho já mostra a contagem; a flutuante cobria o "+ Selecionar" da peça ao lado */
 @media (max-width: 760px) { .float-bag { display: none !important; } }
 
@@ -1055,3 +1080,40 @@ html.cat-lock { overflow: hidden; }
 .cat-mais strong { color: var(--ink); }
 .cat-mais .btn { min-width: min(100%, 280px); justify-content: center; }
 
+
+/* temporada (site.config.json › temporada): barra do topo, item do menu e aviso nas páginas */
+.announce-season a { color: #fff; text-decoration: none; }
+.announce-season a:hover { text-decoration: underline; text-underline-offset: 3px; }
+.announce-season strong { color: var(--amber-soft); font-weight: 700; }
+.nav-season { color: var(--wine-2); }
+.nav-season::before { content: ""; width: 7px; height: 7px; margin-right: 7px; border-radius: 50%; background: var(--amber); }
+.nav-long { display: none; }
+@media (min-width: 1500px) { .nav-long { display: inline; } }
+.season-callout { background: var(--ivory); border-block: 1px solid var(--line); }
+.season-callout-in { display: flex; align-items: center; justify-content: space-between; gap: 14px 24px; flex-wrap: wrap; padding-block: 16px; }
+.season-callout p { margin: 0; color: var(--ink); }
+.season-callout strong { font-family: var(--f-serif); font-weight: 400; font-size: 1.125rem; color: var(--wine); margin-right: 8px; }
+@media (max-width: 1239px) {
+  .nav-long { display: inline; }
+  .site-nav .nav-season { order: -1; }
+}
+.menu-btn .i-close, .menu-btn[aria-expanded="true"] .i-open { display: none; }
+.menu-btn[aria-expanded="true"] .i-close { display: inline; }
+@media (max-width: 1239px) { html.menu-open { overflow: hidden; } }
+/* home: as cinco áreas. 1ª linha com 3 cartões, 2ª linha com 2 cartões mais largos (ativações e hotelaria) */
+.frentes-grid { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+.frentes-grid .frente-card { grid-column: span 2; }
+.frentes-grid .frente-card:nth-child(n+4) { grid-column: span 3; }
+.frentes-grid .frente-card:nth-child(n+4) picture { aspect-ratio: 1.75; }
+@media (max-width: 760px) {
+  .frentes-grid { grid-template-columns: minmax(0, 1fr); }
+  .frentes-grid .frente-card, .frentes-grid .frente-card:nth-child(n+4) { grid-column: auto; }
+  .frentes-grid .frente-card:nth-child(n+4) picture { aspect-ratio: 1.165; }
+}
+/* guias do blog nas páginas de serviço e na home */
+.guias-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; padding: 0; margin: 0; list-style: none; }
+.guia { display: grid; gap: 10px; height: 100%; padding: 22px 22px 20px; background: var(--surface); border: 1px solid var(--line); border-radius: 6px; color: var(--ink); transition: border-color .2s ease; }
+.guia:hover { border-color: var(--line-strong); }
+.guia-tag { font-size: .6875rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--amber-ink); }
+.guia strong { font-family: var(--f-serif); font-weight: 400; font-size: 1.25rem; line-height: 1.2; }
+.guia-link { display: inline-flex; align-items: center; gap: 10px; margin-top: auto; font-size: .875rem; font-weight: 700; color: var(--wine); }

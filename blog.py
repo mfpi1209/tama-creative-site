@@ -375,7 +375,7 @@ def article_page(b, a):
         fotos = [s for s in a['pecas'] if b.modelo(s)]
         if fotos:
             if oc:
-                more = (f'/brindes-corporativos-premium/?ocasiao={oc}#pecas', f'Ver todas as ideias para {b.OCCS[oc].lower()}')
+                more = (b.collection_href(oc), 'Ver presentes de fim de ano' if oc == 'fim-de-ano' else f'Ver todas as ideias para {b.OCCS[oc].lower()}')
             else:
                 more = ('/catalogo/', 'Ver o catálogo completo')
             title = '<p class="eyebrow">Do catálogo TaMa</p><h2 id="pecas-a-t" class="section-title">Peças para começar a seleção</h2>'
@@ -427,7 +427,7 @@ def article_page(b, a):
 SERVICOS = {
     '/brindes-corporativos/': 'Ver brindes corporativos',
     '/kits-corporativos/': 'Ver kits corporativos',
-    '/brindes-corporativos-premium/': 'Ver ideias por ocasião',
+    '/brindes-por-ocasiao/': 'Ver brindes por ocasião',
     '/brindes-de-fim-de-ano/': 'Ver brindes de fim de ano',
     '/catalogo/': 'Ver o catálogo',
     '/ativacoes-promocionais/': 'Ver ativações',
@@ -574,7 +574,7 @@ def finalize(b):
     if not ARTS:
         return
     paths = {p['path'] for p in b.BUILT} | {FEED_PATH}
-    na_pagina = {c['slug'] for c in b.CATALOGO if c['ocasioes']}   # /brindes-corporativos-premium/ mostra só modelos com ocasião
+    na_pagina = {c['slug'] for c in b.CATALOGO if c['ocasioes']}   # /brindes-por-ocasiao/ mostra só modelos com ocasião
     anchors = na_pagina | {k for k, v in b.ALIASES.items() if v in na_pagina} | {'pecas'}
     for p in b.BUILT:
         if not p['path'].startswith('/blog/'):
@@ -588,7 +588,7 @@ def finalize(b):
             path = path.split('?')[0]
             if path not in paths and not os.path.exists(os.path.join(b.DIST, path.lstrip('/'))):
                 _err(f'{where}: link interno quebrado {href}')
-            elif frag and path == '/brindes-corporativos-premium/' and frag not in anchors:
+            elif frag and path == '/brindes-por-ocasiao/' and frag not in anchors:
                 _err(f'{where}: âncora inexistente na curadoria #{frag}')
         if a:
             for href in set(re.findall(r'href="(http[^"]*)"', a['html'])):
@@ -645,7 +645,7 @@ def cms_config(b):
         {'label': 'Tema', 'name': 'tema', 'widget': 'select', 'options': [_opt(v[0], k) for k, v in TEMAS.items()]},
         {'label': 'Ocasião da curadoria', 'name': 'ocasiao', 'widget': 'select', 'required': False,
          'options': [_opt(v, k) for k, v in b.OCCS.items()],
-         'hint': 'Liga o artigo à curadoria filtrada (/brindes-corporativos-premium/?ocasiao=…).'},
+         'hint': 'Liga o artigo à curadoria filtrada (/brindes-por-ocasiao/?ocasiao=…).'},
         {'label': 'Página de serviço', 'name': 'servico', 'widget': 'select', 'required': False,
          'options': [_opt(v.replace('Ver ', '').capitalize(), k) for k, v in SERVICOS.items()],
          'hint': 'Botão para o serviço no fim do artigo. Todo artigo deve apontar para um serviço.'},

@@ -500,7 +500,7 @@
    "estoque": null,
    "id": "avental-laco~preto-bordado",
    "vista": "detalhe",
-   "alt": "Detalhe do bordado da marca TaMa em linha branca: avental com laço na cor preto.",
+   "alt": "Detalhe do bordado da marca TaMa em linha branca: avental com laço na cor preta.",
    "uso": [
     "catalogo"
    ],
@@ -536,7 +536,7 @@
    "estoque": null,
    "id": "avental-laco~preto-verso",
    "vista": "verso",
-   "alt": "Verso: avental com laço na cor preto, sem marca.",
+   "alt": "Verso: avental com laço na cor preta, sem marca.",
    "uso": [
     "catalogo"
    ],
@@ -827,7 +827,7 @@
    "estoque": null,
    "id": "avental-laco~vermelho-bordado",
    "vista": "detalhe",
-   "alt": "Detalhe do bordado da marca TaMa em linha branca: avental com laço na cor vermelho.",
+   "alt": "Detalhe do bordado da marca TaMa em linha branca: avental com laço na cor vermelha.",
    "uso": [
     "catalogo"
    ],
@@ -863,7 +863,7 @@
    "estoque": null,
    "id": "avental-laco~vermelho-verso",
    "vista": "verso",
-   "alt": "Verso: avental com laço na cor vermelho, sem marca.",
+   "alt": "Verso: avental com laço na cor vermelha, sem marca.",
    "uso": [
     "catalogo"
    ],
@@ -1084,7 +1084,7 @@
    "estoque": null,
    "id": "avental~preto-bordado",
    "vista": "detalhe",
-   "alt": "Detalhe do bordado da marca TaMa em linha branca: avental personalizado na cor preto.",
+   "alt": "Detalhe do bordado da marca TaMa em linha branca: avental personalizado na cor preta.",
    "uso": [
     "catalogo"
    ],
@@ -1303,7 +1303,7 @@
    "estoque": null,
    "id": "avental~vermelho-bordado",
    "vista": "detalhe",
-   "alt": "Detalhe do bordado da marca TaMa em linha branca: avental personalizado na cor vermelho.",
+   "alt": "Detalhe do bordado da marca TaMa em linha branca: avental personalizado na cor vermelha.",
    "uso": [
     "catalogo"
    ],
@@ -1594,7 +1594,7 @@
    "estoque": null,
    "id": "bone~branco-verso",
    "vista": "verso",
-   "alt": "Verso do boné na cor branco, sem marca.",
+   "alt": "Verso do boné na cor branca, sem marca.",
    "uso": [
     "catalogo"
    ],
@@ -1776,7 +1776,7 @@
    "estoque": null,
    "id": "bone~preto-bordado",
    "vista": "detalhe",
-   "alt": "Detalhe do bordado da marca TaMa em linha branca no boné na cor preto.",
+   "alt": "Detalhe do bordado da marca TaMa em linha branca no boné na cor preta.",
    "uso": [
     "catalogo"
    ],
@@ -1812,7 +1812,7 @@
    "estoque": null,
    "id": "bone~preto-verso",
    "vista": "verso",
-   "alt": "Verso do boné na cor preto, sem marca.",
+   "alt": "Verso do boné na cor preta, sem marca.",
    "uso": [
     "catalogo"
    ],
@@ -2104,7 +2104,7 @@
    "estoque": null,
    "id": "bone~vermelho-bordado",
    "vista": "detalhe",
-   "alt": "Detalhe do bordado da marca TaMa em linha branca no boné na cor vermelho.",
+   "alt": "Detalhe do bordado da marca TaMa em linha branca no boné na cor vermelha.",
    "uso": [
     "catalogo"
    ],
@@ -2140,7 +2140,7 @@
    "estoque": null,
    "id": "bone~vermelho-verso",
    "vista": "verso",
-   "alt": "Verso do boné na cor vermelho, sem marca.",
+   "alt": "Verso do boné na cor vermelha, sem marca.",
    "uso": [
     "catalogo"
    ],
@@ -2742,7 +2742,7 @@
    "estoque": null,
    "id": "camisa-feminina~branco-verso",
    "vista": "verso",
-   "alt": "Verso: camisa feminina na cor branco, sem marca.",
+   "alt": "Verso: camisa feminina na cor branca, sem marca.",
    "uso": [
     "catalogo"
    ],
@@ -2926,7 +2926,7 @@
    "estoque": null,
    "id": "camisa-feminina~preto-bordado",
    "vista": "detalhe",
-   "alt": "Detalhe do bordado da marca TaMa em linha branca: camisa feminina na cor preto.",
+   "alt": "Detalhe do bordado da marca TaMa em linha branca: camisa feminina na cor preta.",
    "uso": [
     "catalogo"
    ],
@@ -2962,7 +2962,7 @@
    "estoque": null,
    "id": "camisa-feminina~preto-verso",
    "vista": "verso",
-   "alt": "Verso: camisa feminina na cor preto, sem marca.",
+   "alt": "Verso: camisa feminina na cor preta, sem marca.",
    "uso": [
     "catalogo"
    ],
@@ -3294,7 +3294,7 @@
    "estoque": null,
    "id": "camisa-masculina~branco-verso",
    "vista": "verso",
-   "alt": "Verso: camisa masculina na cor branco, sem marca.",
+   "alt": "Verso: camisa masculina na cor branca, sem marca.",
    "uso": [
     "catalogo"
    ],
@@ -3478,7 +3478,7 @@
    "estoque": null,
    "id": "camisa-masculina~preto-bordado",
    "vista": "detalhe",
-   "alt": "Detalhe do bordado da marca TaMa em linha branca: camisa masculina na cor preto.",
+   "alt": "Detalhe do bordado da marca TaMa em linha branca: camisa masculina na cor preta.",
    "uso": [
     "catalogo"
    ],
@@ -3514,7 +3514,7 @@
    "estoque": null,
    "id": "camisa-masculina~preto-verso",
    "vista": "verso",
-   "alt": "Verso: camisa masculina na cor preto, sem marca.",
+   "alt": "Verso: camisa masculina na cor preta, sem marca.",
    "uso": [
     "catalogo"
    ],
@@ -3882,7 +3882,7 @@
    "estoque": null,
    "id": "camiseta-feminina~branco-verso",
    "vista": "verso",
-   "alt": "Verso: camiseta feminina na cor branco, sem marca.",
+   "alt": "Verso: camiseta feminina na cor branca, sem marca.",
    "uso": [
     "catalogo"
    ],
@@ -4066,7 +4066,7 @@
    "estoque": null,
    "id": "camiseta-feminina~preto-bordado",
    "vista": "detalhe",
-   "alt": "Detalhe do bordado da marca TaMa em linha branca: camiseta feminina na cor preto.",
+   "alt": "Detalhe do bordado da marca TaMa em linha branca: camiseta feminina na cor preta.",
    "uso": [
     "catalogo"
    ],
@@ -4102,7 +4102,7 @@
    "estoque": null,
    "id": "camiseta-feminina~preto-verso",
    "vista": "verso",
-   "alt": "Verso: camiseta feminina na cor preto, sem marca.",
+   "alt": "Verso: camiseta feminina na cor preta, sem marca.",
    "uso": [
     "catalogo"
    ],
@@ -4397,7 +4397,7 @@
    "estoque": null,
    "id": "camiseta-feminina~vermelho-bordado",
    "vista": "detalhe",
-   "alt": "Detalhe do bordado da marca TaMa em linha branca: camiseta feminina na cor vermelho.",
+   "alt": "Detalhe do bordado da marca TaMa em linha branca: camiseta feminina na cor vermelha.",
    "uso": [
     "catalogo"
    ],
@@ -4433,7 +4433,7 @@
    "estoque": null,
    "id": "camiseta-feminina~vermelho-verso",
    "vista": "verso",
-   "alt": "Verso: camiseta feminina na cor vermelho, sem marca.",
+   "alt": "Verso: camiseta feminina na cor vermelha, sem marca.",
    "uso": [
     "catalogo"
    ],
@@ -4728,7 +4728,7 @@
    "estoque": null,
    "id": "camiseta~branco-verso",
    "vista": "verso",
-   "alt": "Verso: camiseta masculina na cor branco, sem marca.",
+   "alt": "Verso: camiseta masculina na cor branca, sem marca.",
    "uso": [
     "catalogo"
    ],
@@ -4912,7 +4912,7 @@
    "estoque": null,
    "id": "camiseta~preto-bordado",
    "vista": "detalhe",
-   "alt": "Detalhe do bordado da marca TaMa em linha branca: camiseta masculina na cor preto.",
+   "alt": "Detalhe do bordado da marca TaMa em linha branca: camiseta masculina na cor preta.",
    "uso": [
     "catalogo"
    ],
@@ -4948,7 +4948,7 @@
    "estoque": null,
    "id": "camiseta~preto-verso",
    "vista": "verso",
-   "alt": "Verso: camiseta masculina na cor preto, sem marca.",
+   "alt": "Verso: camiseta masculina na cor preta, sem marca.",
    "uso": [
     "catalogo"
    ],
@@ -5242,7 +5242,7 @@
    "estoque": null,
    "id": "camiseta~vermelho-bordado",
    "vista": "detalhe",
-   "alt": "Detalhe do bordado da marca TaMa em linha branca: camiseta masculina na cor vermelho.",
+   "alt": "Detalhe do bordado da marca TaMa em linha branca: camiseta masculina na cor vermelha.",
    "uso": [
     "catalogo"
    ],
@@ -5278,7 +5278,7 @@
    "estoque": null,
    "id": "camiseta~vermelho-verso",
    "vista": "verso",
-   "alt": "Verso: camiseta masculina na cor vermelho, sem marca.",
+   "alt": "Verso: camiseta masculina na cor vermelha, sem marca.",
    "uso": [
     "catalogo"
    ],
@@ -5520,7 +5520,7 @@
    "modelo": "Corpo claro com detalhes prateados",
    "origem": "Logo corrigido com IA (OpenAI gpt-image-1.5, edição com o logo oficial) em 18/10/2026. Ilustrativa.",
    "produto": "Caneta natural",
-   "alt": "Caneta com corpo de tom natural e detalhes cromados, na cor natural, com a marca TaMa no corpo.",
+   "alt": "Caneta de corpo claro com detalhes prateados, na cor natural, com a marca TaMa no corpo.",
    "substitui": null
   },
   {
@@ -5670,7 +5670,7 @@
    "modelo": "Detalhes prateados",
    "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
    "produto": "Caneta executiva esferográfica",
-   "alt": "Caneta executiva esferográfica com detalhes cromados, na cor azul-marinho, com a marca TaMa no corpo.",
+   "alt": "Caneta executiva esferográfica com detalhes prateados, na cor azul-marinho, com a marca TaMa no corpo.",
    "substitui": null
   },
   {
@@ -5707,7 +5707,7 @@
    "modelo": "Detalhes prateados",
    "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
    "produto": "Caneta executiva esferográfica",
-   "alt": "Caneta executiva esferográfica com detalhes cromados, na cor bordô, com a marca TaMa no corpo.",
+   "alt": "Caneta executiva esferográfica com detalhes prateados, na cor bordô, com a marca TaMa no corpo.",
    "substitui": null
   },
   {
@@ -5744,7 +5744,7 @@
    "modelo": "Detalhes prateados",
    "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
    "produto": "Caneta executiva esferográfica",
-   "alt": "Caneta executiva esferográfica com detalhes cromados, na cor prata, com a marca TaMa no corpo.",
+   "alt": "Caneta executiva esferográfica com detalhes prateados, na cor prata, com a marca TaMa no corpo.",
    "substitui": null
   },
   {
@@ -5781,7 +5781,7 @@
    "modelo": "Detalhes prateados",
    "origem": "Imagem gerada com IA (ferramenta informada: Sol 6.1 Leve) em 17/10/2026, a partir da identidade TaMa. Ilustrativa: não é foto do produto final.",
    "produto": "Caneta executiva esferográfica",
-   "alt": "Caneta executiva esferográfica com detalhes cromados, na cor preta, com a marca TaMa no corpo.",
+   "alt": "Caneta executiva esferográfica com detalhes prateados, na cor preta, com a marca TaMa no corpo.",
    "substitui": null
   },
   {
@@ -5818,7 +5818,7 @@
    "modelo": "Clipe e ponta prateados",
    "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
    "produto": "Caneta com acionamento por giro",
-   "alt": "Caneta de giro com detalhes cromados, na cor azul royal, com a marca TaMa no corpo.",
+   "alt": "Caneta de giro com detalhes prateados, na cor azul royal, com a marca TaMa no corpo.",
    "substitui": null
   },
   {
@@ -5855,7 +5855,7 @@
    "modelo": "Clipe e ponta prateados",
    "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
    "produto": "Caneta com acionamento por giro",
-   "alt": "Caneta de giro com detalhes cromados, na cor prata, com a marca TaMa no corpo.",
+   "alt": "Caneta de giro com detalhes prateados, na cor prata, com a marca TaMa no corpo.",
    "substitui": null
   },
   {
@@ -5892,7 +5892,7 @@
    "modelo": "Clipe e ponta prateados",
    "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
    "produto": "Caneta com acionamento por giro",
-   "alt": "Caneta de giro com detalhes cromados, na cor preta, com a marca TaMa no corpo.",
+   "alt": "Caneta de giro com detalhes prateados, na cor preta, com a marca TaMa no corpo.",
    "substitui": null
   },
   {
@@ -5930,7 +5930,7 @@
    "modelo": "Clipe e ponta prateados",
    "origem": "Imagem gerada com IA (ferramenta informada: Sol 6.1 Leve) em 17/10/2026, a partir da identidade TaMa. Ilustrativa: não é foto do produto final.",
    "produto": "Caneta com acionamento por giro",
-   "alt": "Caneta de giro com detalhes cromados, na cor vermelha, com a marca TaMa no corpo.",
+   "alt": "Caneta de giro com detalhes prateados, na cor vermelha, com a marca TaMa no corpo.",
    "substitui": null
   },
   {
@@ -5967,7 +5967,7 @@
    "modelo": "Área de apoio para os dedos",
    "origem": "Imagem gerada com IA (ferramenta informada: Sol 6.1 Leve) em 17/10/2026, a partir da identidade TaMa. Ilustrativa: não é foto do produto final.",
    "produto": "Caneta com grip",
-   "alt": "Caneta de clique com grip emborrachado, na cor azul royal, com a marca TaMa no corpo.",
+   "alt": "Caneta de clique com grip, na cor azul royal, com a marca TaMa no corpo.",
    "substitui": null
   },
   {
@@ -6004,7 +6004,7 @@
    "modelo": "Área de apoio para os dedos",
    "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
    "produto": "Caneta com grip",
-   "alt": "Caneta de clique com grip emborrachado, na cor branca, com a marca TaMa no corpo.",
+   "alt": "Caneta de clique com grip, na cor branca, com a marca TaMa no corpo.",
    "substitui": null
   },
   {
@@ -6041,7 +6041,7 @@
    "modelo": "Área de apoio para os dedos",
    "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
    "produto": "Caneta com grip",
-   "alt": "Caneta de clique com grip emborrachado, na cor preta, com a marca TaMa no corpo.",
+   "alt": "Caneta de clique com grip, na cor preta, com a marca TaMa no corpo.",
    "substitui": null
   },
   {
@@ -6078,7 +6078,7 @@
    "modelo": "Área de apoio para os dedos",
    "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
    "produto": "Caneta com grip",
-   "alt": "Caneta de clique com grip emborrachado, na cor vermelha, com a marca TaMa no corpo.",
+   "alt": "Caneta de clique com grip, na cor vermelha, com a marca TaMa no corpo.",
    "substitui": null
   },
   {
@@ -6116,7 +6116,7 @@
    "modelo": "Corpo pardo com detalhes pretos",
    "origem": "Logo corrigido com IA (OpenAI gpt-image-1.5, edição com o logo oficial) em 18/10/2026. Ilustrativa.",
    "produto": "Caneta parda",
-   "alt": "Caneta com corpo de tom pardo e detalhes pretos, na cor pardo, com a marca TaMa no corpo.",
+   "alt": "Caneta de corpo pardo com detalhes pretos, na cor parda, com a marca TaMa no corpo.",
    "substitui": null
   },
   {
@@ -6154,7 +6154,7 @@
    "modelo": "Corpo fino, detalhes prateados",
    "origem": "Imagem gerada com IA (ferramenta informada: Sol 6.1 Leve) em 17/10/2026, a partir da identidade TaMa. Ilustrativa: não é foto do produto final.",
    "produto": "Caneta slim",
-   "alt": "Caneta de clique com anéis cromados, na cor azul royal, com a marca TaMa no corpo.",
+   "alt": "Caneta de clique com anéis prateados, na cor azul royal, com a marca TaMa no corpo.",
    "substitui": null
   },
   {
@@ -6191,7 +6191,7 @@
    "modelo": "Corpo fino, detalhes prateados",
    "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
    "produto": "Caneta slim",
-   "alt": "Caneta de clique com anéis cromados, na cor prata, com a marca TaMa no corpo.",
+   "alt": "Caneta de clique com anéis prateados, na cor prata, com a marca TaMa no corpo.",
    "substitui": null
   },
   {
@@ -6228,7 +6228,7 @@
    "modelo": "Corpo fino, detalhes prateados",
    "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
    "produto": "Caneta slim",
-   "alt": "Caneta de clique com anéis cromados, na cor preta, com a marca TaMa no corpo.",
+   "alt": "Caneta de clique com anéis prateados, na cor preta, com a marca TaMa no corpo.",
    "substitui": null
   },
   {
@@ -6265,7 +6265,7 @@
    "modelo": "Corpo fino, detalhes prateados",
    "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
    "produto": "Caneta slim",
-   "alt": "Caneta de clique com anéis cromados, na cor vermelha, com a marca TaMa no corpo.",
+   "alt": "Caneta de clique com anéis prateados, na cor vermelha, com a marca TaMa no corpo.",
    "substitui": null
   },
   {
@@ -7822,7 +7822,7 @@
    "modelo": "Para espresso, sem alça",
    "origem": "Imagem gerada com IA (OpenAI gpt-image-1.5, a partir de descrição, com o logo oficial e uma foto do banco como referência de estilo) em 17/10/2026. Ilustrativa: não é foto do produto final.",
    "produto": "Copo de café",
-   "alt": "Copo de café pequeno, sem alça, na cor, com a marca TaMa na frente.",
+   "alt": "Copo de café pequeno, sem alça, na cor prateada, com a marca TaMa na frente.",
    "substitui": null
   },
   {
@@ -8229,7 +8229,7 @@
    "modelo": "Com tampa",
    "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
    "produto": "Copo para viagem",
-   "alt": "Copo de café descartável com tampa, na cor, com a marca TaMa na frente.",
+   "alt": "Copo de café descartável com tampa, na cor parda, com a marca TaMa na frente.",
    "substitui": null
   },
   {
@@ -9143,7 +9143,7 @@
    "estoque": null,
    "id": "dolma~branco-verso",
    "vista": "verso",
-   "alt": "Verso: dólmã profissional na cor branco, sem marca.",
+   "alt": "Verso: dólmã profissional na cor branca, sem marca.",
    "uso": [
     "catalogo"
    ],
@@ -9327,7 +9327,7 @@
    "estoque": null,
    "id": "dolma~preto-bordado",
    "vista": "detalhe",
-   "alt": "Detalhe do bordado da marca TaMa em linha branca: dólmã profissional na cor preto.",
+   "alt": "Detalhe do bordado da marca TaMa em linha branca: dólmã profissional na cor preta.",
    "uso": [
     "catalogo"
    ],
@@ -9363,7 +9363,7 @@
    "estoque": null,
    "id": "dolma~preto-verso",
    "vista": "verso",
-   "alt": "Verso: dólmã profissional na cor preto, sem marca.",
+   "alt": "Verso: dólmã profissional na cor preta, sem marca.",
    "uso": [
     "catalogo"
    ],
@@ -11074,7 +11074,7 @@
    "estoque": null,
    "id": "moletom~branco-verso",
    "vista": "verso",
-   "alt": "Verso: moletom personalizado na cor branco, sem marca.",
+   "alt": "Verso: moletom personalizado na cor branca, sem marca.",
    "uso": [
     "catalogo"
    ],
@@ -11259,7 +11259,7 @@
    "estoque": null,
    "id": "moletom~preto-bordado",
    "vista": "detalhe",
-   "alt": "Detalhe do bordado da marca TaMa em linha branca: moletom personalizado na cor preto.",
+   "alt": "Detalhe do bordado da marca TaMa em linha branca: moletom personalizado na cor preta.",
    "uso": [
     "catalogo"
    ],
@@ -11295,7 +11295,7 @@
    "estoque": null,
    "id": "moletom~preto-verso",
    "vista": "verso",
-   "alt": "Verso: moletom personalizado na cor preto, sem marca.",
+   "alt": "Verso: moletom personalizado na cor preta, sem marca.",
    "uso": [
     "catalogo"
    ],
@@ -11589,7 +11589,7 @@
    "estoque": null,
    "id": "moletom~vermelho-bordado",
    "vista": "detalhe",
-   "alt": "Detalhe do bordado da marca TaMa em linha branca: moletom personalizado na cor vermelho.",
+   "alt": "Detalhe do bordado da marca TaMa em linha branca: moletom personalizado na cor vermelha.",
    "uso": [
     "catalogo"
    ],
@@ -11625,7 +11625,7 @@
    "estoque": null,
    "id": "moletom~vermelho-verso",
    "vista": "verso",
-   "alt": "Verso: moletom personalizado na cor vermelho, sem marca.",
+   "alt": "Verso: moletom personalizado na cor vermelha, sem marca.",
    "uso": [
     "catalogo"
    ],
@@ -12070,7 +12070,7 @@
    "estoque": null,
    "id": "polo-feminina~branco-verso",
    "vista": "verso",
-   "alt": "Verso: polo feminina na cor branco, sem marca.",
+   "alt": "Verso: polo feminina na cor branca, sem marca.",
    "uso": [
     "catalogo"
    ],
@@ -12254,7 +12254,7 @@
    "estoque": null,
    "id": "polo-feminina~preto-bordado",
    "vista": "detalhe",
-   "alt": "Detalhe do bordado da marca TaMa em linha branca: polo feminina na cor preto.",
+   "alt": "Detalhe do bordado da marca TaMa em linha branca: polo feminina na cor preta.",
    "uso": [
     "catalogo"
    ],
@@ -12290,7 +12290,7 @@
    "estoque": null,
    "id": "polo-feminina~preto-verso",
    "vista": "verso",
-   "alt": "Verso: polo feminina na cor preto, sem marca.",
+   "alt": "Verso: polo feminina na cor preta, sem marca.",
    "uso": [
     "catalogo"
    ],
@@ -12584,7 +12584,7 @@
    "estoque": null,
    "id": "polo-feminina~vermelho-bordado",
    "vista": "detalhe",
-   "alt": "Detalhe do bordado da marca TaMa em linha branca: polo feminina na cor vermelho.",
+   "alt": "Detalhe do bordado da marca TaMa em linha branca: polo feminina na cor vermelha.",
    "uso": [
     "catalogo"
    ],
@@ -12620,7 +12620,7 @@
    "estoque": null,
    "id": "polo-feminina~vermelho-verso",
    "vista": "verso",
-   "alt": "Verso: polo feminina na cor vermelho, sem marca.",
+   "alt": "Verso: polo feminina na cor vermelha, sem marca.",
    "uso": [
     "catalogo"
    ],
@@ -14071,7 +14071,7 @@
    "modelo": "Com bico e alça",
    "origem": "Imagem gerada com IA (ferramenta informada: Sol 6.1 Leve) em 17/10/2026, a partir da identidade TaMa. Ilustrativa: não é foto do produto final.",
    "produto": "Squeeze",
-   "alt": "Squeeze translúcido com bico, na cor azul royal, com a marca TaMa no corpo.",
+   "alt": "Garrafa squeeze translúcida com bico, na cor azul royal, com a marca TaMa no corpo.",
    "substitui": null
   },
   {
@@ -14108,7 +14108,7 @@
    "modelo": "Com bico e alça",
    "origem": "Logo corrigido com IA (OpenAI gpt-image-1.5, edição com o logo oficial) em 18/10/2026. Ilustrativa.",
    "produto": "Squeeze",
-   "alt": "Squeeze translúcido com bico, na cor branca, com a marca TaMa no corpo.",
+   "alt": "Garrafa squeeze translúcida com bico, na cor branca, com a marca TaMa no corpo.",
    "substitui": null
   },
   {
@@ -14145,7 +14145,7 @@
    "modelo": "Com bico e alça",
    "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
    "produto": "Squeeze",
-   "alt": "Squeeze translúcido com bico, na cor preta, com a marca TaMa no corpo.",
+   "alt": "Garrafa squeeze translúcida com bico, na cor preta, com a marca TaMa no corpo.",
    "substitui": null
   },
   {
@@ -14182,7 +14182,7 @@
    "modelo": "Com bico e alça",
    "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
    "produto": "Squeeze",
-   "alt": "Squeeze translúcido com bico, na cor verde, com a marca TaMa no corpo.",
+   "alt": "Garrafa squeeze translúcida com bico, na cor verde, com a marca TaMa no corpo.",
    "substitui": null
   },
   {
@@ -14219,7 +14219,7 @@
    "modelo": "Com bico e alça",
    "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
    "produto": "Squeeze",
-   "alt": "Squeeze translúcido com bico, na cor vermelha, com a marca TaMa no corpo.",
+   "alt": "Garrafa squeeze translúcida com bico, na cor vermelha, com a marca TaMa no corpo.",
    "substitui": null
   },
   {
@@ -14253,7 +14253,7 @@
     "valor": "Acrílico",
     "status": "a_confirmar"
    },
-   "modelo": "Modelo flute",
+   "modelo": "Bojo alto e estreito, haste longa",
    "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
    "produto": "Taça de champanhe",
    "alt": "Taça flute, na cor azul royal, com a marca TaMa no bojo.",
@@ -14290,7 +14290,7 @@
     "valor": "Acrílico",
     "status": "a_confirmar"
    },
-   "modelo": "Modelo flute",
+   "modelo": "Bojo alto e estreito, haste longa",
    "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
    "produto": "Taça de champanhe",
    "alt": "Taça flute, na cor branca, com a marca TaMa no bojo.",
@@ -14327,7 +14327,7 @@
     "valor": "Acrílico",
     "status": "a_confirmar"
    },
-   "modelo": "Modelo flute",
+   "modelo": "Bojo alto e estreito, haste longa",
    "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
    "produto": "Taça de champanhe",
    "alt": "Taça flute, na cor preta, com a marca TaMa no bojo.",
@@ -14337,7 +14337,7 @@
    "id": "taca-champagne-acrilico~transparente",
    "produto": "Taça de champanhe",
    "categoria": "garrafas-copos",
-   "modelo": "Modelo flute",
+   "modelo": "Bojo alto e estreito, haste longa",
    "cor": {
     "nome": "Transparente",
     "hex": "#E9EEF0"
@@ -14353,7 +14353,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Taça de champanhe transparente com a marca TaMa no bojo.",
+   "alt": "Taça flute transparente com a marca TaMa no bojo.",
    "uso": [
     "catalogo"
    ],
@@ -14374,7 +14374,7 @@
    "id": "taca-champagne-acrilico~turquesa",
    "produto": "Taça de champanhe",
    "categoria": "garrafas-copos",
-   "modelo": "Modelo flute",
+   "modelo": "Bojo alto e estreito, haste longa",
    "cor": {
     "nome": "Turquesa",
     "hex": "#2BB5A8"
@@ -14390,7 +14390,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Taça de champanhe turquesa com a marca TaMa em branco.",
+   "alt": "Taça flute turquesa com a marca TaMa em branco.",
    "uso": [
     "catalogo"
    ],
@@ -14438,7 +14438,7 @@
     "valor": "Acrílico",
     "status": "a_confirmar"
    },
-   "modelo": "Modelo flute",
+   "modelo": "Bojo alto e estreito, haste longa",
    "origem": "Imagem gerada com IA (OpenAI gpt-image-1.5, a partir de descrição, com o logo oficial e uma foto do banco como referência de estilo) em 17/10/2026. Ilustrativa: não é foto do produto final.",
    "produto": "Taça de champanhe",
    "alt": "Taça flute, na cor vermelha, com a marca TaMa no bojo.",
@@ -14586,10 +14586,10 @@
     "valor": "Acrílico",
     "status": "a_confirmar"
    },
-   "modelo": "Bojo largo e haste longa",
+   "modelo": "Bojo largo e haste longa, inteira na mesma cor",
    "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
    "produto": "Taça de gin",
-   "alt": "Taça balão de gin, na cor azul royal, com a marca TaMa no bojo.",
+   "alt": "Taça de gin colorida, na cor azul royal, com a marca TaMa no bojo.",
    "substitui": null
   },
   {
@@ -14623,10 +14623,10 @@
     "valor": "Acrílico",
     "status": "a_confirmar"
    },
-   "modelo": "Bojo largo e haste longa",
+   "modelo": "Bojo largo e haste longa, inteira na mesma cor",
    "origem": "Logo corrigido com IA (OpenAI gpt-image-1.5, edição com o logo oficial) em 18/10/2026. Ilustrativa.",
    "produto": "Taça de gin",
-   "alt": "Taça balão de gin, na cor branca, com a marca TaMa no bojo.",
+   "alt": "Taça de gin colorida, na cor branca, com a marca TaMa no bojo.",
    "substitui": null
   },
   {
@@ -14660,17 +14660,17 @@
     "valor": "Acrílico",
     "status": "a_confirmar"
    },
-   "modelo": "Bojo largo e haste longa",
+   "modelo": "Bojo largo e haste longa, inteira na mesma cor",
    "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
    "produto": "Taça de gin",
-   "alt": "Taça balão de gin, na cor preta, com a marca TaMa no bojo.",
+   "alt": "Taça de gin colorida, na cor preta, com a marca TaMa no bojo.",
    "substitui": null
   },
   {
    "id": "taca-gin-acrilico~rosa",
    "produto": "Taça de gin",
    "categoria": "garrafas-copos",
-   "modelo": "Bojo largo e haste longa",
+   "modelo": "Bojo largo e haste longa, inteira na mesma cor",
    "cor": {
     "nome": "Rosa",
     "hex": "#E07A9B"
@@ -14686,7 +14686,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Taça de gin rosa com a marca TaMa em branco.",
+   "alt": "Taça de gin colorida, na cor rosa, com a marca TaMa em branco.",
    "uso": [
     "catalogo"
    ],
@@ -14734,10 +14734,10 @@
     "valor": "Acrílico",
     "status": "a_confirmar"
    },
-   "modelo": "Bojo largo e haste longa",
+   "modelo": "Bojo largo e haste longa, inteira na mesma cor",
    "origem": "Imagem gerada com IA (OpenAI gpt-image-1.5, a partir de descrição, com o logo oficial e uma foto do banco como referência de estilo) em 17/10/2026. Ilustrativa: não é foto do produto final.",
    "produto": "Taça de gin",
-   "alt": "Taça balão de gin, na cor vermelha, com a marca TaMa no bojo.",
+   "alt": "Taça de gin colorida, na cor vermelha, com a marca TaMa no bojo.",
    "substitui": null
   },
   {
@@ -15400,10 +15400,10 @@
     "valor": "Vidro e couro",
     "status": "a_confirmar"
    },
-   "modelo": "Em copo, com cinta da marca",
+   "modelo": "Cinta com botão de pressão",
    "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
    "produto": "Vela",
-   "alt": "Vela em copo com cinta e pavio, na cor café, com a marca TaMa na cinta.",
+   "alt": "Vela aromática em copo, com cinta e pavio, na cor café, com a marca TaMa na cinta.",
    "substitui": null
   },
   {
@@ -15439,10 +15439,10 @@
     "valor": "Vidro e couro",
     "status": "a_confirmar"
    },
-   "modelo": "Em copo, com cinta da marca",
+   "modelo": "Cinta com botão de pressão",
    "origem": "Imagem gerada com IA (ferramenta informada: Sol 6.1 Leve) em 17/10/2026, a partir da identidade TaMa. Ilustrativa: não é foto do produto final.",
    "produto": "Vela",
-   "alt": "Vela em copo com cinta e pavio, na cor caramelo, com a marca TaMa na cinta.",
+   "alt": "Vela aromática em copo, com cinta e pavio, na cor caramelo, com a marca TaMa na cinta.",
    "substitui": null
   },
   {
@@ -15476,10 +15476,10 @@
     "valor": "Vidro e couro",
     "status": "a_confirmar"
    },
-   "modelo": "Em copo, com cinta da marca",
+   "modelo": "Cinta com botão de pressão",
    "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
    "produto": "Vela",
-   "alt": "Vela em copo com cinta e pavio, na cor preta, com a marca TaMa na cinta.",
+   "alt": "Vela aromática em copo, com cinta e pavio, na cor preta, com a marca TaMa na cinta.",
    "substitui": null
   }
  ]

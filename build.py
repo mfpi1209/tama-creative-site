@@ -34,6 +34,21 @@ FORM_ENDPOINT = (CFG.get('form_endpoint') or '/api/proposta').strip() or '/api/p
 # Branded mockups (img/marca/ + src/data/mockups.json). Off unless MOCKUPS_MARCA=1 or "mockups_marca": true.
 MOCKUPS = str(os.environ.get('MOCKUPS_MARCA', CFG.get('mockups_marca', ''))).lower() in ('1', 'true', 'yes')
 BUILD_DATE = date.today().isoformat()
+
+
+def _temporada():
+    """Chave da ocasião em destaque (ex.: 'fim-de-ano') quando a data do build está dentro de site.config.json › temporada."""
+    t, env = CFG.get('temporada') or {}, (os.environ.get('TEMPORADA') or '').strip().lower()
+    if env:
+        return None if env in ('off', '0', 'nao', 'não') else env
+    ini, fim, md = t.get('inicio'), t.get('fim'), date.today().strftime('%m-%d')
+    if not (t.get('chave') and ini and fim):
+        return None
+    return t['chave'] if (ini <= md <= fim if ini <= fim else (md >= ini or md <= fim)) else None
+
+
+SEASON = _temporada()   # hoje só existe a temporada de fim de ano (página /brindes-de-fim-de-ano/)
+HTML_SEASON = f' data-temporada="{SEASON}"' if SEASON else ''   # os testes e o CSS sabem se a temporada está ativa
 esc = lambda s: html.escape(s, quote=True)
 
 # ------------------------------------------------------------------ brand svg
@@ -387,6 +402,9 @@ def preparar_modelos():
     por_nome = {m['produto']: m for m in MODELOS}
     for c in CATALOGO:
         c['info'] = por_nome.get(c['nome'], {})
+        # nome de exibição (modelos.json › nome): o slug e a URL continuam vindo do nome do banco de imagens
+        if c['info'].get('nome'):
+            c['nome_banco'], c['nome'] = c['nome'], c['info']['nome']
 
 
 preparar_modelos()
@@ -502,7 +520,7 @@ def catalogo_block():
     cat_opts = (f'<label class="cat-opt"><input type="radio" name="categoria" value="" checked> <span>Todas</span> <small>{len(CATALOGO)}</small></label>'
                 + ''.join(f'<label class="cat-opt"><input type="radio" name="categoria" value="{k}"> <span>{v}</span> <small>{n}</small></label>' for k, v, n in cats if n))
     # ocasião: mesma regra do data-occ dos cards; Fim de ano vem logo depois de "Todas" (temporada), as outras seguem a ordem do selecoes.json
-    occs = sorted(OCCS.items(), key=lambda kv: kv[0] != 'fim-de-ano')
+    occs = sorted(OCCS.items(), key=lambda kv: kv[0] != (SEASON or 'fim-de-ano'))   # a ocasião da temporada vem primeiro
     occ_opts = (f'<label class="cat-opt"><input type="radio" name="ocasiao" value="" checked> <span>Todas</span> <small>{len(CATALOGO)}</small></label>'
                 + ''.join(f'<label class="cat-opt{" is-season" if k == "fim-de-ano" else ""}"><input type="radio" name="ocasiao" value="{k}"> <span>{v}</span> <small>{n}</small></label>'
                           for k, v, n in ((k, v, sum(1 for c in CATALOGO if k in c['ocasioes'])) for k, v in occs) if n))
@@ -555,7 +573,7 @@ def page_catalogo():
     item_list = {'@type': 'ItemList', '@id': url + '#lista', 'name': 'Catálogo de modelos TaMa Creative', 'numberOfItems': len(CATALOGO),
                  'itemListElement': [{'@type': 'ListItem', 'position': i + 1, 'name': c['nome'], 'url': SITE + c['url']} for i, c in enumerate(CATALOGO)]}
     return {
-        'path': '/catalogo/', 'assunto': 'peças do catálogo', 'title': f'Catálogo: {len(CATALOGO)} modelos de brindes e confecções | TaMa Creative',
+        'path': '/catalogo/', 'assunto': 'peças do catálogo', 'title': f'Catálogo: {len(CATALOGO)} modelos de brindes e uniformes | TaMa',
         'og_title': 'Catálogo de modelos · TaMa Creative',
         'description': f'{len(CATALOGO)} modelos para personalizar com a sua marca: vestuário, canetas, bolsas, embalagens, garrafas, acessórios e casa. Monte sua seleção e peça uma proposta.',
         'trail': [('/', 'Início'), ('/catalogo/', 'Catálogo')],
@@ -567,6 +585,7 @@ def page_catalogo():
     <p class="lead">Cada modelo aparece com a identidade TaMa como exemplo. Toque na cor de referência, adicione à seleção e envie junto com o pedido de proposta. Modelos, cores, materiais e técnicas são confirmados na proposta.</p>
   </div></div>
 </section>
+{season_callout('catalogo')}
 {catalogo_block()}
 {end_cta(tipo='brindes')}''',
     }
@@ -787,7 +806,7 @@ COLLECTION_PAGES = {'fim-de-ano': '/brindes-de-fim-de-ano/'}
 
 
 def collection_href(k):
-    return COLLECTION_PAGES.get(k, f'/brindes-corporativos-premium/?ocasiao={k}#pecas')
+    return COLLECTION_PAGES.get(k, f'/brindes-por-ocasiao/?ocasiao={k}#pecas')
 
 
 def collections_block(title='Coleções por ocasião'):
@@ -806,7 +825,7 @@ def collections_block(title='Coleções por ocasião'):
 </section>'''
 
 
-# Kits premium da home (fotos da apresentação TaMa, pacote tama-home-v2): dois destaques e três menores.
+# Kits corporativos da home (fotos da apresentação TaMa, pacote tama-home-v2): dois destaques e três menores.
 # As ocasiões continuam como atalhos para a curadoria filtrada.
 HOME_KITS = [
     ('gelato-experience', 'Gelato Experience', 'Duas taças, duas colheres longas, colher de servir e três toppings. Caixa e cartão personalizados.'),
@@ -827,17 +846,17 @@ def kit_card(i, slug, name, desc, big):
 
 
 def kit_cards():
-    """Os kits premium (home e página de kits): dois destaques e três menores."""
+    """Os kits corporativos (home e página de kits): dois destaques e três menores."""
     return ''.join(kit_card(i, slug, name, desc, i < 2) for i, (slug, name, desc) in enumerate(HOME_KITS))
 
 
 def kits_block():
     cards = kit_cards()
-    occ = ''.join(f'<a class="chip" href="/brindes-corporativos-premium/?ocasiao={k}#pecas">{t}</a>' for k, t, _d, _img in COLLECTIONS)
+    occ = ''.join(f'<a class="chip" href="{collection_href(k)}">{t}</a>' for k, t, _d, _img in COLLECTIONS)
     return f'''<section class="section kits-home" aria-labelledby="kits-t">
   <div class="wrap">
     <div class="section-head row">
-      <div class="stack" style="gap:12px"><p class="eyebrow">Kits premium</p><h2 id="kits-t" class="section-title">Presentes que marcam momentos.</h2><p class="muted">Seleções para surpreender, agradecer e criar conexões. Cada composição se ajusta ao seu público e à sua marca.</p></div>
+      <div class="stack" style="gap:12px"><p class="eyebrow">Kits corporativos</p><h2 id="kits-t" class="section-title">Presentes que marcam momentos.</h2><p class="muted">Seleções para surpreender, agradecer e criar conexões. Cada composição se ajusta ao seu público e à sua marca.</p></div>
       <a class="link" href="/kits-corporativos/">Ver todos os kits {ARROW}</a>
     </div>
     <div class="kit-grid">{cards}</div>
@@ -852,11 +871,14 @@ def kits_block():
 
 # ------------------------------------------------------------------ navigation and shared blocks
 NAV = [
+    # rótulo do menu = começo do nome oficial da área (rodapé, títulos e formulário usam o nome inteiro);
+    # o trecho em <span class="nav-long"> só aparece em telas largas
     ('/brindes-corporativos/', 'Brindes'),
-    ('/confeccoes-personalizadas/', 'Confecções'),
+    ('/confeccoes-personalizadas/', 'Uniformes'),
     ('/kits-corporativos/', 'Kits'),
     ('/ativacoes-promocionais/', 'Ativações'),
-    ('/hotelaria-e-gastronomia/', 'Hotelaria'),
+    ('/hotelaria-e-gastronomia/', 'Hotelaria<span class="nav-long"> e gastronomia</span>'),
+    ('/brindes-por-ocasiao/', 'Ocasiões'),
     ('/catalogo/', 'Catálogo'),   # todos os modelos (src/data/produtos.json, editado em /admin/)
     ('/sobre/', 'Sobre'),
     ('/blog/', 'Blog'),
@@ -870,15 +892,32 @@ def cta_link(label='Solicitar proposta', tipo=None, cls='btn btn-wine', arrow=Tr
     return f'<a class="{cls}" href="{href}" data-track="cta_solicitar_proposta"{tl}>{label}{" " + ARROW if arrow else ""}</a>'
 
 
+ANNOUNCE_SEASON = ('<p class="announce-season"><a href="/brindes-de-fim-de-ano/" data-track="season_click" data-track-label="barra-topo">'
+                   '<strong>Fim de ano:</strong> presentes com a sua marca para agradecer clientes e equipes '
+                   '<span aria-hidden="true">→</span></a></p>')
+
+
+def season_callout(where):
+    """Aviso de temporada nas páginas de Brindes, Kits e Catálogo (só dentro do período de site.config.json › temporada)."""
+    if SEASON != 'fim-de-ano':
+        return ''
+    return (f'<aside class="season-callout" aria-label="Temporada de fim de ano"><div class="wrap season-callout-in">'
+            f'<p><strong>Fim de ano</strong> Taças, copos e kits com a sua marca para agradecer clientes e equipes antes do recesso.</p>'
+            f'<a class="btn btn-line btn-sm" href="/brindes-de-fim-de-ano/" data-track="season_click" data-track-label="{where}">Ver presentes de fim de ano {ARROW}</a>'
+            f'</div></aside>')
+
+
 def header(path):
     def current(p):
         if path.startswith(p):
             return ' aria-current="page"'
-        # as ideias por ocasião e o fim de ano fazem parte da frente "Brindes"
-        return ' aria-current="true"' if p == '/brindes-corporativos/' and path.startswith(('/brindes-corporativos-premium/', '/brindes-de-fim-de-ano/')) else ''
-    links = ''.join(f'<a class="nav-link" href="{p}"{current(p)}>{t}</a>' for p, t in NAV)
+        # o fim de ano é uma ocasião: fora da temporada (sem item próprio no menu) acende "Ocasiões"
+        return ' aria-current="true"' if p == '/brindes-por-ocasiao/' and path.startswith('/brindes-de-fim-de-ano/') and not SEASON else ''
+    season = (f'<a class="nav-link nav-season" href="/brindes-de-fim-de-ano/"{current("/brindes-de-fim-de-ano/")}>Fim de ano</a>'
+              if SEASON == 'fim-de-ano' else '')
+    links = season + ''.join(f'<a class="nav-link" href="{p}"{current(p)}>{t}</a>' for p, t in NAV)
     return f'''<a class="skip" href="#conteudo">Pular para o conteúdo</a>
-<aside class="announce" aria-label="Destaques da TaMa"><div class="wrap"><p>Brindes, confecções, kits e ativações para empresas.</p><ul><li>Atendimento consultivo</li><li>Arte aprovada antes da produção</li><li>Do pedido à entrega</li></ul></div></aside>
+<aside class="announce" aria-label="Destaques da TaMa"><div class="wrap">{ANNOUNCE_SEASON if SEASON == 'fim-de-ano' else '<p>Brindes, uniformes, kits e ativações para empresas.</p>'}<ul><li>Atendimento consultivo</li><li>Arte aprovada antes da produção</li><li>Do pedido à entrega</li></ul></div></aside>
 <header class="site-header">
   <div class="wrap header-row">
     <a class="brand" href="/" aria-label="TaMa Creative, página inicial">{LOGO_DECOR}</a>
@@ -886,7 +925,7 @@ def header(path):
     <div class="head-actions">
       <button class="icon-btn bag" type="button" data-open-drawer aria-label="Sua seleção de peças">{BAG_SVG}<span class="bag-count" data-sel-count hidden>0</span></button>
       {cta_link(cls='btn btn-wine btn-sm', track_label='header')}
-      <button class="icon-btn menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Abrir menu"><svg viewBox="0 0 24 24"><path d="M4 8h16M4 16h16"/></svg></button>
+      <button class="icon-btn menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Abrir menu"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="i-open" d="M4 8h16M4 16h16"/><path class="i-close" d="M6 6l12 12M18 6L6 18"/></svg></button>
     </div>
   </div>
 </header>'''
@@ -917,7 +956,8 @@ def empresa_linha():
 
 
 def footer():
-    sol = ''.join(f'<li><a href="{p}">{t}</a></li>' for p, t in [('/brindes-corporativos/', 'Brindes corporativos'), ('/confeccoes-personalizadas/', 'Confecções personalizadas'), ('/kits-corporativos/', 'Kits premium'), ('/ativacoes-promocionais/', 'Ativações e degustações'), ('/hotelaria-e-gastronomia/', 'Hotelaria e gastronomia'), ('/brindes-de-fim-de-ano/', 'Brindes de fim de ano'), ('/catalogo/', 'Catálogo'), ('/brindes-corporativos-premium/', 'Ideias por ocasião')])
+    sol = ''.join(f'<li><a href="{p}">{t}</a></li>' for p, t in [('/brindes-corporativos/', 'Brindes corporativos'), ('/confeccoes-personalizadas/', 'Uniformes e confecções'), ('/kits-corporativos/', 'Kits corporativos'), ('/ativacoes-promocionais/', 'Ativações promocionais'), ('/hotelaria-e-gastronomia/', 'Hotelaria e gastronomia')])
+    ocas = ''.join(f'<li><a href="{p}">{t}</a></li>' for p, t in [('/brindes-de-fim-de-ano/', 'Brindes de fim de ano'), ('/brindes-por-ocasiao/', 'Brindes por ocasião'), ('/catalogo/', 'Catálogo completo')])
     contacts = contact_lines()
     contact_col = ''.join(f'<li>{c}</li>' for c in contacts) + '<li><a href="/solicitar-proposta/">Solicitar proposta</a></li>'
     empresa = empresa_linha()
@@ -925,6 +965,7 @@ def footer():
   <div class="wrap footer-grid">
     <div class="footer-brand"><a class="brand" href="/" aria-label="TaMa Creative, página inicial">{LOGO_DECOR}</a><p>Brindes, confecções, kits e ativações para empresas. Desenvolvemos e coordenamos cada projeto, da escolha das peças à entrega.</p></div>
     <div><p class="footer-title">Soluções</p><ul class="footer-links">{sol}</ul></div>
+    <div><p class="footer-title">Ocasiões e catálogo</p><ul class="footer-links">{ocas}</ul></div>
     <div><p class="footer-title">TaMa</p><ul class="footer-links"><li><a href="/sobre/">Sobre</a></li><li><a href="/blog/">Blog</a></li><li><a href="/privacidade/">Privacidade</a></li><li><button class="link-btn" type="button" data-consent-open>Cookies</button></li></ul></div>
     <div><p class="footer-title">Contato</p><ul class="footer-links">{contact_col}</ul></div>
   </div>
@@ -940,6 +981,31 @@ def crumbs(trail):
     for i, (p, label) in enumerate(trail):
         lis.append(f'<li><span aria-current="page">{label}</span></li>' if i == len(trail) - 1 else f'<li><a href="{p}">{label}</a></li>')
     return f'<nav class="crumbs wrap" aria-label="Caminho"><ol>{"".join(lis)}</ol></nav>'
+
+
+# Guias do blog ligados às páginas de serviço (o blog deixa de ser uma ilha). Ordem = ordem de exibição.
+GUIAS = {
+    'home': ['brindes-de-fim-de-ano-para-clientes', 'o-que-colocar-no-kit-de-boas-vindas', 'brindes-e-compliance-politica-de-presentes'],
+    'brindes': ['brindes-e-compliance-politica-de-presentes', 'brindes-de-fim-de-ano-para-clientes'],
+    'kits': ['o-que-colocar-no-kit-de-boas-vindas', 'presente-de-natal-para-funcionarios'],
+    'fim': ['brindes-de-fim-de-ano-para-clientes', 'presente-de-natal-para-funcionarios'],
+}
+
+
+def guias_block(chave, title='Guias para decidir com segurança'):
+    """Artigos do blog relacionados à página (só os publicados; some quando nenhum estiver no ar)."""
+    por_slug = {a['slug']: a for a in blog.ARTS if not a.get('noindex')}
+    arts = [por_slug[s] for s in GUIAS.get(chave, []) if s in por_slug]
+    if not arts:
+        return ''
+    itens = ''.join(f'<li><a class="guia" href="{a["path"]}"><span class="guia-tag">Guia</span><strong>{esc(a.get("breadcrumb") or a["title"])}</strong>'
+                    f'<span class="guia-link">Ler o guia {ARROW}</span></a></li>' for a in arts)
+    return f'''<section class="section guias" aria-labelledby="guias-{chave}-t">
+  <div class="wrap">
+    <div class="section-head row"><div class="stack" style="gap:12px"><p class="eyebrow">Conteúdos</p><h2 id="guias-{chave}-t" class="section-title">{title}</h2></div><a class="link" href="/blog/">Todos os guias {ARROW}</a></div>
+    <ul class="guias-list">{itens}</ul>
+  </div>
+</section>'''
 
 
 def end_cta(title='Conte o que você precisa.', text='Ocasião, público, quantidade e data: com isso a TaMa responde com uma proposta de peças, personalização e condições.', tipo=None, eyebrow='Solicitar proposta'):
@@ -1027,7 +1093,7 @@ ORG_ID = SITE + '/#org'
 def org():
     o = {'@type': 'Organization', '@id': ORG_ID, 'name': 'TaMa Creative', 'url': SITE + '/', 'logo': SITE + '/logo-512.png',
          'slogan': 'Sua marca ganha forma.',
-         'description': 'Brindes corporativos, confecções personalizadas, kits premium e ativações promocionais para empresas.'}
+         'description': 'Brindes corporativos, uniformes e confecções, kits corporativos, ativações promocionais e hotelaria e gastronomia para empresas.'}
     if IG:
         o['sameAs'] = [f'https://www.instagram.com/{IG}/']
     if RAZAO:
@@ -1105,17 +1171,17 @@ def shell(page, body):
                '<p class="consent-title" id="consent-t">Cookies</p>'
                '<p id="consent-d">Usamos cookies essenciais para o site funcionar (como guardar a sua seleção de peças) e, se você aceitar, '
                'cookies de análise para entender como o site é usado. '
-               '<a href="/privacidade/#cookies">Saiba mais</a>.</p>'
+               '<a href="/privacidade/#cookies">Saiba mais sobre cookies</a>.</p>'
                '<div class="actions"><button class="btn btn-wine btn-sm" type="button" data-consent="granted">Aceitar todos</button>'
                '<button class="btn btn-line btn-sm" type="button" data-consent="denied">Só os essenciais</button></div></div>')
     wa_float = ''
     if WA:
         msg = urllib.parse.quote('Olá, TaMa! Gostaria de conversar sobre um projeto.')
-        wa_float = f'<aside aria-label="Atendimento por WhatsApp"><a class="wa-float" href="https://wa.me/{WA}?text={msg}" target="_blank" data-track="whatsapp_click" data-track-label="flutuante" rel="noopener" aria-label="Conversar com a TaMa no WhatsApp" title="Conversar no WhatsApp">{CHAT}</a></aside>'
+        wa_float = f'<aside aria-label="Atendimento por WhatsApp"><a class="wa-float" href="https://wa.me/{WA}?text={msg}" target="_blank" data-track="whatsapp_click" data-track-label="flutuante" rel="noopener" aria-label="Conversar com a TaMa no WhatsApp (abre em nova aba)" title="Conversar no WhatsApp">{CHAT}</a></aside>'
     service_attr = (f' data-service="{page["service"]["key"]}"' if page.get('service') else '') + (f' data-assunto="{esc(page["assunto"])}"' if page.get('assunto') else '')
     canonical = '' if page['path'].endswith('.html') else f'<link rel="canonical" href="{url}">'
     return f'''<!doctype html>
-<html lang="pt-BR">
+<html lang="pt-BR"{HTML_SEASON}>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -1166,7 +1232,7 @@ def shell(page, body):
 
 # ------------------------------------------------------------------ pages
 HOME_FAQ = [
-    ('O que a TaMa faz?', 'Desenvolve e coordena brindes, confecções, kits personalizados e ativações promocionais para empresas: entende o objetivo, propõe as peças, coordena a aplicação da sua marca com os fornecedores e acompanha a produção com fornecedores até a entrega.'),
+    ('O que a TaMa faz?', 'Desenvolve e coordena brindes corporativos, uniformes e confecções, kits corporativos, ativações promocionais e projetos de hotelaria e gastronomia para empresas: entende o objetivo, propõe as peças, coordena a aplicação da sua marca com os fornecedores e acompanha a produção com fornecedores até a entrega.'),
     ('Posso personalizar produtos nas cores da minha marca?', 'Sim. A escolha de cores e acabamentos faz parte da proposta de cada projeto. As cores mostradas no site são referências visuais e não significam estoque; a disponibilidade é confirmada na proposta.'),
     ('Vocês desenvolvem kits completos?', 'Sim. A proposta combina curadoria, materiais, embalagem e personalização para criar conjuntos com a mesma linguagem visual.'),
     ('Existe quantidade mínima?', 'Depende do produto e da técnica de personalização. Informe a quantidade aproximada no pedido: se não for viável para a peça escolhida, a proposta indica alternativas.'),
@@ -1176,7 +1242,7 @@ HOME_FAQ = [
 
 # Ícones de traço fino (vinho via CSS). viewBox 24, sem preenchimento.
 ASSURANCES = '''<ul class="garantias" aria-label="Como a TaMa trabalha">
-  <li><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3.5" y="8" width="17" height="4" rx=".8"/><path d="M5 12v8h14v-8M12 8v12"/><path d="M12 8C10.6 5 7.2 4.4 7.2 6.5 7.2 8 9.6 8 12 8zM12 8c1.4-3 4.8-3.6 4.8-1.5C16.8 8 14.4 8 12 8z"/></svg><span>Curadoria exclusiva</span></li>
+  <li><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3.5" y="8" width="17" height="4" rx=".8"/><path d="M5 12v8h14v-8M12 8v12"/><path d="M12 8C10.6 5 7.2 4.4 7.2 6.5 7.2 8 9.6 8 12 8zM12 8c1.4-3 4.8-3.6 4.8-1.5C16.8 8 14.4 8 12 8z"/></svg><span>Seleção sob medida</span></li>
   <li><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3.2l7 2.6v5.6c0 4.3-2.9 7.7-7 9.4-4.1-1.7-7-5.1-7-9.4V5.8z"/><path d="M8.9 12.1l2.2 2.2 4.1-4.4"/></svg><span>Atendimento consultivo</span></li>
   <li><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 18.2C4.6 10.8 9.4 5 19.6 4.4 20.2 14 14.4 19.6 6 18.2z"/><path d="M4.2 20l1.8-1.8M6 18.2l9-9"/></svg><span>Projetos sob medida para sua marca</span></li>
 </ul>'''
@@ -1187,10 +1253,15 @@ ASSURANCES = '''<ul class="garantias" aria-label="Como a TaMa trabalha">
 FRENTES = [
     ('/brindes-corporativos/', 'home-frente-brindes', 'center', ('Brindes', 'corporativos'),
      ('Presentes que aproximam,', 'encantam e ficam.'), 'Ver brindes'),
-    ('/confeccoes-personalizadas/', 'home-frente-confeccoes', 'center', ('Confecções', 'personalizadas'),
+    ('/confeccoes-personalizadas/', 'home-frente-confeccoes', 'center', ('Uniformes e', 'confecções'),
      ('Peças para equipes, ações', 'e eventos.'), 'Conhecer opções'),
-    ('/kits-corporativos/', 'home-frente-kits', 'center', ('Kits', 'premium'),
+    ('/kits-corporativos/', 'home-frente-kits', 'center', ('Kits', 'corporativos'),
      ('Caixa, peças e cartão', 'com a sua marca.'), 'Ver kits'),
+    # as duas últimas áreas ocupam a 2ª linha em cartões mais largos (fotos dos cabeçalhos das páginas, marcas fictícias)
+    ('/ativacoes-promocionais/', 'ativ-header', '74% center', ('Ativações', 'promocionais'),
+     ('Degustações, feiras e ações', 'no ponto de venda.'), 'Conhecer ativações'),
+    ('/hotelaria-e-gastronomia/', 'hot-header', '70% center', ('Hotelaria e', 'gastronomia'),
+     ('Cardápios, porta-contas, jogos', 'americanos e uniformes.'), 'Conhecer soluções'),
 ]
 
 
@@ -1216,28 +1287,33 @@ def hero_carousel(slides=None, label='Destaques da TaMa Creative', assurances=Tr
     # Fotos claras de estúdio (pacote tama-home-v2). No computador a foto ocupa a metade direita e se funde ao tom do
     # slide (creme, sálvia, rosé, linho); o texto fica numa coluna própria, sem encostar nos produtos. No celular o texto
     # vem acima da foto. frame: enquadramento da foto (--fx no computador, --fx-m no celular) e largura (--pw).
+    home_default = slides is None
     slides = slides or [
-        ('tone-cream', 'hero-brindes', '--fx:100%;--fx-m:96%', 'Bolsa cru com alças bordô, caderno creme com caneta dourada, taça e garrafa bordô e copo creme, com a marca TaMa aplicada como exemplo.', 'Para empresas', 'Brindes, confecções e ativações para dar <em>presença à sua marca</em>.',
+        ('tone-cream', 'hero-brindes', '--fx:100%;--fx-m:96%', 'Bolsa cru com alças bordô, caderno creme com caneta dourada, taça e garrafa bordô e copo creme, com a marca TaMa aplicada como exemplo.', 'Para empresas', 'Brindes, uniformes, kits e ativações para dar <em>presença à sua marca</em>.',
          'Criamos e coordenamos soluções personalizadas para empresas, da escolha das peças à entrega.',
          cta_link('Solicitar proposta', track_label='hero-1') + '<a class="btn btn-line" href="/catalogo/">Ver produtos ' + ARROW + '</a>'),
-        # temporada: o fim de ano vem logo depois da abertura e leva à página da ocasião
+        # fim de ano: 2º slide fora da temporada; dentro dela (site.config.json › temporada) passa a abrir o carrossel
         # --cw:460px: os botões quebram em duas linhas em 1440 px e o texto termina antes da taça solta
         ('tone-cream', 'fim-header', '--fx:100%;--fx-m:100%;--cw:460px', 'Caixa de presente terracota aberta com duas taças flute e o cartão "Obrigado por fazer parte da nossa história", com o símbolo de uma marca fictícia; ao lado, uma taça sobre mesa iluminada pelo sol.', 'Fim de ano', 'Um brinde a quem <em>fez parte do seu ano.</em>',
          'Taças, copos e kits com a sua marca para agradecer clientes e equipes.',
          cta_link('Solicitar proposta', tipo='kits', track_label='hero-fim-de-ano') + '<a class="btn btn-line" href="/brindes-de-fim-de-ano/">Ver presentes de fim de ano ' + ARROW + '</a>'),
-        ('tone-sage', 'hero-v3-confeccoes', '--fx:72%;--fx-m:72%', 'Polo vermelha, moletom azul royal e camiseta branca com a marca TaMa.', 'Confecções personalizadas', 'Sua marca no <em>uniforme</em> da equipe.',
+        ('tone-sage', 'hero-v3-confeccoes', '--fx:72%;--fx-m:72%', 'Polo vermelha, moletom azul royal e camiseta branca com a marca TaMa.', 'Uniformes e confecções', 'Sua marca no <em>uniforme</em> da equipe.',
          'Polos, camisetas, moletons, dólmãs e aventais nas cores definidas no projeto.',
          cta_link('Solicitar proposta', tipo='confeccoes', track_label='hero-2') + '<a class="btn btn-line" href="/confeccoes-personalizadas/">Conhecer soluções ' + ARROW + '</a>'),
-        ('tone-rose', 'hero-kits', '--fx:100%;--fx-m:80%', 'Caixa bordô aberta com tábua, potinhos, geleias, facas de queijo e cartão com a marca TaMa.', 'Kits premium', 'Kits pensados de <em>ponta a ponta</em>.',
+        ('tone-rose', 'hero-kits', '--fx:100%;--fx-m:80%', 'Caixa bordô aberta com tábua, potinhos, geleias, facas de queijo e cartão com a marca TaMa.', 'Kits corporativos', 'Kits pensados de <em>ponta a ponta</em>.',
          'Caixa, peças e cartão com a sua marca, compostos para surpreender, agradecer e aproximar.',
          cta_link('Solicitar proposta de kit', tipo='kits', track_label='hero-3') + '<a class="btn btn-line" href="/kits-corporativos/">Conhecer os kits ' + ARROW + '</a>'),
-        ('tone-linen', 'home-escritorio', '--fx:100%;--fx-m:68%', 'Caderno azul, canetas, porta-canetas e estojo caramelo e bandeja creme, com a marca TaMa.', 'Escrita e escritório', 'Boas ideias merecem <em>boa companhia</em>.',
+        ('tone-linen', 'home-escritorio', '--fx:100%;--fx-m:68%', 'Caderno azul, canetas, porta-canetas e estojo caramelo e bandeja creme, com a marca TaMa.', 'Canetas e escritório', 'Boas ideias merecem <em>boa companhia</em>.',
          'Blocos, cadernos, canetas e acessórios para a rotina profissional.',
          cta_link('Solicitar proposta', track_label='hero-4') + '<a class="btn btn-line" href="/catalogo/?categoria=canetas-escritorio#catalogo">Explorar escritório ' + ARROW + '</a>'),
-        ('tone-sage', 'conf-degustacao', '--fx:42%;--fx-m:40%', 'Cena ilustrativa: equipe de camiseta e avental com a marca TaMa servindo degustação num supermercado.', 'Ativações e degustações', 'Sua marca perto de quem <em>compra</em>.',
+        ('tone-sage', 'conf-degustacao', '--fx:42%;--fx-m:40%', 'Cena ilustrativa: equipe de camiseta e avental com a marca TaMa servindo degustação num supermercado.', 'Ativações promocionais', 'Sua marca perto de quem <em>compra</em>.',
          'Degustações, ações em feiras e eventos e promoções no ponto de venda, com uniformes, materiais e brindes na identidade da sua marca.',
          cta_link('Planejar uma ativação', tipo='ativacoes', track_label='hero-4') + '<a class="btn btn-line" href="/ativacoes-promocionais/">Conhecer ativações ' + ARROW + '</a>'),
     ]
+    h1 = ''
+    if home_default and SEASON == 'fim-de-ano':
+        slides.insert(0, slides.pop(1))   # temporada: o slide de fim de ano abre o carrossel
+        h1 = '<h1 class="visually-hidden">Brindes corporativos, uniformes, kits e ativações para empresas</h1>'
     n = len(slides)
     out = []
     for i, (tone, img, frame, alt, eyebrow, title, desc, actions) in enumerate(slides):
@@ -1246,7 +1322,7 @@ def hero_carousel(slides=None, label='Destaques da TaMa Creative', assurances=Tr
             w, h = IMAGES[img]['w'], IMAGES[img]['h']
             frame = f"{frame};--ar:{w}/{h}"
             cls = ' inteira' + (' respiro' if w / h >= 1.9 or img in CARROSSEL_RESPIRO else '')   # respiro: a foto já traz o espaço vazio do texto à esquerda
-        tag = 'h1' if i == 0 else 'p'
+        tag = 'h1' if i == 0 and not h1 else 'p'
         out.append(f'''<div class="slide {tone}{cls}{' is-active' if i == 0 else ''}" id="slide-{i + 1}" role="group" aria-roledescription="slide" aria-label="{i + 1} de {n}" style="{frame}"{'' if i == 0 else ' aria-hidden="true" inert'}>
   <div class="wrap slide-inner"><div class="slide-copy">
     <p class="eyebrow">{eyebrow}</p>
@@ -1259,7 +1335,7 @@ def hero_carousel(slides=None, label='Destaques da TaMa Creative', assurances=Tr
     dots = ''.join(f'<button class="dot" type="button" data-slide="{i}" aria-label="Mostrar slide {i + 1} de {n}" aria-controls="slide-{i + 1}"{" aria-current=\"true\"" if i == 0 else ""}></button>' for i in range(n))
     strip = ASSURANCES if assurances else ''
     return f'''<section class="hero light" aria-roledescription="carrossel" aria-label="{label}" id="hero">
-  {''.join(out)}
+  {h1}{''.join(out)}
   <div class="hero-bar"><div class="wrap hero-controls">
     <p class="hero-count" aria-hidden="true"><span data-hero-count>01</span> / {n:02d}</p>
     <div class="hero-dots">{dots}</div>
@@ -1274,7 +1350,7 @@ def hero_carousel(slides=None, label='Destaques da TaMa Creative', assurances=Tr
 
 def page_home():
     return {
-        'path': '/', 'title': 'TaMa Creative | Brindes, confecções, kits e ativações', 'og': 'hero-brindes',
+        'path': '/', 'title': 'Brindes corporativos, uniformes e kits | TaMa Creative', 'og': 'hero-brindes',
         'og_title': 'TaMa Creative · Brindes, confecções e ativações para empresas',
         'description': 'Brindes corporativos, uniformes, kits e ativações promocionais com a marca da sua empresa. A TaMa cria e coordena da escolha das peças à entrega.',
         'assunto': 'um projeto para a minha empresa',
@@ -1284,14 +1360,16 @@ def page_home():
 {process_band()}
 {home_products_block()}
 {kits_block()}
-{collections_block('Ideias por ocasião')}
+{collections_block('Brindes por ocasião')}
 {faq(HOME_FAQ)}
+{guias_block('home')}
 {end_cta()}''',
     }
 
 
-BRINDES_ATALHOS = [('Copos e garrafas', '/catalogo/?categoria=garrafas-copos'), ('Escrita e escritório', '/catalogo/?categoria=canetas-escritorio'),
-                   ('Bolsas e acessórios', '/catalogo/?categoria=bolsas-embalagens'), ('Tecnologia', '/solicitar-proposta/?tipo=brindes')]   # tecnologia ainda não tem peças no catálogo: vai direto ao pedido
+# rótulos iguais aos filtros do catálogo (CAT_PROD); "Tecnologia" volta quando houver peças no catálogo
+BRINDES_ATALHOS = [(CAT_PROD['garrafas-copos'], '/catalogo/?categoria=garrafas-copos'), (CAT_PROD['canetas-escritorio'], '/catalogo/?categoria=canetas-escritorio'),
+                   (CAT_PROD['bolsas-embalagens'], '/catalogo/?categoria=bolsas-embalagens'), (CAT_PROD['casa-bem-estar'], '/catalogo/?categoria=casa-bem-estar')]
 
 
 def brindes_hero(trail):
@@ -1308,13 +1386,13 @@ def brindes_hero(trail):
 
 def page_brindes():
     return {
-        'path': '/brindes-corporativos/', 'og': 'hero-gift', 'assunto': 'brindes corporativos', 'title': 'Brindes corporativos personalizados para empresas | TaMa Creative',
-        'description': 'Brindes personalizados para empresas com curadoria de peças e acabamento escolhido para o seu público: presentes para clientes, colaboradores e eventos. Peça uma proposta.',
+        'path': '/brindes-corporativos/', 'og': 'hero-gift', 'assunto': 'brindes corporativos', 'title': 'Brindes corporativos personalizados | TaMa Creative',
+        'description': 'Brindes personalizados para empresas, com peças e acabamento escolhidos para o seu público: clientes, equipes e eventos. Peça uma proposta.',
         'trail': [('/', 'Início'), ('/brindes-corporativos/', 'Brindes corporativos')],
         'service': {'key': 'brindes', 'name': 'Brindes corporativos personalizados', 'type': 'Brindes corporativos'},
         'preload': preload_image('brindes-header', FOTO_HERO_SIZES),   # mesma imagem e sizes da foto do cabeçalho
         'crumbs_inline': True,
-        'body': brindes_hero([('/', 'Início'), ('/brindes-corporativos/', 'Brindes corporativos')]) + f'''
+        'body': brindes_hero([('/', 'Início'), ('/brindes-corporativos/', 'Brindes corporativos')]) + season_callout('brindes') + f'''
 <section class="section ivory" aria-labelledby="escolha-t">
   <div class="wrap">
     <div class="section-head"><p class="eyebrow">Como escolhemos</p><h2 id="escolha-t" class="section-title">Três perguntas antes de qualquer peça</h2><p class="muted">A curadoria começa pelo uso, não pelo catálogo. É o que separa um brinde lembrado de um brinde esquecido na gaveta.</p></div>
@@ -1332,7 +1410,7 @@ def page_brindes():
   <div class="wrap split" style="align-items:start">
     <div class="stack" style="gap:12px"><p class="eyebrow">Personalização</p><h2 id="tec-t" class="section-title">A técnica certa para cada material</h2><p class="muted">A técnica é escolhida conforme a peça e confirmada na proposta, junto com a arte para aprovação.</p></div>
     <dl class="pack">
-      <div><dt>Gravação a laser</dt><dd>Madeira, metal, couro, cortiça e pedra. Marca permanente e sutil.</dd></div>
+      <div><dt>Gravação a laser</dt><dd>Madeira, metal, couro, cortiça e pedra. Acabamento discreto e durável, conforme a peça.</dd></div>
       <div><dt>Baixo relevo e hot stamping</dt><dd>Couro e papel. Relevo com ou sem cor, discreto e sofisticado.</dd></div>
       <div><dt>Bordado</dt><dd>Tecidos. Tom sobre tom para elegância ou em contraste para presença.</dd></div>
       <div><dt>Tampografia e serigrafia</dt><dd>Cerâmica, vidro e superfícies curvas. Cor aplicada com precisão.</dd></div>
@@ -1361,7 +1439,7 @@ def page_brindes():
             ('Quanto tempo leva?', 'Depende da produção e da personalização de cada peça. Por isso pedimos a data desejada já no primeiro contato e confirmamos o prazo na proposta.'),
             ('Vocês têm catálogo com preços?', 'O catálogo mostra modelos de referência, sem preços. A curadoria parte do seu objetivo, do público e do investimento disponível, e a proposta traz peças, quantidades e condições comerciais.'),
             ('Posso usar a arte da minha empresa?', 'Sim. A marca da sua empresa é aplicada nas peças pelos fornecedores, e a arte é enviada para a sua aprovação antes da produção.'),
-        ], title='Perguntas sobre brindes', eyebrow='Dúvidas') + end_cta(tipo='brindes'),
+        ], title='Perguntas sobre brindes', eyebrow='Dúvidas') + guias_block('brindes') + end_cta(tipo='brindes'),
     }
 
 
@@ -1403,16 +1481,16 @@ def kits_hero(trail):
 def page_kits():
     trail = [('/', 'Início'), ('/kits-corporativos/', 'Kits corporativos')]
     return {
-        'path': '/kits-corporativos/', 'og': 'kitp-kit-completo', 'assunto': 'kits corporativos', 'title': 'Kits corporativos personalizados: boas-vindas e eventos | TaMa',
+        'path': '/kits-corporativos/', 'og': 'kitp-kit-completo', 'assunto': 'kits corporativos', 'title': 'Kits corporativos e de boas-vindas | TaMa Creative',
         'description': 'Kits de boas-vindas, kits para eventos e presentes para clientes, com curadoria, embalagem personalizada e a marca da sua empresa. Solicite uma proposta.',
         'trail': trail,
         'service': {'key': 'kits', 'name': 'Kits corporativos personalizados', 'type': 'Kits corporativos'},
         'preload': preload_image('kits-header', FOTO_HERO_SIZES),   # mesma imagem e sizes da foto do cabeçalho
         'crumbs_inline': True,   # o caminho fica sobre a área creme da foto, logo abaixo do cabeçalho do site
-        'body': kits_hero(trail) + f'''
+        'body': kits_hero(trail) + season_callout('kits') + f'''
 <section class="section kits-page" id="kits" aria-labelledby="kits-p-t" style="padding-top:clamp(24px,3vw,40px)">
   <div class="wrap">
-    <div class="section-head"><p class="eyebrow">Kits premium</p><h2 id="kits-p-t" class="section-title">Kits de referência para adaptar à sua marca</h2><p class="muted">Cinco composições para começar. Peças, embalagem e cartão se ajustam ao seu público, à ocasião e ao investimento.</p></div>
+    <div class="section-head"><p class="eyebrow">Kits corporativos</p><h2 id="kits-p-t" class="section-title">Kits de referência para adaptar à sua marca</h2><p class="muted">Cinco composições para começar. Peças, embalagem e cartão se ajustam ao seu público, à ocasião e ao investimento.</p></div>
     <div class="kit-grid">{kit_cards()}</div>
     <div class="kit-foot"><p class="muted">Prefere outra composição? Conte a ocasião e o público no pedido.</p>{cta_link('Solicitar proposta de kit', tipo='kits', track_label='kits-lista')}</div>
     <p class="note" style="margin-top:18px">Os kits aparecem na identidade TaMa como exemplo. No seu projeto, caixa, cartão e peças levam a marca e as cores da sua empresa; a composição é confirmada na proposta. Imagens ilustrativas.</p>
@@ -1452,7 +1530,7 @@ def page_kits():
             ('Dá para ter versões diferentes do mesmo kit?', 'Sim. A proposta pode prever versões por área ou ocasião, mantendo a mesma linguagem visual.'),
             ('Qual é a quantidade mínima de kits?', 'Depende das peças escolhidas e das técnicas de personalização. Informe o número de kits no pedido: a proposta indica as quantidades viáveis.'),
             ('Com quanto tempo de antecedência devo pedir?', 'Quanto antes, mais opções de peças e acabamentos. Informe a data desejada no pedido e confirmamos o prazo na proposta.'),
-        ], title='Perguntas sobre kits', eyebrow='Dúvidas') + end_cta('Vamos montar o seu kit?', 'Conte a ocasião e o público. A TaMa propõe a composição.', tipo='kits'),
+        ], title='Perguntas sobre kits', eyebrow='Dúvidas') + guias_block('kits') + end_cta('Vamos montar o seu kit?', 'Conte a ocasião e o público. A TaMa propõe a composição.', tipo='kits'),
     }
 
 
@@ -1461,26 +1539,27 @@ def page_curadoria():
     pecas = [c for c in CATALOGO if c['ocasioes']]
     cats = [k for k in CAT_PROD if any(c['categoria'] == k for c in pecas)]
     occ_chips = '<button class="chip" type="button" data-filter="occ" data-value="todas" aria-pressed="true">Todas</button>' + ''.join(
-        f'<button class="chip" type="button" data-filter="occ" data-value="{k}" aria-pressed="false">{v}</button>' for k, v in OCCS.items())
+        f'<button class="chip" type="button" data-filter="occ" data-value="{k}" aria-pressed="false">{v}</button>' for k, v in sorted(OCCS.items(), key=lambda kv: kv[0] != (SEASON or 'fim-de-ano')))
     cat_chips = ('<button class="chip" type="button" data-filter="cat" data-value="todas" aria-pressed="true">Todas</button>'
                  + ''.join(f'<button class="chip" type="button" data-filter="cat" data-value="{k}" aria-pressed="false">{CAT_PROD[k]}</button>' for k in cats))
-    url = SITE + '/brindes-corporativos-premium/'
+    url = SITE + '/brindes-por-ocasiao/'
     item_list = {'@type': 'ItemList', '@id': url + '#lista', 'name': 'Brindes e presentes corporativos por ocasião', 'numberOfItems': len(pecas),
                  'itemListElement': [{'@type': 'ListItem', 'position': i + 1, 'name': c['nome'], 'url': SITE + '/catalogo/#' + c['slug']} for i, c in enumerate(pecas)]}
     return {
-        'path': '/brindes-corporativos-premium/', 'title': 'Brindes e presentes corporativos por ocasião | TaMa Creative',
+        'path': '/brindes-por-ocasiao/', 'title': 'Brindes corporativos por ocasião | TaMa Creative',
         'description': 'Ideias de brindes e presentes corporativos para boas-vindas, eventos, fim de ano, reconhecimento e lançamentos, com a marca da sua empresa. Monte a seleção.',
-        'trail': [('/', 'Início'), ('/brindes-corporativos/', 'Brindes corporativos'), ('/brindes-corporativos-premium/', 'Por ocasião')],
+        'trail': [('/', 'Início'), ('/brindes-por-ocasiao/', 'Brindes por ocasião')],
         'service': {'key': 'ocasioes', 'name': 'Brindes e presentes corporativos por ocasião', 'type': 'Brindes corporativos'},
         'assunto': 'brindes e presentes por ocasião',
         'wp_type': 'CollectionPage', 'ld_extra': [item_list],
         'body': f'''<section class="page-head" style="padding-bottom:clamp(28px,4vw,44px)">
   <div class="wrap"><div class="section-head" style="margin:0;max-width:54rem">
-    <p class="eyebrow">Ideias por ocasião</p>
+    <p class="eyebrow">Brindes por ocasião</p>
     <h1>Brindes e presentes corporativos por ocasião</h1>
     <p class="lead">Boas-vindas, eventos, fim de ano, reconhecimento: escolha a ocasião, veja as peças que a TaMa sugere e envie a seleção junto com o pedido de proposta. Todas as peças vêm do mesmo catálogo.</p>
   </div></div>
 </section>
+{season_callout('ocasioes')}
 <section class="section ivory" id="pecas" style="padding-top:clamp(32px,4vw,52px)" aria-label="Peças por ocasião">
   <div class="wrap">
     {brand_note()}
@@ -1538,7 +1617,7 @@ def conf_hero(trail):
     return foto_hero(trail, 'conf-header',
                      'Equipe de três pessoas sorrindo num escritório, com camisa social azul-marinho, polo cinza e camiseta terracota '
                      'bordadas com a marca fictícia Elo, mostrando um uniforme na identidade da empresa.',
-                     'Confecções personalizadas', ['A identidade', 'da sua marca'], 'também se veste.',
+                     'Uniformes e confecções', ['A identidade', 'da sua marca'], 'também se veste.',
                      'Polos, camisetas, camisas, moletons, dólmãs e aventais personalizados para equipes, eventos e atendimento.',
                      cta_link('Solicitar proposta', tipo='confeccoes', track_label='conf-head')
                      + f'<a class="btn btn-line" href="#estudio-c-t">Explorar as peças {ARROW}</a>',
@@ -1602,7 +1681,7 @@ def ativ_hero(trail):
 
 def page_ativacoes():
     return {
-        'path': '/ativacoes-promocionais/', 'og': 'conf-degustacao', 'title': 'Ativações promocionais e degustações para marcas | TaMa Creative',
+        'path': '/ativacoes-promocionais/', 'og': 'conf-degustacao', 'title': 'Ativações promocionais e degustações | TaMa Creative',
         'description': 'Degustações, ações em feiras e eventos e promoções no ponto de venda, com uniformes, brindes e materiais na identidade da sua marca. Peça uma proposta.',
         'trail': [('/', 'Início'), ('/ativacoes-promocionais/', 'Ativações')],
         'service': {'key': 'ativacoes', 'name': 'Ativações promocionais e degustações', 'type': 'Ativação promocional'},
@@ -1671,7 +1750,7 @@ def hot_hero(trail):
 
 def page_hotelaria():
     return {
-        'path': '/hotelaria-e-gastronomia/', 'title': 'Cardápios, porta-contas e uniformes para restaurantes | TaMa', 'og': 'conf-chef-dolma',
+        'path': '/hotelaria-e-gastronomia/', 'title': 'Hotelaria e gastronomia: cardápios e uniformes | TaMa', 'og': 'conf-chef-dolma',
         'description': 'Cardápios, porta-contas, jogos americanos, dólmãs e aventais com a marca do seu restaurante, bar, café ou hotel. Monte a seleção e peça uma proposta.',
         'trail': [('/', 'Início'), ('/hotelaria-e-gastronomia/', 'Hotelaria e gastronomia')],
         'service': {'key': 'hotelaria', 'name': 'Produtos personalizados para hotelaria e gastronomia', 'type': 'Produtos personalizados para restaurantes e hotéis'},
@@ -1726,9 +1805,9 @@ def page_fim_de_ano():
     """Ocasião "Fim de ano": taças e copos para brindar, kits prontos e peças para presentear, todos do catálogo."""
     kits = ''.join(kit_card(i, slug, name, desc, True) for i, (slug, name, desc) in enumerate(FIM_DE_ANO_KITS))
     return {
-        'path': '/brindes-de-fim-de-ano/', 'og': 'kitp-kit-brinde', 'title': 'Brindes de fim de ano para clientes e equipes | TaMa Creative',
-        'description': 'Taças, copos e kits de fim de ano com a marca da sua empresa, para clientes e equipes. Seleção, personalização e embalagem. Peça uma proposta.',
-        'trail': [('/', 'Início'), ('/brindes-de-fim-de-ano/', 'Fim de ano')],
+        'path': '/brindes-de-fim-de-ano/', 'og': 'kitp-kit-brinde', 'title': 'Brindes de fim de ano e Natal para empresas | TaMa',
+        'description': 'Brindes de fim de ano e presentes de Natal com a marca da sua empresa: taças, copos e kits para clientes e equipes. Peça uma proposta.',
+        'trail': [('/', 'Início'), ('/brindes-por-ocasiao/', 'Brindes por ocasião'), ('/brindes-de-fim-de-ano/', 'Fim de ano')],
         'service': {'key': 'fim-de-ano', 'name': 'Brindes de fim de ano para clientes e equipes', 'type': 'Brindes corporativos'},
         'assunto': 'brindes de fim de ano',
         'preload': preload_image('fim-header', FOTO_HERO_SIZES),   # mesma imagem e sizes da foto do cabeçalho
@@ -1772,14 +1851,14 @@ def page_fim_de_ano():
             ('Dá para enviar para vários endereços?', 'Conte no pedido quantos destinos são e onde ficam: a proposta diz como a entrega é organizada.'),
             ('As taças podem levar a cor da minha marca?', 'Cada modelo tem cores de referência; cores, material e técnica de aplicação são confirmados na proposta.'),
             ('Posso misturar peças do catálogo num kit?', 'Sim. Selecione as peças no catálogo e envie com o pedido: a TaMa monta a composição, a caixa e o cartão.'),
-        ], title='Perguntas sobre o fim de ano', eyebrow='Dúvidas') + end_cta('Vamos montar o seu fim de ano?', 'Conte para quem são os presentes, quantas pessoas e a data de entrega. A TaMa propõe as peças, os kits e a embalagem.', tipo='kits', eyebrow='Fim de ano'),
+        ], title='Perguntas sobre o fim de ano', eyebrow='Dúvidas') + guias_block('fim') + end_cta('Vamos montar o seu fim de ano?', 'Conte para quem são os presentes, quantas pessoas e a data de entrega. A TaMa propõe as peças, os kits e a embalagem.', tipo='kits', eyebrow='Fim de ano'),
     }
 
 def page_sobre():
     dados = ''.join(f'<div><dt>{t}</dt><dd>{esc(v)}</dd></div>' for t, v in (('Razão social', RAZAO), ('CNPJ', CNPJ), ('Cidade', CIDADE), ('Atendimento comercial', RESPONSAVEL), ('E-mail', EMAIL)) if v)
     dados_html = f'<section class="section" aria-labelledby="dados-t"><div class="wrap split" style="align-items:start"><div class="stack" style="gap:12px"><p class="eyebrow">Dados da empresa</p><h2 id="dados-t" class="section-title">TaMa Creative</h2></div><dl class="pack">{dados}</dl></div></section>' if dados else ''
     return {
-        'path': '/sobre/', 'title': 'Sobre a TaMa Creative | Brindes, confecções, kits e ativações',
+        'path': '/sobre/', 'title': 'Sobre a TaMa Creative | Brindes, uniformes, kits e ativações',
         'description': 'A TaMa Creative desenvolve e coordena brindes, confecções, kits personalizados e ativações promocionais para empresas, com visão de Trade Marketing.',
         'trail': [('/', 'Início'), ('/sobre/', 'Sobre')], 'wp_type': 'AboutPage', 'assunto': 'um projeto para a minha empresa',
         'body': f'''<section class="page-head">
@@ -1793,9 +1872,9 @@ def page_sobre():
     <div class="section-head"><p class="eyebrow">O que fazemos</p><h2 id="faz-t" class="section-title">Cinco frentes, um mesmo cuidado com a marca</h2></div>
     <div class="cols-2">
       <div class="item">{arc()}<div><h3><a href="/brindes-corporativos/">Brindes corporativos</a></h3><p>Peças para clientes, equipes e eventos, escolhidas pelo uso.</p></div></div>
-      <div class="item">{arc()}<div><h3><a href="/confeccoes-personalizadas/">Confecções personalizadas</a></h3><p>Polos, camisas, camisetas, moletons, dólmãs e aventais com a marca da empresa.</p></div></div>
-      <div class="item">{arc()}<div><h3><a href="/kits-corporativos/">Kits premium</a></h3><p>Caixa, cartão e peças compostos para uma ocasião.</p></div></div>
-      <div class="item">{arc()}<div><h3><a href="/ativacoes-promocionais/">Ativações e degustações</a></h3><p>Ações em eventos, feiras e pontos de venda.</p></div></div>
+      <div class="item">{arc()}<div><h3><a href="/confeccoes-personalizadas/">Uniformes e confecções</a></h3><p>Polos, camisas, camisetas, moletons, dólmãs e aventais com a marca da empresa.</p></div></div>
+      <div class="item">{arc()}<div><h3><a href="/kits-corporativos/">Kits corporativos</a></h3><p>Caixa, cartão e peças compostos para uma ocasião.</p></div></div>
+      <div class="item">{arc()}<div><h3><a href="/ativacoes-promocionais/">Ativações promocionais</a></h3><p>Ações em eventos, feiras e pontos de venda.</p></div></div>
       <div class="item">{arc()}<div><h3><a href="/hotelaria-e-gastronomia/">Hotelaria e gastronomia</a></h3><p>Cardápios, porta-contas, jogos americanos e uniformes.</p></div></div>
     </div>
   </div>
@@ -1847,15 +1926,15 @@ def page_sobre():
 
 
 def page_proposta():
-    tipos = [('brindes', 'Brindes corporativos'), ('kits', 'Kits premium'), ('confeccoes', 'Confecções e uniformes'),
-             ('ativacoes', 'Ativação ou degustação'), ('hotelaria', 'Hotelaria e gastronomia'), ('integrado', 'Mais de uma frente ou ainda não sei')]
+    tipos = [('brindes', 'Brindes corporativos'), ('kits', 'Kits corporativos'), ('confeccoes', 'Uniformes e confecções'),
+             ('ativacoes', 'Ativações promocionais'), ('hotelaria', 'Hotelaria e gastronomia'), ('integrado', 'Mais de uma área ou ainda não sei')]
     choices = ''.join(f'<label class="choice"><input type="radio" name="tipo" value="{v}" required> {t}</label>' for v, t in tipos)
     contacts = contact_lines()
     contact_block = f'<div class="stack" style="gap:10px"><p class="eyebrow">Fale direto</p><div class="contact-lines">{"".join(contacts)}</div></div>' if contacts else ''
     wa_retry = f'<a class="btn btn-line" href="https://wa.me/{WA}" data-wa-summary data-track="whatsapp_click" data-track-label="erro-envio" rel="noopener">{CHAT} Enviar pelo WhatsApp</a>' if WA else ''
     alt_contact = ' ou '.join(x for x in (WA and 'pelo WhatsApp', EMAIL and 'por e-mail') if x) or 'mais tarde'
     return {
-        'path': '/solicitar-proposta/', 'title': 'Solicitar proposta de brindes, kits e confecções | TaMa',
+        'path': '/solicitar-proposta/', 'title': 'Solicitar proposta de brindes, kits e uniformes | TaMa',
         'description': 'Peça uma proposta de brindes corporativos, kits ou uniformes. Conte a ocasião e a TaMa Creative propõe as possibilidades.',
         'trail': [('/', 'Início'), ('/solicitar-proposta/', 'Solicitar proposta')], 'wp_type': 'ContactPage',
         'body': f'''<section class="page-head" style="padding-bottom:clamp(24px,4vw,40px)">
@@ -1881,7 +1960,7 @@ def page_proposta():
           <div class="field full"><label for="f-contato">E-mail ou WhatsApp <span class="req" aria-hidden="true">*</span></label><input id="f-contato" name="contato" autocomplete="email" maxlength="160" required aria-describedby="f-contato-hint f-contato-error"><p class="hint" id="f-contato-hint">Para responder com a proposta. Telefone com DDD.</p><p class="field-error" id="f-contato-error"></p></div>
         </div>
         <fieldset class="fieldset" id="f-tipo" aria-describedby="f-tipo-error"><legend>Tipo de projeto <span class="req" aria-hidden="true">*</span></legend><div class="choices">{choices}</div><p class="field-error" id="f-tipo-error"></p></fieldset>
-        <div class="field" id="picked-wrap" hidden><span class="field-label">Peças selecionadas</span><ul class="picked-list" id="picked-list" aria-label="Peças selecionadas por você"></ul><input type="hidden" name="selecao" id="f-selecao"><a class="link" href="/brindes-corporativos-premium/">Adicionar mais peças {ARROW}</a></div>
+        <div class="field" id="picked-wrap" hidden><span class="field-label">Peças selecionadas</span><ul class="picked-list" id="picked-list" aria-label="Peças selecionadas por você"></ul><input type="hidden" name="selecao" id="f-selecao"><a class="link" href="/brindes-por-ocasiao/">Adicionar mais peças {ARROW}</a></div>
         <div class="form-grid">
           <div class="field" data-show-for="brindes kits confeccoes ativacoes hotelaria integrado"><label for="f-qtd">Quantidade aproximada</label><input id="f-qtd" name="quantidade" type="number" min="1" inputmode="numeric" placeholder="Ex.: 80"></div>
           <div class="field" data-show-for="brindes kits confeccoes ativacoes hotelaria integrado"><label for="f-data">Data desejada</label><input id="f-data" name="data" type="date"></div>
@@ -1937,7 +2016,7 @@ def page_404():
     return {
         'path': '/404.html', 'title': 'Página não encontrada | TaMa Creative', 'index': False,
         'description': 'A página que você procurou não existe ou mudou de endereço.',
-        'body': '''<section class="section"><div class="wrap"><div class="section-head" style="max-width:44rem"><p class="eyebrow">Erro 404</p><h1>Esta página não existe ou mudou de lugar</h1><p class="lead">O site da TaMa foi reorganizado. Comece por um destes caminhos:</p><div class="actions"><a class="btn btn-wine" href="/">Página inicial</a><a class="btn btn-line" href="/catalogo/">Catálogo</a><a class="btn btn-line" href="/brindes-corporativos-premium/">Ideias por ocasião</a><a class="btn btn-line" href="/solicitar-proposta/">Solicitar proposta</a></div></div></div></section>''',
+        'body': '''<section class="section"><div class="wrap"><div class="section-head" style="max-width:44rem"><p class="eyebrow">Erro 404</p><h1>Esta página não existe ou mudou de lugar</h1><p class="lead">O site da TaMa foi reorganizado. Comece por um destes caminhos:</p><div class="actions"><a class="btn btn-wine" href="/">Página inicial</a><a class="btn btn-line" href="/catalogo/">Catálogo</a><a class="btn btn-line" href="/brindes-por-ocasiao/">Ideias por ocasião</a><a class="btn btn-line" href="/solicitar-proposta/">Solicitar proposta</a></div></div></div></section>''',
     }
 
 
@@ -1982,14 +2061,15 @@ def build_static():
     urls = ''.join(f'<url><loc>{SITE}{p["path"]}</loc>' + (f'<lastmod>{p["lastmod"]}</lastmod>' if p.get('lastmod') else '') + '</url>' for p in indexable)
     write('sitemap.xml', f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{urls}</urlset>\n')
     redirects = [
-        '/brindes            /catalogo/                      301',
+        '/brindes            /brindes-corporativos/          301',   # igual ao nginx e ao #brindes do site.js
         '/brindes/*          /catalogo/                      301',
         '/adm                /admin/                         301',
         '/kits               /kits-corporativos/             301',
-        '/curadoria          /brindes-corporativos-premium/  301',
+        '/curadoria          /brindes-por-ocasiao/  301',
+        '/brindes-corporativos-premium/*  /brindes-por-ocasiao/  301',   # endereço antigo da página de ocasiões (a consulta ?ocasiao= é mantida)
         '/confeccoes         /confeccoes-personalizadas/     301',
         '/uniformes          /confeccoes-personalizadas/     301',
-        '/marcas             /                               301',
+        '/marcas             /catalogo/                      301',   # igual ao nginx e ao #marcas do site.js
         '/branding           /                               301',
         '/branding-identidade-visual/*  /                    301',
         '/ativacoes          /ativacoes-promocionais/        301',

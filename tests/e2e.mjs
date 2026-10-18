@@ -40,6 +40,9 @@ try {
 
   console.log('Navegação');
   await page.goto(BASE + '/', { waitUntil: 'networkidle0' });
+  // temporada (site.config.json › temporada): o fim de ano abre o carrossel e ganha item no menu
+  const SEASON = await page.$eval('html', h => h.dataset.temporada || '');
+  const FIM = SEASON === 'fim-de-ano' ? 1 : 2;
   const links = await page.$$eval('a[href^="/"]', as => [...new Set(as.map(a => a.getAttribute('href').split('#')[0].split('?')[0]))]);
   const broken = [];
   for (const l of links) { const r = await fetch(BASE + l); await r.arrayBuffer(); if (r.status !== 200) broken.push(l + ' ' + r.status); }
@@ -52,7 +55,7 @@ try {
   ok(!(await page.$eval('#site-nav', n => n.classList.contains('is-open'))), 'Esc fecha o menu mobile');
   await page.goto('about:blank');
   await page.goto(BASE + '/#curadoria', { waitUntil: 'domcontentloaded' });
-  ok(await page.waitForFunction(() => location.pathname === '/brindes-corporativos-premium/', { timeout: 8000 }).then(() => true, () => false), 'link antigo /#curadoria redireciona');
+  ok(await page.waitForFunction(() => location.pathname === '/brindes-por-ocasiao/', { timeout: 8000 }).then(() => true, () => false), 'link antigo /#curadoria redireciona');
 
   console.log('Cookies');
   await page.goto(BASE + '/', { waitUntil: 'networkidle0' });
@@ -73,14 +76,16 @@ try {
   await page.setViewport({ width: 1280, height: 900 });
   await page.goto(BASE + '/', { waitUntil: 'networkidle0' });
   ok(await page.$$eval('h1', h => h.length) === 1 && await page.$$eval('#hero .slide', s => s.length) === 6 && await page.$eval('[data-hero-count]', c => c.parentElement.textContent.replace(/\s+/g, ' ').trim() === '01 / 06') && await page.$$eval('#hero .dot', d => d.length === 6), 'home tem um único H1 com 6 slides (contador 01 / 06 e 6 pontos)');
-  ok(await page.$$eval('#hero .slide .btn-line', a => a.map(x => x.getAttribute('href')).join()) === '/catalogo/,/brindes-de-fim-de-ano/,/confeccoes-personalizadas/,/kits-corporativos/,/catalogo/?categoria=canetas-escritorio#catalogo,/ativacoes-promocionais/', 'slides levam a rotas reais do site (catálogo, fim de ano, confecções, kits, escritório, ativações)');
-  ok(await page.$eval('#slide-2', s => s.querySelector('.eyebrow').textContent === 'Fim de ano' && s.querySelector('p.slide-title').textContent.replace(/\s+/g, ' ') === 'Um brinde a quem fez parte do seu ano.' && s.querySelector('.btn-line').getAttribute('href') === '/brindes-de-fim-de-ano/' && s.querySelector('[data-track-label="hero-fim-de-ano"]').getAttribute('href') === '/solicitar-proposta/?tipo=kits' && /fictícia/.test(s.querySelector('img').alt)), 'slide 2 é o de fim de ano: leva a /brindes-de-fim-de-ano/ e ao pedido de kits, sem H1 e com a marca fictícia no texto alternativo');
+  const slideHrefs = ['/catalogo/', '/brindes-de-fim-de-ano/', '/confeccoes-personalizadas/', '/kits-corporativos/', '/catalogo/?categoria=canetas-escritorio#catalogo', '/ativacoes-promocionais/'];
+  if (FIM === 1) slideHrefs.unshift(slideHrefs.splice(1, 1)[0]);
+  ok(await page.$$eval('#hero .slide .btn-line', a => a.map(x => x.getAttribute('href')).join()) === slideHrefs.join(), 'slides levam a rotas reais do site (catálogo, fim de ano, confecções, kits, escritório, ativações)');
+  ok(await page.$eval(`#slide-${FIM}`, s => s.querySelector('.eyebrow').textContent === 'Fim de ano' && s.querySelector('p.slide-title').textContent.replace(/\s+/g, ' ') === 'Um brinde a quem fez parte do seu ano.' && s.querySelector('.btn-line').getAttribute('href') === '/brindes-de-fim-de-ano/' && s.querySelector('[data-track-label="hero-fim-de-ano"]').getAttribute('href') === '/solicitar-proposta/?tipo=kits' && /fictícia/.test(s.querySelector('img').alt)), `slide ${FIM} é o de fim de ano: leva a /brindes-de-fim-de-ano/ e ao pedido de kits, sem H1 e com a marca fictícia no texto alternativo`);
   ok(await page.$$eval('.kits-home .kit-card', k => k.length === 5 && k.filter(x => x.classList.contains('big')).length === 2 && k.every(x => x.querySelector('img').alt.length > 20)), 'kits premium: dois destaques e três menores, com texto alternativo');
-  ok(await page.$$eval('.kits-home .kit-occ a', a => a.length === 6 && a.every(x => /^\/brindes-corporativos-premium\/\?ocasiao=[a-z-]+#pecas$/.test(x.getAttribute('href')))), 'atalhos por ocasião levam às ideias filtradas');
+  ok(await page.$$eval('.kits-home .kit-occ a', a => a.length === 6 && a.every(x => x.getAttribute('href') === '/brindes-de-fim-de-ano/' ? x.textContent === 'Fim de ano' : /^\/brindes-por-ocasiao\/\?ocasiao=[a-z-]+#pecas$/.test(x.getAttribute('href')))), 'atalhos por ocasião levam às ideias filtradas (fim de ano, à página própria)');
   ok(await page.$$eval('#hero .slide-copy', s => s.every(x => !x.querySelector('.hero-meta'))) && await page.$$eval('.garantias li', l => l.length === 3), 'frases de confiança saem do banner e ficam na faixa abaixo do carrossel');
   ok(await page.$$eval('.home-prods .product.studio', c => c.length === 8 && c.every(x => x.querySelector('img').alt.length > 15 && x.querySelectorAll('.swatch').length >= 4)), 'destaques: 8 peças em estúdio claro, com texto alternativo e cores com foto');
   ok(await page.$$eval('.home-prods .product.studio h3', h => h.slice(0, 4).map(x => x.textContent).join('|') === 'Polo masculina|Polo feminina|Camiseta masculina|Camiseta feminina'), 'polo e camiseta aparecem em pares masculina/feminina, lado a lado');
-  ok(await page.$$eval('.home-prods .product.studio', c => [c[0], c[1], c[2], c[3]].map(x => x.querySelector('img').currentSrc.split('/').pop().split('.')[0]).join('|') === 'polo~vermelho|polo-feminina~azul-royal|camiseta~branco|camiseta-feminina~preto'), 'a peça feminina ao lado vem em outra cor (azul royal × vermelho)');
+  ok(await page.$$eval('.home-prods .product.studio', c => [c[0], c[1], c[2], c[3]].map(x => { const i = x.querySelector('img'); return (i.currentSrc || i.getAttribute('srcset') || i.src).match(/([a-z0-9-]+~[a-z0-9-]+)\./)[1]; }).join('|') === 'polo~vermelho|polo-feminina~azul-royal|camiseta~branco|camiseta-feminina~preto'), 'a peça feminina ao lado vem em outra cor (azul royal × vermelho)');
   // nenhuma peça abre na mesma cor da vizinha (lado a lado ou logo abaixo), no computador e no celular
   for (const w of [1440, 390]) {
     await page.setViewport({ width: w, height: 900 });
@@ -112,7 +117,8 @@ try {
   ok(await page.$eval('#slide-1', s => s.hasAttribute('inert')), 'slide inativo fica inerte (fora do foco)');
   ok(await page.$eval('[data-hero-pause]', b => b.getAttribute('aria-pressed') === 'true'), 'com movimento reduzido, a troca automática começa pausada');
   ok(await page.$eval('[data-hero-count]', c => c.textContent === '02'), 'contador acompanha o slide (02 / 06)');
-  await Promise.all([page.waitForNavigation({ waitUntil: 'networkidle0' }), page.click('#slide-2 .btn-line')]);
+  if (FIM === 1) await page.click('[data-hero-prev]');
+  await Promise.all([page.waitForNavigation({ waitUntil: 'networkidle0' }), page.click(`#slide-${FIM} .btn-line`)]);
   ok(new URL(page.url()).pathname === '/brindes-de-fim-de-ano/' && /Um brinde a quem\s*fez parte do seu ano\./.test(await page.$eval('h1', h => h.textContent.replace(/\s+/g, ' '))), 'o slide de fim de ano leva a /brindes-de-fim-de-ano/');
   await page.goto(BASE + '/', { waitUntil: 'networkidle0' });
   await page.click('[data-hero-next]');
@@ -125,7 +131,7 @@ try {
   ok(await page.$eval('[data-hero-pause]', b => b.getAttribute('aria-pressed') === 'true' && b.getAttribute('aria-label') === 'Retomar troca automática'), 'botão de pausa alterna e atualiza o rótulo');
   // slide de fim de ano (fim-header): a taça solta começa em ~36% da largura da foto e a caixa termina em ~98%.
   // Mede onde essas faixas caem na tela (object-fit: cover + object-position) e onde termina o texto de fato.
-  const fimFrame = () => page.$eval('#slide-2', s => {
+  const fimFrame = () => page.$eval(`#slide-${FIM}`, s => {
     const ph = s.querySelector('.slide-photo').getBoundingClientRect(), img = s.querySelector('img'), r = img.getBoundingClientRect();
     const iw = +img.getAttribute('width'), ih = +img.getAttribute('height'), k = Math.max(r.width / iw, r.height / ih), sw = iw * k;
     const x0 = r.left - (sw - r.width) * parseFloat(getComputedStyle(img).objectPosition) / 100, at = f => x0 + f * sw;
@@ -152,7 +158,7 @@ try {
 
   console.log('Vitrine, cores e seleção');
   // a vitrine das 21 peças fica na curadoria; a home mostra os destaques em estúdio claro
-  await page.goto(BASE + '/brindes-corporativos-premium/', { waitUntil: 'networkidle0' });
+  await page.goto(BASE + '/brindes-por-ocasiao/', { waitUntil: 'networkidle0' });
   await page.evaluate(() => { localStorage.clear(); localStorage.setItem('tama-consent', 'denied'); });
   await page.reload({ waitUntil: 'networkidle0' });
   const G = '#gift-grid';
@@ -178,7 +184,7 @@ try {
   await page.keyboard.press('Escape');
 
   console.log('Ideias por ocasião (mesma base do catálogo)');
-  await page.goto(BASE + '/brindes-corporativos-premium/', { waitUntil: 'networkidle0' });
+  await page.goto(BASE + '/brindes-por-ocasiao/', { waitUntil: 'networkidle0' });
   const visible = () => page.$$eval('#gift-grid .product, #idea-grid .idea', g => g.filter(x => !x.hidden && getComputedStyle(x).display !== 'none').length);
   const totalOcc = await page.$$eval('#gift-grid .product', g => g.length);
   ok(totalOcc >= 20 && await visible() === totalOcc, `todas as peças por ocasião aparecem sem filtro (${totalOcc})`);
@@ -330,7 +336,7 @@ try {
   await page.goto(BASE + '/kits-corporativos/', { waitUntil: 'networkidle0' });
   ok(await page.$$eval('#kits .kit-card', k => k.length === 5 && k.every(x => x.querySelector('img').alt.length > 20)) && await page.$$eval('.studio-grid', g => g.length === 0), 'kits: os 5 kits premium logo após a abertura, sem bloco do catálogo');
   ok(!(await page.$('#rail-kits')) && await page.$eval('#comp-t', h => { const next = h.closest('section').nextElementSibling; return next && !!next.querySelector('#kit-m-t'); }), 'kits: depois de "Três camadas" vem direto "Como montamos o seu kit" (sem o bloco de peças)');
-  ok(await page.$$eval('#site-nav a.nav-link', a => a.map(x => x.textContent.trim()).join()) === 'Brindes,Confecções,Kits,Ativações,Hotelaria,Catálogo,Sobre,Blog', 'menu com as frentes atuais (sem Marcas e sem Projetos)');
+  ok(await page.$$eval('#site-nav a.nav-link', a => a.map(x => x.textContent.trim()).join()) === (SEASON ? 'Fim de ano,' : '') + 'Brindes,Uniformes,Kits,Ativações,Hotelaria e gastronomia,Ocasiões,Catálogo,Sobre,Blog', 'menu com as áreas, as ocasiões e o fim de ano na temporada (sem Marcas e sem Projetos)');
   ok(await page.$$eval('a[href^="/branding-identidade-visual/"], a[href^="/projetos/"]', a => a.length === 0), 'nenhum link para branding ou projetos');
   await page.goto(BASE + '/confeccoes-personalizadas/', { waitUntil: 'networkidle0' });
   ok(await page.$$eval('.studio-grid .product.studio', c => c.length === 10) && await page.$eval('.studio-grid', g => !!g.closest('section').querySelector('a[href="/catalogo/?categoria=vestuario"]')), 'confecções: 10 peças em estúdio com link para o catálogo filtrado');
@@ -343,8 +349,8 @@ try {
   ok(await colorsHavePhoto(page, '#rail-post .product'), 'trilho do post do blog: toda cor mostrada tem foto própria');
   // tira só o modelo do catálogo da seleção: a seleção anterior segue para os testes do formulário
   await page.evaluate(() => localStorage.setItem('tama-selecao', JSON.stringify(JSON.parse(localStorage.getItem('tama-selecao')).filter(x => x.s !== 'cardapio'))));
-  await page.goto(BASE + '/brindes-corporativos-premium/', { waitUntil: 'networkidle0' });
-  await page.goto(BASE + '/brindes-corporativos-premium/?ocasiao=eventos#pecas', { waitUntil: 'networkidle0' });
+  await page.goto(BASE + '/brindes-por-ocasiao/', { waitUntil: 'networkidle0' });
+  await page.goto(BASE + '/brindes-por-ocasiao/?ocasiao=eventos#pecas', { waitUntil: 'networkidle0' });
   const n2 = await visible(), e2 = await page.$$eval('#gift-grid .product', g => g.filter(x => x.dataset.occ.split(' ').includes('eventos')).length);
   ok(n2 === e2 && n2 > 0, `link de coleção (?ocasiao=eventos) já abre filtrado (${n2})`);
   await page.$eval('#gift-grid .pick[data-slug="taca-de-gin"]', el => el.scrollIntoView({ block: 'center' }));
@@ -443,11 +449,11 @@ try {
   ok(await fp.$$eval('.steps .step', s => s.length === 4) && await fp.$$eval('.faq-list details', d => d.length === 4) && await fp.$$eval('a[href="/solicitar-proposta/?tipo=kits"]', a => a.length >= 2), 'fim de ano: 4 passos, 4 perguntas e CTA final com tipo=kits');
   ok(await colorsHavePhoto(fp, '.studio-grid .product'), 'fim de ano: toda cor mostrada tem foto própria');
   await fp.goto(BASE + '/', { waitUntil: 'networkidle0' });
-  ok(await fp.$$eval('#col-rail a.collection', a => { const f = a.find(x => x.querySelector('h3').textContent === 'Fim de ano'); return !!f && f.getAttribute('href') === '/brindes-de-fim-de-ano/' && (f.querySelector('img').currentSrc || f.querySelector('img').src).includes('kitp-kit-brinde') && a.filter(x => x !== f).every(x => /^\/brindes-corporativos-premium\/\?ocasiao=[a-z-]+#pecas$/.test(x.getAttribute('href'))); }), 'coleção Fim de ano leva à página nova com a foto do Kit Brinde; as outras seguem para as ideias filtradas');
+  ok(await fp.$$eval('#col-rail a.collection', a => { const f = a.find(x => x.querySelector('h3').textContent === 'Fim de ano'); return !!f && f.getAttribute('href') === '/brindes-de-fim-de-ano/' && (f.querySelector('img').currentSrc || f.querySelector('img').src).includes('kitp-kit-brinde') && a.filter(x => x !== f).every(x => /^\/brindes-por-ocasiao\/\?ocasiao=[a-z-]+#pecas$/.test(x.getAttribute('href'))); }), 'coleção Fim de ano leva à página nova com a foto do Kit Brinde; as outras seguem para as ideias filtradas');
   ok(await fp.$eval('.site-footer a[href="/brindes-de-fim-de-ano/"]', a => a.textContent === 'Brindes de fim de ano'), 'rodapé lista "Brindes de fim de ano" nas soluções');
   await fp.goto(BASE + '/', { waitUntil: 'networkidle0' });
-  ok(await fp.$$eval('.frentes-grid .frente-card', a => a.map(x => x.getAttribute('href')).join() === '/brindes-corporativos/,/confeccoes-personalizadas/,/kits-corporativos/'), 'home apresenta as três frentes do mockup');
-  ok(await fp.$eval('h1', h => /Brindes, confecções e ativações/.test(h.textContent)), 'H1 da home diz o que a TaMa oferece');
+  ok(await fp.$$eval('.frentes-grid .frente-card', a => a.map(x => x.getAttribute('href')).join() === '/brindes-corporativos/,/confeccoes-personalizadas/,/kits-corporativos/,/ativacoes-promocionais/,/hotelaria-e-gastronomia/'), 'home apresenta as cinco áreas da TaMa');
+  ok(await fp.$eval('h1', h => /Brindes(?: corporativos)?, uniformes, kits e ativações/.test(h.textContent)), 'H1 da home diz o que a TaMa oferece');
   ok(await fp.$$eval('.kit-card a[href*="tipo=kits"]', a => a.length === 5 && a.every(x => x.href.includes('interesse='))), 'cada kit tem "Quero este kit" com o interesse no pedido');
   await fp.evaluate(() => localStorage.setItem('tama-selecao', JSON.stringify([{ s: 'linha-polo', c: 'Preto' }, { s: 'caneca-de-ceramica', c: null }, { s: 'baralho-exclusivo', c: null }])));
   await fp.goto(BASE + '/solicitar-proposta/', { waitUntil: 'networkidle0' });
@@ -500,7 +506,7 @@ try {
     ok(a.proposta.some(h => h.includes('?tipo=')) && a.tocOk, `${post}: CTA para a proposta com tipo e sumário com âncoras válidas`);
     ok((await fetch(BASE + new URL(a.ogImage).pathname).then(async r => (await r.arrayBuffer(), r))).status === 200, `${post}: imagem de compartilhamento própria`);
     if (post.includes('compliance')) ok(a.sources >= 10, `${post}: seção Fontes com links oficiais (${a.sources})`);
-    else ok(a.curadoria.length > 0, `${post}: link para a curadoria filtrada por ocasião`);
+    else ok(a.curadoria.length > 0 || a.links.includes('/brindes-de-fim-de-ano/'), `${post}: link para as ideias da ocasião (fim de ano: página própria)`);
     for (const l of a.links) { const r = await fetch(BASE + l); await r.arrayBuffer(); if (r.status !== 200) blogBroken.push(post + ' → ' + l + ' ' + r.status); }
   }
   ok(blogBroken.length === 0, `links internos dos artigos respondem 200${blogBroken.length ? ' — ' + blogBroken.join(', ') : ''}`);

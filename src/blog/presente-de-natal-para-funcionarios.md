@@ -76,6 +76,8 @@ Presentes que reúnem família e amigos e levam a marca para a mesa:
 - **Dominó em madeira** ou **baralho** com o padrão da empresa no verso.
 - **Tábua de queijos** com faca, que aparece em todo encontro de fim de semana.
 
+Para mais ideias da época, veja os [presentes de fim de ano da TaMa](/brindes-de-fim-de-ano/).
+
 [[cta: Quer montar o presente da sua equipe com a identidade da sua empresa? Conte quantas pessoas, onde elas estão e o que vocês querem dizer neste fim de ano.]]
 
 ## Uma equipe, muitas pessoas

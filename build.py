@@ -177,7 +177,7 @@ IMAGES = {}
 # largura real da foto do carrossel (fotos 3:2 na metade direita; no celular, um pouco maior que a tela por causa do corte)
 HERO_SIZES = '(max-width: 760px) 120vw, 95vw'
 CARROSSEL_HQ = {'hero-brindes', 'hero-v3-confeccoes', 'hero-kits', 'home-escritorio'}
-FOTOS_HQ = CARROSSEL_HQ | {'home-frente-brindes', 'home-frente-confeccoes', 'home-frente-kits', 'kits-header'}   # fotos enviadas em alta pela TaMa (home e cabeçalho dos kits)
+FOTOS_HQ = CARROSSEL_HQ | {'home-frente-brindes', 'home-frente-confeccoes', 'home-frente-kits', 'kits-header', 'conf-header'}   # fotos enviadas em alta pela TaMa (home e cabeçalhos de kits e confecções)
 
 
 def build_images():
@@ -1313,25 +1313,34 @@ def page_brindes():
     }
 
 
-KITS_HERO_SIZES = '(max-width: 760px) 135vw, (max-width: 1100px) 100vw, (min-width: 1573px) 1210px, 77vw'   # foto do cabeçalho dos kits: altura × 16:9 no computador; no celular, cortada em 4:3 sem perder as três caixas
+FOTO_HERO_SIZES = '(max-width: 760px) 135vw, (max-width: 1100px) 100vw, (min-width: 1573px) 1210px, 77vw'   # foto 16:9 dos cabeçalhos de kits e confecções: altura × 16:9 no computador; no celular, cortada em 4:3
+
+
+def foto_hero(trail, img, alt, eyebrow, linhas, destaque, desc, actions, legenda, pos_m='right'):
+    # Cabeçalho dos mockups da TaMa (kits, confecções): a foto 16:9 ocupa a largura toda e o texto fica na parte clara à
+    # esquerda, sem passar por cima do assunto (a altura acompanha a largura, então ele começa sempre depois da coluna de
+    # texto). Até 1100 px o texto vem acima e a foto abaixo; no celular, cortada em 4:3 na direção de pos_m.
+    titulo = ' '.join(f'<span>{l}</span>' for l in linhas) + f' <em>{destaque}</em>'
+    return f'''<section class="foto-hero" aria-labelledby="foto-hero-t" style="--pos-m:{pos_m}">
+  {crumbs(trail)}
+  <div class="wrap foto-hero-inner"><div class="foto-hero-copy">
+    <p class="eyebrow">{eyebrow}</p>
+    <h1 id="foto-hero-t" class="foto-hero-title">{titulo}</h1>
+    <p class="foto-hero-desc">{desc}</p>
+    <div class="actions">{actions}</div>
+  </div></div>
+  <figure class="foto-hero-photo">{picture(img, alt, FOTO_HERO_SIZES, eager=True)}<figcaption>{legenda}</figcaption></figure>
+</section>'''
 
 
 def kits_hero(trail):
-    # Cabeçalho do mockup da TaMa: a foto ocupa a largura toda e o texto fica na parte creme à esquerda, sem passar por
-    # cima das caixas (a altura acompanha a largura, então as caixas começam sempre depois da coluna de texto). Até
-    # 1100 px o texto vem acima e a foto abaixo (no celular, cortada em direção às caixas).
-    alt = ('Três kits corporativos abertos com marcas fictícias (Pulso, Nexo e Flora): caixas com garrafa, caderno, caneta, '
-           'caneca e cartão, mostrando como cada kit segue a identidade da empresa.')
-    return f'''<section class="kits-hero" aria-labelledby="kits-hero-t">
-  {crumbs(trail)}
-  <div class="wrap kits-hero-inner"><div class="kits-hero-copy">
-    <p class="eyebrow">Kits corporativos</p>
-    <h1 id="kits-hero-t" class="kits-hero-title"><span>A identidade</span> <span>da sua empresa.</span> <em>Em cada detalhe.</em></h1>
-    <p class="kits-hero-desc">Cores, peças e embalagens que traduzem a sua marca. Kits personalizados para receber, reconhecer e criar conexões.</p>
-    <div class="actions">{cta_link('Montar meu kit', tipo='kits', track_label='kits-head')}<a class="btn btn-line" href="#kits">Explorar kits</a></div>
-  </div></div>
-  <figure class="kits-hero-photo">{picture('kits-header', alt, KITS_HERO_SIZES, eager=True)}<figcaption>Mockups ilustrativos • Marcas fictícias</figcaption></figure>
-</section>'''
+    return foto_hero(trail, 'kits-header',
+                     'Três kits corporativos abertos com marcas fictícias (Pulso, Nexo e Flora): caixas com garrafa, caderno, caneta, '
+                     'caneca e cartão, mostrando como cada kit segue a identidade da empresa.',
+                     'Kits corporativos', ['A identidade', 'da sua empresa.'], 'Em cada detalhe.',
+                     'Cores, peças e embalagens que traduzem a sua marca. Kits personalizados para receber, reconhecer e criar conexões.',
+                     cta_link('Montar meu kit', tipo='kits', track_label='kits-head') + '<a class="btn btn-line" href="#kits">Explorar kits</a>',
+                     'Mockups ilustrativos • Marcas fictícias', pos_m='96% center')
 
 
 def page_kits():
@@ -1341,7 +1350,7 @@ def page_kits():
         'description': 'Kits de boas-vindas, kits para eventos e presentes para clientes, com curadoria, embalagem personalizada e a marca da sua empresa. Solicite uma proposta.',
         'trail': trail,
         'service': {'key': 'kits', 'name': 'Kits corporativos personalizados', 'type': 'Kits corporativos'},
-        'preload': preload_image('kits-header', KITS_HERO_SIZES),   # mesma imagem e sizes da foto do cabeçalho
+        'preload': preload_image('kits-header', FOTO_HERO_SIZES),   # mesma imagem e sizes da foto do cabeçalho
         'crumbs_inline': True,   # o caminho fica sobre a área creme da foto, logo abaixo do cabeçalho do site
         'body': kits_hero(trail) + f'''
 <section class="section kits-page" id="kits" aria-labelledby="kits-p-t" style="padding-top:clamp(24px,3vw,40px)">
@@ -1439,26 +1448,25 @@ def page_curadoria():
     }
 
 
-# Abertura de Confecções: pessoas usando as peças com a marca (cenas geradas com IA, ilustrativas; tools/cenas.py).
-# frame: --fx/--fy enquadram a foto no computador, --fx-m no celular.
-CONF_SLIDES = [
-    ('tone-linen', 'conf-equipe-kits', '--fx:58%;--fx-m:52%', 'Cena ilustrativa: equipe de uma empresa usando polo azul e camisetas preta e branca, com a marca TaMa aplicada como exemplo.',
-     'Confecções personalizadas', 'Uniformes corporativos e <em>confecções personalizadas</em>',
-     'Polos, camisas, camisetas, dólmãs e moletons para equipes, eventos e o dia a dia, alinhados à identidade da sua empresa.',
-     cta_link('Solicitar proposta', tipo='confeccoes', track_label='conf-hero-4') + '<a class="btn btn-line" href="/catalogo/?categoria=vestuario">Ver polos e moletons ' + ARROW + '</a>'),
-    ('tone-cream', 'conf-chef-dolma', '--fx:78%;--fy:15%;--fx-m:74%', 'Chef de dólmã branca com a marca TaMa bordada finalizando um prato em uma cozinha profissional.',
-     'Hotelaria e gastronomia', 'Sua marca na <em>cozinha e no salão</em>.',
-     'Dólmãs e aventais com a sua marca. Tecido e personalização definidos na proposta.',
-     cta_link('Solicitar proposta', tipo='hotelaria', track_label='conf-hero-2') + '<a class="btn btn-line" href="/hotelaria-e-gastronomia/">Ver hotelaria e gastronomia ' + ARROW + '</a>'),
-    ('tone-sage', 'conf-estande-evento', '--fx:72%;--fx-m:70%', 'Equipe de polo branca e camiseta vermelha com a marca TaMa atendendo visitantes e entregando ecobags num estande de feira.',
-     'Eventos e ações', 'Camisetas que viram <em>presença de marca</em>.',
-     'Camisetas personalizadas para feiras, campanhas e ativações, com a técnica definida na proposta.',
-     cta_link('Solicitar proposta', tipo='confeccoes', track_label='conf-hero-3') + '<a class="btn btn-line" href="/catalogo/?categoria=vestuario">Ver camisetas ' + ARROW + '</a>'),
-    ('tone-rose', 'conf-degustacao', '--fx:42%;--fx-m:40%', 'Promotoras de camiseta branca e avental verde e terracota com a marca TaMa servindo degustação de queijo num supermercado.',
-     'Ativações e degustações', 'Aventais que levam a marca <em>ao ponto de venda</em>.',
-     'Aventais, camisetas e toucas para degustações, promoções e equipes de loja.',
-     cta_link('Planejar uma ativação', tipo='ativacoes', track_label='conf-hero-5') + '<a class="btn btn-line" href="/ativacoes-promocionais/">Conhecer ativações ' + ARROW + '</a>'),
-]
+CONF_PECAS = [('Polos e camisetas', '/catalogo/?categoria=vestuario'), ('Camisas sociais', '/catalogo/?q=camisa'),
+              ('Moletons', '/catalogo/?q=moletom'), ('Dólmãs e aventais', '/hotelaria-e-gastronomia/')]
+
+
+def conf_hero(trail):
+    return foto_hero(trail, 'conf-header',
+                     'Equipe de três pessoas sorrindo num escritório, com camisa social azul-marinho, polo cinza e camiseta terracota '
+                     'bordadas com a marca fictícia Elo, mostrando um uniforme na identidade da empresa.',
+                     'Confecções personalizadas', ['A identidade', 'da sua marca'], 'também se veste.',
+                     'Polos, camisetas, camisas, moletons, dólmãs e aventais personalizados para equipes, eventos e atendimento.',
+                     cta_link('Solicitar proposta', tipo='confeccoes', track_label='conf-head')
+                     + f'<a class="btn btn-line" href="#estudio-c-t">Explorar as peças {ARROW}</a>',
+                     'Imagem ilustrativa • Marca fictícia', pos_m='right center') + f'''
+<section class="conf-pecas" aria-labelledby="conf-pecas-t">
+  <div class="wrap">
+    <h2 id="conf-pecas-t" class="conf-pecas-title">Encontre as peças para sua equipe</h2>
+    <ul class="conf-pecas-list">{''.join(f'<li><a href="{h}">{t} {ARROW}</a></li>' for t, h in CONF_PECAS)}</ul>
+  </div>
+</section>'''
 
 
 def page_confeccoes():
@@ -1467,8 +1475,9 @@ def page_confeccoes():
         'description': 'Uniformes corporativos, polos, camisas, moletons e bonés para equipes e eventos, alinhados à identidade visual da sua empresa e pensados para quem veste.',
         'trail': [('/', 'Início'), ('/confeccoes-personalizadas/', 'Confecções')],
         'service': {'key': 'confeccoes', 'name': 'Confecções personalizadas e uniformes corporativos', 'type': 'Uniformes corporativos personalizados'},
-        'preload': preload_image(CONF_SLIDES[0][1], HERO_SIZES),  # mesma imagem e sizes do slide 1
-        'body': hero_carousel(CONF_SLIDES, label='Confecções da TaMa Creative', assurances=False) + f'''
+        'preload': preload_image('conf-header', FOTO_HERO_SIZES),   # mesma imagem e sizes da foto do cabeçalho
+        'crumbs_inline': True,   # o caminho fica sobre a área clara da foto, logo abaixo do cabeçalho do site
+        'body': conf_hero([('/', 'Início'), ('/confeccoes-personalizadas/', 'Confecções')]) + f'''
 <section class="section ivory" aria-labelledby="uso-t">
   <div class="wrap">
     <div class="section-head"><p class="eyebrow">Definido pelo uso</p><h2 id="uso-t" class="section-title">Cada peça começa pela rotina de quem veste</h2></div>

@@ -177,6 +177,7 @@ IMAGES = {}
 # largura real da foto do carrossel (fotos 3:2 na metade direita; no celular, um pouco maior que a tela por causa do corte)
 HERO_SIZES = '(max-width: 760px) 120vw, 95vw'
 CARROSSEL_HQ = {'hero-brindes', 'hero-v3-confeccoes', 'hero-kits', 'home-escritorio'}
+FOTOS_HQ = CARROSSEL_HQ | {'home-frente-brindes', 'home-frente-confeccoes', 'home-frente-kits'}   # fotos da home enviadas em alta pela TaMa
 
 
 def build_images():
@@ -214,7 +215,7 @@ def build_images():
         IMAGES[name] = {'w': im.width, 'h': im.height, 'widths': widths, 'stem': stem, 'src': src}
         for w in widths:
             h = round(im.height * w / im.width)
-            hq = name in CARROSSEL_HQ   # fotos do carrossel da home: mais qualidade (detalhes nítidos em tela grande)
+            hq = name in FOTOS_HQ   # fotos do carrossel e das frentes da home: mais qualidade (detalhes nítidos em tela grande)
             for ext, kw in (('avif', {'quality': 64 if hq else 52}), ('webp', {'quality': 88 if hq else 78, 'method': 6}), ('jpg', {'quality': 90 if hq else 80, 'optimize': True, 'progressive': True})):
                 # cache pelo hash do conteúdo (stem), não pela data: vale entre máquinas e no build do Netlify (checkout muda as datas)
                 cached = os.path.join(cdir, f'{stem}-{w}.{ext}')
@@ -1154,15 +1155,14 @@ ASSURANCES = '''<ul class="garantias" aria-label="Como a TaMa trabalha">
 </ul>'''
 
 # (link, imagem, enquadramento da foto, título em 2 linhas, descrição em 2 linhas, chamada)
-# Fotos de img/v2/. A do meio é a mais próxima do mockup no acervo (dólmã branca + polo azul royal na frente);
-# se chegar a foto própria do mockup, basta trocar 'home-confeccoes' pelo novo nome e o enquadramento por 'center'.
+# Fotos de img/v2/home-frente-*: as do mockup, enviadas pela TaMa em 18/10/2026 (mesma proporção do cartão).
 # As quebras de linha seguem o mockup; cada metade cabe numa linha mesmo no cartão mais estreito (~225 px, tablet).
 FRENTES = [
-    ('/brindes-corporativos/', 'home-card-brindes', '96% center', ('Brindes', 'corporativos'),
+    ('/brindes-corporativos/', 'home-frente-brindes', 'center', ('Brindes', 'corporativos'),
      ('Presentes que aproximam,', 'encantam e ficam.'), 'Ver brindes'),
-    ('/confeccoes-personalizadas/', 'home-confeccoes', '56% center', ('Confecções', 'personalizadas'),
+    ('/confeccoes-personalizadas/', 'home-frente-confeccoes', 'center', ('Confecções', 'personalizadas'),
      ('Peças para equipes, ações', 'e eventos.'), 'Conhecer opções'),
-    ('/kits-corporativos/', 'home-kits', '84% center', ('Kits', 'premium'),
+    ('/kits-corporativos/', 'home-frente-kits', 'center', ('Kits', 'premium'),
      ('Caixa, peças e cartão', 'com a sua marca.'), 'Ver kits'),
 ]
 

@@ -161,8 +161,9 @@ try {
   ok(await page.$eval('a.btn[href="/catalogo/"]', a => /Ver o catálogo/.test(a.textContent)), 'ideias por ocasião chamam o catálogo completo');
   await page.goto(BASE + '/catalogo/', { waitUntil: 'networkidle0' });
   const catVisible = () => page.$$eval('#catalogo-grid .product', g => g.filter(x => !x.hidden && getComputedStyle(x).display !== 'none').length);   // conta o que está mesmo na tela
-  ok(await page.$$eval('h1', h => h.length === 1 && /51 modelos/.test(h[0].textContent)), 'página do catálogo tem H1 com o total');
-  ok(await catVisible() === 51 && await page.$$eval('#catalogo-grid .product img', i => i.every(x => x.alt.length > 15)), 'catálogo mostra os 51 modelos do banco, com texto alternativo');
+  const nModelos = +(await page.$eval('h1', h => (h.textContent.match(/(\d+) modelos/) || [])[1]));
+  ok(await page.$$eval('h1', h => h.length === 1) && nModelos >= 51, `página do catálogo tem H1 com o total (${nModelos})`);
+  ok(await catVisible() === nModelos && await page.$$eval('#catalogo-grid .product img', i => i.every(x => x.alt.length > 15)), 'catálogo mostra todos os modelos do banco, com texto alternativo');
   ok(await page.$$eval('#catalogo-grid .product[data-slug="caneca"] .swatch', s => s.length === 5), 'caneca tem 5 cores com foto');
   ok(await colorsHavePhoto(page, '#catalogo-grid .product.studio'), 'toda cor mostrada no catálogo tem foto própria (nenhuma bolinha sem efeito)');
   await page.$eval('#catalogo-grid .product[data-slug="caneca"]', el => el.scrollIntoView({ block: 'center' }));
@@ -180,7 +181,7 @@ try {
   await page.click('#catalogo-grid .pick[data-slug="cardapio"]');
   ok((await page.evaluate(() => JSON.parse(localStorage.getItem('tama-selecao')))).some(x => x.s === 'cardapio' && x.c), 'modelo do catálogo entra na seleção com a cor da foto');
   await page.goto(BASE + '/catalogo/?categoria=vestuario', { waitUntil: 'networkidle0' });
-  ok(await catVisible() === 8 && await page.$eval('[data-rail-filter="catalogo-grid"][data-value="vestuario"]', b => b.getAttribute('aria-pressed') === 'true'), '?categoria=vestuario abre o catálogo já filtrado (8 peças de vestuário)');
+  ok(await catVisible() === 9 && await page.$eval('[data-rail-filter="catalogo-grid"][data-value="vestuario"]', b => b.getAttribute('aria-pressed') === 'true'), '?categoria=vestuario abre o catálogo já filtrado (9 peças de vestuário)');
   await page.goto(BASE + '/brindes-corporativos/', { waitUntil: 'networkidle0' });
   ok(await page.$$eval('.studio-grid .product.studio', c => c.length === 12) && await page.$$eval('.studio-grid', g => g.length === 1), 'brindes: uma grade só, com 12 modelos do catálogo');
   ok(await colorsHavePhoto(page, '.studio-grid .product'), 'brindes: toda cor mostrada tem foto própria');

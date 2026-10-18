@@ -28,7 +28,10 @@ BLOG_SRC = os.path.join(ROOT, 'src', 'blog')
 BLOG_CSS = os.path.join(ROOT, 'src', 'blog.css')
 ADMIN_SRC = os.path.join(ROOT, 'src', 'admin')
 CMS_REPO = os.environ.get('CMS_REPO', 'mfpi1209/tama-creative-site')   # repositório GitHub (privado) que o editor edita
-CMS_SITE_DOMAIN = 'tamacreative.netlify.app'                    # site do Netlify que faz o login (OAuth GitHub)
+CMS_BRANCH = os.environ.get('CMS_BRANCH', 'main')            # branch de produção: "Publicar" no editor grava aqui
+# Login GitHub do editor: serviço deploy/cms-auth no Easypanel, exposto pelo Nginx do site em /api/cms-auth/.
+CMS_AUTH_BASE = os.environ.get('CMS_AUTH_BASE', '')           # vazio = o próprio site (site_url)
+CMS_AUTH_ENDPOINT = os.environ.get('CMS_AUTH_ENDPOINT', 'api/cms-auth/auth')
 IMG_EXT = ('.jpg', '.jpeg', '.png', '.webp')
 BLOG_IMG = {}  # chave -> arquivo de img/blog/ (imagens enviadas pelo editor)
 DRAFTS = os.environ.get('BLOG_DRAFTS', '').lower() in ('1', 'true', 'yes')
@@ -672,8 +675,8 @@ def cms_config(b):
                   'Use o bloco "Chamada para proposta" uma vez no meio do texto.')},
     ]
     cfg = {
-        'backend': {'name': 'github', 'repo': CMS_REPO, 'branch': 'main', 'base_url': 'https://api.netlify.com',
-                    'auth_endpoint': 'auth', 'site_domain': CMS_SITE_DOMAIN, 'squash_merges': True,
+        'backend': {'name': 'github', 'repo': CMS_REPO, 'branch': CMS_BRANCH, 'base_url': CMS_AUTH_BASE or b.SITE,
+                    'auth_endpoint': CMS_AUTH_ENDPOINT, 'squash_merges': True,
                     'commit_messages': {'create': 'Editor ({{collection}}): cria {{slug}}', 'update': 'Editor ({{collection}}): atualiza {{slug}}',
                                         'delete': 'Editor ({{collection}}): remove {{slug}}',
                                         'uploadMedia': 'Editor: envia imagem {{path}}', 'deleteMedia': 'Editor: remove imagem {{path}}',

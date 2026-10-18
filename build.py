@@ -138,6 +138,14 @@ def build_catalogo():
                     'meta': spec_line(base), 'alt': base['alt'], 'cores': cores, 'ocasioes': SEL.get('ocasioes_por_modelo', {}).get(slug, [])})
     ordem = list(CAT_PROD)
     out.sort(key=lambda c: (ordem.index(c['categoria']), prio.get(c['slug'], 999), c['nome']))
+    # vizinhos na grade não abrem na mesma cor: troca para a próxima cor com foto (foto-base definida em selecoes.json fica)
+    fixas = set(SEL.get('foto_base', {}))
+    for ant, c in zip(out, out[1:]):
+        if c['cores'][0][0] == ant['cores'][0][0] and c['slug'] not in fixas:
+            alt = next((x for x in c['cores'][1:] if x[0] != ant['cores'][0][0]), None)
+            if alt:
+                c['cores'] = [alt] + [x for x in c['cores'] if x is not alt]
+                c['img'], c['alt'] = alt[2], alt[3]
     return out
 
 _MOCK_JSON = os.path.join(SRC, 'data', 'mockups.json')
@@ -1141,7 +1149,7 @@ def page_confeccoes():
         'description': 'Uniformes corporativos, polos bordadas, moletons e bonés para equipes e eventos, alinhados à identidade visual da sua empresa e pensados para quem veste.',
         'trail': [('/', 'Início'), ('/confeccoes-personalizadas/', 'Confecções')],
         'service': {'key': 'confeccoes', 'name': 'Confecções personalizadas e uniformes corporativos', 'type': 'Uniformes corporativos personalizados'},
-        'preload': preload_image(CONF_SLIDES[0][1], '(max-width: 760px) 200vw, (max-width: 1100px) 140vw, 100vw'),
+        'preload': preload_image(CONF_SLIDES[0][1], '(max-width: 760px) 200vw, (max-width: 1100px) 140vw, 100vw'),  # mesma imagem e sizes do slide 1
         'body': hero_carousel(CONF_SLIDES, label='Confecções da TaMa Creative', assurances=False) + f'''
 <section class="section ivory" aria-labelledby="uso-t">
   <div class="wrap">

@@ -4,7 +4,7 @@ Guias que atraem quem procura brindes, kits e presentes corporativos e levam ess
 
 ## Editor visual (/admin/)
 
-Endereço: **https://tamacreative.com.br/admin/** (servido pelo Easypanel). O login é feito com a conta do GitHub, usando o OAuth configurado no Netlify (passos 1 e 2 abaixo).
+Endereço: **https://tamacreative.com.br/admin/** (servido pelo Easypanel). O login é feito com a conta do GitHub, pelo serviço `cms-auth` do Easypanel (passos 1 a 3 abaixo).
 
 O mesmo editor também administra o **catálogo de produtos** (fotos, cores, material e técnica): ver `docs/BANCO-IMAGENS.md` › Editor do catálogo. `/adm` redireciona para `/admin/`.
 
@@ -30,16 +30,22 @@ Rascunho também pode ser marcado com a chave "Rascunho (não publicar)": ele n�
 
 ### Configuração única (feita pelo responsável pela conta)
 
+O login do editor roda no Easypanel: o serviço `cms-auth` (código em `deploy/cms-auth/`) faz o OAuth com o GitHub e o Nginx do site o expõe em `https://tamacreative.com.br/api/cms-auth/`. O Netlify não participa do login.
+
 | Passo | Onde | O quê |
 |---|---|---|
-| 1 | GitHub › Settings › Developer settings › OAuth Apps › New OAuth App | Nome: `Editor do blog TaMa`. Homepage: `https://tamacreative.netlify.app`. Authorization callback URL: `https://api.netlify.com/auth/done`. Gere o Client secret |
-| 2 | Netlify › site tamacreative › Site configuration › Access & security › OAuth › Install provider | GitHub. Cole o Client ID e o Client secret do passo 1 |
-| 3 | Netlify › Site configuration › Build & deploy › Continuous deployment › Link repository | GitHub › `mfpi1209/tama-creative-site`, branch `main`. Deixe "Deploy Previews" ligado: pelo `netlify.toml`, as prévias geram o site completo e a produção do Netlify só redireciona para o domínio |
+| 1 | GitHub › Settings › Developer settings › OAuth Apps › **New OAuth App** | Nome: `Editor do site TaMa`. Homepage URL: `https://tamacreative.com.br`. Authorization callback URL: `https://tamacreative.com.br/api/cms-auth/callback`. Registre, copie o **Client ID** e gere o **Client secret** |
+| 2 | Easypanel › projeto `tama` › app **`cms-auth`** › **Environment** | `GITHUB_CLIENT_ID=` e `GITHUB_CLIENT_SECRET=` do passo 1. Salve e clique em **Deploy**. Não precisa de domínio: o acesso é pela rede interna |
+| 3 | Easypanel › app do site › **Deploy** | Publica o Nginx que encaminha `/api/cms-auth/` para `tama_cms-auth` |
+
+O Nginx procura o serviço pelo nome interno **`tama_cms-auth`**, na **porta 80** (a porta que o serviço informa no log: "cms-auth na porta 80"). Se o projeto, o serviço ou a porta forem outros, ajuste `set $cms_auth_upstream` em `deploy/nginx.conf`.
+
+Quem edita precisa de acesso de escrita ao repositório `mfpi1209/tama-creative-site` (colaborador no GitHub).
 
 ### Publicação
 
 - **Produção = branch `main` → GitHub Actions → Easypanel** (ver `docs/DEPLOY.md`). Commite e envie (`git push`) só depois do OK.
-- O Netlify não publica mais o site: `tamacreative.netlify.app` redireciona para o domínio; só as prévias de pull request geram o site, para revisão no editor.
+- O Netlify não publica mais o site: `tamacreative.netlify.app` redireciona para o domínio. Se o Netlify continuar ligado ao repositório, as prévias de pull request geram o site completo para revisão.
 - Os logos oficiais têm cópia versionada em `brand/logos/`, porque o build só enxerga o repositório. Se os SVGs de `tama-creative-logos/svg` mudarem, o build local avisa; copie os arquivos e faça commit.
 - Os masters dos mockups (`midia/mockups/mestre/`, 51 MB) ficam fora do Git, só neste computador.
 

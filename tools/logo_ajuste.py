@@ -21,8 +21,8 @@ BASE = ('Edit the first image, a catalog product photo. Keep EXACTLY the same pr
         'underneath. Reproduce it faithfully, letter by letter. ')
 MENOR = BASE + ('The current logo on the product is too big. Remove it completely, leaving the surface clean, and apply the logo '
                 'again SMALLER, as a real promotional print: its width about one third of the visible width of the product face, '
-                'centered on the front, with generous clear margin from rims, lids, edges and seams. White on dark or saturated '
-                'surfaces, original colors on white or light ones. No other text, no extra objects, no watermark. Photorealistic.')
+                'centered on the front, with generous clear margin from rims, lids, edges and seams. On any colored, dark or saturated '
+                'surface the WHOLE logo (leaf and letters) is white; original colors only on white or very light surfaces. No other text, no extra objects, no watermark. Photorealistic.')
 OFICIAL = BASE + ('The brand mark currently on the product is wrong (wrong lettering or only the symbol). Remove it and apply the '
                   'official logo in the same spot, small and discreet, as a premium blind deboss/hot-stamp on leather in a subtle tone '
                   'that matches the material, perfectly flat and aligned with the surface. No other text, no extra objects, no '

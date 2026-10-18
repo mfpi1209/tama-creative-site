@@ -20,7 +20,8 @@
   "Jeans": "#2F4470",
   "Kraft": "#C4A07A",
   "Âmbar": "#B8742A",
-  "Verde-escuro": "#1F4A35"
+  "Verde-escuro": "#1F4A35",
+  "Rosa": "#E07A9B"
  },
  "paleta": {
   "polo~vermelho": [
@@ -29,7 +30,8 @@
    "Branco",
    "Azul-marinho",
    "Cinza",
-   "Verde"
+   "Verde",
+   "Rosa"
   ],
   "polo-feminina~azul-royal": [
    "Vermelho",
@@ -37,7 +39,8 @@
    "Branco",
    "Azul-marinho",
    "Cinza",
-   "Verde"
+   "Verde",
+   "Rosa"
   ],
   "camiseta~azul-royal": [
    "Vermelho",
@@ -45,7 +48,8 @@
    "Branco",
    "Azul-marinho",
    "Cinza",
-   "Verde"
+   "Verde",
+   "Rosa"
   ],
   "camiseta-feminina~vermelho": [
    "Azul royal",
@@ -53,7 +57,8 @@
    "Branco",
    "Azul-marinho",
    "Cinza",
-   "Verde"
+   "Verde",
+   "Rosa"
   ],
   "moletom~preto": [
    "Azul royal",
@@ -61,19 +66,22 @@
    "Cinza",
    "Azul-marinho",
    "Branco",
-   "Verde"
+   "Verde",
+   "Rosa"
   ],
   "dolma~branco": [
    "Preto",
    "Azul-marinho",
-   "Jeans"
+   "Jeans",
+   "Rosa"
   ],
   "avental~jeans": [
    "Preto",
    "Vermelho",
    "Cru",
    "Azul-marinho",
-   "Verde"
+   "Verde",
+   "Rosa"
   ],
   "caderno~azul-royal": [
    "Vermelho",
@@ -245,6 +253,23 @@
    "Azul-marinho",
    "Preto",
    "Verde-escuro"
+  ],
+  "bone~verde": [
+   "Preto",
+   "Azul-marinho",
+   "Azul royal",
+   "Vermelho",
+   "Branco",
+   "Cinza",
+   "Rosa"
+  ],
+  "avental-laco~verde-escuro": [
+   "Preto",
+   "Azul-marinho",
+   "Vermelho",
+   "Cru",
+   "Rosa",
+   "Caramelo"
   ]
  }
 }

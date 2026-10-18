@@ -14,5 +14,6 @@ RUN python build.py
 FROM nginx:1.27-alpine
 COPY deploy/nginx.conf /etc/nginx/conf.d/default.conf
 COPY deploy/security-headers.conf /etc/nginx/snippets/security-headers.conf
+COPY deploy/admin-headers.conf /etc/nginx/snippets/admin-headers.conf
 COPY --from=build /app/dist /usr/share/nginx/html
 EXPOSE 80

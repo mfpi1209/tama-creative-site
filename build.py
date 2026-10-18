@@ -177,7 +177,7 @@ IMAGES = {}
 # largura real da foto do carrossel (fotos 3:2 na metade direita; no celular, um pouco maior que a tela por causa do corte)
 HERO_SIZES = '(max-width: 760px) 120vw, 95vw'
 CARROSSEL_HQ = {'hero-brindes', 'hero-v3-confeccoes', 'hero-kits', 'home-escritorio'}
-FOTOS_HQ = CARROSSEL_HQ | {'home-frente-brindes', 'home-frente-confeccoes', 'home-frente-kits', 'kits-header', 'conf-header', 'ativ-header', 'hot-header', 'brindes-header', 'brindes-entrega'}   # fotos enviadas em alta pela TaMa (home e cabeçalhos de kits e confecções)
+FOTOS_HQ = CARROSSEL_HQ | {'home-frente-brindes', 'home-frente-confeccoes', 'home-frente-kits', 'kits-header', 'conf-header', 'ativ-header', 'hot-header', 'brindes-header', 'brindes-entrega', 'fim-header'}   # fotos enviadas em alta pela TaMa (home e cabeçalhos de kits e confecções)
 
 
 def build_images():
@@ -1500,13 +1500,16 @@ ICONES = {   # traço fino, cor do texto (currentColor)
 }
 
 
-def atalhos(titulo, itens, aria, linha=True, centro=False, traco=False):
+def atalhos(titulo, itens, aria, linha=True, centro=False, traco=False, eyebrow=None, lado=False):
     """Faixa de atalhos logo abaixo dos cabeçalhos de foto: título serifado e links com seta, separados por fios.
-    itens: (texto, link) ou (texto, link, ícone de ICONES)."""
+    itens: (texto, link) ou (texto, link, ícone de ICONES). lado: título (com eyebrow) à esquerda e links à direita."""
     lis = ''.join(f'<li><a href="{it[1]}">{ICONES.get(it[2], "") if len(it) > 2 else ""}<span>{it[0]}</span> {ARROW}</a></li>' for it in itens)
-    return f'''<section class="atalhos{'' if linha else ' sem-linha'}{' centro' if centro else ''}{' traco' if traco else ''}" aria-labelledby="{aria}">
+    h2 = f'<h2 id="{aria}" class="atalhos-title">{titulo}</h2>'
+    if eyebrow:
+        h2 = f'<div class="atalhos-head"><p class="eyebrow">{eyebrow}</p>{h2}</div>'
+    return f'''<section class="atalhos{'' if linha else ' sem-linha'}{' centro' if centro else ''}{' traco' if traco else ''}{' lado' if lado else ''}" aria-labelledby="{aria}">
   <div class="wrap">
-    <h2 id="{aria}" class="atalhos-title">{titulo}</h2>
+    {h2}
     <ul class="atalhos-list" style="--n:{len(itens)}">{lis}</ul>
   </div>
 </section>'''
@@ -1701,6 +1704,9 @@ FIM_DE_ANO_KITS = [
 ]
 
 
+FIM_ATALHOS = [('Taças e copos', '#brindar'), ('Conjuntos e embalagens', '#kits-fim-de-ano'), ('Personalização e mensagens', '#personalizacao')]
+
+
 def page_fim_de_ano():
     """Ocasião "Fim de ano": taças e copos para brindar, kits prontos e peças para presentear, todos do catálogo."""
     kits = ''.join(kit_card(i, slug, name, desc, True) for i, (slug, name, desc) in enumerate(FIM_DE_ANO_KITS))
@@ -1710,13 +1716,20 @@ def page_fim_de_ano():
         'trail': [('/', 'Início'), ('/brindes-de-fim-de-ano/', 'Fim de ano')],
         'service': {'key': 'fim-de-ano', 'name': 'Brindes de fim de ano para clientes e equipes', 'type': 'Brindes corporativos'},
         'assunto': 'brindes de fim de ano',
-        'preload': preload_image('kitp-kit-brinde', '(max-width: 760px) 92vw, 46vw'),
-        'body': page_head('Fim de ano', 'Brindes de fim de ano para clientes e equipes',
-                          'Taças, copos e kits para brindar o encerramento do ano com a marca da sua empresa. A TaMa seleciona as peças, cuida da personalização e da embalagem e coordena a entrega combinada na proposta.',
-                          cta_link('Planejar meu fim de ano', tipo='kits', track_label='fim-de-ano-head') + '<a class="btn btn-line" href="#brindar">Ver as taças</a>',
-                          'kitp-kit-brinde', 'Kit Brinde ilustrativo: duas taças coupe na caixa rígida com berço e cartão com a marca TaMa.') + f"""
+        'preload': preload_image('fim-header', FOTO_HERO_SIZES),   # mesma imagem e sizes da foto do cabeçalho
+        'crumbs_inline': True,
+        'body': foto_hero([('/', 'Início'), ('/brindes-de-fim-de-ano/', 'Fim de ano')], 'fim-header',
+                          'Caixa de presente terracota aberta com duas taças flute num berço creme e o cartão "Obrigado por fazer parte da '
+                          'nossa história", com o símbolo de uma marca fictícia; ao lado, uma taça sobre mesa de pedra iluminada pelo sol.',
+                          'Presentes de fim de ano', ['Um brinde a quem'], 'fez parte do seu ano.',
+                          'Taças, copos e presentes personalizados para agradecer clientes, reconhecer equipes e celebrar parcerias. '
+                          'Escolha as peças e combine a apresentação com a identidade da sua empresa.',
+                          f'<a class="btn btn-wine" href="#brindar">Explorar os presentes {ARROW}</a>'
+                          + cta_link('Solicitar proposta', tipo='kits', cls='btn btn-line', arrow=False, track_label='fim-de-ano-head'),
+                          'Imagem ilustrativa • Marca fictícia', pos_m='78% center') + '\n' + atalhos(
+            'Escolha como brindar.', FIM_ATALHOS, 'fim-atalhos-t', linha=False, eyebrow='Para brindar', lado=True) + f"""
 {studio_block(['taca-coupe-canelada', 'flute-com-borda-dourada', 'taca-de-gin-com-pe-colorido', 'taca-de-gin-degrade', 'taca-martini', 'copo-long-drink', 'taca-de-champanhe', 'taca-de-gin'],
-              'Taças e copos com a sua marca', 'Para brindar', 'Escolha as cores de referência e adicione à seleção: as peças seguem com o pedido de proposta.', 'brindar-t',
+              'Taças e copos com a sua marca', 'Taças e copos', 'Escolha as cores de referência e adicione à seleção: as peças seguem com o pedido de proposta.', 'brindar-t',
               more=('/catalogo/?ocasiao=fim-de-ano', 'Ver todos de fim de ano no catálogo'), sid='brindar', cls='ivory')}
 <section class="section kits-home" id="kits-fim-de-ano" aria-labelledby="kits-t">
   <div class="wrap">
@@ -1728,13 +1741,13 @@ def page_fim_de_ano():
 {studio_block(['agenda', 'caneta-executiva-com-estojo', 'vela', 'caixa-para-presente'],
               'Peças que acompanham o próximo ano', 'Para presentear', 'Agenda, caneta, vela e caixa para completar o presente; cartão e lacre fecham a embalagem.', 'presentear-t',
               more=('/catalogo/', 'Ver o catálogo'), sid='presentear')}
-<section class="section ivory" aria-labelledby="fda-como-t">
+<section class="section ivory" id="personalizacao" aria-labelledby="fda-como-t">
   <div class="wrap">
     <div class="section-head"><p class="eyebrow">Como planejamos</p><h2 id="fda-como-t" class="section-title">Do briefing à entrega antes do recesso</h2></div>
     <ol class="steps light">
       <li class="step"><b>01</b><strong>Público</strong><span>Para quem são os presentes: clientes, parceiros ou equipe.</span></li>
       <li class="step"><b>02</b><strong>Seleção</strong><span>Peças, kits, cores e embalagem, montados a partir do catálogo.</span></li>
-      <li class="step"><b>03</b><strong>Arte</strong><span>Aplicação da marca aprovada antes da produção.</span></li>
+      <li class="step"><b>03</b><strong>Arte e mensagem</strong><span>Aplicação da marca e texto do cartão aprovados antes da produção.</span></li>
       <li class="step"><b>04</b><strong>Entrega</strong><span>Endereços e data combinados na proposta.</span></li>
     </ol>
   </div>

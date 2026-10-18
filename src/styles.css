@@ -1016,3 +1016,31 @@ html.cat-lock { overflow: hidden; }
   .entrega .btn { width: 100%; justify-content: center; }
 }
 
+
+/* Atalhos com título e eyebrow à esquerda e links à direita (fim de ano, mockup de 18/10/2026) */
+.atalhos-head { display: grid; gap: 10px; }
+.atalhos.lado .wrap { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: end; gap: clamp(24px, 4vw, 72px); }
+.atalhos.lado .atalhos-title::after { content: none; }
+.atalhos.lado .atalhos-title { font-size: clamp(1.9rem, 1rem + 1.4vw, 2.6rem); white-space: nowrap; }
+.atalhos.lado .atalhos-list { margin: 0; grid-template-columns: repeat(var(--n, 3), auto); justify-content: end; column-gap: 0; }
+.atalhos.lado .atalhos-list a { white-space: nowrap; }
+.atalhos.lado .atalhos-list li { padding-inline: clamp(18px, 2.4vw, 40px); }
+.atalhos.lado .atalhos-list li:first-child { padding-left: 0; }
+.atalhos.lado .atalhos-list li:last-child { padding-right: 0; }
+.atalhos.lado .atalhos-list li { display: flex; justify-content: center; }
+.atalhos.lado .atalhos-list li:last-child { justify-content: flex-end; }
+.atalhos.lado .atalhos-list a { border-bottom: 1px solid var(--line-strong); padding-bottom: 6px; transition: border-color .2s ease; }
+.atalhos.lado .atalhos-list a:hover { border-color: var(--wine); }
+@media (max-width: 1240px) {
+  .atalhos.lado .atalhos-title { white-space: normal; }
+  .atalhos.lado .wrap { grid-template-columns: minmax(0, 1fr); align-items: start; }
+  .atalhos.lado .atalhos-list { justify-content: start; }
+  .atalhos.lado .atalhos-list li, .atalhos.lado .atalhos-list li:last-child { justify-content: flex-start; }
+}
+@media (max-width: 600px) {
+  .atalhos.lado .atalhos-list { grid-template-columns: minmax(0, 1fr); row-gap: 0; }
+  .atalhos.lado .atalhos-list a { white-space: normal; }
+  .atalhos.lado .atalhos-list li, .atalhos.lado .atalhos-list li + li { border-left: 0; padding-left: 0; }
+  .atalhos.lado .atalhos-list a { display: flex; justify-content: space-between; width: 100%; padding-block: 8px; }
+}
+@media (prefers-reduced-motion: reduce) { .atalhos.lado .atalhos-list a { transition: none; } }

@@ -2500,6 +2500,190 @@
    "substitui": null
   },
   {
+   "id": "camisa-feminina~azul-claro",
+   "produto": "Camisa feminina",
+   "categoria": "vestuario",
+   "modelo": "Manga longa",
+   "cor": {
+    "nome": "Azul-claro",
+    "hex": "#A9C6EA"
+   },
+   "material": {
+    "valor": "Tricoline",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camisa feminina de manga longa, na cor azul-claro, com a marca TaMa bordada no peito.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Gerada com IA (OpenAI gpt-image-1.5) a partir da foto enviada pela TaMa, em 18/10/2026. Ilustrativa.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/camisa-feminina~azul-claro.webp",
+   "mestre": "midia/produtos/mestre/camisa-feminina~azul-claro.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "d386604b1bd842dae03ae61b97d7768a7b3e673b15726683463d96a1e96d9740",
+   "bytes": 1313162,
+   "atualizado_em": "2026-10-18",
+   "vista": "frente"
+  },
+  {
+   "produto": "Camisa feminina",
+   "categoria": "vestuario",
+   "modelo": "Manga longa",
+   "cor": {
+    "nome": "Azul-claro",
+    "hex": "#A9C6EA"
+   },
+   "material": {
+    "valor": "Tricoline",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "camisa-feminina~azul-claro-verso",
+   "vista": "verso",
+   "alt": "Verso: camisa feminina na cor azul-claro, sem marca.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Gerada com IA (OpenAI gpt-image-1.5) ou recolorida localmente a partir dela, em 18/10/2026. Ilustrativa.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/camisa-feminina~azul-claro-verso.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "id": "camisa-feminina~azul-marinho",
+   "produto": "Camisa feminina",
+   "categoria": "vestuario",
+   "modelo": "Manga longa",
+   "cor": {
+    "nome": "Azul-marinho",
+    "hex": "#1E2A4A"
+   },
+   "material": {
+    "valor": "Tricoline",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camisa feminina de manga longa, na cor azul-marinho, com a marca TaMa bordada no peito em linha branca.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Gerada com IA (OpenAI gpt-image-1.5) a partir da foto enviada pela TaMa, em 18/10/2026. Ilustrativa.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/camisa-feminina~azul-marinho.webp",
+   "mestre": "midia/produtos/mestre/camisa-feminina~azul-marinho.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "704e414d86d0914c03d66dc3d652263c8955a347025a3294104d05345e828122",
+   "bytes": 1357862,
+   "atualizado_em": "2026-10-18",
+   "vista": "frente"
+  },
+  {
+   "produto": "Camisa feminina",
+   "categoria": "vestuario",
+   "modelo": "Manga longa",
+   "cor": {
+    "nome": "Azul-marinho",
+    "hex": "#1E2A4A"
+   },
+   "material": {
+    "valor": "Tricoline",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "camisa-feminina~azul-marinho-bordado",
+   "vista": "detalhe",
+   "alt": "Detalhe do bordado da marca TaMa em linha branca: camisa feminina na cor azul-marinho.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Gerada com IA (OpenAI gpt-image-1.5) ou recolorida localmente a partir dela, em 18/10/2026. Ilustrativa.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/camisa-feminina~azul-marinho-bordado.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "produto": "Camisa feminina",
+   "categoria": "vestuario",
+   "modelo": "Manga longa",
+   "cor": {
+    "nome": "Azul-marinho",
+    "hex": "#1E2A4A"
+   },
+   "material": {
+    "valor": "Tricoline",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "camisa-feminina~azul-marinho-verso",
+   "vista": "verso",
+   "alt": "Verso: camisa feminina na cor azul-marinho, sem marca.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Gerada com IA (OpenAI gpt-image-1.5) ou recolorida localmente a partir dela, em 18/10/2026. Ilustrativa.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/camisa-feminina~azul-marinho-verso.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
+  },
+  {
    "id": "camisa-feminina~branco",
    "produto": "Camisa feminina",
    "categoria": "vestuario",
@@ -2538,6 +2722,336 @@
    "vista": "frente"
   },
   {
+   "produto": "Camisa feminina",
+   "categoria": "vestuario",
+   "modelo": "Manga longa",
+   "cor": {
+    "nome": "Branco",
+    "hex": "#F7F5F0"
+   },
+   "material": {
+    "valor": "Tricoline",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "camisa-feminina~branco-verso",
+   "vista": "verso",
+   "alt": "Verso: camisa feminina na cor branco, sem marca.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Gerada com IA (OpenAI gpt-image-1.5) ou recolorida localmente a partir dela, em 18/10/2026. Ilustrativa.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/camisa-feminina~branco-verso.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "id": "camisa-feminina~cinza",
+   "produto": "Camisa feminina",
+   "categoria": "vestuario",
+   "modelo": "Manga longa",
+   "cor": {
+    "nome": "Cinza",
+    "hex": "#9A9A98"
+   },
+   "material": {
+    "valor": "Tricoline",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camisa feminina de manga longa, na cor cinza, com a marca TaMa bordada no peito em linha branca.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Gerada com IA (OpenAI gpt-image-1.5) a partir da foto enviada pela TaMa, em 18/10/2026. Ilustrativa.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/camisa-feminina~cinza.webp",
+   "mestre": "midia/produtos/mestre/camisa-feminina~cinza.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "e856d39554cf342cd3f53d80f389c3dee647b80d465726c684109cf3e3242599",
+   "bytes": 1565253,
+   "atualizado_em": "2026-10-18",
+   "vista": "frente"
+  },
+  {
+   "produto": "Camisa feminina",
+   "categoria": "vestuario",
+   "modelo": "Manga longa",
+   "cor": {
+    "nome": "Cinza",
+    "hex": "#9A9A98"
+   },
+   "material": {
+    "valor": "Tricoline",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "camisa-feminina~cinza-bordado",
+   "vista": "detalhe",
+   "alt": "Detalhe do bordado da marca TaMa em linha branca: camisa feminina na cor cinza.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Gerada com IA (OpenAI gpt-image-1.5) ou recolorida localmente a partir dela, em 18/10/2026. Ilustrativa.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/camisa-feminina~cinza-bordado.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "produto": "Camisa feminina",
+   "categoria": "vestuario",
+   "modelo": "Manga longa",
+   "cor": {
+    "nome": "Cinza",
+    "hex": "#9A9A98"
+   },
+   "material": {
+    "valor": "Tricoline",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "camisa-feminina~cinza-verso",
+   "vista": "verso",
+   "alt": "Verso: camisa feminina na cor cinza, sem marca.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Gerada com IA (OpenAI gpt-image-1.5) ou recolorida localmente a partir dela, em 18/10/2026. Ilustrativa.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/camisa-feminina~cinza-verso.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "id": "camisa-feminina~preto",
+   "produto": "Camisa feminina",
+   "categoria": "vestuario",
+   "modelo": "Manga longa",
+   "cor": {
+    "nome": "Preto",
+    "hex": "#1E1E1E"
+   },
+   "material": {
+    "valor": "Tricoline",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camisa feminina de manga longa, na cor preta, com a marca TaMa bordada no peito em linha branca.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Gerada com IA (OpenAI gpt-image-1.5) a partir da foto enviada pela TaMa, em 18/10/2026. Ilustrativa.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/camisa-feminina~preto.webp",
+   "mestre": "midia/produtos/mestre/camisa-feminina~preto.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "08b6836d257496a78a2859e2dd6c46f129dd53f131d914d8601f0634d2760064",
+   "bytes": 1354653,
+   "atualizado_em": "2026-10-18",
+   "vista": "frente"
+  },
+  {
+   "produto": "Camisa feminina",
+   "categoria": "vestuario",
+   "modelo": "Manga longa",
+   "cor": {
+    "nome": "Preto",
+    "hex": "#1E1E1E"
+   },
+   "material": {
+    "valor": "Tricoline",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "camisa-feminina~preto-bordado",
+   "vista": "detalhe",
+   "alt": "Detalhe do bordado da marca TaMa em linha branca: camisa feminina na cor preto.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Gerada com IA (OpenAI gpt-image-1.5) ou recolorida localmente a partir dela, em 18/10/2026. Ilustrativa.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/camisa-feminina~preto-bordado.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "produto": "Camisa feminina",
+   "categoria": "vestuario",
+   "modelo": "Manga longa",
+   "cor": {
+    "nome": "Preto",
+    "hex": "#1E1E1E"
+   },
+   "material": {
+    "valor": "Tricoline",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "camisa-feminina~preto-verso",
+   "vista": "verso",
+   "alt": "Verso: camisa feminina na cor preto, sem marca.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Gerada com IA (OpenAI gpt-image-1.5) ou recolorida localmente a partir dela, em 18/10/2026. Ilustrativa.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/camisa-feminina~preto-verso.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "id": "camisa-feminina~rosa-claro",
+   "produto": "Camisa feminina",
+   "categoria": "vestuario",
+   "modelo": "Manga longa",
+   "cor": {
+    "nome": "Rosa-claro",
+    "hex": "#EBC3CD"
+   },
+   "material": {
+    "valor": "Tricoline",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camisa feminina de manga longa, na cor rosa-claro, com a marca TaMa bordada no peito.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Gerada com IA (OpenAI gpt-image-1.5) a partir da foto enviada pela TaMa, em 18/10/2026. Ilustrativa.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/camisa-feminina~rosa-claro.webp",
+   "mestre": "midia/produtos/mestre/camisa-feminina~rosa-claro.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "06b003b187f1620336c015d6cfb034923c9cbc3f058c34136f177e5a3dc3f919",
+   "bytes": 967341,
+   "atualizado_em": "2026-10-18",
+   "vista": "frente"
+  },
+  {
+   "produto": "Camisa feminina",
+   "categoria": "vestuario",
+   "modelo": "Manga longa",
+   "cor": {
+    "nome": "Rosa-claro",
+    "hex": "#EBC3CD"
+   },
+   "material": {
+    "valor": "Tricoline",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "camisa-feminina~rosa-claro-verso",
+   "vista": "verso",
+   "alt": "Verso: camisa feminina na cor rosa-claro, sem marca.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Gerada com IA (OpenAI gpt-image-1.5) ou recolorida localmente a partir dela, em 18/10/2026. Ilustrativa.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/camisa-feminina~rosa-claro-verso.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
+  },
+  {
    "id": "camisa-masculina~azul-claro",
    "produto": "Camisa masculina",
    "categoria": "vestuario",
@@ -2574,6 +3088,520 @@
    "bytes": 115974,
    "atualizado_em": "2026-10-18",
    "vista": "frente"
+  },
+  {
+   "produto": "Camisa masculina",
+   "categoria": "vestuario",
+   "modelo": "Manga longa",
+   "cor": {
+    "nome": "Azul-claro",
+    "hex": "#A9C6EA"
+   },
+   "material": {
+    "valor": "Tricoline",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "camisa-masculina~azul-claro-verso",
+   "vista": "verso",
+   "alt": "Verso: camisa masculina na cor azul-claro, sem marca.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Gerada com IA (OpenAI gpt-image-1.5) ou recolorida localmente a partir dela, em 18/10/2026. Ilustrativa.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/camisa-masculina~azul-claro-verso.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "id": "camisa-masculina~azul-marinho",
+   "produto": "Camisa masculina",
+   "categoria": "vestuario",
+   "modelo": "Manga longa",
+   "cor": {
+    "nome": "Azul-marinho",
+    "hex": "#1E2A4A"
+   },
+   "material": {
+    "valor": "Tricoline",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camisa masculina de manga longa, na cor azul-marinho, com a marca TaMa bordada no peito em linha branca.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Gerada com IA (OpenAI gpt-image-1.5) a partir da foto enviada pela TaMa, em 18/10/2026. Ilustrativa.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/camisa-masculina~azul-marinho.webp",
+   "mestre": "midia/produtos/mestre/camisa-masculina~azul-marinho.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "261e52f18b4b53675348f53f759c81db3f8bb31210628e1ed594d38524a330ab",
+   "bytes": 1258472,
+   "atualizado_em": "2026-10-18",
+   "vista": "frente"
+  },
+  {
+   "produto": "Camisa masculina",
+   "categoria": "vestuario",
+   "modelo": "Manga longa",
+   "cor": {
+    "nome": "Azul-marinho",
+    "hex": "#1E2A4A"
+   },
+   "material": {
+    "valor": "Tricoline",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "camisa-masculina~azul-marinho-bordado",
+   "vista": "detalhe",
+   "alt": "Detalhe do bordado da marca TaMa em linha branca: camisa masculina na cor azul-marinho.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Gerada com IA (OpenAI gpt-image-1.5) ou recolorida localmente a partir dela, em 18/10/2026. Ilustrativa.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/camisa-masculina~azul-marinho-bordado.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "produto": "Camisa masculina",
+   "categoria": "vestuario",
+   "modelo": "Manga longa",
+   "cor": {
+    "nome": "Azul-marinho",
+    "hex": "#1E2A4A"
+   },
+   "material": {
+    "valor": "Tricoline",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "camisa-masculina~azul-marinho-verso",
+   "vista": "verso",
+   "alt": "Verso: camisa masculina na cor azul-marinho, sem marca.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Gerada com IA (OpenAI gpt-image-1.5) ou recolorida localmente a partir dela, em 18/10/2026. Ilustrativa.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/camisa-masculina~azul-marinho-verso.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "id": "camisa-masculina~branco",
+   "produto": "Camisa masculina",
+   "categoria": "vestuario",
+   "modelo": "Manga longa",
+   "cor": {
+    "nome": "Branco",
+    "hex": "#F7F5F0"
+   },
+   "material": {
+    "valor": "Tricoline",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camisa masculina de manga longa, na cor branca, com a marca TaMa bordada no peito.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Gerada com IA (OpenAI gpt-image-1.5) a partir da foto enviada pela TaMa, em 18/10/2026. Ilustrativa.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/camisa-masculina~branco.webp",
+   "mestre": "midia/produtos/mestre/camisa-masculina~branco.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "51bcd47cb4e600c43cf2af0038c66a2994a0b1d4aa8539fd0e7ee6819029ad77",
+   "bytes": 1024345,
+   "atualizado_em": "2026-10-18",
+   "vista": "frente"
+  },
+  {
+   "produto": "Camisa masculina",
+   "categoria": "vestuario",
+   "modelo": "Manga longa",
+   "cor": {
+    "nome": "Branco",
+    "hex": "#F7F5F0"
+   },
+   "material": {
+    "valor": "Tricoline",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "camisa-masculina~branco-verso",
+   "vista": "verso",
+   "alt": "Verso: camisa masculina na cor branco, sem marca.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Gerada com IA (OpenAI gpt-image-1.5) ou recolorida localmente a partir dela, em 18/10/2026. Ilustrativa.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/camisa-masculina~branco-verso.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "id": "camisa-masculina~cinza",
+   "produto": "Camisa masculina",
+   "categoria": "vestuario",
+   "modelo": "Manga longa",
+   "cor": {
+    "nome": "Cinza",
+    "hex": "#9A9A98"
+   },
+   "material": {
+    "valor": "Tricoline",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camisa masculina de manga longa, na cor cinza, com a marca TaMa bordada no peito em linha branca.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Gerada com IA (OpenAI gpt-image-1.5) a partir da foto enviada pela TaMa, em 18/10/2026. Ilustrativa.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/camisa-masculina~cinza.webp",
+   "mestre": "midia/produtos/mestre/camisa-masculina~cinza.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "ec1aa8a58f988bfaa6178790a9cff12d5bda9516b1a2b8750a5bfddb6461416f",
+   "bytes": 1421116,
+   "atualizado_em": "2026-10-18",
+   "vista": "frente"
+  },
+  {
+   "produto": "Camisa masculina",
+   "categoria": "vestuario",
+   "modelo": "Manga longa",
+   "cor": {
+    "nome": "Cinza",
+    "hex": "#9A9A98"
+   },
+   "material": {
+    "valor": "Tricoline",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "camisa-masculina~cinza-bordado",
+   "vista": "detalhe",
+   "alt": "Detalhe do bordado da marca TaMa em linha branca: camisa masculina na cor cinza.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Gerada com IA (OpenAI gpt-image-1.5) ou recolorida localmente a partir dela, em 18/10/2026. Ilustrativa.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/camisa-masculina~cinza-bordado.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "produto": "Camisa masculina",
+   "categoria": "vestuario",
+   "modelo": "Manga longa",
+   "cor": {
+    "nome": "Cinza",
+    "hex": "#9A9A98"
+   },
+   "material": {
+    "valor": "Tricoline",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "camisa-masculina~cinza-verso",
+   "vista": "verso",
+   "alt": "Verso: camisa masculina na cor cinza, sem marca.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Gerada com IA (OpenAI gpt-image-1.5) ou recolorida localmente a partir dela, em 18/10/2026. Ilustrativa.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/camisa-masculina~cinza-verso.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "id": "camisa-masculina~preto",
+   "produto": "Camisa masculina",
+   "categoria": "vestuario",
+   "modelo": "Manga longa",
+   "cor": {
+    "nome": "Preto",
+    "hex": "#1E1E1E"
+   },
+   "material": {
+    "valor": "Tricoline",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camisa masculina de manga longa, na cor preta, com a marca TaMa bordada no peito em linha branca.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Gerada com IA (OpenAI gpt-image-1.5) a partir da foto enviada pela TaMa, em 18/10/2026. Ilustrativa.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/camisa-masculina~preto.webp",
+   "mestre": "midia/produtos/mestre/camisa-masculina~preto.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "b61bab7aaf62bcf968ffb2bbd825d2ea3ef2a409e8ffa0a4845a139b2179d1a0",
+   "bytes": 1240696,
+   "atualizado_em": "2026-10-18",
+   "vista": "frente"
+  },
+  {
+   "produto": "Camisa masculina",
+   "categoria": "vestuario",
+   "modelo": "Manga longa",
+   "cor": {
+    "nome": "Preto",
+    "hex": "#1E1E1E"
+   },
+   "material": {
+    "valor": "Tricoline",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "camisa-masculina~preto-bordado",
+   "vista": "detalhe",
+   "alt": "Detalhe do bordado da marca TaMa em linha branca: camisa masculina na cor preto.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Gerada com IA (OpenAI gpt-image-1.5) ou recolorida localmente a partir dela, em 18/10/2026. Ilustrativa.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/camisa-masculina~preto-bordado.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "produto": "Camisa masculina",
+   "categoria": "vestuario",
+   "modelo": "Manga longa",
+   "cor": {
+    "nome": "Preto",
+    "hex": "#1E1E1E"
+   },
+   "material": {
+    "valor": "Tricoline",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "camisa-masculina~preto-verso",
+   "vista": "verso",
+   "alt": "Verso: camisa masculina na cor preto, sem marca.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Gerada com IA (OpenAI gpt-image-1.5) ou recolorida localmente a partir dela, em 18/10/2026. Ilustrativa.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/camisa-masculina~preto-verso.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "id": "camisa-masculina~rosa-claro",
+   "produto": "Camisa masculina",
+   "categoria": "vestuario",
+   "modelo": "Manga longa",
+   "cor": {
+    "nome": "Rosa-claro",
+    "hex": "#EBC3CD"
+   },
+   "material": {
+    "valor": "Tricoline",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camisa masculina de manga longa, na cor rosa-claro, com a marca TaMa bordada no peito.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Gerada com IA (OpenAI gpt-image-1.5) a partir da foto enviada pela TaMa, em 18/10/2026. Ilustrativa.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/camisa-masculina~rosa-claro.webp",
+   "mestre": "midia/produtos/mestre/camisa-masculina~rosa-claro.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "50cd040fb49c36d17323e8b1490190fb630e85274c96f1b1985652c512a4dc07",
+   "bytes": 1034042,
+   "atualizado_em": "2026-10-18",
+   "vista": "frente"
+  },
+  {
+   "produto": "Camisa masculina",
+   "categoria": "vestuario",
+   "modelo": "Manga longa",
+   "cor": {
+    "nome": "Rosa-claro",
+    "hex": "#EBC3CD"
+   },
+   "material": {
+    "valor": "Tricoline",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "camisa-masculina~rosa-claro-verso",
+   "vista": "verso",
+   "alt": "Verso: camisa masculina na cor rosa-claro, sem marca.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Gerada com IA (OpenAI gpt-image-1.5) ou recolorida localmente a partir dela, em 18/10/2026. Ilustrativa.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/camisa-masculina~rosa-claro-verso.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "atualizado_em": "2026-10-18"
   },
   {
    "fornecedor": null,

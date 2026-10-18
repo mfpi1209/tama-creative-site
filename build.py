@@ -1424,7 +1424,7 @@ def page_curadoria():
 CONF_SLIDES = [
     ('tone-linen', 'conf-equipe-kits', '--fx:58%;--fx-m:52%', 'Cena ilustrativa: equipe de uma empresa usando polo azul e camisetas preta e branca, com a marca TaMa aplicada como exemplo.',
      'Confecções personalizadas', 'Uniformes corporativos e <em>confecções personalizadas</em>',
-     'Polos, camisetas, dólmãs e moletons para equipes, eventos e o dia a dia, alinhados à identidade da sua empresa.',
+     'Polos, camisas, camisetas, dólmãs e moletons para equipes, eventos e o dia a dia, alinhados à identidade da sua empresa.',
      cta_link('Solicitar proposta', tipo='confeccoes', track_label='conf-hero-4') + '<a class="btn btn-line" href="/catalogo/?categoria=vestuario">Ver polos e moletons ' + ARROW + '</a>'),
     ('tone-cream', 'conf-chef-dolma', '--fx:78%;--fy:15%;--fx-m:74%', 'Chef de dólmã branca com a marca TaMa bordada finalizando um prato em uma cozinha profissional.',
      'Hotelaria e gastronomia', 'Sua marca na <em>cozinha e no salão</em>.',

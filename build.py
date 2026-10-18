@@ -175,7 +175,7 @@ IMAGES = {}
 
 
 # largura real da foto do carrossel (fotos 3:2 na metade direita; no celular, um pouco maior que a tela por causa do corte)
-HERO_SIZES = '(max-width: 760px) 120vw, (max-width: 1100px) 90vw, 60vw'
+HERO_SIZES = '(max-width: 760px) 120vw, 95vw'
 CARROSSEL_HQ = {'hero-brindes', 'hero-v3-confeccoes', 'hero-kits', 'home-escritorio'}
 
 
@@ -1146,11 +1146,43 @@ HOME_FAQ = [
 ]
 
 
-ASSURANCES = '''<ul class="assurances wrap" aria-label="Como a TaMa trabalha">
-  <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="9" width="16" height="11" rx="1.5"/><path d="M4 13h16M12 9v11"/><path d="M12 9c-1.6-3.6-6-3.6-5.2-.6.4 1.4 3.3.6 5.2.6zM12 9c1.6-3.6 6-3.6 5.2-.6-.4 1.4-3.3.6-5.2.6z"/></svg>Peças escolhidas com você</li>
-  <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5.5c0 4.3-3 7.8-7 9.5-4-1.7-7-5.2-7-9.5V6z"/><path d="M8.8 12.2l2.2 2.2 4.3-4.6"/></svg>Arte aprovada antes da produção</li>
-  <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19c0-8 5-13 14-14-1 9-6 14-14 14z"/><path d="M5 19l7-7"/></svg>Produção coordenada até a entrega</li>
+# Ícones de traço fino (vinho via CSS). viewBox 24, sem preenchimento.
+ASSURANCES = '''<ul class="garantias" aria-label="Como a TaMa trabalha">
+  <li><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3.5" y="8" width="17" height="4" rx=".8"/><path d="M5 12v8h14v-8M12 8v12"/><path d="M12 8C10.6 5 7.2 4.4 7.2 6.5 7.2 8 9.6 8 12 8zM12 8c1.4-3 4.8-3.6 4.8-1.5C16.8 8 14.4 8 12 8z"/></svg><span>Curadoria exclusiva</span></li>
+  <li><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3.2l7 2.6v5.6c0 4.3-2.9 7.7-7 9.4-4.1-1.7-7-5.1-7-9.4V5.8z"/><path d="M8.9 12.1l2.2 2.2 4.1-4.4"/></svg><span>Atendimento consultivo</span></li>
+  <li><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 18.2C4.6 10.8 9.4 5 19.6 4.4 20.2 14 14.4 19.6 6 18.2z"/><path d="M4.2 20l1.8-1.8M6 18.2l9-9"/></svg><span>Projetos sob medida para sua marca</span></li>
 </ul>'''
+
+# (link, imagem, enquadramento da foto, título em 2 linhas, descrição em 2 linhas, chamada)
+# Fotos de img/v2/. A do meio é a mais próxima do mockup no acervo (dólmã branca + polo azul royal na frente);
+# se chegar a foto própria do mockup, basta trocar 'home-confeccoes' pelo novo nome e o enquadramento por 'center'.
+# As quebras de linha seguem o mockup; cada metade cabe numa linha mesmo no cartão mais estreito (~225 px, tablet).
+FRENTES = [
+    ('/brindes-corporativos/', 'home-card-brindes', '96% center', ('Brindes', 'corporativos'),
+     ('Presentes que aproximam,', 'encantam e ficam.'), 'Ver brindes'),
+    ('/confeccoes-personalizadas/', 'home-confeccoes', '56% center', ('Confecções', 'personalizadas'),
+     ('Peças para equipes, ações', 'e eventos.'), 'Conhecer opções'),
+    ('/kits-corporativos/', 'home-kits', '84% center', ('Kits', 'premium'),
+     ('Caixa, peças e cartão', 'com a sua marca.'), 'Ver kits'),
+]
+
+
+def frentes_section():
+    # O cartão inteiro é um único <a> (como antes): título, texto e chamada formam o nome acessível do link.
+    # Fotos decorativas (alt vazio): o título já diz o destino. O espaço antes de cada <br> mantém
+    # "Brindes corporativos" com espaço no texto do link.
+    sizes = '(max-width: 760px) calc(100vw - 32px), (max-width: 1340px) 31vw, 400px'
+    cards = '\n'.join(
+        f'    <a class="frente-card" href="{href}">{picture(img, "", sizes, style=f"object-position:{pos}")}'
+        f'<div class="frente-info"><h3>{esc(t[0])} <br>{esc(t[1])}</h3><p>{esc(d[0])} <br>{esc(d[1])}</p>'
+        f'<span class="frente-link">{esc(cta)} {ARROW}</span></div></a>'
+        for href, img, pos, t, d, cta in FRENTES)
+    return f'''<section class="frentes" aria-labelledby="frentes-t">
+  <h2 id="frentes-t" class="visually-hidden">O que a TaMa faz</h2>
+  <div class="wrap frentes-grid">
+{cards}
+  </div>
+</section>'''
 
 
 def hero_carousel(slides=None, label='Destaques da TaMa Creative', assurances=True):
@@ -1177,8 +1209,13 @@ def hero_carousel(slides=None, label='Destaques da TaMa Creative', assurances=Tr
     n = len(slides)
     out = []
     for i, (tone, img, frame, alt, eyebrow, title, desc, actions) in enumerate(slides):
+        cls = ''
+        if img in CARROSSEL_HQ and img in IMAGES:   # fotos do carrossel: no computador a área da foto segue a imagem (inteira, sem corte)
+            w, h = IMAGES[img]['w'], IMAGES[img]['h']
+            frame = f"{frame};--ar:{w}/{h}"
+            cls = ' inteira' + (' respiro' if w / h >= 1.9 else '')   # respiro: a foto já traz o espaço vazio do texto à esquerda
         tag = 'h1' if i == 0 else 'p'
-        out.append(f'''<div class="slide {tone}{' is-active' if i == 0 else ''}" id="slide-{i + 1}" role="group" aria-roledescription="slide" aria-label="{i + 1} de {n}" style="{frame}"{'' if i == 0 else ' aria-hidden="true" inert'}>
+        out.append(f'''<div class="slide {tone}{cls}{' is-active' if i == 0 else ''}" id="slide-{i + 1}" role="group" aria-roledescription="slide" aria-label="{i + 1} de {n}" style="{frame}"{'' if i == 0 else ' aria-hidden="true" inert'}>
   <div class="wrap slide-inner"><div class="slide-copy">
     <p class="eyebrow">{eyebrow}</p>
     <{tag} class="slide-title">{title}</{tag}>
@@ -1211,16 +1248,7 @@ def page_home():
         'assunto': 'um projeto para a minha empresa',
         'preload': preload_image('hero-brindes', HERO_SIZES),
         'body': hero_carousel() + f'''
-<section class="services" aria-labelledby="frentes-t">
-  <h2 id="frentes-t" class="visually-hidden">O que a TaMa faz</h2>
-  <div class="wrap service-grid cinco">
-    <a class="service-card split" href="/brindes-corporativos/">{picture('home-card-brindes', '', '(max-width: 760px) 46vw, 16vw', style='object-position:78% center')}<div class="service-info"><h3>Brindes corporativos</h3><p>Peças para clientes, equipes e eventos.</p><span class="link">Ver brindes {ARROW}</span></div></a>
-    <a class="service-card split" href="/confeccoes-personalizadas/">{picture('home-confeccoes', '', '(max-width: 760px) 46vw, 16vw', style='object-position:57% 80%')}<div class="service-info"><h3>Confecções personalizadas</h3><p>Polos, camisetas, moletons, dólmãs e aventais.</p><span class="link">Ver confecções {ARROW}</span></div></a>
-    <a class="service-card split" href="/kits-corporativos/">{picture('home-kits', '', '(max-width: 760px) 46vw, 16vw', style='object-position:72% center')}<div class="service-info"><h3>Kits premium</h3><p>Caixa, peças e cartão para cada ocasião.</p><span class="link">Ver kits {ARROW}</span></div></a>
-    <a class="service-card split" href="/ativacoes-promocionais/">{picture('conf-degustacao', '', '(max-width: 760px) 46vw, 24vw', style='object-position:40% center')}<div class="service-info"><h3>Ativações e degustações</h3><p>Ações em eventos, feiras e pontos de venda.</p><span class="link">Ver ativações {ARROW}</span></div></a>
-    <a class="service-card split" href="/hotelaria-e-gastronomia/">{picture('conf-chef-dolma', '', '(max-width: 760px) 46vw, 24vw', style='object-position:76% 20%')}<div class="service-info"><h3>Hotelaria e gastronomia</h3><p>Cardápios, porta-contas, jogos americanos e uniformes.</p><span class="link">Ver soluções {ARROW}</span></div></a>
-  </div>
-</section>
+{frentes_section()}
 {process_band()}
 {home_products_block()}
 {kits_block()}

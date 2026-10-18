@@ -71,7 +71,6 @@ button { font: inherit; color: inherit; }
 .section { padding-block: clamp(60px, 8vw, 104px); }
 /* duas seções seguidas com o mesmo fundo: o respiro da anterior já basta (evita ~200 px de vazio) */
 .section:not(.ivory) + .section:not(.ivory) { padding-top: 0; }
-.services + .section { padding-top: clamp(44px, 5vw, 72px); }
 .section-head { display: grid; gap: 14px; max-width: 46rem; margin-bottom: clamp(30px, 4vw, 48px); }
 .section-head.row { max-width: none; grid-template-columns: minmax(0, 1fr) auto; align-items: end; gap: 24px; }
 .split { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(32px, 6vw, 88px); align-items: center; }
@@ -179,18 +178,6 @@ main { overflow-x: clip; }
 .hero-pause[aria-pressed="true"] .i-pause { display: none; }
 
 /* Service cards */
-.services { padding-top: 16px; }
-.service-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
-.service-card { position: relative; display: block; height: 236px; overflow: hidden; border-radius: var(--radius); background: var(--sand); }
-.service-card picture, .service-card img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: right center; transition: transform .6s ease; }
-.service-card:hover img { transform: scale(1.05); }
-.service-card::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, #FAF5EF 2%, rgba(250, 245, 239, .86) 40%, rgba(250, 245, 239, 0) 84%); }
-.service-card.dark { color: #fff; }
-.service-card.dark::after { background: linear-gradient(90deg, rgba(35, 59, 48, .93) 1%, rgba(35, 59, 48, .72) 45%, transparent 92%); }
-.service-info { position: absolute; z-index: 2; top: 28px; left: 28px; width: 58%; display: grid; gap: 10px; }
-.service-info h2, .service-info h3 { font-size: 1.75rem; line-height: 1.12; color: inherit; }
-.service-info p { font-size: .875rem; line-height: 1.5; }
-.service-card.dark .link { color: #fff; }
 
 /* Product cards and rail */
 .curation-head { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: clamp(24px, 4vw, 64px); align-items: end; margin-bottom: 28px; }
@@ -545,10 +532,6 @@ body:has(.wa-float) .float-bag { bottom: calc(88px + env(safe-area-inset-bottom,
   .hero-meta { margin-top: 22px; }
   .hero-meta li:nth-child(n+3), .hero-caption { display: none; }
   .hero-arrow { display: none; }
-  .service-grid { grid-template-columns: 1fr; gap: 10px; }
-  .service-card { height: 180px; }
-  .service-info { top: 18px; left: 20px; width: 60%; }
-  .service-info h2, .service-info h3 { font-size: 1.5rem; }
   .rail .product { flex-basis: calc((100% - 12px) / 2); }
   .rail-track { gap: 12px; }
   .filter-row { flex-direction: column; align-items: stretch; }
@@ -638,15 +621,7 @@ body:has(.wa-float) .float-bag { bottom: calc(88px + env(safe-area-inset-bottom,
   .hero.light .dot[aria-current="true"]::after { transform: none; }
 }
 /* cards de serviço da home: texto à esquerda e foto à direita, sem sobreposição */
-.service-card.split { display: grid; grid-template-columns: minmax(0, 1fr) 44%; background: #F6F1EA; color: var(--ink); }
-.service-card.split::after { content: none; }
-.service-card.split picture { position: relative; inset: auto; order: 2; height: 100%; overflow: hidden; }
-.service-card.split .service-info { position: static; width: auto; align-content: start; padding: 26px 18px 22px 26px; }
-.service-card.split .service-info p { color: var(--muted); }
 /* faixa de confiança logo abaixo do carrossel */
-.assurances { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px clamp(24px, 5vw, 72px); margin: 0 auto; padding-block: 18px; list-style: none; border-bottom: 1px solid var(--line); font-size: .8125rem; color: var(--muted); }
-.assurances li { display: inline-flex; align-items: center; gap: 10px; }
-.assurances svg { width: 22px; height: 22px; flex: none; fill: none; stroke: var(--wine); stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
 /* destaques de produto em estúdio claro: 4 por linha no computador, 2 no celular */
 .studio-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(14px, 1.8vw, 22px); }
 .product.studio { border-color: var(--line); }
@@ -710,8 +685,6 @@ body:has(.wa-float) .float-bag { bottom: calc(88px + env(safe-area-inset-bottom,
   .studio-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
   .product.studio .prod-info { padding: 12px 12px 14px; }
   .product.studio h3 { font-size: 1.05rem; }
-  .service-card.split { height: auto; min-height: 180px; }
-  .assurances { justify-content: flex-start; font-size: .75rem; }
 }
 @media (max-width: 560px) {
   .kit-grid { grid-template-columns: 1fr; }
@@ -840,19 +813,6 @@ html.cat-lock { overflow: hidden; }
 .prod-alt[hidden] { display: none; }
 @media (max-width: 600px) { .pdp-vista, .pdp-vista img { width: 76px; } .pdp-vista img { height: 76px; } }
 
-/* Home: as cinco frentes (3 em cima, 2 embaixo; 2 colunas no tablet; 1 no celular) */
-.service-grid.cinco { grid-template-columns: repeat(6, minmax(0, 1fr)); }
-.service-grid.cinco > :nth-child(-n+3) { grid-column: span 2; }
-.service-grid.cinco > :nth-child(n+4) { grid-column: span 3; }
-@media (max-width: 1100px) {
-  .service-grid.cinco { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .service-grid.cinco > * { grid-column: auto; }
-  .service-grid.cinco > :last-child { grid-column: 1 / -1; }
-}
-@media (max-width: 760px) {
-  .service-grid.cinco { grid-template-columns: 1fr; }
-  .service-grid.cinco > :last-child { grid-column: auto; }
-}
 .kit-copy .link { justify-self: start; margin-top: 6px; }
 
 /* Celular: botão do WhatsApp menor e espaço no fim da página para ele não cobrir o rodapé */
@@ -872,3 +832,64 @@ html.cat-lock { overflow: hidden; }
 
 /* Foco do botão da foto: o card corta o que fica fora (overflow), então o contorno vai para dentro */
 .prod-media:focus-visible { outline-offset: -3px; }
+/* Carrossel da home: no computador a área da foto tem a proporção da própria imagem (largura = altura × proporção),
+   presa à direita. A foto aparece inteira, como foi composta, e o texto fica sobre a parte vazia da esquerda. */
+@media (min-width: 761px) {
+  .hero.light .slide.inteira .slide-photo { width: auto; max-width: 100%; aspect-ratio: var(--ar, 3 / 2); height: 100%; -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%); mask-image: linear-gradient(90deg, transparent, #000 12%); }
+  .hero.light .slide.inteira .slide-photo img { width: 100%; height: 100%; object-fit: cover; }
+  .hero.light .slide-copy { position: relative; z-index: 2; }
+}
+
+/* Home: faixa de garantias + três frentes (mockup "Trio editorial", 18/10/2026) */
+/* Faixa de garantias: 3 itens centrados, divisórias finas, fio da largura do conteúdo embaixo */
+.garantias { list-style: none; margin: 0 auto; padding: 20px 0 22px; width: min(100% - 2 * var(--gutter), 1280px - 2 * var(--gutter)); display: flex; justify-content: center; align-items: center; border-bottom: 1px solid var(--line-strong); border-bottom-color: color-mix(in srgb, var(--wine) 22%, var(--bg)); font-size: .9375rem; line-height: 1.3; color: var(--muted); color: color-mix(in srgb, var(--muted) 70%, var(--ink)); }
+.garantias li { position: relative; display: inline-flex; align-items: center; gap: 14px; padding-inline: clamp(18px, 3.8vw, 56px); white-space: nowrap; }
+.garantias li:first-child { padding-left: 0; }
+.garantias li:last-child { padding-right: 0; }
+.garantias li + li::before { content: ""; position: absolute; left: 0; top: 50%; width: 1px; height: 34px; translate: 0 -50%; background: var(--line-strong); }
+.garantias svg { width: 25px; height: 25px; flex: none; fill: none; stroke: var(--wine); stroke-width: 1.3; stroke-linecap: round; stroke-linejoin: round; }
+
+/* Frentes: 3 cartões claros, foto em cima, fio, título serifado vinho, texto e chamada.
+   Medidas em cqi = % da largura do cartão, para manter as proporções do mockup do celular ao desktop. */
+.frentes { padding-block: clamp(16px, 1.6vw, 22px) clamp(48px, 6vw, 88px); }
+.frentes-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(10px, 1vw, 14px); }
+.frente-card { container-type: inline-size; display: flex; flex-direction: column; overflow: hidden; background: #FBF8F3; border: 1px solid #ECE4DA; border-radius: 4px; color: var(--ink); transition: border-color .2s ease, box-shadow .2s ease; }
+.frente-card picture { aspect-ratio: 1.165; overflow: hidden; background: var(--sand); }
+.frente-card img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s ease; }
+.frente-info { display: grid; justify-items: start; padding: 0 clamp(16px, 6.6cqi, 28px) clamp(18px, 5.4cqi, 24px); }
+.frente-info::before { content: ""; justify-self: stretch; height: 1px; margin: clamp(10px, 3cqi, 13px) 0 clamp(9px, 2.6cqi, 12px); background: #E2D6CF; }
+.frente-card h3 { font-family: var(--f-serif); font-weight: 500; font-size: clamp(1.45rem, 9.2cqi, 2.6rem); line-height: 1.07; letter-spacing: -.02em; color: var(--wine); text-wrap: initial; }
+.frente-card p { margin-top: clamp(8px, 2.4cqi, 10px); font-size: clamp(.875rem, 4.15cqi, 1rem); line-height: 1.45; color: var(--muted); }
+.frente-link { display: inline-flex; align-items: center; gap: 14px; margin-top: clamp(10px, 3.4cqi, 15px); font-size: clamp(.875rem, 4.15cqi, 1rem); font-weight: 700; color: var(--wine); }
+.frente-link .i-arrow { width: 1.05em; height: 1.05em; stroke-width: 2; }
+@media (hover: hover) {
+  .frente-card:hover { border-color: var(--line-strong); box-shadow: 0 10px 26px rgba(61, 37, 16, .07); }
+  .frente-card:hover img { transform: scale(1.03); }
+  .frente-card:hover .i-arrow { transform: translateX(3px); }
+}
+.frente-card:focus-visible { outline-offset: 4px; border-radius: 4px; }
+
+/* Faixa compacta (até 900px): 3 colunas iguais, ícone sobre o texto. Continua numa linha só, então as divisórias ficam */
+@media (max-width: 900px) {
+  .garantias { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: start; padding: 16px 0 17px; font-size: .78125rem; line-height: 1.35; text-align: center; }
+  .garantias li, .garantias li:first-child, .garantias li:last-child { flex-direction: column; gap: 7px; padding-inline: 8px; white-space: normal; text-wrap: balance; }
+  .garantias li + li::before { top: 4px; height: calc(100% - 8px); translate: none; }
+  .garantias svg { width: 22px; height: 22px; }
+}
+/* Até 760px: um cartão por linha. Entre 520 e 760px a foto vai para a esquerda (evita foto de 600px de altura);
+   abaixo de 520px, mesma estrutura do desktop (foto em cima). */
+@media (max-width: 760px) {
+  .frentes { padding-top: 14px; }
+  .frentes-grid { grid-template-columns: minmax(0, 1fr); gap: 14px; }
+}
+@media (min-width: 520px) and (max-width: 760px) {
+  .frente-card { flex-direction: row; }
+  .frente-card picture { flex: 0 0 50%; aspect-ratio: auto; min-height: 300px; }
+  .frente-info { flex: 1; align-content: center; padding: 22px clamp(20px, 4.4cqi, 30px); }
+  .frente-info::before { margin-top: 0; }
+  .frente-card h3 { font-size: clamp(1.6rem, 5.6cqi, 2.3rem); }
+  .frente-card p, .frente-link { font-size: .9375rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .frente-card img, .frente-link .i-arrow { transition: none; }
+}

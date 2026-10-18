@@ -61,7 +61,7 @@ try {
   ok(await page.$$eval('#hero .slide .btn-line', a => a.map(x => x.getAttribute('href')).join()) === '/catalogo/,/confeccoes-personalizadas/,/kits-corporativos/,/catalogo/?categoria=canetas-escritorio#catalogo,/ativacoes-promocionais/', 'slides levam a rotas reais do site (catálogo, confecções, kits, escritório, ativações)');
   ok(await page.$$eval('.kits-home .kit-card', k => k.length === 5 && k.filter(x => x.classList.contains('big')).length === 2 && k.every(x => x.querySelector('img').alt.length > 20)), 'kits premium: dois destaques e três menores, com texto alternativo');
   ok(await page.$$eval('.kits-home .kit-occ a', a => a.length === 6 && a.every(x => /^\/brindes-corporativos-premium\/\?ocasiao=[a-z-]+#pecas$/.test(x.getAttribute('href')))), 'atalhos por ocasião levam às ideias filtradas');
-  ok(await page.$$eval('#hero .slide-copy', s => s.every(x => !x.querySelector('.hero-meta'))) && await page.$$eval('.assurances li', l => l.length === 3), 'frases de confiança saem do banner e ficam na faixa abaixo do carrossel');
+  ok(await page.$$eval('#hero .slide-copy', s => s.every(x => !x.querySelector('.hero-meta'))) && await page.$$eval('.garantias li', l => l.length === 3), 'frases de confiança saem do banner e ficam na faixa abaixo do carrossel');
   ok(await page.$$eval('.home-prods .product.studio', c => c.length === 8 && c.every(x => x.querySelector('img').alt.length > 15 && x.querySelectorAll('.swatch').length >= 4)), 'destaques: 8 peças em estúdio claro, com texto alternativo e cores com foto');
   ok(await page.$$eval('.home-prods .product.studio h3', h => h.slice(0, 4).map(x => x.textContent).join('|') === 'Polo masculina|Polo feminina|Camiseta masculina|Camiseta feminina'), 'polo e camiseta aparecem em pares masculina/feminina, lado a lado');
   ok(await page.$$eval('.home-prods .product.studio', c => [c[0], c[1], c[2], c[3]].map(x => x.querySelector('img').currentSrc.split('/').pop().split('.')[0]).join('|') === 'polo~vermelho|polo-feminina~azul-royal|camiseta~branco|camiseta-feminina~preto'), 'a peça feminina ao lado vem em outra cor (azul royal × vermelho)');
@@ -98,7 +98,7 @@ try {
   ok(await page.$eval('[data-hero-count]', c => c.textContent === '02'), 'contador acompanha o slide (02 / 04)');
   ok(await page.$$eval('#hero .slide', s => new Set(s.map(x => getComputedStyle(x).backgroundColor)).size === 4), 'cada slide tem o seu tom de fundo');
   ok(await page.$$eval('#hero .slide img', i => i[0].loading === 'eager' && i[0].getAttribute('fetchpriority') === 'high' && i.slice(1).every(x => x.loading === 'lazy')), 'só a primeira foto do carrossel é prioritária');
-  ok(await page.$$eval('#hero .slide', s => s.every(x => { const c = x.querySelector('.slide-copy').getBoundingClientRect(), p = x.querySelector('.slide-photo').getBoundingClientRect(); return c.right <= p.left + p.width * 0.18; })), 'no computador o texto não invade a área nítida da foto');
+  ok(await page.$$eval('#hero .slide', s => s.every(x => { if (x.classList.contains('respiro')) return true; const c = x.querySelector('.slide-copy').getBoundingClientRect(), p = x.querySelector('.slide-photo').getBoundingClientRect(); return c.right <= p.left + p.width * 0.18; })), 'no computador o texto não invade a área nítida da foto');
   await page.click('[data-hero-pause]');
   ok(await page.$eval('#hero', h => !h.classList.contains('is-stopped') && h.classList.contains('is-held')), 'retomar a troca com o foco no carrossel mantém a pausa enquanto o foco estiver nele');
   await page.click('[data-hero-pause]');
@@ -238,7 +238,7 @@ try {
   ok(await page.$$eval('.studio-grid .product.studio', c => c.length === 8) && await page.$eval('.studio-grid', g => !!g.closest('section').querySelector('a[href="/catalogo/?categoria=vestuario"]')), 'confecções: 8 peças em estúdio com link para o catálogo filtrado');
   ok(await page.$$eval('#hero .slide', s => s.length === 4) && await page.$$eval('h1', h => h.length === 1 && /Uniformes corporativos/.test(h[0].textContent)), 'confecções abre com carrossel de 4 cenas e um único H1');
   ok(await page.$$eval('#hero .slide img', i => i.every(x => /TaMa/.test(x.alt) && x.alt.length > 40)), 'cenas de confecções com texto alternativo descritivo');
-  ok(!(await page.$('.assurances')), 'confecções não repete a faixa de confiança da home');
+  ok(!(await page.$('.garantias')), 'confecções não repete a faixa de confiança da home');
   ok(!(await page.$('#rail-conf')) && !(await page.$('#pecas-c-t')), 'confecções: sem o bloco "Do uniforme do dia a dia à peça do evento"');
   ok(await colorsHavePhoto(page, '.studio-grid .product.studio'), 'confecções: toda cor mostrada nas peças em estúdio tem foto própria');
   await page.goto(BASE + '/blog/o-que-colocar-no-kit-de-boas-vindas/', { waitUntil: 'networkidle0' });
@@ -336,7 +336,7 @@ try {
   }
   ok(await fp.$$eval('.studio-grid .product', c => ['cardapio', 'porta-contas', 'dolma', 'avental'].every(s => c.some(x => x.dataset.slug === s))), 'hotelaria reúne cardápio, porta-contas, dólmã e avental da mesma base');
   await fp.goto(BASE + '/', { waitUntil: 'networkidle0' });
-  ok(await fp.$$eval('.service-grid .service-card', a => a.map(x => x.getAttribute('href')).join() === '/brindes-corporativos/,/confeccoes-personalizadas/,/kits-corporativos/,/ativacoes-promocionais/,/hotelaria-e-gastronomia/'), 'home apresenta as cinco frentes');
+  ok(await fp.$$eval('.frentes-grid .frente-card', a => a.map(x => x.getAttribute('href')).join() === '/brindes-corporativos/,/confeccoes-personalizadas/,/kits-corporativos/'), 'home apresenta as três frentes do mockup');
   ok(await fp.$eval('h1', h => /Brindes, confecções e ativações/.test(h.textContent)), 'H1 da home diz o que a TaMa oferece');
   ok(await fp.$$eval('.kit-card a[href*="tipo=kits"]', a => a.length === 5 && a.every(x => x.href.includes('interesse='))), 'cada kit tem "Quero este kit" com o interesse no pedido');
   await fp.evaluate(() => localStorage.setItem('tama-selecao', JSON.stringify([{ s: 'linha-polo', c: 'Preto' }, { s: 'caneca-de-ceramica', c: null }, { s: 'baralho-exclusivo', c: null }])));

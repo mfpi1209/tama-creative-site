@@ -124,7 +124,7 @@ OCCS = SEL['ocasioes']
 ALIASES = SEL['aliases']
 # banco de imagens de produto (docs/BANCO-IMAGENS.md): uma entrada por imagem; o catálogo agrupa por produto
 PRODUTOS = json.load(open(os.path.join(SRC, 'data', 'produtos.json'), encoding='utf-8'))['imagens']
-CAT_PROD = {'vestuario': 'Vestuário', 'canetas-escritorio': 'Canetas e escritório', 'bolsas-embalagens': 'Bolsas e embalagens', 'garrafas-copos': 'Garrafas e copos',
+CAT_PROD = {'vestuario': 'Vestuário', 'canetas-escritorio': 'Canetas e escritório', 'tecnologia': 'Tecnologia', 'bolsas-embalagens': 'Bolsas e embalagens', 'garrafas-copos': 'Garrafas e copos',
             'acessorios': 'Acessórios', 'casa-bem-estar': 'Casa e bem-estar', 'hotelaria-gastronomia': 'Hotelaria e gastronomia'}
 # cores de referência sem foto, por categoria (catálogo inicial do pacote tama-home-v2); as demais categorias mostram só a cor da foto
 CORES_REF = {'vestuario': [['Vermelho', '#C8202F'], ['Azul royal', '#1F4FB8'], ['Azul-marinho', '#1E2A4A'], ['Preto', '#1E1E1E'], ['Branco', '#F7F5F0'], ['Cinza', '#9A9A98'], ['Verde', '#1F6B45']],
@@ -311,7 +311,7 @@ def color_slug(s):
     return '-'.join(''.join(c if c.isalnum() else ' ' for c in s).split())
 
 
-SPEC_RE = re.compile(r'\b(couros?|acr[íi]licos?|alum[íi]nio|inox\w*|a[çc]o|algod[ãa]o|piquet|piqu[êe]|cer[âa]micas?|porcelanas?|bambu|vidros?|madeiras?|pap[ée]is|papel|pl[áa]stic[oa]s?|metal|metais|met[áa]lic[oa]s?|cera|kraft|ecol[óo]gic[oa]s?|corti[çc]a|silicone|poli[ée]ster|linho|\d+(?:[.,]\d+)?\s?(?:ml|l|litros?))\b', re.I)
+SPEC_RE = re.compile(r'\b(couros?|acr[íi]licos?|alum[íi]nio|inox\w*|a[çc]o|algod[ãa]o|piquet|piqu[êe]|cer[âa]micas?|porcelanas?|bambu|vidros?|madeiras?|pap[ée]is|papel|pl[áa]stic[oa]s?|metal|metais|met[áa]lic[oa]s?|cera|kraft|ecol[óo]gic[oa]s?|corti[çc]a|silicone|poli[ée]ster|linho|\d+(?:[.,]\d+)?\s?(?:ml|l|litros?|gb|tb|mah|w)|bluetooth\s?\d)\b', re.I)
 
 
 def preparar_produtos():
@@ -595,6 +595,7 @@ def page_catalogo():
 CAT_TEXTO = {
     'vestuario': 'Peças para equipes, eventos e uniformes do dia a dia. A técnica de aplicação da marca (bordado, silk ou outra) e a grade de tamanhos são definidas na proposta, conforme o uso e o tecido.',
     'canetas-escritorio': 'Itens que entram na rotina de trabalho: canetas, cadernos, agendas e organizadores. A aplicação da marca depende do material e é confirmada na proposta.',
+    'tecnologia': 'Itens de tecnologia para a rotina de quem trabalha no escritório, em casa ou em trânsito: pen drives, power banks, carregadores, fones, caixas de som e organizadores. Capacidade, potência, compatibilidade e aplicação da marca são confirmadas na proposta.',
     'bolsas-embalagens': 'Bolsas, embalagens e acabamentos (cartões, lacres) que acompanham o presente ou viram o próprio brinde. Formato, acabamento e aplicação da marca são definidos na proposta.',
     'garrafas-copos': 'Garrafas, copos, canecas e taças para o dia a dia, eventos e presentes de fim de ano. Capacidade, material e técnica de personalização são confirmados na proposta.',
     'acessorios': 'Acessórios úteis, que acompanham a pessoa no dia a dia. Material, acabamento e aplicação da marca são confirmados na proposta.',
@@ -602,6 +603,7 @@ CAT_TEXTO = {
     'hotelaria-gastronomia': 'Itens para restaurantes, hotéis e eventos gastronômicos, com a identidade do seu negócio. Material e acabamento são confirmados na proposta.',
 }
 CAT_USO = {'vestuario': 'para uniformes, equipes e eventos', 'canetas-escritorio': 'para o escritório, eventos e kits',
+           'tecnologia': 'para equipes, eventos e kits',
            'bolsas-embalagens': 'para presentes e kits corporativos', 'garrafas-copos': 'para eventos, presentes e kits',
            'acessorios': 'para presentear clientes e equipes', 'casa-bem-estar': 'para presentes e kits corporativos',
            'hotelaria-gastronomia': 'para restaurantes, hotéis e eventos'}
@@ -1460,8 +1462,9 @@ def page_home():
     }
 
 
-# rótulos iguais aos filtros do catálogo (CAT_PROD); "Tecnologia" volta quando houver peças no catálogo
+# rótulos iguais aos filtros do catálogo (CAT_PROD)
 BRINDES_ATALHOS = [(CAT_PROD['garrafas-copos'], '/catalogo/?categoria=garrafas-copos'), (CAT_PROD['canetas-escritorio'], '/catalogo/?categoria=canetas-escritorio'),
+                   (CAT_PROD['tecnologia'], '/catalogo/?categoria=tecnologia'),
                    (CAT_PROD['bolsas-embalagens'], '/catalogo/?categoria=bolsas-embalagens'), (CAT_PROD['casa-bem-estar'], '/catalogo/?categoria=casa-bem-estar')]
 
 

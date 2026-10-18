@@ -82,6 +82,22 @@
    "descricao_seo": ""
   },
   {
+   "produto": "Caixa de som",
+   "genero": "f",
+   "resumo": "Compacta e com alça, a caixa de som vai da mesa de trabalho para a viagem e o fim de semana, levando a marca para fora do escritório. É um presente de uso pessoal para o fim de ano, premiações de campanhas internas e reconhecimento de equipe. Potência, autonomia e aplicação da marca são confirmadas na proposta.",
+   "usos": [
+    "Fim de ano",
+    "Premiações internas",
+    "Reconhecimento de equipe"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Caixa de som personalizada | TaMa Creative",
+   "descricao_seo": "Caixa de som compacta, com alça e a marca da sua empresa, para presentes de fim de ano, premiações internas e reconhecimento de equipe."
+  },
+  {
    "produto": "Caixa para presente",
    "genero": "f",
    "resumo": "Uma caixa com tampa que transforma a entrega do presente em parte da experiência. Funciona como base para kits de boas-vindas, presentes de fim de ano e mimos para clientes, reunindo os itens com organização e deixando a marca à vista desde o primeiro contato. Cor, material e aplicação da marca são definidos na proposta.",
@@ -354,6 +370,22 @@
    },
    "titulo_seo": "",
    "descricao_seo": ""
+  },
+  {
+   "produto": "Carregador sem fio de mesa",
+   "genero": "m",
+   "resumo": "O carregador sem fio de mesa mantém o celular apoiado e à vista durante o expediente, no escritório ou no home office, com a marca na frente da base. É um presente executivo de uso diário e combina com kits de fim de ano e de boas-vindas. Potência, compatibilidade e aplicação da marca são confirmadas na proposta.",
+   "usos": [
+    "Presentes executivos",
+    "Home office",
+    "Fim de ano"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Carregador sem fio de mesa personalizado | TaMa Creative",
+   "descricao_seo": "Carregador sem fio de mesa com a marca da sua empresa na base, para presentes executivos, home office e fim de ano. Peça uma proposta à TaMa."
   },
   {
    "produto": "Carteira",
@@ -645,6 +677,22 @@
    "descricao_seo": ""
   },
   {
+   "produto": "Estojo organizador de tecnologia",
+   "genero": "m",
+   "resumo": "O estojo organizador de tecnologia reúne cabos, carregador e power bank num só lugar, pronto para a mochila ou a mala. Com a marca na tampa, combina com kits de boas-vindas, kits de viagem e presentes para quem trabalha em trânsito. Material, divisórias internas e aplicação da marca são definidos na proposta.",
+   "usos": [
+    "Kits de boas-vindas",
+    "Viagens a trabalho",
+    "Kits corporativos"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Estojo organizador de tecnologia personalizado | TaMa",
+   "descricao_seo": "Estojo organizador para cabos, carregador e power bank, com a marca da sua empresa. Para kits de boas-vindas, viagens e presentes executivos."
+  },
+  {
    "produto": "Flute com borda dourada",
    "nome": "Taça flute com borda dourada",
    "genero": "f",
@@ -660,6 +708,22 @@
    },
    "titulo_seo": "",
    "descricao_seo": ""
+  },
+  {
+   "produto": "Fone de ouvido sem fio",
+   "genero": "m",
+   "resumo": "Com estojo de recarga, o fone de ouvido sem fio acompanha a rotina em chamadas, deslocamentos e treinos. A marca vai na tampa do estojo, a parte que fica sempre à vista, e o presente funciona bem para reconhecimento de equipe e fim de ano. Conexão, autonomia e aplicação da marca são confirmadas na proposta.",
+   "usos": [
+    "Presentes executivos",
+    "Reconhecimento de equipe",
+    "Fim de ano"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Fone de ouvido sem fio personalizado | TaMa Creative",
+   "descricao_seo": "Fone de ouvido sem fio com estojo de recarga e a marca da sua empresa na tampa. Para presentes executivos, reconhecimento e fim de ano."
   },
   {
    "produto": "Garrafa térmica",
@@ -692,6 +756,22 @@
    },
    "titulo_seo": "",
    "descricao_seo": ""
+  },
+  {
+   "produto": "Headphone",
+   "genero": "m",
+   "resumo": "Com arco acolchoado e conchas sobre as orelhas, o headphone acompanha as chamadas e os momentos de foco do dia a dia, no escritório ou em casa. A marca vai na face externa da concha. É um presente para reconhecer equipes e presentear executivos. Conexão, autonomia e aplicação da marca são confirmadas na proposta.",
+   "usos": [
+    "Presentes executivos",
+    "Reconhecimento de equipe",
+    "Home office"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Headphone personalizado | TaMa Creative",
+   "descricao_seo": "Headphone com a marca da sua empresa na concha, para chamadas e foco no trabalho. Presente executivo e de reconhecimento de equipe."
   },
   {
    "produto": "Jogo americano impresso",
@@ -790,6 +870,54 @@
    "descricao_seo": ""
   },
   {
+   "produto": "Pen drive cartão",
+   "genero": "m",
+   "resumo": "No formato de um cartão, o pen drive cartão entrega apresentações, catálogos e materiais de evento já gravados, com uma área ampla para a marca ficar bem à vista. É uma opção prática para feiras, lançamentos e kits de imprensa. Capacidade, acabamento e aplicação da marca são definidos na proposta.",
+   "usos": [
+    "Eventos e feiras",
+    "Lançamentos",
+    "Kits de imprensa"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Pen drive cartão personalizado | TaMa Creative",
+   "descricao_seo": "Pen drive cartão com a marca da sua empresa, para entregar apresentações e catálogos em eventos e feiras. Capacidade definida na proposta."
+  },
+  {
+   "produto": "Pen drive giratório",
+   "genero": "m",
+   "resumo": "A tampa do pen drive giratório gira e protege o conector, sem peça solta para perder no caminho. É uma opção prática para entregar o conteúdo de treinamentos, feiras e campanhas já gravado, com a marca no corpo da peça. Capacidade, cor e aplicação da marca são definidas na proposta.",
+   "usos": [
+    "Treinamentos",
+    "Eventos e feiras",
+    "Campanhas"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Pen drive giratório personalizado | TaMa Creative",
+   "descricao_seo": "Pen drive giratório com a marca da sua empresa: a tampa protege o conector. Para treinamentos, feiras e campanhas. Capacidade definida na proposta."
+  },
+  {
+   "produto": "Pen drive natural",
+   "genero": "m",
+   "resumo": "Com corpo em tom natural e tampa, o pen drive natural tem um visual leve e discreto, que combina com lançamentos e eventos de identidade mais sóbria. Entrega apresentações e materiais já gravados, com a marca em destaque no corpo. Material, capacidade e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Lançamentos",
+    "Eventos e feiras",
+    "Materiais de apresentação"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Pen drive natural personalizado | TaMa Creative",
+   "descricao_seo": "Pen drive em tom natural, com tampa e a marca da sua empresa, para lançamentos e eventos. Material e capacidade são confirmados na proposta."
+  },
+  {
    "produto": "Polo feminina",
    "genero": "f",
    "resumo": "A polo feminina personalizada une um visual mais arrumado à praticidade do uniforme, com modelagem feminina. É uma boa escolha para recepção, atendimento ao cliente, equipes comerciais e eventos corporativos, em que a marca precisa aparecer com sobriedade. Cor, material e aplicação da marca são definidos na proposta.",
@@ -852,6 +980,38 @@
    },
    "titulo_seo": "",
    "descricao_seo": ""
+  },
+  {
+   "produto": "Power bank com ventosas",
+   "genero": "m",
+   "resumo": "As ventosas no verso prendem o power bank ao celular, e a recarga segue enquanto o aparelho está em uso: em trânsito, na fila de um evento ou entre reuniões. A marca fica na face frontal, sempre à vista. Capacidade, cabo e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Eventos e ativações",
+    "Campanhas",
+    "Kits de boas-vindas"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Power bank com ventosas personalizado | TaMa Creative",
+   "descricao_seo": "Power bank com ventosas e a marca da sua empresa, que se prende ao celular durante a recarga. Para eventos, ativações e campanhas."
+  },
+  {
+   "produto": "Power bank slim",
+   "genero": "m",
+   "resumo": "Fino o bastante para ir na bolsa ou no bolso, o power bank slim recarrega o celular longe da tomada, em viagens, visitas a clientes e dias de evento. É um presente útil para equipes externas e kits de boas-vindas, com a marca na face maior. Capacidade, saídas e aplicação da marca são confirmadas na proposta.",
+   "usos": [
+    "Kits de boas-vindas",
+    "Equipes externas",
+    "Eventos"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Power bank slim personalizado | TaMa Creative",
+   "descricao_seo": "Power bank slim com a marca da sua empresa, fino para levar na bolsa ou no bolso. Para kits de boas-vindas e eventos. Capacidade sob consulta."
   },
   {
    "produto": "Sacola para presente",

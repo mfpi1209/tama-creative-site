@@ -2346,6 +2346,154 @@
    "substitui": null
   },
   {
+   "id": "caixa-de-som~azul-marinho",
+   "produto": "Caixa de som",
+   "categoria": "tecnologia",
+   "modelo": "Formato compacto, com alça, para a mesa ou a viagem",
+   "cor": {
+    "nome": "Azul-marinho",
+    "hex": "#1E2A4A"
+   },
+   "material": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Caixa de som azul-marinho com alça e a marca TaMa em branco.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Imagem gerada com IA (OpenAI gpt-image-1.5, produto novo no padrão do banco) em 18/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Foto-base da linha de tecnologia (docs/PLANO-TECNOLOGIA.md).",
+   "arquivo": "/img/produtos/caixa-de-som~azul-marinho.webp",
+   "mestre": "midia/produtos/mestre/caixa-de-som~azul-marinho.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "e42e2c81558f98d4e6a51b6121da462a4f569509b67bfa23d4fc1ea48d8cf667",
+   "bytes": 1481672,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "id": "caixa-de-som~cinza",
+   "produto": "Caixa de som",
+   "categoria": "tecnologia",
+   "modelo": "Formato compacto, com alça, para a mesa ou a viagem",
+   "cor": {
+    "nome": "Cinza",
+    "hex": "#9A9A98"
+   },
+   "material": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Caixa de som cinza com alça e a marca TaMa em branco.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base caixa-de-som~azul-marinho.",
+   "arquivo": "/img/produtos/caixa-de-som~cinza.webp",
+   "mestre": "midia/produtos/mestre/caixa-de-som~cinza.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "e22a55d0791b7038c3ec0963066157c5c6bc1d3adeb28d2ad1ae2a1918ad01b9",
+   "bytes": 1502726,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "id": "caixa-de-som~preto",
+   "produto": "Caixa de som",
+   "categoria": "tecnologia",
+   "modelo": "Formato compacto, com alça, para a mesa ou a viagem",
+   "cor": {
+    "nome": "Preto",
+    "hex": "#1E1E1E"
+   },
+   "material": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Caixa de som preta com alça e a marca TaMa em branco.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base caixa-de-som~azul-marinho.",
+   "arquivo": "/img/produtos/caixa-de-som~preto.webp",
+   "mestre": "midia/produtos/mestre/caixa-de-som~preto.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "102d2d4819fab9c916e6bafe72b1f6d52c4d008747fd30c3569e44ff48a6433d",
+   "bytes": 1390988,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "id": "caixa-de-som~vermelho",
+   "produto": "Caixa de som",
+   "categoria": "tecnologia",
+   "modelo": "Formato compacto, com alça, para a mesa ou a viagem",
+   "cor": {
+    "nome": "Vermelho",
+    "hex": "#C8202F"
+   },
+   "material": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Caixa de som vermelha com alça e a marca TaMa em branco.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base caixa-de-som~azul-marinho.",
+   "arquivo": "/img/produtos/caixa-de-som~vermelho.webp",
+   "mestre": "midia/produtos/mestre/caixa-de-som~vermelho.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "94c687a12265a0e79977592584f9bced98eaf772409449449714592e94d90805",
+   "bytes": 1539479,
+   "atualizado_em": "2026-10-18"
+  },
+  {
    "fornecedor": null,
    "bytes": 1473913,
    "sku": null,
@@ -6936,6 +7084,117 @@
    "substitui": null
   },
   {
+   "id": "carregador-sem-fio-mesa~azul-marinho",
+   "produto": "Carregador sem fio de mesa",
+   "categoria": "tecnologia",
+   "modelo": "Suporte inclinado que mantém o celular à vista na mesa",
+   "cor": {
+    "nome": "Azul-marinho",
+    "hex": "#1E2A4A"
+   },
+   "material": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Carregador sem fio de mesa azul-marinho com a marca TaMa em branco na base.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base carregador-sem-fio-mesa~preto.",
+   "arquivo": "/img/produtos/carregador-sem-fio-mesa~azul-marinho.webp",
+   "mestre": "midia/produtos/mestre/carregador-sem-fio-mesa~azul-marinho.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "212ea2a32c3e93a3c448e7ad403e60e10765d8e8c2f7aca50b9aa3b7d8de5348",
+   "bytes": 1351475,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "id": "carregador-sem-fio-mesa~branco",
+   "produto": "Carregador sem fio de mesa",
+   "categoria": "tecnologia",
+   "modelo": "Suporte inclinado que mantém o celular à vista na mesa",
+   "cor": {
+    "nome": "Branco",
+    "hex": "#F7F5F0"
+   },
+   "material": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Carregador sem fio de mesa branco com a marca TaMa nas cores oficiais na base.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base carregador-sem-fio-mesa~preto.",
+   "arquivo": "/img/produtos/carregador-sem-fio-mesa~branco.webp",
+   "mestre": "midia/produtos/mestre/carregador-sem-fio-mesa~branco.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "294125900504ba6cde29bc6ab9428b7d398c4aacf4290c7bf436fc622d63e5ee",
+   "bytes": 1151774,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "id": "carregador-sem-fio-mesa~preto",
+   "produto": "Carregador sem fio de mesa",
+   "categoria": "tecnologia",
+   "modelo": "Suporte inclinado que mantém o celular à vista na mesa",
+   "cor": {
+    "nome": "Preto",
+    "hex": "#1E1E1E"
+   },
+   "material": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Carregador sem fio de mesa preto com a marca TaMa em branco na base.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Imagem gerada com IA (OpenAI gpt-image-1.5, produto novo no padrão do banco) em 18/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Foto-base da linha de tecnologia (docs/PLANO-TECNOLOGIA.md).",
+   "arquivo": "/img/produtos/carregador-sem-fio-mesa~preto.webp",
+   "mestre": "midia/produtos/mestre/carregador-sem-fio-mesa~preto.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "b92855579452a2bcbb5b9bdf1f0782d09da4f4f578e4c9ea0b52fea4d64193b7",
+   "bytes": 1320493,
+   "atualizado_em": "2026-10-18"
+  },
+  {
    "fornecedor": null,
    "bytes": 1385047,
    "sku": null,
@@ -9789,6 +10048,154 @@
    "substitui": null
   },
   {
+   "id": "estojo-tecnologia~azul-marinho",
+   "produto": "Estojo organizador de tecnologia",
+   "categoria": "tecnologia",
+   "modelo": "Divisórias para cabos, carregador e power bank",
+   "cor": {
+    "nome": "Azul-marinho",
+    "hex": "#1E2A4A"
+   },
+   "material": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Estojo organizador de tecnologia azul-marinho com zíper e a marca TaMa em branco.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Imagem gerada com IA (OpenAI gpt-image-1.5, produto novo no padrão do banco) em 18/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Foto-base da linha de tecnologia (docs/PLANO-TECNOLOGIA.md).",
+   "arquivo": "/img/produtos/estojo-tecnologia~azul-marinho.webp",
+   "mestre": "midia/produtos/mestre/estojo-tecnologia~azul-marinho.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "b9a113148ac020ba811dba774fbb66c3177c92a34ec88b06e20ab4b70f677860",
+   "bytes": 1691030,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "id": "estojo-tecnologia~cinza",
+   "produto": "Estojo organizador de tecnologia",
+   "categoria": "tecnologia",
+   "modelo": "Divisórias para cabos, carregador e power bank",
+   "cor": {
+    "nome": "Cinza",
+    "hex": "#9A9A98"
+   },
+   "material": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Estojo organizador de tecnologia cinza com zíper e a marca TaMa em branco.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base estojo-tecnologia~azul-marinho.",
+   "arquivo": "/img/produtos/estojo-tecnologia~cinza.webp",
+   "mestre": "midia/produtos/mestre/estojo-tecnologia~cinza.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "3dc22f17dda632dabc13cf182416eadc835ed9c74eb5df17a0c0a2eb075d7622",
+   "bytes": 1749846,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "id": "estojo-tecnologia~preto",
+   "produto": "Estojo organizador de tecnologia",
+   "categoria": "tecnologia",
+   "modelo": "Divisórias para cabos, carregador e power bank",
+   "cor": {
+    "nome": "Preto",
+    "hex": "#1E1E1E"
+   },
+   "material": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Estojo organizador de tecnologia preto com zíper e a marca TaMa em branco.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base estojo-tecnologia~azul-marinho.",
+   "arquivo": "/img/produtos/estojo-tecnologia~preto.webp",
+   "mestre": "midia/produtos/mestre/estojo-tecnologia~preto.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "8a6ace23f623110a87ba1a16b837299369e1d1b14650876ebe7197e9e58a5de5",
+   "bytes": 1613093,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "id": "estojo-tecnologia~verde-escuro",
+   "produto": "Estojo organizador de tecnologia",
+   "categoria": "tecnologia",
+   "modelo": "Divisórias para cabos, carregador e power bank",
+   "cor": {
+    "nome": "Verde-escuro",
+    "hex": "#1F4A35"
+   },
+   "material": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Estojo organizador de tecnologia verde-escuro com zíper e a marca TaMa em branco.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base estojo-tecnologia~azul-marinho.",
+   "arquivo": "/img/produtos/estojo-tecnologia~verde-escuro.webp",
+   "mestre": "midia/produtos/mestre/estojo-tecnologia~verde-escuro.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "2101bd1d2432005c244ab9b0068400c9652af530915e987388c689be2a39d90e",
+   "bytes": 1689755,
+   "atualizado_em": "2026-10-18"
+  },
+  {
    "id": "flute-borda-dourada~transparente",
    "produto": "Flute com borda dourada",
    "categoria": "garrafas-copos",
@@ -9823,6 +10230,154 @@
    "altura": 1024,
    "sha256": "f5332a762e475a432ea92c4408e617ede8bf9f7384b035c0fd0c9c5916a29305",
    "bytes": 1167138,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "id": "fone-sem-fio~azul-marinho",
+   "produto": "Fone de ouvido sem fio",
+   "categoria": "tecnologia",
+   "modelo": "Fones intra-auriculares com estojo de recarga",
+   "cor": {
+    "nome": "Azul-marinho",
+    "hex": "#1E2A4A"
+   },
+   "material": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Fones de ouvido sem fio azul-marinho com estojo e a marca TaMa na tampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base fone-sem-fio~branco.",
+   "arquivo": "/img/produtos/fone-sem-fio~azul-marinho.webp",
+   "mestre": "midia/produtos/mestre/fone-sem-fio~azul-marinho.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "ae3fb4293e7d7ed7696f9357430bbf9b770afe4c92664f89ff95cfcd34eb5161",
+   "bytes": 1345176,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "id": "fone-sem-fio~branco",
+   "produto": "Fone de ouvido sem fio",
+   "categoria": "tecnologia",
+   "modelo": "Fones intra-auriculares com estojo de recarga",
+   "cor": {
+    "nome": "Branco",
+    "hex": "#F7F5F0"
+   },
+   "material": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Fones de ouvido sem fio brancos com estojo e a marca TaMa na tampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Imagem gerada com IA (OpenAI gpt-image-1.5, produto novo no padrão do banco) em 18/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Foto-base da linha de tecnologia (docs/PLANO-TECNOLOGIA.md).",
+   "arquivo": "/img/produtos/fone-sem-fio~branco.webp",
+   "mestre": "midia/produtos/mestre/fone-sem-fio~branco.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "03b0552a133c666bcec54dfa1f11ddf9c9f746f49c786cc19fc690124feace72",
+   "bytes": 1178384,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "id": "fone-sem-fio~preto",
+   "produto": "Fone de ouvido sem fio",
+   "categoria": "tecnologia",
+   "modelo": "Fones intra-auriculares com estojo de recarga",
+   "cor": {
+    "nome": "Preto",
+    "hex": "#1E1E1E"
+   },
+   "material": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Fones de ouvido sem fio pretos com estojo e a marca TaMa na tampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base fone-sem-fio~branco.",
+   "arquivo": "/img/produtos/fone-sem-fio~preto.webp",
+   "mestre": "midia/produtos/mestre/fone-sem-fio~preto.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "fa1cd2fb7a7d745ffe9d6e5e86ff5ed11392a5a84a92abee2a36c045e556119e",
+   "bytes": 1391501,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "id": "fone-sem-fio~rosa",
+   "produto": "Fone de ouvido sem fio",
+   "categoria": "tecnologia",
+   "modelo": "Fones intra-auriculares com estojo de recarga",
+   "cor": {
+    "nome": "Rosa",
+    "hex": "#E07A9B"
+   },
+   "material": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Fones de ouvido sem fio rosa com estojo e a marca TaMa na tampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base fone-sem-fio~branco.",
+   "arquivo": "/img/produtos/fone-sem-fio~rosa.webp",
+   "mestre": "midia/produtos/mestre/fone-sem-fio~rosa.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "0c11ae688e8c78a632cb6c16c5b4e60add86a34965341f1c54aa87820b607f77",
+   "bytes": 1265769,
    "atualizado_em": "2026-10-18"
   },
   {
@@ -10164,6 +10719,154 @@
    "produto": "Guarda-chuva",
    "alt": "Guarda-chuva aberto, na cor vermelha, com a marca TaMa em um dos gomos.",
    "substitui": null
+  },
+  {
+   "id": "headphone~azul-marinho",
+   "produto": "Headphone",
+   "categoria": "tecnologia",
+   "modelo": "Arco acolchoado e conchas sobre as orelhas",
+   "cor": {
+    "nome": "Azul-marinho",
+    "hex": "#1E2A4A"
+   },
+   "material": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Headphone azul-marinho com a marca TaMa em branco na concha.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base headphone~preto.",
+   "arquivo": "/img/produtos/headphone~azul-marinho.webp",
+   "mestre": "midia/produtos/mestre/headphone~azul-marinho.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "6aa95f6e68d8f33b820e531cda5ca1f865af0643a1f7a8db28119f63f9ba60dc",
+   "bytes": 1223053,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "id": "headphone~branco",
+   "produto": "Headphone",
+   "categoria": "tecnologia",
+   "modelo": "Arco acolchoado e conchas sobre as orelhas",
+   "cor": {
+    "nome": "Branco",
+    "hex": "#F7F5F0"
+   },
+   "material": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Headphone branco com a marca TaMa nas cores oficiais na concha.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base headphone~preto.",
+   "arquivo": "/img/produtos/headphone~branco.webp",
+   "mestre": "midia/produtos/mestre/headphone~branco.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "48acaac03c8a30ec19a6e9ac1de7f41eb6900f27962616f510e485a3330e5185",
+   "bytes": 1192656,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "id": "headphone~cinza",
+   "produto": "Headphone",
+   "categoria": "tecnologia",
+   "modelo": "Arco acolchoado e conchas sobre as orelhas",
+   "cor": {
+    "nome": "Cinza",
+    "hex": "#9A9A98"
+   },
+   "material": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Headphone cinza com a marca TaMa em branco na concha.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base headphone~preto.",
+   "arquivo": "/img/produtos/headphone~cinza.webp",
+   "mestre": "midia/produtos/mestre/headphone~cinza.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "e2fffce3f51be515d8207cd5d3200676718a2583df7b67c34e764c72bf5a3460",
+   "bytes": 1252483,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "id": "headphone~preto",
+   "produto": "Headphone",
+   "categoria": "tecnologia",
+   "modelo": "Arco acolchoado e conchas sobre as orelhas",
+   "cor": {
+    "nome": "Preto",
+    "hex": "#1E1E1E"
+   },
+   "material": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Headphone preto com a marca TaMa em branco na concha.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Imagem gerada com IA (OpenAI gpt-image-1.5, produto novo no padrão do banco) em 18/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Foto-base da linha de tecnologia (docs/PLANO-TECNOLOGIA.md).",
+   "arquivo": "/img/produtos/headphone~preto.webp",
+   "mestre": "midia/produtos/mestre/headphone~preto.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "a26ef23477a98d82a76e85044073bb9dd011dafd5433a89b4c934dbcf27d6056",
+   "bytes": 1260688,
+   "atualizado_em": "2026-10-18"
   },
   {
    "fornecedor": null,
@@ -11789,6 +12492,413 @@
    "produto": "Nécessaire",
    "alt": "Nécessaire com zíper e alça lateral, na cor terracota, com a marca TaMa na frente.",
    "substitui": null
+  },
+  {
+   "id": "pen-drive-cartao~azul-royal",
+   "produto": "Pen drive cartão",
+   "categoria": "tecnologia",
+   "modelo": "Formato de cartão, com área ampla para a marca",
+   "cor": {
+    "nome": "Azul royal",
+    "hex": "#1F4FB8"
+   },
+   "material": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Pen drive em formato de cartão azul royal com a marca TaMa em branco.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Imagem gerada com IA (OpenAI gpt-image-1.5, produto novo no padrão do banco) em 18/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Foto-base da linha de tecnologia (docs/PLANO-TECNOLOGIA.md).",
+   "arquivo": "/img/produtos/pen-drive-cartao~azul-royal.webp",
+   "mestre": "midia/produtos/mestre/pen-drive-cartao~azul-royal.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "70a34cbf74258b8002a084f7dc64492caebd30a9d2e189f4e8758a36ee75b260",
+   "bytes": 1373885,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "id": "pen-drive-cartao~branco",
+   "produto": "Pen drive cartão",
+   "categoria": "tecnologia",
+   "modelo": "Formato de cartão, com área ampla para a marca",
+   "cor": {
+    "nome": "Branco",
+    "hex": "#F7F5F0"
+   },
+   "material": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Pen drive em formato de cartão branco com a marca TaMa nas cores oficiais.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base pen-drive-cartao~azul-royal.",
+   "arquivo": "/img/produtos/pen-drive-cartao~branco.webp",
+   "mestre": "midia/produtos/mestre/pen-drive-cartao~branco.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "765543b86a44bfa797c5346b43fc4facb5b77a7c78683e1167f6d104ba3aa5bb",
+   "bytes": 1305840,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "id": "pen-drive-cartao~preto",
+   "produto": "Pen drive cartão",
+   "categoria": "tecnologia",
+   "modelo": "Formato de cartão, com área ampla para a marca",
+   "cor": {
+    "nome": "Preto",
+    "hex": "#1E1E1E"
+   },
+   "material": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Pen drive em formato de cartão preto com a marca TaMa em branco.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base pen-drive-cartao~azul-royal.",
+   "arquivo": "/img/produtos/pen-drive-cartao~preto.webp",
+   "mestre": "midia/produtos/mestre/pen-drive-cartao~preto.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "2a37b7b448814485873c2baf357eb8c79d7b22984e9ac35f3cc6c6ce0e60cce1",
+   "bytes": 1396597,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "id": "pen-drive-cartao~vermelho",
+   "produto": "Pen drive cartão",
+   "categoria": "tecnologia",
+   "modelo": "Formato de cartão, com área ampla para a marca",
+   "cor": {
+    "nome": "Vermelho",
+    "hex": "#C8202F"
+   },
+   "material": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Pen drive em formato de cartão vermelho com a marca TaMa em branco.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base pen-drive-cartao~azul-royal.",
+   "arquivo": "/img/produtos/pen-drive-cartao~vermelho.webp",
+   "mestre": "midia/produtos/mestre/pen-drive-cartao~vermelho.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "7914686ad1e186ca41ad45cb15766c2c28906347ee17c8508fcac14c03dc643c",
+   "bytes": 1341889,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "id": "pen-drive-giratorio~azul-royal",
+   "produto": "Pen drive giratório",
+   "categoria": "tecnologia",
+   "modelo": "Tampa giratória que protege o conector",
+   "cor": {
+    "nome": "Azul royal",
+    "hex": "#1F4FB8"
+   },
+   "material": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Pen drive giratório azul royal com tampa prateada e a marca TaMa em branco.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base pen-drive-giratorio~preto.",
+   "arquivo": "/img/produtos/pen-drive-giratorio~azul-royal.webp",
+   "mestre": "midia/produtos/mestre/pen-drive-giratorio~azul-royal.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "87ceabf627fe30f86398669247fc6250784cade019cf3d1af77a7e9cb608bdc7",
+   "bytes": 1299747,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "id": "pen-drive-giratorio~preto",
+   "produto": "Pen drive giratório",
+   "categoria": "tecnologia",
+   "modelo": "Tampa giratória que protege o conector",
+   "cor": {
+    "nome": "Preto",
+    "hex": "#1E1E1E"
+   },
+   "material": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Pen drive giratório preto com tampa prateada e a marca TaMa em branco.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Imagem gerada com IA (OpenAI gpt-image-1.5, produto novo no padrão do banco) em 18/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Foto-base da linha de tecnologia (docs/PLANO-TECNOLOGIA.md).",
+   "arquivo": "/img/produtos/pen-drive-giratorio~preto.webp",
+   "mestre": "midia/produtos/mestre/pen-drive-giratorio~preto.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "0e06addaa3fa636bc46b3838fbc0214ee3d82d86a03da2ea87af3be90a47c2e8",
+   "bytes": 1325956,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "id": "pen-drive-giratorio~verde",
+   "produto": "Pen drive giratório",
+   "categoria": "tecnologia",
+   "modelo": "Tampa giratória que protege o conector",
+   "cor": {
+    "nome": "Verde",
+    "hex": "#1F6B45"
+   },
+   "material": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Pen drive giratório verde com tampa prateada e a marca TaMa em branco.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base pen-drive-giratorio~preto.",
+   "arquivo": "/img/produtos/pen-drive-giratorio~verde.webp",
+   "mestre": "midia/produtos/mestre/pen-drive-giratorio~verde.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "737ba193ca102c261f23e3ccc1877a30636477a58fc5100c25e4145f467829de",
+   "bytes": 1330204,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "id": "pen-drive-giratorio~vermelho",
+   "produto": "Pen drive giratório",
+   "categoria": "tecnologia",
+   "modelo": "Tampa giratória que protege o conector",
+   "cor": {
+    "nome": "Vermelho",
+    "hex": "#C8202F"
+   },
+   "material": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Pen drive giratório vermelho com tampa prateada e a marca TaMa em branco.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base pen-drive-giratorio~preto.",
+   "arquivo": "/img/produtos/pen-drive-giratorio~vermelho.webp",
+   "mestre": "midia/produtos/mestre/pen-drive-giratorio~vermelho.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "43a4c8ba9f067652658d755ea7e56df31bd989cb44160b7679e81ff2aa2e34d3",
+   "bytes": 1304224,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "id": "pen-drive-natural~cafe",
+   "produto": "Pen drive natural",
+   "categoria": "tecnologia",
+   "modelo": "Corpo em tom natural, com tampa",
+   "cor": {
+    "nome": "Café",
+    "hex": "#4A2E22"
+   },
+   "material": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Pen drive em tom café com tampa e a marca TaMa em branco.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base pen-drive-natural~natural.",
+   "arquivo": "/img/produtos/pen-drive-natural~cafe.webp",
+   "mestre": "midia/produtos/mestre/pen-drive-natural~cafe.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "26ea8c534e98f07c43f39c8115677879d4440c5964fc5ae831c779dcea17a120",
+   "bytes": 1202138,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "id": "pen-drive-natural~caramelo",
+   "produto": "Pen drive natural",
+   "categoria": "tecnologia",
+   "modelo": "Corpo em tom natural, com tampa",
+   "cor": {
+    "nome": "Caramelo",
+    "hex": "#A0623A"
+   },
+   "material": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Pen drive em tom caramelo com tampa e a marca TaMa em branco.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base pen-drive-natural~natural.",
+   "arquivo": "/img/produtos/pen-drive-natural~caramelo.webp",
+   "mestre": "midia/produtos/mestre/pen-drive-natural~caramelo.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "fcf1683cffff7ea8763aa210e5e6b0ac8b58a711037887569a73d2b3ba903aeb",
+   "bytes": 1248995,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "id": "pen-drive-natural~natural",
+   "produto": "Pen drive natural",
+   "categoria": "tecnologia",
+   "modelo": "Corpo em tom natural, com tampa",
+   "cor": {
+    "nome": "Natural",
+    "hex": "#C9A86A"
+   },
+   "material": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Pen drive em tom natural com tampa e a marca TaMa gravada tom sobre tom.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Imagem gerada com IA (OpenAI gpt-image-1.5, produto novo no padrão do banco) em 18/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Foto-base da linha de tecnologia (docs/PLANO-TECNOLOGIA.md).",
+   "arquivo": "/img/produtos/pen-drive-natural~natural.webp",
+   "mestre": "midia/produtos/mestre/pen-drive-natural~natural.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "dbe0123d528561e9cf0c829dc47e82e4d48a0fda8486665b19c5bafe05b15575",
+   "bytes": 1242051,
+   "atualizado_em": "2026-10-18"
   },
   {
    "fornecedor": null,
@@ -13886,6 +14996,302 @@
    "produto": "Saquinho transparente",
    "alt": "Saquinho transparente com zíper e a marca TaMa na frente.",
    "substitui": null
+  },
+  {
+   "id": "power-bank-slim~azul-marinho",
+   "produto": "Power bank slim",
+   "categoria": "tecnologia",
+   "modelo": "Formato fino, para levar na bolsa ou no bolso",
+   "cor": {
+    "nome": "Azul-marinho",
+    "hex": "#1E2A4A"
+   },
+   "material": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Power bank slim azul-marinho com a marca TaMa em branco.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base power-bank-slim~preto.",
+   "arquivo": "/img/produtos/power-bank-slim~azul-marinho.webp",
+   "mestre": "midia/produtos/mestre/power-bank-slim~azul-marinho.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "2841910c34289b17e5cbaa03b666750ffe042ba71a1962871c3467d973da6042",
+   "bytes": 1375626,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "id": "power-bank-slim~branco",
+   "produto": "Power bank slim",
+   "categoria": "tecnologia",
+   "modelo": "Formato fino, para levar na bolsa ou no bolso",
+   "cor": {
+    "nome": "Branco",
+    "hex": "#F7F5F0"
+   },
+   "material": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Power bank slim branco com a marca TaMa nas cores oficiais.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base power-bank-slim~preto.",
+   "arquivo": "/img/produtos/power-bank-slim~branco.webp",
+   "mestre": "midia/produtos/mestre/power-bank-slim~branco.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "8ed18626de6302ffd4eb1640244d1f7ff946307c5bcb15ec0c9609cbc4b7eab0",
+   "bytes": 1273598,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "id": "power-bank-slim~prata",
+   "produto": "Power bank slim",
+   "categoria": "tecnologia",
+   "modelo": "Formato fino, para levar na bolsa ou no bolso",
+   "cor": {
+    "nome": "Prata",
+    "hex": "#B8B8B5"
+   },
+   "material": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Power bank slim prata com a marca TaMa nas cores oficiais.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base power-bank-slim~preto.",
+   "arquivo": "/img/produtos/power-bank-slim~prata.webp",
+   "mestre": "midia/produtos/mestre/power-bank-slim~prata.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "ac8b7a3ab38a6b0c9b3d2941d218169fcff3de73d750c45d80963e052aa97066",
+   "bytes": 1423220,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "id": "power-bank-slim~preto",
+   "produto": "Power bank slim",
+   "categoria": "tecnologia",
+   "modelo": "Formato fino, para levar na bolsa ou no bolso",
+   "cor": {
+    "nome": "Preto",
+    "hex": "#1E1E1E"
+   },
+   "material": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Power bank slim preto com a marca TaMa em branco.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Imagem gerada com IA (OpenAI gpt-image-1.5, produto novo no padrão do banco) em 18/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Foto-base da linha de tecnologia (docs/PLANO-TECNOLOGIA.md).",
+   "arquivo": "/img/produtos/power-bank-slim~preto.webp",
+   "mestre": "midia/produtos/mestre/power-bank-slim~preto.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "95b4789afe6b8f0a0e978c4fdd36b129b967bdbeb241e6a8c4e04d9bc30176ba",
+   "bytes": 1402665,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "id": "power-bank-ventosa~azul-royal",
+   "produto": "Power bank com ventosas",
+   "categoria": "tecnologia",
+   "modelo": "Ventosas no verso para prender ao celular durante a recarga",
+   "cor": {
+    "nome": "Azul royal",
+    "hex": "#1F4FB8"
+   },
+   "material": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Power bank azul royal com ventosas no verso e a marca TaMa em branco.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Imagem gerada com IA (OpenAI gpt-image-1.5, produto novo no padrão do banco) em 18/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Foto-base da linha de tecnologia (docs/PLANO-TECNOLOGIA.md).",
+   "arquivo": "/img/produtos/power-bank-ventosa~azul-royal.webp",
+   "mestre": "midia/produtos/mestre/power-bank-ventosa~azul-royal.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "88772480852a35c87f115558fb5b24f333b2ef93d57aed808bf35cc0b8fc8748",
+   "bytes": 1394734,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "id": "power-bank-ventosa~branco",
+   "produto": "Power bank com ventosas",
+   "categoria": "tecnologia",
+   "modelo": "Ventosas no verso para prender ao celular durante a recarga",
+   "cor": {
+    "nome": "Branco",
+    "hex": "#F7F5F0"
+   },
+   "material": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Power bank branco com ventosas no verso e a marca TaMa nas cores oficiais.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base power-bank-ventosa~azul-royal.",
+   "arquivo": "/img/produtos/power-bank-ventosa~branco.webp",
+   "mestre": "midia/produtos/mestre/power-bank-ventosa~branco.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "512b6ea0bae043e0822a55fd742441069807e8db1f32df7a1e652b75766de253",
+   "bytes": 1311356,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "id": "power-bank-ventosa~preto",
+   "produto": "Power bank com ventosas",
+   "categoria": "tecnologia",
+   "modelo": "Ventosas no verso para prender ao celular durante a recarga",
+   "cor": {
+    "nome": "Preto",
+    "hex": "#1E1E1E"
+   },
+   "material": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Power bank preto com ventosas no verso e a marca TaMa em branco.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base power-bank-ventosa~azul-royal.",
+   "arquivo": "/img/produtos/power-bank-ventosa~preto.webp",
+   "mestre": "midia/produtos/mestre/power-bank-ventosa~preto.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "8c2e155496aa17c0c798e97fb7a5e35d57e8971e9540d21625a5eaf252940a3b",
+   "bytes": 1450098,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "id": "power-bank-ventosa~rosa",
+   "produto": "Power bank com ventosas",
+   "categoria": "tecnologia",
+   "modelo": "Ventosas no verso para prender ao celular durante a recarga",
+   "cor": {
+    "nome": "Rosa",
+    "hex": "#E07A9B"
+   },
+   "material": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Power bank rosa com ventosas no verso e a marca TaMa em branco.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base power-bank-ventosa~azul-royal.",
+   "arquivo": "/img/produtos/power-bank-ventosa~rosa.webp",
+   "mestre": "midia/produtos/mestre/power-bank-ventosa~rosa.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "2f64f4922d4cd4e92b11b8fcaeb2c587d336618436a1fabcae88447fce12e11a",
+   "bytes": 1389030,
+   "atualizado_em": "2026-10-18"
   },
   {
    "fornecedor": null,

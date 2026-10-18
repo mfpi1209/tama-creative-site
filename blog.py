@@ -29,6 +29,8 @@ BLOG_SRC = os.path.join(ROOT, 'src', 'blog')
 BLOG_CSS = os.path.join(ROOT, 'src', 'blog.css')
 ADMIN_SRC = os.path.join(ROOT, 'src', 'admin')
 CMS_REPO = os.environ.get('CMS_REPO', 'mfpi1209/tama-creative-site')   # repositório GitHub (privado) que o editor edita
+# servidor local do Decap (npx decap-server) para editar em localhost; DECAP_PORT muda a porta (padrão 8081)
+DECAP_LOCAL = f"http://localhost:{os.environ.get('DECAP_PORT', '8081')}/api/v1"
 CMS_SITE_DOMAIN = 'tamacreative.netlify.app'                    # site do Netlify que faz o login (OAuth GitHub)
 IMG_EXT = ('.jpg', '.jpeg', '.png', '.webp')
 BLOG_IMG = {}  # chave -> arquivo de img/blog/ (imagens enviadas pelo editor)
@@ -793,7 +795,7 @@ def cms_config(b):
                     'commit_messages': {'create': 'Blog: cria {{slug}}', 'update': 'Blog: atualiza {{slug}}', 'delete': 'Blog: remove {{slug}}',
                                         'uploadMedia': 'Blog: envia imagem {{path}}', 'deleteMedia': 'Blog: remove imagem {{path}}',
                                         'openAuthoring': 'Blog: {{message}}'}},
-        'local_backend': True,
+        'local_backend': {'url': DECAP_LOCAL},
         'publish_mode': 'editorial_workflow',
         'locale': 'pt',
         'site_url': b.SITE, 'display_url': b.SITE, 'logo_url': '/admin/logo.svg',
@@ -857,7 +859,7 @@ def painel_dados(b):
     Artigos e pautas não entram aqui: o painel lê do repositório com o login do GitHub."""
     titulos = {p['path']: p.get('title', '') for p in b.BUILT}
     return {
-        'site': b.SITE, 'repo': CMS_REPO, 'tema_min': TEMA_MIN, 'meses': list(MESES),
+        'site': b.SITE, 'repo': CMS_REPO, 'decap_local': DECAP_LOCAL, 'tema_min': TEMA_MIN, 'meses': list(MESES),
         'temas': {k: v[0] for k, v in TEMAS.items()},
         'servicos': {k: v.replace('Ver ', '').capitalize() for k, v in SERVICOS.items()},
         'status': STATUS_PAUTA, 'prioridades': PRIORIDADES, 'intencoes': INTENCOES,

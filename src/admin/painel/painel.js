@@ -6,7 +6,6 @@
 (function () {
   'use strict';
 
-  var PROXY = 'http://localhost:8081/api/v1';
   var DIA = 86400000;
   var S = { site: null, arts: [], pautas: [], prs: [], fonte: '', carregado: null };
   var main = document.getElementById('main');
@@ -86,7 +85,7 @@
 
   function FonteLocal() {
     function chamar(folder) {
-      return fetch(PROXY, { method: 'POST', headers: { 'Content-Type': 'application/json' },
+      return fetch(S.site.decap_local || 'http://localhost:8081/api/v1', { method: 'POST', headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ action: 'entriesByFolder', params: { branch: 'main', folder: folder, extension: 'md', depth: 1 } }) })
         .then(function (r) { if (!r.ok) throw new Error('servidor local respondeu ' + r.status); return r.json(); })
         .then(function (list) { return (list || []).map(function (e) { return { path: e.file.path, text: e.data }; }); });

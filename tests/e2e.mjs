@@ -216,6 +216,8 @@ try {
   const catMatch = () => page.$$eval('#catalogo-grid .product', g => g.filter(x => !x.hidden).length);   // modelos que passam no filtro (com ou sem "Ver mais")
   const nModelos = +(await page.$eval('h1', h => (h.textContent.match(/(\d+) modelos/) || [])[1]));
   ok(await page.$$eval('h1', h => h.length === 1) && nModelos === 78, `página do catálogo tem H1 com o total de 78 modelos (${nModelos})`);
+  // abertura da mesma família dos cabeçalhos com foto, sem foto: eyebrow, "78 modelos" + "para a sua marca." em itálico vinho, apoio e a busca logo abaixo
+  ok(await page.evaluate(() => { const h = document.querySelector('.text-head.text-head-xl'); const q = document.getElementById('cat-q'); return !!h && h.querySelector('.eyebrow')?.textContent === 'Catálogo' && h.querySelector('h1 em')?.textContent === 'para a sua marca.' && !!h.querySelector('.lead') && !h.querySelector('img') && !!q && q.getBoundingClientRect().top >= h.getBoundingClientRect().bottom - 1 && q.getBoundingClientRect().top - h.getBoundingClientRect().bottom < 260; }), 'catálogo: abertura sem foto com "para a sua marca." em destaque e a busca logo abaixo');
   ok(await page.$$eval('#catalogo-grid .product[data-cat="garrafas-copos"]', g => g.length) === 24 && await page.$eval('input[name="categoria"][value="garrafas-copos"]', i => i.parentNode.querySelector('small').textContent === '24'), 'Garrafas e copos tem 24 modelos (11 + 13 de fim de ano)');
   // 12 modelos por vez: todos ficam no HTML (Google), "Ver mais" libera mais 12 e leva o foco ao primeiro novo
   const abrirTodos = async () => { while (await page.$eval('[data-cat-mais-box]', b => !b.hidden)) { await page.$eval('[data-cat-mais]', b => b.click()); await sleep(80); } };
@@ -504,6 +506,18 @@ try {
   await fp.evaluate(() => { localStorage.clear(); localStorage.setItem('tama-consent', 'denied'); });
   const selo = await (await fetch(BASE + '/sobre/')).text();
   ok(!/MARCAS/.test(selo) && (await fetch(BASE + '/favicon.svg').then(async r => (await r.arrayBuffer(), r.ok))), 'selo sem "MARCAS" no HTML');
+  // Sobre: abertura com foto no padrão das páginas de área
+  await fp.goto(BASE + '/sobre/', { waitUntil: 'networkidle0' });
+  const sobre = await fp.evaluate(() => {
+    const img = document.querySelector('.foto-hero-photo img');
+    return { h1s: document.querySelectorAll('h1').length, h1: document.querySelector('h1').textContent.replace(/\s+/g, ' ').trim(), eyebrow: document.querySelector('.foto-hero .eyebrow')?.textContent,
+      eager: img?.loading, src: img?.currentSrc || '', alt: img?.alt || '', legenda: document.querySelector('.foto-hero-photo figcaption')?.textContent || '',
+      btns: [...document.querySelectorAll('.foto-hero .actions a')].map(a => a.getAttribute('href')).join(), alvo: !!document.getElementById('como-t'),
+      preload: document.querySelector('link[rel="preload"][as="image"]')?.getAttribute('imagesrcset') || '', crumbs: [...document.querySelectorAll('.foto-hero .crumbs li')].map(l => l.textContent.trim()).join(' / ') };
+  });
+  ok(sobre.h1s === 1 && sobre.h1 === 'A marca do cliente em cada escolha.' && sobre.eyebrow === 'Sobre a TaMa' && sobre.crumbs === 'Início / Sobre', `sobre: um H1 em duas partes (${sobre.h1})`);
+  ok(sobre.eager === 'eager' && /sobre-header/.test(sobre.src) && /sobre-header/.test(sobre.preload) && /fictícia/.test(sobre.alt) && /Marcas fictícias/.test(sobre.legenda), 'sobre: foto de bastidor em alta, prioritária, com marcas fictícias no texto alternativo e na legenda');
+  ok(sobre.btns === '/solicitar-proposta/,#como-t' && sobre.alvo, 'sobre: proposta como botão principal e "Como trabalhamos" levando à seção da página');
   await fp.close();
   console.log('Blog');
   const bp = await browser.newPage();
@@ -520,7 +534,30 @@ try {
     ld: JSON.parse(document.querySelector('script[type="application/ld+json"]').textContent)['@graph'].map(x => x['@type']),
   }));
   ok(idx.h1 === 1 && idx.posts.length === 4, `/blog/ tem um H1 e lista 4 artigos (${idx.posts.length})`);
-  ok(idx.feature === '/blog/brindes-de-fim-de-ano-para-clientes/', 'guia de fim de ano para clientes em destaque');
+  // abertura no padrão das páginas de área (foto_hero): eyebrow, título em duas partes, foto eager à direita e dois botões
+  const abre = await bp.evaluate(() => {
+    const img = document.querySelector('.foto-hero-photo img');
+    const posts = (JSON.parse(document.querySelector('script[type="application/ld+json"]').textContent)['@graph'].find(x => x['@type'] === 'Blog') || {}).blogPost || [];
+    const recente = posts.slice().sort((a, b) => b.datePublished.localeCompare(a.datePublished))[0];
+    return { eyebrow: document.querySelector('.foto-hero .eyebrow')?.textContent, h1: document.querySelector('h1').textContent.replace(/\s+/g, ' ').trim(),
+      em: document.querySelector('h1 em')?.textContent, eager: img?.loading, src: img?.currentSrc || '', alt: img?.alt || '',
+      legenda: document.querySelector('.foto-hero-photo figcaption')?.textContent || '',
+      btns: [...document.querySelectorAll('.foto-hero .actions a')].map(a => [a.textContent.replace(/\s+/g, ' ').trim(), a.getAttribute('href'), a.classList.contains('btn-wine')]),
+      recente: recente ? new URL(recente.url).pathname : '', preload: document.querySelector('link[rel="preload"][as="image"]')?.getAttribute('imagesrcset') || '',
+      crumbs: [...document.querySelectorAll('.foto-hero .crumbs li')].map(l => l.textContent.trim()).join(' / ') };
+  });
+  ok(abre.eyebrow === 'Conteúdos' && abre.h1 === 'Guias para presentear em nome da sua marca.' && abre.em === 'em nome da sua marca.' && abre.crumbs === 'Início / Blog', `/blog/ abre com "Conteúdos" e o título em duas partes (${abre.h1})`);
+  ok(abre.eager === 'eager' && /blog-header/.test(abre.src) && /blog-header/.test(abre.preload) && /fictícia/.test(abre.alt) && /Marcas fictícias/.test(abre.legenda), '/blog/: foto da abertura em alta, prioritária (eager + preload), com marcas fictícias no texto alternativo e na legenda');
+  ok(abre.btns.length === 2 && abre.btns[0][0].startsWith('Ler o guia mais recente') && abre.btns[0][1] === abre.recente && abre.btns[0][2] && abre.btns[1][0] === 'Solicitar proposta' && abre.btns[1][1] === '/solicitar-proposta/' && !abre.btns[1][2], `/blog/: "Ler o guia mais recente" leva ao artigo mais recente (${abre.recente}) e "Solicitar proposta" é o botão secundário`);
+  ok(idx.feature === '/blog/brindes-de-fim-de-ano-para-clientes/' && new Set(idx.posts).size === idx.posts.length, 'guia de fim de ano para clientes em destaque, sem repetir na grade');
+  const filtro = await bp.evaluate(() => {
+    const bts = [...document.querySelectorAll('[data-blog-filters] [data-cat]')];
+    const kits = bts.find(b => b.dataset.cat === 'kits-e-boas-vindas'); kits.click();
+    const vis = [...document.querySelectorAll('[data-blog-grid] .post-card')].filter(c => !c.hidden).map(c => c.dataset.cat);
+    bts[0].click();
+    return { n: bts.length, shown: !document.querySelector('[data-blog-filters]').hidden, pressed: kits.getAttribute('aria-pressed'), vis };
+  });
+  ok(filtro.shown && filtro.n === 4 && filtro.vis.length === 1 && filtro.vis[0] === 'kits-e-boas-vindas', 'filtros por categoria (Todos + 3) mostram só os guias da categoria');
   ok(idx.navCurrent === '/blog/' && idx.footer, 'Blog no menu (página atual marcada) e no rodapé');
   ok(idx.rss === '/blog/feed.xml' && idx.ld.includes('Blog') && idx.ld.includes('CollectionPage'), 'índice com RSS e JSON-LD Blog + CollectionPage');
   const blogBroken = [];
@@ -540,15 +577,19 @@ try {
         tocOk: [...document.querySelectorAll('.post-toc a')].every(x => document.getElementById(x.getAttribute('href').slice(1))),
         links: [...new Set([...document.querySelectorAll('main a[href^="/"]')].map(x => x.getAttribute('href').split('#')[0].split('?')[0]))],
         curadoria: [...document.querySelectorAll('main a[href*="?ocasiao="]')].map(x => x.getAttribute('href')),
-        sources: [...document.querySelectorAll('.sources a[href^="https://"]')].length,
+        sources: [...document.querySelectorAll('.prose a[href^="https://"]')].filter(x => /gov\.br/.test(x.href)).length,
+        vitrine: !!document.querySelector('#rail-post, .post-author .btn, .end-cta'),
+        caption: document.querySelector('.post-cover figcaption')?.textContent || '',
       };
     });
     const path = new URL(a.canonical).pathname;
     ok(a.h1 === 1 && path === post && a.ogType === 'article', `${post}: um H1, canonical e og:type=article`);
     ok(a.ld.headline && a.ld.date && a.ld.author?.endsWith('/#org') && a.ld.publisher?.endsWith('/#org') && a.ld.crumbs === 3, `${post}: BlogPosting (autor TaMa Creative) + BreadcrumbList`);
-    ok(a.proposta.some(h => h.includes('?tipo=')) && a.tocOk, `${post}: CTA para a proposta com tipo e sumário com âncoras válidas`);
+    if (post.includes('compliance')) ok(!a.vitrine && !a.proposta.some(h => h.includes('?tipo=')) && a.tocOk, `${post}: só editorial (sem vitrine nem chamadas de proposta) e sumário com âncoras válidas`);
+    else ok(a.proposta.some(h => h.includes('?tipo=')) && a.tocOk, `${post}: CTA para a proposta com tipo e sumário com âncoras válidas`);
+    ok(a.caption.startsWith('Imagem ilustrativa'), `${post}: capa identificada como imagem ilustrativa`);
     ok((await fetch(BASE + new URL(a.ogImage).pathname).then(async r => (await r.arrayBuffer(), r))).status === 200, `${post}: imagem de compartilhamento própria`);
-    if (post.includes('compliance')) ok(a.sources >= 10, `${post}: seção Fontes com links oficiais (${a.sources})`);
+    if (post.includes('compliance')) ok(a.sources >= 3, `${post}: fontes oficiais citadas no texto (${a.sources})`);
     else ok(a.curadoria.length > 0 || a.links.includes('/brindes-de-fim-de-ano/'), `${post}: link para as ideias da ocasião (fim de ano: página própria)`);
     for (const l of a.links) { const r = await fetch(BASE + l); await r.arrayBuffer(); if (r.status !== 200) blogBroken.push(post + ' → ' + l + ' ' + r.status); }
   }
@@ -573,9 +614,32 @@ try {
   ok(['publish_mode: editorial_workflow', 'folder: src/blog', 'media_folder: img/blog', 'name: github'].every(s => cfg.includes(s)), 'config do editor: GitHub, fluxo editorial, pasta do blog e mídia em img/blog');
   ok(['value: fim-de-ano', 'value: caneta-executiva-com-estojo', "pattern:"].every(s => cfg.includes(s)) && !cfg.includes('heading-one'), 'editor só oferece temas e peças válidos, com limites de SEO e sem H1 no texto');
   ok(!sitemap.includes('/admin/'), 'editor fora do sitemap');
+  ok(['name: pautas', 'folder: src/pautas', 'name: revisar_em'].every(s => cfg.includes(s)), 'editor com a coleção de pautas e a data de revisão do artigo');
+  const painel = await (await fetch(BASE + '/admin/painel/')).text();
+  const painelDados = await (await fetch(BASE + '/admin/painel/site.json')).json();
+  ok(admHtml.includes('href="/admin/painel/"') && painel.includes('noindex') && !painel.includes('palavra_chave'), 'Painel de SEO ligado ao editor, com noindex e sem dados na página');
+  ok(painelDados.paginas.length >= 8 && painelDados.temas['brindes-e-presentes'] && !JSON.stringify(painelDados).includes('src/pautas'), 'dados públicos do painel: só páginas do site e opções, sem pautas');
+  ok((await fetch(BASE + '/pautas/')).status === 404 && (await fetch(BASE + '/src/pautas/')).status === 404, 'pautas não são publicadas');
   ok(['file: src/data/produtos.json', 'widget: color', 'media_folder: /img/produtos', 'value: confirmado', 'value: a_confirmar', 'file: src/data/modelos.json', 'name: resumo', 'name: usos', 'value: tecnologia'].every(x => cfg.includes(x)), 'editor tem o catálogo: foto, cor, material e técnica com situação');
   const rob = await (await fetch(BASE + '/robots.txt')).text();
   ok(rob.includes('Disallow: /admin/') && !rob.includes('/brindes/'), 'robots.txt sem o app /brindes/ e com o editor fora da busca');
+
+  console.log('Aberturas e cabeçalho do site');
+  // páginas sem foto de abertura usam o mesmo cabeçalho de texto (text_head): eyebrow + um H1 + apoio no mesmo bloco
+  for (const p of ['/solicitar-proposta/', '/obrigado/', '/privacidade/', '/404.html', '/brindes-por-ocasiao/', '/catalogo/caneca/', idx.posts[0]]) {
+    await bp.goto(BASE + p, { waitUntil: 'networkidle0' });
+    const t = await bp.evaluate(() => { const c = document.querySelector('.text-head-copy'); return { h1s: document.querySelectorAll('h1').length, bloco: !!c, ordem: !!c && !!c.querySelector('.eyebrow') && c.querySelector('.eyebrow').compareDocumentPosition(c.querySelector('h1')) === 4 && !!c.querySelector('.lead'), foto: !!document.querySelector('.foto-hero, .text-head img') }; });
+    ok(t.h1s === 1 && t.bloco && t.ordem && !t.foto, `${p}: cabeçalho de texto padrão (eyebrow, H1 único e apoio), sem foto`);
+  }
+  // a barra verde (temporada + 3 compromissos) e o cabeçalho aparecem iguais em todas as páginas, inclusive no blog
+  let barra = null, diff = [];
+  for (const p of ['/', '/blog/', idx.posts[0], '/sobre/', '/catalogo/', '/solicitar-proposta/', '/brindes-corporativos/', '/404.html']) {
+    await bp.goto(BASE + p, { waitUntil: 'networkidle0' });
+    const b = await bp.evaluate(() => { const a = document.querySelector('body > .announce'), h = document.querySelector('body > .site-header'); return a && h && getComputedStyle(a).display !== 'none' ? [a.querySelector('.wrap > p, .wrap > .announce-season')?.textContent.replace(/\s+/g, ' ').trim(), [...a.querySelectorAll('ul li')].map(l => l.textContent.trim()).join('|'), getComputedStyle(a).backgroundColor, !!h.querySelector('.brand') && !!h.querySelector('#site-nav') && !!h.querySelector('#menu-btn')].join('§') : null; });
+    if (barra === null) barra = b;
+    if (b !== barra) diff.push(p);
+  }
+  ok(barra && barra.includes('Atendimento consultivo|Arte aprovada antes da produção|Coordenação do pedido à entrega') && diff.length === 0, `barra do topo (3 compromissos) e cabeçalho iguais em todas as páginas, inclusive no blog${diff.length ? ' — diferem: ' + diff.join(', ') : ''}`);
   await bp.close();
 } finally {
   await browser.close();

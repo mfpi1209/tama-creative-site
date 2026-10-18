@@ -1,0 +1,2 @@
+js-yaml 4.1.0 (MIT), copiado de https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js
+(sha256 45dc3dd03dc07a06705a2c2989b8c7f709013f04bd5386e3279d4e447f07ebd7). Usado pelo Painel de SEO (/admin/painel/) para ler o front matter.

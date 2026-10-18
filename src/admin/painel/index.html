@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Painel de SEO | TaMa Creative</title>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/admin/painel/painel.css">
+</head>
+<body>
+<!-- Painel de SEO do blog: pautas, calendário, palavras-chave, auditoria e revisões.
+     Esta página não traz dados: artigos e pautas são lidos do repositório privado com o login do editor (/admin/). -->
+<header class="top">
+  <a class="brand" href="/admin/"><img src="/admin/logo.svg" alt="TaMa Creative" width="132" height="32"></a>
+  <p class="top-title">Painel de SEO do blog</p>
+  <nav class="top-links" aria-label="Atalhos">
+    <a href="/admin/">Editor</a>
+    <a href="/admin/#/collections/pautas/new">+ Pauta</a>
+    <button type="button" id="recarregar" class="link-btn">Atualizar</button>
+  </nav>
+</header>
+<nav class="tabs" role="tablist" aria-label="Seções do painel">
+  <button role="tab" id="tab-geral" aria-controls="sec-geral" data-tab="geral">Visão geral</button>
+  <button role="tab" id="tab-pautas" aria-controls="sec-pautas" data-tab="pautas">Pautas</button>
+  <button role="tab" id="tab-calendario" aria-controls="sec-calendario" data-tab="calendario">Calendário</button>
+  <button role="tab" id="tab-palavras" aria-controls="sec-palavras" data-tab="palavras">Palavras-chave</button>
+  <button role="tab" id="tab-auditoria" aria-controls="sec-auditoria" data-tab="auditoria">Auditoria</button>
+  <button role="tab" id="tab-revisoes" aria-controls="sec-revisoes" data-tab="revisoes">Revisões</button>
+</nav>
+<main id="main">
+  <p id="status" class="status" role="status">Carregando artigos e pautas…</p>
+  <section role="tabpanel" id="sec-geral" aria-labelledby="tab-geral" hidden></section>
+  <section role="tabpanel" id="sec-pautas" aria-labelledby="tab-pautas" hidden></section>
+  <section role="tabpanel" id="sec-calendario" aria-labelledby="tab-calendario" hidden></section>
+  <section role="tabpanel" id="sec-palavras" aria-labelledby="tab-palavras" hidden></section>
+  <section role="tabpanel" id="sec-auditoria" aria-labelledby="tab-auditoria" hidden></section>
+  <section role="tabpanel" id="sec-revisoes" aria-labelledby="tab-revisoes" hidden></section>
+</main>
+<script src="/admin/vendor/js-yaml-4.1.0/js-yaml.min.js"></script>
+<script src="/admin/painel/painel.js"></script>
+</body>
+</html>

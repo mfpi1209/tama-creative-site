@@ -24,8 +24,9 @@
     }
   });
 
-  var TEMAS = { 'fim-de-ano': 'Fim de ano', 'boas-vindas': 'Boas-vindas', politicas: 'Compliance e políticas', eventos: 'Eventos',
-    sustentabilidade: 'Sustentabilidade', marca: 'Marca e identidade', uniformes: 'Uniformes e confecções' };
+  var TEMAS = { 'brindes-e-presentes': 'Brindes e presentes', 'kits-e-boas-vindas': 'Kits e boas-vindas', 'confeccoes-e-personalizacao': 'Confecções e personalização',
+    'embalagem-e-acabamento': 'Embalagem e acabamento', 'eventos-e-ativacoes': 'Eventos e ativações', 'hotelaria-e-gastronomia': 'Hotelaria e gastronomia',
+    'planejamento-de-compras': 'Planejamento de compras' };
 
   function check(ok, text) {
     return h('li', { style: { color: ok ? '#2F6B4F' : '#A4322A', margin: '2px 0' } }, (ok ? '✓ ' : '✗ ') + text);
@@ -62,7 +63,7 @@
             check(!!get('capa_alt'), 'Capa com descrição (texto alternativo)'))),
         h('article', { className: 'post' },
           h('header', { className: 'post-head' },
-            h('p', { className: 'eyebrow' }, TEMAS[get('tema')] || 'Tema'),
+            h('p', { className: 'eyebrow' }, TEMAS[get('tema')] || 'Categoria'),
             h('h1', {}, title || 'Título do artigo'),
             h('p', { className: 'lead' }, desc)),
           h('div', { className: 'prose', style: { maxWidth: '44rem' } }, this.props.widgetFor('body'))));

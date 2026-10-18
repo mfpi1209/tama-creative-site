@@ -635,6 +635,36 @@
   window.addEventListener('pageshow', function (e) { if (e.persisted) render(); });
   window.addEventListener('storage', function (e) { if (e.key === STORE_KEY) render(); });
 
+  /* Blog: filtros da listagem por categoria (sem JavaScript, todos os guias continuam visíveis) */
+  var blogFilters = document.querySelector('[data-blog-filters]');
+  if (blogFilters) {
+    var blogCards = Array.prototype.slice.call(document.querySelectorAll('[data-blog-grid] .post-card'));
+    var blogEmpty = document.querySelector('[data-blog-empty]');
+    var blogStatus = document.querySelector('[data-blog-status]');
+    var applyBlogFilter = function (cat, label) {
+      var shown = 0;
+      blogCards.forEach(function (c) { var on = !cat || c.getAttribute('data-cat') === cat; c.hidden = !on; if (on) shown++; });
+      blogFilters.querySelectorAll('[data-cat]').forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-cat') === cat)); });
+      if (blogEmpty) blogEmpty.hidden = shown > 0;
+      if (blogStatus) blogStatus.textContent = shown + (shown === 1 ? ' guia' : ' guias') + (cat ? ' em ' + label : '');
+    };
+    blogFilters.hidden = false;
+    document.addEventListener('click', function (e) {
+      var b = e.target.closest('[data-blog-filters] [data-cat], [data-blog-empty] [data-cat]');
+      if (!b) return;
+      var cat = b.getAttribute('data-cat');
+      applyBlogFilter(cat, b.textContent.trim());
+      // no celular os filtros rolam de lado: mantém o escolhido à vista
+      var on = blogFilters.querySelector('[aria-pressed="true"]');
+      if (on && on.scrollIntoView) on.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+      track('filter_blog', { value: cat || 'todos' });
+    });
+  }
+
+  /* Blog: o sumário do artigo começa fechado no celular (no desktop fica aberto ao lado do texto) */
+  var postToc = document.querySelector('details[data-post-toc]');
+  if (postToc && window.matchMedia && window.matchMedia('(max-width: 980px)').matches) postToc.open = false;
+
   /* ---------- Formulário de proposta ---------- */
   var form = document.getElementById('proposal-form');
   if (!form) return;

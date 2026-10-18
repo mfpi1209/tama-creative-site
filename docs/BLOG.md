@@ -28,6 +28,40 @@ O editor é o Decap CMS 3.16.3, servido pelo próprio site, sem script de tercei
 
 Rascunho também pode ser marcado com a chave "Rascunho (não publicar)": ele não vai ao ar nem se for publicado.
 
+## Painel de SEO (/admin/painel/)
+
+Endereço: **https://tamacreative.netlify.app/admin/painel/**, ou o botão "Painel de SEO" no canto do editor. Usa o mesmo login do editor: entre primeiro em `/admin/`.
+
+A página não traz dados. Ela lê os artigos (`src/blog/`), as pautas (`src/pautas/`) e os rascunhos do fluxo editorial direto do repositório privado, com o token do GitHub que o editor guarda no navegador. Só vê quem tem acesso ao repositório. O build publica apenas `/admin/painel/site.json`, com as opções do editor e as consultas das páginas do site (públicas de qualquer forma).
+
+| Aba | O que mostra |
+|---|---|
+| Visão geral | Números do blog, "O que fazer agora" (revisões e prazos dos próximos 30 dias, erros que o build recusa, conflitos de palavra-chave, pautas desalinhadas com o artigo), rascunhos no fluxo editorial e o progresso de cada tema até a página própria |
+| Pautas | Quadro por status (ideia → aprovada → escrevendo → em revisão → publicada; em espera e descartadas à parte), com tema, prioridade, prazo e pico. "Começar artigo" abre um artigo novo já com título, palavra-chave, tema e serviço |
+| Calendário | Próximos 12 meses: prazos das pautas, publicações agendadas, revisões e meses de pico. Itens vencidos aparecem em "Atrasados" |
+| Palavras-chave | Todas as consultas (páginas do site, artigos e pautas) e os conflitos: mesma consulta = alto; 75% ou mais dos termos em comum = médio |
+| Auditoria | Cada artigo, inclusive rascunhos, com as checagens do painel de SEO do editor, links internos, citações por outros artigos e conflitos |
+| Revisões | Artigos publicados por data da próxima revisão |
+
+As consultas das páginas do site ficam em `CONSULTAS_PAGINAS`, no `blog.py`. Ao mudar o mapa de palavras-chave de `docs/SEO.md`, atualize as duas.
+
+### Pautas
+
+Cada pauta é um arquivo em `src/pautas/`, editado em "Pautas" no editor: título provisório, consulta-alvo, consultas secundárias, status, prioridade, intenção de busca, tema, página de destino, prazo ("Publicar até"), meses de pico, se precisa de fontes, responsável, artigo ligado, observação e um briefing (público, perguntas, esboço, links internos e fontes).
+
+- Pautas passam pelo mesmo fluxo do editor (rascunho → revisão → publicar). "Publicar" só grava no repositório: nada de pauta vai para o site.
+- Quando o artigo for criado, preencha o campo "Artigo" da pauta. Sem ele, o painel liga pela consulta-alvo e lembra de ligar.
+- Meses de pico só com dado (Search Console, Keyword Planner ou Google Trends).
+- O build confere status, tema, destino, prioridade, intenção, meses e artigo das pautas. Uma pauta inválida impede o build, como um artigo inválido.
+
+### Revisão dos artigos
+
+Os campos "Próxima revisão" (`revisar_em`) e "O que revisar" (`revisar_motivo`) marcam quando conferir de novo um artigo com lei, valor ou dado que pode mudar. Depois de revisar, atualize "Atualizado em" e marque a próxima data.
+
+### Testar o painel localmente
+
+Rode o build, sirva `dist/` e, na pasta do projeto, `npx decap-server` (porta 8081). Sem login do GitHub, o painel em `localhost` lê os arquivos por esse servidor. O fluxo editorial (pull requests) só aparece com o login do GitHub.
+
 ### Configuração única (feita pelo responsável pela conta)
 
 O login do editor roda no Easypanel: o serviço `cms-auth` (código em `deploy/cms-auth/`) faz o OAuth com o GitHub e o Nginx do site o expõe em `https://tamacreative.com.br/api/cms-auth/`. O Netlify não participa do login.
@@ -53,9 +87,9 @@ Quem edita precisa de acesso de escrita ao repositório `mfpi1209/tama-creative-
 
 | URL | O que é |
 |---|---|
-| `/blog/` | Índice: artigo em destaque + cards (tema, título, resumo, data, tempo de leitura) |
-| `/blog/<slug>/` | Artigo: caminho, H1, autor TaMa Creative, datas, capa, sumário "Neste guia", texto, Fontes, peças do catálogo, outros guias e chamada para a proposta |
-| `/blog/tema/<tema>/` | Página do tema. **Só é criada quando o tema tem 3 artigos publicados**; antes disso o tema aparece só como etiqueta (evita páginas rasas no Google) |
+| `/blog/` | Índice: abertura curta, um artigo em destaque (o marcado com `destaque`, sem repetir na grade), filtros por categoria e cards (categoria, título, resumo). Os filtros são botões que só aparecem com JavaScript; sem ele, todos os cards ficam visíveis |
+| `/blog/<slug>/` | Artigo: caminho, categoria, H1, resumo, autor Equipe TaMa Creative (link para /sobre/), datas, capa com legenda, sumário "Neste guia" (um só `<details>`: aberto ao lado do texto no desktop, fechado no celular), texto em coluna de 720 px, peças da curadoria, até 2 outros guias e chamada para a proposta. Artigo sem `servico` nem `proposta` (compliance) fica só editorial: sem vitrine, sem botões de proposta e sem a faixa final |
+| `/blog/tema/<categoria>/` | Página da categoria. **Só é criada quando a categoria tem 3 artigos publicados**; antes disso a categoria aparece só como etiqueta e filtro (evita páginas rasas no Google) |
 | `/blog/feed.xml` | RSS 2.0 com os artigos publicados |
 | `/blog/<slug>/og.jpg` | Imagem de compartilhamento 1200×630 gerada da capa + logo oficial |
 
@@ -73,6 +107,8 @@ Cada artigo traz:
 | `src/blog.css` | Estilos do blog, carregados só nas páginas do blog |
 | `src/blog/*.md` | Um arquivo por artigo. O nome do arquivo é o endereço: `kit-de-boas-vindas.md` → `/blog/kit-de-boas-vindas/` |
 | `src/admin/` | Editor: `index.html`, `admin.js` (prévia, painel de SEO, bloco "Chamada para proposta") e `vendor/decap-cms-3.16.3/` |
+| `src/admin/painel/` | Painel de SEO (`/admin/painel/`), com `vendor/js-yaml-4.1.0/` para ler o front matter |
+| `src/pautas/*.md` | Pautas do planejamento editorial. Ficam só no repositório |
 | `img/blog/` | Imagens enviadas pelo editor. O build gera AVIF/WebP/JPEG como nas outras fotos |
 | `docs/blog-modelo.md` | Modelo para escrever sem o editor |
 
@@ -113,7 +149,8 @@ Em `build.py` o blog ocupa só o import, o item do menu e do rodapé, `og_type`/
 | `date` | sim | Publicação (`AAAA-MM-DD`). Data futura = não publica |
 | `updated` | não | Última revisão relevante; vira `dateModified` e `lastmod` |
 | `destaque` | não | `true` põe o artigo em destaque no índice entre os do mesmo dia |
-| `tema` | sim | `fim-de-ano`, `boas-vindas`, `politicas`, `eventos`, `sustentabilidade`, `marca`, `uniformes` (lista em `blog.py`, `TEMAS`) |
+| `tema` | sim | Categoria: `brindes-e-presentes`, `kits-e-boas-vindas`, `confeccoes-e-personalizacao`, `embalagem-e-acabamento`, `eventos-e-ativacoes`, `hotelaria-e-gastronomia`, `planejamento-de-compras` (lista em `blog.py`, `TEMAS`). Vira filtro na listagem quando há artigo |
+| `resumo` | não | Frase curta do card e da linha abaixo do H1 (até 160). Vazio usa `description` |
 | `ocasiao` | não | Chave da curadoria (`boas-vindas`, `eventos`, `executivos`, `campanhas`, `lancamentos`, `fim-de-ano`, `reconhecimento`). Gera o link `/brindes-por-ocasiao/?ocasiao=…` |
 | `servico` | não | Página de serviço ligada ao artigo (botão no quadro do autor) |
 | `proposta` | não | Tipo pré-selecionado no formulário: `brindes`, `kits`, `confeccoes`, `ativacoes`, `hotelaria`, `integrado` |
@@ -122,9 +159,12 @@ Em `build.py` o blog ocupa só o import, o item do menu e do rodapé, `og_type`/
 | `capa_arquivo` | não | Imagem enviada pelo editor (`/img/blog/arquivo.jpg`). Quando preenchida, substitui `capa` |
 | `capa_alt` | sim | Descrição da foto. Com `capa_conceitual` (padrão), o site acrescenta "Fotografia conceitual:" e a legenda |
 | `capa_conceitual` | não | `false` só para fotos reais de trabalhos entregues |
+| `capa_legenda` | não | Legenda da capa, por exemplo `Imagem ilustrativa · Marcas fictícias`. Com ela, o texto alternativo fica só com `capa_alt` |
 | `capa_posicao` | não | Enquadramento CSS, por exemplo `50% 40%` |
 | `pecas` | não | Ids de modelo do catálogo (`src/data/produtos.json`, ex.: `caneca`, `polo-masculina`), escolhidos no editor em **Peças do catálogo** (até 9). Entram no fim do artigo com "+ Selecionar". Slugs antigos da curadoria continuam aceitos pelos `aliases` de `src/data/selecoes.json` |
-| `relacionados` | não | Slugs de artigos para "Outros guias". Sem ele: mesmo tema primeiro, depois os mais recentes |
+| `relacionados` | não | Até 2 slugs de artigos para "Outros guias". Sem ele: mesma categoria primeiro, depois os mais recentes |
+| `revisar_em` | não | Próxima revisão (`AAAA-MM-DD`). Aparece no Painel de SEO |
+| `revisar_motivo` | não | O que conferir na revisão. Exige `revisar_em` |
 | `draft` | não | `true` = não publica |
 
 ### Recursos no texto
@@ -156,14 +196,31 @@ O build para com a lista de erros quando:
 
 ## Artigos publicados (outubro/2026)
 
-| Artigo | Consulta-alvo | Destino principal | Fontes externas |
-|---|---|---|---|
-| Brindes de fim de ano para clientes: como escolher sem parecer propaganda (destaque) | brindes de fim de ano para clientes | Curadoria `?ocasiao=fim-de-ano` | Nenhuma (orientação prática) |
-| Presente de Natal para funcionários: ideias além da cesta | presente de natal para funcionários | Kits + curadoria fim de ano | Nenhuma |
-| Brindes e compliance: limites de valor e política de presentes | política de brindes e presentes | Brindes corporativos | Decreto 10.889/2021, Leis 12.813/2013, 12.846/2013 e 14.520/2023, CF art. 37, Código de Conduta da Alta Administração, CEP, guias CGU 2015 e 2024 (conferidos em 12/10/2026) |
-| O que colocar no kit de boas-vindas, inclusive para quem trabalha remoto | o que colocar no kit de boas-vindas | Kits + curadoria boas-vindas | LGPD, arts. 5º e 6º |
+Em 18/10/2026 os quatro textos foram substituídos pelos do pacote de refatoração (`TaMa_Blog_Completo`), com título, descrição, resumo e consulta do `seo.json` do pacote e capas próprias (1672×941 px, imagens ilustrativas com marcas fictícias, em `img/blog/`). Os endereços e a data de publicação (12/10/2026) não mudaram; "Atualizado em" é 18/10/2026.
 
-**Revisar até janeiro/2027:** o valor em reais do limite de brinde no artigo de compliance. Ele é 1% do subsídio dos ministros do STF, R$ 46.366,19 desde fevereiro de 2025 pela Lei 14.520/2023. Se houver reajuste, atualize o texto, a nota e o campo `updated`.
+| Artigo | Categoria | Consulta-alvo | Destino principal | Fontes externas |
+|---|---|---|---|---|
+| Brindes de fim de ano para clientes: como escolher um presente que faça sentido (destaque) | Brindes e presentes | brindes de fim de ano para clientes | Curadoria `?ocasiao=fim-de-ano` | Nenhuma |
+| Presente de Natal para funcionários: como escolher para a equipe | Brindes e presentes | presente de natal para funcionários | Brindes corporativos | Nenhuma |
+| O que colocar no kit de boas-vindas: escolhas para receber sua equipe | Kits e boas-vindas | o que colocar no kit de boas-vindas | Kits corporativos | Nenhuma |
+| Brindes e compliance: o que conferir antes de presentear | Planejamento de compras | brindes e compliance | Nenhum (só editorial) | Decreto 10.889/2021, CGU (brindes, presentes e hospitalidades) e Lei 12.846/2013, consultados em 18/10/2026 |
+
+O artigo de compliance não cita mais um valor em reais: ele orienta a verificar o parâmetro vigente. **Revisar até 31/01/2027** (`revisar_em`): conferir as três fontes oficiais e atualizar o texto se mudarem.
+
+A chamada final do artigo de fim de ano não fala em taças e copos, porque a curadoria do site não tem essas peças. O texto do artigo continua citando taças como opção a considerar.
+
+## Rascunhos do pacote de 50 artigos (18/10/2026)
+
+50 guias curtos (cerca de 300 palavras) do pacote `TaMa_Blog_50` estão em `src/blog/` com `draft: true`: não aparecem no site nem no sitemap. As capas, geradas por IA, ficam em `img/blog/capa-<slug>.jpg` (JPEG de alta qualidade, a partir dos PNG de 1672×941 do pacote) e trazem a legenda "Imagem ilustrativa gerada por IA".
+
+Na importação: os links para `/confeccoes/` passaram para `/confeccoes-personalizadas/`; as rotas inexistentes `/ativacoes/` e `/gastronomia-e-hotelaria/` saíram do texto (esses artigos ficam sem página de serviço e com proposta do tipo integrado); a linha final de links comerciais virou `[[cta]]`. Cada artigo ganhou título curto, palavra-chave, resumo e até 2 relacionados.
+
+Antes de liberar um bloco (trocar `draft` para `false` e `date` para o dia da publicação):
+- publique juntos os artigos que se citam, ou o build recusa o link para um rascunho;
+- confira as afirmações sobre normas sem fonte em `brindes-alegacoes-ambientais` (publicidade ambiental), `brindes-tecnologicos` (homologação), `degustacao-pdv-materiais`, `jogos-americanos`, `cardapios-personalizados` (alimentos), `aventais-personalizados`, `dolmas-personalizadas`, `uniformes-equipes-funcoes` e `uniforme-promotores` (EPI);
+- decida `kit-eventos-corporativos`: a busca "kit para evento corporativo" está em espera por causa do `/kits-para-eventos/` do subdomínio de brindes;
+- confirme a oferta antes de publicar artigos de produto que o site não mostra (taças, copos, cardápios, porta-contas, materiais de ativação) e o que `kit-versoes-publicos` promete sobre trocar itens depois da aprovação;
+- vigie a canibalização apontada no Painel de SEO: `kit-onboarding-presencial` × `o-que-colocar-no-kit-de-boas-vindas`, `presentes-agradecimento-parceiros` e `kit-relacionamento-clientes` × `brindes-de-fim-de-ano-para-clientes`, `entrega-brindes-multiplos-enderecos` × `kit-home-office-envio`, `brindes-alegacoes-ambientais` × pauta de brindes sustentáveis.
 
 ## Próximas pautas sugeridas
 
@@ -173,7 +230,17 @@ Seguem `docs/SEO.md`:
 3. Quanto custa uma identidade visual e o que entra no escopo. Sem preços: falar do que muda o escopo.
 4. Kit para evento corporativo, só depois de alinhar com o subdomínio de brindes.
 
-Quando um tema chegar a 3 artigos, a página `/blog/tema/<tema>/` aparece sozinha no próximo build.
+Quando uma categoria chegar a 3 artigos, a página `/blog/tema/<categoria>/` aparece sozinha no próximo build.
+
+## Verificações da refatoração (18/10/2026, local)
+
+- `python build.py` sem erros; links internos, capas e relacionados validados pelo build.
+- Listagem e quatro artigos em 360, 390, 768 e 1440 px: sem rolagem horizontal, um H1 por página, destaque sem repetir na grade, filtros funcionando (Todos + 3 categorias) e console sem erros.
+- Sumário: aberto ao lado do texto no desktop e recolhido no celular, sem HTML duplicado.
+- Compliance sem vitrine, sem botões de proposta e sem faixa final; três fontes oficiais citadas no texto.
+- Canonical, robots, title, `og:type`, `twitter:card`, `BlogPosting` e `BreadcrumbList` mantidos; sitemap com `lastmod` 2026-10-18.
+- O `tests/e2e.mjs` foi atualizado, mas não rodou neste computador (falta o puppeteer); as checagens equivalentes foram feitas no navegador.
+- Lighthouse e axe-core não foram refeitos depois da refatoração.
 
 ## Verificações (12/10/2026, rascunho blog-rascunho)
 

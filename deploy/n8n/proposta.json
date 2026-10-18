@@ -21,7 +21,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "// Normaliza e valida o pedido. Não confia no navegador: limita tamanhos e confere os obrigatórios.\nconst b = $json.body || {};\nconst h = $json.headers || {};\nconst t = (k, n) => String(b[k] ?? '').replace(/\\u0000/g, '').trim().slice(0, n);\nconst viaSite = String(h['x-tama-envio'] || '') === 'fetch';\nlet pedidoId = t('pedido_id', 64);\n// Envio sem JavaScript (sem identificador): o servidor cria um.\nif (!pedidoId && !viaSite) pedidoId = 'sjs-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 10);\nconst pedido = {\n  pedido_id: pedidoId,\n  recebido_em: new Date().toISOString(),\n  status: 'novo',\n  nome: t('nome', 120), empresa: t('empresa', 160), contato: t('contato', 160),\n  tipo: t('tipo', 40), interesse: t('interesse', 160), selecao: t('selecao', 2000),\n  quantidade: t('quantidade', 20), data_desejada: t('data', 20), orcamento: t('orcamento', 60),\n  objetivo: t('objetivo', 4000), consentimento: t('consentimento', 10),\n  origem_pagina: t('origem_pagina', 200), primeira_pagina: t('primeira_pagina', 200), referencia: t('referencia', 200),\n  utm_source: t('utm_source', 100), utm_medium: t('utm_medium', 100), utm_campaign: t('utm_campaign', 100),\n  utm_term: t('utm_term', 100), utm_content: t('utm_content', 100),\n  notificacao: 'pendente', tentativas_aviso: 0, erro_aviso: '', avisado_em: '',\n};\nconst tipos = ['brindes', 'kits', 'confeccoes', 'ativacoes', 'hotelaria', 'integrado'];\nconst erros = [];\nif (!/^(sjs-[a-z0-9-]{6,40}|[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})$/i.test(pedido.pedido_id)) erros.push('pedido_id');\nif (pedido.nome.length < 2) erros.push('nome');\nconst digitos = pedido.contato.replace(/\\D/g, '');\nif (!/^[^\\s@]+@[^\\s@]+\\.[^\\s@]{2,}$/.test(pedido.contato) && digitos.length < 10) erros.push('contato');\nif (!tipos.includes(pedido.tipo)) erros.push('tipo');\nif (pedido.objetivo.length < 10) erros.push('objetivo');\nif (pedido.consentimento !== 'sim') erros.push('consentimento');\nreturn { json: { spam: t('bot-field', 200) !== '', valido: erros.length === 0, erros, pedido } };"
+        "jsCode": "// Normaliza e valida o pedido. Não confia no navegador: limita tamanhos e confere os obrigatórios.\nconst b = $json.body || {};\nconst h = $json.headers || {};\n// Campos de uma linha não aceitam quebra de linha (evita linhas falsas no e-mail, como \"Contato: ...\").\nconst t = (k, n, varias) => { let s = String(b[k] ?? '').replace(/\\u0000/g, ''); if (!varias) s = s.replace(/[\\r\\n\\t\\u2028\\u2029]+/g, ' '); return s.trim().slice(0, n); };\nconst viaSite = String(h['x-tama-envio'] || '') === 'fetch';\nlet pedidoId = t('pedido_id', 64);\n// Envio sem JavaScript (sem identificador): o servidor cria um.\nif (!pedidoId && !viaSite) pedidoId = 'sjs-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 10);\nconst pedido = {\n  pedido_id: pedidoId,\n  recebido_em: new Date().toISOString(),\n  status: 'novo',\n  nome: t('nome', 120), empresa: t('empresa', 160), contato: t('contato', 160),\n  tipo: t('tipo', 40), interesse: t('interesse', 160), selecao: t('selecao', 2000),\n  quantidade: t('quantidade', 20), data_desejada: t('data', 20), orcamento: t('orcamento', 60),\n  objetivo: t('objetivo', 4000, true), consentimento: t('consentimento', 10),\n  origem_pagina: t('origem_pagina', 200), primeira_pagina: t('primeira_pagina', 200), referencia: t('referencia', 200),\n  utm_source: t('utm_source', 100), utm_medium: t('utm_medium', 100), utm_campaign: t('utm_campaign', 100),\n  utm_term: t('utm_term', 100), utm_content: t('utm_content', 100),\n  notificacao: 'pendente', tentativas_aviso: 0, erro_aviso: '', avisado_em: '',\n};\nconst tipos = ['brindes', 'kits', 'confeccoes', 'ativacoes', 'hotelaria', 'integrado'];\nconst erros = [];\nif (!/^(sjs-[a-z0-9-]{6,40}|[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})$/i.test(pedido.pedido_id)) erros.push('pedido_id');\nif (pedido.nome.length < 2) erros.push('nome');\nconst digitos = pedido.contato.replace(/\\D/g, '');\nif (!/^[^\\s@]+@[^\\s@]+\\.[^\\s@]{2,}$/.test(pedido.contato) && digitos.length < 10) erros.push('contato');\nif (!tipos.includes(pedido.tipo)) erros.push('tipo');\nif (pedido.objetivo.length < 10) erros.push('objetivo');\nif (pedido.consentimento !== 'sim') erros.push('consentimento');\nreturn { json: { spam: t('bot-field', 200) !== '', valido: erros.length === 0, erros, pedido } };"
       },
       "name": "Validar e normalizar",
       "type": "n8n-nodes-base.code",
@@ -137,7 +137,7 @@
     {
       "parameters": {
         "resource": "row",
-        "operation": "rowExists",
+        "operation": "get",
         "dataTableId": {
           "__rl": true,
           "mode": "name",
@@ -151,21 +151,23 @@
               "keyValue": "={{ $json.pedido.pedido_id }}"
             }
           ]
-        }
+        },
+        "limit": 1
       },
-      "name": "Já gravado (reenvio)?",
+      "name": "Buscar pedido_id",
       "type": "n8n-nodes-base.dataTable",
       "typeVersion": 1,
       "position": [
         880,
         260
       ],
-      "id": "1c9d1057-fd3e-47e5-bd08-30a6a8f75192"
+      "id": "1c9d1057-fd3e-47e5-bd08-30a6a8f75192",
+      "alwaysOutputData": true
     },
     {
       "parameters": {
         "respondWith": "json",
-        "responseBody": "={{ { \"ok\": true, \"gravado\": true, \"duplicado\": true, \"pedido_id\": $json.pedido.pedido_id, \"mensagem\": \"Pedido recebido.\" } }}",
+        "responseBody": "={{ { \"ok\": true, \"gravado\": true, \"duplicado\": true, \"pedido_id\": $('Validar e normalizar').item.json.pedido.pedido_id, \"mensagem\": \"Pedido recebido.\" } }}",
         "options": {
           "responseCode": 200
         }
@@ -174,43 +176,15 @@
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1.1,
       "position": [
-        1100,
+        1320,
         160
       ],
       "id": "d5b4e8f2-fc55-4c6c-930d-1058031bba72"
     },
     {
       "parameters": {
-        "resource": "row",
-        "operation": "rowNotExists",
-        "dataTableId": {
-          "__rl": true,
-          "mode": "name",
-          "value": "tama_propostas"
-        },
-        "filters": {
-          "conditions": [
-            {
-              "keyName": "pedido_id",
-              "condition": "eq",
-              "keyValue": "={{ $json.pedido.pedido_id }}"
-            }
-          ]
-        }
-      },
-      "name": "Pedido novo?",
-      "type": "n8n-nodes-base.dataTable",
-      "typeVersion": 1,
-      "position": [
-        880,
-        400
-      ],
-      "id": "8bd26cf1-6bb5-4cfb-90d2-730ac3943452"
-    },
-    {
-      "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "// Só as colunas da tabela (o Data Table grava exatamente estes campos).\nreturn { json: $json.pedido };"
+        "jsCode": "// Só as colunas da tabela (o Data Table grava exatamente estes campos).\nreturn { json: $('Validar e normalizar').item.json.pedido };"
       },
       "name": "Linha da tabela",
       "type": "n8n-nodes-base.code",
@@ -261,10 +235,153 @@
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1.1,
       "position": [
+        1980,
+        300
+      ],
+      "id": "a371fb59-f1a9-4c1a-b6a8-f2fa36728703"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "e4d3c2b1-a098-4f76-9e54-3d2c1b0a9f87",
+              "leftValue": "={{ $json.id }}",
+              "rightValue": "",
+              "operator": {
+                "type": "number",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "name": "Já gravado (reenvio)?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1100,
+        300
+      ],
+      "id": "b7a6c5d4-e3f2-4a1b-9c8d-7e6f5a4b3c2d"
+    },
+    {
+      "parameters": {
+        "resource": "row",
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "mode": "name",
+          "value": "tama_propostas"
+        },
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "pedido_id",
+              "condition": "eq",
+              "keyValue": "={{ $json.pedido_id }}"
+            }
+          ]
+        },
+        "returnAll": true
+      },
+      "name": "Linhas do pedido",
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
         1540,
         400
       ],
-      "id": "a371fb59-f1a9-4c1a-b6a8-f2fa36728703"
+      "id": "5b0c1f7e-6a43-4d55-9a8e-2f1d7c3b9a10"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "c2a9e0d4-1f37-4b8e-9c55-7d6a3e2b1f08",
+              "leftValue": "={{ Math.min(...$input.all().map(i => i.json.id)) }}",
+              "rightValue": "={{ $('Gravar pedido').first().json.id }}",
+              "operator": {
+                "type": "number",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "name": "Esta gravação é a primeira?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "executeOnce": true,
+      "position": [
+        1760,
+        400
+      ],
+      "id": "8f3d2c1b-0a9e-4e7d-b6c5-4a3f2e1d0c9b"
+    },
+    {
+      "parameters": {
+        "resource": "row",
+        "operation": "deleteRows",
+        "dataTableId": {
+          "__rl": true,
+          "mode": "name",
+          "value": "tama_propostas"
+        },
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "condition": "eq",
+              "keyValue": "={{ $('Gravar pedido').first().json.id }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Apagar gravação repetida",
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        1980,
+        560
+      ],
+      "id": "3e7a9b1c-2d4f-4a6b-8c0d-1e2f3a4b5c6d"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ { \"ok\": true, \"gravado\": true, \"duplicado\": true, \"pedido_id\": $('Gravar pedido').first().json.pedido_id, \"mensagem\": \"Pedido recebido.\" } }}",
+        "options": {
+          "responseCode": 200
+        }
+      },
+      "name": "Gravado em paralelo (200)",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        2200,
+        560
+      ],
+      "id": "9a8b7c6d-5e4f-4321-8fed-cba987654321"
     }
   ],
   "connections": {
@@ -312,12 +429,7 @@
       "main": [
         [
           {
-            "node": "Já gravado (reenvio)?",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "Pedido novo?",
+            "node": "Buscar pedido_id",
             "type": "main",
             "index": 0
           }
@@ -325,28 +437,6 @@
         [
           {
             "node": "Inválido (422)",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Já gravado (reenvio)?": {
-      "main": [
-        [
-          {
-            "node": "Já gravado (200)",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Pedido novo?": {
-      "main": [
-        [
-          {
-            "node": "Linha da tabela",
             "type": "main",
             "index": 0
           }
@@ -368,7 +458,76 @@
       "main": [
         [
           {
+            "node": "Linhas do pedido",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Buscar pedido_id": {
+      "main": [
+        [
+          {
+            "node": "Já gravado (reenvio)?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Já gravado (reenvio)?": {
+      "main": [
+        [
+          {
+            "node": "Já gravado (200)",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Linha da tabela",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Linhas do pedido": {
+      "main": [
+        [
+          {
+            "node": "Esta gravação é a primeira?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Esta gravação é a primeira?": {
+      "main": [
+        [
+          {
             "node": "Gravado (200)",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Apagar gravação repetida",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Apagar gravação repetida": {
+      "main": [
+        [
+          {
+            "node": "Gravado em paralelo (200)",
             "type": "main",
             "index": 0
           }
@@ -380,10 +539,11 @@
   "settings": {
     "executionOrder": "v1",
     "saveDataErrorExecution": "all",
-    "saveDataSuccessExecution": "all"
+    "saveDataSuccessExecution": "none"
   },
   "meta": {
-    "descricao": "Recebe o POST do site (/api/proposta via Nginx), valida, grava na data table tama_propostas e só então responde gravado=true. Reenvio com o mesmo pedido_id não duplica. Se a gravação falhar, o workflow falha e o webhook responde 500: o site mostra erro, nunca sucesso. O aviso ao responsável é feito pelo workflow 2/3."
+    "descricao": "Recebe o POST do site (/api/proposta via Nginx), valida, grava na data table tama_propostas e só então responde gravado=true. Reenvio com o mesmo pedido_id não duplica. Se a gravação falhar, o workflow falha e o webhook responde 500: o site mostra erro, nunca sucesso. O aviso ao responsável é feito pelo workflow 2/3.",
+    "segredo": "Opcional (recomendado se o n8n tiver endereço público): autenticação por cabeçalho X-TaMa-Segredo definido no Nginx. Ver docs/PROPOSTAS.md. Só ligar depois que o Nginx enviar o cabeçalho."
   },
   "tags": []
 }

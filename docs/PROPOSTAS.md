@@ -43,16 +43,20 @@ confirmar o seu pedido", com "Tentar de novo", "Copiar resumo" e o resumo pronto
 | Arquivo | Função |
 |---|---|
 | `proposta-tabela.json` | **3/3, rodar uma vez**: cria a data table `tama_propostas` (não recria se já existir). |
-| `proposta.json` | **1/3**: recebe, valida, verifica se o `pedido_id` já existe, grava e só então responde. |
-| `proposta-avisos.json` | **2/3**: a cada minuto, envia por e-mail os pedidos com `notificacao` ≠ `enviada` (até 20 tentativas) e marca `enviada` ou `falhou` com o erro. Falha no aviso nunca apaga o pedido. |
+| `proposta.json` | **1/3**: recebe, valida (campos de uma linha perdem quebras de linha, para ninguém forjar linhas no aviso), procura o `pedido_id`, grava e só então responde. Depois de gravar, confere de novo: se dois envios simultâneos do mesmo pedido gravaram, fica só a primeira linha e o outro recebe `duplicado:true`. |
+| `proposta-avisos.json` | **2/3**: a cada minuto, reserva cada pedido com `notificacao` ≠ `enviada` (marca `enviando` e soma 1 em `tentativas_aviso` antes de enviar, o que impede duas execuções de mandarem o mesmo aviso), envia o e-mail e marca `enviada` ou `falhou`. Um aviso por `pedido_id`. Até a 20ª tentativa tenta a cada minuto; depois, de hora em hora, para sempre. Na 20ª falha a execução termina em erro (aparece na lista de execuções e no Error Workflow, se houver). Um pedido parado em `enviando` por mais de 10 minutos é tentado de novo. |
 
 Colunas de `tama_propostas`: `pedido_id`, `recebido_em`, `status` (`novo`; a equipe pode usar `em proposta`, `proposta enviada`,
 `ganho`, `perdido`), dados do formulário, `origem_pagina`, `primeira_pagina`, `referencia`, `utm_*`,
 `notificacao` (`pendente` → `enviada` | `falhou`), `tentativas_aviso`, `erro_aviso`, `avisado_em`.
 
-**Recuperar ou reenviar um aviso:** abra a data table no n8n e mude `notificacao` do pedido para `pendente`
-(e `tentativas_aviso` para 0, se passou de 20). O workflow 2/3 envia no minuto seguinte. Ou rode o 2/3 manualmente
-("Reenviar agora").
+**Recuperar ou reenviar um aviso:** abra a data table no n8n e mude `notificacao` do pedido para `pendente`. O workflow
+2/3 envia no minuto seguinte (ou rode o 2/3 manualmente, "Reenviar agora").
+
+**Execuções e dados pessoais (LGPD):** os workflows não guardam execuções bem-sucedidas (`saveDataSuccessExecution: none`);
+os dados ficam só na tabela. As execuções **com erro** são guardadas de propósito: se a gravação falhar, a execução com erro
+é a única cópia do pedido (abra-a no n8n para recuperar os dados). No n8n de produção, defina `EXECUTIONS_DATA_PRUNE=true` e
+`EXECUTIONS_DATA_MAX_AGE=168` (7 dias), um prazo de guarda para `tama_propostas` e use SMTP com TLS.
 
 ## Validado localmente (17/10/2026, n8n 2.43.7, SMTP de teste)
 
@@ -61,6 +65,9 @@ Colunas de `tama_propostas`: `pedido_id`, `recebido_em`, `status` (`novo`; a equ
 - Inválido → 422 com a lista de campos. Honeypot → nada gravado. Sem JavaScript → gravado com id `sjs-…`.
 - Tabela inexistente (falha de gravação) → 500 → o site mostra erro.
 - SMTP recusando → pedido mantido com `notificacao=falhou` e o erro; com o SMTP de volta, enviado na tentativa seguinte.
+- Revisão do fluxo (18/10): 20 envios simultâneos do mesmo pedido = 1 linha e 1 e-mail (antes: até 20); execuções de aviso
+  sobrepostas = 1 e-mail por pedido; falha ao atualizar a linha depois do e-mail não reenvia sem fim; quebras de linha em
+  nome/contato não forjam linhas no aviso. Testado em SQLite e Postgres.
 - No navegador (site gerado + proxy igual ao Nginx): três cliques em "Enviar" = 1 POST; n8n fora (502), HTTP 200 sem
   confirmação e resposta acima de 20 s mostram erro; "Tentar de novo" reenvia o mesmo id; o pedido lento que chegou
   depois não foi duplicado.
@@ -70,7 +77,8 @@ Colunas de `tama_propostas`: `pedido_id`, `recebido_em`, `status` (`novo`; a equ
 1. Conferir o fluxo **ativo** hoje no n8n de produção. O que estava no repositório antes desta versão só validava e
    respondia 200, sem gravar nem avisar; se o de produção for igual, pedidos anteriores podem não ter chegado a ninguém.
    Verificar também a lista de execuções do webhook `proposta` no n8n para recuperar pedidos antigos.
-2. Versão do n8n com **Data tables** (n8n 1.113 ou mais novo; testado na 2.43.7). Sem data tables, trocar os nós de
+2. Versão do n8n com **Data tables** (n8n 1.113 ou mais novo; testado na 2.43.7, em SQLite e em Postgres; a ordenação dos
+   avisos por tentativas usa um recurso da 2.5 e é só ignorada em versões anteriores). Sem data tables, trocar os nós de
    tabela por Google Sheets ou Postgres mantendo a mesma ordem: verificar → gravar → responder.
 3. Importar os três workflows, rodar o 3/3 uma vez, ativar (publicar) 1/3 e 2/3 e desativar o workflow antigo do
    mesmo caminho `proposta`.
@@ -80,5 +88,12 @@ Colunas de `tama_propostas`: `pedido_id`, `recebido_em`, `status` (`novo`; a equ
 5. Conferir que o container do n8n se chama `tama_n8n` na mesma rede do site (é o que `deploy/nginx.conf` usa).
 6. Fazer um envio de teste combinado com a TaMa (nome "TESTE"), conferir a linha na tabela e o e-mail, e depois
    marcar o pedido como teste.
-7. Opcional: se o n8n tiver endereço público, proteger o webhook (cabeçalho secreto definido no Nginx e conferido no
-   n8n) para ninguém pular o limite de envios do site.
+7. **Recomendado se o n8n tiver endereço público** (comum no Easypanel, por causa do editor): sem isso, quem chamar
+   `/webhook/proposta` direto pula o limite de envios do Nginx. Testado localmente, ainda não aplicado ao repositório
+   porque mexe na imagem do Nginx e não foi testado com Docker:
+   - gerar um segredo (`openssl rand -hex 32`) e criá-lo como variável de execução `N8N_WEBHOOK_SEGREDO` no app do site;
+   - no Nginx, um script em `/docker-entrypoint.d/15-n8n-segredo.sh` grava `map $host $n8n_segredo { default "<segredo>"; }`
+     em `conf.d/` (aceita só `[A-Za-z0-9_-]`; sem a variável, fica vazio e só o formulário falha, nunca o site), e o
+     `location = /api/proposta` ganha `proxy_set_header X-TaMa-Segredo $n8n_segredo;`;
+   - publicar o Nginx primeiro; só depois, no n8n, ligar no nó "Formulário do site" a autenticação por cabeçalho
+     (credencial Header Auth com Name `X-TaMa-Segredo`). Ordem inversa derruba o formulário (403).

@@ -48,16 +48,14 @@
               "keyName": "notificacao",
               "condition": "neq",
               "keyValue": "enviada"
-            },
-            {
-              "keyName": "tentativas_aviso",
-              "condition": "lt",
-              "keyValue": "20"
             }
           ]
         },
         "returnAll": false,
-        "limit": 20
+        "limit": 50,
+        "orderBy": true,
+        "orderByColumn": "tentativas_aviso",
+        "orderByDirection": "ASC"
       },
       "name": "Pedidos sem aviso",
       "type": "n8n-nodes-base.dataTable",
@@ -77,7 +75,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        460,
+        680,
         300
       ],
       "id": "2f508498-d15f-4e14-b7bc-860ea6be5fa5"
@@ -97,7 +95,7 @@
       "type": "n8n-nodes-base.emailSend",
       "typeVersion": 2.1,
       "position": [
-        680,
+        900,
         300
       ],
       "id": "a294507d-57e4-4d77-a8a2-03424256945e",
@@ -112,7 +110,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "return { json: { pedido_id: $('Montar aviso').item.json.pedido_id, notificacao: 'enviada', avisado_em: new Date().toISOString(), erro_aviso: '', tentativas_aviso: $('Montar aviso').item.json.tentativas + 1 } };"
+        "jsCode": "return { json: { pedido_id: $('Montar aviso').item.json.pedido_id, notificacao: 'enviada', avisado_em: new Date().toISOString(), erro_aviso: '' } };"
       },
       "name": "Marcar avisado",
       "type": "n8n-nodes-base.code",
@@ -126,7 +124,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "return { json: { pedido_id: $('Montar aviso').item.json.pedido_id, notificacao: 'falhou', erro_aviso: String(($json.error && ($json.error.message || $json.error)) || 'erro no envio').slice(0, 300), tentativas_aviso: $('Montar aviso').item.json.tentativas + 1 } };"
+        "jsCode": "return { json: { pedido_id: $('Montar aviso').item.json.pedido_id, notificacao: 'falhou', erro_aviso: String(($json.error && ($json.error.message || $json.error)) || 'erro no envio').slice(0, 300) } };"
       },
       "name": "Marcar falha (tenta de novo)",
       "type": "n8n-nodes-base.code",
@@ -210,6 +208,132 @@
         420
       ],
       "id": "1844eebf-09f6-47f0-ac0d-d4931a8968ba"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Quem tenta agora. Até 20 tentativas: a cada minuto. Depois: 1 vez por hora (o pedido nunca fica esquecido).\n// 'enviando' há mais de 10 min = execução interrompida depois de reservar: tenta de novo.\n// Um pedido_id por vez (se houver linhas repetidas do mesmo pedido, só uma gera e-mail).\nconst agora = Date.now(), MIN = 60 * 1000, vistos = new Set(), saida = [];\nfor (const it of $input.all()) {\n  const p = it.json, n = Number(p.tentativas_aviso || 0);\n  const parado = agora - new Date(p.updatedAt).getTime();\n  if (vistos.has(p.pedido_id)) continue;\n  vistos.add(p.pedido_id);\n  if (p.notificacao === 'enviando' && parado < 10 * MIN) continue;\n  if (n >= 20 && parado < 60 * MIN) continue;\n  saida.push({ json: p });\n  if (saida.length >= 20) break;\n}\nreturn saida;"
+      },
+      "name": "Está na hora?",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        350,
+        300
+      ],
+      "id": "4d5e6f70-8192-4a3b-9c4d-5e6f708192a3"
+    },
+    {
+      "parameters": {
+        "resource": "row",
+        "operation": "update",
+        "dataTableId": {
+          "__rl": true,
+          "mode": "name",
+          "value": "tama_propostas"
+        },
+        "matchType": "allConditions",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "condition": "eq",
+              "keyValue": "={{ $json.id }}"
+            },
+            {
+              "keyName": "tentativas_aviso",
+              "condition": "eq",
+              "keyValue": "={{ $json.tentativas_aviso }}"
+            }
+          ]
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "notificacao": "enviando",
+            "tentativas_aviso": "={{ Number($json.tentativas_aviso || 0) + 1 }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "notificacao",
+              "displayName": "notificacao",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "tentativas_aviso",
+              "displayName": "tentativas_aviso",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "name": "Reservar pedido",
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        460,
+        300
+      ],
+      "id": "6b7c8d9e-0f1a-4b2c-8d3e-4f5a6b7c8d9e"
+    },
+    {
+      "parameters": {
+        "errorMessage": "=Aviso do pedido {{ $json.pedido_id }} falhou 20 vezes. Daqui em diante tenta 1 vez por hora. Último erro: {{ $json.erro_aviso }}"
+      },
+      "name": "Avisar falha persistente",
+      "type": "n8n-nodes-base.stopAndError",
+      "typeVersion": 1,
+      "position": [
+        1560,
+        420
+      ],
+      "id": "7e8f9a0b-1c2d-4e3f-a4b5-c6d7e8f9a0b1"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "0b1c2d3e-4f5a-4b6c-8d7e-9f0a1b2c3d4e",
+              "leftValue": "={{ $json.tentativas_aviso }}",
+              "rightValue": 20,
+              "operator": {
+                "type": "number",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "name": "Chegou a 20 tentativas?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1340,
+        420
+      ],
+      "id": "1a2b3c4d-5e6f-4a7b-8c9d-0e1f2a3b4c5d"
     }
   ],
   "connections": {
@@ -239,7 +363,7 @@
       "main": [
         [
           {
-            "node": "Montar aviso",
+            "node": "Está na hora?",
             "type": "main",
             "index": 0
           }
@@ -296,6 +420,50 @@
           }
         ]
       ]
+    },
+    "Está na hora?": {
+      "main": [
+        [
+          {
+            "node": "Reservar pedido",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Reservar pedido": {
+      "main": [
+        [
+          {
+            "node": "Montar aviso",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Atualizar pedido (falha)": {
+      "main": [
+        [
+          {
+            "node": "Chegou a 20 tentativas?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Chegou a 20 tentativas?": {
+      "main": [
+        [
+          {
+            "node": "Avisar falha persistente",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "active": false,
@@ -305,7 +473,7 @@
     "saveDataSuccessExecution": "none"
   },
   "meta": {
-    "descricao": "A cada minuto, envia por e-mail os pedidos de tama_propostas com notificacao diferente de 'enviada' (até 20 tentativas). Falha no envio não apaga nada: o pedido fica 'falhou' e é tentado de novo. Para reenviar um aviso, mude notificacao para 'pendente' na data table."
+    "descricao": "A cada minuto, envia por e-mail os pedidos de tama_propostas com notificacao diferente de 'enviada'. Antes de enviar, reserva a linha (notificacao='enviando', tentativas+1) só se ninguém a reservou antes: execuções sobrepostas não repetem o aviso. Até 20 tentativas, a cada minuto; depois, 1 vez por hora, e a 20ª falha gera erro na lista de execuções. Para reenviar, mude notificacao para 'pendente'."
   },
   "tags": []
 }

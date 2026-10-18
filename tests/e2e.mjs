@@ -388,8 +388,25 @@ try {
   ok(proc.steps.join(',') === 'Briefing,Curadoria,Proposta,Aprovação,Produção,Entrega', 'home resume as 6 etapas numa linha (lista ordenada)');
   ok(proc.decor.length === 6 && proc.decor.every(v => v === 'true'), 'números das etapas são decorativos (aria-hidden)');
   ok(!!proc.link, 'faixa do processo leva a "Como trabalhamos"');
-  await page.goto(BASE + '/kits-corporativos/', { waitUntil: 'networkidle0' });
-  ok(await page.$$eval('ol.process-steps.light > li', l => l.length) === 6, 'kits usa as mesmas 6 etapas');
+  // Seção padrão (process_section): as mesmas 6 etapas, com os mesmos nomes e na mesma ordem, em todas as páginas de frente,
+  // no fim de ano e em /sobre/; nada do formato antigo (ol.steps com 4 etapas) pode sobrar.
+  const ETAPAS = 'Briefing,Curadoria,Proposta,Aprovação,Produção,Entrega';
+  for (const path of ['/brindes-corporativos/', '/kits-corporativos/', '/confeccoes-personalizadas/', '/ativacoes-promocionais/', '/hotelaria-e-gastronomia/', '/brindes-de-fim-de-ano/', '/sobre/']) {
+    await page.goto(BASE + path, { waitUntil: 'networkidle0' });
+    const p = await page.evaluate(() => ({
+      secoes: document.querySelectorAll('section.process-section').length,
+      listas: document.querySelectorAll('ol.process-steps.light').length,
+      nomes: [...document.querySelectorAll('.process-step h3')].map(h => h.textContent.trim()).join(','),
+      icones: document.querySelectorAll('.process-step .process-icon').length,
+      antigo: document.querySelectorAll('.steps, .step').length,
+      head: !!document.querySelector('section.process-section .section-head .eyebrow') && !!document.querySelector('section.process-section h2.section-title'),
+      antesFaq: (() => { const s = document.querySelector('section.process-section'); let n = s?.nextElementSibling; while (n && !n.matches('section')) n = n.nextElementSibling; return !!n?.querySelector('.faq-list'); })(),
+    }));
+    ok(p.secoes === 1 && p.listas === 1 && p.nomes === ETAPAS && p.icones === 6 && p.antigo === 0 && p.head, `${path}: uma seção padrão com as 6 etapas (${p.nomes.split(',').length}) na mesma ordem, com ícones e sem o formato antigo`);
+    if (path !== '/sobre/') ok(p.antesFaq, `${path}: o passo a passo vem logo antes das perguntas`);
+  }
+  ok(await page.$eval('#como-t', h => !!h.closest('section.process-section')), '/sobre/#como-t (link da home) cai na seção do passo a passo');
+  ok(await page.$eval('#sustenta-t', h => /O que sustenta cada projeto/.test(h.textContent) && h.closest('section').querySelectorAll('.col').length === 3), '/sobre/ mantém os pilares em "O que sustenta cada projeto"');
 
   console.log('Formulário');
   await page.goto(BASE + '/solicitar-proposta/?tipo=kits', { waitUntil: 'networkidle0' });
@@ -468,7 +485,7 @@ try {
   ok(await fp.$$eval('#brindar .product.studio', c => c.length === 8 && c.every(x => (x.dataset.occ || '').split(' ').includes('fim-de-ano'))) && await fp.$eval('#brindar a[href="/catalogo/?ocasiao=fim-de-ano"]', a => /fim de ano no catálogo/.test(a.textContent)), 'fim de ano: 8 taças e copos em #brindar, com link para o catálogo filtrado');
   ok(await fp.$$eval('.kit-card', k => k.length === 4 && k.every(x => x.classList.contains('big') && x.querySelector('img').alt.length > 20)) && await fp.$$eval('.kit-card a', a => a.map(x => x.getAttribute('href')).join() === ['Brinde', 'Coquetel', 'Caf%C3%A9', 'Petiscos'].map(n => '/solicitar-proposta/?tipo=kits&interesse=Kit%20' + n).join()), 'fim de ano: Kit Brinde, Kit Coquetel, Kit Café e Kit Petiscos, com "Quero este kit" no pedido');
   ok(await fp.$$eval('#presentear .product.studio', c => c.map(x => x.dataset.slug).join() === 'agenda,caneta-executiva-com-estojo,vela,caixa-para-presente'), 'fim de ano: 4 peças em "Para presentear"');
-  ok(await fp.$$eval('.steps .step', s => s.length === 4) && await fp.$$eval('.faq-list details', d => d.length === 4) && await fp.$$eval('a[href="/solicitar-proposta/?tipo=kits"]', a => a.length >= 2), 'fim de ano: 4 passos, 4 perguntas e CTA final com tipo=kits');
+  ok(await fp.$$eval('#personalizacao .process-step', s => s.length === 6) && await fp.$$eval('.faq-list details', d => d.length === 4) && await fp.$$eval('a[href="/solicitar-proposta/?tipo=kits"]', a => a.length >= 2), 'fim de ano: as 6 etapas em #personalizacao, 4 perguntas e CTA final com tipo=kits');
   ok(await colorsHavePhoto(fp, '.studio-grid .product'), 'fim de ano: toda cor mostrada tem foto própria');
   await fp.goto(BASE + '/', { waitUntil: 'networkidle0' });
   ok(await fp.$eval('.occ-faixa a[href="/brindes-de-fim-de-ano/"]', a => a.textContent.trim() === 'Fim de ano'), 'na home, o chip Fim de ano leva à página própria');

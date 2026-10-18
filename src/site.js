@@ -56,7 +56,8 @@
     try { var ref = document.referrer ? new URL(document.referrer) : null; if (ref && ref.host !== location.host) origem.referencia = ref.host; } catch (e) {}
   }
   var query = new URLSearchParams(location.search);
-  ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'].forEach(function (k) { var v = query.get(k); if (v) origem[k] = v.slice(0, 100); });
+  var UTMS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
+  if (UTMS.some(function (k) { return query.get(k); })) UTMS.forEach(function (k) { origem[k] = (query.get(k) || '').slice(0, 100); });   // campanha nova substitui o conjunto inteiro
   sset('tama-origem', origem);
   var paginaAnterior = sget('tama-ultima-pagina');
   if (location.pathname !== '/solicitar-proposta/') sset('tama-ultima-pagina', location.pathname);
@@ -371,7 +372,8 @@
   var grid = document.getElementById('gift-grid');
   if (grid) {
     var params = new URLSearchParams(location.search);
-    var state = { cat: params.get('categoria') || 'todas', occ: params.get('ocasiao') || 'todas' };
+    var valido = function (f, v) { return v && document.querySelector('.chip[data-filter="' + f + '"][data-value="' + v.replace(/[^a-z-]/g, '') + '"]') ? v : 'todas'; };
+    var state = { cat: valido('cat', params.get('categoria')), occ: valido('occ', params.get('ocasiao')) };   // links antigos com categorias que mudaram abrem sem filtro
     var cards = document.querySelectorAll('#gift-grid .product, #idea-grid .idea');
     var countEl = document.getElementById('gift-count'), emptyEl = document.getElementById('gift-empty');
     var alemHead = document.getElementById('alem-head');
@@ -407,6 +409,9 @@
   }
 
   render();
+  // voltar pelo navegador (bfcache) ou outra aba mudou a seleção: atualiza contador, botões e o campo do pedido
+  window.addEventListener('pageshow', function (e) { if (e.persisted) render(); });
+  window.addEventListener('storage', function (e) { if (e.key === STORE_KEY) render(); });
 
   /* ---------- Formulário de proposta ---------- */
   var form = document.getElementById('proposal-form');
@@ -438,6 +443,9 @@
   }
   var pedidoId = sget('tama-pedido-id') || novoId();
   sset('tama-pedido-id', pedidoId);
+  // assinatura do conteúdo: se a pessoa mudar o pedido depois de uma falha (ou fizer outro na mesma aba), ele ganha um
+  // número novo; reenvio sem mudança mantém o número (o n8n reconhece e não duplica)
+  var assinatura = function () { var fd = new FormData(form); fd.delete('pedido_id'); return new URLSearchParams(fd).toString(); };
   var setField = function (name, v) { if (form[name]) form[name].value = v || ''; };
   setField('pedido_id', pedidoId);
   var interesse = (query.get('interesse') || '').slice(0, 120);
@@ -527,6 +535,9 @@
     statusEl.textContent = 'Enviando…';
     submitBtn.disabled = true;
     submitBtn.setAttribute('aria-busy', 'true');
+    var sig = assinatura(), ultimo = sget('tama-pedido-sig');
+    if (ultimo && ultimo !== sig) { pedidoId = novoId(); sset('tama-pedido-id', pedidoId); form.pedido_id.value = pedidoId; }
+    sset('tama-pedido-sig', sig);
     var body = new URLSearchParams(new FormData(form)).toString();
     var controller = 'AbortController' in window ? new AbortController() : null;
     var timer = controller ? setTimeout(function () { controller.abort(); }, 20000) : null;
@@ -545,9 +556,9 @@
         statusEl.textContent = '';
         form.hidden = true;
         showResult('ok');
-        track('proposta_gravada', { tipo: tipoAtual, pecas: getSel().length, origem: form.origem_pagina.value || '', duplicado: !!d.duplicado });
+        track('proposta_gravada', { tipo: tipoAtual, pecas: getSel().length, duplicado: !!d.duplicado });   // origem e UTMs ficam só no pedido
         setSel([]);
-        sset('tama-pedido-id', null);   // o próximo pedido nesta sessão ganha outro número
+        sset('tama-pedido-id', null); sset('tama-pedido-sig', null);   // o próximo pedido nesta sessão ganha outro número
       })
       .catch(function (err) {
         var motivo = err && err.name === 'AbortError' ? 'tempo_esgotado' : (err instanceof TypeError ? 'rede' : String((err && err.message) || err).slice(0, 40));

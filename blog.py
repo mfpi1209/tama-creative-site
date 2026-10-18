@@ -570,7 +570,8 @@ def finalize(b):
     if not ARTS:
         return
     paths = {p['path'] for p in b.BUILT} | {FEED_PATH}
-    anchors = set(b.CATALOGO_BY) | {'pecas'}
+    na_pagina = {c['slug'] for c in b.CATALOGO if c['ocasioes']}   # /brindes-corporativos-premium/ mostra só modelos com ocasião
+    anchors = na_pagina | {k for k, v in b.ALIASES.items() if v in na_pagina} | {'pecas'}
     for p in b.BUILT:
         if not p['path'].startswith('/blog/'):
             continue

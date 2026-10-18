@@ -212,7 +212,7 @@
   "cat-caixa-personalizada": "caixa-para-presente",
   "cat-caneca": "caneca",
   "cat-caneta-bambu": "caneta-natural",
-  "cat-caneta-ecologica-em-kraft": "caneta-kraft",
+  "cat-caneta-ecologica-em-kraft": "caneta-parda",
   "cat-caneta-executiva-esferografica": "caneta-executiva-esferografica",
   "cat-caneta-executiva-roller": "caneta-executiva-roller",
   "cat-caneta-metalica-com-giro": "caneta-com-acionamento-por-giro",
@@ -265,8 +265,9 @@
   "uniforme-personalizado": "dolma",
   "vela-perfumada": "vela",
   "caneta-ecologica-natural": "caneta-natural",
-  "caneta-ecologica-kraft": "caneta-kraft",
+  "caneta-ecologica-kraft": "caneta-parda",
   "copo-com-impressao-360": "copo-360",
-  "taca-de-champagne": "taca-de-champanhe"
+  "taca-de-champagne": "taca-de-champanhe",
+  "caneta-kraft": "caneta-parda"
  }
 }

@@ -2080,11 +2080,11 @@
   },
   {
    "id": "caneta-kraft~natural",
-   "produto": "Caneta kraft",
+   "produto": "Caneta parda",
    "categoria": "canetas-escritorio",
-   "modelo": "Corpo tom kraft com detalhes pretos",
+   "modelo": "Corpo pardo com detalhes pretos",
    "cor": {
-    "nome": "Kraft",
+    "nome": "Pardo",
     "hex": "#C4A07A"
    },
    "material": {
@@ -2098,7 +2098,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Caneta kraft (corpo tom kraft com detalhes pretos) na cor kraft, com a marca TaMa aplicada como exemplo de personalização. Imagem ilustrativa.",
+   "alt": "Caneta parda (corpo pardo com detalhes pretos) na cor pardo, com a marca TaMa aplicada como exemplo de personalização. Imagem ilustrativa.",
    "uso": [
     "home",
     "catalogo"
@@ -3643,7 +3643,7 @@
    "categoria": "garrafas-copos",
    "modelo": "Com tampa",
    "cor": {
-    "nome": "Kraft",
+    "nome": "Pardo",
     "hex": "#C4A07A"
    },
    "material": {
@@ -3657,7 +3657,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Copo para viagem (com tampa) na cor kraft, com a marca TaMa aplicada como exemplo de personalização. Imagem ilustrativa.",
+   "alt": "Copo para viagem (com tampa) na cor parda, com a marca TaMa aplicada como exemplo de personalização. Imagem ilustrativa.",
    "uso": [
     "catalogo"
    ],

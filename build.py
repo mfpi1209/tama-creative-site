@@ -268,7 +268,7 @@ def color_slug(s):
     return '-'.join(''.join(c if c.isalnum() else ' ' for c in s).split())
 
 
-SPEC_RE = re.compile(r'\b(couro|acr[íi]lico|alum[íi]nio|inox|a[çc]o|algod[ãa]o|piquet|cer[âa]mica|bambu|vidro|madeira|papel|pl[áa]stic[oa]s?|metal|met[áa]lic[oa]|cera|\d+\s?ml)\b', re.I)
+SPEC_RE = re.compile(r'\b(couros?|acr[íi]licos?|alum[íi]nio|inox\w*|a[çc]o|algod[ãa]o|piquet|piqu[êe]|cer[âa]micas?|porcelanas?|bambu|vidros?|madeiras?|pap[ée]is|papel|pl[áa]stic[oa]s?|metal|metais|met[áa]lic[oa]s?|cera|kraft|ecol[óo]gic[oa]s?|corti[çc]a|silicone|poli[ée]ster|linho|\d+(?:[.,]\d+)?\s?(?:ml|l|litros?))\b', re.I)
 
 
 def preparar_produtos():
@@ -327,14 +327,18 @@ preparar_produtos()
 PRODUTOS_BY = {i['id']: i for i in PRODUTOS}
 CATALOGO = build_catalogo()   # depois de color_slug
 CATALOGO_BY = {c['slug']: c for c in CATALOGO}
-_falta = [m for m in SEL.get('home', []) + list(SEL.get('ocasioes_por_modelo', {})) + list(ALIASES.values()) if m not in CATALOGO_BY]
+_falta = [m for m in SEL.get('home', []) + SEL.get('prioridade', []) + list(SEL.get('foto_base', {})) + list(SEL.get('ocasioes_por_modelo', {})) + list(ALIASES.values()) if m not in CATALOGO_BY]
 if _falta:
     raise SystemExit(f'selecoes.json aponta para modelos que não existem em produtos.json: {sorted(set(_falta))}')
 
 
 def modelo(slug):
-    """Modelo do catálogo por id atual ou por slug antigo (aliases); None se não existir."""
-    return CATALOGO_BY.get(ALIASES.get(slug, slug))
+    """Modelo do catálogo por id atual ou por slug antigo (aliases). Id desconhecido para o build: uma página não
+    pode perder um card em silêncio (ex.: produto renomeado no /admin/ sem alias em selecoes.json)."""
+    m = CATALOGO_BY.get(ALIASES.get(slug, slug))
+    if not m:
+        raise SystemExit(f'Modelo {slug!r} não existe em produtos.json (renomeado? acrescente o id antigo em aliases de selecoes.json)')
+    return m
 
 
 def catalog_json():
@@ -1372,9 +1376,9 @@ def page_proposta():
         <input type="hidden" name="utm_source" id="f-utm_source"><input type="hidden" name="utm_medium" id="f-utm_medium"><input type="hidden" name="utm_campaign" id="f-utm_campaign"><input type="hidden" name="utm_term" id="f-utm_term"><input type="hidden" name="utm_content" id="f-utm_content">
         <p class="interest-note" id="interest-note" hidden></p>
         <div class="form-grid">
-          <div class="field"><label for="f-nome">Nome <span class="req" aria-hidden="true">*</span></label><input id="f-nome" name="nome" autocomplete="name" required aria-describedby="f-nome-error"><p class="field-error" id="f-nome-error"></p></div>
-          <div class="field"><label for="f-empresa">Empresa</label><input id="f-empresa" name="empresa" autocomplete="organization"></div>
-          <div class="field full"><label for="f-contato">E-mail ou WhatsApp <span class="req" aria-hidden="true">*</span></label><input id="f-contato" name="contato" autocomplete="email" inputmode="email" required aria-describedby="f-contato-hint f-contato-error"><p class="hint" id="f-contato-hint">Para responder com a proposta. Telefone com DDD.</p><p class="field-error" id="f-contato-error"></p></div>
+          <div class="field"><label for="f-nome">Nome <span class="req" aria-hidden="true">*</span></label><input id="f-nome" name="nome" autocomplete="name" maxlength="120" required aria-describedby="f-nome-error"><p class="field-error" id="f-nome-error"></p></div>
+          <div class="field"><label for="f-empresa">Empresa</label><input id="f-empresa" name="empresa" autocomplete="organization" maxlength="160"></div>
+          <div class="field full"><label for="f-contato">E-mail ou WhatsApp <span class="req" aria-hidden="true">*</span></label><input id="f-contato" name="contato" autocomplete="email" maxlength="160" required aria-describedby="f-contato-hint f-contato-error"><p class="hint" id="f-contato-hint">Para responder com a proposta. Telefone com DDD.</p><p class="field-error" id="f-contato-error"></p></div>
         </div>
         <fieldset class="fieldset" id="f-tipo" aria-describedby="f-tipo-error"><legend>Tipo de projeto <span class="req" aria-hidden="true">*</span></legend><div class="choices">{choices}</div><p class="field-error" id="f-tipo-error"></p></fieldset>
         <div class="field" id="picked-wrap" hidden><span class="field-label">Peças selecionadas</span><ul class="picked-list" id="picked-list" aria-label="Peças selecionadas por você"></ul><input type="hidden" name="selecao" id="f-selecao"><a class="link" href="/brindes-corporativos-premium/">Adicionar mais peças {ARROW}</a></div>
@@ -1382,7 +1386,7 @@ def page_proposta():
           <div class="field" data-show-for="brindes kits confeccoes ativacoes hotelaria integrado"><label for="f-qtd">Quantidade aproximada</label><input id="f-qtd" name="quantidade" type="number" min="1" inputmode="numeric" placeholder="Ex.: 80"></div>
           <div class="field" data-show-for="brindes kits confeccoes ativacoes hotelaria integrado"><label for="f-data">Data desejada</label><input id="f-data" name="data" type="date"></div>
           <div class="field full"><label for="f-orcamento">Orçamento estimado (opcional)</label><select id="f-orcamento" name="orcamento"><option value="">Prefiro não informar</option><option>Até R$ 5 mil</option><option>R$ 5 mil a R$ 20 mil</option><option>R$ 20 mil a R$ 50 mil</option><option>Acima de R$ 50 mil</option></select></div>
-          <div class="field full"><label for="f-objetivo">Objetivo do projeto <span class="req" aria-hidden="true">*</span></label><textarea id="f-objetivo" name="objetivo" required aria-describedby="f-objetivo-error" placeholder="Ex.: receber 40 novas pessoas em março com um kit que apresente a cultura da empresa."></textarea><p class="field-error" id="f-objetivo-error"></p></div>
+          <div class="field full"><label for="f-objetivo">Objetivo do projeto <span class="req" aria-hidden="true">*</span></label><textarea id="f-objetivo" name="objetivo" maxlength="4000" required aria-describedby="f-objetivo-error" placeholder="Ex.: receber 40 novas pessoas em março com um kit que apresente a cultura da empresa."></textarea><p class="field-error" id="f-objetivo-error"></p></div>
         </div>
         <div class="field"><label class="check" for="f-consent" style="text-transform:none;letter-spacing:0;font-weight:400;font-size:.9375rem"><input type="checkbox" id="f-consent" name="consentimento" value="sim" required aria-describedby="f-consent-error"> <span>Concordo que a TaMa use estes dados para responder ao meu pedido, conforme a <a href="/privacidade/">política de privacidade</a>.</span></label><p class="field-error" id="f-consent-error"></p></div>
         <div class="form-foot"><button class="btn btn-wine" type="submit" id="submit-btn">Enviar pedido {ARROW}</button><p class="form-status" id="form-status" role="status" aria-live="polite"></p></div>

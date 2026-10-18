@@ -177,7 +177,7 @@ IMAGES = {}
 # largura real da foto do carrossel (fotos 3:2 na metade direita; no celular, um pouco maior que a tela por causa do corte)
 HERO_SIZES = '(max-width: 760px) 120vw, 95vw'
 CARROSSEL_HQ = {'hero-brindes', 'hero-v3-confeccoes', 'hero-kits', 'home-escritorio'}
-FOTOS_HQ = CARROSSEL_HQ | {'home-frente-brindes', 'home-frente-confeccoes', 'home-frente-kits', 'kits-header', 'conf-header', 'ativ-header', 'hot-header'}   # fotos enviadas em alta pela TaMa (home e cabeçalhos de kits e confecções)
+FOTOS_HQ = CARROSSEL_HQ | {'home-frente-brindes', 'home-frente-confeccoes', 'home-frente-kits', 'kits-header', 'conf-header', 'ativ-header', 'hot-header', 'brindes-header', 'brindes-entrega'}   # fotos enviadas em alta pela TaMa (home e cabeçalhos de kits e confecções)
 
 
 def build_images():
@@ -1273,17 +1273,31 @@ def page_home():
     }
 
 
+BRINDES_ATALHOS = [('Copos e garrafas', '/catalogo/?categoria=garrafas-copos'), ('Escrita e escritório', '/catalogo/?categoria=canetas-escritorio'),
+                   ('Bolsas e acessórios', '/catalogo/?categoria=bolsas-embalagens'), ('Tecnologia', '/solicitar-proposta/?tipo=brindes')]   # tecnologia ainda não tem peças no catálogo: vai direto ao pedido
+
+
+def brindes_hero(trail):
+    return foto_hero(trail, 'brindes-header',
+                     'Brindes com marcas fictícias sobre blocos de pedra: garrafa azul Nexo, ecobag cru com alças verdes Vera, copo térmico '
+                     'terracota Elo, caderno verde Vera com caneta prata e nécessaire grafite Elo, em estúdio com luz natural.',
+                     'Brindes corporativos', ['Sua marca presente.'], 'Muito além da entrega.',
+                     'Brindes personalizados para fazer parte da rotina de clientes e equipes. Explore opções para eventos, campanhas e '
+                     'relacionamento, com as cores e a identidade da sua empresa.',
+                     f'<a class="btn btn-wine" href="#estudio-b-t">Explorar brindes {ARROW}</a>'
+                     + cta_link(tipo='brindes', cls='btn btn-line', arrow=False, track_label='brindes-head'),
+                     'Imagem ilustrativa • Marcas fictícias', pos_m='88% center') + '\n' + atalhos('Encontre o brinde para a sua próxima ideia.', BRINDES_ATALHOS, 'brindes-atalhos-t', linha=False, traco=True)
+
+
 def page_brindes():
     return {
         'path': '/brindes-corporativos/', 'og': 'hero-gift', 'assunto': 'brindes corporativos', 'title': 'Brindes corporativos personalizados para empresas | TaMa Creative',
         'description': 'Brindes personalizados para empresas com curadoria de peças e acabamento escolhido para o seu público: presentes para clientes, colaboradores e eventos. Peça uma proposta.',
         'trail': [('/', 'Início'), ('/brindes-corporativos/', 'Brindes corporativos')],
         'service': {'key': 'brindes', 'name': 'Brindes corporativos personalizados', 'type': 'Brindes corporativos'},
-        'preload': preload_image('hero-gift', '(max-width: 760px) 92vw, 46vw'),
-        'body': page_head('Brindes corporativos', 'Brindes corporativos personalizados, escolhidos para serem usados',
-                          'Presentes e brindes para clientes, colaboradores e eventos, com curadoria de materiais, cores da sua marca e acabamento cuidado. Peças que entram na rotina de quem recebe.',
-                          cta_link(tipo='brindes', track_label='brindes-head') + '<a class="btn btn-line" href="/brindes-corporativos-premium/">Ideias por ocasião</a>',
-                          'hero-gift', 'Garrafa verde, bandeja, caixas terracota e caneca mostarda com a marca TaMa como exemplo. Imagem ilustrativa.') + f'''
+        'preload': preload_image('brindes-header', FOTO_HERO_SIZES),   # mesma imagem e sizes da foto do cabeçalho
+        'crumbs_inline': True,
+        'body': brindes_hero([('/', 'Início'), ('/brindes-corporativos/', 'Brindes corporativos')]) + f'''
 <section class="section ivory" aria-labelledby="escolha-t">
   <div class="wrap">
     <div class="section-head"><p class="eyebrow">Como escolhemos</p><h2 id="escolha-t" class="section-title">Três perguntas antes de qualquer peça</h2><p class="muted">A curadoria começa pelo uso, não pelo catálogo. É o que separa um brinde lembrado de um brinde esquecido na gaveta.</p></div>
@@ -1309,13 +1323,19 @@ def page_brindes():
     </dl>
   </div>
 </section>
-<section class="section" aria-labelledby="entrega-t">
-  <div class="wrap split">
-    <figure>{picture('embalagem-presente', 'Embalagem de presente com fita. Imagem ilustrativa.', '(max-width: 760px) 92vw, 46vw', cls='photo')}<figcaption class="caption">{CAP}</figcaption></figure>
-    <div class="stack">
-      <p class="eyebrow">Apresentação</p><h2 id="entrega-t" class="section-title">A entrega também comunica</h2>
-      <p class="muted">O momento de abrir a caixa faz parte do brinde. Opções de apresentação que podem entrar na proposta:</p>
-      <dl class="pack"><div><dt>Caixa rígida</dt><dd>Com a marca aplicada por fora e um detalhe na tampa interna.</dd></div><div><dt>Papel de seda</dt><dd>Nas cores da marca, envolvendo cada peça.</dd></div><div><dt>Lacre e cartão</dt><dd>Lacre com o símbolo da marca e uma mensagem curta de quem envia.</dd></div></dl>
+<section class="section entrega" aria-labelledby="entrega-t">
+  <div class="wrap entrega-grid">
+    <figure class="entrega-foto">{picture('brindes-entrega', 'Caixa azul-petróleo da marca fictícia Nexo aberta sobre bandeja de pedra: presente envolto em papel de seda com padrão gravado, lacre redondo com o símbolo, cartão em relevo e fita de gorgorão azul.', '(max-width: 900px) min(calc(100vw - 32px), 640px), (max-width: 1340px) 50vw, 680px')}<figcaption>Imagem ilustrativa • Marca fictícia</figcaption></figure>
+    <div class="entrega-texto">
+      <p class="eyebrow">Apresentação</p>
+      <h2 id="entrega-t" class="entrega-title"><span>A entrega</span> <em>também comunica<span class="ponto">.</span></em></h2>
+      <p class="entrega-desc">A experiência começa antes de revelar o <strong>presente.</strong> Combine o brinde com uma apresentação que leve as cores, a identidade e a mensagem da sua empresa.</p>
+      <dl class="entrega-lista">
+        <div><dt>Caixas e embalagens</dt><dd>Formatos e acabamentos escolhidos conforme as peças e a proposta.</dd></div>
+        <div><dt>Papel de seda e fitas</dt><dd>Cores e detalhes que valorizam o momento de abrir.</dd></div>
+        <div><dt>Lacres e cartões</dt><dd>Sua identidade e uma mensagem para quem recebe.</dd></div>
+      </dl>
+      {cta_link('Incluir embalagem na proposta', tipo='brindes', track_label='brindes-embalagem')}
     </div>
   </div>
 </section>
@@ -1478,11 +1498,11 @@ ICONES = {   # traço fino, cor do texto (currentColor)
 }
 
 
-def atalhos(titulo, itens, aria, linha=True, centro=False):
+def atalhos(titulo, itens, aria, linha=True, centro=False, traco=False):
     """Faixa de atalhos logo abaixo dos cabeçalhos de foto: título serifado e links com seta, separados por fios.
     itens: (texto, link) ou (texto, link, ícone de ICONES)."""
     lis = ''.join(f'<li><a href="{it[1]}">{ICONES.get(it[2], "") if len(it) > 2 else ""}<span>{it[0]}</span> {ARROW}</a></li>' for it in itens)
-    return f'''<section class="atalhos{'' if linha else ' sem-linha'}{' centro' if centro else ''}" aria-labelledby="{aria}">
+    return f'''<section class="atalhos{'' if linha else ' sem-linha'}{' centro' if centro else ''}{' traco' if traco else ''}" aria-labelledby="{aria}">
   <div class="wrap">
     <h2 id="{aria}" class="atalhos-title">{titulo}</h2>
     <ul class="atalhos-list" style="--n:{len(itens)}">{lis}</ul>

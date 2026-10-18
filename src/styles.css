@@ -967,3 +967,45 @@ html.cat-lock { overflow: hidden; }
 .atalhos.centro .atalhos-title { justify-content: center; text-align: center; }
 @media (max-width: 900px) { .atalhos.centro .atalhos-title { justify-content: flex-start; text-align: left; } }
 @media (min-width: 901px) { .atalhos.centro .atalhos-list li:first-child { justify-content: center; } }
+/* traço: fio curto vinho acima do título e links sublinhados por um fio (mockup de brindes) */
+.atalhos.traco .atalhos-title { flex-direction: column; align-items: flex-start; gap: 0; }
+.atalhos.traco .atalhos-title::before { content: ""; width: 52px; height: 2px; margin-bottom: clamp(16px, 1.6vw, 22px); background: var(--wine); }
+.atalhos.traco .atalhos-list a { border-bottom: 1px solid var(--line-strong); padding-bottom: 6px; transition: border-color .2s ease; }
+.atalhos.traco .atalhos-list a:hover { border-color: var(--wine); }
+@media (max-width: 480px) { .foto-hero-title span, .foto-hero-title em { white-space: normal; } }
+@media (max-width: 600px) {
+  .atalhos.traco .atalhos-list { grid-template-columns: minmax(0, 1fr); row-gap: 0; }
+  .atalhos.traco .atalhos-list li, .atalhos.traco .atalhos-list li + li { border-left: 0; padding-left: 0; }
+  .atalhos.traco .atalhos-list a { display: flex; justify-content: space-between; width: 100%; padding-block: 8px; }
+}
+
+/* Brindes: "A entrega também comunica." (mockup de 18/10/2026): foto quadrada à esquerda, texto e lista à direita */
+.entrega-grid { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: clamp(32px, 5vw, 72px); align-items: center; }
+.entrega-foto { margin: 0; }
+.entrega-foto picture, .entrega-foto img { display: block; width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 6px; }
+.entrega-foto figcaption { margin-top: 12px; font-size: .75rem; color: var(--muted); }
+.entrega-title { margin: 18px 0 clamp(20px, 2.4vw, 32px); font-size: clamp(2.5rem, 1.1rem + 3.1vw, 4.4rem); line-height: 1.02; letter-spacing: -.04em; }
+.entrega-title span, .entrega-title em { display: block; }
+.entrega-title em { font-weight: 500; color: var(--wine); letter-spacing: -.03em; }
+.entrega-title .ponto { display: inline; color: var(--coral); }
+.entrega-desc { max-width: 36em; font-size: clamp(1rem, .9rem + .3vw, 1.125rem); line-height: 1.65; color: var(--muted); }
+.entrega-desc strong { color: var(--ink); font-weight: 600; }
+.entrega-lista { margin: clamp(24px, 3vw, 36px) 0 clamp(26px, 3vw, 36px); border-top: 1px solid var(--line-strong); }
+.entrega-lista > div { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 8px clamp(20px, 2.4vw, 40px); align-items: center; padding-block: clamp(16px, 2vw, 26px); border-bottom: 1px solid var(--line-strong); }
+.entrega-lista dt { font-family: var(--f-serif); font-size: clamp(1.25rem, .8rem + .9vw, 1.625rem); white-space: nowrap; line-height: 1.2; color: var(--ink); }
+.entrega-lista dd { margin: 0; font-size: .9375rem; line-height: 1.6; color: var(--muted); }
+@supports (grid-template-columns: subgrid) {
+  .entrega-lista { display: grid; grid-template-columns: auto minmax(0, 1fr); column-gap: clamp(20px, 2.4vw, 40px); }
+  .entrega-lista > div { grid-column: 1 / -1; grid-template-columns: subgrid; }
+}
+.entrega .btn { min-height: 56px; padding-inline: 34px; }
+@media (max-width: 900px) {
+  .entrega-grid { grid-template-columns: minmax(0, 1fr); }
+  .entrega-foto { max-width: 640px; }
+}
+@media (max-width: 520px) {
+  .entrega-lista, .entrega-lista > div { display: block; }
+  .entrega-lista dt { white-space: normal; margin-bottom: 6px; }
+  .entrega .btn { width: 100%; justify-content: center; }
+}
+

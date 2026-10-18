@@ -31,6 +31,17 @@
   "caneca",
   "copo-com-tampa",
   "squeeze",
+  "taca-de-champanhe",
+  "taca-de-gin",
+  "taca-de-vinho",
+  "taca-coupe-canelada",
+  "flute-com-borda-dourada",
+  "taca-de-gin-transparente",
+  "taca-de-gin-com-pe-colorido",
+  "taca-de-gin-degrade",
+  "taca-de-gin-com-borda-dourada",
+  "taca-martini",
+  "taca-margarita",
   "ecobag",
   "caixa-para-presente",
   "sacola-para-presente",
@@ -101,7 +112,8 @@
   "taca-de-gin": [
    "eventos",
    "lancamentos",
-   "campanhas"
+   "campanhas",
+   "fim-de-ano"
   ],
   "vela": [
    "fim-de-ano",
@@ -197,6 +209,70 @@
   "caneta-executiva-roller": [
    "executivos",
    "reconhecimento"
+  ],
+  "taca-coupe-canelada": [
+   "fim-de-ano",
+   "eventos",
+   "lancamentos"
+  ],
+  "flute-com-borda-dourada": [
+   "fim-de-ano",
+   "eventos",
+   "lancamentos"
+  ],
+  "taca-de-gin-transparente": [
+   "fim-de-ano",
+   "eventos",
+   "lancamentos"
+  ],
+  "taca-de-gin-com-pe-colorido": [
+   "fim-de-ano",
+   "eventos",
+   "lancamentos"
+  ],
+  "taca-de-gin-degrade": [
+   "fim-de-ano",
+   "eventos",
+   "lancamentos"
+  ],
+  "taca-de-gin-com-borda-dourada": [
+   "fim-de-ano",
+   "eventos",
+   "lancamentos"
+  ],
+  "taca-martini": [
+   "fim-de-ano",
+   "eventos",
+   "lancamentos"
+  ],
+  "taca-margarita": [
+   "fim-de-ano",
+   "eventos",
+   "lancamentos"
+  ],
+  "copo-baixo": [
+   "fim-de-ano",
+   "eventos",
+   "campanhas"
+  ],
+  "copo-long-drink": [
+   "fim-de-ano",
+   "eventos",
+   "campanhas"
+  ],
+  "copo-colorido-texturizado": [
+   "fim-de-ano",
+   "eventos",
+   "campanhas"
+  ],
+  "copo-com-tampa-e-canudo": [
+   "fim-de-ano",
+   "eventos",
+   "campanhas"
+  ],
+  "copo-com-cordao": [
+   "fim-de-ano",
+   "eventos"
   ]
  },
  "aliases": {

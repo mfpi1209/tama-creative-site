@@ -8,7 +8,7 @@ date: 2026-10-12
 destaque: true
 tema: fim-de-ano
 ocasiao: fim-de-ano
-servico: /brindes-corporativos-premium/
+servico: /brindes-de-fim-de-ano/
 proposta: brindes
 capa: hero-gift
 capa_alt: caderno azul, bandeja em couro, garrafa térmica verde, xícara mostarda e caixas de presente sobre blocos de pedra.
@@ -111,6 +111,8 @@ Dezembro é mais curto do que parece. Entre feriados, fechamento de ano e féria
 5. **Mensagens** escritas por quem assina.
 
 O prazo de produção depende das peças, das quantidades e dos acabamentos escolhidos. Quanto antes a conversa começar, mais opções de materiais e personalização continuam disponíveis.
+
+Para ver numa página só as taças, os kits prontos e as peças que acompanham o próximo ano, conheça os [brindes de fim de ano da TaMa](/brindes-de-fim-de-ano/).
 
 ## Checklist rápido
 

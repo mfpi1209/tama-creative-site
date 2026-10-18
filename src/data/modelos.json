@@ -434,6 +434,54 @@
    "descricao_seo": ""
   },
   {
+   "produto": "Copo colorido texturizado",
+   "genero": "m",
+   "resumo": "Com textura torcida e cores vivas, este copo anima festas, eventos ao ar livre e ações promocionais. É uma opção para confraternizações de fim de ano e campanhas em que a marca circula de mão em mão. Cor, material e aplicação da marca são definidos na proposta.",
+   "usos": [
+    "Festas e confraternizações",
+    "Eventos ao ar livre",
+    "Ações promocionais"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "",
+   "descricao_seo": ""
+  },
+  {
+   "produto": "Copo baixo",
+   "genero": "m",
+   "resumo": "O copo baixo é o formato das caipirinhas, dos drinks e dos destilados, presente em happy hours, festas e eventos da empresa. Pode compor kits de coquetel e presentes de fim de ano, levando a marca para a mesa de quem recebe. Cor, material e aplicação da marca são definidos na proposta.",
+   "usos": [
+    "Happy hours",
+    "Festas da empresa",
+    "Kits de coquetel"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "",
+   "descricao_seo": ""
+  },
+  {
+   "produto": "Copo com cordão",
+   "genero": "m",
+   "resumo": "Com um cordão para levar no pescoço, o copo deixa as mãos livres em festas, shows, feiras e eventos de grande público. A marca circula com quem usa durante todo o evento e segue com a pessoa depois. Cor, material e aplicação da marca são definidos na proposta.",
+   "usos": [
+    "Festas e shows",
+    "Feiras e eventos",
+    "Confraternizações"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "",
+   "descricao_seo": ""
+  },
+  {
    "produto": "Copo com tampa",
    "genero": "m",
    "resumo": "Um copo com tampa com tampa para levar a bebida da mesa de trabalho para reuniões, deslocamentos e eventos. Funciona bem em kits de integração, ações de endomarketing e presentes para clientes, colocando a marca em um objeto que circula pelo dia a dia de quem recebe.",
@@ -441,6 +489,22 @@
     "Kits de integração",
     "Ações de endomarketing",
     "Presentes para clientes"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "",
+   "descricao_seo": ""
+  },
+  {
+   "produto": "Copo com tampa e canudo",
+   "genero": "m",
+   "resumo": "Com tampa de encaixe e canudo na mesma cor, o copo acompanha a bebida pela festa, pelo evento ou pela mesa de trabalho. Funciona em campanhas, kits para participantes e confraternizações de fim de ano, com a marca à vista a cada gole. Cor, material e aplicação da marca são definidos na proposta.",
+   "usos": [
+    "Eventos e festas",
+    "Campanhas",
+    "Kits para participantes"
    ],
    "medidas": {
     "valor": "",
@@ -473,6 +537,22 @@
     "Happy hours",
     "Fim de ano",
     "Presentes para clientes"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "",
+   "descricao_seo": ""
+  },
+  {
+   "produto": "Copo long drink",
+   "genero": "m",
+   "resumo": "Alto e reto, o copo long drink serve drinks, sucos e água em eventos, festas e ações de marca. Faz parte do Kit Coquetel e também funciona sozinho como brinde de fim de ano para equipes. Cor, material e aplicação da marca são definidos na proposta.",
+   "usos": [
+    "Eventos e festas",
+    "Kits de coquetel",
+    "Ações de marca"
    ],
    "medidas": {
     "valor": "",
@@ -553,6 +633,22 @@
     "Kits de boas-vindas",
     "Fim de ano",
     "Kits de eventos"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "",
+   "descricao_seo": ""
+  },
+  {
+   "produto": "Flute com borda dourada",
+   "genero": "f",
+   "resumo": "Alta e esguia, a flute com filete dourado na borda acompanha o espumante nos brindes de fim de ano, nas inaugurações e nas comemorações de metas. Entra bem em kits para clientes e parceiros, com a marca presente no momento do brinde. Cor, material e aplicação da marca são definidos na proposta.",
+   "usos": [
+    "Brindes de fim de ano",
+    "Inaugurações",
+    "Kits para clientes"
    ],
    "medidas": {
     "valor": "",
@@ -802,6 +898,22 @@
    "descricao_seo": ""
   },
   {
+   "produto": "Taça coupe canelada",
+   "genero": "f",
+   "resumo": "Com bojo canelado e pé curto, a taça coupe traz um ar clássico ao brinde de fim de ano, à festa da empresa e aos jantares com clientes. Em dupla, é a base do Kit Brinde, com caixa e cartão na identidade da marca. Cor, material e aplicação da marca são definidos na proposta.",
+   "usos": [
+    "Brinde de fim de ano",
+    "Kits de espumante",
+    "Festas da empresa"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "",
+   "descricao_seo": ""
+  },
+  {
    "produto": "Taça de champanhe",
    "genero": "f",
    "resumo": "Clássica dos brindes, a taça de champanhe acompanha inaugurações, lançamentos, festas de fim de ano e comemorações de metas. Pode compor kits de espumante para clientes e parceiros ou ser entregue aos convidados de um evento, levando a marca para o momento do brinde.",
@@ -834,6 +946,70 @@
    "descricao_seo": ""
   },
   {
+   "produto": "Taça de gin com borda dourada",
+   "genero": "f",
+   "resumo": "O filete dourado na borda dá à taça de gin um acabamento de festa, pensado para o brinde de fim de ano e para presentes a clientes e parceiros. Também compõe kits de drinks com caixa e cartão na identidade da empresa. Cor, material e aplicação da marca são definidos na proposta.",
+   "usos": [
+    "Presentes para clientes",
+    "Brinde de fim de ano",
+    "Kits de drinks"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "",
+   "descricao_seo": ""
+  },
+  {
+   "produto": "Taça de gin com pé colorido",
+   "genero": "f",
+   "resumo": "O bojo transparente se apoia num pé colorido, escolhido entre as cores de referência. É uma escolha para festas de fim de ano, eventos e lançamentos em que a mesa de drinks também fala a língua visual da empresa. Cor, material e aplicação da marca são definidos na proposta.",
+   "usos": [
+    "Festas de fim de ano",
+    "Eventos",
+    "Lançamentos"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "",
+   "descricao_seo": ""
+  },
+  {
+   "produto": "Taça de gin degradê",
+   "genero": "f",
+   "resumo": "A cor corre em degradê do bojo ao pé e faz da taça uma peça de presença na mesa e nas fotos do evento. Combina com lançamentos, festas de fim de ano e kits de drinks para clientes e equipes. Cor, material e aplicação da marca são definidos na proposta.",
+   "usos": [
+    "Lançamentos",
+    "Festas de fim de ano",
+    "Kits de drinks"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "",
+   "descricao_seo": ""
+  },
+  {
+   "produto": "Taça de gin transparente",
+   "genero": "f",
+   "resumo": "Com bojo largo e transparente, esta taça de gin deixa espaço para a marca aparecer junto com as cores do drink. Acompanha confraternizações, lançamentos e kits de drinks para clientes, levando a marca para os momentos de celebração. Cor, material e aplicação da marca são definidos na proposta.",
+   "usos": [
+    "Kits de drinks",
+    "Confraternizações",
+    "Lançamentos"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "",
+   "descricao_seo": ""
+  },
+  {
    "produto": "Taça de vinho",
    "genero": "f",
    "resumo": "Ideal para brindar conquistas, a taça de vinho marca jantares de fim de ano, eventos com clientes e celebrações de equipe. Combina com kits de vinho e presentes para parceiros e diretoria, deixando a marca associada a um momento de reconhecimento. Cor, material e aplicação da marca são definidos na proposta.",
@@ -841,6 +1017,38 @@
     "Kits de vinho",
     "Jantares de confraternização",
     "Presentes para parceiros"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "",
+   "descricao_seo": ""
+  },
+  {
+   "produto": "Taça margarita",
+   "genero": "f",
+   "resumo": "O bojo largo em dois níveis é o que identifica a taça margarita, que leva clima de festa a confraternizações, lançamentos e eventos com clientes. Também entra no Kit Coquetel, ao lado da taça martini, da taça de gin e do copo long drink. Cor, material e aplicação da marca são definidos na proposta.",
+   "usos": [
+    "Kits de coquetel",
+    "Confraternizações",
+    "Eventos com clientes"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "",
+   "descricao_seo": ""
+  },
+  {
+   "produto": "Taça martini",
+   "genero": "f",
+   "resumo": "Com bojo em cone e haste longa, a taça martini tem o desenho clássico da coquetelaria. Faz parte do Kit Coquetel e acompanha happy hours, confraternizações e lançamentos, com a marca presente no momento do drink. Cor, material e aplicação da marca são definidos na proposta.",
+   "usos": [
+    "Kits de coquetel",
+    "Happy hours",
+    "Confraternizações"
    ],
    "medidas": {
     "valor": "",

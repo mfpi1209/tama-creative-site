@@ -325,12 +325,19 @@
     var catForm = document.getElementById('cat-form'), catQ = document.getElementById('cat-q');
     var catCards = [].slice.call(catBox.querySelectorAll('#catalogo-grid .product'));
     var catSide = document.getElementById('cat-filtros'), catScrim = catBox.querySelector('.cat-scrim'), catOpener = catBox.querySelector('[data-cat-open]');
-    var catFAM = {};
+    var catFAM = {}, catOCC = {};
     try { catFAM = JSON.parse(catBox.getAttribute('data-familias')); } catch (e) {}
+    try { catOCC = JSON.parse(catBox.getAttribute('data-ocasioes')) || {}; } catch (e) {}
+    // ocasião: radio na lateral (name="ocasiao"), espelhado na etiqueta removível acima da grade e em ?ocasiao= na URL
+    var catOccBox = catBox.querySelector('[data-cat-occ]');
+    var catSetOcc = function (k) {   // k já validado contra catOCC; sem radio para k (ou k vazio), volta para "Todas"
+      var r = (k && catForm.querySelector('input[name="ocasiao"][value="' + k + '"]')) || catForm.querySelector('input[name="ocasiao"][value=""]');
+      if (r) r.checked = true;
+    };
     var catNorm = function (s) { return String(s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim(); };
     var catState = function () {
-      var c = catForm.querySelector('input[name="categoria"]:checked');
-      return { q: catNorm(catQ.value), cat: c ? c.value : '', cores: [].map.call(catForm.querySelectorAll('input[name="cor"]:checked'), function (i) { return i.value; }) };
+      var c = catForm.querySelector('input[name="categoria"]:checked'), o = catForm.querySelector('input[name="ocasiao"]:checked');
+      return { q: catNorm(catQ.value), cat: c ? c.value : '', occ: o && catOCC.hasOwnProperty(o.value) ? o.value : '', cores: [].map.call(catForm.querySelectorAll('input[name="cor"]:checked'), function (i) { return i.value; }) };
     };
     // mostra 12 modelos por vez (todos continuam no HTML, para o Google e para quem está sem JavaScript); "Ver mais"
     // libera mais 12. Ao mudar busca ou filtro, volta a 12. O quanto já foi aberto fica no histórico (voltar da página
@@ -342,6 +349,7 @@
       catCards.forEach(function (p) {
         var hay = p.getAttribute('data-busca') || '', fams = (p.getAttribute('data-cores') || '').split(' ');
         var ok = (!st.cat || p.getAttribute('data-cat') === st.cat)
+          && (!st.occ || (' ' + (p.getAttribute('data-occ') || '') + ' ').indexOf(' ' + st.occ + ' ') !== -1)
           && words.every(function (w) { return hay.indexOf(w) !== -1; })
           && (!st.cores.length || st.cores.some(function (f) { return fams.indexOf(f) !== -1; }));
         p.hidden = !ok;
@@ -356,17 +364,20 @@
       catBox.querySelectorAll('[data-cat-n]').forEach(function (el) { el.textContent = n; });
       document.getElementById('cat-count').lastChild.textContent = n === 1 ? ' modelo' : ' modelos';
       document.getElementById('cat-vazio').hidden = n > 0;
+      catOccBox.hidden = !st.occ;
+      catOccBox.querySelector('[data-cat-occ-name]').textContent = st.occ ? catOCC[st.occ] : '';
       var vistos = Math.min(n, catLimite), resto = n - vistos;
       catMaisBox.hidden = resto <= 0;
       catBox.querySelector('[data-cat-vistos]').textContent = vistos;
       catBox.querySelector('[data-cat-total]').textContent = n;
       catMais.textContent = 'Ver mais ' + Math.min(CAT_PAG, resto) + (Math.min(CAT_PAG, resto) === 1 ? ' modelo' : ' modelos');
-      var active = (st.cat ? 1 : 0) + st.cores.length, badge = catBox.querySelector('[data-cat-badge]');
+      var active = (st.cat ? 1 : 0) + (st.occ ? 1 : 0) + st.cores.length, badge = catBox.querySelector('[data-cat-badge]');
       badge.hidden = !active; badge.textContent = active;
       if (push) {
         var u = new URLSearchParams();
         if (catQ.value.trim()) u.set('q', catQ.value.trim());
         if (st.cat) u.set('categoria', st.cat);
+        if (st.occ) u.set('ocasiao', st.occ);
         if (st.cores.length) u.set('cor', st.cores.join(','));
         history.replaceState({ catLimite: catLimite }, '', location.pathname + (u.toString() ? '?' + u : '') + '#catalogo');
       }
@@ -375,7 +386,12 @@
     catQ.addEventListener('input', function () { clearTimeout(catTimerQ); catTimerQ = setTimeout(function () { catLimite = CAT_PAG; catApply(true); }, 150); });
     catForm.addEventListener('change', function () { catLimite = CAT_PAG; catApply(true); });
     catForm.addEventListener('submit', function (e) { e.preventDefault(); catQ.blur(); });
-    catForm.addEventListener('reset', function () { setTimeout(function () { catLimite = CAT_PAG; catApply(true); }, 0); });
+    catForm.addEventListener('reset', function () { setTimeout(function () { catLimite = CAT_PAG; catApply(true); }, 0); });   // o reset volta os radios para "Todas"
+    // remover a ocasião: a etiqueta some (e o radio volta para "Todas"), então o foco vai para o total de modelos
+    catOccBox.querySelector('[data-cat-occ-clear]').addEventListener('click', function () {
+      catSetOcc(''); catLimite = CAT_PAG; catApply(true);
+      var cc = document.getElementById('cat-count'); cc.setAttribute('tabindex', '-1'); cc.focus({ preventScroll: true });
+    });
     catMais.addEventListener('click', function () {
       var antes = catLimite;
       catLimite += CAT_PAG;
@@ -386,8 +402,10 @@
       var alvo = novo && (novo.querySelector('.prod-link, a[href]') || novo);
       if (alvo) alvo.focus({ preventScroll: true });
     });
-    // URL de entrada: ?categoria=vestuario&cor=azul,verde&catQ=caneca (links internos e compartilhamento)
+    // URL de entrada: ?categoria=vestuario&cor=azul,verde&q=caneca&ocasiao=fim-de-ano (links internos e compartilhamento)
     var catParams = new URLSearchParams(location.search);
+    var catPo = catParams.get('ocasiao') || '';
+    catSetOcc(catOCC.hasOwnProperty(catPo) ? catPo : '');   // ocasião desconhecida abre sem filtro ("Todas")
     if (catParams.get('q')) catQ.value = catParams.get('q');
     var catPc = catForm.querySelector('input[name="categoria"][value="' + (catParams.get('categoria') || '').replace(/[^a-z-]/g, '') + '"]');
     if (catPc) catPc.checked = true;
@@ -624,7 +642,7 @@
   if (interesse) { var note = document.getElementById('interest-note'); note.textContent = 'Interesse: ' + interesse; note.hidden = false; }
   var origemPagina = paginaAnterior || '';
   // vindo de uma página de frente (ex.: "Montar pedido com a seleção" na Hotelaria), o tipo já vem marcado
-  var tipoPorPagina = { '/brindes-corporativos/': 'brindes', '/brindes-corporativos-premium/': 'brindes', '/kits-corporativos/': 'kits', '/confeccoes-personalizadas/': 'confeccoes', '/ativacoes-promocionais/': 'ativacoes', '/hotelaria-e-gastronomia/': 'hotelaria' };
+  var tipoPorPagina = { '/brindes-corporativos/': 'brindes', '/brindes-corporativos-premium/': 'brindes', '/kits-corporativos/': 'kits', '/confeccoes-personalizadas/': 'confeccoes', '/ativacoes-promocionais/': 'ativacoes', '/hotelaria-e-gastronomia/': 'hotelaria', '/brindes-de-fim-de-ano/': 'kits' };
   if (!form.querySelector('input[name="tipo"]:checked') && tipoPorPagina[origemPagina]) {
     var rt = form.querySelector('input[name="tipo"][value="' + tipoPorPagina[origemPagina] + '"]'); if (rt) { rt.checked = true; syncType(); }
   }

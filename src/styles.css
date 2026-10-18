@@ -1003,3 +1003,10 @@ html.cat-lock { overflow: hidden; }
 }
 
 @media (max-width: 760px) { :root { --header-h: 64px; } }   /* cabeçalho fixo mais baixo no celular: mais tela para o conteúdo ao rolar */
+/* Catálogo: 12 modelos por vez e "Ver mais" */
+.product.cat-fora { display: none; }
+.cat-mais { display: grid; justify-items: center; gap: 12px; margin: clamp(28px, 3vw, 40px) 0 8px; text-align: center; font-size: .875rem; color: var(--muted); }
+.cat-mais[hidden] { display: none; }
+.cat-mais strong { color: var(--ink); }
+.cat-mais .btn { min-width: min(100%, 280px); justify-content: center; }
+

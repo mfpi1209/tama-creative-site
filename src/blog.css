@@ -2,8 +2,7 @@
    Usa os tokens de styles.css; não redefine nada global. */
 
 /* Índice e cards (direção do pacote de refatoração: destaque em caixa, filtros, cards com borda) */
-.blog-head { padding-bottom: clamp(28px, 3.5vw, 44px); }
-.blog-head h1, .post-head h1, .post-feature h2, .post-card h3, .prose h2, .blog-list-t { color: var(--wine); }
+.post-feature h2, .post-card h3, .prose h2, .blog-list-t { color: var(--wine); }
 .post-thumb { overflow: hidden; background: var(--sand); }
 .post-thumb img { width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; transition: transform .6s ease; }
 .post-kicker { font-size: .6875rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--coral); }
@@ -39,10 +38,8 @@
 .post-card .link, .post-feature-body .link { justify-self: start; }
 
 /* Artigo */
-.post-head { display: grid; gap: 18px; max-width: 54rem; padding-block: clamp(16px, 3vw, 34px) clamp(26px, 4vw, 40px); }
-.post-head h1 { font-size: clamp(2.1rem, 1.4rem + 2.8vw, 3.5rem); line-height: 1.08; max-width: 20em; }
-.post-head .lead { max-width: 40em; }
-.post-head .eyebrow a { text-decoration: underline; text-underline-offset: 3px; }
+/* o cabeçalho do artigo é o text_head padrão do site (build.py); aqui só o respiro vertical dentro do artigo */
+.post-head { padding-block: clamp(16px, 3vw, 34px) clamp(26px, 4vw, 40px); }
 .post-draft { justify-self: start; padding: 6px 12px; border-radius: 999px; background: var(--amber-soft); color: var(--ink); font-size: .8125rem; font-weight: 700; }
 .post-cover { margin-bottom: clamp(36px, 5vw, 64px); }
 .post-cover img { width: 100%; aspect-ratio: 21 / 9; object-fit: cover; border-radius: var(--radius); }

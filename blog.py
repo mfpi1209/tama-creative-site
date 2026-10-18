@@ -482,13 +482,9 @@ def article_page(b, a):
         author = f'''<div class="post-author">{b.SELO}<div class="stack" style="gap:8px"><p><strong>{AUTOR}</strong></p>
       <p class="muted">Brindes, confecções, kits e ativações para empresas, com visão de Trade Marketing: o público e a ocasião vêm antes da peça.</p>
       {actions}</div></div>'''
+        # cabeçalho de texto padrão do site (build.text_head): eyebrow, título e apoio nas mesmas medidas das outras páginas
         body = f'''<article class="post">
-  <div class="wrap"><header class="post-head">
-    {draft}<p class="eyebrow">{tema_html(a['tema'])}</p>
-    <h1>{a['title']}</h1>
-    <p class="lead">{a['resumo']}</p>
-    <p class="post-meta">{_meta_line(a)}</p>
-  </header></div>
+  <div class="wrap">{b.text_head(tema_html(a['tema']), a['title'], a['resumo'], extra=f'<p class="post-meta">{_meta_line(a)}</p>', antes=draft, cls='post-head', inner=True, tag='header')}</div>
   <figure class="wrap post-cover">{b.picture(a['capa'], _cover_alt(a), '(max-width: 1280px) 92vw, 1184px', eager=True, style=pos)}{caption}</figure>
   <div class="wrap post-layout{'' if toc else ' no-toc'}">
     {toc}
@@ -561,28 +557,32 @@ def index_page(b):
                    'blogPost': [{'@type': 'BlogPosting', '@id': b.SITE + a['path'] + '#artigo', 'headline': a['title'], 'url': b.SITE + a['path'],
                                  'datePublished': a['date'].isoformat()} for a in pub if not a['noindex']]}
         latest = max((a['updated'] for a in pub if not a['noindex']), default=None)
+        recente = next((a for a in pub if not a['noindex']), None)   # ARTS vem em ordem de data: o primeiro publicado é o mais recente
+        trail = [('/', 'Início'), ('/blog/', 'Blog')]
+        # abertura no padrão das páginas de área (foto_hero): foto em largura total à direita, título em duas partes,
+        # botão principal para o guia mais recente e o pedido de proposta como secundário
+        hero = b.foto_hero(trail, 'blog-header',
+                           'Mesa de leitura com peças de marcas fictícias: caderno verde Vera com caneta prata, caneca creme Nexo com café, '
+                           'caixa kraft com faixa azul Nexo, folhas de papel e um vaso de pedra com eucalipto, em estúdio com luz natural.',
+                           'Conteúdos', ['Guias para presentear'], 'em nome da sua marca.',
+                           'Guias para escolher brindes, montar kits, personalizar peças e planejar ações para clientes e equipes.',
+                           (f'<a class="btn btn-wine" href="{recente["path"]}" data-track="article_click" data-track-label="blog-head">Ler o guia mais recente {b.ARROW}</a>' if recente else '')
+                           + b.cta_link(cls='btn btn-line', arrow=False, track_label='blog-head'),
+                           'Imagem ilustrativa • Marcas fictícias', pos_m='88% center')
         page = {
             'path': '/blog/', 'title': 'Blog TaMa: guias de brindes, kits e personalização',
             'description': 'Guias práticos para escolher brindes corporativos, montar kits e planejar presentes para clientes e equipes. Explore as ideias da TaMa Creative.',
-            'trail': [('/', 'Início'), ('/blog/', 'Blog')], 'wp_type': 'CollectionPage', 'ld_extra': [blog_ld],
-            'head': _head(b),
-            'body': f'''<section class="page-head blog-head">
-  <div class="wrap"><div class="section-head" style="margin:0;max-width:46rem">
-    <p class="eyebrow">Blog TaMa</p>
-    <h1>Ideias para a sua marca fazer parte da rotina.</h1>
-    <p class="lead">Guias para escolher brindes, montar kits, personalizar peças e planejar ações para clientes e equipes.</p>
-  </div></div>
-</section>
-<section class="section" style="padding-top:0" aria-label="Artigos do blog">
+            'trail': trail, 'wp_type': 'CollectionPage', 'ld_extra': [blog_ld],
+            'head': _head(b), 'crumbs_inline': True,   # o caminho fica sobre a área clara da foto, como nas páginas de área
+            'preload': b.preload_image('blog-header', b.FOTO_HERO_SIZES),   # mesma imagem e sizes da foto do cabeçalho
+            'body': hero + f'''
+<section class="section" style="padding-top:clamp(28px,4vw,48px)" aria-label="Artigos do blog">
   <div class="wrap">{listing(b, pub)}</div>
 </section>
 {b.end_cta(title='Sua próxima ideia começa com uma boa escolha.',
            text='Conte quem vai receber, qual é a ocasião e quando você precisa entregar. A TaMa ajuda a organizar as possibilidades.',
            eyebrow='Vamos conversar?', label='Conversar sobre meu projeto')}''',
         }
-        first = destaque(pub)
-        if first and first['capa']:
-            page['preload'] = b.preload_image(first['capa'], '(max-width: 980px) 92vw, 760px')
         if latest:
             page['lastmod'] = latest.isoformat()
         return page
@@ -598,8 +598,7 @@ def tema_page(b, key):
             'description': f'{desc} Guias práticos da TaMa Creative sobre {label.lower()}.'[:160],
             'trail': [('/', 'Início'), ('/blog/', 'Blog'), (f'/blog/tema/{key}/', label)], 'wp_type': 'CollectionPage',
             'head': _head(b), 'lastmod': max(a['updated'] for a in arts).isoformat(),
-            'body': f'''<section class="page-head blog-head"><div class="wrap"><div class="section-head" style="margin:0;max-width:46rem">
-  <p class="eyebrow">Blog TaMa · Categoria</p><h1>{label}</h1><p class="lead">{desc}</p></div></div></section>
+            'body': b.text_head('Conteúdos · Categoria', label, desc) + f'''
 <section class="section" style="padding-top:0" aria-label="Artigos da categoria"><div class="wrap">{listing(b, arts, feature=False)}</div></section>
 {b.end_cta()}''',
         }

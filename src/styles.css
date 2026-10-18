@@ -342,11 +342,25 @@ main { overflow-x: clip; }
 .end-cta p { color: #F2DDD7; font-size: 1rem; max-width: 36em; }
 
 /* Inner pages */
-.page-head { padding-block: clamp(18px, 3vw, 36px) clamp(52px, 7vw, 88px); }
-.page-head .copy { display: grid; gap: 20px; }
-.page-media { position: relative; }
-.page-media picture, .page-media img { width: 100%; aspect-ratio: 16 / 11; object-fit: cover; border-radius: var(--radius); }
-.page-media figcaption, .caption { margin-top: 10px; font-size: .75rem; color: var(--muted); }
+.caption { margin-top: 10px; font-size: .75rem; color: var(--muted); }
+/* Cabeçalho de texto (build.text_head): um componente só para as páginas sem foto de abertura (proposta, obrigado,
+   privacidade, 404, ocasiões, artigos e modelos): eyebrow + título + apoio nas mesmas medidas. O <em> do título é a
+   parte em itálico vinho, como nos cabeçalhos com foto (.foto-hero-title). */
+.text-head { padding-block: clamp(18px, 3vw, 36px) clamp(28px, 4vw, 44px); }
+.text-head.solo { padding-bottom: clamp(52px, 7vw, 88px); }   /* páginas que só têm o cabeçalho (obrigado, 404) */
+.text-head-copy { display: grid; gap: 14px; max-width: 50rem; }
+.text-head-copy h1 { font-size: clamp(2.2rem, 1.4rem + 2.6vw, 3.4rem); line-height: 1.06; letter-spacing: -.03em; max-width: 18em; }
+.text-head-copy h1 em { font-style: italic; font-weight: 500; color: var(--wine); }
+.text-head-copy .lead { max-width: 40em; }
+.text-head-copy .actions { margin-top: 6px; }
+.text-head-copy .eyebrow a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+.text-head-meta { font-size: .8125rem; color: var(--muted); }
+/* catálogo: a mesma família dos cabeçalhos com foto (título em duas linhas, a segunda em itálico vinho), sem a foto e mais baixa */
+.text-head-xl { padding-bottom: clamp(20px, 3vw, 32px); }
+.text-head-xl h1 { font-size: clamp(2.6rem, .6rem + 3.6vw, 4.4rem); line-height: 1.02; letter-spacing: -.045em; max-width: none; text-wrap: initial; }
+.text-head-xl h1 span, .text-head-xl h1 em { display: block; }
+.text-head-xl h1 em { letter-spacing: -.035em; }
+@media (max-width: 760px) { .text-head-xl h1 { font-size: clamp(2.35rem, 1.3rem + 4.6vw, 3rem); } }
 /* Cabeçalho dos kits (mockup da TaMa): a foto 16:9 encosta à direita com a altura do cabeçalho e se dissolve no creme
    à esquerda; como a altura acompanha a largura da tela, as caixas (a partir de 29% da foto) começam sempre depois
    da coluna de texto. Até 1100 px (como no carrossel da home) o texto vem acima e a foto abaixo, cortada em direção às caixas. */
@@ -450,9 +464,6 @@ a.case:hover .case-media img { transform: scale(1.03); }
 .question { background: #4E192A; color: #fff; }
 .question blockquote { margin-top: 14px; font-family: var(--f-serif); font-style: italic; font-size: var(--s-2xl); line-height: 1.1; color: #fff; max-width: 16em; text-wrap: balance; }
 .question p { color: #F2DDD7; }
-.seal-block { display: grid; justify-items: center; text-align: center; gap: 18px; }
-.seal-block .selo { width: min(230px, 70%); height: auto; }
-.seal-block p { font-family: var(--f-serif); font-style: italic; font-size: 1.5rem; color: var(--wine); }
 .pull { margin-top: clamp(40px, 5vw, 64px); padding-top: 28px; border-top: 1px solid var(--line-strong); font-family: var(--f-serif); font-size: var(--s-xl); line-height: 1.15; letter-spacing: -.03em; max-width: 22em; text-wrap: balance; }
 .pull em { color: var(--wine-2); }
 
@@ -853,7 +864,7 @@ html.cat-lock { overflow: hidden; }
 .pdp-thumb[aria-pressed="true"] { border: 2px solid var(--wine); }
 .pdp-info { display: grid; gap: 16px; position: sticky; top: calc(var(--header-h) + 24px); }
 .pdp-info .eyebrow a { color: inherit; text-decoration: none; }
-.pdp-info h1 { font-size: clamp(2.1rem, 4vw, 3.2rem); }
+.pdp-info .text-head-copy { max-width: none; }   /* o título e o resumo usam as medidas do cabeçalho de texto padrão */
 .pdp-desc { font-size: 1.0625rem; color: var(--muted); }
 .pdp-label { font-size: .875rem; color: var(--muted); margin-bottom: 8px; }
 .pdp-label strong { color: var(--ink); }

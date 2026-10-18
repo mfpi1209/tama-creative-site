@@ -195,7 +195,7 @@ CARROSSEL_HQ = {'hero-brindes', 'fim-header', 'hero-v3-confeccoes', 'hero-kits',
 # fotos do carrossel mais estreitas que 1,9:1 que também já trazem o vazio do texto à esquerda (fim-header: a parede
 # iluminada ocupa o primeiro terço; a taça solta começa em ~37% da largura)
 CARROSSEL_RESPIRO = {'fim-header'}
-FOTOS_HQ = CARROSSEL_HQ | {'home-frente-brindes', 'home-frente-confeccoes', 'home-frente-kits', 'kits-header', 'conf-header', 'ativ-header', 'hot-header', 'brindes-header', 'brindes-entrega', 'fim-header'}   # fotos enviadas em alta pela TaMa (home e cabeçalhos de kits e confecções)
+FOTOS_HQ = CARROSSEL_HQ | {'home-frente-brindes', 'home-frente-confeccoes', 'home-frente-kits', 'kits-header', 'conf-header', 'ativ-header', 'hot-header', 'brindes-header', 'brindes-entrega', 'fim-header', 'blog-header', 'sobre-header'}   # fotos enviadas em alta pela TaMa (home e cabeçalhos das páginas)
 
 
 def build_images():
@@ -578,13 +578,11 @@ def page_catalogo():
         'description': f'{len(CATALOGO)} modelos para personalizar com a sua marca: vestuário, canetas, bolsas, embalagens, garrafas, acessórios e casa. Monte sua seleção e peça uma proposta.',
         'trail': [('/', 'Início'), ('/catalogo/', 'Catálogo')],
         'wp_type': 'CollectionPage', 'ld_extra': [item_list],
-        'body': f'''<section class="page-head" style="padding-bottom:clamp(20px,3vw,32px)">
-  <div class="wrap"><div class="section-head" style="margin:0;max-width:54rem">
-    <p class="eyebrow">Catálogo</p>
-    <h1>{len(CATALOGO)} modelos para a sua marca</h1>
-    <p class="lead">Cada modelo aparece com a identidade TaMa como exemplo. Toque na cor de referência, adicione à seleção e envie junto com o pedido de proposta. Modelos, cores, materiais e técnicas são confirmados na proposta.</p>
-  </div></div>
-</section>
+        # abertura da mesma família dos cabeçalhos com foto (eyebrow, título em duas partes com a segunda em itálico vinho,
+        # apoio), mais baixa e sem foto: a busca do catálogo vem logo abaixo
+        'body': text_head('Catálogo', f'<span>{len(CATALOGO)} modelos</span> <em>para a sua marca.</em>',
+                          'Cada modelo aparece com a identidade TaMa como exemplo. Toque na cor de referência, adicione à seleção e envie junto com o pedido de proposta. Modelos, cores, materiais e técnicas são confirmados na proposta.',
+                          cls='text-head-xl') + f'''
 {season_callout('catalogo')}
 {catalogo_block()}
 {end_cta(tipo='brindes')}''',
@@ -673,7 +671,6 @@ def page_produto(c):
     medidas = (f'<div><dt>Medidas</dt><dd>{esc(med["valor"])}</dd></div>' if med.get('status') == 'confirmado' and med.get('valor') else '')
     usos = [u for u in (info.get('usos') or []) if u]
     usos_html = (f'<div class="pdp-usos"><p class="pdp-label">Ideal para</p><ul>{"".join(f"<li>{esc(u)}</li>" for u in usos)}</ul></div>' if usos else '')
-    resumo = f'<p class="pdp-resumo">{esc(info["resumo"])}</p>' if info.get('resumo') else ''
     tipo = 'confeccoes' if c['categoria'] == 'vestuario' else 'brindes'
     cat_nome = CAT_PROD.get(c['categoria'], 'Catálogo')
     mesma = [x for x in CATALOGO if x['categoria'] == c['categoria']]
@@ -710,9 +707,7 @@ def page_produto(c):
         {f'<div class="pdp-thumbs" role="group" aria-label="Cores de {esc(nome)}">{"".join(thumbs)}</div>' if len(thumbs) > 1 else ''}
       </div>
       <div class="pdp-info">
-        <p class="eyebrow"><a href="/catalogo/?categoria={c['categoria']}#catalogo">{cat_nome}</a></p>
-        <h1>{nome}</h1>
-        {resumo}
+        {text_head(f'<a href="/catalogo/?categoria={c["categoria"]}#catalogo">{cat_nome}</a>', nome, esc(info['resumo']) if info.get('resumo') else '', lead_cls='pdp-resumo', inner=True)}
         <p class="prod-desc pdp-desc">Modelo da imagem: {c['descricao']}</p>
         {usos_html}
         <div class="pdp-cores"><p class="pdp-label">Cor de referência: <strong class="color-name">{cores[0][0]}</strong></p>{swatches(dict(c, cores=cores))}</div>
@@ -1181,15 +1176,20 @@ def process_strip():
 </section>'''
 
 
-def page_head(eyebrow, h1, lead, actions, img=None, alt='', obj=''):
-    media = ''
-    if img:
-        media = f'<figure class="page-media">{picture(img, alt, "(max-width: 760px) 92vw, 46vw", eager=True, style=obj)}<figcaption>{CAP}</figcaption></figure>'
-    return f'''<section class="page-head">
-  <div class="wrap split">
-    <div class="copy"><p class="eyebrow">{eyebrow}</p><h1>{h1}</h1><p class="lead">{lead}</p><div class="actions">{actions}</div></div>
-    {media}
-  </div>
+def text_head(eyebrow, h1, lead='', actions='', extra='', antes='', cls='', lead_cls='', inner=False, tag='div'):
+    """Cabeçalho de texto padrão das páginas sem foto de abertura (proposta, obrigado, privacidade, 404, ocasiões,
+    artigos do blog e páginas de modelo): eyebrow + título + apoio, sempre nas mesmas medidas (CSS .text-head).
+    O título aceita <em> para a parte em itálico vinho, como nos cabeçalhos com foto (foto_hero). cls='text-head-xl'
+    é a versão do catálogo (título no tamanho dos cabeçalhos com foto, sem a foto); cls='solo' dá mais respiro embaixo
+    nas páginas que só têm o cabeçalho (obrigado, 404). inner=True devolve só o bloco, para encaixar dentro de outro
+    contêiner (coluna de texto do modelo, cabeçalho do artigo)."""
+    partes = [antes, f'<p class="eyebrow">{eyebrow}</p>' if eyebrow else '', f'<h1>{h1}</h1>',
+              f'<p class="lead{" " + lead_cls if lead_cls else ""}">{lead}</p>' if lead else '', extra,
+              f'<div class="actions">{actions}</div>' if actions else '']
+    if inner:
+        return f'<{tag} class="text-head-copy{" " + cls if cls else ""}">{"".join(partes)}</{tag}>'
+    return f'''<section class="text-head{" " + cls if cls else ""}">
+  <div class="wrap"><div class="text-head-copy">{"".join(partes)}</div></div>
 </section>'''
 
 
@@ -1670,13 +1670,8 @@ def page_curadoria():
         'service': {'key': 'ocasioes', 'name': 'Brindes e presentes corporativos por ocasião', 'type': 'Brindes corporativos'},
         'assunto': 'brindes e presentes por ocasião',
         'wp_type': 'CollectionPage', 'ld_extra': [item_list],
-        'body': f'''<section class="page-head" style="padding-bottom:clamp(28px,4vw,44px)">
-  <div class="wrap"><div class="section-head" style="margin:0;max-width:54rem">
-    <p class="eyebrow">Brindes por ocasião</p>
-    <h1>Brindes e presentes corporativos por ocasião</h1>
-    <p class="lead">Boas-vindas, eventos, fim de ano, reconhecimento: escolha a ocasião, veja as peças que a TaMa sugere e envie a seleção junto com o pedido de proposta. Todas as peças vêm do mesmo catálogo.</p>
-  </div></div>
-</section>
+        'body': text_head('Brindes por ocasião', 'Brindes e presentes corporativos por ocasião',
+                          'Boas-vindas, eventos, fim de ano, reconhecimento: escolha a ocasião, veja as peças que a TaMa sugere e envie a seleção junto com o pedido de proposta. Todas as peças vêm do mesmo catálogo.') + f'''
 {season_callout('ocasioes')}
 <section class="section ivory" id="pecas" style="padding-top:clamp(32px,4vw,52px)" aria-label="Peças por ocasião">
   <div class="wrap">
@@ -1979,18 +1974,25 @@ def page_fim_de_ano():
     }
 
 def page_sobre():
+    trail = [('/', 'Início'), ('/sobre/', 'Sobre')]
     dados = ''.join(f'<div><dt>{t}</dt><dd>{esc(v)}</dd></div>' for t, v in (('Razão social', RAZAO), ('CNPJ', CNPJ), ('Cidade', CIDADE), ('Atendimento comercial', RESPONSAVEL), ('E-mail', EMAIL)) if v)
     dados_html = f'<section class="section" aria-labelledby="dados-t"><div class="wrap split" style="align-items:start"><div class="stack" style="gap:12px"><p class="eyebrow">Dados da empresa</p><h2 id="dados-t" class="section-title">TaMa Creative</h2></div><dl class="pack">{dados}</dl></div></section>' if dados else ''
     return {
         'path': '/sobre/', 'title': 'Sobre a TaMa Creative | Brindes, uniformes, kits e ativações',
         'description': 'A TaMa Creative desenvolve e coordena brindes, confecções, kits personalizados e ativações promocionais para empresas, com visão de Trade Marketing.',
-        'trail': [('/', 'Início'), ('/sobre/', 'Sobre')], 'wp_type': 'AboutPage', 'assunto': 'um projeto para a minha empresa',
-        'body': f'''<section class="page-head">
-  <div class="wrap split">
-    <div class="copy"><p class="eyebrow">Sobre a TaMa</p><h1>Quem é a TaMa Creative</h1><p class="lead">A TaMa Creative desenvolve e coordena brindes, confecções, kits personalizados e ativações promocionais para empresas. Antes de escolher qualquer peça, olhamos para o público, a ocasião e a execução: é a experiência da fundadora em Trade Marketing aplicada a cada projeto.</p><div class="actions">{cta_link(track_label='sobre-head')}</div></div>
-    <div class="seal-block">{SELO}<p>Sua marca ganha forma. Personalizamos ideias.</p></div>
-  </div>
-</section>
+        'trail': trail, 'wp_type': 'AboutPage', 'assunto': 'um projeto para a minha empresa',
+        'preload': preload_image('sobre-header', FOTO_HERO_SIZES),   # mesma imagem e sizes da foto do cabeçalho
+        'crumbs_inline': True,
+        'body': foto_hero(trail, 'sobre-header',
+                          'Bastidor de um projeto: as mãos de uma pessoa colocam um caderno verde da marca fictícia Vera numa caixa kraft com '
+                          'papel de seda; ao lado, garrafa azul Nexo, polo terracota dobrada, ecobags Vera, amostras de tecido e papel, '
+                          'barbante e tesoura, em estúdio com luz natural. Pessoa ilustrativa, sem rosto.',
+                          'Sobre a TaMa', ['A marca do cliente'], 'em cada escolha.',
+                          'A TaMa Creative é uma prestadora de serviços que seleciona as peças, personaliza com a identidade da sua empresa e '
+                          'coordena a produção até a entrega. Brindes, uniformes, kits e ativações com visão de Trade Marketing: o público e a '
+                          'ocasião vêm antes da peça.',
+                          cta_link(track_label='sobre-head') + '<a class="btn btn-line" href="#como-t">Como trabalhamos</a>',
+                          'Imagem ilustrativa • Marcas fictícias', pos_m='70% center') + f'''
 <section class="section ivory" aria-labelledby="faz-t">
   <div class="wrap">
     <div class="section-head"><p class="eyebrow">O que fazemos</p><h2 id="faz-t" class="section-title">Cinco frentes, um mesmo cuidado com a marca</h2></div>
@@ -2061,9 +2063,7 @@ def page_proposta():
         'path': '/solicitar-proposta/', 'title': 'Solicitar proposta de brindes, kits e uniformes | TaMa',
         'description': 'Peça uma proposta de brindes corporativos, kits ou uniformes. Conte a ocasião e a TaMa Creative propõe as possibilidades.',
         'trail': [('/', 'Início'), ('/solicitar-proposta/', 'Solicitar proposta')], 'wp_type': 'ContactPage',
-        'body': f'''<section class="page-head" style="padding-bottom:clamp(24px,4vw,40px)">
-  <div class="wrap"><div class="section-head" style="margin:0;max-width:50rem"><p class="eyebrow">Solicitar proposta</p><h1>Vamos dar forma à sua ideia?</h1><p class="lead">Conte a ocasião. A TaMa propõe as possibilidades. O formulário leva cerca de dois minutos.</p></div></div>
-</section>
+        'body': text_head('Solicitar proposta', 'Vamos dar forma à sua ideia?', 'Conte a ocasião. A TaMa propõe as possibilidades. O formulário leva cerca de dois minutos.') + f'''
 <section class="section" style="padding-top:0">
   <div class="wrap contact-grid">
     <div>
@@ -2112,7 +2112,8 @@ def page_obrigado():
     return {
         'path': '/obrigado/', 'title': 'Pedido recebido | TaMa Creative', 'index': False,
         'description': 'Recebemos o seu pedido de proposta. A TaMa Creative responde pelo contato informado.',
-        'body': '''<section class="section"><div class="wrap"><div class="section-head" style="max-width:44rem"><p class="eyebrow">Pedido enviado</p><h1>Recebemos o seu pedido</h1><p class="lead">Vamos responder pelo contato informado. Enquanto isso, veja o catálogo.</p><div class="actions"><a class="btn btn-wine" href="/catalogo/">Ver o catálogo</a><a class="btn btn-line" href="/">Voltar ao início</a></div></div></div></section>''',
+        'body': text_head('Pedido enviado', 'Recebemos o seu pedido', 'Vamos responder pelo contato informado. Enquanto isso, veja o catálogo.',
+                          actions='<a class="btn btn-wine" href="/catalogo/">Ver o catálogo</a><a class="btn btn-line" href="/">Voltar ao início</a>', cls='solo'),
     }
 
 
@@ -2122,8 +2123,10 @@ def page_privacidade():
         'path': '/privacidade/', 'title': 'Política de privacidade | TaMa Creative',
         'description': 'Como a TaMa Creative trata os dados enviados pelo formulário de proposta, conforme a Lei Geral de Proteção de Dados (LGPD).',
         'trail': [('/', 'Início'), ('/privacidade/', 'Privacidade')],
-        'body': f'''<section class="section"><div class="wrap" style="max-width:52rem"><div class="stack">
-  <p class="eyebrow">Privacidade</p><h1>Política de privacidade</h1><p class="muted">Atualizada em {blog.fmt_date(date.today())}.</p>
+        'body': text_head('Privacidade', 'Política de privacidade',
+                          'Como a TaMa Creative trata os dados enviados pelo formulário de proposta, conforme a Lei Geral de Proteção de Dados (LGPD).',
+                          extra=f'<p class="text-head-meta">Atualizada em {blog.fmt_date(date.today())}.</p>') + f'''
+<section class="section" style="padding-top:0"><div class="wrap" style="max-width:52rem"><div class="stack">
   {f'<h2 style="font-size:1.6rem">Quem é o responsável pelos dados</h2><p>{empresa_linha()}.</p>' if (RAZAO or CNPJ) else ''}
   <h2 style="font-size:1.6rem">Quais dados coletamos</h2><p>Apenas o que você informa no formulário de proposta: nome, empresa, e-mail ou WhatsApp, tipo de projeto, interesse, quantidade, data desejada, orçamento estimado, peças e cores de interesse e a descrição do objetivo. Junto com o pedido, o site envia a página de onde você veio, a primeira página visitada, o site de referência e os parâmetros de campanha (UTM) do link, quando existirem, para sabermos qual conteúdo gerou o pedido. Nada disso identifica você além do que você mesmo informou.</p>
   <h2 style="font-size:1.6rem">Para que usamos</h2><p>Para responder ao seu pedido e preparar a proposta. Não vendemos nem compartilhamos esses dados para fins de marketing de terceiros.</p>
@@ -2140,7 +2143,8 @@ def page_404():
     return {
         'path': '/404.html', 'title': 'Página não encontrada | TaMa Creative', 'index': False,
         'description': 'A página que você procurou não existe ou mudou de endereço.',
-        'body': '''<section class="section"><div class="wrap"><div class="section-head" style="max-width:44rem"><p class="eyebrow">Erro 404</p><h1>Esta página não existe ou mudou de lugar</h1><p class="lead">O site da TaMa foi reorganizado. Comece por um destes caminhos:</p><div class="actions"><a class="btn btn-wine" href="/">Página inicial</a><a class="btn btn-line" href="/catalogo/">Catálogo</a><a class="btn btn-line" href="/brindes-por-ocasiao/">Ideias por ocasião</a><a class="btn btn-line" href="/solicitar-proposta/">Solicitar proposta</a></div></div></div></section>''',
+        'body': text_head('Erro 404', 'Esta página não existe ou mudou de lugar', 'O site da TaMa foi reorganizado. Comece por um destes caminhos:',
+                          actions='<a class="btn btn-wine" href="/">Página inicial</a><a class="btn btn-line" href="/catalogo/">Catálogo</a><a class="btn btn-line" href="/brindes-por-ocasiao/">Ideias por ocasião</a><a class="btn btn-line" href="/solicitar-proposta/">Solicitar proposta</a>', cls='solo'),
     }
 
 

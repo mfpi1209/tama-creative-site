@@ -54,6 +54,21 @@ try {
   await page.goto(BASE + '/#curadoria', { waitUntil: 'domcontentloaded' });
   ok(await page.waitForFunction(() => location.pathname === '/brindes-corporativos-premium/', { timeout: 8000 }).then(() => true, () => false), 'link antigo /#curadoria redireciona');
 
+  console.log('Cookies');
+  await page.goto(BASE + '/', { waitUntil: 'networkidle0' });
+  await page.evaluate(() => localStorage.removeItem('tama-consent'));
+  await page.reload({ waitUntil: 'networkidle0' });
+  ok(await page.$eval('#consent', b => !b.hidden && getComputedStyle(b).display !== 'none' && /Aceitar todos/.test(b.textContent) && /essenciais/.test(b.textContent)), 'primeira visita mostra o aviso de cookies (aceitar todos ou só os essenciais)');
+  ok(await page.evaluate(() => !document.querySelector('script[src*="googletagmanager"]')), 'nenhum script de análise antes da escolha');
+  await page.click('#consent [data-consent="denied"]');
+  ok(await page.$eval('#consent', b => b.hidden && getComputedStyle(b).display === 'none') && await page.evaluate(() => localStorage.getItem('tama-consent')) === 'denied', '"Só os essenciais" fecha o aviso e guarda a escolha');
+  await page.reload({ waitUntil: 'networkidle0' });
+  ok(await page.$eval('#consent', b => b.hidden), 'a escolha vale nas próximas páginas (o aviso não volta)');
+  await page.$eval('.site-footer [data-consent-open]', b => b.click());
+  ok(await page.$eval('#consent', b => !b.hidden) && await page.evaluate(() => document.activeElement?.getAttribute('data-consent') === 'granted'), '"Cookies" no rodapé reabre o aviso com o foco no primeiro botão');
+  await page.click('#consent [data-consent="denied"]');
+  ok((await (await fetch(BASE + '/privacidade/')).text()).includes('id="cookies"'), 'política de privacidade explica os cookies');
+
   console.log('Carrossel da abertura');
   await page.setViewport({ width: 1280, height: 900 });
   await page.goto(BASE + '/', { waitUntil: 'networkidle0' });
@@ -89,7 +104,7 @@ try {
   await page.click('.pick[data-slug="polo-masculina"]');
   await page.goto(BASE + '/solicitar-proposta/', { waitUntil: 'networkidle0' });
   ok(await page.$eval('#f-selecao', i => i.value.includes('Polo masculina (Preto)')), 'destaque selecionado chega ao pedido de proposta com a cor');
-  await page.evaluate(() => localStorage.clear());
+  await page.evaluate(() => { localStorage.clear(); localStorage.setItem('tama-consent', 'denied'); });
   await page.goto(BASE + '/', { waitUntil: 'networkidle0' });
   await page.click('[data-hero-next]');
   ok(await page.$eval('#slide-2', s => s.classList.contains('is-active') && !s.hasAttribute('aria-hidden')), 'seta avança para o slide 2');
@@ -115,7 +130,7 @@ try {
   console.log('Vitrine, cores e seleção');
   // a vitrine das 21 peças fica na curadoria; a home mostra os destaques em estúdio claro
   await page.goto(BASE + '/brindes-corporativos-premium/', { waitUntil: 'networkidle0' });
-  await page.evaluate(() => localStorage.clear());
+  await page.evaluate(() => { localStorage.clear(); localStorage.setItem('tama-consent', 'denied'); });
   await page.reload({ waitUntil: 'networkidle0' });
   const G = '#gift-grid';
   await page.$eval(`${G} .product[data-slug="garrafa-termica"]`, el => el.scrollIntoView({ block: 'center' }));
@@ -342,7 +357,7 @@ try {
   await fp.evaluate(() => localStorage.setItem('tama-selecao', JSON.stringify([{ s: 'linha-polo', c: 'Preto' }, { s: 'caneca-de-ceramica', c: null }, { s: 'baralho-exclusivo', c: null }])));
   await fp.goto(BASE + '/solicitar-proposta/', { waitUntil: 'networkidle0' });
   ok(await fp.$eval('#f-selecao', i => i.value === 'Polo masculina (Preto); Caneca (Branco)'), 'seleção salva com slugs antigos vira os modelos atuais (ideia retirada sai)');
-  await fp.evaluate(() => localStorage.clear());
+  await fp.evaluate(() => { localStorage.clear(); localStorage.setItem('tama-consent', 'denied'); });
   const selo = await (await fetch(BASE + '/sobre/')).text();
   ok(!/MARCAS/.test(selo) && (await fetch(BASE + '/favicon.svg').then(async r => (await r.arrayBuffer(), r.ok))), 'selo sem "MARCAS" no HTML');
   await fp.close();
@@ -394,12 +409,12 @@ try {
     for (const l of a.links) { const r = await fetch(BASE + l); await r.arrayBuffer(); if (r.status !== 200) blogBroken.push(post + ' → ' + l + ' ' + r.status); }
   }
   ok(blogBroken.length === 0, `links internos dos artigos respondem 200${blogBroken.length ? ' — ' + blogBroken.join(', ') : ''}`);
-  await bp.evaluate(() => localStorage.clear());
+  await bp.evaluate(() => { localStorage.clear(); localStorage.setItem('tama-consent', 'denied'); });
   await bp.goto(BASE + '/blog/brindes-de-fim-de-ano-para-clientes/', { waitUntil: 'networkidle0' });
   await bp.$eval('#rail-post .pick[data-slug="caneta-executiva-com-estojo"]', el => el.scrollIntoView({ block: 'center' }));
   await bp.click('#rail-post .pick[data-slug="caneta-executiva-com-estojo"]');
   ok(await bp.evaluate(() => JSON.parse(localStorage.getItem('tama-selecao') || '[]').some(x => x.s === 'caneta-executiva-com-estojo')), 'peça escolhida no artigo entra na seleção da proposta');
-  await bp.evaluate(() => localStorage.clear());
+  await bp.evaluate(() => { localStorage.clear(); localStorage.setItem('tama-consent', 'denied'); });
   const feed = await (await fetch(BASE + '/blog/feed.xml')).text();
   const items = [...feed.matchAll(/<item>[\s\S]*?<link>([^<]+)<\/link>/g)].map(m => new URL(m[1]).pathname);
   ok(items.length === 4 && items.every(p => idx.posts.includes(p)), `RSS com os 4 artigos (${items.length})`);

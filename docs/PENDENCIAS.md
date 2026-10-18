@@ -11,7 +11,7 @@ A coluna **Bloqueia** diz o que fica parado sem o item.
 |---|---|---|
 | n8n de produção (acesso de administrador) | Validar que os pedidos são gravados e avisados em produção; importar os workflows novos; recuperar pedidos antigos que possam não ter chegado a ninguém; ler a origem dos pedidos | `docs/PROPOSTAS.md` › O que falta |
 | Easypanel | Confirmar se o app do site usa a branch `deploy`; ligar o deploy automático; conferir o nome do container do n8n (`tama_n8n`) | `docs/DEPLOY.md` |
-| Conta Netlify | Garantir que `tamacreative.netlify.app` só redireciona; apagar envios antigos de Forms (depois de repassar pedidos que estiverem lá); login do editor `/admin/`, que usa o OAuth do Netlify com o GitHub | `docs/DEPLOY.md` › Netlify |
+| Conta Netlify | Garantir que `tamacreative.netlify.app` só redireciona; apagar envios antigos de Forms (depois de repassar pedidos que estiverem lá) | `docs/DEPLOY.md` › Netlify |
 | GA4 (conta Google para criar a propriedade) | Qualquer medição no Google; conversões | `docs/MEDICAO.md` |
 | Search Console (acesso ao DNS do domínio para a verificação) | Envio do sitemap, pedidos de indexação, dados de consultas e cliques | `docs/SEO.md` › Checklist |
 

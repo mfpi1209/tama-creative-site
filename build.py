@@ -915,7 +915,7 @@ def footer():
   <div class="wrap footer-grid">
     <div class="footer-brand"><a class="brand" href="/" aria-label="TaMa Creative, página inicial">{LOGO_DECOR}</a><p>Brindes, confecções, kits e ativações para empresas. Desenvolvemos e coordenamos cada projeto, da escolha das peças à entrega.</p></div>
     <div><p class="footer-title">Soluções</p><ul class="footer-links">{sol}</ul></div>
-    <div><p class="footer-title">TaMa</p><ul class="footer-links"><li><a href="/sobre/">Sobre</a></li><li><a href="/blog/">Blog</a></li><li><a href="/privacidade/">Privacidade</a></li></ul></div>
+    <div><p class="footer-title">TaMa</p><ul class="footer-links"><li><a href="/sobre/">Sobre</a></li><li><a href="/blog/">Blog</a></li><li><a href="/privacidade/">Privacidade</a></li><li><button class="link-btn" type="button" data-consent-open>Cookies</button></li></ul></div>
     <div><p class="footer-title">Contato</p><ul class="footer-links">{contact_col}</ul></div>
   </div>
   <div class="wrap footer-bottom">
@@ -1090,12 +1090,14 @@ def shell(page, body):
         og_img = SITE + f'/og/{IMAGES[page["og"]]["stem"]}.jpg'
         OG_USADAS.add(page['og'])
     config = json.dumps({'whatsapp': WA, 'ga4': GA4}, separators=(',', ':'))
-    consent = ''
-    if GA4:
-        consent = ('<div class="consent" id="consent" role="dialog" aria-label="Privacidade" hidden><p>Usamos cookies de análise (Google Analytics) para entender como o site é usado. '
-                   'Você pode aceitar ou recusar. <a href="/privacidade/">Saiba mais</a>.</p>'
-                   '<div class="actions"><button class="btn btn-wine btn-sm" type="button" data-consent="granted">Aceitar</button>'
-                   '<button class="btn btn-line btn-sm" type="button" data-consent="denied">Recusar</button></div></div>')
+    # aviso de cookies em todas as páginas: essenciais sempre; análise (GA4) só depois de "Aceitar" (ver site.js)
+    consent = ('<div class="consent" id="consent" role="dialog" aria-labelledby="consent-t" aria-describedby="consent-d" hidden>'
+               '<p class="consent-title" id="consent-t">Cookies</p>'
+               '<p id="consent-d">Usamos cookies essenciais para o site funcionar (como guardar a sua seleção de peças) e, se você aceitar, '
+               'cookies de análise para entender como o site é usado. '
+               '<a href="/privacidade/#cookies">Saiba mais</a>.</p>'
+               '<div class="actions"><button class="btn btn-wine btn-sm" type="button" data-consent="granted">Aceitar todos</button>'
+               '<button class="btn btn-line btn-sm" type="button" data-consent="denied">Só os essenciais</button></div></div>')
     wa_float = ''
     if WA:
         msg = urllib.parse.quote('Olá, TaMa! Gostaria de conversar sobre um projeto.')
@@ -1896,6 +1898,7 @@ def page_privacidade():
   <h2 style="font-size:1.6rem">Para que usamos</h2><p>Para responder ao seu pedido e preparar a proposta. Não vendemos nem compartilhamos esses dados para fins de marketing de terceiros.</p>
   <h2 style="font-size:1.6rem">Com quem os dados são compartilhados</h2><ul style="padding-left:1.2em;display:grid;gap:6px"><li>O provedor de hospedagem do site, por onde o pedido passa.</li><li>A ferramenta de automação (n8n) que registra o pedido e avisa a equipe da TaMa por e-mail.</li><li>Ferramentas de gestão de clientes usadas pela TaMa para organizar e responder pedidos.</li>{"<li>Google Analytics, somente se você aceitar os cookies de análise.</li>" if GA4 else ""}</ul>
   <h2 style="font-size:1.6rem">Seleção de peças no navegador</h2><p>As peças que você seleciona ficam guardadas apenas no seu navegador até o envio do pedido, e são apagadas depois de um envio confirmado. A página de origem e os parâmetros de campanha ficam só na sessão do navegador e não são enviados a ferramentas de análise.</p>
+  <h2 style="font-size:1.6rem" id="cookies">Cookies</h2><p>Na primeira visita, o site pergunta se você aceita cookies. Os <strong>essenciais</strong> funcionam sempre: guardam no seu navegador a seleção de peças e a sua escolha sobre cookies, e não identificam você. Os <strong>de análise</strong> (Google Analytics, com IP anonimizado) só são ativados se você clicar em "Aceitar todos", e servem para entender quais páginas são usadas. Não usamos cookies de publicidade.</p><p>Você pode mudar a escolha quando quiser: <button class="link-btn" type="button" data-consent-open>preferências de cookies</button>.</p>
   <h2 style="font-size:1.6rem">Por quanto tempo guardamos</h2><p>Pelo tempo necessário para tratar o pedido e manter o histórico comercial, ou até você pedir a exclusão.</p>
   <h2 style="font-size:1.6rem">Seus direitos</h2><p>Pela LGPD (Lei 13.709/2018), você pode pedir acesso, correção ou exclusão dos seus dados e revogar o consentimento a qualquer momento, {contato}.</p>
 </div></div></section>''',

@@ -22,20 +22,29 @@
     s.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(CFG.ga4);
     document.head.appendChild(s);
     window.gtag = function () { window.dataLayer.push(arguments); };
+    window.gtag('consent', 'default', { analytics_storage: 'granted', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
     window.gtag('js', new Date());
     window.gtag('config', CFG.ga4, { anonymize_ip: true });
   }
   function store(key, val) { try { if (val === undefined) return localStorage.getItem(key); localStorage.setItem(key, val); } catch (e) { return null; } }
   var consentBox = document.getElementById('consent');
-  if (CFG.ga4 && consentBox) {
+  if (consentBox) {
     var c = store('tama-consent');
     if (c === 'granted') loadGA(); else if (c !== 'denied') consentBox.hidden = false;
     consentBox.addEventListener('click', function (e) {
       var b = e.target.closest('[data-consent]');
       if (!b) return;
-      store('tama-consent', b.getAttribute('data-consent'));
+      var v = b.getAttribute('data-consent');
+      store('tama-consent', v);
       consentBox.hidden = true;
-      if (b.getAttribute('data-consent') === 'granted') loadGA();
+      if (v === 'granted') loadGA();
+      else if (typeof window.gtag === 'function') window.gtag('consent', 'update', { analytics_storage: 'denied' });
+    });
+    // rodapé e política de privacidade: "Cookies" reabre o aviso para mudar a escolha
+    document.addEventListener('click', function (e) {
+      if (!e.target.closest('[data-consent-open]')) return;
+      consentBox.hidden = false;
+      var first = consentBox.querySelector('[data-consent]'); if (first) first.focus();
     });
   }
   document.addEventListener('click', function (e) {

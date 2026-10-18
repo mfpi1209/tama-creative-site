@@ -130,7 +130,12 @@ def build_catalogo():
             continue
         grupos.setdefault(im['produto'], []).append(im)
     out = []
-    for nome, ims in grupos.items():
+    for nome, todas in grupos.items():
+        # vista: "frente" (uma foto por cor, padrão), "grupo" (todas as cores juntas), "verso" e "detalhe" (galeria)
+        ims = [i for i in todas if (i.get('vista') or 'frente') == 'frente']
+        extras = [i for i in todas if (i.get('vista') or 'frente') != 'frente']
+        if not ims:
+            continue
         slug = next((home_by_img[i['id']] for i in ims if i['id'] in home_by_img), 'cat-' + color_slug(nome))
         # abre na foto-base da home; senão, na foto original (a que gerou as variações), não na primeira cor do alfabeto
         ims.sort(key=lambda i: 0 if home_by_img.get(i['id']) == slug else 1 if not (i.get('observacao') or '').startswith('Variação de cor') else 2)
@@ -138,7 +143,11 @@ def build_catalogo():
         cores = [[i['cor']['nome'], i['cor']['hex'], i['id'], i['alt']] for i in ims]
         vistos = {c[0] for c in cores}
         meta = spec_line(first)
-        out.append({'slug': slug, 'nome': nome, 'img': first['id'], 'categoria': first['categoria'], 'descricao': first.get('modelo') or '', 'meta': meta, 'alt': first['alt'], 'cores': cores})
+        grupo = next((i for i in extras if i['vista'] == 'grupo'), None)
+        versos = {i['cor']['nome']: i['id'] for i in extras if i['vista'] == 'verso'}
+        out.append({'slug': slug, 'nome': nome, 'img': first['id'], 'categoria': first['categoria'], 'descricao': first.get('modelo') or '', 'meta': meta, 'alt': first['alt'], 'cores': cores,
+                    'url': f'/catalogo/{color_slug(nome)}/', 'grupo': grupo and [grupo['id'], grupo['alt']], 'versos': versos,
+                    'extras': [[i['id'], i['vista'], i['alt']] for i in extras if i['vista'] != 'grupo'], 'base': first})
     ordem = list(CAT_PROD)
     out.sort(key=lambda c: (ordem.index(c['categoria']), c['nome'].replace(' masculina', ' 1').replace(' feminina', ' 2')))   # masculina antes de feminina
     # vizinhos na grade não abrem na mesma cor: troca para a próxima cor com foto (destaques da home ficam como estão)
@@ -262,7 +271,9 @@ def preparar_produtos():
         nome = f"{im['id']} (item {n})"
         if im.get('categoria') not in CAT_PROD:
             erros.append(f'{nome}: categoria inválida')
-        if not re.fullmatch(r'#[0-9A-Fa-f]{6}', cor.get('hex') or ''):
+        if (im.get('vista') or 'frente') not in ('frente', 'grupo', 'verso', 'detalhe'):
+            erros.append(f'{nome}: vista inválida')
+        if im.get('vista') != 'grupo' and not re.fullmatch(r'#[0-9A-Fa-f]{6}', cor.get('hex') or ''):
             erros.append(f'{nome}: cor sem hexadecimal (#RRGGBB)')
         if not (im.get('produto') and cor.get('nome') and im.get('alt')):
             erros.append(f'{nome}: produto, nome da cor e texto alternativo são obrigatórios')
@@ -408,15 +419,30 @@ def home_variants(h):
 
 
 def home_product_card(h, eager=False, sizes='(max-width: 760px) 46vw, (max-width: 1180px) 30vw, 290px', extra=''):
-    """Card de estúdio (home e catálogo): mesma estrutura do card da curadoria (seleção, cor de referência e foto
-    ampliada), com foto em fundo claro. A cor muda só a referência; a foto não é recolorida."""
+    """Card de estúdio (home, catálogo e páginas de frente): a foto e o nome levam à página do produto (/catalogo/<nome>/);
+    o "+" abre a foto ampliada; as bolinhas trocam a foto pela da cor. Com foto de grupo no banco, o card abre nela
+    (todas as cores juntas); com foto do verso, ela aparece ao passar o mouse."""
     cat = f' data-cat="{h["categoria"]}"' if h.get('categoria') in CAT_PROD else ''
+    c = CATALOGO_BY.get(h['slug'], {})
+    url = c.get('url')
+    cores = home_colors(h)
+    grupo = c.get('grupo') if c.get('grupo') and c['grupo'][0] in IMAGES else None
+    foto = picture(grupo[0], grupo[1], sizes, eager=eager) if grupo else picture(h['img'], h['alt'], sizes, eager=eager)
+    verso_id = (c.get('versos') or {}).get(h['cores'][0][0])
+    verso = picture(verso_id, '', sizes, cls='prod-alt') if verso_id in IMAGES else ''
+    slug, nome = h['slug'], h['nome']
+    zoom = f'<button class="prod-zoom" type="button" data-zoom="{slug}" aria-label="Ampliar foto de {esc(nome)}"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 3v10M3 8h10"/></svg></button>'
+    alt_cls = ' has-alt' if verso else ''
+    media = (f'<a class="prod-media{alt_cls}" href="{url}" tabindex="-1" aria-hidden="true">{foto}{verso}</a>{zoom}' if url
+             else f'<button class="prod-media" type="button" data-zoom="{slug}" aria-label="Ampliar foto de {esc(nome)}">{foto}</button>')
+    titulo = f'<a class="prod-link" href="{url}">{nome}</a>' if url else nome
+    rotulo = f'{len(cores)} cores' if grupo and len(cores) > 1 else h['cores'][0][0]
     return f'''<article class="product studio" id="{h['slug']}" data-slug="{h['slug']}"{cat}{extra}>
-  <button class="prod-media" type="button" data-zoom="{h['slug']}" aria-label="Ampliar foto de {esc(h['nome'])}">{picture(h['img'], h['alt'], sizes, eager=eager)}<span class="prod-zoom" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M8 3v10M3 8h10"/></svg></span></button>
+  {media}
   <div class="prod-info">
-    <h3>{h['nome']}</h3>
+    <h3>{titulo}</h3>
     <p class="prod-desc">{h['descricao']}</p>
-    <div class="swatch-row">{swatches(dict(h, cores=home_colors(h)))}<span class="color-name">{h['cores'][0][0]}</span></div>
+    <div class="swatch-row">{swatches(dict(h, cores=cores))}<span class="color-name">{rotulo}</span></div>
     <p class="prod-meta{' is-pending' if 'sob consulta' in h['meta'] else ''}">{h['meta']}</p>
     <div class="prod-actions">
       <button class="pick" type="button" data-slug="{h['slug']}" aria-pressed="false"><span class="when-off">+ Selecionar</span><span class="when-on">✓ Selecionado</span><span class="visually-hidden">: {h['nome']}</span></button>
@@ -492,7 +518,7 @@ def catalogo_block():
 def page_catalogo():
     url = SITE + '/catalogo/'
     item_list = {'@type': 'ItemList', '@id': url + '#lista', 'name': 'Catálogo de modelos TaMa Creative', 'numberOfItems': len(CATALOGO),
-                 'itemListElement': [{'@type': 'ListItem', 'position': i + 1, 'name': c['nome'], 'url': url + '#' + c['slug']} for i, c in enumerate(CATALOGO)]}
+                 'itemListElement': [{'@type': 'ListItem', 'position': i + 1, 'name': c['nome'], 'url': SITE + c['url']} for i, c in enumerate(CATALOGO)]}
     return {
         'path': '/catalogo/', 'title': f'Catálogo: {len(CATALOGO)} modelos de brindes e confecções | TaMa Creative',
         'og_title': 'Catálogo de modelos · TaMa Creative',
@@ -508,6 +534,99 @@ def page_catalogo():
 </section>
 {catalogo_block()}
 {end_cta(tipo='brindes')}''',
+    }
+
+
+# Texto de contexto das páginas de produto, por categoria (sem afirmar material ou técnica ainda não confirmados)
+CAT_TEXTO = {
+    'vestuario': 'Peças para equipes, eventos e uniformes do dia a dia. A técnica de aplicação da marca (bordado, silk ou outra) e a grade de tamanhos são definidas na proposta, conforme o uso e o tecido.',
+    'canetas-escritorio': 'Itens que entram na rotina de trabalho: canetas, cadernos, agendas e organizadores. A técnica de aplicação da marca depende do material e é confirmada na proposta, com a arte para aprovação.',
+    'bolsas-embalagens': 'Bolsas e embalagens que acompanham o presente ou viram o próprio brinde. Formato, acabamento e aplicação da marca são definidos na proposta.',
+    'garrafas-copos': 'Garrafas, copos e canecas de uso diário, no escritório, em casa e em eventos. Capacidade, material e técnica de personalização são confirmados na proposta.',
+    'acessorios': 'Acessórios pequenos e úteis, que acompanham a pessoa no dia a dia. Material, acabamento e aplicação da marca são confirmados na proposta.',
+    'casa-bem-estar': 'Peças para casa e bem-estar, pensadas para presentes de afeto e kits. Fragrância, material e embalagem são definidos na proposta.',
+    'hotelaria-gastronomia': 'Itens para restaurantes, hotéis e eventos gastronômicos, com a identidade do seu negócio. Material e acabamento são confirmados na proposta.',
+}
+
+
+def thumb(name, label, attrs):
+    return (f'<button class="pdp-thumb" type="button" {attrs} aria-label="{esc(label)}" aria-pressed="false">'
+            f'<img src="{img_url(name, "webp", 420)}" alt="" width="120" height="120" loading="lazy" decoding="async"></button>')
+
+
+def page_produto(c):
+    """Página de cada modelo do catálogo (/catalogo/<nome>/): galeria (cores, grupo, verso), cor na URL (?cor=),
+    zoom ao passar o mouse, seleção e pedido de proposta. Uma página por modelo; a cor não gera página própria."""
+    slug, nome, url = c['slug'], c['nome'], c['url']
+    cores = home_colors(c)
+    variantes = home_variants(c) or {}
+    thumbs = []
+    if c.get('grupo') and c['grupo'][0] in IMAGES:
+        g = IMAGES[c['grupo'][0]]
+        thumbs.append(thumb(c['grupo'][0], 'Todas as cores', f"data-v='{esc(json.dumps([g['stem'], g['widths'], c['grupo'][1]]))}'"))
+    for nome_cor, _hex, *resto in c['cores']:
+        if resto and resto[0] in IMAGES and (nome_cor in variantes or nome_cor == c['cores'][0][0]):
+            thumbs.append(thumb(resto[0], f'Foto na cor {nome_cor}', f'data-thumb-color="{esc(nome_cor)}"'))
+    for iid, vista, alt in c.get('extras') or []:
+        if iid in IMAGES:
+            m = IMAGES[iid]
+            thumbs.append(thumb(iid, {'verso': 'Verso', 'detalhe': 'Detalhe'}.get(vista, vista), f"data-v='{esc(json.dumps([m['stem'], m['widths'], alt]))}'"))
+    base = c['base']
+    mat, tec = base.get('material') or {}, base.get('tecnica') or {}
+    mat_txt = mat['valor'] if mat.get('status') == 'confirmado' and mat.get('valor') else 'Sob consulta: confirmado na proposta.'
+    tec_txt = tec['valor'] if tec.get('status') == 'confirmado' and tec.get('valor') else 'Definida na proposta, conforme o material, com a arte para aprovação.'
+    tipo = 'confeccoes' if c['categoria'] == 'vestuario' else 'brindes'
+    cat_nome = CAT_PROD.get(c['categoria'], 'Catálogo')
+    relacionados = [x for x in CATALOGO if x['categoria'] == c['categoria'] and x['slug'] != slug][:4]
+    rel_html = ''
+    if relacionados:
+        rel_html = f'''<section class="section" aria-labelledby="rel-t">
+  <div class="wrap">
+    <div class="section-head row"><div class="stack" style="gap:12px"><p class="eyebrow">{cat_nome}</p><h2 id="rel-t" class="section-title">Outros modelos para combinar</h2></div><a class="link" href="/catalogo/?categoria={c['categoria']}#catalogo">Ver todos de {cat_nome.lower()} {ARROW}</a></div>
+    <div class="studio-grid">{''.join(home_product_card(x) for x in relacionados)}</div>
+  </div>
+</section>'''
+    n = len(cores)
+    lista = ', '.join(x[0].lower() for x in cores[:3]) + ('…' if n > 3 else '')
+    desc = f'{nome} para personalizar com a marca da sua empresa, em {n} {"cores" if n > 1 else "cor"} de referência ({lista}). Monte sua seleção e peça uma proposta à TaMa.'
+    if len(desc) > 160:
+        desc = f'{nome} para personalizar com a marca da sua empresa, em {n} cores de referência. Monte sua seleção e peça uma proposta à TaMa Creative.'
+    return {
+        'path': url, 'title': f'{nome} com a sua marca | TaMa Creative', 'description': desc,
+        'trail': [('/', 'Início'), ('/catalogo/', 'Catálogo'), (url, nome)], 'wp_type': 'ItemPage',
+        'preload': preload_image(c['img'], '(max-width: 900px) 92vw, 1100px'),
+        'body': f'''<section class="section pdp-sec">
+  <div class="wrap">
+    <div class="product pdp" data-slug="{slug}" data-pdp data-url="{url}">
+      <div class="pdp-gallery">
+        <div class="prod-media pdp-main" data-hover-zoom>{picture(c['img'], c['alt'], '(max-width: 900px) 92vw, 1100px', eager=True)}</div>
+        <button class="prod-zoom" type="button" data-zoom="{slug}" aria-label="Ampliar foto de {esc(nome)}"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 3v10M3 8h10"/></svg></button>
+        {f'<div class="pdp-thumbs" role="group" aria-label="Fotos de {esc(nome)}">{"".join(thumbs)}</div>' if len(thumbs) > 1 else ''}
+      </div>
+      <div class="pdp-info">
+        <p class="eyebrow"><a href="/catalogo/?categoria={c['categoria']}#catalogo">{cat_nome}</a></p>
+        <h1>{nome}</h1>
+        <p class="prod-desc pdp-desc">{c['descricao']}</p>
+        <div class="pdp-cores"><p class="pdp-label">Cor de referência: <strong class="color-name">{cores[0][0]}</strong></p>{swatches(dict(c, cores=cores))}</div>
+        <dl class="pdp-spec">
+          <div><dt>Material</dt><dd>{mat_txt}</dd></div>
+          <div><dt>Personalização</dt><dd>{tec_txt}</dd></div>
+          <div><dt>Quantidade e prazo</dt><dd>Informados na proposta, conforme a quantidade e a técnica.</dd></div>
+        </dl>
+        <p class="prod-meta" hidden>{c['meta']}</p>
+        <div class="actions">
+          <button class="pick btn-pick-lg" type="button" data-slug="{slug}" aria-pressed="false"><span class="when-off">+ Adicionar à seleção</span><span class="when-on">✓ Na seleção</span><span class="visually-hidden">: {nome}</span></button>
+          {cta_link('Solicitar proposta', tipo=tipo, track_label='produto')}
+        </div>
+        {wa_button('btn btn-line', 'Tirar dúvidas no WhatsApp')}
+        <p class="pdp-sobre">{CAT_TEXTO.get(c['categoria'], '')}</p>
+        <p class="note">Imagem ilustrativa com a identidade TaMa como exemplo: no seu pedido entram a marca e as cores da sua empresa. Cores de referência, sem declaração de estoque.</p>
+      </div>
+    </div>
+  </div>
+</section>
+{rel_html}
+{end_cta(tipo=tipo)}''',
     }
 
 
@@ -1530,6 +1649,7 @@ def page_404():
 
 PAGES = [page_home, page_catalogo, page_brindes, page_kits, page_curadoria, page_confeccoes, page_sobre,   # branding, projetos e case ficam ocultos
  page_proposta, page_obrigado, page_privacidade, page_404]
+PAGES += [lambda c=c: page_produto(c) for c in CATALOGO]   # uma página por modelo do catálogo (/catalogo/<nome>/)
 
 
 # ------------------------------------------------------------------ static files

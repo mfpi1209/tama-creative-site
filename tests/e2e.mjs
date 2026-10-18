@@ -200,6 +200,16 @@ try {
   await page.$eval('#catalogo-grid .product[data-slug="cat-caneca"]', el => el.scrollIntoView({ block: 'center' }));
   await page.click('#catalogo-grid .pick[data-slug="cat-caneca"]');
   ok((await page.evaluate(() => JSON.parse(localStorage.getItem('tama-selecao')))).some(x => x.s === 'cat-caneca' && x.c === 'Branco'), 'modelo do catálogo entra na seleção com a cor da foto');
+  // página de cada modelo: o card leva até ela; galeria por cor, cor na URL e canonical sem a cor
+  ok(await page.$eval('#catalogo-grid .product[data-slug="cat-caneca"] .prod-link', a => a.getAttribute('href') === '/catalogo/caneca/') && await page.$eval('#catalogo-grid .product[data-slug="cat-caneca"] a.prod-media', a => a.getAttribute('href') === '/catalogo/caneca/'), 'nome e foto do card levam à página do modelo');
+  await page.goto(BASE + '/catalogo/caneca/?cor=verde', { waitUntil: 'networkidle0' });
+  const pdp = await page.evaluate(() => ({ h1: document.querySelector('h1').textContent, cor: document.querySelector('.pdp .color-name').textContent, img: document.querySelector('.pdp-main img').getAttribute('srcset') || '', canon: document.querySelector('link[rel=canonical]').href, thumbs: document.querySelectorAll('.pdp-thumb').length, pressed: (document.querySelector('.pdp-thumb[aria-pressed="true"]') || {}).getAttribute && document.querySelector('.pdp-thumb[aria-pressed="true"]').getAttribute('data-thumb-color'), crumbs: [...document.querySelectorAll('.crumbs li')].map(l => l.textContent.trim()).join(' / ') }));
+  ok(pdp.h1 === 'Caneca' && pdp.cor === 'Verde' && pdp.img.includes('caneca~verde') && pdp.pressed === 'Verde', '?cor=verde abre a página da caneca já na cor verde (foto, nome e miniatura)');
+  ok(pdp.canon.endsWith('/catalogo/caneca/') && pdp.thumbs === 5 && pdp.crumbs === 'Início / Catálogo / Caneca', 'página do modelo: canonical sem a cor, 5 miniaturas e caminho');
+  await page.click('.pdp-thumb[data-thumb-color="Azul royal"]'); await sleep(300);
+  ok(await page.evaluate(() => location.search === '?cor=azul-royal' && document.querySelector('.pdp .color-name').textContent === 'Azul royal'), 'miniatura troca a cor e atualiza a URL');
+  ok(await page.$eval('.pdp .pick', b => b.getAttribute('aria-pressed') === 'true') && (await page.evaluate(() => JSON.parse(localStorage.getItem('tama-selecao')))).some(x => x.s === 'cat-caneca' && x.c === 'Azul royal'), 'na página do modelo, a peça já selecionada aparece marcada e a troca de cor vai para a seleção');
+  ok(await page.$$eval('.studio-grid .product', ps => ps.length === 4 && ps.every(p => p.getAttribute('data-cat') === 'garrafas-copos')), 'página do modelo sugere 4 modelos da mesma categoria');
   await page.goto(BASE + '/catalogo/?categoria=vestuario', { waitUntil: 'networkidle0' });
   ok(await catVisible() === 9 && await page.$eval('input[name="categoria"][value="vestuario"]', i => i.checked), '?categoria=vestuario abre o catálogo já filtrado (9 peças de vestuário)');
   await page.goto(BASE + '/brindes-corporativos/', { waitUntil: 'networkidle0' });

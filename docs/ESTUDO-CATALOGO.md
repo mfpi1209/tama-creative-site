@@ -68,3 +68,34 @@
    ocasião. Ela tem outro card (sessão curadoria-cores); vale unificar quando a curadoria virar "seleções por ocasião"
    dentro do catálogo, como sugere a auditoria geral (P1-4).
 6. **Código do produto (SKU) no card**, como na referência: só quando houver SKU real (o campo existe no banco, vazio).
+
+## 5. Páginas de produto, foto por cor e zoom (segunda rodada)
+
+**Como a referência faz** (navegado em 18/10/2026):
+- **Página:** uma por produto (`/canetas/caneta-plastica-cac1465`). A cor entra como parâmetro na mesma página
+  (`?color=preto`), muda o título ("… - Preto") e o código (CAC1465 → CAC1465PT). O canonical aponta para a página sem
+  a cor. Não há uma página por cor.
+- **Na listagem:** o card abre numa foto com todas as cores juntas; ao escolher a cor, aparece só aquela peça, com a
+  marca, e surge "Adicionar ao orçamento".
+- **Na página do produto:** galeria com miniaturas (grupo + cada cor), descrição, características (medidas, peso) e
+  "Adicionar ao orçamento".
+- **Ao passar o mouse:** alguns produtos mostram uma segunda foto, como frente e verso da nécessaire.
+
+**O que o protótipo faz:**
+- **Uma página por modelo:** `/catalogo/<nome>/`, 52 páginas, todas no sitemap. Cada uma tem:
+  - galeria com uma miniatura por cor;
+  - bolinhas de cor;
+  - cor na URL (`?cor=verde`), com canonical sem a cor;
+  - zoom 2x que segue o mouse (no celular, o "+" abre a foto ampliada);
+  - Material, Personalização, Quantidade e prazo ("sob consulta" até confirmar no /admin/);
+  - "Adicionar à seleção", "Solicitar proposta" e WhatsApp;
+  - texto da categoria;
+  - 4 modelos relacionados.
+- **Cards** (catálogo, home e páginas de frente): a foto e o nome levam à página do modelo; o "+" continua abrindo a
+  foto ampliada.
+- **Fotos de grupo e verso:** o banco aceita o campo **Vista** (frente, grupo, verso, detalhe), também no /admin/.
+  - Com foto de **grupo**, o card abre nela, com "N cores", e ela vira a primeira miniatura.
+  - Com foto de **verso**, ela aparece ao passar o mouse no card e na galeria.
+  - Ainda não há nenhuma dessas fotos no banco. Os prompts para gerá-las estão em `docs/PROMPTS-GRUPO-VERSO.md`.
+- **Medições:** Lighthouse móvel nas páginas de produto com desempenho 98–99 e SEO, acessibilidade e boas práticas 100;
+  139 testes e2e.

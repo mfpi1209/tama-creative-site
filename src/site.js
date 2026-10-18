@@ -327,6 +327,44 @@
     if (store('tama-cat-cols') === '2') catSetCols('2');
   }
 
+  /* ---------- Página do produto: miniaturas, cor na URL (?cor=) e zoom ao passar o mouse ---------- */
+  var pdp = document.querySelector('[data-pdp]');
+  if (pdp) {
+    var pdpSlug = pdp.getAttribute('data-slug'), pdpPic = pdp.querySelector('.pdp-main picture');
+    var pdpSlugCor = function (s) { return String(s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''); };
+    var pdpSync = function (push) {
+      var cor = pdp.getAttribute('data-color');
+      pdp.querySelectorAll('.pdp-thumb').forEach(function (t) { t.setAttribute('aria-pressed', String(!!cor && t.getAttribute('data-thumb-color') === cor)); });
+      if (push && cor) history.replaceState(null, '', location.pathname + '?cor=' + pdpSlugCor(cor));
+    };
+    // trocar a cor (bolinha ou miniatura) atualiza miniaturas e URL; o resto (foto, nome da cor, seleção) já é feito por paintColor/setColor
+    new MutationObserver(function () { pdpSync(true); }).observe(pdp, { attributes: true, attributeFilter: ['data-color'] });
+    pdp.querySelectorAll('.pdp-thumb').forEach(function (t) {
+      t.addEventListener('click', function () {
+        var cor = t.getAttribute('data-thumb-color');
+        if (cor) { setColor(pdpSlug, cor); return; }
+        var v; try { v = JSON.parse(t.getAttribute('data-v')); } catch (e) { return; }
+        swapPicture(pdpPic, v);   // grupo, verso ou detalhe: troca só a foto
+        pdp.querySelectorAll('.pdp-thumb').forEach(function (o) { o.setAttribute('aria-pressed', String(o === t)); });
+      });
+    });
+    var pdpCor = new URLSearchParams(location.search).get('cor');
+    var pdpSw = pdpCor && [].filter.call(pdp.querySelectorAll('.swatch'), function (b) { return pdpSlugCor(b.getAttribute('data-color')) === pdpCor; })[0];
+    // a cor do link vale mais que a cor guardada na seleção (render() pinta a seleção logo depois deste trecho)
+    setTimeout(function () { if (pdpSw) paintColor(pdpSlug, pdpSw.getAttribute('data-color')); pdpSync(false); }, 0);
+    // zoom: com mouse, a foto amplia 2x seguindo o cursor (no toque, o "+" abre a foto ampliada)
+    var zoomBox = pdp.querySelector('[data-hover-zoom]');
+    if (zoomBox && window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+      zoomBox.addEventListener('mousemove', function (e) {
+        var r = zoomBox.getBoundingClientRect();
+        zoomBox.style.setProperty('--zx', ((e.clientX - r.left) / r.width * 100).toFixed(1) + '%');
+        zoomBox.style.setProperty('--zy', ((e.clientY - r.top) / r.height * 100).toFixed(1) + '%');
+        zoomBox.classList.add('is-zoom');
+      });
+      zoomBox.addEventListener('mouseleave', function () { zoomBox.classList.remove('is-zoom'); });
+    }
+  }
+
   /* ---------- Carrossel da abertura ---------- */
   var hero = document.getElementById('hero');
   if (hero) {

@@ -737,6 +737,10 @@ def catalogo_collection(b):
             _opt('Substituir (sai do site)', 'substituir'), _opt('Retirada (sai do site)', 'retirada')]},
         {'label': 'Onde é usada', 'name': 'uso', 'widget': 'select', 'multiple': True, 'required': False, 'default': ['catalogo'],
          'options': [_opt('Catálogo', 'catalogo'), _opt('Home', 'home'), _opt('Brindes', 'brindes'), _opt('Kits', 'kits'), _opt('Confecções', 'confeccoes')]},
+        {'label': 'Vista', 'name': 'vista', 'widget': 'select', 'default': 'frente', 'required': False, 'options': [
+            _opt('Frente, numa cor (bolinha de cor no site)', 'frente'), _opt('Grupo: todas as cores juntas (abre o card)', 'grupo'),
+            _opt('Verso (aparece ao passar o mouse e na galeria)', 'verso'), _opt('Detalhe (só na galeria)', 'detalhe')],
+         'hint': 'Grupo: use "Todas as cores" como nome da cor. Verso: use o nome da cor da frente correspondente.'},
         {'label': 'Identificador', 'name': 'id', 'widget': 'string', 'required': False,
          'hint': 'Deixe vazio em itens novos: o site gera (produto~cor). Não mude o de itens existentes: a home e as seleções usam esse nome.'},
         {'label': 'Origem da foto', 'name': 'origem', 'widget': 'string', 'required': False, 'hint': 'Ex.: Fotografia própria em 20/10/2026.'},

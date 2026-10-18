@@ -793,6 +793,47 @@ def brand_note():
 </div>'''
 
 
+# Bloco de prova (onda 3): só o que o site já afirma, sem clientes, números, prazos ou cases.
+# A chave muda apenas a frase de introdução; título, demonstração e as três provas são os mesmos em todas as páginas.
+PROVA_INTRO = {
+    'home': 'Brindes, uniformes, kits e ativações seguem o mesmo caminho: a TaMa entende o objetivo, propõe as peças e coordena com os fornecedores a aplicação da sua marca até a entrega.',
+    'brindes': 'Em brindes corporativos, a peça certa depende de quem recebe e da ocasião. É assim que a TaMa conduz cada seleção.',
+    'kits': 'Em um kit, caixa, cartão e peças precisam falar a mesma língua. É assim que a TaMa conduz cada composição.',
+    'confeccoes': 'Em uniformes e confecções, a marca precisa funcionar na rotina de quem veste. É assim que a TaMa conduz cada projeto.',
+    'ativacoes': 'Em uma ativação, uniformes, brindes e materiais precisam estar prontos para o dia da ação. É assim que a TaMa conduz cada projeto.',
+    'hotelaria': 'Em restaurantes, bares e hotéis, a marca aparece da mesa à equipe. É assim que a TaMa conduz cada projeto.',
+}
+PROVAS = [   # textos do /sobre/ ("Como trabalhamos") e da faixa de destaques
+    ('Visão de Trade Marketing', 'Público, ocasião de uso e execução vêm antes da escolha de qualquer peça.'),
+    ('Arte aprovada por você antes da produção', 'Arte e especificações aprovadas antes da produção e materiais conferidos antes da entrega.'),
+    ('Tudo em um pedido', 'Brindes, kits, uniformes e materiais de ativação no mesmo pedido, com uma única linguagem.'),
+]
+
+
+def prova_block(chave):
+    """Bloco de prova reutilizável: a mesma peça com a marca TaMa e com a marca fictícia Casa Mirelo, ao lado de três
+    provas em texto. chave ('home', 'brindes', 'kits', 'confeccoes', 'ativacoes', 'hotelaria') ajusta só a introdução."""
+    intro = PROVA_INTRO.get(chave, PROVA_INTRO['home'])
+    tid = f'prova-{chave}-t'
+    demo = ''
+    if MOCKUPS and 'caderno-azul--casa-mirelo' in IMAGES and 'caderno-azul' in IMAGES:
+        sz = '(max-width: 760px) 42vw, 220px'
+        demo = (f'<div class="prova-demo"><div class="prova-pair">'
+                f'<figure>{picture("caderno-azul", "Caderno azul com a marca TaMa Creative aplicada na capa.", sz)}<figcaption>TaMa Creative</figcaption></figure>'
+                f'<figure>{picture("caderno-azul--casa-mirelo", "O mesmo caderno azul com a marca fictícia Casa Mirelo aplicada na capa.", sz)}<figcaption>Casa Mirelo · marca fictícia</figcaption></figure>'
+                f'</div><p class="note">A mesma peça, com a marca de cada empresa.</p></div>')
+    itens = ''.join(f'<li>{arc()}<div><h3>{t}</h3><p>{d}</p></div></li>' for t, d in PROVAS)
+    return f'''<section class="section prova{' sem-demo' if not demo else ''}" aria-labelledby="{tid}">
+  <div class="wrap">
+    <div class="prova-in">
+      <div class="prova-head"><p class="eyebrow">Como a TaMa trabalha</p><h2 id="{tid}" class="section-title">O que sustenta cada projeto</h2><p class="muted">{intro}</p></div>
+      {demo}
+      <ul class="prova-list">{itens}</ul>
+    </div>
+  </div>
+</section>'''
+
+
 COLLECTIONS = [
     ('boas-vindas', 'Boas-vindas', 'Receba novas pessoas com identidade e cuidado.', 'kitp-kit-pratico'),
     ('eventos', 'Eventos', 'Presença de marca em cada encontro.', 'conf-evento-camisetas'),
@@ -825,6 +866,19 @@ def collections_block(title='Coleções por ocasião'):
 </section>'''
 
 
+def ocasioes_faixa(title='Brindes por ocasião'):
+    """Home enxuta: as ocasiões numa faixa de chips (no lugar do carrossel de cartões de collections_block).
+    Cada chip segue collection_href(k): "Fim de ano" vai para a página própria, as demais para as ideias filtradas."""
+    chips = ''.join(f'<li><a class="chip" href="{collection_href(k)}">{t}</a></li>' for k, t, _d, _img in COLLECTIONS)
+    return f'''<section class="section occ-faixa" aria-labelledby="occ-t">
+  <div class="wrap occ-faixa-inner">
+    <div class="occ-faixa-head"><p class="eyebrow">Para cada momento</p><h2 id="occ-t" class="section-title">{title}</h2></div>
+    <ul class="occ-chips" role="list">{chips}</ul>
+    <a class="link" href="/brindes-por-ocasiao/">Ver todas as ocasiões {ARROW}</a>
+  </div>
+</section>'''
+
+
 # Kits corporativos da home (fotos da apresentação TaMa, pacote tama-home-v2): dois destaques e três menores.
 # As ocasiões continuam como atalhos para a curadoria filtrada.
 HOME_KITS = [
@@ -850,19 +904,27 @@ def kit_cards():
     return ''.join(kit_card(i, slug, name, desc, i < 2) for i, (slug, name, desc) in enumerate(HOME_KITS))
 
 
-def kits_block():
-    cards = kit_cards()
-    occ = ''.join(f'<a class="chip" href="{collection_href(k)}">{t}</a>' for k, t, _d, _img in COLLECTIONS)
-    return f'''<section class="section kits-home" aria-labelledby="kits-t">
+def kits_block(compacto=False):
+    """compacto (home enxuta): só os dois kits em destaque e o link para os cinco em /kits-corporativos/; as ocasiões
+    ficam na faixa de chips logo abaixo (ocasioes_faixa), então o bloco não repete os atalhos .kit-occ."""
+    if compacto:
+        cards = ''.join(kit_card(i, slug, name, desc, True) for i, (slug, name, desc) in enumerate(HOME_KITS[:2]))
+        foot = (f'<a class="link" href="/kits-corporativos/">Ver todos os kits {ARROW}</a>'
+                + cta_link('Solicitar proposta de kit', tipo='kits', track_label='home-kits'))
+    else:
+        cards = kit_cards()
+        occ = ''.join(f'<a class="chip" href="{collection_href(k)}">{t}</a>' for k, t, _d, _img in COLLECTIONS)
+        foot = (f'<nav class="kit-occ" aria-label="Peças por ocasião"><span>Para cada momento:</span>{occ}</nav>'
+                + cta_link('Solicitar proposta de kit', tipo='kits', track_label='home-kits'))
+    return f'''<section class="section kits-home{' compacto' if compacto else ''}" aria-labelledby="kits-t">
   <div class="wrap">
     <div class="section-head row">
       <div class="stack" style="gap:12px"><p class="eyebrow">Kits corporativos</p><h2 id="kits-t" class="section-title">Presentes que marcam momentos.</h2><p class="muted">Seleções para surpreender, agradecer e criar conexões. Cada composição se ajusta ao seu público e à sua marca.</p></div>
-      <a class="link" href="/kits-corporativos/">Ver todos os kits {ARROW}</a>
+      {'' if compacto else f'<a class="link" href="/kits-corporativos/">Ver todos os kits {ARROW}</a>'}
     </div>
     <div class="kit-grid">{cards}</div>
     <div class="kit-foot">
-      <nav class="kit-occ" aria-label="Peças por ocasião"><span>Para cada momento:</span>{occ}</nav>
-      {cta_link('Solicitar proposta de kit', tipo='kits', track_label='home-kits')}
+      {foot}
     </div>
     <p class="note">Os kits aparecem na identidade TaMa como exemplo. No seu projeto, caixa, cartão e peças levam a marca e as cores da sua empresa; a composição é ajustada ao público, à ocasião e ao investimento e confirmada na proposta. Imagens ilustrativas.</p>
   </div>
@@ -870,18 +932,13 @@ def kits_block():
 
 
 # ------------------------------------------------------------------ navigation and shared blocks
+# Áreas da TaMa (submenu "Soluções" e rodapé): nome oficial do glossário
 NAV = [
-    # rótulo do menu = começo do nome oficial da área (rodapé, títulos e formulário usam o nome inteiro);
-    # o trecho em <span class="nav-long"> só aparece em telas largas
-    ('/brindes-corporativos/', 'Brindes'),
-    ('/confeccoes-personalizadas/', 'Uniformes'),
-    ('/kits-corporativos/', 'Kits'),
-    ('/ativacoes-promocionais/', 'Ativações'),
-    ('/hotelaria-e-gastronomia/', 'Hotelaria<span class="nav-long"> e gastronomia</span>'),
-    ('/brindes-por-ocasiao/', 'Ocasiões'),
-    ('/catalogo/', 'Catálogo'),   # todos os modelos (src/data/produtos.json, editado em /admin/)
-    ('/sobre/', 'Sobre'),
-    ('/blog/', 'Blog'),
+    ('/brindes-corporativos/', 'Brindes corporativos'),
+    ('/confeccoes-personalizadas/', 'Uniformes e confecções'),
+    ('/kits-corporativos/', 'Kits corporativos'),
+    ('/ativacoes-promocionais/', 'Ativações promocionais'),
+    ('/hotelaria-e-gastronomia/', 'Hotelaria e gastronomia'),
 ]
 BAG_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8h12l-1 12H7z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/></svg>'
 
@@ -907,15 +964,37 @@ def season_callout(where):
             f'</div></aside>')
 
 
-def header(path):
-    def current(p):
-        if path.startswith(p):
-            return ' aria-current="page"'
-        # o fim de ano é uma ocasião: fora da temporada (sem item próprio no menu) acende "Ocasiões"
-        return ' aria-current="true"' if p == '/brindes-por-ocasiao/' and path.startswith('/brindes-de-fim-de-ano/') and not SEASON else ''
-    season = (f'<a class="nav-link nav-season" href="/brindes-de-fim-de-ano/"{current("/brindes-de-fim-de-ano/")}>Fim de ano</a>'
+def nav_menu(path):
+    """Menu principal: Soluções, Ocasiões e Catálogo abrem submenus (botão com aria-expanded; no celular viram acordeão);
+    Sobre, Conteúdos e Contato. Na temporada, "Fim de ano" vem antes de tudo."""
+    def cur(p):
+        return ' aria-current="page"' if path.startswith(p) else ''
+
+    def grupo(chave, rotulo, itens, extra=''):
+        ativo = any(path.startswith(h.split('?')[0]) for h, _t in itens if h.split('?')[0] != '/')
+        lis = ''.join(f'<li><a href="{h}"{cur(h) if "?" not in h else ""}>{t}</a></li>' for h, t in itens)
+        return (f'<div class="nav-group{" is-current" if ativo else ""}"><button class="nav-link nav-toggle" type="button" aria-expanded="false" '
+                f'aria-controls="sub-{chave}" data-nav-toggle>{rotulo}<svg class="nav-caret" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5l3 3 3-3"/></svg></button>'
+                f'<div class="nav-sub" id="sub-{chave}"><ul>{lis}</ul>{extra}</div></div>')
+
+    occs = sorted(OCCS.items(), key=lambda kv: kv[0] != (SEASON or 'fim-de-ano'))
+    ocasioes = [(collection_href(k), v) for k, v in occs] + [('/brindes-por-ocasiao/', 'Todas as ocasiões')]
+    catalogo = [(f'/catalogo/?categoria={k}#catalogo', v) for k, v in CAT_PROD.items()] + [('/catalogo/', 'Catálogo completo')]
+    contato = ([(f'https://wa.me/{WA}', f'WhatsApp: {fmt_phone(WA)}')] if WA else []) + ([(f'mailto:{EMAIL}', EMAIL)] if EMAIL else []) \
+        + [('/solicitar-proposta/', 'Solicitar proposta')]
+    season = (f'<a class="nav-link nav-season" href="/brindes-de-fim-de-ano/"{cur("/brindes-de-fim-de-ano/")}>Fim de ano</a>'
               if SEASON == 'fim-de-ano' else '')
-    links = season + ''.join(f'<a class="nav-link" href="{p}"{current(p)}>{t}</a>' for p, t in NAV)
+    return (season
+            + grupo('solucoes', 'Soluções', NAV)
+            + grupo('ocasioes', 'Ocasiões', ocasioes)   # o fim de ano está na lista: fora da temporada ele acende "Ocasiões"
+            + grupo('catalogo', 'Catálogo', catalogo)
+            + f'<a class="nav-link" href="/sobre/"{cur("/sobre/")}>Sobre</a>'
+            + f'<a class="nav-link" href="/blog/"{cur("/blog/")}>Conteúdos</a>'
+            + grupo('contato', 'Contato', contato))
+
+
+def header(path):
+    links = nav_menu(path)
     return f'''<a class="skip" href="#conteudo">Pular para o conteúdo</a>
 <aside class="announce" aria-label="Destaques da TaMa"><div class="wrap">{ANNOUNCE_SEASON if SEASON == 'fim-de-ano' else '<p>Brindes, uniformes, kits e ativações para empresas.</p>'}<ul><li>Atendimento consultivo</li><li>Arte aprovada antes da produção</li><li>Do pedido à entrega</li></ul></div></aside>
 <header class="site-header">
@@ -923,7 +1002,7 @@ def header(path):
     <a class="brand" href="/" aria-label="TaMa Creative, página inicial">{LOGO_DECOR}</a>
     <nav class="site-nav" id="site-nav" aria-label="Principal">{links}{cta_link(cls='btn btn-wine nav-cta', track_label='menu-celular')}</nav>
     <div class="head-actions">
-      <button class="icon-btn bag" type="button" data-open-drawer aria-label="Sua seleção de peças">{BAG_SVG}<span class="bag-count" data-sel-count hidden>0</span></button>
+      <button class="icon-btn bag" type="button" data-open-drawer aria-label="Sua seleção de peças">{BAG_SVG}<span class="bag-label" aria-hidden="true">Seleção</span><span class="bag-count" data-sel-count hidden>0</span></button>
       {cta_link(cls='btn btn-wine btn-sm', track_label='header')}
       <button class="icon-btn menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Abrir menu"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="i-open" d="M4 8h16M4 16h16"/><path class="i-close" d="M6 6l12 12M18 6L6 18"/></svg></button>
     </div>
@@ -1032,7 +1111,8 @@ def faq(items, title='Boas ideias começam com boas perguntas.', eyebrow='Conver
 </section>'''
 
 
-# Método TaMa em 6 etapas: faixa "Do briefing à entrega." da home (process_band) e variante clara em /kits-corporativos/.
+# Método TaMa em 6 etapas: faixa compacta "Do briefing à entrega." da home (process_strip), faixa completa process_band
+# (fora da home desde a onda 3) e variante clara em /kits-corporativos/.
 # Ícones de linha originais, desenhados para o site numa grade 48×48 (sem dependência nem licença de terceiros).
 STEP_ICONS = {
     'briefing': '<path d="M18 26h-2l-6 5v-5a4 4 0 0 1-4-4V12a4 4 0 0 1 4-4h16a4 4 0 0 1 4 4v8"/><path d="M22 20h16a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4v5l-6-5H22a4 4 0 0 1-4-4V24a4 4 0 0 1 4-4z"/><circle cx="30" cy="29" r="5.5"/><circle cx="30" cy="29" r="2.2"/>',
@@ -1070,6 +1150,18 @@ def process_band():
       <div><h3>Pronto para tirar sua ideia do papel?</h3><p>Envie objetivo, público e data: a proposta traz peças, quantidades e condições.</p></div>
       {cta_link(cls='btn btn-light', track_label='process')}
     </div>
+  </div>
+</section>'''
+
+
+def process_strip():
+    """Home enxuta: as 6 etapas numa linha (número e nome, sem os textos); a explicação fica em /sobre/."""
+    steps = ''.join(f'<li><span class="proc-n" aria-hidden="true">{i + 1:02d}</span>{t}</li>' for i, (t, _d, _k) in enumerate(STEPS))
+    return f'''<section class="process-strip" aria-labelledby="proc-t">
+  <div class="wrap process-strip-inner">
+    <div class="process-strip-head"><h2 id="proc-t" class="process-strip-title">Do briefing à entrega.</h2><p>Seis etapas, com a arte aprovada por você antes da produção.</p></div>
+    <ol class="process-line" role="list">{steps}</ol>
+    <a class="link" href="/sobre/#como-t">Como trabalhamos {ARROW}</a>
   </div>
 </section>'''
 
@@ -1357,10 +1449,11 @@ def page_home():
         'preload': preload_image('hero-brindes', HERO_SIZES),
         'body': hero_carousel() + f'''
 {frentes_section()}
-{process_band()}
+{prova_block('home')}
+{process_strip()}
 {home_products_block()}
-{kits_block()}
-{collections_block('Brindes por ocasião')}
+{kits_block(compacto=True)}
+{ocasioes_faixa()}
 {faq(HOME_FAQ)}
 {guias_block('home')}
 {end_cta()}''',
@@ -1379,8 +1472,8 @@ def brindes_hero(trail):
                      'Brindes corporativos', ['Sua marca presente.'], 'Muito além da entrega.',
                      'Brindes personalizados para fazer parte da rotina de clientes e equipes. Explore opções para eventos, campanhas e '
                      'relacionamento, com as cores e a identidade da sua empresa.',
-                     f'<a class="btn btn-wine" href="#estudio-b-t">Explorar brindes {ARROW}</a>'
-                     + cta_link(tipo='brindes', cls='btn btn-line', arrow=False, track_label='brindes-head'),
+                     cta_link('Solicitar proposta de brindes', tipo='brindes', track_label='brindes-head')
+                     + '<a class="btn btn-line" href="#estudio-b-t">Explorar brindes</a>',
                      'Imagem ilustrativa • Marcas fictícias', pos_m='88% center') + '\n' + atalhos('Encontre o brinde para a sua próxima ideia.', BRINDES_ATALHOS, 'brindes-atalhos-t', linha=False, traco=True)
 
 
@@ -1403,6 +1496,7 @@ def page_brindes():
     </div>
   </div>
 </section>
+{prova_block('brindes')}
 {studio_block(['caderno-de-anotacoes', 'agenda', 'caneta-executiva-com-estojo', 'garrafa-termica', 'caneca', 'copo-com-tampa', 'ecobag', 'necessaire', 'caixa-para-presente', 'guarda-chuva', 'vela', 'difusor-de-aromas'],
               'Peças para a sua marca', 'Brindes', 'Uma amostra do catálogo: do brinde de evento ao presente executivo. Toque na cor para ver a foto e adicione à sua seleção.', 'estudio-b-t',
               more=('/catalogo/', f'Ver os {len(CATALOGO)} modelos do catálogo'))}
@@ -1474,7 +1568,7 @@ def kits_hero(trail):
                      'caneca e cartão, mostrando como cada kit segue a identidade da empresa.',
                      'Kits corporativos', ['A identidade', 'da sua empresa.'], 'Em cada detalhe.',
                      'Cores, peças e embalagens que traduzem a sua marca. Kits personalizados para receber, reconhecer e criar conexões.',
-                     cta_link('Montar meu kit', tipo='kits', track_label='kits-head') + '<a class="btn btn-line" href="#kits">Explorar kits</a>',
+                     cta_link('Solicitar proposta de kit', tipo='kits', track_label='kits-head') + '<a class="btn btn-line" href="#kits">Explorar kits</a>',
                      'Mockups ilustrativos • Marcas fictícias', pos_m='96% center')
 
 
@@ -1496,6 +1590,7 @@ def page_kits():
     <p class="note" style="margin-top:18px">Os kits aparecem na identidade TaMa como exemplo. No seu projeto, caixa, cartão e peças levam a marca e as cores da sua empresa; a composição é confirmada na proposta. Imagens ilustrativas.</p>
   </div>
 </section>
+{prova_block('kits')}
 <section class="section ivory" aria-labelledby="tipos-t">
   <div class="wrap">
     <div class="section-head"><p class="eyebrow">Tipos de kit</p><h2 id="tipos-t" class="section-title">Um kit para cada relação</h2></div>
@@ -1619,8 +1714,8 @@ def conf_hero(trail):
                      'bordadas com a marca fictícia Elo, mostrando um uniforme na identidade da empresa.',
                      'Uniformes e confecções', ['A identidade', 'da sua marca'], 'também se veste.',
                      'Polos, camisetas, camisas, moletons, dólmãs e aventais personalizados para equipes, eventos e atendimento.',
-                     cta_link('Solicitar proposta', tipo='confeccoes', track_label='conf-head')
-                     + f'<a class="btn btn-line" href="#estudio-c-t">Explorar as peças {ARROW}</a>',
+                     cta_link('Solicitar proposta de uniformes', tipo='confeccoes', track_label='conf-head')
+                     + '<a class="btn btn-line" href="#estudio-c-t">Explorar as peças</a>',
                      'Imagem ilustrativa • Marca fictícia', pos_m='right center') + '\n' + atalhos('Encontre as peças para sua equipe', CONF_PECAS, 'conf-pecas-t')
 
 
@@ -1643,6 +1738,7 @@ def page_confeccoes():
     </div>
   </div>
 </section>
+{prova_block('confeccoes')}
 {studio_block(['polo-masculina', 'polo-feminina', 'camisa-masculina', 'camisa-feminina', 'camiseta-masculina', 'camiseta-feminina', 'moletom-com-capuz', 'bone', 'dolma', 'avental'],
               'As peças de vestuário', 'Catálogo', 'Polo, camisa, camiseta, moletom, dólmã e avental, com a marca aplicada como exemplo.', 'estudio-c-t',
               more=('/catalogo/?categoria=vestuario', 'Ver no catálogo'))}
@@ -1675,7 +1771,7 @@ def ativ_hero(trail):
                      'Ativações promocionais', ['Sua marca,'], ['mais perto de', 'quem compra.'],
                      'Crie oportunidades para o público conhecer, experimentar e se conectar com o seu produto. Ações em lojas, feiras e '
                      'eventos, planejadas conforme o objetivo da sua marca.',
-                     cta_link('Planejar minha ação', tipo='ativacoes', track_label='ativacoes-head') + '<a class="btn btn-line" href="#formatos">Conhecer os formatos</a>',
+                     cta_link('Solicitar proposta de ativação', tipo='ativacoes', track_label='ativacoes-head') + '<a class="btn btn-line" href="#formatos">Conhecer os formatos</a>',
                      'Imagem ilustrativa • Marca fictícia', pos_m='88% center', desloc=.07, sizes=ATIV_HERO_SIZES) + '\n' + atalhos('Uma ação para cada encontro.', ATIV_FORMATOS, 'ativ-atalhos-t', linha=False)
 
 
@@ -1700,6 +1796,7 @@ def page_ativacoes():
     </div>
   </div>
 </section>
+{prova_block('ativacoes')}
 <section class="section" aria-labelledby="ativ-inclui-t">
   <div class="wrap split" style="align-items:start">
     <div class="stack" style="gap:12px"><p class="eyebrow">O que pode fazer parte</p><h2 id="ativ-inclui-t" class="section-title">Tudo o que a ação precisa, com a sua marca</h2><p class="muted">O escopo de cada ativação (materiais, equipe, logística e regras do local ou do organizador) é definido com você e confirmado na proposta.</p></div>
@@ -1744,7 +1841,7 @@ def hot_hero(trail):
                      'Hotelaria e gastronomia', ['Sua identidade,'], ['em cada detalhe', 'de receber.'],
                      'Cardápios, porta-contas, jogos americanos e uniformes personalizados para restaurantes, bares e hotéis. Peças que '
                      'levam a identidade da sua casa à mesa e à equipe.',
-                     cta_link('Solicitar proposta', tipo='hotelaria', track_label='hotelaria-head') + f'<a class="btn btn-line" href="#hot-pecas-t">Explorar as peças</a>',
+                     cta_link('Solicitar proposta para a sua casa', tipo='hotelaria', track_label='hotelaria-head') + '<a class="btn btn-line" href="#hot-pecas-t">Explorar as peças</a>',
                      'Imagem ilustrativa • Marca fictícia', pos_m='92% center') + '\n' + atalhos('Personalização que acompanha o seu atendimento.', HOT_ATALHOS, 'hot-atalhos-t', linha=False, centro=True)
 
 
@@ -1769,6 +1866,7 @@ def page_hotelaria():
     </div>
   </div>
 </section>
+{prova_block('hotelaria')}
 {studio_block(['cardapio', 'porta-contas', 'jogo-americano-retangular', 'jogo-americano-oval', 'jogo-americano-impresso', 'dolma', 'avental', 'taca-de-vinho'],
               'Peças para salão, cozinha e equipe', 'Catálogo', 'Toque na cor para ver a foto e adicione à seleção: as peças seguem com o pedido de proposta.', 'hot-pecas-t',
               more=('/catalogo/?categoria=hotelaria-gastronomia', 'Ver hotelaria no catálogo'))}
@@ -1818,8 +1916,8 @@ def page_fim_de_ano():
                           'Presentes de fim de ano', ['Um brinde a quem'], 'fez parte do seu ano.',
                           'Taças, copos e presentes personalizados para agradecer clientes, reconhecer equipes e celebrar parcerias. '
                           'Escolha as peças e combine a apresentação com a identidade da sua empresa.',
-                          f'<a class="btn btn-wine" href="#brindar">Explorar os presentes {ARROW}</a>'
-                          + cta_link('Solicitar proposta', tipo='kits', cls='btn btn-line', arrow=False, track_label='fim-de-ano-head'),
+                          cta_link('Solicitar proposta de fim de ano', tipo='kits', track_label='fim-de-ano-head')
+                          + '<a class="btn btn-line" href="#brindar">Explorar os presentes</a>',
                           'Imagem ilustrativa • Marca fictícia', pos_m='78% center') + '\n' + atalhos(
             'Escolha como brindar.', FIM_ATALHOS, 'fim-atalhos-t', linha=False, eyebrow='Para brindar', lado=True) + f"""
 {studio_block(['taca-coupe-canelada', 'flute-com-borda-dourada', 'taca-de-gin-com-pe-colorido', 'taca-de-gin-degrade', 'taca-martini', 'copo-long-drink', 'taca-de-champanhe', 'taca-de-gin'],

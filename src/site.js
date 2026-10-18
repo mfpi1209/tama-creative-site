@@ -118,9 +118,24 @@
   if (nav) nav.addEventListener('focusout', function (e) {
     if (nav.classList.contains('is-open') && e.relatedTarget && !nav.contains(e.relatedTarget) && e.relatedTarget !== menuBtn) setMenu(false);
   });
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape' && nav && nav.classList.contains('is-open')) { setMenu(false); menuBtn.focus(); }
+  /* submenus (Soluções, Ocasiões, Catálogo, Contato): botão com aria-expanded; um aberto por vez */
+  var toggles = [].slice.call(document.querySelectorAll('[data-nav-toggle]'));
+  function setSub(btn, open) { btn.setAttribute('aria-expanded', String(open)); btn.parentElement.classList.toggle('is-open', open); }
+  function closeSubs(except) { toggles.forEach(function (t) { if (t !== except) setSub(t, false); }); }
+  toggles.forEach(function (t) {
+    t.addEventListener('click', function () { var open = t.getAttribute('aria-expanded') !== 'true'; closeSubs(t); setSub(t, open); });
   });
+  document.addEventListener('keydown', function (e) {
+    if (e.key !== 'Escape') return;
+    var aberto = toggles.filter(function (t) { return t.getAttribute('aria-expanded') === 'true'; })[0];
+    if (aberto) { setSub(aberto, false); aberto.focus(); return; }   // Esc fecha primeiro o submenu, depois o menu do celular
+    if (nav && nav.classList.contains('is-open')) { setMenu(false); menuBtn.focus(); }
+  });
+  document.addEventListener('click', function (e) { if (!e.target.closest('.nav-group')) closeSubs(); });
+  // Tab para fora de um submenu aberto fecha o submenu, só no computador: no celular (acordeão) fechar no foco
+  // encolhe o grupo de cima antes do toque terminar, e o toque cai fora do botão seguinte
+  var desk = window.matchMedia ? window.matchMedia('(min-width: 1240px)') : { matches: true };
+  if (nav) nav.addEventListener('focusout', function (e) { var g = e.target.closest('.nav-group'); if (desk.matches && g && e.relatedTarget && !g.contains(e.relatedTarget)) closeSubs(); });
   // toque fora do menu (no fundo da página) fecha o menu do celular
   document.addEventListener('click', function (e) {
     if (nav && nav.classList.contains('is-open') && !nav.contains(e.target) && !menuBtn.contains(e.target)) setMenu(false);

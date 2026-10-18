@@ -25,11 +25,24 @@ PROMPT = ('The attached image is the official logo of the company "TaMa Creative
           'brands or logos, no text other than the TaMa logo, no watermark.')
 
 
+# Versão "natural": sem pedir fundo desfocado à esquerda (isso gerava borrões artificiais); o site já funde a foto
+# com o fundo do slide. Pede uma foto de verdade, de lente clara, com o ambiente real e nítido o bastante.
+NATURAL = ('The attached image is the official logo of the company "TaMa Creative". On garments use ONLY the leaf symbol followed by '
+           'the serif word "TaMa", exactly as in the logo, WITHOUT the small "CREATIVE" line (too small to embroider); white on dark '
+           'or saturated fabric, original colors on white fabric. Create an authentic documentary-style photograph taken on location '
+           'with a 35mm lens at f/2.8 in natural daylight: {cena} The environment is a real, specific place with real objects and '
+           'natural detail, gently out of focus only where a real lens would make it so; no airbrushed areas, no smeared blur, no '
+           'haze, no glow, no vignette, no empty studio backdrop. Framing: landscape; people placed in the right half of the frame, '
+           'heads fully visible with headroom, faces lit; the left part of the frame shows more of the real place (no faces there). '
+           'Natural skin texture and fabric wrinkles, candid moment, nobody looking at the camera. No other brands or logos, no text '
+           'other than the TaMa logo on the clothes, no watermark.')
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument('nome'); ap.add_argument('cena'); ap.add_argument('--logo', required=True)
     ap.add_argument('--qualidade', default='high'); ap.add_argument('--modelo', default='gpt-image-1.5')
-    ap.add_argument('--saida', default=os.path.join(ROOT, 'midia', 'cenas'))
+    ap.add_argument('--saida', default=os.path.join(ROOT, 'midia', 'cenas')); ap.add_argument('--natural', action='store_true')
     a = ap.parse_args()
     key = os.environ.get('OPENAI_API_KEY') or variacoes.chave_do_arquivo()
     if not key:
@@ -38,7 +51,7 @@ def main():
     dest = os.path.join(a.saida, a.nome + '.png')
     t = time.time()
     try:
-        png, usage = variacoes.edit(key, a.modelo, a.qualidade, a.logo, PROMPT.format(cena=a.cena), fidelidade='high', tamanho='1536x1024')
+        png, usage = variacoes.edit(key, a.modelo, a.qualidade, a.logo, (NATURAL if a.natural else PROMPT).format(cena=a.cena), fidelidade='high', tamanho='1536x1024')
     except urllib.error.HTTPError as e:
         sys.exit(f'{a.nome}: HTTP {e.code} {e.read()[:400].decode(errors="replace")}')
     open(dest, 'wb').write(png)

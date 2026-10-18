@@ -167,7 +167,7 @@ def build_images():
         sources += [(fn[:-5], os.path.join(v2, fn)) for fn in os.listdir(v2) if fn.lower().endswith('.webp')]
     produtos = os.path.join(IMG_SRC, 'produtos')   # banco de imagens de produto (src/data/produtos.json); só as usadas entram no site
     if os.path.isdir(produtos):
-        usadas = {h['img'] for h in HOME_PRODS} | {c[2] for h in HOME_PRODS for c in h['cores'] if len(c) > 2} | {i['id'] for i in PRODUTOS if i.get('uso')}
+        usadas = {h['img'] for h in HOME_PRODS} | {c[2] for h in HOME_PRODS for c in h['cores'] if len(c) > 2} | {i['id'] for i in PRODUTOS if i.get('uso')} | {i['id'] for p in PECAS for i in (p.get('fotos') or {}).values()}
         arquivo = {i['id']: os.path.join(ROOT, i['arquivo'].lstrip('/')) for i in PRODUTOS if i.get('arquivo')}
         for n in sorted(usadas):
             f = arquivo.get(n, os.path.join(produtos, n + '.webp'))
@@ -288,11 +288,40 @@ PRODUTOS_BY = {i['id']: i for i in PRODUTOS}
 for _h in HOME_PRODS:   # destaques da home: material e técnica vêm do catálogo (o campo meta do JSON não vale mais)
     _h['meta'] = spec_line(PRODUTOS_BY[_h['img']]) if _h['img'] in PRODUTOS_BY else 'Material e técnica sob consulta'
 CATALOGO = build_catalogo()   # depois de color_slug
+
+
+def curadoria_do_banco():
+    """Peça da curadoria com "banco": foto-base e cores vêm do banco de imagens (uma foto por cor, sem repetir cenas).
+    Material e técnica só aparecem quando confirmados no banco; senão, "sob consulta"."""
+    vivos = [i for i in PRODUTOS if i.get('aprovacao') not in ('retirada', 'substituir')]
+    for p in PECAS:
+        pref = p.get('banco')
+        if not pref:
+            continue
+        fotos = [i for i in vivos if i['id'].split('~')[0] == pref]
+        if not fotos:
+            raise SystemExit(f'Curadoria: a peça {p["slug"]} aponta para "{pref}", que não tem fotos no banco')
+        originais = [i for i in fotos if not (i.get('observacao') or '').startswith('Variação de cor')]   # a foto que gerou as variações
+        base = next((i for i in fotos if i['id'] in {h['img'] for h in HOME_PRODS}), (originais or fotos)[0])
+        fotos = [base] + [i for i in fotos if i is not base]
+        p['img'] = base['id']
+        p['alt'] = base['alt']
+        p['cores'] = [[i['cor']['nome'], i['cor']['hex']] for i in fotos]
+        p['fotos'] = {i['cor']['nome']: i for i in fotos}
+        mat, tec = base.get('material') or {}, base.get('tecnica') or {}
+        p['materiais'] = [mat['valor']] if mat.get('status') == 'confirmado' else []
+        p['tecnicas'] = [tec['valor']] if tec.get('status') == 'confirmado' else []
+
+
+curadoria_do_banco()
 CATALOGO_BY = {c['slug']: c for c in CATALOGO}
 
 
 def color_images(p):
     """{colour name: [stem, widths, alt]} for every colour that has its own photo (the first colour is the base photo)."""
+    if p.get('fotos'):   # peça montada a partir do banco de imagens
+        out = {nome: [IMAGES[i['id']]['stem'], IMAGES[i['id']]['widths'], i['alt']] for nome, i in p['fotos'].items() if i['id'] in IMAGES}
+        return out if len(out) > 1 else {}
     out = {}
     for i, (nome, _) in enumerate(p['cores']):
         name = p['img'] if i == 0 else f"{p['img']}~{color_slug(nome)}"
@@ -334,12 +363,12 @@ def product_card(p, sizes='(max-width: 760px) 46vw, (max-width: 1180px) 22vw, 20
                 else '<p class="prod-seal">Personalizável com sua marca</p>')
     occ = ' '.join(p['ocasioes'])
     return f'''<article class="product" id="{p['slug']}" data-slug="{p['slug']}" data-cat="{p['categoria']}" data-occ="{occ}">
-  <button class="prod-media" type="button" data-zoom="{p['slug']}" aria-label="Ampliar foto de {esc(p['nome'])}">{picture(p['img'], 'Fotografia conceitual: ' + p['nome'], sizes)}<span class="prod-zoom" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M8 3v10M3 8h10"/></svg></span></button>{label}
+  <button class="prod-media" type="button" data-zoom="{p['slug']}" aria-label="Ampliar foto de {esc(p['nome'])}">{picture(p['img'], p.get('alt') or 'Fotografia conceitual: ' + p['nome'], sizes)}<span class="prod-zoom" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M8 3v10M3 8h10"/></svg></span></button>{label}
   <div class="prod-info">
     {seal}<h3>{p['nome']}</h3>
     <p class="prod-desc">{p['descricao']}</p>
     <div class="swatch-row">{swatches(dict(p, cores=card_colors(p)))}<span class="color-name">{p['cores'][0][0]}</span></div>
-    <p class="prod-meta">{', '.join(p['materiais'])} · {', '.join(p['tecnicas'])}</p>
+    <p class="prod-meta">{(', '.join(p['materiais']) + ' · ' + ', '.join(p['tecnicas'])) if p['materiais'] and p['tecnicas'] else 'Material e técnica sob consulta'}</p>
     <div class="prod-actions">
       <button class="pick" type="button" data-slug="{p['slug']}" aria-pressed="false"><span class="when-off">+ Selecionar</span><span class="when-on">✓ Selecionado</span><span class="visually-hidden">: {p['nome']}</span></button>
     </div>
@@ -879,7 +908,7 @@ def hero_carousel(slides=None, label='Destaques da TaMa Creative', assurances=Tr
     # slide (creme, sálvia, rosé, linho); o texto fica numa coluna própria, sem encostar nos produtos. No celular o texto
     # vem acima da foto. frame: enquadramento da foto (--fx no computador, --fx-m no celular) e largura (--pw).
     slides = slides or [
-        ('tone-cream', 'hero-brindes', '--fx:100%;--fx-m:96%', 'Ecobag de algodão cru com alças de couro bordô, squeeze bordô com tampa dourada, agenda com caneta dourada e power bank preto com a marca TaMa.', 'Brindes corporativos', 'Sua marca, presente no <em>dia a dia</em>.',
+        ('tone-cream', 'hero-brindes', '--fx:100%;--fx-m:96%', 'Ecobag de algodão cru com alças de couro bordô, squeeze bordô, caderno com caneta dourada, power bank, taça de gin bordô e copo personalizado, todos com a marca TaMa.', 'Brindes corporativos', 'Sua marca, presente no <em>dia a dia</em>.',
          'Peças personalizadas para acompanhar pessoas e criar conexões.',
          cta_link('Solicitar proposta', track_label='hero-1') + '<a class="btn btn-line" href="/brindes-corporativos-premium/">Explorar produtos ' + ARROW + '</a>'),
         ('tone-sage', 'hero-v3-confeccoes', '--fx:72%;--fx-m:72%', 'Polo vermelha, moletom azul royal e camiseta branca com a marca TaMa.', 'Confecções personalizadas', 'Identidade que <em>veste</em> sua equipe.',
@@ -930,7 +959,7 @@ def page_home():
         'body': hero_carousel() + f'''
 <section class="services" aria-label="Frentes da TaMa">
   <div class="wrap service-grid">
-    <a class="service-card split" href="/brindes-corporativos/">{picture('home-brindes', '', '(max-width: 760px) 46vw, 16vw', style='object-position:64% center')}<div class="service-info"><h2>Brindes corporativos</h2><p>Presentes que aproximam, encantam e ficam.</p><span class="link">Ver brindes {ARROW}</span></div></a>
+    <a class="service-card split" href="/brindes-corporativos/">{picture('home-card-brindes', '', '(max-width: 760px) 46vw, 16vw', style='object-position:78% center')}<div class="service-info"><h2>Brindes corporativos</h2><p>Presentes que aproximam, encantam e ficam.</p><span class="link">Ver brindes {ARROW}</span></div></a>
     <a class="service-card split" href="/confeccoes-personalizadas/">{picture('home-confeccoes', '', '(max-width: 760px) 46vw, 16vw', style='object-position:57% 80%')}<div class="service-info"><h2>Confecções personalizadas</h2><p>Peças para equipes, ações e eventos.</p><span class="link">Conhecer opções {ARROW}</span></div></a>
     <a class="service-card split" href="/kits-corporativos/">{picture('home-kits', '', '(max-width: 760px) 46vw, 16vw', style='object-position:72% center')}<div class="service-info"><h2>Kits premium</h2><p>Caixa, peças e cartão com a sua marca.</p><span class="link">Ver kits {ARROW}</span></div></a>
   </div>
@@ -1127,22 +1156,18 @@ def page_curadoria():
 # Abertura de Confecções: pessoas usando as peças com a marca (cenas geradas com IA, ilustrativas; tools/cenas.py).
 # frame: --fx/--fy enquadram a foto no computador, --fx-m no celular.
 CONF_SLIDES = [
-    ('tone-linen', 'conf-evento-polos', '--fx:70%;--fy:35%;--fx-m:68%', 'Homem de polo vermelha e mulher de polo feminina azul royal, as duas com a marca TaMa bordada, conversando em um evento corporativo.',
+    ('tone-linen', 'conf-escritorio', '--fx:62%;--fy:30%;--fx-m:62%', 'Três colegas de polo azul-marinho e moletom cinza com a marca TaMa trabalhando juntos em um escritório.',
      'Confecções personalizadas', 'Uniformes corporativos e <em>confecções personalizadas</em>',
      'Polos, camisetas, dólmãs e moletons para equipes, eventos e o dia a dia, alinhados à identidade da sua empresa.',
-     cta_link('Conversar sobre confecções', tipo='confeccoes', track_label='conf-hero-1') + '<a class="btn btn-line" href="/catalogo/?categoria=vestuario">Ver as peças ' + ARROW + '</a>'),
+     cta_link('Solicitar proposta', tipo='confeccoes', track_label='conf-hero-4') + '<a class="btn btn-line" href="/catalogo/?categoria=vestuario">Ver polos e moletons ' + ARROW + '</a>'),
     ('tone-cream', 'conf-chef-dolma', '--fx:78%;--fy:15%;--fx-m:74%', 'Chef de dólmã branca com a marca TaMa bordada finalizando um prato em uma cozinha profissional.',
      'Gastronomia e hotelaria', 'Dólmãs feitas para o <em>calor da cozinha</em>.',
      'Dólmãs e aventais bordados com a sua marca, em cores e em jeans.',
      cta_link('Conversar sobre uniformes', tipo='confeccoes', track_label='conf-hero-2') + '<a class="btn btn-line" href="/catalogo/?categoria=vestuario">Ver dólmãs e aventais ' + ARROW + '</a>'),
-    ('tone-rose', 'conf-evento-camisetas', '--fx:72%;--fy:30%;--fx-m:70%', 'Equipe de evento de camisetas pretas com a marca TaMa entregando uma ecobag com a marca a um visitante.',
+    ('tone-sage', 'conf-evento-camisetas', '--fx:70%;--fy:30%;--fx-m:70%', 'Equipe de evento de camisetas pretas com a marca TaMa entregando uma ecobag com a marca a um visitante.',
      'Eventos e ações', 'Camisetas que viram <em>presença de marca</em>.',
      'Silk em camisetas para feiras, campanhas e ativações, com a cor e o corte certos para cada equipe.',
      cta_link('Planejar um evento', tipo='confeccoes', track_label='conf-hero-3') + '<a class="btn btn-line" href="/catalogo/?categoria=vestuario">Ver camisetas ' + ARROW + '</a>'),
-    ('tone-sage', 'conf-escritorio', '--fx:72%;--fy:40%;--fx-m:72%', 'Três colegas de polo azul-marinho e moletom cinza com a marca TaMa trabalhando juntos em um escritório.',
-     'Dia a dia', 'Uniforme que a equipe <em>gosta de vestir</em>.',
-     'Polos e moletons para o escritório, com conforto e a identidade da empresa.',
-     cta_link('Solicitar proposta', tipo='confeccoes', track_label='conf-hero-4') + '<a class="btn btn-line" href="/catalogo/?categoria=vestuario">Ver polos e moletons ' + ARROW + '</a>'),
 ]
 
 

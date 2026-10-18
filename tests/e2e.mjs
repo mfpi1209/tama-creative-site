@@ -119,19 +119,19 @@ try {
   await page.reload({ waitUntil: 'networkidle0' });
   const G = '#gift-grid';
   await page.$eval(`${G} .product[data-slug="garrafa-termica"]`, el => el.scrollIntoView({ block: 'center' }));
-  await page.click(`${G} .product[data-slug="garrafa-termica"] .swatch[data-color="Azul"]`);
-  ok(await page.$eval(`${G} .product[data-slug="garrafa-termica"] .color-name`, e => e.textContent === 'Azul'), 'troca de cor atualiza o nome da cor');
+  await page.click(`${G} .product[data-slug="garrafa-termica"] .swatch[data-color="Azul royal"]`);
+  ok(await page.$eval(`${G} .product[data-slug="garrafa-termica"] .color-name`, e => e.textContent === 'Azul royal'), 'troca de cor atualiza o nome da cor');
   await page.click(`${G} .pick[data-slug="garrafa-termica"]`);
   const sel = await page.evaluate(() => JSON.parse(localStorage.getItem('tama-selecao')));
-  ok(sel.length === 1 && sel[0].s === 'garrafa-termica' && sel[0].c === 'Azul', 'peça entra na seleção com a cor escolhida');
+  ok(sel.length === 1 && sel[0].s === 'garrafa-termica' && sel[0].c === 'Azul royal', 'peça entra na seleção com a cor escolhida');
   ok(await page.$eval('.site-header [data-sel-count]', e => !e.hidden && e.textContent === '1'), 'contador do cabeçalho mostra 1');
   await page.click('.site-header [data-open-drawer]');
-  ok(await page.$eval('#drawer', d => d.open && d.textContent.includes('Garrafa térmica') && d.textContent.includes('Azul')), 'gaveta lista a peça com a cor');
+  ok(await page.$eval('#drawer', d => d.open && d.textContent.includes('Garrafa térmica') && d.textContent.includes('Azul royal')), 'gaveta lista a peça com a cor');
   await page.keyboard.press('Escape');
   ok(!(await page.$eval('#drawer', d => d.open)), 'Esc fecha a gaveta');
-  await page.$eval(`${G} .product[data-slug="bandeja-em-couro"]`, el => el.scrollIntoView({ block: 'center' }));
-  await page.click(`${G} .product[data-slug="bandeja-em-couro"] .swatch[data-color="Café"]`);
-  ok(await page.$eval(`${G} .product[data-slug="bandeja-em-couro"] .prod-media img`, i => (i.getAttribute('srcset') || '').includes('bandeja-couro~cafe')), 'trocar a cor mostra a foto do produto na cor escolhida');
+  await page.$eval(`${G} .product[data-slug="agenda-executiva"]`, el => el.scrollIntoView({ block: 'center' }));
+  await page.click(`${G} .product[data-slug="agenda-executiva"] .swatch[data-color="Café"]`);
+  ok(await page.$eval(`${G} .product[data-slug="agenda-executiva"] .prod-media img`, i => (i.getAttribute('srcset') || '').includes('agenda-couro~cafe')), 'trocar a cor mostra a foto do produto na cor escolhida');
   await page.$eval(`${G} [data-zoom="caneca-de-ceramica"]`, el => el.scrollIntoView({ block: 'center' }));
   await page.click(`${G} [data-zoom="caneca-de-ceramica"]`);
   ok(await page.$eval('#lightbox', d => d.open && d.querySelector('#lb-title').textContent === 'Caneca de cerâmica'), 'foto ampliada abre com a peça certa');
@@ -142,23 +142,25 @@ try {
   console.log('Curadoria completa');
   await page.goto(BASE + '/brindes-corporativos-premium/', { waitUntil: 'networkidle0' });
   const visible = () => page.$$eval('#gift-grid .product, #idea-grid .idea', g => g.filter(x => !x.hidden && getComputedStyle(x).display !== 'none').length);
-  ok(await visible() === 36, '36 peças sem filtro (19 com foto + 17 além do óbvio)');
+  ok(await visible() === 37, '37 peças sem filtro (20 com foto + 17 além do óbvio)');
+  ok(await page.$$eval('#gift-grid .product img', i => new Set(i.map(x => (x.currentSrc || x.src).split('/').pop().split('.')[0])).size === i.length), 'curadoria: cada peça tem a sua própria foto (nenhuma repetida)');
   ok(await colorsHavePhoto(page, '#gift-grid .product'), 'toda cor mostrada na curadoria tem foto própria (nenhuma bolinha sem efeito)');
   await page.click('.chip[data-filter="cat"][data-value="alem"]');
   await page.click('.chip[data-filter="occ"][data-value="fim-de-ano"]');
   const n1 = await visible();
   ok(n1 === 9, `Além do óbvio + Fim de ano mostra 9 (${n1})`);
   ok(page.url().includes('categoria=alem') && page.url().includes('ocasiao=fim-de-ano'), 'filtros ficam na URL para compartilhar');
-  await page.click('.chip[data-filter="cat"][data-value="bebidas"]');
+  await page.click('.chip[data-filter="occ"][data-value="campanhas"]');
+  await page.click('.chip[data-filter="cat"][data-value="embalagem"]');
   ok(await page.$eval('#gift-empty', e => !e.hidden), 'combinação sem resultados mostra estado vazio');
   await page.click('#gift-reset');
-  ok(await visible() === 36, 'limpar filtros volta às 36 peças');
+  ok(await visible() === 37, 'limpar filtros volta às 37 peças');
   // catálogo em estúdio (banco de imagens de produto): página própria, chamada a partir da curadoria
   ok(await page.$eval('a.btn[href="/catalogo/"]', a => /Acessar o catálogo completo/.test(a.textContent)), 'curadoria chama o catálogo completo');
   await page.goto(BASE + '/catalogo/', { waitUntil: 'networkidle0' });
   const catVisible = () => page.$$eval('#catalogo-grid .product', g => g.filter(x => !x.hidden && getComputedStyle(x).display !== 'none').length);   // conta o que está mesmo na tela
-  ok(await page.$$eval('h1', h => h.length === 1 && /48 modelos/.test(h[0].textContent)), 'página do catálogo tem H1 com o total');
-  ok(await catVisible() === 48 && await page.$$eval('#catalogo-grid .product img', i => i.every(x => x.alt.length > 15)), 'catálogo mostra os 48 modelos do banco, com texto alternativo');
+  ok(await page.$$eval('h1', h => h.length === 1 && /51 modelos/.test(h[0].textContent)), 'página do catálogo tem H1 com o total');
+  ok(await catVisible() === 51 && await page.$$eval('#catalogo-grid .product img', i => i.every(x => x.alt.length > 15)), 'catálogo mostra os 51 modelos do banco, com texto alternativo');
   ok(await page.$$eval('#catalogo-grid .product[data-slug="cat-caneca"] .swatch', s => s.length === 5), 'caneca tem 5 cores com foto');
   ok(await colorsHavePhoto(page, '#catalogo-grid .product.studio'), 'toda cor mostrada no catálogo tem foto própria (nenhuma bolinha sem efeito)');
   await page.$eval('#catalogo-grid .product[data-slug="cat-caneca"]', el => el.scrollIntoView({ block: 'center' }));
@@ -174,7 +176,7 @@ try {
   await page.click('#catalogo-grid .pick[data-slug="cat-caneca"]');
   ok((await page.evaluate(() => JSON.parse(localStorage.getItem('tama-selecao')))).some(x => x.s === 'cat-caneca' && x.c === 'Branco'), 'modelo do catálogo entra na seleção com a cor da foto');
   await page.goto(BASE + '/catalogo/?categoria=vestuario', { waitUntil: 'networkidle0' });
-  ok(await catVisible() === 7 && await page.$eval('[data-rail-filter="catalogo-grid"][data-value="vestuario"]', b => b.getAttribute('aria-pressed') === 'true'), '?categoria=vestuario abre o catálogo já filtrado (7 peças de vestuário)');
+  ok(await catVisible() === 8 && await page.$eval('[data-rail-filter="catalogo-grid"][data-value="vestuario"]', b => b.getAttribute('aria-pressed') === 'true'), '?categoria=vestuario abre o catálogo já filtrado (8 peças de vestuário)');
   await page.goto(BASE + '/brindes-corporativos/', { waitUntil: 'networkidle0' });
   ok(await page.$$eval('.studio-grid .product.studio', c => c.length === 8), 'brindes: 8 modelos em estúdio');
   ok(await colorsHavePhoto(page, '#rail-brindes .product'), 'trilho de brindes: toda cor mostrada tem foto própria');
@@ -185,7 +187,7 @@ try {
   ok(await page.$$eval('a[href^="/branding-identidade-visual/"], a[href^="/projetos/"]', a => a.length === 0), 'nenhum link para branding ou projetos');
   await page.goto(BASE + '/confeccoes-personalizadas/', { waitUntil: 'networkidle0' });
   ok(await page.$$eval('.studio-grid .product.studio', c => c.length === 7) && await page.$eval('.studio-grid', g => !!g.closest('section').querySelector('a[href="/catalogo/?categoria=vestuario"]')), 'confecções: 7 peças em estúdio com link para o catálogo filtrado');
-  ok(await page.$$eval('#hero .slide', s => s.length === 4) && await page.$$eval('h1', h => h.length === 1 && /Uniformes corporativos/.test(h[0].textContent)), 'confecções abre com carrossel de 4 cenas e um único H1');
+  ok(await page.$$eval('#hero .slide', s => s.length === 3) && await page.$$eval('h1', h => h.length === 1 && /Uniformes corporativos/.test(h[0].textContent)), 'confecções abre com carrossel de 3 cenas e um único H1');
   ok(await page.$$eval('#hero .slide img', i => i.every(x => /TaMa/.test(x.alt) && x.alt.length > 40)), 'cenas de confecções com texto alternativo descritivo');
   ok(!(await page.$('.assurances')), 'confecções não repete a faixa de confiança da home');
   ok(!(await page.$('#rail-conf')) && !(await page.$('#pecas-c-t')), 'confecções: sem o bloco "Do uniforme do dia a dia à peça do evento"');
@@ -197,7 +199,7 @@ try {
   await page.goto(BASE + '/brindes-corporativos-premium/', { waitUntil: 'networkidle0' });
   await page.goto(BASE + '/brindes-corporativos-premium/?ocasiao=eventos#pecas', { waitUntil: 'networkidle0' });
   const n2 = await visible();
-  ok(n2 === 16, `link de coleção (?ocasiao=eventos) já abre filtrado (${n2})`);
+  ok(n2 === 18, `link de coleção (?ocasiao=eventos) já abre filtrado (${n2})`);
   await page.click('.idea .pick[data-slug="baralho-exclusivo"]');
 
   console.log('Processo (Do briefing à entrega)');
@@ -218,7 +220,7 @@ try {
   ok(await page.$eval('input[name="tipo"][value="kits"]', i => i.checked), 'tipo pré-selecionado pela URL (?tipo=kits)');
   ok(await page.$eval('#picked-list', l => l.children.length === 3), 'as 3 peças selecionadas aparecem no formulário');
   const selecao = await page.$eval('#f-selecao', i => i.value);
-  ok(selecao.includes('Garrafa térmica (Azul)') && selecao.includes('Baralho exclusivo'), 'campo enviado leva peças e cores');
+  ok(selecao.includes('Garrafa térmica (Azul royal)') && selecao.includes('Baralho exclusivo'), 'campo enviado leva peças e cores');
   ok(await page.$$eval('input[name="tipo"]', l => l.map(i => i.value).join()) === 'brindes,kits,confeccoes,integrado', 'formulário sem o tipo branding');
   await page.click('input[name="tipo"][value="kits"]');
   ok(await page.$eval('#f-qtd', i => !i.disabled && !i.closest('[data-show-for]').hidden), 'kits mostra quantidade e data');
@@ -249,7 +251,7 @@ try {
   await page.waitForSelector('#form-result:not([hidden])');
   ok(await page.$eval('#form-result', r => r.textContent.includes('Não conseguimos enviar')), 'falha do servidor mostra erro (nunca sucesso)');
   const decoded = new URLSearchParams(posted);
-  ok(decoded.get('form-name') === 'proposta' && decoded.has('bot-field') && (decoded.get('selecao') || '').includes('Garrafa térmica (Azul)'), 'POST inclui form-name, honeypot e seleção');
+  ok(decoded.get('form-name') === 'proposta' && decoded.has('bot-field') && (decoded.get('selecao') || '').includes('Garrafa térmica (Azul royal)'), 'POST inclui form-name, honeypot e seleção');
   await page.click('[data-retry]');
   ok(await page.$eval('#proposal-form', f => !f.hidden), '"Tentar de novo" reabre o formulário com os dados');
   mode = 'ok';
@@ -309,9 +311,9 @@ try {
   ok(blogBroken.length === 0, `links internos dos artigos respondem 200${blogBroken.length ? ' — ' + blogBroken.join(', ') : ''}`);
   await bp.evaluate(() => localStorage.clear());
   await bp.goto(BASE + '/blog/brindes-de-fim-de-ano-para-clientes/', { waitUntil: 'networkidle0' });
-  await bp.$eval('#rail-post .pick[data-slug="bandeja-em-couro"]', el => el.scrollIntoView({ block: 'center' }));
-  await bp.click('#rail-post .pick[data-slug="bandeja-em-couro"]');
-  ok(await bp.evaluate(() => JSON.parse(localStorage.getItem('tama-selecao') || '[]').some(x => x.s === 'bandeja-em-couro')), 'peça escolhida no artigo entra na seleção da proposta');
+  await bp.$eval('#rail-post .pick[data-slug="caneta-executiva"]', el => el.scrollIntoView({ block: 'center' }));
+  await bp.click('#rail-post .pick[data-slug="caneta-executiva"]');
+  ok(await bp.evaluate(() => JSON.parse(localStorage.getItem('tama-selecao') || '[]').some(x => x.s === 'caneta-executiva')), 'peça escolhida no artigo entra na seleção da proposta');
   await bp.evaluate(() => localStorage.clear());
   const feed = await (await fetch(BASE + '/blog/feed.xml')).text();
   const items = [...feed.matchAll(/<item>[\s\S]*?<link>([^<]+)<\/link>/g)].map(m => new URL(m[1]).pathname);
@@ -325,7 +327,7 @@ try {
   const vendor = admHtml.match(/src="(\/admin\/vendor\/[^"]+)"/)?.[1];
   ok(admHtml.includes('noindex') && vendor && (await fetch(BASE + vendor)).status === 200, 'editor publicado com noindex e Decap servido pelo próprio site');
   ok(['publish_mode: editorial_workflow', 'folder: src/blog', 'media_folder: img/blog', 'name: github'].every(s => cfg.includes(s)), 'config do editor: GitHub, fluxo editorial, pasta do blog e mídia em img/blog');
-  ok(['value: fim-de-ano', 'value: bandeja-em-couro', "pattern:"].every(s => cfg.includes(s)) && !cfg.includes('heading-one'), 'editor só oferece temas e peças válidos, com limites de SEO e sem H1 no texto');
+  ok(['value: fim-de-ano', 'value: caneta-executiva', "pattern:"].every(s => cfg.includes(s)) && !cfg.includes('heading-one'), 'editor só oferece temas e peças válidos, com limites de SEO e sem H1 no texto');
   ok(!sitemap.includes('/admin/'), 'editor fora do sitemap');
   ok(['file: src/data/produtos.json', 'widget: color', 'media_folder: /img/produtos', 'value: confirmado', 'value: a_confirmar'].every(x => cfg.includes(x)), 'editor tem o catálogo: foto, cor, material e técnica com situação');
   const rob = await (await fetch(BASE + '/robots.txt')).text();

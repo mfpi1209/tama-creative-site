@@ -15,12 +15,12 @@ capa_alt: xícara mostarda com pires sobre pedra, ao lado de caixas terracota e 
 capa_conceitual: true
 capa_posicao: 50% 55%
 pecas:
-- manta-de-aconchego
+- vela-perfumada
 - caneca-de-ceramica
 - garrafa-termica
 - moletom-exclusivo
 - bolsa-tote-estruturada
-- embalagem-presente
+- caixa-rigida-premium
 - ritual-de-cafe
 - vela-fragrancia-assinada
 - domino-madeira

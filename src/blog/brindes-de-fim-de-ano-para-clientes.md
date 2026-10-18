@@ -14,11 +14,11 @@ capa: hero-gift
 capa_alt: caderno azul, bandeja em couro, garrafa térmica verde, xícara mostarda e caixas de presente sobre blocos de pedra.
 capa_conceitual: true
 pecas:
-- bandeja-em-couro
+- caneta-executiva
 - agenda-executiva
-- manta-de-aconchego
+- vela-perfumada
 - caixa-rigida-premium
-- embalagem-presente
+- cartao-personalizado
 - sacola-corporativa
 - tabua-de-queijos
 - cha-em-latas

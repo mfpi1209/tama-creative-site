@@ -375,6 +375,44 @@
    "atualizado_em": "2026-10-17"
   },
   {
+   "id": "bone~verde",
+   "produto": "Boné",
+   "categoria": "vestuario",
+   "modelo": "Seis gomos, algodão",
+   "cor": {
+    "nome": "Verde",
+    "hex": "#1F4A35"
+   },
+   "material": {
+    "valor": "Algodão",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Boné verde-floresta com a marca TaMa bordada em branco.",
+   "uso": [
+    "curadoria",
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Imagem gerada com IA (OpenAI gpt-image-1.5, a partir de descrição, com o logo oficial como referência) em 17/10/2026. Ilustrativa.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/bone~verde.webp",
+   "mestre": "midia/produtos/mestre/bone~verde.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "a102be0440a3fdbac9994a99a537ddcecaaac47e0ab8cb09fef9bab886c7f875",
+   "bytes": 1528174,
+   "atualizado_em": "2026-10-17"
+  },
+  {
    "id": "caderno~azul-marinho",
    "produto": "Caderno de anotações",
    "categoria": "canetas-escritorio",
@@ -2892,6 +2930,44 @@
    "altura": 1024,
    "sha256": "30b8b172d414a3c5d9b40e26bbb6296fdd5a977b6bc0a3a53a3237ed7773900d",
    "bytes": 1670903,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "cartao~creme",
+   "produto": "Cartão personalizado",
+   "categoria": "bolsas-embalagens",
+   "modelo": "Cartão dobrado com envelope",
+   "cor": {
+    "nome": "Creme",
+    "hex": "#F2EADB"
+   },
+   "material": {
+    "valor": "Papel especial",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Hot stamping",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Cartão creme com a marca TaMa em dourado, ao lado do envelope bordô.",
+   "uso": [
+    "curadoria",
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Imagem gerada com IA (OpenAI gpt-image-1.5, a partir de descrição, com o logo oficial como referência) em 17/10/2026. Ilustrativa.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/cartao~creme.webp",
+   "mestre": "midia/produtos/mestre/cartao~creme.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "dadfec3f5f67bd926e662033f26e3bb877f0c9a35ddb6624164eb2432433e697",
+   "bytes": 1385047,
    "atualizado_em": "2026-10-17"
   },
   {
@@ -5426,6 +5502,44 @@
    "altura": 1024,
    "sha256": "e82a2536a7c7b91ca102fd72dd065f5a1cb1874013984442ca755e153ced1d28",
    "bytes": 1668703,
+   "atualizado_em": "2026-10-17"
+  },
+  {
+   "id": "lacre~dourado",
+   "produto": "Lacre de cera",
+   "categoria": "bolsas-embalagens",
+   "modelo": "Lacre com o símbolo da marca, com carimbo",
+   "cor": {
+    "nome": "Dourado",
+    "hex": "#C9A15F"
+   },
+   "material": {
+    "valor": "Cera",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Carimbo personalizado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Envelope creme fechado com lacre de cera dourado com o símbolo TaMa, ao lado do carimbo.",
+   "uso": [
+    "curadoria",
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Imagem gerada com IA (OpenAI gpt-image-1.5, a partir de descrição, com o logo oficial como referência) em 17/10/2026. Ilustrativa.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/lacre~dourado.webp",
+   "mestre": "midia/produtos/mestre/lacre~dourado.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "43bf85b3b1758812c196c59aa9348a0027d947767d28c58bf83ae2e7bfcdbc5d",
+   "bytes": 1372925,
    "atualizado_em": "2026-10-17"
   },
   {

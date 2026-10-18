@@ -14,12 +14,12 @@ capa: kit-presente
 capa_alt: kit com manta em caixa terracota, caixa verde com fita, xícara mostarda e garrafa sobre pedra.
 capa_conceitual: true
 pecas:
-- kit-boas-vindas
+- caixa-rigida-premium
 - caderno-premium
 - garrafa-termica
 - caneca-de-ceramica
 - moletom-exclusivo
-- kit-de-papelaria
+- organizador-de-mesa
 - calendario-perpetuo
 - garrafa-vidro-cortica
 - cabo-estojo-couro

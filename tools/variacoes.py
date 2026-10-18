@@ -82,7 +82,7 @@ def novo(a):
         print('já existe:', os.path.relpath(dest, ROOT)); return
     t = time.time()
     try:
-        png, usage = edit(key, a.modelo, a.qualidade, estilo, NOVO.format(desc=a.descricao, aplicacao=a.aplicacao), fidelidade='high', extras=[a.logo])
+        png, usage = edit(key, a.modelo, a.qualidade, estilo, NOVO.format(desc=a.descricao, aplicacao=a.aplicacao), fidelidade='high', extras=[a.logo], tamanho=a.tamanho)
     except urllib.error.HTTPError as e:
         sys.exit(f'{a.id}: HTTP {e.code} {e.read()[:400].decode(errors="replace")}')
     open(dest, 'wb').write(png)
@@ -93,7 +93,7 @@ def main():
     if len(sys.argv) > 1 and sys.argv[1] == 'novo':
         ap = argparse.ArgumentParser(prog='variacoes.py novo')
         ap.add_argument('cmd'); ap.add_argument('id'); ap.add_argument('descricao')
-        ap.add_argument('--estilo', default='caneca~branco'); ap.add_argument('--logo', required=True, help='PNG do logo oficial em fundo claro'); ap.add_argument('--aplicacao', default='printed small on the front of the product, in a contrasting single color')
+        ap.add_argument('--estilo', default='caneca~branco'); ap.add_argument('--logo', required=True, help='PNG do logo oficial em fundo claro'); ap.add_argument('--tamanho', default='1024x1024'); ap.add_argument('--aplicacao', default='printed small on the front of the product, in a contrasting single color')
         ap.add_argument('--saida', default=os.path.join(ROOT, 'midia', 'produtos', 'geradas'))
         ap.add_argument('--modelo', default='gpt-image-1.5'); ap.add_argument('--qualidade', default='medium')
         return novo(ap.parse_args())

@@ -42,7 +42,7 @@ try {
   await page.goto(BASE + '/', { waitUntil: 'networkidle0' });
   const links = await page.$$eval('a[href^="/"]', as => [...new Set(as.map(a => a.getAttribute('href').split('#')[0].split('?')[0]))]);
   const broken = [];
-  for (const l of links) { const r = await fetch(BASE + l); if (r.status !== 200) broken.push(l + ' ' + r.status); }
+  for (const l of links) { const r = await fetch(BASE + l); await r.arrayBuffer(); if (r.status !== 200) broken.push(l + ' ' + r.status); }
   const catHref = await page.$eval('#site-nav', n => [...n.querySelectorAll('a')].map(a => [a.textContent.trim(), a.getAttribute('href')]).find(([t]) => t === 'Catálogo')?.[1]);
   ok(catHref === '/catalogo/', `menu "Catálogo" abre /catalogo/ (${catHref})`);
   ok(broken.length === 0, `${links.length} links internos respondem 200${broken.length ? ' — quebrados: ' + broken.join(', ') : ''}`);
@@ -344,7 +344,7 @@ try {
   ok(await fp.$eval('#f-selecao', i => i.value === 'Polo masculina (Preto); Caneca (Branco)'), 'seleção salva com slugs antigos vira os modelos atuais (ideia retirada sai)');
   await fp.evaluate(() => localStorage.clear());
   const selo = await (await fetch(BASE + '/sobre/')).text();
-  ok(!/MARCAS/.test(selo) && (await (await fetch(BASE + '/favicon.svg')).ok), 'selo sem "MARCAS" no HTML');
+  ok(!/MARCAS/.test(selo) && (await fetch(BASE + '/favicon.svg').then(async r => (await r.arrayBuffer(), r.ok))), 'selo sem "MARCAS" no HTML');
   await fp.close();
   console.log('Blog');
   const bp = await browser.newPage();
@@ -388,10 +388,10 @@ try {
     ok(a.h1 === 1 && path === post && a.ogType === 'article', `${post}: um H1, canonical e og:type=article`);
     ok(a.ld.headline && a.ld.date && a.ld.author?.endsWith('/#org') && a.ld.publisher?.endsWith('/#org') && a.ld.crumbs === 3, `${post}: BlogPosting (autor TaMa Creative) + BreadcrumbList`);
     ok(a.proposta.some(h => h.includes('?tipo=')) && a.tocOk, `${post}: CTA para a proposta com tipo e sumário com âncoras válidas`);
-    ok((await fetch(BASE + new URL(a.ogImage).pathname)).status === 200, `${post}: imagem de compartilhamento própria`);
+    ok((await fetch(BASE + new URL(a.ogImage).pathname).then(async r => (await r.arrayBuffer(), r))).status === 200, `${post}: imagem de compartilhamento própria`);
     if (post.includes('compliance')) ok(a.sources >= 10, `${post}: seção Fontes com links oficiais (${a.sources})`);
     else ok(a.curadoria.length > 0, `${post}: link para a curadoria filtrada por ocasião`);
-    for (const l of a.links) { const r = await fetch(BASE + l); if (r.status !== 200) blogBroken.push(post + ' → ' + l + ' ' + r.status); }
+    for (const l of a.links) { const r = await fetch(BASE + l); await r.arrayBuffer(); if (r.status !== 200) blogBroken.push(post + ' → ' + l + ' ' + r.status); }
   }
   ok(blogBroken.length === 0, `links internos dos artigos respondem 200${blogBroken.length ? ' — ' + blogBroken.join(', ') : ''}`);
   await bp.evaluate(() => localStorage.clear());

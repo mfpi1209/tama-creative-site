@@ -177,7 +177,7 @@ IMAGES = {}
 # largura real da foto do carrossel (fotos 3:2 na metade direita; no celular, um pouco maior que a tela por causa do corte)
 HERO_SIZES = '(max-width: 760px) 120vw, 95vw'
 CARROSSEL_HQ = {'hero-brindes', 'hero-v3-confeccoes', 'hero-kits', 'home-escritorio'}
-FOTOS_HQ = CARROSSEL_HQ | {'home-frente-brindes', 'home-frente-confeccoes', 'home-frente-kits', 'kits-header', 'conf-header', 'ativ-header', 'hot-header', 'brindes-header'}   # fotos enviadas em alta pela TaMa (home e cabeçalhos de kits e confecções)
+FOTOS_HQ = CARROSSEL_HQ | {'home-frente-brindes', 'home-frente-confeccoes', 'home-frente-kits', 'kits-header', 'conf-header', 'ativ-header', 'hot-header', 'brindes-header', 'brindes-entrega'}   # fotos enviadas em alta pela TaMa (home e cabeçalhos de kits e confecções)
 
 
 def build_images():
@@ -1308,13 +1308,19 @@ def page_brindes():
     </dl>
   </div>
 </section>
-<section class="section" aria-labelledby="entrega-t">
-  <div class="wrap split">
-    <figure>{picture('embalagem-presente', 'Embalagem de presente com fita. Imagem ilustrativa.', '(max-width: 760px) 92vw, 46vw', cls='photo')}<figcaption class="caption">{CAP}</figcaption></figure>
-    <div class="stack">
-      <p class="eyebrow">Apresentação</p><h2 id="entrega-t" class="section-title">A entrega também comunica</h2>
-      <p class="muted">O momento de abrir a caixa faz parte do brinde. Opções de apresentação que podem entrar na proposta:</p>
-      <dl class="pack"><div><dt>Caixa rígida</dt><dd>Com a marca aplicada por fora e um detalhe na tampa interna.</dd></div><div><dt>Papel de seda</dt><dd>Nas cores da marca, envolvendo cada peça.</dd></div><div><dt>Lacre e cartão</dt><dd>Lacre com o símbolo da marca e uma mensagem curta de quem envia.</dd></div></dl>
+<section class="section entrega" aria-labelledby="entrega-t">
+  <div class="wrap entrega-grid">
+    <figure class="entrega-foto">{picture('brindes-entrega', 'Caixa azul-petróleo da marca fictícia Nexo aberta sobre bandeja de pedra: presente envolto em papel de seda com padrão gravado, lacre redondo com o símbolo, cartão em relevo e fita de gorgorão azul.', '(max-width: 900px) min(calc(100vw - 32px), 640px), (max-width: 1340px) 50vw, 680px')}<figcaption>Imagem ilustrativa • Marca fictícia</figcaption></figure>
+    <div class="entrega-texto">
+      <p class="eyebrow">Apresentação</p>
+      <h2 id="entrega-t" class="entrega-title"><span>A entrega</span> <em>também comunica<span class="ponto">.</span></em></h2>
+      <p class="entrega-desc">A experiência começa antes de revelar o <strong>presente.</strong> Combine o brinde com uma apresentação que leve as cores, a identidade e a mensagem da sua empresa.</p>
+      <dl class="entrega-lista">
+        <div><dt>Caixas e embalagens</dt><dd>Formatos e acabamentos escolhidos conforme as peças e a proposta.</dd></div>
+        <div><dt>Papel de seda e fitas</dt><dd>Cores e detalhes que valorizam o momento de abrir.</dd></div>
+        <div><dt>Lacres e cartões</dt><dd>Sua identidade e uma mensagem para quem recebe.</dd></div>
+      </dl>
+      {cta_link('Incluir embalagem na proposta', tipo='brindes', track_label='brindes-embalagem')}
     </div>
   </div>
 </section>

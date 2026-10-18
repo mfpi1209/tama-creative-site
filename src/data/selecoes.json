@@ -1,0 +1,268 @@
+{
+ "_doc": "Seleções editoriais sobre a base única src/data/produtos.json. Aqui só entram ids de modelo (o nome do produto em minúsculas, sem acento, com hífens, ex.: polo-masculina). Nome, descrição, cores e fotos vêm sempre de produtos.json. aliases: slugs antigos (home, curadoria, catálogo) que continuam funcionando em seleções salvas e links. foto_base: a foto que abre o card de cada modelo (as outras cores aparecem nas bolinhas).",
+ "home": [
+  "polo-masculina",
+  "polo-feminina",
+  "camiseta-masculina",
+  "camiseta-feminina",
+  "garrafa-termica",
+  "caneca",
+  "caderno-de-anotacoes",
+  "ecobag"
+ ],
+ "prioridade": [
+  "polo-masculina",
+  "polo-feminina",
+  "camiseta-masculina",
+  "camiseta-feminina",
+  "moletom-com-capuz",
+  "bone",
+  "dolma",
+  "avental",
+  "caderno-de-anotacoes",
+  "agenda",
+  "caneta-executiva-com-estojo",
+  "caneta-executiva-esferografica",
+  "caneta-executiva-roller",
+  "garrafa-termica",
+  "caneca",
+  "copo-com-tampa",
+  "squeeze",
+  "ecobag",
+  "caixa-para-presente",
+  "sacola-para-presente",
+  "necessaire",
+  "cardapio",
+  "porta-contas",
+  "jogo-americano-retangular",
+  "jogo-americano-oval",
+  "jogo-americano-impresso"
+ ],
+ "foto_base": {
+  "caderno-de-anotacoes": "caderno~azul-royal",
+  "caixa-para-presente": "caixa-personalizada~bordo",
+  "camiseta-feminina": "camiseta-feminina~preto",
+  "camiseta-masculina": "camiseta~branco",
+  "caneca": "caneca~branco",
+  "caneta-executiva-com-estojo": "caneta-executiva-estojo~preto",
+  "dolma": "dolma~branco",
+  "ecobag": "ecobag~cru",
+  "garrafa-termica": "garrafa-termica~vermelho",
+  "moletom-com-capuz": "moletom~cinza",
+  "polo-feminina": "polo-feminina~azul-royal",
+  "polo-masculina": "polo~vermelho"
+ },
+ "ocasioes": {
+  "boas-vindas": "Boas-vindas",
+  "eventos": "Eventos",
+  "executivos": "Presentes executivos",
+  "campanhas": "Campanhas e ativações",
+  "lancamentos": "Lançamentos",
+  "fim-de-ano": "Fim de ano",
+  "reconhecimento": "Reconhecimento"
+ },
+ "ocasioes_por_modelo": {
+  "agenda": [
+   "executivos",
+   "fim-de-ano",
+   "reconhecimento"
+  ],
+  "caderno-de-anotacoes": [
+   "boas-vindas",
+   "eventos",
+   "lancamentos"
+  ],
+  "caneta-executiva-com-estojo": [
+   "executivos",
+   "reconhecimento",
+   "fim-de-ano"
+  ],
+  "porta-canetas": [
+   "boas-vindas",
+   "executivos"
+  ],
+  "garrafa-termica": [
+   "boas-vindas",
+   "eventos",
+   "campanhas"
+  ],
+  "caneca": [
+   "boas-vindas",
+   "campanhas"
+  ],
+  "copo-de-vinho-com-tampa": [
+   "executivos",
+   "fim-de-ano",
+   "eventos"
+  ],
+  "taca-de-gin": [
+   "eventos",
+   "lancamentos",
+   "campanhas"
+  ],
+  "vela": [
+   "fim-de-ano",
+   "reconhecimento",
+   "executivos"
+  ],
+  "difusor-de-aromas": [
+   "fim-de-ano",
+   "lancamentos"
+  ],
+  "moletom-com-capuz": [
+   "boas-vindas",
+   "eventos",
+   "reconhecimento"
+  ],
+  "polo-masculina": [
+   "boas-vindas",
+   "eventos"
+  ],
+  "bone": [
+   "eventos",
+   "campanhas"
+  ],
+  "ecobag": [
+   "eventos",
+   "boas-vindas",
+   "campanhas"
+  ],
+  "sacola-para-presente": [
+   "fim-de-ano",
+   "lancamentos",
+   "eventos"
+  ],
+  "necessaire": [
+   "executivos",
+   "reconhecimento"
+  ],
+  "caixa-para-presente": [
+   "fim-de-ano",
+   "boas-vindas",
+   "lancamentos"
+  ],
+  "cartao-com-envelope": [
+   "fim-de-ano",
+   "reconhecimento",
+   "executivos"
+  ],
+  "lacre": [
+   "fim-de-ano",
+   "executivos",
+   "lancamentos"
+  ],
+  "polo-feminina": [
+   "boas-vindas",
+   "eventos"
+  ],
+  "camiseta-masculina": [
+   "eventos",
+   "campanhas"
+  ],
+  "camiseta-feminina": [
+   "eventos",
+   "campanhas"
+  ],
+  "copo-com-tampa": [
+   "boas-vindas",
+   "campanhas"
+  ],
+  "squeeze": [
+   "eventos",
+   "campanhas"
+  ],
+  "copo-com-impressao-360": [
+   "eventos",
+   "campanhas"
+  ],
+  "taca-de-champagne": [
+   "eventos",
+   "lancamentos",
+   "fim-de-ano"
+  ],
+  "taca-de-vinho": [
+   "eventos",
+   "fim-de-ano"
+  ],
+  "guarda-chuva": [
+   "executivos",
+   "campanhas"
+  ],
+  "estojo-de-escritorio": [
+   "boas-vindas"
+  ],
+  "caneta-executiva-roller": [
+   "executivos",
+   "reconhecimento"
+  ]
+ },
+ "aliases": {
+  "agenda-executiva": "agenda",
+  "bolsa-tote-estruturada": "ecobag",
+  "bone-premium": "bone",
+  "caderno-premium": "caderno-de-anotacoes",
+  "caixa-rigida-premium": "caixa-para-presente",
+  "caneca-de-ceramica": "caneca",
+  "caneta-executiva": "caneta-executiva-com-estojo",
+  "cartao-personalizado": "cartao-com-envelope",
+  "cat-agenda": "agenda",
+  "cat-aromatizador-de-ambiente": "difusor-de-aromas",
+  "cat-avental-personalizado": "avental",
+  "cat-bone": "bone",
+  "cat-caixa-personalizada": "caixa-para-presente",
+  "cat-caneca": "caneca",
+  "cat-caneta-bambu": "caneta-ecologica-natural",
+  "cat-caneta-ecologica-em-kraft": "caneta-ecologica-kraft",
+  "cat-caneta-executiva-esferografica": "caneta-executiva-esferografica",
+  "cat-caneta-executiva-roller": "caneta-executiva-roller",
+  "cat-caneta-metalica-com-giro": "caneta-com-acionamento-por-giro",
+  "cat-caneta-metalica-com-ponta-touch": "caneta-com-ponta-touch",
+  "cat-caneta-metalica-de-aluminio": "caneta-slim",
+  "cat-caneta-plastica-basica": "caneta-basica",
+  "cat-caneta-plastica-com-grip": "caneta-com-grip",
+  "cat-cardapio-personalizado": "cardapio",
+  "cat-cartao-personalizado": "cartao-com-envelope",
+  "cat-carteira": "carteira",
+  "cat-chaveiro-abridor-de-garrafa": "chaveiro-abridor-de-garrafa",
+  "cat-chaveiro-de-couro": "chaveiro-com-tira",
+  "cat-copo": "copo-com-tampa",
+  "cat-copo-com-impressao-360": "copo-com-impressao-360",
+  "cat-copo-de-cafe-em-inox": "copo-de-cafe",
+  "cat-copo-de-papel-com-tampa": "copo-para-viagem",
+  "cat-copo-termico-de-vinho": "copo-de-vinho-com-tampa",
+  "cat-estojo-de-escritorio": "estojo-de-escritorio",
+  "cat-guarda-chuva": "guarda-chuva",
+  "cat-jogo-americano-impresso": "jogo-americano-impresso",
+  "cat-jogo-americano-oval": "jogo-americano-oval",
+  "cat-jogo-americano-retangular": "jogo-americano-retangular",
+  "cat-lacre-de-cera": "lacre",
+  "cat-necessaire": "necessaire",
+  "cat-porta-canetas": "porta-canetas",
+  "cat-porta-contas-personalizado": "porta-contas",
+  "cat-sacola-personalizada": "sacola-para-presente",
+  "cat-saquinho-de-eva-pvc": "saquinho-transparente",
+  "cat-squeeze": "squeeze",
+  "cat-taca-de-champagne-em-acrilico": "taca-de-champagne",
+  "cat-taca-de-gin-em-acrilico": "taca-de-gin",
+  "cat-taca-de-vinho-em-acrilico": "taca-de-vinho",
+  "cat-vela": "vela",
+  "copo-termico-de-vinho": "copo-de-vinho-com-tampa",
+  "lacre-de-cera": "lacre",
+  "linha-cadernos": "caderno-de-anotacoes",
+  "linha-camiseta": "camiseta-masculina",
+  "linha-camiseta-feminina": "camiseta-feminina",
+  "linha-canetas": "caneta-executiva-com-estojo",
+  "linha-dolma": "dolma",
+  "linha-ecobag": "ecobag",
+  "linha-garrafa": "garrafa-termica",
+  "linha-moletom": "moletom-com-capuz",
+  "linha-polo": "polo-masculina",
+  "linha-polo-feminina": "polo-feminina",
+  "moletom-exclusivo": "moletom-com-capuz",
+  "organizador-de-mesa": "porta-canetas",
+  "polo-personalizada": "polo-masculina",
+  "sacola-corporativa": "sacola-para-presente",
+  "uniforme-personalizado": "dolma",
+  "vela-perfumada": "vela"
+ }
+}

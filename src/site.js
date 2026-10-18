@@ -4,6 +4,7 @@
   function readJSON(id) { try { return JSON.parse(document.getElementById(id).textContent); } catch (e) { return {}; } }
   var CFG = readJSON('tama-config');
   var CAT = window.TAMA_CAT || {};   // /assets/catalogo.<hash>.js, carregado antes deste arquivo
+  var ALIAS = window.TAMA_ALIAS || {};   // slugs antigos (home, curadoria, catálogo) -> id atual do modelo
   var STORE_KEY = 'tama-selecao';
   var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -100,13 +101,25 @@
   function legacyRedirect() { var h = location.hash.replace('#', ''); if (location.pathname === '/' && legacy[h]) location.replace(legacy[h]); }
   legacyRedirect();
   window.addEventListener('hashchange', legacyRedirect);
+  // âncora com slug antigo (#linha-polo, #caneca-de-ceramica): leva ao card atual
+  (function () { var h = location.hash.replace('#', ''), el = ALIAS[h] && document.getElementById(ALIAS[h]); if (el) { history.replaceState(null, '', '#' + ALIAS[h]); el.scrollIntoView(); } })();
 
   /* ---------- Seleção (peça + cor de referência) ---------- */
   var lbSlug = null;
   function getSel() {
     var raw;
     try { raw = JSON.parse(store(STORE_KEY) || '[]'); } catch (e) { raw = []; }
-    return (Array.isArray(raw) ? raw : []).map(function (x) { return typeof x === 'string' ? { s: x, c: null } : x; }).filter(function (x) { return x && CAT[x.s]; });
+    var vistos = {};
+    return (Array.isArray(raw) ? raw : []).map(function (x) {
+      x = typeof x === 'string' ? { s: x, c: null } : x;
+      if (x && ALIAS[x.s]) x = { s: ALIAS[x.s], c: x.c };   // seleção salva antes da base única
+      return x;
+    }).filter(function (x) {
+      if (!x || !CAT[x.s] || vistos[x.s]) return false;
+      vistos[x.s] = true;
+      if (x.c && CAT[x.s].c.length && !CAT[x.s].c.some(function (c) { return c[0] === x.c; })) x.c = CAT[x.s].c[0][0];   // cor que deixou de existir
+      return true;
+    });
   }
   function setSel(list) { store(STORE_KEY, JSON.stringify(list)); render(); }
   function find(sel, slug) { for (var i = 0; i < sel.length; i++) if (sel[i].s === slug) return i; return -1; }
@@ -366,7 +379,7 @@
         g.hidden = !(okCat && okOcc);
         if (!g.hidden) { n++; if (cat === 'alem') nAlem++; }
       });
-      alemHead.hidden = nAlem === 0;
+      if (alemHead) alemHead.hidden = nAlem === 0;
       countEl.textContent = n + (n === 1 ? ' peça' : ' peças');
       emptyEl.hidden = n !== 0;
       document.querySelectorAll('.chip[data-filter]').forEach(function (c) {

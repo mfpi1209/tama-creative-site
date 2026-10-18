@@ -102,14 +102,10 @@ SPRITE = ('<svg width="0" height="0" style="position:absolute" aria-hidden="true
 def pict(name, cls='pict'):
     return f'<svg class="{cls}" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#i-{name}"/></svg>'
 
-CUR = json.load(open(os.path.join(SRC, 'data', 'curadoria.json'), encoding='utf-8'))
-PECAS = [p for p in CUR['pecas'] if not p.get('oculto')]   # peças de branding ficam fora do site (a TaMa não atua em branding)
-ALEM = CUR['alem']
-CATS = CUR['categorias']
-CATS_ALEM = CUR['categorias_alem']
-OCCS = CUR['ocasioes']
-# destaques da home no padrão de estúdio claro (pacote tama-home-v2)
-HOME_PRODS = json.load(open(os.path.join(SRC, 'data', 'home-produtos.json'), encoding='utf-8'))['produtos']
+# Seleções editoriais (home, ordem, foto-base, ocasiões, slugs antigos) sobre a base única src/data/produtos.json.
+SEL = json.load(open(os.path.join(SRC, 'data', 'selecoes.json'), encoding='utf-8'))
+OCCS = SEL['ocasioes']
+ALIASES = SEL['aliases']
 # banco de imagens de produto (docs/BANCO-IMAGENS.md): uma entrada por imagem; o catálogo agrupa por produto
 PRODUTOS = json.load(open(os.path.join(SRC, 'data', 'produtos.json'), encoding='utf-8'))['imagens']
 CAT_PROD = {'vestuario': 'Vestuário', 'canetas-escritorio': 'Canetas e escritório', 'bolsas-embalagens': 'Bolsas e embalagens', 'garrafas-copos': 'Garrafas e copos',
@@ -120,31 +116,36 @@ CORES_REF = {'vestuario': [['Vermelho', '#C8202F'], ['Azul royal', '#1F4FB8'], [
 
 
 def build_catalogo():
-    """Um card por produto a partir do inventário (imagens em revisão ou aprovadas, nunca retiradas). Produtos que já
-    são destaque na home reaproveitam o slug de lá, para a seleção não duplicar a peça."""
-    home_by_img = {h['img']: h['slug'] for h in HOME_PRODS}
+    """Um card por modelo (= nome do produto) a partir do inventário: imagens em revisão ou aprovadas, nunca retiradas.
+    O id do modelo é o nome sem acentos (polo-masculina). Cada cor com foto vira uma bolinha; a foto-base vem de
+    selecoes.json (foto_base) ou é a foto original do modelo."""
     grupos = {}
     for im in sorted(PRODUTOS, key=lambda x: x['id']):
         if im.get('aprovacao') in ('retirada', 'substituir'):
             continue
         grupos.setdefault(im['produto'], []).append(im)
+    prio = {m: n for n, m in enumerate(SEL.get('prioridade', []))}
     out = []
     for nome, ims in grupos.items():
-        slug = next((home_by_img[i['id']] for i in ims if i['id'] in home_by_img), 'cat-' + color_slug(nome))
-        ims.sort(key=lambda i: 0 if home_by_img.get(i['id']) == slug else 1)   # a foto-base da home vem primeiro
-        first = ims[0]
+        slug = color_slug(nome)
+        base_id = SEL.get('foto_base', {}).get(slug)
+        originais = [i for i in ims if not (i.get('observacao') or '').startswith('Variação de cor')]
+        base = next((i for i in ims if i['id'] == base_id), (originais or ims)[0])
+        ims = [base] + [i for i in ims if i is not base]
         cores = [[i['cor']['nome'], i['cor']['hex'], i['id'], i['alt']] for i in ims]
-        vistos = {c[0] for c in cores}
-        meta = spec_line(first)
-        out.append({'slug': slug, 'nome': nome, 'img': first['id'], 'categoria': first['categoria'], 'descricao': first.get('modelo') or '', 'meta': meta, 'alt': first['alt'], 'cores': cores})
+        out.append({'slug': slug, 'nome': nome, 'img': base['id'], 'categoria': base['categoria'], 'descricao': base.get('modelo') or '',
+                    'meta': spec_line(base), 'alt': base['alt'], 'cores': cores, 'ocasioes': SEL.get('ocasioes_por_modelo', {}).get(slug, [])})
     ordem = list(CAT_PROD)
-    out.sort(key=lambda c: (ordem.index(c['categoria']), c['nome'].replace(' masculina', ' 1').replace(' feminina', ' 2')))   # masculina antes de feminina
+    out.sort(key=lambda c: (ordem.index(c['categoria']), prio.get(c['slug'], 999), c['nome']))
     return out
 
 _MOCK_JSON = os.path.join(SRC, 'data', 'mockups.json')
 MOCK_DATA = json.load(open(_MOCK_JSON, encoding='utf-8')) if MOCKUPS and os.path.exists(_MOCK_JSON) else {}
 CAP = 'Mockup ilustrativo' if MOCKUPS else 'Fotografia conceitual'
 CAPS = 'Mockups ilustrativos' if MOCKUPS else 'Fotografias conceituais'
+# Nota única sob as grades de produto: a mesma em todo o site.
+NOTE_IMAGENS = ('Imagens ilustrativas com a marca TaMa como exemplo: no seu projeto entram a marca e as cores da sua empresa. '
+                'Cores de referência, sem declaração de estoque. Modelo, material e personalização são confirmados na proposta.')
 NOTE_MOCKUPS = ('Os produtos exibidos usam a identidade TaMa Creative como exemplo de personalização. No seu projeto, '
                 'a marca, as cores e os elementos visuais da sua empresa assumem esse lugar. Imagens ilustrativas; '
                 'materiais e técnicas são confirmados na proposta.')
@@ -166,7 +167,7 @@ def build_images():
         sources += [(fn[:-5], os.path.join(v2, fn)) for fn in os.listdir(v2) if fn.lower().endswith('.webp')]
     produtos = os.path.join(IMG_SRC, 'produtos')   # banco de imagens de produto (src/data/produtos.json); só as usadas entram no site
     if os.path.isdir(produtos):
-        usadas = {h['img'] for h in HOME_PRODS} | {c[2] for h in HOME_PRODS for c in h['cores'] if len(c) > 2} | {i['id'] for i in PRODUTOS if i.get('uso')} | {i['id'] for p in PECAS for i in (p.get('fotos') or {}).values()}
+        usadas = {i['id'] for i in PRODUTOS if i.get('uso') and i.get('aprovacao') not in ('retirada', 'substituir')}
         arquivo = {i['id']: os.path.join(ROOT, i['arquivo'].lstrip('/')) for i in PRODUTOS if i.get('arquivo')}
         for n in sorted(usadas):
             f = arquivo.get(n, os.path.join(produtos, n + '.webp'))
@@ -230,13 +231,15 @@ def preload_image(name, sizes):
 
 
 # ------------------------------------------------------------------ catalog helpers
-PECA = {p['slug']: p for p in PECAS}
 
 
 def color_slug(s):
     import unicodedata
     s = unicodedata.normalize('NFKD', s).encode('ascii', 'ignore').decode().lower()
     return '-'.join(''.join(c if c.isalnum() else ' ' for c in s).split())
+
+
+SPEC_RE = re.compile(r'\b(couro|acr[íi]lico|alum[íi]nio|inox|a[çc]o|algod[ãa]o|piquet|cer[âa]mica|bambu|vidro|madeira|papel|pl[áa]stic[oa]s?|metal|met[áa]lic[oa]|cera|\d+\s?ml)\b', re.I)
 
 
 def preparar_produtos():
@@ -265,6 +268,15 @@ def preparar_produtos():
                 erros.append(f'{nome}: {k} com status inválido')
     if len(vistos) < len(PRODUTOS):
         erros.append('há ids repetidos no catálogo')
+    # Material, capacidade e técnica só aparecem no site quando confirmados: nome, descrição e texto alternativo não
+    # podem afirmá-los enquanto o material estiver "a confirmar" (a especificação fica em material/tecnica/observacao).
+    for im in PRODUTOS:
+        if (im.get('material') or {}).get('status') == 'confirmado':
+            continue
+        for campo in ('produto', 'modelo', 'alt'):
+            m = SPEC_RE.search(im.get(campo) or '')
+            if m:
+                erros.append(f"{im['id']}: {campo} afirma \"{m.group(0)}\" sem material confirmado")
     if erros:
         raise SystemExit('Catálogo (src/data/produtos.json) com erro:\n  ' + '\n  '.join(erros))
 
@@ -284,96 +296,30 @@ def spec_line(im):
 
 preparar_produtos()
 PRODUTOS_BY = {i['id']: i for i in PRODUTOS}
-for _h in HOME_PRODS:   # destaques da home: material e técnica vêm do catálogo (o campo meta do JSON não vale mais)
-    _h['meta'] = spec_line(PRODUTOS_BY[_h['img']]) if _h['img'] in PRODUTOS_BY else 'Material e técnica sob consulta'
 CATALOGO = build_catalogo()   # depois de color_slug
-
-
-def curadoria_do_banco():
-    """Peça da curadoria com "banco": foto-base e cores vêm do banco de imagens (uma foto por cor, sem repetir cenas).
-    Material e técnica só aparecem quando confirmados no banco; senão, "sob consulta"."""
-    vivos = [i for i in PRODUTOS if i.get('aprovacao') not in ('retirada', 'substituir')]
-    for p in PECAS:
-        pref = p.get('banco')
-        if not pref:
-            continue
-        fotos = [i for i in vivos if i['id'].split('~')[0] == pref]
-        if not fotos:
-            raise SystemExit(f'Curadoria: a peça {p["slug"]} aponta para "{pref}", que não tem fotos no banco')
-        originais = [i for i in fotos if not (i.get('observacao') or '').startswith('Variação de cor')]   # a foto que gerou as variações
-        base = next((i for i in fotos if i['id'] in {h['img'] for h in HOME_PRODS}), (originais or fotos)[0])
-        fotos = [base] + [i for i in fotos if i is not base]
-        p['img'] = base['id']
-        p['alt'] = base['alt']
-        p['cores'] = [[i['cor']['nome'], i['cor']['hex']] for i in fotos]
-        p['fotos'] = {i['cor']['nome']: i for i in fotos}
-        mat, tec = base.get('material') or {}, base.get('tecnica') or {}
-        p['materiais'] = [mat['valor']] if mat.get('status') == 'confirmado' else []
-        p['tecnicas'] = [tec['valor']] if tec.get('status') == 'confirmado' else []
-
-
-curadoria_do_banco()
 CATALOGO_BY = {c['slug']: c for c in CATALOGO}
+_falta = [m for m in SEL.get('home', []) + list(SEL.get('ocasioes_por_modelo', {})) + list(ALIASES.values()) if m not in CATALOGO_BY]
+if _falta:
+    raise SystemExit(f'selecoes.json aponta para modelos que não existem em produtos.json: {sorted(set(_falta))}')
 
 
-def color_images(p):
-    """{colour name: [stem, widths, alt]} for every colour that has its own photo (the first colour is the base photo)."""
-    if p.get('fotos'):   # peça montada a partir do banco de imagens
-        out = {nome: [IMAGES[i['id']]['stem'], IMAGES[i['id']]['widths'], i['alt']] for nome, i in p['fotos'].items() if i['id'] in IMAGES}
-        return out if len(out) > 1 else {}
-    out = {}
-    for i, (nome, _) in enumerate(p['cores']):
-        name = p['img'] if i == 0 else f"{p['img']}~{color_slug(nome)}"
-        if name in IMAGES:
-            alt = MOCK_DATA.get(name, {}).get('alt') or f"{p['nome']} na cor {nome.lower()}. Mockup ilustrativo."
-            out[nome] = [IMAGES[name]['stem'], IMAGES[name]['widths'], alt]
-    return out if len(out) > 1 else {}
-
-
-def card_colors(p):
-    """Mesma regra do catálogo no card da curadoria e dos trilhos: só as cores com foto própria (mais a primeira, a foto-base)."""
-    v = color_images(p)
-    return [c for i, c in enumerate(p['cores']) if i == 0 or c[0] in v]
+def modelo(slug):
+    """Modelo do catálogo por id atual ou por slug antigo (aliases); None se não existir."""
+    return CATALOGO_BY.get(ALIASES.get(slug, slug))
 
 
 def catalog_json():
-    """Dados das peças para a seleção e a foto ampliada: um arquivo só (/assets/catalogo.<hash>.js), em cache entre páginas."""
-    data = {p['slug']: {'n': p['nome'], 'i': img_url(p['img'], 'webp', 420), 'c': card_colors(p), 'v': color_images(p)} for p in PECAS}
-    data.update({it['slug']: {'n': it['nome'], 'i': None, 'c': []} for it in ALEM})
-    data.update({h['slug']: {'n': h['nome'], 'i': img_url(h['img'], 'webp', 420), 'c': home_colors(h), 'v': home_variants(h)} for h in HOME_PRODS})
-    data.update({c['slug']: {'n': c['nome'], 'i': img_url(c['img'], 'webp', 420), 'c': home_colors(c), 'v': home_variants(c)} for c in CATALOGO if c['slug'] not in data})
-    for c in CATALOGO:   # destaque da home que também está no catálogo: junta as fotos por cor dos dois cards
-        if c['slug'] in data:
-            data[c['slug']]['v'] = {**home_variants(c), **(data[c['slug']].get('v') or {})}
-    return 'window.TAMA_CAT=' + json.dumps(data, ensure_ascii=False, separators=(',', ':')).replace('</', '<\\/') + ';\n'
+    """Dados dos modelos para a seleção e a foto ampliada: um arquivo só (/assets/catalogo.<hash>.js), em cache entre páginas.
+    TAMA_ALIAS leva seleções salvas com slugs antigos para o id atual."""
+    data = {c['slug']: {'n': c['nome'], 'i': img_url(c['img'], 'webp', 420), 'c': home_colors(c), 'v': home_variants(c)} for c in CATALOGO}
+    js = 'window.TAMA_CAT=' + json.dumps(data, ensure_ascii=False, separators=(',', ':')).replace('</', '<\\/') + ';\n'
+    return js + 'window.TAMA_ALIAS=' + json.dumps(ALIASES, ensure_ascii=False, separators=(',', ':')) + ';\n'
 
 
 def swatches(p):
     btns = ''.join(f'<button class="swatch" type="button" style="--c:{hexv}" data-color="{esc(nome)}" aria-label="Cor de referência: {esc(nome)}" aria-pressed="{"true" if i == 0 else "false"}" title="{esc(nome)}"></button>'
                    for i, (nome, hexv) in enumerate(p['cores']))
     return f'<div class="swatches" role="group" aria-label="Cores de referência para {esc(p["nome"])}">{btns}</div>'
-
-
-def product_card(p, sizes='(max-width: 760px) 46vw, (max-width: 1180px) 22vw, 200px'):
-    label = '<span class="prod-label">Seleção TaMa</span>' if p['selo'] else ''
-    seal = ''
-    if MOCKUPS:
-        seal = ('<p class="prod-seal">Exemplo com marca fictícia</p>' if MOCK_DATA.get(p['img'], {}).get('ficticia')
-                else '<p class="prod-seal">Personalizável com sua marca</p>')
-    occ = ' '.join(p['ocasioes'])
-    return f'''<article class="product" id="{p['slug']}" data-slug="{p['slug']}" data-cat="{p['categoria']}" data-occ="{occ}">
-  <button class="prod-media" type="button" data-zoom="{p['slug']}" aria-label="Ampliar foto de {esc(p['nome'])}">{picture(p['img'], p.get('alt') or 'Fotografia conceitual: ' + p['nome'], sizes)}<span class="prod-zoom" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M8 3v10M3 8h10"/></svg></span></button>{label}
-  <div class="prod-info">
-    {seal}<h3>{p['nome']}</h3>
-    <p class="prod-desc">{p['descricao']}</p>
-    <div class="swatch-row">{swatches(dict(p, cores=card_colors(p)))}<span class="color-name">{p['cores'][0][0]}</span></div>
-    <p class="prod-meta">{(', '.join(p['materiais']) + ' · ' + ', '.join(p['tecnicas'])) if p['materiais'] and p['tecnicas'] else 'Material e técnica sob consulta'}</p>
-    <div class="prod-actions">
-      <button class="pick" type="button" data-slug="{p['slug']}" aria-pressed="false"><span class="when-off">+ Selecionar</span><span class="when-on">✓ Selecionado</span><span class="visually-hidden">: {p['nome']}</span></button>
-    </div>
-  </div>
-</article>'''
-
 
 
 def colors_with_photo(h):
@@ -396,10 +342,11 @@ def home_variants(h):
 
 
 def home_product_card(h, eager=False):
-    """Card de estúdio (home e catálogo): mesma estrutura do card da curadoria (seleção, cor de referência e foto
-    ampliada), com foto em fundo claro. A cor muda só a referência; a foto não é recolorida."""
+    """Card de produto, o único do site (home, catálogo, ocasiões, páginas de frente, blog): foto de estúdio, cores com
+    foto própria, seleção e foto ampliada. A bolinha troca a foto pela da cor; nenhuma cor é simulada."""
     cat = f' data-cat="{h["categoria"]}"' if h.get('categoria') in CAT_PROD else ''
-    return f'''<article class="product studio" id="{h['slug']}" data-slug="{h['slug']}"{cat}>
+    occ = f' data-occ="{" ".join(h["ocasioes"])}"' if h.get('ocasioes') else ''
+    return f'''<article class="product studio" id="{h['slug']}" data-slug="{h['slug']}"{cat}{occ}>
   <button class="prod-media" type="button" data-zoom="{h['slug']}" aria-label="Ampliar foto de {esc(h['nome'])}">{picture(h['img'], h['alt'], '(max-width: 760px) 46vw, (max-width: 1180px) 30vw, 290px', eager=eager)}<span class="prod-zoom" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M8 3v10M3 8h10"/></svg></span></button>
   <div class="prod-info">
     <h3>{h['nome']}</h3>
@@ -422,7 +369,7 @@ def catalogo_block():
     <h2 id="catalogo-t" class="visually-hidden">Modelos</h2>
     <div class="filters" role="group" aria-label="Filtrar o catálogo por categoria" style="flex-wrap:wrap;margin-bottom:22px">{chips}</div>
     <div class="studio-grid" id="catalogo-grid">{''.join(home_product_card(c, eager=i < 2) for i, c in enumerate(CATALOGO))}</div>
-    <p class="note" style="margin-top:18px">Imagens ilustrativas geradas a partir da identidade TaMa; não mostram o produto final de um fornecedor. Cores de referência, sem declaração de estoque.</p>
+    <p class="note" style="margin-top:18px">{NOTE_IMAGENS}</p>
   </div>
 </section>'''
 
@@ -450,64 +397,40 @@ def page_catalogo():
 
 
 def studio_block(slugs, title, eyebrow, intro, aria, more=None):
-    """Grade de estúdio para as páginas de frente (brindes, confecções): modelos do catálogo escolhidos por slug."""
-    cards = ''.join(home_product_card(CATALOGO_BY[s]) for s in slugs if s in CATALOGO_BY)
+    """Grade de modelos do catálogo para as páginas de frente (brindes, confecções, hotelaria), escolhidos por id."""
+    cards = ''.join(home_product_card(m) for m in (modelo(s) for s in slugs) if m)
     more_html = f'<a class="link" href="{more[0]}">{more[1]} {ARROW}</a>' if more else ''
     return f'''<section class="section" aria-labelledby="{aria}">
   <div class="wrap">
     <div class="section-head row"><div class="stack" style="gap:12px"><p class="eyebrow">{eyebrow}</p><h2 id="{aria}" class="section-title">{title}</h2><p class="muted">{intro}</p></div>{more_html}</div>
     <div class="studio-grid">{cards}</div>
-    <p class="note" style="margin-top:18px">Imagens ilustrativas com a identidade TaMa. Cores de referência; materiais e técnicas confirmados na proposta.</p>
+    <p class="note" style="margin-top:18px">{NOTE_IMAGENS}</p>
   </div>
 </section>'''
 
 
 def home_products_block():
-    cards = ''.join(home_product_card(h) for h in HOME_PRODS)
+    cards = ''.join(home_product_card(CATALOGO_BY[s]) for s in SEL['home'])
     return f'''<section class="section home-prods" aria-labelledby="prods-t">
   <div class="wrap">
     <div class="section-head row">
       <div class="stack" style="gap:12px"><p class="eyebrow">Catálogo TaMa</p><h2 id="prods-t" class="section-title">Peças para a sua marca</h2>
-      <p class="muted">As peças aparecem com a identidade TaMa como exemplo. No seu projeto, entram a marca e as cores da sua empresa.</p></div>
-      <a class="link" href="/catalogo/">Acessar o catálogo completo {ARROW}</a>
+      <p class="muted">Cada peça aparece com a marca TaMa como exemplo. No seu projeto, entram a marca e as cores da sua empresa.</p></div>
+      <a class="link" href="/catalogo/">Ver os {len(CATALOGO)} modelos do catálogo {ARROW}</a>
     </div>
     <div class="studio-grid">{cards}</div>
-    <p class="note">Cores de referência. Modelos, cores, materiais e técnicas são confirmados na proposta. Imagens ilustrativas.</p>
+    <p class="note">{NOTE_IMAGENS}</p>
   </div>
 </section>'''
 
 
-def idea_card(it):
-    occ = ' '.join(it['ocasioes'])
-    return f'''<article class="idea" id="{it['slug']}" data-cat="alem" data-occ="{occ}">
-  {pict(it['icone'])}
-  <div><p class="idea-cat">{CATS_ALEM[it['categoria']]}</p><h3>{it['nome']}</h3></div>
-  <p>{it['descricao']}</p>
-  <p class="prod-meta">{', '.join(it['materiais'])} · {', '.join(it['tecnicas'])}</p>
-  <div class="idea-foot"><button class="pick" type="button" data-slug="{it['slug']}" aria-pressed="false"><span class="when-off">+ Selecionar</span><span class="when-on">✓ Selecionado</span><span class="visually-hidden">: {it['nome']}</span></button></div>
-</article>'''
-
-
 def product_rail(slugs, rail_id, title_html, intro='', chips=False, more=None):
-    items = [PECA[s] for s in slugs if s in PECA]
-    chip_html = ''
-    if chips:
-        cats = [c for c in CATS if any(p['categoria'] == c for p in items)]
-        chip_html = ('<div class="filters" role="group" aria-label="Filtrar por categoria">'
-                     f'<button class="chip" type="button" data-rail-filter="{rail_id}" data-value="todas" aria-pressed="true">Todos</button>'
-                     + ''.join(f'<button class="chip" type="button" data-rail-filter="{rail_id}" data-value="{c}" aria-pressed="false">{CATS[c]}</button>' for c in cats)
-                     + '</div>')
-    arrows = (f'<div class="rail-arrows"><button class="icon-btn" type="button" data-rail-prev="{rail_id}" aria-label="Peças anteriores"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></button>'
-              f'<button class="icon-btn" type="button" data-rail-next="{rail_id}" aria-label="Próximas peças"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button></div>')
+    """Peças sugeridas (ex.: no fim dos artigos do blog): modelos do catálogo por id ou slug antigo."""
+    cards = ''.join(home_product_card(m) for m in (modelo(s) for s in slugs) if m)
     more_html = f'<a class="link" href="{more[0]}">{more[1]} {ARROW}</a>' if more else ''
-    return f'''<div class="curation-head">
-  <div class="stack" style="gap:12px">{title_html}</div>
-  <div class="controls">{f'<p class="muted">{intro}</p>' if intro else ''}<div class="filter-row">{chip_html}{arrows}</div></div>
-</div>
-<div class="rail" id="{rail_id}" tabindex="0" aria-label="Lista de peças com rolagem horizontal">
-  <div class="rail-track">{''.join(product_card(p) for p in items)}</div>
-</div>
-<div class="rail-foot"><p class="note">{NOTE_MOCKUPS if MOCKUPS else 'Cores e fotografias conceituais ilustram possibilidades; materiais, tons e personalizações dependem de aprovação e disponibilidade.'}</p>{more_html}</div>'''
+    return f'''<div class="section-head row"><div class="stack" style="gap:12px">{title_html}{f'<p class="muted">{intro}</p>' if intro else ''}</div>{more_html}</div>
+<div class="studio-grid" id="{rail_id}">{cards}</div>
+<p class="note" style="margin-top:18px">{NOTE_IMAGENS}</p>'''
 
 
 def brand_note():
@@ -886,7 +809,6 @@ def shell(page, body):
 
 
 # ------------------------------------------------------------------ pages
-ALL_SLUGS = [p['slug'] for p in PECAS]
 HOME_FAQ = [
     ('Posso personalizar produtos nas cores da minha marca?', 'Sim. A escolha de cores e acabamentos faz parte da proposta de cada projeto. As cores mostradas no site são referências visuais e não significam estoque; a disponibilidade é confirmada na proposta.'),
     ('Vocês desenvolvem kits completos?', 'Sim. A proposta combina curadoria, materiais, embalagem e personalização para criar conjuntos com a mesma linguagem visual.'),
@@ -1004,16 +926,9 @@ def page_brindes():
     </div>
   </div>
 </section>
-<section class="section" aria-labelledby="pecas-b-t">
-  <div class="wrap">
-    {product_rail(['bandeja-em-couro', 'garrafa-termica', 'caderno-premium', 'caneca-de-ceramica', 'agenda-executiva', 'caneta-executiva', 'organizador-de-mesa', 'manta-de-aconchego', 'bolsa-tote-estruturada'], 'rail-brindes',
-                  '<p class="eyebrow">Peças</p><h2 id="pecas-b-t" class="section-title">Brindes que entram na rotina</h2>', 'Escolha a cor de referência e adicione à sua seleção.',
-                  more=('/brindes-corporativos-premium/', 'Ver todas as peças'))}
-  </div>
-</section>
-{studio_block(['cat-caneca', 'linha-garrafa', 'cat-copo', 'cat-squeeze', 'cat-caixa-personalizada', 'cat-necessaire', 'cat-chaveiro-de-couro', 'cat-vela'],
-              'Modelos em estúdio, prontos para a sua marca', 'Catálogo', 'Uma amostra do catálogo: do brinde de evento ao presente executivo.', 'estudio-b-t',
-              more=('/catalogo/', 'Ver o catálogo completo'))}
+{studio_block(['caderno-de-anotacoes', 'agenda', 'caneta-executiva-com-estojo', 'garrafa-termica', 'caneca', 'copo-com-tampa', 'ecobag', 'necessaire', 'caixa-para-presente', 'guarda-chuva', 'vela', 'difusor-de-aromas'],
+              'Peças para a sua marca', 'Brindes', 'Uma amostra do catálogo: do brinde de evento ao presente executivo. Toque na cor para ver a foto e adicione à sua seleção.', 'estudio-b-t',
+              more=('/catalogo/', f'Ver os {len(CATALOGO)} modelos do catálogo'))}
 <section class="section ivory" aria-labelledby="tec-t">
   <div class="wrap split" style="align-items:start">
     <div class="stack" style="gap:12px"><p class="eyebrow">Personalização</p><h2 id="tec-t" class="section-title">A técnica certa para cada material</h2><p class="muted">A técnica é escolhida conforme a peça e confirmada na proposta, junto com a arte para aprovação.</p></div>
@@ -1103,51 +1018,50 @@ def page_kits():
 
 
 def page_curadoria():
-    cat_chips = ('<button class="chip" type="button" data-filter="cat" data-value="todas" aria-pressed="true">Todas</button>'
-                 + ''.join(f'<button class="chip" type="button" data-filter="cat" data-value="{k}" aria-pressed="false">{v}</button>' for k, v in CATS.items())
-                 + '<button class="chip" type="button" data-filter="cat" data-value="alem" aria-pressed="false">Além do óbvio</button>')
+    """Seleção editorial por ocasião (URL antiga da curadoria): reapresenta modelos do catálogo, sem cadastro próprio."""
+    pecas = [c for c in CATALOGO if c['ocasioes']]
+    cats = [k for k in CAT_PROD if any(c['categoria'] == k for c in pecas)]
     occ_chips = '<button class="chip" type="button" data-filter="occ" data-value="todas" aria-pressed="true">Todas</button>' + ''.join(
         f'<button class="chip" type="button" data-filter="occ" data-value="{k}" aria-pressed="false">{v}</button>' for k, v in OCCS.items())
+    cat_chips = ('<button class="chip" type="button" data-filter="cat" data-value="todas" aria-pressed="true">Todas</button>'
+                 + ''.join(f'<button class="chip" type="button" data-filter="cat" data-value="{k}" aria-pressed="false">{CAT_PROD[k]}</button>' for k in cats))
     url = SITE + '/brindes-corporativos-premium/'
-    item_list = {'@type': 'ItemList', '@id': url + '#lista', 'name': 'Curadoria de brindes corporativos TaMa Creative', 'numberOfItems': len(PECAS) + len(ALEM),
-                 'itemListElement': [{'@type': 'ListItem', 'position': i + 1, 'name': it['nome'], 'url': url + '#' + it['slug']} for i, it in enumerate(PECAS + ALEM)]}
-    total = len(PECAS) + len(ALEM)
+    item_list = {'@type': 'ItemList', '@id': url + '#lista', 'name': 'Brindes e presentes corporativos por ocasião', 'numberOfItems': len(pecas),
+                 'itemListElement': [{'@type': 'ListItem', 'position': i + 1, 'name': c['nome'], 'url': SITE + '/catalogo/#' + c['slug']} for i, c in enumerate(pecas)]}
     return {
-        'path': '/brindes-corporativos-premium/', 'title': 'Brindes corporativos premium: curadoria de presentes | TaMa Creative',
-        'description': f'{total} ideias de brindes e presentes corporativos com cores da sua marca: couro, cerâmica, papelaria, vestuário e peças além do óbvio. Monte sua seleção.',
-        'trail': [('/', 'Início'), ('/brindes-corporativos/', 'Brindes corporativos'), ('/brindes-corporativos-premium/', 'Curadoria')],
-        'service': {'key': 'curadoria', 'name': 'Curadoria de brindes corporativos premium', 'type': 'Brindes corporativos premium'},
+        'path': '/brindes-corporativos-premium/', 'title': 'Brindes e presentes corporativos por ocasião | TaMa Creative',
+        'description': 'Ideias de brindes e presentes corporativos para boas-vindas, eventos, fim de ano, reconhecimento e lançamentos, com a marca da sua empresa. Monte a seleção.',
+        'trail': [('/', 'Início'), ('/brindes-corporativos/', 'Brindes corporativos'), ('/brindes-corporativos-premium/', 'Por ocasião')],
+        'service': {'key': 'ocasioes', 'name': 'Brindes e presentes corporativos por ocasião', 'type': 'Brindes corporativos'},
+        'assunto': 'brindes e presentes por ocasião',
         'wp_type': 'CollectionPage', 'ld_extra': [item_list],
         'body': f'''<section class="page-head" style="padding-bottom:clamp(28px,4vw,44px)">
   <div class="wrap"><div class="section-head" style="margin:0;max-width:54rem">
-    <p class="eyebrow">Curadoria autoral</p>
-    <h1>Brindes corporativos premium: {total} ideias para a sua marca</h1>
-    <p class="lead">Peças com cores de referência e ideias além do óbvio que quase ninguém usa como brinde. Escolha, combine e envie a seleção junto com o pedido de proposta.</p>
+    <p class="eyebrow">Ideias por ocasião</p>
+    <h1>Brindes e presentes corporativos por ocasião</h1>
+    <p class="lead">Boas-vindas, eventos, fim de ano, reconhecimento: escolha a ocasião, veja as peças que a TaMa sugere e envie a seleção junto com o pedido de proposta. Todas as peças vêm do mesmo catálogo.</p>
   </div></div>
 </section>
-<section class="section ivory" id="pecas" style="padding-top:clamp(32px,4vw,52px)" aria-label="Peças da curadoria">
+<section class="section ivory" id="pecas" style="padding-top:clamp(32px,4vw,52px)" aria-label="Peças por ocasião">
   <div class="wrap">
     {brand_note()}
     <div class="stack" style="gap:12px;margin-bottom:26px">
-      <div class="filters" role="group" aria-label="Filtrar por categoria" style="flex-wrap:wrap">{cat_chips}</div>
       <div class="filters" role="group" aria-label="Filtrar por ocasião" style="flex-wrap:wrap">{occ_chips}</div>
-      <p class="note" id="gift-count" aria-live="polite">{total} peças</p>
+      <div class="filters" role="group" aria-label="Filtrar por categoria" style="flex-wrap:wrap">{cat_chips}</div>
+      <p class="note" id="gift-count" aria-live="polite">{len(pecas)} peças</p>
     </div>
-    <h2 class="visually-hidden">Peças com fotografia</h2>
-    <div class="product-grid" id="gift-grid">{''.join(product_card(p, '(max-width: 560px) 92vw, (max-width: 980px) 46vw, 300px') for p in PECAS)}</div>
-    <div class="section-head" style="margin:clamp(40px,5vw,64px) 0 22px" id="alem-head"><p class="eyebrow">Além do óbvio</p><h2 class="section-title">Ideias que quase ninguém usa como brinde</h2><p class="muted">Peças premium para surpreender. Ícones ilustrativos: as fotos entram conforme os projetos forem produzidos.</p></div>
-    <div class="ideas" id="idea-grid">{''.join(idea_card(it) for it in ALEM)}</div>
-    <div class="empty" id="gift-empty" hidden><p>Nenhuma peça combina esses filtros. <button class="link" type="button" id="gift-reset" style="background:none;border:0;cursor:pointer">Limpar filtros</button></p></div>
-    <p class="note" style="margin-top:24px">{NOTE_MOCKUPS if MOCKUPS else 'Fotografias conceituais e cores de referência ilustram possibilidades. Materiais, tons e fornecedores são definidos em cada proposta.'}</p>
+    <h2 class="visually-hidden">Peças sugeridas</h2>
+    <div class="studio-grid" id="gift-grid">{''.join(home_product_card(c) for c in pecas)}</div>
+    <div class="empty" id="gift-empty" hidden><p>Nenhuma peça combina esses filtros. <button class="link" type="button" id="gift-reset" style="background:none;border:0;cursor:pointer">Limpar filtros</button> ou descreva a ideia no <a href="/solicitar-proposta/">pedido de proposta</a>.</p></div>
+    <p class="note" style="margin-top:24px">{NOTE_IMAGENS}</p>
   </div>
 </section>
 <section class="section" aria-labelledby="cat-cta-t">
   <div class="wrap section-head row" style="margin:0">
-    <div class="stack" style="gap:12px"><p class="eyebrow">Catálogo</p><h2 id="cat-cta-t" class="section-title">{len(CATALOGO)} modelos em estúdio, prontos para a sua marca</h2><p class="muted">Vestuário, canetas e escritório, bolsas, garrafas, acessórios, casa e hotelaria, com filtro por categoria.</p></div>
-    <a class="btn btn-wine" href="/catalogo/">Acessar o catálogo completo {ARROW}</a>
+    <div class="stack" style="gap:12px"><p class="eyebrow">Mais opções</p><h2 id="cat-cta-t" class="section-title">Prefere ver tudo ou um kit pronto?</h2><p class="muted">O catálogo tem {len(CATALOGO)} modelos por categoria. Os kits reúnem caixa, cartão e peças para uma ocasião.</p></div>
+    <div class="actions"><a class="btn btn-wine" href="/catalogo/">Ver o catálogo {ARROW}</a><a class="btn btn-line" href="/kits-corporativos/">Ver os kits</a></div>
   </div>
 </section>
-{collections_block('Explore por ocasião')}
 {end_cta(tipo='brindes')}''',
     }
 
@@ -1192,7 +1106,7 @@ def page_confeccoes():
     </div>
   </div>
 </section>
-{studio_block(['linha-polo', 'linha-polo-feminina', 'linha-camiseta', 'linha-camiseta-feminina', 'linha-moletom', 'linha-dolma', 'cat-avental-personalizado'],
+{studio_block(['polo-masculina', 'polo-feminina', 'camiseta-masculina', 'camiseta-feminina', 'moletom-com-capuz', 'bone', 'dolma', 'avental'],
               'As peças de vestuário em estúdio', 'Catálogo', 'Polo, camiseta, moletom, dólmã e avental, com a marca aplicada como exemplo.', 'estudio-c-t',
               more=('/catalogo/?categoria=vestuario', 'Ver no catálogo'))}
 <section class="section ivory" aria-labelledby="tec-c-t">
@@ -1210,128 +1124,6 @@ def page_confeccoes():
             ('Qual é a quantidade mínima?', 'Varia conforme a peça, o tecido e a técnica de personalização. A proposta informa as quantidades viáveis.'),
             ('As peças seguem as cores da empresa?', 'A aplicação da marca e as cores disponíveis de cada tecido são definidas no projeto e aprovadas antes da produção. As cores do site são referências visuais.'),
         ], title='Perguntas sobre confecções', eyebrow='Dúvidas') + end_cta('Sua marca merece ser vestida.', 'Conte quem vai vestir e em que ocasião. A TaMa propõe as peças.', tipo='confeccoes'),
-    }
-
-
-def page_branding():
-    return {
-        'path': '/branding-identidade-visual/', 'title': 'Criação de identidade visual e branding para empresas | TaMa',
-        'description': 'Posicionamento, identidade visual, papelaria e embalagens para empresas: marcas que se mantêm reconhecíveis do digital ao brinde e ao uniforme.',
-        'trail': [('/', 'Início'), ('/branding-identidade-visual/', 'Branding e identidade')],
-        'service': {'key': 'branding', 'name': 'Branding e identidade visual para empresas', 'type': 'Criação de identidade visual'},
-        'preload': preload_image('hero-brand', '(max-width: 760px) 92vw, 46vw'),
-        'body': page_head('Marcas e identidade', 'Criação de identidade visual e branding para empresas',
-                          'Posicionamento, identidade visual e aplicações que mantêm a marca reconhecível em cada contato, da assinatura de e-mail à embalagem e ao uniforme.',
-                          cta_link('Começar um projeto', tipo='branding', track_label='branding-head') + '<a class="btn btn-line" href="/projetos/identidade-tama-creative/">Ver um projeto</a>',
-                          'hero-brand', 'Papelaria, embalagens e materiais de marca em composição conceitual.') + f'''
-<section class="section ivory" aria-labelledby="entregas-t">
-  <div class="wrap">
-    <div class="section-head"><p class="eyebrow">O que entregamos</p><h2 id="entregas-t" class="section-title">Uma marca inteira, do conceito à aplicação</h2></div>
-    <div class="cols-2">
-      <div class="item">{arc()}<div><h3>Posicionamento</h3><p>Quem a empresa é, para quem fala e como quer ser lembrada.</p></div></div>
-      <div class="item">{arc()}<div><h3>Identidade visual</h3><p>Símbolo, logotipo, cores, tipografia e elementos gráficos em um sistema coerente.</p></div></div>
-      <div class="item">{arc()}<div><h3>Papelaria</h3><p>Cartões, envelopes, papel timbrado e materiais de apresentação.</p></div></div>
-      <div class="item">{arc()}<div><h3>Embalagens</h3><p>Caixas, sacolas, rótulos e etiquetas que continuam a conversa depois da compra.</p></div></div>
-      <div class="item">{arc()}<div><h3>Comunicação</h3><p>Aplicações para redes, apresentações e pontos de contato do dia a dia.</p></div></div>
-      <div class="item">{arc()}<div><h3>Manual de uso</h3><p>As regras da marca reunidas para que qualquer fornecedor aplique certo.</p></div></div>
-    </div>
-  </div>
-</section>
-<section class="section" aria-labelledby="proc-b-t">
-  <div class="wrap">
-    <div class="section-head"><p class="eyebrow">Processo</p><h2 id="proc-b-t" class="section-title">Como uma identidade ganha forma</h2></div>
-    <ol class="steps light">
-      <li class="step"><b>01</b><strong>Imersão</strong><span>Entendemos o negócio, o público e o que já existe da marca.</span></li>
-      <li class="step"><b>02</b><strong>Posicionamento</strong><span>Definimos o que a marca é e como quer ser lembrada.</span></li>
-      <li class="step"><b>03</b><strong>Identidade</strong><span>Símbolo, logotipo, cores, tipografia e elementos de apoio.</span></li>
-      <li class="step"><b>04</b><strong>Aplicações</strong><span>Papelaria, embalagens, brindes e vestuário, com manual de uso.</span></li>
-    </ol>
-  </div>
-</section>
-<section class="section ivory" aria-labelledby="pecas-br-t">
-  <div class="wrap">
-    {product_rail(['kit-de-papelaria', 'cartoes-de-marca', 'caixa-rigida-premium', 'sacola-corporativa', 'embalagem-presente', 'paleta-e-aplicacoes'], 'rail-brand',
-                  '<p class="eyebrow">Aplicações</p><h2 id="pecas-br-t" class="section-title">Onde a marca ganha corpo</h2>', 'Papelaria e embalagens com as cores da identidade.')}
-  </div>
-</section>
-<section class="section" aria-labelledby="case-t">
-  <div class="wrap split">
-    <a class="case" href="/projetos/identidade-tama-creative/" aria-label="Projeto: identidade visual TaMa Creative"><div class="case-media"><div class="case-art">{LOGO_DECOR}</div><span class="case-tag">Projeto realizado</span></div></a>
-    <div class="stack"><p class="eyebrow">Projeto</p><h2 id="case-t" class="section-title">Identidade visual TaMa Creative</h2><p class="muted">Um símbolo que nasce do arco, um padrão gráfico, um selo e aplicações do digital ao objeto, criados para uma marca com três frentes de atuação.</p><a class="link" href="/projetos/identidade-tama-creative/">Ver o projeto {ARROW}</a></div>
-  </div>
-</section>
-''' + faq([
-            ('Quanto custa criar uma identidade visual?', 'Depende do escopo: logotipo, identidade completa ou identidade com aplicações e manual. A proposta detalha o que está incluído e o investimento correspondente.'),
-            ('O que recebo no final do projeto?', 'Os arquivos da marca em versões e formatos para uso impresso e digital, a paleta, a tipografia e um guia de uso. O escopo exato fica descrito na proposta.'),
-            ('Vocês aplicam a marca em brindes e uniformes?', 'Sim. Essa é a vantagem de trabalhar com as três frentes: a identidade já nasce pensada para virar objeto, embalagem e vestuário.'),
-        ], title='Perguntas sobre branding', eyebrow='Dúvidas') + end_cta('Da ideia ao objeto. Com intenção.', 'Conte sobre a sua empresa. A TaMa propõe o caminho.', tipo='branding'),
-    }
-
-
-def page_projetos():
-    return {
-        'path': '/projetos/', 'title': 'Projetos | TaMa Creative', 'index': False,
-        'description': 'Projetos realizados e exemplos conceituais da TaMa Creative em branding, brindes corporativos e confecções, sempre identificados.',
-        'trail': [('/', 'Início'), ('/projetos/', 'Projetos')], 'wp_type': 'CollectionPage',
-        'body': f'''<section class="page-head" style="padding-bottom:clamp(28px,4vw,44px)">
-  <div class="wrap"><div class="section-head" style="margin:0;max-width:50rem"><p class="eyebrow">Projetos</p><h1>Projetos</h1><p class="lead">Cada projeto mostra o desafio, o conceito e o que foi produzido. Exemplos conceituais aparecem sempre identificados como tal.</p></div></div>
-</section>
-<section class="section ivory" style="padding-top:clamp(32px,4vw,52px)" aria-label="Lista de projetos">
-  <div class="wrap">
-    <h2 class="visually-hidden">Lista de projetos</h2>
-    <div class="cases">
-      <a class="case" href="/projetos/identidade-tama-creative/"><div class="case-media"><div class="case-art">{LOGO_DECOR}</div><span class="case-tag">Projeto realizado</span></div><p class="case-kicker">Branding · Papelaria · Embalagens</p><h3>Identidade visual TaMa Creative</h3><p>Símbolo, padrão, selo e aplicações para uma marca com três frentes de atuação.</p></a>
-      <article class="case"><div class="case-media">{picture('kit-presente', 'Fotografia conceitual de kit de boas-vindas.', '(max-width: 760px) 92vw, 30vw')}<span class="case-tag concept">Exemplo conceitual</span></div><p class="case-kicker">Kits corporativos</p><h3>Kit de boas-vindas</h3><p>Como um kit em terracota, verde e marinho pode apresentar a cultura da empresa no primeiro dia.</p></article>
-      <article class="case"><div class="case-media">{picture('look-corporativo', 'Fotografia conceitual de kit vestuário.', '(max-width: 760px) 92vw, 30vw')}<span class="case-tag concept">Exemplo conceitual</span></div><p class="case-kicker">Confecções</p><h3>Kit vestuário para equipe</h3><p>Moletom, polo, boné e bolsa com a mesma linguagem visual para um evento.</p></article>
-    </div>
-    <p class="note" style="margin-top:26px">Os exemplos conceituais usam fotografias conceituais e não representam trabalhos para clientes. Novos projetos entram aqui conforme forem entregues.</p>
-  </div>
-</section>
-{end_cta('Tem um projeto parecido?', 'Conte o que você precisa. A TaMa propõe o caminho.')}''',
-    }
-
-
-def page_case():
-    url = SITE + '/projetos/identidade-tama-creative/'
-    work = {'@type': 'CreativeWork', '@id': url + '#projeto', 'name': 'Identidade visual TaMa Creative', 'creator': {'@id': ORG_ID}, 'about': 'Branding e identidade visual', 'inLanguage': 'pt-BR', 'dateCreated': '2026'}
-    return {
-        'path': '/projetos/identidade-tama-creative/', 'title': 'Projeto: identidade visual TaMa Creative | TaMa Creative',
-        'description': 'Como a TaMa Creative ganhou símbolo, padrão gráfico, selo e aplicações coerentes do digital ao objeto: o projeto de branding da própria marca.',
-        'trail': [('/', 'Início'), ('/projetos/', 'Projetos'), ('/projetos/identidade-tama-creative/', 'Identidade TaMa Creative')], 'ld_extra': [work],
-        'body': f'''<section class="page-head">
-  <div class="wrap split">
-    <div class="copy"><p class="eyebrow">Projeto realizado · Branding</p><h1>Identidade visual TaMa Creative</h1><p class="lead">Como uma marca nova, com três frentes de atuação, ganhou um símbolo, um sistema visual e aplicações coerentes do digital ao objeto.</p></div>
-    <div class="case-media"><div class="case-art">{LOGO_DECOR}</div></div>
-  </div>
-</section>
-<section class="section ivory" aria-label="Ficha do projeto" style="padding-block:clamp(36px,5vw,56px)">
-  <div class="wrap"><dl class="case-facts"><div><dt>Cliente</dt><dd>TaMa Creative (marca própria)</dd></div><div><dt>Frentes</dt><dd>Branding, papelaria, embalagens e vestuário</dd></div><div><dt>Entregas</dt><dd>Símbolo, logotipo, padrão, selo, paleta, apresentação comercial e site</dd></div><div><dt>Ano</dt><dd>2026</dd></div></dl></div>
-</section>
-<section class="section" aria-labelledby="desafio-t">
-  <div class="wrap cols-3">
-    <div class="col">{arc('c1')}<h2 id="desafio-t" style="font-size:1.6rem">Desafio</h2><p>Dar forma a uma marca que atua em brindes, confecções e branding sem parecer gráfica, loja de brindes ou agência genérica.</p></div>
-    <div class="col">{arc('c2')}<h2 style="font-size:1.6rem">Conceito</h2><p>O arco: um círculo que ainda está sendo desenhado. A reta é a intenção; a curva é o objeto que a pessoa segura, veste e guarda.</p></div>
-    <div class="col">{arc('c3')}<h2 style="font-size:1.6rem">Solução</h2><p>Símbolo, wordmark em serifa de alto contraste, padrão de arcos, selo circular e paleta ameixa, coral, rosé e creme.</p></div>
-  </div>
-</section>
-<section class="section ivory" aria-labelledby="galeria-t">
-  <div class="wrap">
-    <div class="section-head"><p class="eyebrow">Sistema</p><h2 id="galeria-t" class="section-title">Da forma ao sistema</h2></div>
-    <div class="gallery">
-      <figure><div class="tile">{LOGO_DECOR}</div><figcaption>Logo principal</figcaption></figure>
-      <figure><div class="tile dark">{LOGO_DECOR}</div><figcaption>Versão negativa</figcaption></figure>
-      <figure><div class="tile">{SELO}</div><figcaption>Selo para lacres e etiquetas</figcaption></figure>
-      <figure><div class="tile"><div class="pattern-tile"></div></div><figcaption>Padrão de arcos</figcaption></figure>
-      <figure class="wide">{picture('marcas', 'Aplicação da identidade TaMa Creative em caixa, sacola, cartões, caderno e envelope.', '(max-width: 760px) 92vw, 1200px', style='object-position: 50% 45%')}<figcaption>Aplicações em papelaria e embalagens · mockup</figcaption></figure>
-      <figure>{picture('detalhe-polo', 'Marca TaMa Creative bordada em polo ameixa.', '(max-width: 760px) 92vw, 600px')}<figcaption>Vestuário · mockup</figcaption></figure>
-      <figure>{picture('detalhe-caderno', 'Caderno creme com a marca TaMa Creative.', '(max-width: 760px) 92vw, 600px')}<figcaption>Brindes · mockup</figcaption></figure>
-    </div>
-  </div>
-</section>
-<section class="section" aria-labelledby="aplic-t">
-  <div class="wrap split"><div class="stack"><p class="eyebrow">Aplicação</p><h2 id="aplic-t" class="section-title">Onde o sistema já está</h2></div><p class="lead">A identidade está aplicada neste site, na apresentação comercial da TaMa e nos materiais de lançamento da marca. As imagens de produtos acima são mockups de aplicação.</p></div>
-</section>
-{end_cta('Quer uma marca que vira objeto?', 'Conte sobre a sua empresa. A TaMa propõe o caminho.', tipo='branding')}''',
     }
 
 

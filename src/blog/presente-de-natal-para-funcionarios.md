@@ -15,15 +15,15 @@ capa_alt: xícara mostarda com pires sobre pedra, ao lado de caixas terracota e 
 capa_conceitual: true
 capa_posicao: 50% 55%
 pecas:
-- vela-perfumada
-- caneca-de-ceramica
+- vela
+- caneca
 - garrafa-termica
-- moletom-exclusivo
-- bolsa-tote-estruturada
-- caixa-rigida-premium
-- ritual-de-cafe
-- vela-fragrancia-assinada
-- domino-madeira
+- moletom-com-capuz
+- ecobag
+- caixa-para-presente
+- copo-com-tampa
+- difusor-de-aromas
+- necessaire
 relacionados:
 - brindes-de-fim-de-ano-para-clientes
 - o-que-colocar-no-kit-de-boas-vindas

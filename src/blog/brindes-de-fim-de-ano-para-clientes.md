@@ -14,15 +14,15 @@ capa: hero-gift
 capa_alt: caderno azul, bandeja em couro, garrafa térmica verde, xícara mostarda e caixas de presente sobre blocos de pedra.
 capa_conceitual: true
 pecas:
-- caneta-executiva
-- agenda-executiva
-- vela-perfumada
-- caixa-rigida-premium
-- cartao-personalizado
-- sacola-corporativa
-- tabua-de-queijos
-- cha-em-latas
-- guardanapos-de-linho
+- caneta-executiva-com-estojo
+- agenda
+- vela
+- caixa-para-presente
+- cartao-com-envelope
+- sacola-para-presente
+- copo-de-vinho-com-tampa
+- taca-de-vinho
+- difusor-de-aromas
 relacionados:
 - brindes-e-compliance-politica-de-presentes
 - presente-de-natal-para-funcionarios

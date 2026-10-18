@@ -14,15 +14,15 @@ capa: kit-presente
 capa_alt: kit com manta em caixa terracota, caixa verde com fita, xícara mostarda e garrafa sobre pedra.
 capa_conceitual: true
 pecas:
-- caixa-rigida-premium
-- caderno-premium
+- caixa-para-presente
+- caderno-de-anotacoes
 - garrafa-termica
-- caneca-de-ceramica
-- moletom-exclusivo
-- organizador-de-mesa
-- calendario-perpetuo
-- garrafa-vidro-cortica
-- cabo-estojo-couro
+- caneca
+- moletom-com-capuz
+- porta-canetas
+- estojo-de-escritorio
+- copo-com-tampa
+- ecobag
 relacionados:
 - presente-de-natal-para-funcionarios
 - brindes-de-fim-de-ano-para-clientes

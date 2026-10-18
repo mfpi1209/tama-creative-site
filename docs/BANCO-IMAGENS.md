@@ -25,6 +25,17 @@ Em **Catálogo de produtos** fica o próprio `src/data/produtos.json`, uma entra
 - **Texto alternativo**, **situação da foto** (Substituir e Retirada tiram a foto do site), **onde é usada**.
 - **Identificador**: deixe vazio em itens novos; o build gera `produto~cor`. Não mude o de itens existentes.
 
+Em **Catálogo de produtos › Modelos** fica `src/data/modelos.json`, um cadastro por modelo (a página
+`/catalogo/<nome>/`):
+- **Produto:** escolhido entre os nomes do banco. Se renomear o produto nas fotos, ajuste aqui também; o build avisa.
+- **Gênero:** define o título do Google ("Caneca personalizada", "Boné personalizado").
+- **Resumo:** 2 ou 3 frases, mostradas abaixo do nome.
+- **Ideal para:** até 4 usos, mostrados como etiquetas.
+- **Medidas:** só aparecem com a situação **Confirmado**.
+- **Título e descrição no Google:** opcionais; vazios, o site gera.
+
+Os 52 resumos iniciais foram escritos sem afirmar material, técnica nem capacidade. Revise antes de aprovar.
+
 Cada alteração vira um rascunho no fluxo de revisão (pull request com prévia do Netlify) e vai ao ar ao clicar em
 **Publicar**. O build confere categoria, cor, texto alternativo e se a foto existe: com erro, a publicação não acontece
 e o motivo aparece no log de deploy. O editor regrava o JSON com outra ordem de chaves e recuo de 2 espaços; isso não

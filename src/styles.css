@@ -822,3 +822,7 @@ html.cat-lock { overflow: hidden; }
 }
 .product.pdp:hover { box-shadow: none; }
 @media (max-width: 600px) { .pdp-info .actions > * { flex: 1 1 100%; justify-content: center; } }
+.pdp-resumo { font-size: 1.0625rem; line-height: 1.65; }
+.pdp-info .pdp-desc { font-size: .9375rem; }
+.pdp-usos ul { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
+.pdp-usos li { padding: 6px 12px; border: 1px solid var(--line-strong); border-radius: 999px; font-size: .8125rem; }

@@ -309,6 +309,40 @@ for _h in HOME_PRODS:   # destaques da home: material e técnica vêm do catálo
     if _h['img'] in PRODUTOS_BY:   # texto alternativo também vem do catálogo (uma fonte só, editada em /admin/)
         _h['alt'] = PRODUTOS_BY[_h['img']]['alt']
 CATALOGO = build_catalogo()   # depois de color_slug
+# Cadastro por modelo (src/data/modelos.json, editado em /admin/ › Catálogo › Modelos): resumo, usos, medidas, gênero,
+# título e descrição para o Google. Ligado ao catálogo pelo nome do produto; o build barra dado inválido.
+_MODELOS_JSON = os.path.join(SRC, 'data', 'modelos.json')
+MODELOS = (json.load(open(_MODELOS_JSON, encoding='utf-8')).get('modelos') or []) if os.path.exists(_MODELOS_JSON) else []
+
+
+def preparar_modelos():
+    nomes, erros, vistos = {c['nome'] for c in CATALOGO}, [], set()
+    for m in MODELOS:
+        p = m.get('produto') or ''
+        if p not in nomes:
+            erros.append(f'"{p}": não há produto com esse nome no catálogo (o nome tem de ser igual ao do banco de imagens)')
+        if p in vistos:
+            erros.append(f'"{p}": cadastrado duas vezes')
+        vistos.add(p)
+        if (m.get('genero') or '') not in ('', 'f', 'm'):
+            erros.append(f'"{p}": gênero deve ser f ou m')
+        if len(m.get('resumo') or '') > 700:
+            erros.append(f'"{p}": resumo com mais de 700 caracteres')
+        if len(m.get('titulo_seo') or '') > 65:
+            erros.append(f'"{p}": título para o Google com mais de 65 caracteres')
+        d = m.get('descricao_seo') or ''
+        if d and not 70 <= len(d) <= 160:
+            erros.append(f'"{p}": descrição para o Google fora de 70 a 160 caracteres ({len(d)})')
+        if (m.get('medidas') or {}).get('status', 'a_confirmar') not in ('a_confirmar', 'confirmado'):
+            erros.append(f'"{p}": medidas com status inválido')
+    if erros:
+        raise SystemExit('Modelos do catálogo (src/data/modelos.json) com erro:\n  ' + '\n  '.join(erros))
+    por_nome = {m['produto']: m for m in MODELOS}
+    for c in CATALOGO:
+        c['info'] = por_nome.get(c['nome'], {})
+
+
+preparar_modelos()
 
 
 def curadoria_do_banco():
@@ -555,11 +589,12 @@ CAT_USO = {'vestuario': 'para uniformes, equipes e eventos', 'canetas-escritorio
 FEMININOS = ('Agenda', 'Caneca', 'Caneta', 'Carteira', 'Camiseta', 'Polo', 'Taça', 'Vela', 'Ecobag', 'Garrafa', 'Nécessaire', 'Dólmã', 'Caixa', 'Sacola')
 
 
-def titulo_produto(nome):
+def titulo_produto(nome, genero=''):
     if 'personaliz' in nome.lower():
         base = nome
     else:
-        base = f"{nome} {'personalizada' if nome.split()[0] in FEMININOS else 'personalizado'}"
+        fem = genero == 'f' if genero in ('f', 'm') else nome.split()[0] in FEMININOS
+        base = f"{nome} {'personalizada' if fem else 'personalizado'}"
     t = f'{base} | TaMa Creative'
     return t if len(t) <= 60 else f'{base} | TaMa'
 
@@ -590,6 +625,12 @@ def page_produto(c):
     mat, tec = base.get('material') or {}, base.get('tecnica') or {}
     mat_txt = mat['valor'] if mat.get('status') == 'confirmado' and mat.get('valor') else 'A confirmar na proposta.'
     tec_txt = tec['valor'] if tec.get('status') == 'confirmado' and tec.get('valor') else 'Definida na proposta, conforme o material, com a arte para aprovação.'
+    info = c.get('info') or {}
+    med = info.get('medidas') or {}
+    medidas = (f'<div><dt>Medidas</dt><dd>{esc(med["valor"])}</dd></div>' if med.get('status') == 'confirmado' and med.get('valor') else '')
+    usos = [u for u in (info.get('usos') or []) if u]
+    usos_html = (f'<div class="pdp-usos"><p class="pdp-label">Ideal para</p><ul>{"".join(f"<li>{esc(u)}</li>" for u in usos)}</ul></div>' if usos else '')
+    resumo = f'<p class="pdp-resumo">{esc(info["resumo"])}</p>' if info.get('resumo') else ''
     tipo = 'confeccoes' if c['categoria'] == 'vestuario' else 'brindes'
     cat_nome = CAT_PROD.get(c['categoria'], 'Catálogo')
     mesma = [x for x in CATALOGO if x['categoria'] == c['categoria']]
@@ -612,8 +653,9 @@ def page_produto(c):
     desc = f'{nome} com a marca da sua empresa, {uso}. Veja o modelo {ct} e peça uma proposta à TaMa.'
     if len(desc) > 160:
         desc = f'{nome} com a marca da sua empresa, {uso}. Veja {n} cores de referência e peça uma proposta.'
+    desc = info.get('descricao_seo') or desc
     return {
-        'path': url, 'title': titulo_produto(nome), 'description': desc,
+        'path': url, 'title': info.get('titulo_seo') or titulo_produto(nome, info.get('genero') or ''), 'description': desc,
         'trail': [('/', 'Início'), ('/catalogo/', 'Catálogo'), (url, nome)], 'wp_type': 'ItemPage',
         'preload': preload_image(c['img'], '(max-width: 900px) 92vw, 1100px'),
         'body': f'''<section class="section pdp-sec">
@@ -626,9 +668,12 @@ def page_produto(c):
       <div class="pdp-info">
         <p class="eyebrow"><a href="/catalogo/?categoria={c['categoria']}#catalogo">{cat_nome}</a></p>
         <h1>{nome}</h1>
+        {resumo}
         <p class="prod-desc pdp-desc">Modelo da imagem: {c['descricao']}</p>
+        {usos_html}
         <div class="pdp-cores"><p class="pdp-label">Cor de referência: <strong class="color-name">{cores[0][0]}</strong></p>{swatches(dict(c, cores=cores))}</div>
         <dl class="pdp-spec">
+          {medidas}
           <div><dt>Material</dt><dd>{mat_txt}</dd></div>
           <div><dt>Personalização</dt><dd>{tec_txt}</dd></div>
           <div><dt>Quantidade e prazo</dt><dd>Informados na proposta, conforme o volume do pedido e a técnica.</dd></div>

@@ -757,8 +757,37 @@ def catalogo_collection(b):
                 {'label': 'Fotos do catálogo', 'name': 'imagens', 'label_singular': 'foto', 'widget': 'list', 'collapsed': True,
                  'add_to_top': True, 'summary': '{{fields.produto}} · {{fields.cor.nome}} · {{fields.aprovacao}}', 'fields': item},
             ],
+        }, {
+            'name': 'modelos', 'label': 'Modelos: textos da página de cada produto', 'file': 'src/data/modelos.json',
+            'fields': [
+                {'label': 'Observação', 'name': 'observacao', 'widget': 'hidden', 'required': False},
+                {'label': 'Modelos', 'name': 'modelos', 'label_singular': 'modelo', 'widget': 'list', 'collapsed': True,
+                 'summary': '{{fields.produto}}', 'fields': modelo_campos(b)},
+            ],
         }],
     }
+
+
+def modelo_campos(b):
+    """Campos de cada modelo (página /catalogo/<nome>/). O produto é escolhido entre os nomes do banco de imagens."""
+    status = [_opt('A confirmar (não aparece no site)', 'a_confirmar'), _opt('Confirmado (aparece no site)', 'confirmado')]
+    return [
+        {'label': 'Produto', 'name': 'produto', 'widget': 'select', 'options': sorted({c['nome'] for c in b.CATALOGO}),
+         'hint': 'O mesmo nome do produto nas fotos do catálogo. Se renomear o produto lá, ajuste aqui também.'},
+        {'label': 'Gênero do nome', 'name': 'genero', 'widget': 'select', 'required': False, 'options': [_opt('Feminino (personalizada)', 'f'), _opt('Masculino (personalizado)', 'm')],
+         'hint': 'Usado no título do Google: "Caneca personalizada", "Boné personalizado".'},
+        {'label': 'Resumo', 'name': 'resumo', 'widget': 'text', 'required': False, 'pattern': ['^[\\s\\S]{0,700}$', 'Até 700 caracteres'],
+         'hint': '2 ou 3 frases (40 a 70 palavras) sobre para quem e para quais ocasiões. Aparece abaixo do nome. Não afirme material, técnica ou capacidade sem confirmação.'},
+        {'label': 'Ideal para', 'name': 'usos', 'widget': 'list', 'required': False, 'max': 4, 'field': {'label': 'Uso', 'name': 'uso', 'widget': 'string'},
+         'hint': 'Até 4 ocasiões curtas. Ex.: Kits de boas-vindas, Eventos e feiras.'},
+        {'label': 'Medidas', 'name': 'medidas', 'widget': 'object', 'collapsed': False, 'required': False, 'fields': [
+            {'label': 'Valor', 'name': 'valor', 'widget': 'string', 'required': False, 'hint': 'Ex.: 14 × 21 cm; 350 ml. Só aparece no site quando confirmado.'},
+            {'label': 'Situação', 'name': 'status', 'widget': 'select', 'options': status, 'default': 'a_confirmar'}]},
+        {'label': 'Título no Google', 'name': 'titulo_seo', 'widget': 'string', 'required': False, 'pattern': ['^.{0,60}$', 'Até 60 caracteres'],
+         'hint': 'Vazio: o site usa "<produto> personalizada | TaMa Creative".'},
+        {'label': 'Descrição no Google', 'name': 'descricao_seo', 'widget': 'text', 'required': False, 'pattern': ['^([\\s\\S]{70,160})?$', 'De 70 a 160 caracteres'],
+         'hint': 'Vazio: o site gera a partir da categoria e das cores.'},
+    ]
 
 
 def post_static(b):

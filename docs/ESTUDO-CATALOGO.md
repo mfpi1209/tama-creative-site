@@ -122,7 +122,7 @@
   prioridades.
 
 **Ainda para decidir:**
-1. **Conteúdo próprio por modelo.** Hoje só ~7 palavras por página são exclusivas de cada produto, o que traz risco de
+1. **Feito em 18/10/2026: cadastro por modelo no /admin/ (Catálogo › Modelos), com os 52 resumos e usos iniciais.** **Conteúdo próprio por modelo.** Hoje só ~7 palavras por página são exclusivas de cada produto, o que traz risco de
    conteúdo fino para o Google. Proposta:
    - um cadastro por modelo no /admin/: resumo de 2 a 3 frases, usos, medidas quando confirmadas, gênero e título/descrição
      para o Google;

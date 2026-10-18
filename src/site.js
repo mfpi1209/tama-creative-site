@@ -127,6 +127,8 @@
       var n = card.querySelector('.color-name'); if (n) n.textContent = color;
       var pic = card.querySelector('.prod-media picture');
       if (v && pic) swapPicture(pic, v);   // show the product in the chosen colour
+      var alt = card.querySelector('.prod-media .prod-alt'), vv = CAT[slug] && CAT[slug].vv;
+      if (alt && vv) { if (vv[color]) { swapPicture(alt.querySelector('picture'), vv[color]); alt.hidden = false; } else { alt.hidden = true; } }   // verso da mesma cor no hover
     });
   }
   function setColor(slug, color) {
@@ -332,8 +334,30 @@
   if (pdp) {
     var pdpSlug = pdp.getAttribute('data-slug'), pdpPic = pdp.querySelector('.pdp-main picture');
     var pdpSlugCor = function (s) { return String(s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''); };
+    var pdpVistas = {};
+    try { pdpVistas = JSON.parse(pdp.getAttribute('data-vistas')) || {}; } catch (e) {}
+    var pdpCorAtual = function () { return pdp.getAttribute('data-color') || Object.keys(pdpVistas)[0]; };
+    // faixa Frente · Verso · Bordado: mostra as vistas da cor escolhida; ao trocar de cor, volta para a frente
+    var pdpVistasSync = function () {
+      var v = pdpVistas[pdpCorAtual()] || {};
+      pdp.querySelectorAll('.pdp-vista').forEach(function (b) {
+        var k = b.getAttribute('data-vista'), d = v[k];
+        b.hidden = !d;
+        if (d) b.querySelector('img').src = '/img/' + d[0] + '-' + d[1][0] + '.webp';
+        b.setAttribute('aria-pressed', String(k === 'frente'));
+      });
+    };
+    pdp.querySelectorAll('.pdp-vista').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var d = (pdpVistas[pdpCorAtual()] || {})[b.getAttribute('data-vista')];
+        if (!d) return;
+        swapPicture(pdpPic, d);
+        pdp.querySelectorAll('.pdp-vista').forEach(function (o) { o.setAttribute('aria-pressed', String(o === b)); });
+      });
+    });
     var pdpSync = function (push) {
       var cor = pdp.getAttribute('data-color');
+      pdpVistasSync();
       pdp.querySelectorAll('.pdp-thumb').forEach(function (t) { t.setAttribute('aria-pressed', String(!!cor && t.getAttribute('data-thumb-color') === cor)); });
       if (push && cor) history.replaceState(null, '', location.pathname + '?cor=' + pdpSlugCor(cor));
     };

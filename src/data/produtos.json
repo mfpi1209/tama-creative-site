@@ -708,6 +708,78 @@
    "atualizado_em": "2026-10-17"
   },
   {
+   "produto": "Boné",
+   "categoria": "vestuario",
+   "modelo": "Seis gomos",
+   "cor": {
+    "nome": "Azul-marinho",
+    "hex": "#1E2A4A"
+   },
+   "material": {
+    "valor": "Algodão",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "bone~azul-marinho-bordado",
+   "vista": "detalhe",
+   "alt": "Detalhe do bordado da marca TaMa em linha branca no boné na cor azul-marinho.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor feita localmente (tools/recolorir.py) a partir de bone~verde-bordado, com a cor medida na foto de frente bone~azul-marinho, em 18/10/2026. Ilustrativa.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/bone~azul-marinho-bordado.webp",
+   "mestre": null,
+   "atualizado_em": "2026-10-18",
+   "largura": 1024,
+   "altura": 1024
+  },
+  {
+   "produto": "Boné",
+   "categoria": "vestuario",
+   "modelo": "Seis gomos",
+   "cor": {
+    "nome": "Azul-marinho",
+    "hex": "#1E2A4A"
+   },
+   "material": {
+    "valor": "Algodão",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "bone~azul-marinho-verso",
+   "vista": "verso",
+   "alt": "Verso do boné na cor azul-marinho, sem marca.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor feita localmente (tools/recolorir.py) a partir de bone~verde-verso, com a cor medida na foto de frente bone~azul-marinho, em 18/10/2026. Ilustrativa.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/bone~azul-marinho-verso.webp",
+   "mestre": null,
+   "atualizado_em": "2026-10-18",
+   "largura": 1024,
+   "altura": 1024
+  },
+  {
    "id": "bone~azul-royal",
    "produto": "Boné",
    "categoria": "vestuario",
@@ -743,6 +815,78 @@
    "sha256": "8d673370420c8fbe6e1dc2295a961c9163c0d0b88e583d11895b90f9a3a0d9bb",
    "bytes": 1494833,
    "atualizado_em": "2026-10-17"
+  },
+  {
+   "produto": "Boné",
+   "categoria": "vestuario",
+   "modelo": "Seis gomos",
+   "cor": {
+    "nome": "Azul royal",
+    "hex": "#1F4FB8"
+   },
+   "material": {
+    "valor": "Algodão",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "bone~azul-royal-bordado",
+   "vista": "detalhe",
+   "alt": "Detalhe do bordado da marca TaMa em linha branca no boné na cor azul royal.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor feita localmente (tools/recolorir.py) a partir de bone~verde-bordado, com a cor medida na foto de frente bone~azul-royal, em 18/10/2026. Ilustrativa.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/bone~azul-royal-bordado.webp",
+   "mestre": null,
+   "atualizado_em": "2026-10-18",
+   "largura": 1024,
+   "altura": 1024
+  },
+  {
+   "produto": "Boné",
+   "categoria": "vestuario",
+   "modelo": "Seis gomos",
+   "cor": {
+    "nome": "Azul royal",
+    "hex": "#1F4FB8"
+   },
+   "material": {
+    "valor": "Algodão",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "bone~azul-royal-verso",
+   "vista": "verso",
+   "alt": "Verso do boné na cor azul royal, sem marca.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor feita localmente (tools/recolorir.py) a partir de bone~verde-verso, com a cor medida na foto de frente bone~azul-royal, em 18/10/2026. Ilustrativa.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/bone~azul-royal-verso.webp",
+   "mestre": null,
+   "atualizado_em": "2026-10-18",
+   "largura": 1024,
+   "altura": 1024
   },
   {
    "id": "bone~branco",
@@ -782,6 +926,42 @@
    "atualizado_em": "2026-10-17"
   },
   {
+   "produto": "Boné",
+   "categoria": "vestuario",
+   "modelo": "Seis gomos",
+   "cor": {
+    "nome": "Branco",
+    "hex": "#F7F5F0"
+   },
+   "material": {
+    "valor": "Algodão",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "bone~branco-verso",
+   "vista": "verso",
+   "alt": "Verso do boné na cor branco, sem marca.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor feita localmente (tools/recolorir.py) a partir de bone~verde-verso, com a cor medida na foto de frente bone~branco, em 18/10/2026. Ilustrativa.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/bone~branco-verso.webp",
+   "mestre": null,
+   "atualizado_em": "2026-10-18",
+   "largura": 1024,
+   "altura": 1024
+  },
+  {
    "id": "bone~cinza",
    "produto": "Boné",
    "categoria": "vestuario",
@@ -817,6 +997,78 @@
    "sha256": "71b8c49e33b70041b4ffbb8126eca0f019fcce6ce7bd8f148c4dfea3d3233721",
    "bytes": 1553455,
    "atualizado_em": "2026-10-17"
+  },
+  {
+   "produto": "Boné",
+   "categoria": "vestuario",
+   "modelo": "Seis gomos",
+   "cor": {
+    "nome": "Cinza",
+    "hex": "#9A9A98"
+   },
+   "material": {
+    "valor": "Algodão",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "bone~cinza-bordado",
+   "vista": "detalhe",
+   "alt": "Detalhe do bordado da marca TaMa em linha branca no boné na cor cinza.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor feita localmente (tools/recolorir.py) a partir de bone~verde-bordado, com a cor medida na foto de frente bone~cinza, em 18/10/2026. Ilustrativa.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/bone~cinza-bordado.webp",
+   "mestre": null,
+   "atualizado_em": "2026-10-18",
+   "largura": 1024,
+   "altura": 1024
+  },
+  {
+   "produto": "Boné",
+   "categoria": "vestuario",
+   "modelo": "Seis gomos",
+   "cor": {
+    "nome": "Cinza",
+    "hex": "#9A9A98"
+   },
+   "material": {
+    "valor": "Algodão",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "bone~cinza-verso",
+   "vista": "verso",
+   "alt": "Verso do boné na cor cinza, sem marca.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor feita localmente (tools/recolorir.py) a partir de bone~verde-verso, com a cor medida na foto de frente bone~cinza, em 18/10/2026. Ilustrativa.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/bone~cinza-verso.webp",
+   "mestre": null,
+   "atualizado_em": "2026-10-18",
+   "largura": 1024,
+   "altura": 1024
   },
   {
    "id": "bone~preto",
@@ -856,6 +1108,78 @@
    "atualizado_em": "2026-10-17"
   },
   {
+   "produto": "Boné",
+   "categoria": "vestuario",
+   "modelo": "Seis gomos",
+   "cor": {
+    "nome": "Preto",
+    "hex": "#1E1E1E"
+   },
+   "material": {
+    "valor": "Algodão",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "bone~preto-bordado",
+   "vista": "detalhe",
+   "alt": "Detalhe do bordado da marca TaMa em linha branca no boné na cor preto.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor feita localmente (tools/recolorir.py) a partir de bone~verde-bordado, com a cor medida na foto de frente bone~preto, em 18/10/2026. Ilustrativa.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/bone~preto-bordado.webp",
+   "mestre": null,
+   "atualizado_em": "2026-10-18",
+   "largura": 1024,
+   "altura": 1024
+  },
+  {
+   "produto": "Boné",
+   "categoria": "vestuario",
+   "modelo": "Seis gomos",
+   "cor": {
+    "nome": "Preto",
+    "hex": "#1E1E1E"
+   },
+   "material": {
+    "valor": "Algodão",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "bone~preto-verso",
+   "vista": "verso",
+   "alt": "Verso do boné na cor preto, sem marca.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor feita localmente (tools/recolorir.py) a partir de bone~verde-verso, com a cor medida na foto de frente bone~preto, em 18/10/2026. Ilustrativa.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/bone~preto-verso.webp",
+   "mestre": null,
+   "atualizado_em": "2026-10-18",
+   "largura": 1024,
+   "altura": 1024
+  },
+  {
    "id": "bone~rosa",
    "produto": "Boné",
    "categoria": "vestuario",
@@ -891,6 +1215,78 @@
    "sha256": "b2b33957a45aa2726caef5954e2f2ff427808fc76f6fdc02ae19d51d8d05b10b",
    "bytes": 1505472,
    "atualizado_em": "2026-10-17"
+  },
+  {
+   "produto": "Boné",
+   "categoria": "vestuario",
+   "modelo": "Seis gomos",
+   "cor": {
+    "nome": "Rosa",
+    "hex": "#E07A9B"
+   },
+   "material": {
+    "valor": "Algodão",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "bone~rosa-bordado",
+   "vista": "detalhe",
+   "alt": "Detalhe do bordado da marca TaMa em linha branca no boné na cor rosa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor feita localmente (tools/recolorir.py) a partir de bone~verde-bordado, com a cor medida na foto de frente bone~rosa, em 18/10/2026. Ilustrativa.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/bone~rosa-bordado.webp",
+   "mestre": null,
+   "atualizado_em": "2026-10-18",
+   "largura": 1024,
+   "altura": 1024
+  },
+  {
+   "produto": "Boné",
+   "categoria": "vestuario",
+   "modelo": "Seis gomos",
+   "cor": {
+    "nome": "Rosa",
+    "hex": "#E07A9B"
+   },
+   "material": {
+    "valor": "Algodão",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "bone~rosa-verso",
+   "vista": "verso",
+   "alt": "Verso do boné na cor rosa, sem marca.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor feita localmente (tools/recolorir.py) a partir de bone~verde-verso, com a cor medida na foto de frente bone~rosa, em 18/10/2026. Ilustrativa.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/bone~rosa-verso.webp",
+   "mestre": null,
+   "atualizado_em": "2026-10-18",
+   "largura": 1024,
+   "altura": 1024
   },
   {
    "id": "bone~verde",
@@ -931,6 +1327,78 @@
    "atualizado_em": "2026-10-17"
   },
   {
+   "produto": "Boné",
+   "categoria": "vestuario",
+   "modelo": "Seis gomos",
+   "cor": {
+    "nome": "Verde",
+    "hex": "#1F4A35"
+   },
+   "material": {
+    "valor": "Algodão",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "bone~verde-bordado",
+   "vista": "detalhe",
+   "alt": "Detalhe do bordado da marca TaMa em linha branca no boné na cor verde.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto de frente) em 18/10/2026. Ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto-base das variações de cor locais.",
+   "arquivo": "/img/produtos/bone~verde-bordado.webp",
+   "mestre": null,
+   "atualizado_em": "2026-10-18",
+   "largura": 1024,
+   "altura": 1024
+  },
+  {
+   "produto": "Boné",
+   "categoria": "vestuario",
+   "modelo": "Seis gomos",
+   "cor": {
+    "nome": "Verde",
+    "hex": "#1F4A35"
+   },
+   "material": {
+    "valor": "Algodão",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "bone~verde-verso",
+   "vista": "verso",
+   "alt": "Verso do boné na cor verde, sem marca.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto de frente) em 18/10/2026. Ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto-base das variações de cor locais.",
+   "arquivo": "/img/produtos/bone~verde-verso.webp",
+   "mestre": null,
+   "atualizado_em": "2026-10-18",
+   "largura": 1024,
+   "altura": 1024
+  },
+  {
    "id": "bone~vermelho",
    "produto": "Boné",
    "categoria": "vestuario",
@@ -966,6 +1434,78 @@
    "sha256": "bd4970b0c7862f9f4d0dd65cae63e58e3fd1069676129f08ca91955c4e56b430",
    "bytes": 1531956,
    "atualizado_em": "2026-10-17"
+  },
+  {
+   "produto": "Boné",
+   "categoria": "vestuario",
+   "modelo": "Seis gomos",
+   "cor": {
+    "nome": "Vermelho",
+    "hex": "#C8202F"
+   },
+   "material": {
+    "valor": "Algodão",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "bone~vermelho-bordado",
+   "vista": "detalhe",
+   "alt": "Detalhe do bordado da marca TaMa em linha branca no boné na cor vermelho.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor feita localmente (tools/recolorir.py) a partir de bone~verde-bordado, com a cor medida na foto de frente bone~vermelho, em 18/10/2026. Ilustrativa.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/bone~vermelho-bordado.webp",
+   "mestre": null,
+   "atualizado_em": "2026-10-18",
+   "largura": 1024,
+   "altura": 1024
+  },
+  {
+   "produto": "Boné",
+   "categoria": "vestuario",
+   "modelo": "Seis gomos",
+   "cor": {
+    "nome": "Vermelho",
+    "hex": "#C8202F"
+   },
+   "material": {
+    "valor": "Algodão",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "bone~vermelho-verso",
+   "vista": "verso",
+   "alt": "Verso do boné na cor vermelho, sem marca.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor feita localmente (tools/recolorir.py) a partir de bone~verde-verso, com a cor medida na foto de frente bone~vermelho, em 18/10/2026. Ilustrativa.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/bone~vermelho-verso.webp",
+   "mestre": null,
+   "atualizado_em": "2026-10-18",
+   "largura": 1024,
+   "altura": 1024
   },
   {
    "id": "caderno~azul-marinho",
@@ -6998,16 +7538,88 @@
    ],
    "ilustrativa": true,
    "aprovacao": "revisao",
-   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "origem": "Variação de cor feita localmente (tools/recolorir.py) a partir de polo~vermelho (frente refeita com bordado realista pela API), com a cor medida na foto de frente polo~azul-marinho, em 18/10/2026. Ilustrativa.",
    "substitui": null,
-   "observacao": "Variação de cor gerada a partir da foto-base polo~vermelho.",
+   "observacao": "Frente refeita com bordado realista (linha branca, ponto cheio).",
    "arquivo": "/img/produtos/polo~azul-marinho.webp",
    "mestre": "midia/produtos/mestre/polo~azul-marinho.png",
    "largura": 1024,
    "altura": 1024,
    "sha256": "6b32297e992bf499b6e96b4cbee71c8b599cae9ddbba14a36c4e54705c56a9b6",
    "bytes": 1596116,
-   "atualizado_em": "2026-10-17"
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "produto": "Polo masculina",
+   "categoria": "vestuario",
+   "modelo": "Gola e três botões",
+   "cor": {
+    "nome": "Azul-marinho",
+    "hex": "#1E2A4A"
+   },
+   "material": {
+    "valor": "Piquet",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "polo~azul-marinho-bordado",
+   "vista": "detalhe",
+   "alt": "Detalhe do bordado da marca TaMa em linha branca na camisa polo masculina na cor azul-marinho.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor feita localmente (tools/recolorir.py) a partir de polo~vermelho-bordado, com a cor medida na foto de frente polo~azul-marinho, em 18/10/2026. Ilustrativa.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/polo~azul-marinho-bordado.webp",
+   "mestre": null,
+   "atualizado_em": "2026-10-18",
+   "largura": 1024,
+   "altura": 1024
+  },
+  {
+   "produto": "Polo masculina",
+   "categoria": "vestuario",
+   "modelo": "Gola e três botões",
+   "cor": {
+    "nome": "Azul-marinho",
+    "hex": "#1E2A4A"
+   },
+   "material": {
+    "valor": "Piquet",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "polo~azul-marinho-verso",
+   "vista": "verso",
+   "alt": "Verso da camisa polo masculina na cor azul-marinho, sem marca.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor feita localmente (tools/recolorir.py) a partir de polo~vermelho-verso, com a cor medida na foto de frente polo~azul-marinho, em 18/10/2026. Ilustrativa.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/polo~azul-marinho-verso.webp",
+   "mestre": null,
+   "atualizado_em": "2026-10-18",
+   "largura": 1024,
+   "altura": 1024
   },
   {
    "id": "polo~azul-royal",
@@ -7036,16 +7648,88 @@
    ],
    "ilustrativa": true,
    "aprovacao": "revisao",
-   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "origem": "Variação de cor feita localmente (tools/recolorir.py) a partir de polo~vermelho (frente refeita com bordado realista pela API), com a cor medida na foto de frente polo~azul-royal, em 18/10/2026. Ilustrativa.",
    "substitui": null,
-   "observacao": "Variação de cor gerada a partir da foto-base polo~vermelho.",
+   "observacao": "Frente refeita com bordado realista (linha branca, ponto cheio).",
    "arquivo": "/img/produtos/polo~azul-royal.webp",
    "mestre": "midia/produtos/mestre/polo~azul-royal.png",
    "largura": 1024,
    "altura": 1024,
    "sha256": "4971e3348e0cef13620ceb97692ce9cea9b4662864648597a6a30d4a0952900a",
    "bytes": 1536566,
-   "atualizado_em": "2026-10-17"
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "produto": "Polo masculina",
+   "categoria": "vestuario",
+   "modelo": "Gola e três botões",
+   "cor": {
+    "nome": "Azul royal",
+    "hex": "#1F4FB8"
+   },
+   "material": {
+    "valor": "Piquet",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "polo~azul-royal-bordado",
+   "vista": "detalhe",
+   "alt": "Detalhe do bordado da marca TaMa em linha branca na camisa polo masculina na cor azul royal.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor feita localmente (tools/recolorir.py) a partir de polo~vermelho-bordado, com a cor medida na foto de frente polo~azul-royal, em 18/10/2026. Ilustrativa.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/polo~azul-royal-bordado.webp",
+   "mestre": null,
+   "atualizado_em": "2026-10-18",
+   "largura": 1024,
+   "altura": 1024
+  },
+  {
+   "produto": "Polo masculina",
+   "categoria": "vestuario",
+   "modelo": "Gola e três botões",
+   "cor": {
+    "nome": "Azul royal",
+    "hex": "#1F4FB8"
+   },
+   "material": {
+    "valor": "Piquet",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "polo~azul-royal-verso",
+   "vista": "verso",
+   "alt": "Verso da camisa polo masculina na cor azul royal, sem marca.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor feita localmente (tools/recolorir.py) a partir de polo~vermelho-verso, com a cor medida na foto de frente polo~azul-royal, em 18/10/2026. Ilustrativa.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/polo~azul-royal-verso.webp",
+   "mestre": null,
+   "atualizado_em": "2026-10-18",
+   "largura": 1024,
+   "altura": 1024
   },
   {
    "id": "polo~branco",
@@ -7086,6 +7770,42 @@
    "atualizado_em": "2026-10-17"
   },
   {
+   "produto": "Polo masculina",
+   "categoria": "vestuario",
+   "modelo": "Gola e três botões",
+   "cor": {
+    "nome": "Branco",
+    "hex": "#F7F5F0"
+   },
+   "material": {
+    "valor": "Piquet",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "polo~branco-verso",
+   "vista": "verso",
+   "alt": "Verso da camisa polo masculina na cor branca, sem marca.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor feita localmente (tools/recolorir.py) a partir de polo~vermelho-verso, com a cor medida na foto de frente polo~branco, em 18/10/2026. Ilustrativa.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/polo~branco-verso.webp",
+   "mestre": null,
+   "atualizado_em": "2026-10-18",
+   "largura": 1024,
+   "altura": 1024
+  },
+  {
    "id": "polo~cinza",
    "produto": "Polo masculina",
    "categoria": "vestuario",
@@ -7112,16 +7832,88 @@
    ],
    "ilustrativa": true,
    "aprovacao": "revisao",
-   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "origem": "Variação de cor feita localmente (tools/recolorir.py) a partir de polo~vermelho (frente refeita com bordado realista pela API), com a cor medida na foto de frente polo~cinza, em 18/10/2026. Ilustrativa.",
    "substitui": null,
-   "observacao": "Variação de cor gerada a partir da foto-base polo~vermelho.",
+   "observacao": "Frente refeita com bordado realista (linha branca, ponto cheio).",
    "arquivo": "/img/produtos/polo~cinza.webp",
    "mestre": "midia/produtos/mestre/polo~cinza.png",
    "largura": 1024,
    "altura": 1024,
    "sha256": "0a0feced12a981e5e50d95fad88f58d08ef2f67b1dc6fc2a7fdcd0fc30a00cc3",
    "bytes": 1561226,
-   "atualizado_em": "2026-10-17"
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "produto": "Polo masculina",
+   "categoria": "vestuario",
+   "modelo": "Gola e três botões",
+   "cor": {
+    "nome": "Cinza",
+    "hex": "#9A9A98"
+   },
+   "material": {
+    "valor": "Piquet",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "polo~cinza-bordado",
+   "vista": "detalhe",
+   "alt": "Detalhe do bordado da marca TaMa em linha branca na camisa polo masculina na cor cinza.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor feita localmente (tools/recolorir.py) a partir de polo~vermelho-bordado, com a cor medida na foto de frente polo~cinza, em 18/10/2026. Ilustrativa.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/polo~cinza-bordado.webp",
+   "mestre": null,
+   "atualizado_em": "2026-10-18",
+   "largura": 1024,
+   "altura": 1024
+  },
+  {
+   "produto": "Polo masculina",
+   "categoria": "vestuario",
+   "modelo": "Gola e três botões",
+   "cor": {
+    "nome": "Cinza",
+    "hex": "#9A9A98"
+   },
+   "material": {
+    "valor": "Piquet",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "polo~cinza-verso",
+   "vista": "verso",
+   "alt": "Verso da camisa polo masculina na cor cinza, sem marca.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor feita localmente (tools/recolorir.py) a partir de polo~vermelho-verso, com a cor medida na foto de frente polo~cinza, em 18/10/2026. Ilustrativa.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/polo~cinza-verso.webp",
+   "mestre": null,
+   "atualizado_em": "2026-10-18",
+   "largura": 1024,
+   "altura": 1024
   },
   {
    "id": "polo~preto",
@@ -7150,16 +7942,88 @@
    ],
    "ilustrativa": true,
    "aprovacao": "revisao",
-   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "origem": "Variação de cor feita localmente (tools/recolorir.py) a partir de polo~vermelho (frente refeita com bordado realista pela API), com a cor medida na foto de frente polo~preto, em 18/10/2026. Ilustrativa.",
    "substitui": null,
-   "observacao": "Variação de cor gerada a partir da foto-base polo~vermelho.",
+   "observacao": "Frente refeita com bordado realista (linha branca, ponto cheio).",
    "arquivo": "/img/produtos/polo~preto.webp",
    "mestre": "midia/produtos/mestre/polo~preto.png",
    "largura": 1024,
    "altura": 1024,
    "sha256": "154ec90a088d84bc9f3d7d976c1c1938625f91a389b77930cd1f09484824c68a",
    "bytes": 1511938,
-   "atualizado_em": "2026-10-17"
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "produto": "Polo masculina",
+   "categoria": "vestuario",
+   "modelo": "Gola e três botões",
+   "cor": {
+    "nome": "Preto",
+    "hex": "#1E1E1E"
+   },
+   "material": {
+    "valor": "Piquet",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "polo~preto-bordado",
+   "vista": "detalhe",
+   "alt": "Detalhe do bordado da marca TaMa em linha branca na camisa polo masculina na cor preta.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor feita localmente (tools/recolorir.py) a partir de polo~vermelho-bordado, com a cor medida na foto de frente polo~preto, em 18/10/2026. Ilustrativa.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/polo~preto-bordado.webp",
+   "mestre": null,
+   "atualizado_em": "2026-10-18",
+   "largura": 1024,
+   "altura": 1024
+  },
+  {
+   "produto": "Polo masculina",
+   "categoria": "vestuario",
+   "modelo": "Gola e três botões",
+   "cor": {
+    "nome": "Preto",
+    "hex": "#1E1E1E"
+   },
+   "material": {
+    "valor": "Piquet",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "polo~preto-verso",
+   "vista": "verso",
+   "alt": "Verso da camisa polo masculina na cor preta, sem marca.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor feita localmente (tools/recolorir.py) a partir de polo~vermelho-verso, com a cor medida na foto de frente polo~preto, em 18/10/2026. Ilustrativa.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/polo~preto-verso.webp",
+   "mestre": null,
+   "atualizado_em": "2026-10-18",
+   "largura": 1024,
+   "altura": 1024
   },
   {
    "id": "polo~rosa",
@@ -7188,16 +8052,88 @@
    ],
    "ilustrativa": true,
    "aprovacao": "revisao",
-   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "origem": "Variação de cor feita localmente (tools/recolorir.py) a partir de polo~vermelho (frente refeita com bordado realista pela API), com a cor medida na foto de frente polo~rosa, em 18/10/2026. Ilustrativa.",
    "substitui": null,
-   "observacao": "Variação de cor gerada a partir da foto-base polo~vermelho.",
+   "observacao": "Frente refeita com bordado realista (linha branca, ponto cheio).",
    "arquivo": "/img/produtos/polo~rosa.webp",
    "mestre": "midia/produtos/mestre/polo~rosa.png",
    "largura": 1024,
    "altura": 1024,
    "sha256": "53de43c45c46c3ac3a844281d8fdd0e5d212490d234912d6547dbff323f07e31",
    "bytes": 1659158,
-   "atualizado_em": "2026-10-17"
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "produto": "Polo masculina",
+   "categoria": "vestuario",
+   "modelo": "Gola e três botões",
+   "cor": {
+    "nome": "Rosa",
+    "hex": "#E07A9B"
+   },
+   "material": {
+    "valor": "Piquet",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "polo~rosa-bordado",
+   "vista": "detalhe",
+   "alt": "Detalhe do bordado da marca TaMa em linha branca na camisa polo masculina na cor rosa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor feita localmente (tools/recolorir.py) a partir de polo~vermelho-bordado, com a cor medida na foto de frente polo~rosa, em 18/10/2026. Ilustrativa.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/polo~rosa-bordado.webp",
+   "mestre": null,
+   "atualizado_em": "2026-10-18",
+   "largura": 1024,
+   "altura": 1024
+  },
+  {
+   "produto": "Polo masculina",
+   "categoria": "vestuario",
+   "modelo": "Gola e três botões",
+   "cor": {
+    "nome": "Rosa",
+    "hex": "#E07A9B"
+   },
+   "material": {
+    "valor": "Piquet",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "polo~rosa-verso",
+   "vista": "verso",
+   "alt": "Verso da camisa polo masculina na cor rosa, sem marca.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor feita localmente (tools/recolorir.py) a partir de polo~vermelho-verso, com a cor medida na foto de frente polo~rosa, em 18/10/2026. Ilustrativa.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/polo~rosa-verso.webp",
+   "mestre": null,
+   "atualizado_em": "2026-10-18",
+   "largura": 1024,
+   "altura": 1024
   },
   {
    "id": "polo~verde",
@@ -7226,16 +8162,88 @@
    ],
    "ilustrativa": true,
    "aprovacao": "revisao",
-   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 17/10/2026. Ilustrativa: não é foto do produto final.",
+   "origem": "Variação de cor feita localmente (tools/recolorir.py) a partir de polo~vermelho (frente refeita com bordado realista pela API), com a cor medida na foto de frente polo~verde, em 18/10/2026. Ilustrativa.",
    "substitui": null,
-   "observacao": "Variação de cor gerada a partir da foto-base polo~vermelho.",
+   "observacao": "Frente refeita com bordado realista (linha branca, ponto cheio).",
    "arquivo": "/img/produtos/polo~verde.webp",
    "mestre": "midia/produtos/mestre/polo~verde.png",
    "largura": 1024,
    "altura": 1024,
    "sha256": "c5583bfd3396d66b09b388e9e8482ea36dc3b1e1b644f5a37e33e2e7509452b5",
    "bytes": 1611883,
-   "atualizado_em": "2026-10-17"
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "produto": "Polo masculina",
+   "categoria": "vestuario",
+   "modelo": "Gola e três botões",
+   "cor": {
+    "nome": "Verde",
+    "hex": "#1F6B45"
+   },
+   "material": {
+    "valor": "Piquet",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "polo~verde-bordado",
+   "vista": "detalhe",
+   "alt": "Detalhe do bordado da marca TaMa em linha branca na camisa polo masculina na cor verde.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor feita localmente (tools/recolorir.py) a partir de polo~vermelho-bordado, com a cor medida na foto de frente polo~verde, em 18/10/2026. Ilustrativa.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/polo~verde-bordado.webp",
+   "mestre": null,
+   "atualizado_em": "2026-10-18",
+   "largura": 1024,
+   "altura": 1024
+  },
+  {
+   "produto": "Polo masculina",
+   "categoria": "vestuario",
+   "modelo": "Gola e três botões",
+   "cor": {
+    "nome": "Verde",
+    "hex": "#1F6B45"
+   },
+   "material": {
+    "valor": "Piquet",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "polo~verde-verso",
+   "vista": "verso",
+   "alt": "Verso da camisa polo masculina na cor verde, sem marca.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor feita localmente (tools/recolorir.py) a partir de polo~vermelho-verso, com a cor medida na foto de frente polo~verde, em 18/10/2026. Ilustrativa.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/polo~verde-verso.webp",
+   "mestre": null,
+   "atualizado_em": "2026-10-18",
+   "largura": 1024,
+   "altura": 1024
   },
   {
    "id": "polo~vermelho",
@@ -7265,16 +8273,88 @@
    ],
    "ilustrativa": true,
    "aprovacao": "revisao",
-   "origem": "Imagem gerada com IA (ferramenta informada: Sol 6.1 Leve) em 17/10/2026, a partir da identidade TaMa. Ilustrativa: não é foto do produto final.",
+   "origem": "Gerada com IA (OpenAI gpt-image-1.5, frente refeita com bordado realista) em 18/10/2026. Ilustrativa.",
    "substitui": null,
-   "observacao": "",
+   "observacao": "Frente refeita com bordado realista (linha branca, ponto cheio). Base das variações locais.",
    "arquivo": "/img/produtos/polo~vermelho.webp",
    "mestre": "midia/produtos/mestre/polo~vermelho.png",
-   "largura": 1254,
-   "altura": 1254,
+   "largura": 1024,
+   "altura": 1024,
    "sha256": "3f6ebc57056eab5913fda0fcb80919d20e249fc1cbbe3cea55fdf21015ea566c",
    "bytes": 2554273,
-   "atualizado_em": "2026-10-17"
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "produto": "Polo masculina",
+   "categoria": "vestuario",
+   "modelo": "Gola e três botões",
+   "cor": {
+    "nome": "Vermelho",
+    "hex": "#C8202F"
+   },
+   "material": {
+    "valor": "Piquet",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "polo~vermelho-bordado",
+   "vista": "detalhe",
+   "alt": "Detalhe do bordado da marca TaMa em linha branca na camisa polo masculina na cor vermelha.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto de frente) em 18/10/2026. Ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto-base das variações de cor locais.",
+   "arquivo": "/img/produtos/polo~vermelho-bordado.webp",
+   "mestre": null,
+   "atualizado_em": "2026-10-18",
+   "largura": 1024,
+   "altura": 1024
+  },
+  {
+   "produto": "Polo masculina",
+   "categoria": "vestuario",
+   "modelo": "Gola e três botões",
+   "cor": {
+    "nome": "Vermelho",
+    "hex": "#C8202F"
+   },
+   "material": {
+    "valor": "Piquet",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "id": "polo~vermelho-verso",
+   "vista": "verso",
+   "alt": "Verso da camisa polo masculina na cor vermelha, sem marca.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto de frente) em 18/10/2026. Ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto-base das variações de cor locais.",
+   "arquivo": "/img/produtos/polo~vermelho-verso.webp",
+   "mestre": null,
+   "atualizado_em": "2026-10-18",
+   "largura": 1024,
+   "altura": 1024
   },
   {
    "id": "porta-contas~azul-marinho",

@@ -160,7 +160,7 @@ try {
   await page.goto(BASE + '/catalogo/', { waitUntil: 'networkidle0' });
   const catVisible = () => page.$$eval('#catalogo-grid .product', g => g.filter(x => !x.hidden && getComputedStyle(x).display !== 'none').length);   // conta o que está mesmo na tela
   ok(await page.$$eval('h1', h => h.length === 1 && /52 modelos/.test(h[0].textContent)), 'página do catálogo tem H1 com o total');
-  ok(await catVisible() === 52 && await page.$$eval('#catalogo-grid .product img', i => i.every(x => x.alt.length > 15)), 'catálogo mostra os 52 modelos do banco, com texto alternativo');
+  ok(await catVisible() === 52 && await page.$$eval('#catalogo-grid .product .prod-media > picture img', i => i.length === 52 && i.every(x => x.alt.length > 15)), 'catálogo mostra os 52 modelos do banco, com texto alternativo');
   ok(await page.$$eval('#catalogo-grid .product[data-slug="cat-caneca"] .swatch', s => s.length === 5), 'caneca tem 5 cores com foto');
   ok(await colorsHavePhoto(page, '#catalogo-grid .product.studio'), 'toda cor mostrada no catálogo tem foto própria (nenhuma bolinha sem efeito)');
   await page.$eval('#catalogo-grid .product[data-slug="cat-caneca"]', el => el.scrollIntoView({ block: 'center' }));
@@ -207,6 +207,14 @@ try {
   ok(pdp.h1 === 'Caneca' && pdp.cor === 'Verde' && pdp.img.includes('caneca~verde') && pdp.pressed === 'Verde', '?cor=verde abre a página da caneca já na cor verde (foto, nome e miniatura)');
   ok(pdp.canon.endsWith('/catalogo/caneca/') && pdp.thumbs === 5 && pdp.crumbs === 'Início / Catálogo / Caneca', 'página do modelo: canonical sem a cor, 5 miniaturas e caminho');
   ok(await page.evaluate(() => { const r = document.querySelector('.pdp-resumo'); const u = document.querySelectorAll('.pdp-usos li'); return !!r && r.textContent.split(/\s+/).length >= 30 && u.length >= 2 && document.title.startsWith('Caneca personalizada'); }), 'página do modelo mostra o resumo e os usos do cadastro, com título "Caneca personalizada"');
+  // vistas da cor (frente, verso, bordado) na polo: acompanham a cor escolhida
+  await page.goto(BASE + '/catalogo/polo-masculina/?cor=azul-marinho', { waitUntil: 'networkidle0' });
+  ok(await page.$$eval('.pdp-vista:not([hidden])', b => b.map(x => x.textContent).join()) === 'Frente,Verso,Bordado', 'polo: vistas Frente, Verso e Bordado');
+  await page.click('.pdp-vista[data-vista="detalhe"]'); await sleep(300);
+  ok(await page.$eval('.pdp-main img', i => (i.getAttribute('srcset') || '').includes('polo~azul-marinho-bordado')), 'vista Bordado mostra o close do bordado na cor escolhida');
+  await page.click('.pdp-thumb[data-thumb-color="Branco"]'); await sleep(300);
+  ok(await page.$$eval('.pdp-vista:not([hidden])', b => b.map(x => x.textContent).join()) === 'Frente,Verso' && await page.$eval('.pdp-main img', i => (i.getAttribute('srcset') || '').includes('polo~branco.')), 'trocar de cor volta para a frente e mostra só as vistas que existem');
+  await page.goto(BASE + '/catalogo/caneca/?cor=verde', { waitUntil: 'networkidle0' });
   await page.click('.pdp-thumb[data-thumb-color="Azul royal"]'); await sleep(300);
   ok(await page.evaluate(() => location.search === '?cor=azul-royal' && document.querySelector('.pdp .color-name').textContent === 'Azul royal'), 'miniatura troca a cor e atualiza a URL');
   ok(await page.$eval('.pdp .pick', b => b.getAttribute('aria-pressed') === 'true') && (await page.evaluate(() => JSON.parse(localStorage.getItem('tama-selecao')))).some(x => x.s === 'cat-caneca' && x.c === 'Azul royal'), 'na página do modelo, a peça já selecionada aparece marcada e a troca de cor vai para a seleção');

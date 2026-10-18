@@ -44,6 +44,20 @@ muda nada no site, e o `tools/produtos.py` volta ao formato padrão na próxima 
 Os originais em `img/produtos/` também são publicados em `/img/produtos/` (sem indexação), só para o editor mostrar a
 foto; o site usa as versões AVIF/WebP/JPEG geradas pelo build.
 
+## Outras vistas: verso e close do bordado (18/10/2026)
+- **Onde aparecem:** na página do produto, a faixa **Frente · Verso · Bordado** mostra as vistas da cor escolhida. No
+  card, o verso da cor aparece ao passar o mouse.
+- **No banco:** cada vista é uma entrada com `vista` = `verso` ou `detalhe` e o mesmo nome de cor da frente
+  (`polo~azul-marinho-verso`, `polo~azul-marinho-bordado`).
+- **Como fazer:**
+  1. `tools/vistas.py gerar`: gera pela API, para UMA cor (a base), o verso, o close do bordado e a frente com bordado
+     realista, com os prompts aprovados.
+  2. `tools/recolorir.py`: faz as outras cores sem API (cor medida na foto de frente de cada cor). Requer numpy.
+  3. `tools/vistas.py importar`: cadastra tudo no banco.
+- **Feito no piloto:** polo masculina e boné, com verso nas 8 cores e bordado em 7 (o branco precisa da API, com o
+  logo nas cores oficiais). Na polo, as frentes também foram trocadas pela versão com bordado realista; a branca ficou
+  como estava.
+
 ## Nome das imagens (id)
 `<produto>[-<modelo>]~<cor>`, só minúsculas, números e hífen. Exemplos: `polo~vermelho`, `caneta-roller~bordo`,
 `caneta-bambu~natural`, `jogo-americano-oval~taupe`. O `~` separa a cor: é a mesma convenção dos mockups, e o build trata

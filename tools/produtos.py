@@ -96,11 +96,11 @@ def verificar():
         web = os.path.join(ROOT, (e.get('arquivo') or '').lstrip('/'))
         if not e.get('arquivo') or not os.path.exists(web):
             erros.append(f'{p}: arquivo web não encontrado ({e.get("arquivo")})')
-        mestre = os.path.join(ROOT, e.get('mestre', ''))
-        if os.path.exists(mestre):
+        mestre = os.path.join(ROOT, e['mestre']) if e.get('mestre') else ''   # variações locais (tools/recolorir.py) não têm original
+        if mestre and os.path.isfile(mestre):
             if sha256(mestre) != e.get('sha256'):
                 erros.append(f'{p}: o original mudou e o hash não bate; reimporte com "importar"')
-        else:
+        elif mestre:
             avisos.append(f'{p}: original ausente neste computador ({e.get("mestre")})')
         if e.get('aprovacao') == 'revisao':
             avisos.append(f'{p}: em revisão')

@@ -145,8 +145,9 @@ def build_catalogo():
         meta = spec_line(first)
         grupo = next((i for i in extras if i['vista'] == 'grupo'), None)
         versos = {i['cor']['nome']: i['id'] for i in extras if i['vista'] == 'verso'}
+        detalhes = {i['cor']['nome']: i['id'] for i in extras if i['vista'] == 'detalhe'}
         out.append({'slug': slug, 'nome': nome, 'img': first['id'], 'categoria': first['categoria'], 'descricao': first.get('modelo') or '', 'meta': meta, 'alt': first['alt'], 'cores': cores,
-                    'url': f'/catalogo/{color_slug(nome)}/', 'grupo': grupo and [grupo['id'], grupo['alt']], 'versos': versos,
+                    'url': f'/catalogo/{color_slug(nome)}/', 'grupo': grupo and [grupo['id'], grupo['alt']], 'versos': versos, 'detalhes': detalhes,
                     'extras': [[i['id'], i['vista'], i['alt']] for i in extras if i['vista'] != 'grupo'], 'base': first})
     ordem = list(CAT_PROD)
     out.sort(key=lambda c: (ordem.index(c['categoria']), c['nome'].replace(' masculina', ' 1').replace(' feminina', ' 2')))   # masculina antes de feminina
@@ -398,6 +399,10 @@ def catalog_json():
     data.update({it['slug']: {'n': it['nome'], 'i': None, 'c': []} for it in ALEM})
     data.update({h['slug']: {'n': h['nome'], 'i': img_url(h['img'], 'webp', 420), 'c': home_colors(h), 'v': home_variants(h)} for h in HOME_PRODS})
     data.update({c['slug']: {'n': c['nome'], 'i': img_url(c['img'], 'webp', 420), 'c': home_colors(c), 'v': home_variants(c)} for c in CATALOGO if c['slug'] not in data})
+    for c in CATALOGO:   # verso de cada cor: aparece ao passar o mouse no card e acompanha a cor escolhida
+        vs = {cor: [IMAGES[i]['stem'], IMAGES[i]['widths'], ''] for cor, i in c['versos'].items() if i in IMAGES}
+        if vs:
+            data[c['slug']]['vv'] = vs
     for c in CATALOGO:   # destaque da home que também está no catálogo: junta as fotos por cor dos dois cards
         if c['slug'] in data:
             data[c['slug']]['v'] = {**home_variants(c), **(data[c['slug']].get('v') or {})}
@@ -463,7 +468,7 @@ def home_product_card(h, eager=False, sizes='(max-width: 760px) 46vw, (max-width
     grupo = c.get('grupo') if c.get('grupo') and c['grupo'][0] in IMAGES else None
     foto = picture(grupo[0], grupo[1], sizes, eager=eager) if grupo else picture(h['img'], h['alt'], sizes, eager=eager)
     verso_id = (c.get('versos') or {}).get(h['cores'][0][0])
-    verso = picture(verso_id, '', sizes, cls='prod-alt') if verso_id in IMAGES else ''
+    verso = f'<span class="prod-alt">{picture(verso_id, "", sizes)}</span>' if verso_id in IMAGES else ''
     slug, nome = h['slug'], h['nome']
     zoom = f'<button class="prod-zoom" type="button" data-zoom="{slug}" aria-label="Ampliar foto de {esc(nome)}"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 3v10M3 8h10"/></svg></button>'
     alt_cls = ' has-alt' if verso else ''
@@ -617,10 +622,31 @@ def page_produto(c):
     for nome_cor, _hex, *resto in c['cores']:
         if resto and resto[0] in IMAGES and (nome_cor in variantes or nome_cor == c['cores'][0][0]):
             thumbs.append(thumb(resto[0], f'Foto na cor {nome_cor}', f'data-thumb-color="{esc(nome_cor)}"'))
-    for iid, vista, alt in c.get('extras') or []:
-        if iid in IMAGES:
-            m = IMAGES[iid]
-            thumbs.append(thumb(iid, {'verso': 'Verso', 'detalhe': 'Detalhe'}.get(vista, vista), f"data-v='{esc(json.dumps([m['stem'], m['widths'], alt]))}'"))
+    # vistas por cor (frente, verso, detalhe do bordado): a faixa acompanha a cor escolhida
+    def vv(iid, alt):
+        m = IMAGES[iid]
+        return [m['stem'], m['widths'], alt]
+    alt_de = {i[2]: i[3] for i in c['cores'] if len(i) > 3}
+    vistas = {}
+    for nome_cor, _hex, *resto in c['cores']:
+        if not resto or resto[0] not in IMAGES:
+            continue
+        v = {'frente': vv(resto[0], alt_de.get(resto[0], c['alt']))}
+        if c['versos'].get(nome_cor) in IMAGES:
+            v['verso'] = vv(c['versos'][nome_cor], PRODUTOS_BY[c['versos'][nome_cor]]['alt'])
+        if c['detalhes'].get(nome_cor) in IMAGES:
+            v['detalhe'] = vv(c['detalhes'][nome_cor], PRODUTOS_BY[c['detalhes'][nome_cor]]['alt'])
+        vistas[nome_cor] = v
+    primeira = vistas.get(c['cores'][0][0], {})
+    rotulo_det = 'Bordado' if any('bordado' in (PRODUTOS_BY.get(i) or {}).get('alt', '').lower() for i in c['detalhes'].values()) else 'Detalhe'
+    vistas_html = ''
+    if len(primeira) > 1:
+        vistas_html = ('<div class="pdp-vistas" role="group" aria-label="Vistas da peça">'
+                       + ''.join(f'<button class="pdp-vista" type="button" data-vista="{k}" aria-pressed="{str(k == "frente").lower()}">'
+                                 f'<img src="/img/{primeira[k][0]}-{primeira[k][1][0]}.webp" alt="" width="120" height="120" loading="lazy" decoding="async">'
+                                 f'<span>{ {"frente": "Frente", "verso": "Verso", "detalhe": rotulo_det}[k] }</span></button>'
+                                 for k in ('frente', 'verso', 'detalhe') if k in primeira)
+                       + '</div>')
     base = c['base']
     mat, tec = base.get('material') or {}, base.get('tecnica') or {}
     mat_txt = mat['valor'] if mat.get('status') == 'confirmado' and mat.get('valor') else 'A confirmar na proposta.'
@@ -660,10 +686,11 @@ def page_produto(c):
         'preload': preload_image(c['img'], '(max-width: 900px) 92vw, 1100px'),
         'body': f'''<section class="section pdp-sec">
   <div class="wrap">
-    <div class="product pdp" data-slug="{slug}" data-pdp data-url="{url}">
+    <div class="product pdp" data-slug="{slug}" data-pdp data-url="{url}" data-vistas="{esc(json.dumps(vistas, ensure_ascii=False, separators=(',', ':')))}">
       <div class="pdp-gallery">
         <div class="prod-media pdp-main" data-hover-zoom>{picture(c['img'], c['alt'], '(max-width: 900px) 92vw, 1100px', eager=True)}<button class="prod-zoom" type="button" data-zoom="{slug}" aria-label="Ampliar foto de {esc(nome)}"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 3v10M3 8h10"/></svg></button></div>
-        {f'<div class="pdp-thumbs" role="group" aria-label="Fotos de {esc(nome)}">{"".join(thumbs)}</div>' if len(thumbs) > 1 else ''}
+        {vistas_html}
+        {f'<div class="pdp-thumbs" role="group" aria-label="Cores de {esc(nome)}">{"".join(thumbs)}</div>' if len(thumbs) > 1 else ''}
       </div>
       <div class="pdp-info">
         <p class="eyebrow"><a href="/catalogo/?categoria={c['categoria']}#catalogo">{cat_nome}</a></p>

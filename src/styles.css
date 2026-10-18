@@ -826,3 +826,12 @@ html.cat-lock { overflow: hidden; }
 .pdp-info .pdp-desc { font-size: .9375rem; }
 .pdp-usos ul { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
 .pdp-usos li { padding: 6px 12px; border: 1px solid var(--line-strong); border-radius: 999px; font-size: .8125rem; }
+/* Vistas da cor escolhida (frente, verso, detalhe do bordado) */
+.pdp-vistas { display: flex; gap: 10px; }
+.pdp-vista { display: grid; justify-items: center; gap: 6px; width: 92px; padding: 0; border: 0; background: none; cursor: pointer; font: 600 .75rem/1.2 var(--f-sans); color: var(--muted); }
+.pdp-vista img { width: 92px; height: 92px; object-fit: cover; border: 1px solid var(--line); border-radius: 8px; background: #F3EEE7; }
+.pdp-vista[aria-pressed="true"] { color: var(--ink); }
+.pdp-vista[aria-pressed="true"] img { border: 2px solid var(--wine); }
+.pdp-vista[hidden] { display: none; }
+.prod-alt[hidden] { display: none; }
+@media (max-width: 600px) { .pdp-vista, .pdp-vista img { width: 76px; } .pdp-vista img { height: 76px; } }

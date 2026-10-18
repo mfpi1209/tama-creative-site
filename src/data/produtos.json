@@ -5,7 +5,7 @@
    "id": "agenda-couro~azul-marinho",
    "produto": "Agenda",
    "categoria": "canetas-escritorio",
-   "modelo": "Capa em couro com fecho de pressão",
+   "modelo": "Capa com fecho de pressão",
    "cor": {
     "nome": "Azul-marinho",
     "hex": "#1E2A4A"
@@ -21,7 +21,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Agenda com capa em couro azul-marinho, fecho de pressão e a marca TaMa em baixo-relevo.",
+   "alt": "Agenda com capa de textura de couro e fecho de pressão, na cor azul-marinho, com a marca TaMa na capa.",
    "uso": [
     "catalogo"
    ],
@@ -42,7 +42,7 @@
    "id": "agenda-couro~cafe",
    "produto": "Agenda",
    "categoria": "canetas-escritorio",
-   "modelo": "Capa em couro com fecho de pressão",
+   "modelo": "Capa com fecho de pressão",
    "cor": {
     "nome": "Café",
     "hex": "#4A2E22"
@@ -58,7 +58,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Agenda com capa em couro café, fecho de pressão e a marca TaMa em baixo-relevo.",
+   "alt": "Agenda com capa de textura de couro e fecho de pressão, na cor café, com a marca TaMa na capa.",
    "uso": [
     "catalogo"
    ],
@@ -79,7 +79,7 @@
    "id": "agenda-couro~caramelo",
    "produto": "Agenda",
    "categoria": "canetas-escritorio",
-   "modelo": "Capa em couro com fecho de pressão",
+   "modelo": "Capa com fecho de pressão",
    "cor": {
     "nome": "Caramelo",
     "hex": "#A0623A"
@@ -95,7 +95,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Agenda com capa em couro caramelo, fecho de pressão e a marca TaMa em baixo-relevo.",
+   "alt": "Agenda com capa de textura de couro e fecho de pressão, na cor caramelo, com a marca TaMa na capa.",
    "uso": [
     "home",
     "kits",
@@ -118,7 +118,7 @@
    "id": "agenda-couro~preto",
    "produto": "Agenda",
    "categoria": "canetas-escritorio",
-   "modelo": "Capa em couro com fecho de pressão",
+   "modelo": "Capa com fecho de pressão",
    "cor": {
     "nome": "Preto",
     "hex": "#1E1E1E"
@@ -134,7 +134,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Agenda com capa em couro preto, fecho de pressão e a marca TaMa em baixo-relevo.",
+   "alt": "Agenda com capa de textura de couro e fecho de pressão, na cor preta, com a marca TaMa na capa.",
    "uso": [
     "catalogo"
    ],
@@ -171,7 +171,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Avental azul-marinho com laço na cintura, bolso duplo e a marca TaMa no peito.",
+   "alt": "Avental de peito com laço na cintura e bolso duplo, na cor azul-marinho, com a marca TaMa no peito.",
    "uso": [
     "catalogo"
    ],
@@ -208,7 +208,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Avental caramelo com laço na cintura, bolso duplo e a marca TaMa no peito.",
+   "alt": "Avental de peito com laço na cintura e bolso duplo, na cor caramelo, com a marca TaMa no peito.",
    "uso": [
     "catalogo"
    ],
@@ -245,7 +245,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Avental cru com laço na cintura, bolso duplo e a marca TaMa no peito.",
+   "alt": "Avental de peito com laço na cintura e bolso duplo, na cor cru, com a marca TaMa no peito.",
    "uso": [
     "catalogo"
    ],
@@ -282,7 +282,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Avental preto com laço na cintura, bolso duplo e a marca TaMa no peito.",
+   "alt": "Avental de peito com laço na cintura e bolso duplo, na cor preta, com a marca TaMa no peito.",
    "uso": [
     "catalogo"
    ],
@@ -319,7 +319,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Avental rosa com laço na cintura, bolso duplo e a marca TaMa no peito.",
+   "alt": "Avental de peito com laço na cintura e bolso duplo, na cor rosa, com a marca TaMa no peito.",
    "uso": [
     "catalogo"
    ],
@@ -356,7 +356,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Avental verde-escuro com laço na cintura, bolso duplo e a marca TaMa no peito.",
+   "alt": "Avental de peito com laço na cintura e bolso duplo, na cor verde-escuro, com a marca TaMa no peito.",
    "uso": [
     "catalogo"
    ],
@@ -393,7 +393,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Avental vermelho com laço na cintura, bolso duplo e a marca TaMa no peito.",
+   "alt": "Avental de peito com laço na cintura e bolso duplo, na cor vermelha, com a marca TaMa no peito.",
    "uso": [
     "catalogo"
    ],
@@ -414,7 +414,7 @@
    "id": "avental~azul-marinho",
    "produto": "Avental personalizado",
    "categoria": "vestuario",
-   "modelo": "Jeans com alças e bolso duplo",
+   "modelo": "Com alças e bolso duplo",
    "cor": {
     "nome": "Azul-marinho",
     "hex": "#1E2A4A"
@@ -430,7 +430,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Avental azul-marinho com alças caramelo e a marca TaMa aplicada no bolso.",
+   "alt": "Avental com alças caramelo e bolso duplo, na cor azul-marinho, com a marca TaMa no bolso.",
    "uso": [
     "catalogo"
    ],
@@ -451,7 +451,7 @@
    "id": "avental~cru",
    "produto": "Avental personalizado",
    "categoria": "vestuario",
-   "modelo": "Jeans com alças e bolso duplo",
+   "modelo": "Com alças e bolso duplo",
    "cor": {
     "nome": "Cru",
     "hex": "#EDE3D0"
@@ -467,7 +467,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Avental cru com alças caramelo e a marca TaMa aplicada no bolso.",
+   "alt": "Avental com alças caramelo e bolso duplo, na cor cru, com a marca TaMa no bolso.",
    "uso": [
     "catalogo"
    ],
@@ -488,7 +488,7 @@
    "id": "avental~jeans",
    "produto": "Avental personalizado",
    "categoria": "vestuario",
-   "modelo": "Jeans com alças e bolso duplo",
+   "modelo": "Com alças e bolso duplo",
    "cor": {
     "nome": "Jeans",
     "hex": "#2F4470"
@@ -504,7 +504,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Avental jeans com alças caramelo e a marca TaMa aplicada no bolso.",
+   "alt": "Avental com alças caramelo e bolso duplo, na cor jeans, com a marca TaMa no bolso.",
    "uso": [
     "confeccoes",
     "catalogo"
@@ -526,7 +526,7 @@
    "id": "avental~preto",
    "produto": "Avental personalizado",
    "categoria": "vestuario",
-   "modelo": "Jeans com alças e bolso duplo",
+   "modelo": "Com alças e bolso duplo",
    "cor": {
     "nome": "Preto",
     "hex": "#1E1E1E"
@@ -542,7 +542,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Avental preto com alças caramelo e a marca TaMa aplicada no bolso.",
+   "alt": "Avental com alças caramelo e bolso duplo, na cor preta, com a marca TaMa no bolso.",
    "uso": [
     "catalogo"
    ],
@@ -563,7 +563,7 @@
    "id": "avental~rosa",
    "produto": "Avental personalizado",
    "categoria": "vestuario",
-   "modelo": "Jeans com alças e bolso duplo",
+   "modelo": "Com alças e bolso duplo",
    "cor": {
     "nome": "Rosa",
     "hex": "#E07A9B"
@@ -579,7 +579,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Avental rosa com alças caramelo e a marca TaMa aplicada no bolso.",
+   "alt": "Avental com alças caramelo e bolso duplo, na cor rosa, com a marca TaMa no bolso.",
    "uso": [
     "catalogo"
    ],
@@ -600,7 +600,7 @@
    "id": "avental~verde",
    "produto": "Avental personalizado",
    "categoria": "vestuario",
-   "modelo": "Jeans com alças e bolso duplo",
+   "modelo": "Com alças e bolso duplo",
    "cor": {
     "nome": "Verde",
     "hex": "#1F6B45"
@@ -616,7 +616,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Avental verde com alças caramelo e a marca TaMa aplicada no bolso.",
+   "alt": "Avental com alças caramelo e bolso duplo, na cor verde, com a marca TaMa no bolso.",
    "uso": [
     "catalogo"
    ],
@@ -637,7 +637,7 @@
    "id": "avental~vermelho",
    "produto": "Avental personalizado",
    "categoria": "vestuario",
-   "modelo": "Jeans com alças e bolso duplo",
+   "modelo": "Com alças e bolso duplo",
    "cor": {
     "nome": "Vermelho",
     "hex": "#C8202F"
@@ -653,7 +653,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Avental vermelho com alças caramelo e a marca TaMa aplicada no bolso.",
+   "alt": "Avental com alças caramelo e bolso duplo, na cor vermelha, com a marca TaMa no bolso.",
    "uso": [
     "catalogo"
    ],
@@ -674,7 +674,7 @@
    "id": "bone~azul-marinho",
    "produto": "Boné",
    "categoria": "vestuario",
-   "modelo": "Seis gomos, algodão",
+   "modelo": "Seis gomos",
    "cor": {
     "nome": "Azul-marinho",
     "hex": "#1E2A4A"
@@ -690,7 +690,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Boné azul-marinho com a marca TaMa bordada na frente.",
+   "alt": "Boné de seis gomos, na cor azul-marinho, com a marca TaMa na frente.",
    "uso": [
     "catalogo"
    ],
@@ -711,7 +711,7 @@
    "id": "bone~azul-royal",
    "produto": "Boné",
    "categoria": "vestuario",
-   "modelo": "Seis gomos, algodão",
+   "modelo": "Seis gomos",
    "cor": {
     "nome": "Azul royal",
     "hex": "#1F4FB8"
@@ -727,7 +727,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Boné azul royal com a marca TaMa bordada na frente.",
+   "alt": "Boné de seis gomos, na cor azul royal, com a marca TaMa na frente.",
    "uso": [
     "catalogo"
    ],
@@ -748,7 +748,7 @@
    "id": "bone~branco",
    "produto": "Boné",
    "categoria": "vestuario",
-   "modelo": "Seis gomos, algodão",
+   "modelo": "Seis gomos",
    "cor": {
     "nome": "Branco",
     "hex": "#F7F5F0"
@@ -764,7 +764,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Boné branco com a marca TaMa bordada na frente.",
+   "alt": "Boné de seis gomos, na cor branca, com a marca TaMa na frente.",
    "uso": [
     "catalogo"
    ],
@@ -785,7 +785,7 @@
    "id": "bone~cinza",
    "produto": "Boné",
    "categoria": "vestuario",
-   "modelo": "Seis gomos, algodão",
+   "modelo": "Seis gomos",
    "cor": {
     "nome": "Cinza",
     "hex": "#9A9A98"
@@ -801,7 +801,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Boné cinza com a marca TaMa bordada na frente.",
+   "alt": "Boné de seis gomos, na cor cinza, com a marca TaMa na frente.",
    "uso": [
     "catalogo"
    ],
@@ -822,7 +822,7 @@
    "id": "bone~preto",
    "produto": "Boné",
    "categoria": "vestuario",
-   "modelo": "Seis gomos, algodão",
+   "modelo": "Seis gomos",
    "cor": {
     "nome": "Preto",
     "hex": "#1E1E1E"
@@ -838,7 +838,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Boné preto com a marca TaMa bordada na frente.",
+   "alt": "Boné de seis gomos, na cor preta, com a marca TaMa na frente.",
    "uso": [
     "catalogo"
    ],
@@ -859,7 +859,7 @@
    "id": "bone~rosa",
    "produto": "Boné",
    "categoria": "vestuario",
-   "modelo": "Seis gomos, algodão",
+   "modelo": "Seis gomos",
    "cor": {
     "nome": "Rosa",
     "hex": "#E07A9B"
@@ -875,7 +875,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Boné rosa com a marca TaMa bordada na frente.",
+   "alt": "Boné de seis gomos, na cor rosa, com a marca TaMa na frente.",
    "uso": [
     "catalogo"
    ],
@@ -896,7 +896,7 @@
    "id": "bone~verde",
    "produto": "Boné",
    "categoria": "vestuario",
-   "modelo": "Seis gomos, algodão",
+   "modelo": "Seis gomos",
    "cor": {
     "nome": "Verde",
     "hex": "#1F4A35"
@@ -912,7 +912,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Boné verde-floresta com a marca TaMa bordada em branco.",
+   "alt": "Boné de seis gomos, na cor verde, com a marca TaMa na frente.",
    "uso": [
     "curadoria",
     "catalogo"
@@ -934,7 +934,7 @@
    "id": "bone~vermelho",
    "produto": "Boné",
    "categoria": "vestuario",
-   "modelo": "Seis gomos, algodão",
+   "modelo": "Seis gomos",
    "cor": {
     "nome": "Vermelho",
     "hex": "#C8202F"
@@ -950,7 +950,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Boné vermelho com a marca TaMa bordada na frente.",
+   "alt": "Boné de seis gomos, na cor vermelha, com a marca TaMa na frente.",
    "uso": [
     "catalogo"
    ],
@@ -987,7 +987,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Caderno de capa dura azul-marinho com elástico e a marca TaMa em branco.",
+   "alt": "Caderno de capa dura com elástico e marcador, na cor azul-marinho, com a marca TaMa na capa.",
    "uso": [
     "home",
     "catalogo"
@@ -1025,7 +1025,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Caderno de capa dura azul royal com elástico e a marca TaMa em branco.",
+   "alt": "Caderno de capa dura com elástico e marcador, na cor azul royal, com a marca TaMa na capa.",
    "uso": [
     "home",
     "kits",
@@ -1064,7 +1064,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Caderno de capa dura preto com elástico e a marca TaMa em branco.",
+   "alt": "Caderno de capa dura com elástico e marcador, na cor preta, com a marca TaMa na capa.",
    "uso": [
     "home",
     "catalogo"
@@ -1102,7 +1102,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Caderno de capa dura verde com elástico e a marca TaMa em branco.",
+   "alt": "Caderno de capa dura com elástico e marcador, na cor verde, com a marca TaMa na capa.",
    "uso": [
     "catalogo"
    ],
@@ -1139,7 +1139,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Caderno de capa dura vermelho com elástico e a marca TaMa em branco.",
+   "alt": "Caderno de capa dura com elástico e marcador, na cor vermelha, com a marca TaMa na capa.",
    "uso": [
     "home",
     "catalogo"
@@ -1177,7 +1177,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Caixa rígida azul-marinho com tampa, interior creme e a marca TaMa em dourado.",
+   "alt": "Caixa rígida com tampa e interior creme, na cor azul-marinho, com a marca TaMa na tampa.",
    "uso": [
     "home",
     "catalogo"
@@ -1215,7 +1215,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Caixa rígida bordô com tampa, interior creme e a marca TaMa em dourado.",
+   "alt": "Caixa rígida com tampa e interior creme, na cor bordô, com a marca TaMa na tampa.",
    "uso": [
     "home",
     "brindes",
@@ -1255,7 +1255,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Caixa rígida cru com tampa, interior creme e a marca TaMa em dourado.",
+   "alt": "Caixa rígida com tampa e interior creme, na cor cru, com a marca TaMa na tampa.",
    "uso": [
     "home",
     "catalogo"
@@ -1293,7 +1293,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Caixa rígida preta com tampa, interior creme e a marca TaMa em dourado.",
+   "alt": "Caixa rígida com tampa e interior creme, na cor preta, com a marca TaMa na tampa.",
    "uso": [
     "home",
     "catalogo"
@@ -1331,7 +1331,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Camiseta feminina vermelha com a marca TaMa em silk branco no peito.",
+   "alt": "Camiseta feminina de gola careca, na cor azul-marinho, com a marca TaMa no peito.",
    "uso": [
     "home",
     "catalogo"
@@ -1369,7 +1369,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Camiseta feminina vermelha com a marca TaMa em silk branco no peito.",
+   "alt": "Camiseta feminina de gola careca, na cor azul royal, com a marca TaMa no peito.",
    "uso": [
     "home",
     "catalogo"
@@ -1407,7 +1407,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Camiseta feminina vermelha com a marca TaMa em silk branco no peito.",
+   "alt": "Camiseta feminina de gola careca, na cor branca, com a marca TaMa no peito.",
    "uso": [
     "home",
     "catalogo"
@@ -1445,7 +1445,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Camiseta feminina vermelha com a marca TaMa em silk branco no peito.",
+   "alt": "Camiseta feminina de gola careca, na cor cinza, com a marca TaMa no peito.",
    "uso": [
     "home",
     "catalogo"
@@ -1483,7 +1483,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Camiseta feminina vermelha com a marca TaMa em silk branco no peito.",
+   "alt": "Camiseta feminina de gola careca, na cor preta, com a marca TaMa no peito.",
    "uso": [
     "home",
     "catalogo"
@@ -1521,7 +1521,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Camiseta feminina rosa com a marca TaMa no peito.",
+   "alt": "Camiseta feminina de gola careca, na cor rosa, com a marca TaMa no peito.",
    "uso": [
     "home",
     "catalogo"
@@ -1559,7 +1559,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Camiseta feminina vermelha com a marca TaMa em silk branco no peito.",
+   "alt": "Camiseta feminina de gola careca, na cor verde, com a marca TaMa no peito.",
    "uso": [
     "home",
     "catalogo"
@@ -1597,7 +1597,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Camiseta feminina vermelha com a marca TaMa em silk branco no peito.",
+   "alt": "Camiseta feminina de gola careca, na cor vermelha, com a marca TaMa no peito.",
    "uso": [
     "home",
     "confeccoes",
@@ -1636,7 +1636,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Camiseta masculina azul-marinho com a marca TaMa em silk branco no peito.",
+   "alt": "Camiseta masculina de gola careca, na cor azul-marinho, com a marca TaMa no peito.",
    "uso": [
     "home",
     "catalogo"
@@ -1674,7 +1674,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Camiseta masculina azul royal com a marca TaMa em silk branco no peito.",
+   "alt": "Camiseta masculina de gola careca, na cor azul royal, com a marca TaMa no peito.",
    "uso": [
     "home",
     "confeccoes",
@@ -1713,7 +1713,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Camiseta masculina vermelha com a marca TaMa em silk branco no peito.",
+   "alt": "Camiseta masculina de gola careca, na cor branca, com a marca TaMa no peito.",
    "uso": [
     "home",
     "catalogo"
@@ -1751,7 +1751,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Camiseta masculina cinza com a marca TaMa em silk branco no peito.",
+   "alt": "Camiseta masculina de gola careca, na cor cinza, com a marca TaMa no peito.",
    "uso": [
     "home",
     "catalogo"
@@ -1789,7 +1789,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Camiseta masculina vermelha com a marca TaMa em silk branco no peito.",
+   "alt": "Camiseta masculina de gola careca, na cor preta, com a marca TaMa no peito.",
    "uso": [
     "home",
     "catalogo"
@@ -1827,7 +1827,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Camiseta masculina rosa com a marca TaMa no peito.",
+   "alt": "Camiseta masculina de gola careca, na cor rosa, com a marca TaMa no peito.",
    "uso": [
     "home",
     "catalogo"
@@ -1865,7 +1865,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Camiseta masculina verde com a marca TaMa em silk branco no peito.",
+   "alt": "Camiseta masculina de gola careca, na cor verde, com a marca TaMa no peito.",
    "uso": [
     "home",
     "catalogo"
@@ -1903,7 +1903,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Camiseta masculina vermelha com a marca TaMa em silk branco no peito.",
+   "alt": "Camiseta masculina de gola careca, na cor vermelha, com a marca TaMa no peito.",
    "uso": [
     "home",
     "catalogo"
@@ -1925,7 +1925,7 @@
    "id": "caneca~azul-royal",
    "produto": "Caneca",
    "categoria": "garrafas-copos",
-   "modelo": "Cerâmica",
+   "modelo": "Com alça",
    "cor": {
     "nome": "Azul royal",
     "hex": "#1F4FB8"
@@ -1941,7 +1941,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Caneca branca de cerâmica com a marca TaMa em cores.",
+   "alt": "Caneca de alça, na cor azul royal, com a marca TaMa na lateral.",
    "uso": [
     "home",
     "catalogo"
@@ -1963,7 +1963,7 @@
    "id": "caneca~branco",
    "produto": "Caneca",
    "categoria": "garrafas-copos",
-   "modelo": "Cerâmica",
+   "modelo": "Com alça",
    "cor": {
     "nome": "Branco",
     "hex": "#F7F5F0"
@@ -1979,7 +1979,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Caneca branca de cerâmica com a marca TaMa em cores.",
+   "alt": "Caneca de alça, na cor branca, com a marca TaMa na lateral.",
    "uso": [
     "home",
     "brindes",
@@ -2003,7 +2003,7 @@
    "id": "caneca~preto",
    "produto": "Caneca",
    "categoria": "garrafas-copos",
-   "modelo": "Cerâmica",
+   "modelo": "Com alça",
    "cor": {
     "nome": "Preto",
     "hex": "#1E1E1E"
@@ -2019,7 +2019,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Caneca branca de cerâmica com a marca TaMa em cores.",
+   "alt": "Caneca de alça, na cor preta, com a marca TaMa na lateral.",
    "uso": [
     "home",
     "catalogo"
@@ -2041,7 +2041,7 @@
    "id": "caneca~verde",
    "produto": "Caneca",
    "categoria": "garrafas-copos",
-   "modelo": "Cerâmica",
+   "modelo": "Com alça",
    "cor": {
     "nome": "Verde",
     "hex": "#1F6B45"
@@ -2057,7 +2057,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Caneca branca de cerâmica com a marca TaMa em cores.",
+   "alt": "Caneca de alça, na cor verde, com a marca TaMa na lateral.",
    "uso": [
     "home",
     "catalogo"
@@ -2079,7 +2079,7 @@
    "id": "caneca~vermelho",
    "produto": "Caneca",
    "categoria": "garrafas-copos",
-   "modelo": "Cerâmica",
+   "modelo": "Com alça",
    "cor": {
     "nome": "Vermelho",
     "hex": "#C8202F"
@@ -2095,7 +2095,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Caneca branca de cerâmica com a marca TaMa em cores.",
+   "alt": "Caneca de alça, na cor vermelha, com a marca TaMa na lateral.",
    "uso": [
     "home",
     "catalogo"
@@ -2117,7 +2117,7 @@
    "id": "caneta-bambu~natural",
    "produto": "Caneta bambu",
    "categoria": "canetas-escritorio",
-   "modelo": "Corpo em bambu com detalhes cromados",
+   "modelo": "Corpo natural com detalhes cromados",
    "cor": {
     "nome": "Bambu",
     "hex": "#C9A86A"
@@ -2133,7 +2133,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Caneta de bambu com a marca TaMa gravada.",
+   "alt": "Caneta com corpo de bambu e detalhes cromados, na cor bambu, com a marca TaMa no corpo.",
    "uso": [
     "home",
     "catalogo"
@@ -2155,7 +2155,7 @@
    "id": "caneta-executiva-estojo~azul-marinho",
    "produto": "Caneta executiva com estojo",
    "categoria": "canetas-escritorio",
-   "modelo": "Metal, em estojo forrado",
+   "modelo": "Em estojo forrado",
    "cor": {
     "nome": "Azul-marinho",
     "hex": "#1E2A4A"
@@ -2171,7 +2171,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Caneta executiva preta em estojo forrado com a marca TaMa.",
+   "alt": "Caneta executiva em estojo preto forrado, na cor azul-marinho, com a marca TaMa na tampa interna do estojo.",
    "uso": [
     "catalogo"
    ],
@@ -2192,7 +2192,7 @@
    "id": "caneta-executiva-estojo~bordo",
    "produto": "Caneta executiva com estojo",
    "categoria": "canetas-escritorio",
-   "modelo": "Metal, em estojo forrado",
+   "modelo": "Em estojo forrado",
    "cor": {
     "nome": "Bordô",
     "hex": "#6B1E33"
@@ -2208,7 +2208,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Caneta executiva preta em estojo forrado com a marca TaMa.",
+   "alt": "Caneta executiva em estojo preto forrado, na cor bordô, com a marca TaMa na tampa interna do estojo.",
    "uso": [
     "catalogo"
    ],
@@ -2229,7 +2229,7 @@
    "id": "caneta-executiva-estojo~preto",
    "produto": "Caneta executiva com estojo",
    "categoria": "canetas-escritorio",
-   "modelo": "Metal, em estojo forrado",
+   "modelo": "Em estojo forrado",
    "cor": {
     "nome": "Preto",
     "hex": "#1E1E1E"
@@ -2245,7 +2245,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Caneta executiva preta em estojo forrado com a marca TaMa.",
+   "alt": "Caneta executiva em estojo preto forrado, na cor preta, com a marca TaMa na tampa interna do estojo.",
    "uso": [
     "home",
     "kits",
@@ -2268,7 +2268,7 @@
    "id": "caneta-executiva~azul-marinho",
    "produto": "Caneta executiva esferográfica",
    "categoria": "canetas-escritorio",
-   "modelo": "Metal com detalhes cromados",
+   "modelo": "Detalhes cromados",
    "cor": {
     "nome": "Azul-marinho",
     "hex": "#1E2A4A"
@@ -2284,7 +2284,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Caneta executiva preta esferográfica com a marca TaMa gravada.",
+   "alt": "Caneta executiva esferográfica com detalhes cromados, na cor azul-marinho, com a marca TaMa no corpo.",
    "uso": [
     "catalogo"
    ],
@@ -2305,7 +2305,7 @@
    "id": "caneta-executiva~bordo",
    "produto": "Caneta executiva esferográfica",
    "categoria": "canetas-escritorio",
-   "modelo": "Metal com detalhes cromados",
+   "modelo": "Detalhes cromados",
    "cor": {
     "nome": "Bordô",
     "hex": "#6B1E33"
@@ -2321,7 +2321,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Caneta executiva preta esferográfica com a marca TaMa gravada.",
+   "alt": "Caneta executiva esferográfica com detalhes cromados, na cor bordô, com a marca TaMa no corpo.",
    "uso": [
     "catalogo"
    ],
@@ -2342,7 +2342,7 @@
    "id": "caneta-executiva~prata",
    "produto": "Caneta executiva esferográfica",
    "categoria": "canetas-escritorio",
-   "modelo": "Metal com detalhes cromados",
+   "modelo": "Detalhes cromados",
    "cor": {
     "nome": "Prata",
     "hex": "#B8B8B5"
@@ -2358,7 +2358,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Caneta executiva preta esferográfica com a marca TaMa gravada.",
+   "alt": "Caneta executiva esferográfica com detalhes cromados, na cor prata, com a marca TaMa no corpo.",
    "uso": [
     "catalogo"
    ],
@@ -2379,7 +2379,7 @@
    "id": "caneta-executiva~preto",
    "produto": "Caneta executiva esferográfica",
    "categoria": "canetas-escritorio",
-   "modelo": "Metal com detalhes cromados",
+   "modelo": "Detalhes cromados",
    "cor": {
     "nome": "Preto",
     "hex": "#1E1E1E"
@@ -2395,7 +2395,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Caneta executiva preta esferográfica com a marca TaMa gravada.",
+   "alt": "Caneta executiva esferográfica com detalhes cromados, na cor preta, com a marca TaMa no corpo.",
    "uso": [
     "catalogo"
    ],
@@ -2416,7 +2416,7 @@
    "id": "caneta-giro~azul-royal",
    "produto": "Caneta metálica com giro",
    "categoria": "canetas-escritorio",
-   "modelo": "Metal, acionamento por giro",
+   "modelo": "Acionamento por giro",
    "cor": {
     "nome": "Azul royal",
     "hex": "#1F4FB8"
@@ -2432,7 +2432,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Caneta metálica vermelha de giro com a marca TaMa gravada.",
+   "alt": "Caneta de giro com detalhes cromados, na cor azul royal, com a marca TaMa no corpo.",
    "uso": [
     "catalogo"
    ],
@@ -2453,7 +2453,7 @@
    "id": "caneta-giro~prata",
    "produto": "Caneta metálica com giro",
    "categoria": "canetas-escritorio",
-   "modelo": "Metal, acionamento por giro",
+   "modelo": "Acionamento por giro",
    "cor": {
     "nome": "Prata",
     "hex": "#B8B8B5"
@@ -2469,7 +2469,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Caneta metálica vermelha de giro com a marca TaMa gravada.",
+   "alt": "Caneta de giro com detalhes cromados, na cor prata, com a marca TaMa no corpo.",
    "uso": [
     "catalogo"
    ],
@@ -2490,7 +2490,7 @@
    "id": "caneta-giro~preto",
    "produto": "Caneta metálica com giro",
    "categoria": "canetas-escritorio",
-   "modelo": "Metal, acionamento por giro",
+   "modelo": "Acionamento por giro",
    "cor": {
     "nome": "Preto",
     "hex": "#1E1E1E"
@@ -2506,7 +2506,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Caneta metálica vermelha de giro com a marca TaMa gravada.",
+   "alt": "Caneta de giro com detalhes cromados, na cor preta, com a marca TaMa no corpo.",
    "uso": [
     "catalogo"
    ],
@@ -2527,7 +2527,7 @@
    "id": "caneta-giro~vermelho",
    "produto": "Caneta metálica com giro",
    "categoria": "canetas-escritorio",
-   "modelo": "Metal, acionamento por giro",
+   "modelo": "Acionamento por giro",
    "cor": {
     "nome": "Vermelho",
     "hex": "#C8202F"
@@ -2543,7 +2543,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Caneta metálica vermelha de giro com a marca TaMa gravada.",
+   "alt": "Caneta de giro com detalhes cromados, na cor vermelha, com a marca TaMa no corpo.",
    "uso": [
     "home",
     "catalogo"
@@ -2565,7 +2565,7 @@
    "id": "caneta-grip~azul",
    "produto": "Caneta plástica com grip",
    "categoria": "canetas-escritorio",
-   "modelo": "Plástica com grip emborrachado",
+   "modelo": "Com grip emborrachado",
    "cor": {
     "nome": "Azul royal",
     "hex": "#1F4FB8"
@@ -2581,7 +2581,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Caneta plástica azul com grip preto e a marca TaMa.",
+   "alt": "Caneta de clique com grip emborrachado, na cor azul royal, com a marca TaMa no corpo.",
    "uso": [
     "catalogo"
    ],
@@ -2602,7 +2602,7 @@
    "id": "caneta-grip~branco",
    "produto": "Caneta plástica com grip",
    "categoria": "canetas-escritorio",
-   "modelo": "Plástica com grip emborrachado",
+   "modelo": "Com grip emborrachado",
    "cor": {
     "nome": "Branco",
     "hex": "#F7F5F0"
@@ -2618,7 +2618,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Caneta plástica azul com grip preto e a marca TaMa.",
+   "alt": "Caneta de clique com grip emborrachado, na cor branca, com a marca TaMa no corpo.",
    "uso": [
     "catalogo"
    ],
@@ -2639,7 +2639,7 @@
    "id": "caneta-grip~preto",
    "produto": "Caneta plástica com grip",
    "categoria": "canetas-escritorio",
-   "modelo": "Plástica com grip emborrachado",
+   "modelo": "Com grip emborrachado",
    "cor": {
     "nome": "Preto",
     "hex": "#1E1E1E"
@@ -2655,7 +2655,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Caneta plástica azul com grip preto e a marca TaMa.",
+   "alt": "Caneta de clique com grip emborrachado, na cor preta, com a marca TaMa no corpo.",
    "uso": [
     "catalogo"
    ],
@@ -2676,7 +2676,7 @@
    "id": "caneta-grip~vermelho",
    "produto": "Caneta plástica com grip",
    "categoria": "canetas-escritorio",
-   "modelo": "Plástica com grip emborrachado",
+   "modelo": "Com grip emborrachado",
    "cor": {
     "nome": "Vermelho",
     "hex": "#C8202F"
@@ -2692,7 +2692,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Caneta plástica azul com grip preto e a marca TaMa.",
+   "alt": "Caneta de clique com grip emborrachado, na cor vermelha, com a marca TaMa no corpo.",
    "uso": [
     "catalogo"
    ],
@@ -2713,7 +2713,7 @@
    "id": "caneta-kraft~natural",
    "produto": "Caneta ecológica em kraft",
    "categoria": "canetas-escritorio",
-   "modelo": "Corpo em papel kraft com detalhes pretos",
+   "modelo": "Corpo kraft com detalhes pretos",
    "cor": {
     "nome": "Kraft",
     "hex": "#C4A07A"
@@ -2729,7 +2729,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Caneta ecológica em papel kraft com a marca TaMa.",
+   "alt": "Caneta com corpo em kraft e detalhes pretos, na cor kraft, com a marca TaMa no corpo.",
    "uso": [
     "home",
     "catalogo"
@@ -2751,7 +2751,7 @@
    "id": "caneta-metalica~azul",
    "produto": "Caneta metálica de alumínio",
    "categoria": "canetas-escritorio",
-   "modelo": "Alumínio com detalhes cromados",
+   "modelo": "Clique, com anéis cromados",
    "cor": {
     "nome": "Azul royal",
     "hex": "#1F4FB8"
@@ -2767,7 +2767,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Caneta metálica azul com a marca TaMa gravada.",
+   "alt": "Caneta de clique com anéis cromados, na cor azul royal, com a marca TaMa no corpo.",
    "uso": [
     "home",
     "catalogo"
@@ -2789,7 +2789,7 @@
    "id": "caneta-metalica~prata",
    "produto": "Caneta metálica de alumínio",
    "categoria": "canetas-escritorio",
-   "modelo": "Alumínio com detalhes cromados",
+   "modelo": "Clique, com anéis cromados",
    "cor": {
     "nome": "Prata",
     "hex": "#B8B8B5"
@@ -2805,7 +2805,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Caneta metálica azul com a marca TaMa gravada.",
+   "alt": "Caneta de clique com anéis cromados, na cor prata, com a marca TaMa no corpo.",
    "uso": [
     "catalogo"
    ],
@@ -2826,7 +2826,7 @@
    "id": "caneta-metalica~preto",
    "produto": "Caneta metálica de alumínio",
    "categoria": "canetas-escritorio",
-   "modelo": "Alumínio com detalhes cromados",
+   "modelo": "Clique, com anéis cromados",
    "cor": {
     "nome": "Preto",
     "hex": "#1E1E1E"
@@ -2842,7 +2842,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Caneta metálica azul com a marca TaMa gravada.",
+   "alt": "Caneta de clique com anéis cromados, na cor preta, com a marca TaMa no corpo.",
    "uso": [
     "catalogo"
    ],
@@ -2863,7 +2863,7 @@
    "id": "caneta-metalica~vermelho",
    "produto": "Caneta metálica de alumínio",
    "categoria": "canetas-escritorio",
-   "modelo": "Alumínio com detalhes cromados",
+   "modelo": "Clique, com anéis cromados",
    "cor": {
     "nome": "Vermelho",
     "hex": "#C8202F"
@@ -2879,7 +2879,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Caneta metálica azul com a marca TaMa gravada.",
+   "alt": "Caneta de clique com anéis cromados, na cor vermelha, com a marca TaMa no corpo.",
    "uso": [
     "catalogo"
    ],
@@ -2900,7 +2900,7 @@
    "id": "caneta-plastica~azul-royal",
    "produto": "Caneta plástica básica",
    "categoria": "canetas-escritorio",
-   "modelo": "Plástica",
+   "modelo": "Clique, corpo inteiriço",
    "cor": {
     "nome": "Azul royal",
     "hex": "#1F4FB8"
@@ -2916,7 +2916,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Caneta plástica vermelha com a marca TaMa em branco.",
+   "alt": "Caneta de clique simples, na cor azul royal, com a marca TaMa no corpo.",
    "uso": [
     "catalogo"
    ],
@@ -2937,7 +2937,7 @@
    "id": "caneta-plastica~branco",
    "produto": "Caneta plástica básica",
    "categoria": "canetas-escritorio",
-   "modelo": "Plástica",
+   "modelo": "Clique, corpo inteiriço",
    "cor": {
     "nome": "Branco",
     "hex": "#F7F5F0"
@@ -2953,7 +2953,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Caneta plástica vermelha com a marca TaMa em branco.",
+   "alt": "Caneta de clique simples, na cor branca, com a marca TaMa no corpo.",
    "uso": [
     "catalogo"
    ],
@@ -2974,7 +2974,7 @@
    "id": "caneta-plastica~preto",
    "produto": "Caneta plástica básica",
    "categoria": "canetas-escritorio",
-   "modelo": "Plástica",
+   "modelo": "Clique, corpo inteiriço",
    "cor": {
     "nome": "Preto",
     "hex": "#1E1E1E"
@@ -2990,7 +2990,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Caneta plástica vermelha com a marca TaMa em branco.",
+   "alt": "Caneta de clique simples, na cor preta, com a marca TaMa no corpo.",
    "uso": [
     "catalogo"
    ],
@@ -3011,7 +3011,7 @@
    "id": "caneta-plastica~vermelho",
    "produto": "Caneta plástica básica",
    "categoria": "canetas-escritorio",
-   "modelo": "Plástica",
+   "modelo": "Clique, corpo inteiriço",
    "cor": {
     "nome": "Vermelho",
     "hex": "#C8202F"
@@ -3027,7 +3027,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Caneta plástica vermelha com a marca TaMa em branco.",
+   "alt": "Caneta de clique simples, na cor vermelha, com a marca TaMa no corpo.",
    "uso": [
     "catalogo"
    ],
@@ -3048,7 +3048,7 @@
    "id": "caneta-roller~azul-marinho",
    "produto": "Caneta executiva roller",
    "categoria": "canetas-escritorio",
-   "modelo": "Metal, tampa com clipe",
+   "modelo": "Tampa com clipe",
    "cor": {
     "nome": "Azul-marinho",
     "hex": "#1E2A4A"
@@ -3064,7 +3064,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Caneta executiva roller azul-marinho com a marca TaMa gravada.",
+   "alt": "Caneta roller executiva com tampa e clipe, na cor azul-marinho, com a marca TaMa no corpo.",
    "uso": [
     "catalogo"
    ],
@@ -3085,7 +3085,7 @@
    "id": "caneta-roller~bordo",
    "produto": "Caneta executiva roller",
    "categoria": "canetas-escritorio",
-   "modelo": "Metal, tampa com clipe",
+   "modelo": "Tampa com clipe",
    "cor": {
     "nome": "Bordô",
     "hex": "#6B1E33"
@@ -3101,7 +3101,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Caneta executiva roller bordô com a marca TaMa gravada.",
+   "alt": "Caneta roller executiva com tampa e clipe, na cor bordô, com a marca TaMa no corpo.",
    "uso": [
     "home",
     "catalogo"
@@ -3123,7 +3123,7 @@
    "id": "caneta-roller~prata",
    "produto": "Caneta executiva roller",
    "categoria": "canetas-escritorio",
-   "modelo": "Metal, tampa com clipe",
+   "modelo": "Tampa com clipe",
    "cor": {
     "nome": "Prata",
     "hex": "#B8B8B5"
@@ -3139,7 +3139,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Caneta executiva roller prata com a marca TaMa gravada.",
+   "alt": "Caneta roller executiva com tampa e clipe, na cor prata, com a marca TaMa no corpo.",
    "uso": [
     "catalogo"
    ],
@@ -3160,7 +3160,7 @@
    "id": "caneta-roller~preto",
    "produto": "Caneta executiva roller",
    "categoria": "canetas-escritorio",
-   "modelo": "Metal, tampa com clipe",
+   "modelo": "Tampa com clipe",
    "cor": {
     "nome": "Preto",
     "hex": "#1E1E1E"
@@ -3176,7 +3176,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Caneta executiva roller preta com a marca TaMa gravada.",
+   "alt": "Caneta roller executiva com tampa e clipe, na cor preta, com a marca TaMa no corpo.",
    "uso": [
     "catalogo"
    ],
@@ -3197,7 +3197,7 @@
    "id": "caneta-touch~azul-royal",
    "produto": "Caneta metálica com ponta touch",
    "categoria": "canetas-escritorio",
-   "modelo": "Metal com ponta touch",
+   "modelo": "Com ponta touch",
    "cor": {
     "nome": "Azul royal",
     "hex": "#1F4FB8"
@@ -3213,7 +3213,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Caneta metálica preta com ponta touch e a marca TaMa gravada.",
+   "alt": "Caneta com ponta touch, na cor azul royal, com a marca TaMa no corpo.",
    "uso": [
     "catalogo"
    ],
@@ -3234,7 +3234,7 @@
    "id": "caneta-touch~prata",
    "produto": "Caneta metálica com ponta touch",
    "categoria": "canetas-escritorio",
-   "modelo": "Metal com ponta touch",
+   "modelo": "Com ponta touch",
    "cor": {
     "nome": "Prata",
     "hex": "#B8B8B5"
@@ -3250,7 +3250,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Caneta metálica preta com ponta touch e a marca TaMa gravada.",
+   "alt": "Caneta com ponta touch, na cor prata, com a marca TaMa no corpo.",
    "uso": [
     "catalogo"
    ],
@@ -3271,7 +3271,7 @@
    "id": "caneta-touch~preto",
    "produto": "Caneta metálica com ponta touch",
    "categoria": "canetas-escritorio",
-   "modelo": "Metal com ponta touch",
+   "modelo": "Com ponta touch",
    "cor": {
     "nome": "Preto",
     "hex": "#1E1E1E"
@@ -3287,7 +3287,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Caneta metálica preta com ponta touch e a marca TaMa gravada.",
+   "alt": "Caneta com ponta touch, na cor preta, com a marca TaMa no corpo.",
    "uso": [
     "catalogo"
    ],
@@ -3308,7 +3308,7 @@
    "id": "caneta-touch~vermelho",
    "produto": "Caneta metálica com ponta touch",
    "categoria": "canetas-escritorio",
-   "modelo": "Metal com ponta touch",
+   "modelo": "Com ponta touch",
    "cor": {
     "nome": "Vermelho",
     "hex": "#C8202F"
@@ -3324,7 +3324,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Caneta metálica preta com ponta touch e a marca TaMa gravada.",
+   "alt": "Caneta com ponta touch, na cor vermelha, com a marca TaMa no corpo.",
    "uso": [
     "catalogo"
    ],
@@ -3361,7 +3361,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Capa de cardápio azul-marinho com cantoneiras metálicas e a marca TaMa em baixo-relevo.",
+   "alt": "Capa de cardápio aberta, com cantoneiras metálicas, na cor azul-marinho, com a marca TaMa na capa.",
    "uso": [
     "catalogo"
    ],
@@ -3398,7 +3398,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Capa de cardápio bordô com cantoneiras metálicas e a marca TaMa em baixo-relevo.",
+   "alt": "Capa de cardápio aberta, com cantoneiras metálicas, na cor bordô, com a marca TaMa na capa.",
    "uso": [
     "catalogo"
    ],
@@ -3435,7 +3435,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Capa de cardápio café com cantoneiras metálicas e a marca TaMa em baixo-relevo.",
+   "alt": "Capa de cardápio aberta, com cantoneiras metálicas, na cor café, com a marca TaMa na capa.",
    "uso": [
     "catalogo"
    ],
@@ -3472,7 +3472,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Capa de cardápio caramelo com cantoneiras metálicas e a marca TaMa em baixo-relevo.",
+   "alt": "Capa de cardápio aberta, com cantoneiras metálicas, na cor caramelo, com a marca TaMa na capa.",
    "uso": [
     "catalogo"
    ],
@@ -3509,7 +3509,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Capa de cardápio preta com cantoneiras metálicas e a marca TaMa em baixo-relevo.",
+   "alt": "Capa de cardápio aberta, com cantoneiras metálicas, na cor preta, com a marca TaMa na capa.",
    "uso": [
     "catalogo"
    ],
@@ -3546,7 +3546,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Capa de cardápio verde-escuro com cantoneiras metálicas e a marca TaMa em baixo-relevo.",
+   "alt": "Capa de cardápio aberta, com cantoneiras metálicas, na cor verde-escuro, com a marca TaMa na capa.",
    "uso": [
     "catalogo"
    ],
@@ -3583,7 +3583,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Cartão creme com a marca TaMa em dourado, ao lado do envelope bordô.",
+   "alt": "Cartão dobrado ao lado de um envelope bordô, na cor creme, com a marca TaMa em dourado, no cartão.",
    "uso": [
     "curadoria",
     "catalogo"
@@ -3621,7 +3621,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Carteira de couro café com a marca TaMa em baixo-relevo.",
+   "alt": "Carteira dobrável com textura de couro, na cor café, com a marca TaMa em relevo discreto.",
    "uso": [
     "catalogo"
    ],
@@ -3658,7 +3658,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Carteira de couro caramelo com a marca TaMa em baixo-relevo.",
+   "alt": "Carteira dobrável com textura de couro, na cor caramelo, com a marca TaMa em relevo discreto.",
    "uso": [
     "catalogo"
    ],
@@ -3695,7 +3695,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Carteira de couro preta com a marca TaMa em baixo-relevo.",
+   "alt": "Carteira dobrável com textura de couro, na cor preta, com a marca TaMa em relevo discreto.",
    "uso": [
     "catalogo"
    ],
@@ -3716,7 +3716,7 @@
    "id": "chaveiro-abridor~azul-royal",
    "produto": "Chaveiro abridor de garrafa",
    "categoria": "acessorios",
-   "modelo": "Alumínio",
+   "modelo": "Com argola",
    "cor": {
     "nome": "Azul royal",
     "hex": "#1F4FB8"
@@ -3732,7 +3732,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Chaveiro abridor de garrafa em alumínio azul royal com a marca TaMa.",
+   "alt": "Chaveiro abridor de garrafa com argola, na cor azul royal, com a marca TaMa no corpo.",
    "uso": [
     "catalogo"
    ],
@@ -3753,7 +3753,7 @@
    "id": "chaveiro-abridor~prata",
    "produto": "Chaveiro abridor de garrafa",
    "categoria": "acessorios",
-   "modelo": "Alumínio",
+   "modelo": "Com argola",
    "cor": {
     "nome": "Prata",
     "hex": "#B8B8B5"
@@ -3769,7 +3769,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Chaveiro abridor de garrafa em alumínio prata com a marca TaMa.",
+   "alt": "Chaveiro abridor de garrafa com argola, na cor prata, com a marca TaMa no corpo.",
    "uso": [
     "catalogo"
    ],
@@ -3790,7 +3790,7 @@
    "id": "chaveiro-abridor~preto",
    "produto": "Chaveiro abridor de garrafa",
    "categoria": "acessorios",
-   "modelo": "Alumínio",
+   "modelo": "Com argola",
    "cor": {
     "nome": "Preto",
     "hex": "#1E1E1E"
@@ -3806,7 +3806,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Chaveiro abridor de garrafa em alumínio preto com a marca TaMa.",
+   "alt": "Chaveiro abridor de garrafa com argola, na cor preta, com a marca TaMa no corpo.",
    "uso": [
     "catalogo"
    ],
@@ -3827,7 +3827,7 @@
    "id": "chaveiro-abridor~vermelho",
    "produto": "Chaveiro abridor de garrafa",
    "categoria": "acessorios",
-   "modelo": "Alumínio",
+   "modelo": "Com argola",
    "cor": {
     "nome": "Vermelho",
     "hex": "#C8202F"
@@ -3843,7 +3843,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Chaveiro abridor de garrafa em alumínio vermelho com a marca TaMa.",
+   "alt": "Chaveiro abridor de garrafa com argola, na cor vermelha, com a marca TaMa no corpo.",
    "uso": [
     "catalogo"
    ],
@@ -3864,7 +3864,7 @@
    "id": "chaveiro-couro~cafe",
    "produto": "Chaveiro de couro",
    "categoria": "acessorios",
-   "modelo": "Tira de couro com argola",
+   "modelo": "Tira com argola",
    "cor": {
     "nome": "Café",
     "hex": "#4A2E22"
@@ -3880,7 +3880,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Chaveiro em couro café com argola e a marca TaMa em baixo-relevo.",
+   "alt": "Chaveiro de tira com textura de couro e argola, na cor café, com a marca TaMa em relevo discreto.",
    "uso": [
     "catalogo"
    ],
@@ -3901,7 +3901,7 @@
    "id": "chaveiro-couro~caramelo",
    "produto": "Chaveiro de couro",
    "categoria": "acessorios",
-   "modelo": "Tira de couro com argola",
+   "modelo": "Tira com argola",
    "cor": {
     "nome": "Caramelo",
     "hex": "#A0623A"
@@ -3917,7 +3917,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Chaveiro em couro caramelo com argola e a marca TaMa em baixo-relevo.",
+   "alt": "Chaveiro de tira com textura de couro e argola, na cor caramelo, com a marca TaMa em relevo discreto.",
    "uso": [
     "brindes",
     "catalogo"
@@ -3939,7 +3939,7 @@
    "id": "chaveiro-couro~preto",
    "produto": "Chaveiro de couro",
    "categoria": "acessorios",
-   "modelo": "Tira de couro com argola",
+   "modelo": "Tira com argola",
    "cor": {
     "nome": "Preto",
     "hex": "#1E1E1E"
@@ -3955,7 +3955,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Chaveiro em couro preto com argola e a marca TaMa em baixo-relevo.",
+   "alt": "Chaveiro de tira com textura de couro e argola, na cor preta, com a marca TaMa em relevo discreto.",
    "uso": [
     "catalogo"
    ],
@@ -3976,7 +3976,7 @@
    "id": "copo-acrilico-360~azul-marinho",
    "produto": "Copo com impressão 360°",
    "categoria": "garrafas-copos",
-   "modelo": "Copo reutilizável 430 ml, acrílico, estampa envolvente",
+   "modelo": "Reutilizável, estampa envolvente",
    "cor": {
     "nome": "Azul-marinho",
     "hex": "#1E2A4A"
@@ -3992,7 +3992,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Copo acrílico com estampa azul-marinho envolvente e a marca TaMa em creme.",
+   "alt": "Copo com estampa envolvente, na cor azul-marinho, com a marca TaMa na frente.",
    "uso": [
     "catalogo"
    ],
@@ -4013,7 +4013,7 @@
    "id": "copo-acrilico-360~bordo",
    "produto": "Copo com impressão 360°",
    "categoria": "garrafas-copos",
-   "modelo": "Copo reutilizável 430 ml, acrílico, estampa envolvente",
+   "modelo": "Reutilizável, estampa envolvente",
    "cor": {
     "nome": "Bordô",
     "hex": "#6B1E33"
@@ -4029,7 +4029,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Copo acrílico com estampa bordô envolvente e a marca TaMa em creme.",
+   "alt": "Copo com estampa envolvente, na cor bordô, com a marca TaMa na frente.",
    "uso": [
     "catalogo"
    ],
@@ -4050,7 +4050,7 @@
    "id": "copo-acrilico-360~terracota",
    "produto": "Copo com impressão 360°",
    "categoria": "garrafas-copos",
-   "modelo": "Copo reutilizável 430 ml, acrílico, estampa envolvente",
+   "modelo": "Reutilizável, estampa envolvente",
    "cor": {
     "nome": "Terracota",
     "hex": "#B5603A"
@@ -4066,7 +4066,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Copo acrílico com estampa terracota envolvente e a marca TaMa em creme.",
+   "alt": "Copo com estampa envolvente, na cor terracota, com a marca TaMa na frente.",
    "uso": [
     "catalogo"
    ],
@@ -4087,7 +4087,7 @@
    "id": "copo-acrilico-360~verde-escuro",
    "produto": "Copo com impressão 360°",
    "categoria": "garrafas-copos",
-   "modelo": "Copo reutilizável 430 ml, acrílico, estampa envolvente",
+   "modelo": "Reutilizável, estampa envolvente",
    "cor": {
     "nome": "Verde-escuro",
     "hex": "#1F4A35"
@@ -4103,7 +4103,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Copo acrílico com estampa verde-escuro envolvente e a marca TaMa em creme.",
+   "alt": "Copo com estampa envolvente, na cor verde-escuro, com a marca TaMa na frente.",
    "uso": [
     "catalogo"
    ],
@@ -4124,7 +4124,7 @@
    "id": "copo-cafe-inox~branco",
    "produto": "Copo de café em inox",
    "categoria": "garrafas-copos",
-   "modelo": "Copo espresso 180 ml, parede dupla, sem alça",
+   "modelo": "Espresso, parede dupla, sem alça",
    "cor": {
     "nome": "Branco",
     "hex": "#F7F5F0"
@@ -4140,7 +4140,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Copo de café em aço branco escovado com a marca TaMa gravada.",
+   "alt": "Copo de café pequeno, sem alça, na cor branca, com a marca TaMa na frente.",
    "uso": [
     "catalogo"
    ],
@@ -4161,7 +4161,7 @@
    "id": "copo-cafe-inox~inox",
    "produto": "Copo de café em inox",
    "categoria": "garrafas-copos",
-   "modelo": "Copo espresso 180 ml, parede dupla, sem alça",
+   "modelo": "Espresso, parede dupla, sem alça",
    "cor": {
     "nome": "Inox",
     "hex": "#B8B8B5"
@@ -4177,7 +4177,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Copo de café em aço inox escovado com a marca TaMa gravada.",
+   "alt": "Copo de café pequeno, sem alça, na cor inox, com a marca TaMa na frente.",
    "uso": [
     "catalogo"
    ],
@@ -4198,7 +4198,7 @@
    "id": "copo-cafe-inox~preto",
    "produto": "Copo de café em inox",
    "categoria": "garrafas-copos",
-   "modelo": "Copo espresso 180 ml, parede dupla, sem alça",
+   "modelo": "Espresso, parede dupla, sem alça",
    "cor": {
     "nome": "Preto",
     "hex": "#1E1E1E"
@@ -4214,7 +4214,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Copo de café em aço preto escovado com a marca TaMa gravada.",
+   "alt": "Copo de café pequeno, sem alça, na cor preta, com a marca TaMa na frente.",
    "uso": [
     "catalogo"
    ],
@@ -4235,7 +4235,7 @@
    "id": "copo-papel~branco",
    "produto": "Copo de papel com tampa",
    "categoria": "garrafas-copos",
-   "modelo": "Copo 300 ml, parede dupla, tampa plástica",
+   "modelo": "Parede dupla, com tampa",
    "cor": {
     "nome": "Branco",
     "hex": "#F7F5F0"
@@ -4251,7 +4251,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Copo de papel branco com tampa e a marca TaMa em branco.",
+   "alt": "Copo de café descartável com tampa, na cor branca, com a marca TaMa na frente.",
    "uso": [
     "catalogo"
    ],
@@ -4272,7 +4272,7 @@
    "id": "copo-papel~kraft",
    "produto": "Copo de papel com tampa",
    "categoria": "garrafas-copos",
-   "modelo": "Copo 300 ml, parede dupla, tampa plástica",
+   "modelo": "Parede dupla, com tampa",
    "cor": {
     "nome": "Kraft",
     "hex": "#C4A07A"
@@ -4288,7 +4288,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Copo de papel kraft com tampa e a marca TaMa em branco.",
+   "alt": "Copo de café descartável com tampa, na cor kraft, com a marca TaMa na frente.",
    "uso": [
     "catalogo"
    ],
@@ -4309,7 +4309,7 @@
    "id": "copo-papel~preto",
    "produto": "Copo de papel com tampa",
    "categoria": "garrafas-copos",
-   "modelo": "Copo 300 ml, parede dupla, tampa plástica",
+   "modelo": "Parede dupla, com tampa",
    "cor": {
     "nome": "Preto",
     "hex": "#1E1E1E"
@@ -4325,7 +4325,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Copo de papel preto com tampa e a marca TaMa em branco.",
+   "alt": "Copo de café descartável com tampa, na cor preta, com a marca TaMa na frente.",
    "uso": [
     "catalogo"
    ],
@@ -4346,7 +4346,7 @@
    "id": "copo-termico-vinho~azul-marinho",
    "produto": "Copo térmico de vinho",
    "categoria": "garrafas-copos",
-   "modelo": "Copo 350 ml, aço inox com tampa transparente",
+   "modelo": "Com tampa transparente",
    "cor": {
     "nome": "Azul-marinho",
     "hex": "#1E2A4A"
@@ -4362,7 +4362,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Copo térmico de vinho azul-marinho com tampa e a marca TaMa gravada.",
+   "alt": "Copo térmico de vinho com tampa transparente, na cor azul-marinho, com a marca TaMa na frente.",
    "uso": [
     "catalogo"
    ],
@@ -4383,7 +4383,7 @@
    "id": "copo-termico-vinho~preto",
    "produto": "Copo térmico de vinho",
    "categoria": "garrafas-copos",
-   "modelo": "Copo 350 ml, aço inox com tampa transparente",
+   "modelo": "Com tampa transparente",
    "cor": {
     "nome": "Preto",
     "hex": "#1E1E1E"
@@ -4399,7 +4399,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Copo térmico de vinho preto com tampa e a marca TaMa gravada.",
+   "alt": "Copo térmico de vinho com tampa transparente, na cor preta, com a marca TaMa na frente.",
    "uso": [
     "catalogo"
    ],
@@ -4420,7 +4420,7 @@
    "id": "copo-termico-vinho~verde",
    "produto": "Copo térmico de vinho",
    "categoria": "garrafas-copos",
-   "modelo": "Copo 350 ml, aço inox com tampa transparente",
+   "modelo": "Com tampa transparente",
    "cor": {
     "nome": "Verde",
     "hex": "#1F6B45"
@@ -4436,7 +4436,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Copo térmico de vinho verde com tampa e a marca TaMa gravada.",
+   "alt": "Copo térmico de vinho com tampa transparente, na cor verde, com a marca TaMa na frente.",
    "uso": [
     "catalogo"
    ],
@@ -4457,7 +4457,7 @@
    "id": "copo-termico-vinho~vermelho",
    "produto": "Copo térmico de vinho",
    "categoria": "garrafas-copos",
-   "modelo": "Copo 350 ml, aço inox com tampa transparente",
+   "modelo": "Com tampa transparente",
    "cor": {
     "nome": "Vermelho",
     "hex": "#C8202F"
@@ -4473,7 +4473,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Copo térmico de vinho vermelho com tampa e a marca TaMa gravada.",
+   "alt": "Copo térmico de vinho com tampa transparente, na cor vermelha, com a marca TaMa na frente.",
    "uso": [
     "catalogo"
    ],
@@ -4510,7 +4510,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Copo térmico azul royal com tampa e a marca TaMa.",
+   "alt": "Copo térmico com tampa, na cor azul royal, com a marca TaMa na frente.",
    "uso": [
     "brindes",
     "catalogo"
@@ -4548,7 +4548,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Copo térmico branco com tampa e a marca TaMa.",
+   "alt": "Copo térmico com tampa, na cor branca, com a marca TaMa na frente.",
    "uso": [
     "catalogo"
    ],
@@ -4585,7 +4585,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Copo térmico preto com tampa e a marca TaMa.",
+   "alt": "Copo térmico com tampa, na cor preta, com a marca TaMa na frente.",
    "uso": [
     "catalogo"
    ],
@@ -4622,7 +4622,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Copo térmico verde com tampa e a marca TaMa.",
+   "alt": "Copo térmico com tampa, na cor verde, com a marca TaMa na frente.",
    "uso": [
     "catalogo"
    ],
@@ -4659,7 +4659,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Copo térmico vermelho com tampa e a marca TaMa.",
+   "alt": "Copo térmico com tampa, na cor vermelha, com a marca TaMa na frente.",
    "uso": [
     "catalogo"
    ],
@@ -4680,7 +4680,7 @@
    "id": "difusor~ambar",
    "produto": "Aromatizador de ambiente",
    "categoria": "casa-bem-estar",
-   "modelo": "Difusor em vidro com varetas",
+   "modelo": "Frasco com varetas",
    "cor": {
     "nome": "Âmbar",
     "hex": "#B8742A"
@@ -4696,7 +4696,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Difusor de aromas em vidro com varetas e rótulo TaMa.",
+   "alt": "Difusor de aromas em frasco de vidro com varetas, na cor âmbar, com a marca TaMa no rótulo.",
    "uso": [
     "catalogo"
    ],
@@ -4717,7 +4717,7 @@
    "id": "difusor~natural",
    "produto": "Aromatizador de ambiente",
    "categoria": "casa-bem-estar",
-   "modelo": "Difusor em vidro com varetas",
+   "modelo": "Frasco com varetas",
    "cor": {
     "nome": "Natural",
     "hex": "#D9C9A8"
@@ -4733,7 +4733,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Difusor de aromas em vidro com varetas e rótulo TaMa.",
+   "alt": "Difusor de aromas em frasco de vidro com varetas, na cor natural, com a marca TaMa no rótulo.",
    "uso": [
     "catalogo"
    ],
@@ -4770,7 +4770,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Dólmã branca com botões pretos e a marca TaMa bordada.",
+   "alt": "Dólmã de chef com botões pretos, na cor azul-marinho, com a marca TaMa no peito.",
    "uso": [
     "home",
     "catalogo"
@@ -4808,7 +4808,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Dólmã branca com botões pretos e a marca TaMa bordada.",
+   "alt": "Dólmã de chef com botões pretos, na cor branca, com a marca TaMa no peito.",
    "uso": [
     "home",
     "confeccoes",
@@ -4847,7 +4847,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Dólmã branca com botões pretos e a marca TaMa bordada.",
+   "alt": "Dólmã de chef com botões pretos, na cor jeans, com a marca TaMa no peito.",
    "uso": [
     "home",
     "catalogo"
@@ -4885,7 +4885,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Dólmã branca com botões pretos e a marca TaMa bordada.",
+   "alt": "Dólmã de chef com botões pretos, na cor preta, com a marca TaMa no peito.",
    "uso": [
     "home",
     "catalogo"
@@ -4923,7 +4923,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Dólmã rosa com botões pretos e a marca TaMa bordada no peito.",
+   "alt": "Dólmã de chef com botões pretos, na cor rosa, com a marca TaMa no peito.",
    "uso": [
     "home",
     "catalogo"
@@ -4945,7 +4945,7 @@
    "id": "ecobag~cru",
    "produto": "Ecobag",
    "categoria": "bolsas-embalagens",
-   "modelo": "Algodão com alças coloridas",
+   "modelo": "Com alças coloridas",
    "cor": {
     "nome": "Cru",
     "hex": "#EDE3D0"
@@ -4961,7 +4961,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Ecobag de algodão cru com alças vermelhas e a marca TaMa estampada.",
+   "alt": "Ecobag com alças vermelhas, na cor cru, com a marca TaMa na frente.",
    "uso": [
     "home",
     "catalogo"
@@ -4983,7 +4983,7 @@
    "id": "ecobag~preto",
    "produto": "Ecobag",
    "categoria": "bolsas-embalagens",
-   "modelo": "Algodão com alças coloridas",
+   "modelo": "Com alças coloridas",
    "cor": {
     "nome": "Preto",
     "hex": "#1E1E1E"
@@ -4999,7 +4999,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Ecobag de algodão preta com alças vermelhas e a marca TaMa estampada.",
+   "alt": "Ecobag com alças vermelhas, na cor preta, com a marca TaMa na frente.",
    "uso": [
     "home",
     "catalogo"
@@ -5021,7 +5021,7 @@
    "id": "ecobag~verde",
    "produto": "Ecobag",
    "categoria": "bolsas-embalagens",
-   "modelo": "Algodão com alças coloridas",
+   "modelo": "Com alças coloridas",
    "cor": {
     "nome": "Verde",
     "hex": "#1F6B45"
@@ -5037,7 +5037,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Ecobag de algodão verde com alças vermelhas e a marca TaMa estampada.",
+   "alt": "Ecobag com alças vermelhas, na cor verde, com a marca TaMa na frente.",
    "uso": [
     "home",
     "catalogo"
@@ -5059,7 +5059,7 @@
    "id": "ecobag~vermelho",
    "produto": "Ecobag",
    "categoria": "bolsas-embalagens",
-   "modelo": "Algodão com alças coloridas",
+   "modelo": "Com alças coloridas",
    "cor": {
     "nome": "Vermelho",
     "hex": "#C8202F"
@@ -5075,7 +5075,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Ecobag de algodão vermelha com alças vermelhas e a marca TaMa estampada.",
+   "alt": "Ecobag com alças vermelhas, na cor vermelha, com a marca TaMa na frente.",
    "uso": [
     "home",
     "catalogo"
@@ -5113,7 +5113,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Estojo de couro azul-marinho com zíper e a marca TaMa em baixo-relevo.",
+   "alt": "Estojo com zíper e textura de couro, na cor azul-marinho, com a marca TaMa em relevo discreto.",
    "uso": [
     "catalogo"
    ],
@@ -5150,7 +5150,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Estojo de couro café com zíper e a marca TaMa em baixo-relevo.",
+   "alt": "Estojo com zíper e textura de couro, na cor café, com a marca TaMa em relevo discreto.",
    "uso": [
     "catalogo"
    ],
@@ -5187,7 +5187,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Estojo de couro caramelo com zíper e a marca TaMa em baixo-relevo.",
+   "alt": "Estojo com zíper e textura de couro, na cor caramelo, com a marca TaMa em relevo discreto.",
    "uso": [
     "catalogo"
    ],
@@ -5224,7 +5224,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Estojo de couro preto com zíper e a marca TaMa em baixo-relevo.",
+   "alt": "Estojo com zíper e textura de couro, na cor preta, com a marca TaMa em relevo discreto.",
    "uso": [
     "catalogo"
    ],
@@ -5245,7 +5245,7 @@
    "id": "garrafa-termica~azul-royal",
    "produto": "Garrafa térmica",
    "categoria": "garrafas-copos",
-   "modelo": "Aço inox com tampa rosqueada",
+   "modelo": "Tampa rosqueada",
    "cor": {
     "nome": "Azul royal",
     "hex": "#1F4FB8"
@@ -5261,7 +5261,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Garrafa térmica vermelha de aço inox com a marca TaMa.",
+   "alt": "Garrafa térmica com tampa metálica, na cor azul royal, com a marca TaMa no corpo.",
    "uso": [
     "home",
     "catalogo"
@@ -5283,7 +5283,7 @@
    "id": "garrafa-termica~branco",
    "produto": "Garrafa térmica",
    "categoria": "garrafas-copos",
-   "modelo": "Aço inox com tampa rosqueada",
+   "modelo": "Tampa rosqueada",
    "cor": {
     "nome": "Branco",
     "hex": "#F7F5F0"
@@ -5299,7 +5299,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Garrafa térmica vermelha de aço inox com a marca TaMa.",
+   "alt": "Garrafa térmica com tampa metálica, na cor branca, com a marca TaMa no corpo.",
    "uso": [
     "home",
     "catalogo"
@@ -5321,7 +5321,7 @@
    "id": "garrafa-termica~preto",
    "produto": "Garrafa térmica",
    "categoria": "garrafas-copos",
-   "modelo": "Aço inox com tampa rosqueada",
+   "modelo": "Tampa rosqueada",
    "cor": {
     "nome": "Preto",
     "hex": "#1E1E1E"
@@ -5337,7 +5337,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Garrafa térmica vermelha de aço inox com a marca TaMa.",
+   "alt": "Garrafa térmica com tampa metálica, na cor preta, com a marca TaMa no corpo.",
    "uso": [
     "home",
     "catalogo"
@@ -5359,7 +5359,7 @@
    "id": "garrafa-termica~verde",
    "produto": "Garrafa térmica",
    "categoria": "garrafas-copos",
-   "modelo": "Aço inox com tampa rosqueada",
+   "modelo": "Tampa rosqueada",
    "cor": {
     "nome": "Verde",
     "hex": "#1F6B45"
@@ -5375,7 +5375,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Garrafa térmica vermelha de aço inox com a marca TaMa.",
+   "alt": "Garrafa térmica com tampa metálica, na cor verde, com a marca TaMa no corpo.",
    "uso": [
     "home",
     "catalogo"
@@ -5397,7 +5397,7 @@
    "id": "garrafa-termica~vermelho",
    "produto": "Garrafa térmica",
    "categoria": "garrafas-copos",
-   "modelo": "Aço inox com tampa rosqueada",
+   "modelo": "Tampa rosqueada",
    "cor": {
     "nome": "Vermelho",
     "hex": "#C8202F"
@@ -5413,7 +5413,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Garrafa térmica vermelha de aço inox com a marca TaMa.",
+   "alt": "Garrafa térmica com tampa metálica, na cor vermelha, com a marca TaMa no corpo.",
    "uso": [
     "home",
     "brindes",
@@ -5453,7 +5453,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Guarda-chuva automático azul-marinho com a marca TaMa em um gomo.",
+   "alt": "Guarda-chuva aberto, na cor azul-marinho, com a marca TaMa em um dos gomos.",
    "uso": [
     "catalogo"
    ],
@@ -5490,7 +5490,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Guarda-chuva automático preto com a marca TaMa em um gomo.",
+   "alt": "Guarda-chuva aberto, na cor preta, com a marca TaMa em um dos gomos.",
    "uso": [
     "catalogo"
    ],
@@ -5527,7 +5527,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Guarda-chuva automático verde com a marca TaMa em um gomo.",
+   "alt": "Guarda-chuva aberto, na cor verde, com a marca TaMa em um dos gomos.",
    "uso": [
     "catalogo"
    ],
@@ -5564,7 +5564,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Guarda-chuva automático vermelho com a marca TaMa em um gomo.",
+   "alt": "Guarda-chuva aberto, na cor vermelha, com a marca TaMa em um dos gomos.",
    "uso": [
     "catalogo"
    ],
@@ -5585,7 +5585,7 @@
    "id": "jogo-americano-impresso~azul-marinho",
    "produto": "Jogo americano impresso",
    "categoria": "hotelaria-gastronomia",
-   "modelo": "Retangular, papel laminado, cantos arredondados",
+   "modelo": "Retangular, cantos arredondados",
    "cor": {
     "nome": "Azul-marinho",
     "hex": "#1E2A4A"
@@ -5601,7 +5601,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Jogo americano retangular azul-marinho impresso com a marca TaMa no canto.",
+   "alt": "Jogo americano retangular de cantos arredondados, na cor azul-marinho, com a marca TaMa no canto.",
    "uso": [
     "catalogo"
    ],
@@ -5622,7 +5622,7 @@
    "id": "jogo-americano-impresso~preto",
    "produto": "Jogo americano impresso",
    "categoria": "hotelaria-gastronomia",
-   "modelo": "Retangular, papel laminado, cantos arredondados",
+   "modelo": "Retangular, cantos arredondados",
    "cor": {
     "nome": "Preto",
     "hex": "#1E1E1E"
@@ -5638,7 +5638,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Jogo americano retangular preto impresso com a marca TaMa no canto.",
+   "alt": "Jogo americano retangular de cantos arredondados, na cor preta, com a marca TaMa no canto.",
    "uso": [
     "catalogo"
    ],
@@ -5659,7 +5659,7 @@
    "id": "jogo-americano-impresso~verde-escuro",
    "produto": "Jogo americano impresso",
    "categoria": "hotelaria-gastronomia",
-   "modelo": "Retangular, papel laminado, cantos arredondados",
+   "modelo": "Retangular, cantos arredondados",
    "cor": {
     "nome": "Verde-escuro",
     "hex": "#1F4A35"
@@ -5675,7 +5675,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Jogo americano retangular verde-escuro impresso com a marca TaMa no canto.",
+   "alt": "Jogo americano retangular de cantos arredondados, na cor verde-escuro, com a marca TaMa no canto.",
    "uso": [
     "catalogo"
    ],
@@ -5696,7 +5696,7 @@
    "id": "jogo-americano-impresso~vermelho",
    "produto": "Jogo americano impresso",
    "categoria": "hotelaria-gastronomia",
-   "modelo": "Retangular, papel laminado, cantos arredondados",
+   "modelo": "Retangular, cantos arredondados",
    "cor": {
     "nome": "Vermelho",
     "hex": "#C8202F"
@@ -5712,7 +5712,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Jogo americano retangular vermelho impresso com a marca TaMa no canto.",
+   "alt": "Jogo americano retangular de cantos arredondados, na cor vermelha, com a marca TaMa no canto.",
    "uso": [
     "catalogo"
    ],
@@ -5749,7 +5749,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Jogo americano oval azul-marinho com a marca TaMa em baixo-relevo.",
+   "alt": "Jogo americano oval com costura na borda, na cor azul-marinho, com a marca TaMa em relevo discreto.",
    "uso": [
     "catalogo"
    ],
@@ -5786,7 +5786,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Jogo americano oval bordô com a marca TaMa em baixo-relevo.",
+   "alt": "Jogo americano oval com costura na borda, na cor bordô, com a marca TaMa em relevo discreto.",
    "uso": [
     "catalogo"
    ],
@@ -5823,7 +5823,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Jogo americano oval caramelo com a marca TaMa em baixo-relevo.",
+   "alt": "Jogo americano oval com costura na borda, na cor caramelo, com a marca TaMa em relevo discreto.",
    "uso": [
     "catalogo"
    ],
@@ -5860,7 +5860,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Jogo americano oval preto com a marca TaMa em baixo-relevo.",
+   "alt": "Jogo americano oval com costura na borda, na cor preta, com a marca TaMa em relevo discreto.",
    "uso": [
     "catalogo"
    ],
@@ -5897,7 +5897,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Jogo americano oval taupe com a marca TaMa em baixo-relevo.",
+   "alt": "Jogo americano oval com costura na borda, na cor taupe, com a marca TaMa em relevo discreto.",
    "uso": [
     "catalogo"
    ],
@@ -5934,7 +5934,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Jogo americano oval verde-escuro com a marca TaMa em baixo-relevo.",
+   "alt": "Jogo americano oval com costura na borda, na cor verde-escuro, com a marca TaMa em relevo discreto.",
    "uso": [
     "catalogo"
    ],
@@ -5971,7 +5971,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Jogo americano retangular azul-marinho com a marca TaMa em baixo-relevo no canto.",
+   "alt": "Jogo americano retangular com costura na borda, na cor azul-marinho, com a marca TaMa no canto.",
    "uso": [
     "catalogo"
    ],
@@ -6008,7 +6008,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Jogo americano retangular bordô com a marca TaMa em baixo-relevo no canto.",
+   "alt": "Jogo americano retangular com costura na borda, na cor bordô, com a marca TaMa no canto.",
    "uso": [
     "catalogo"
    ],
@@ -6045,7 +6045,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Jogo americano retangular caramelo com a marca TaMa em baixo-relevo no canto.",
+   "alt": "Jogo americano retangular com costura na borda, na cor caramelo, com a marca TaMa no canto.",
    "uso": [
     "catalogo"
    ],
@@ -6082,7 +6082,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Jogo americano retangular havana com a marca TaMa em baixo-relevo no canto.",
+   "alt": "Jogo americano retangular com costura na borda, na cor havana, com a marca TaMa no canto.",
    "uso": [
     "catalogo"
    ],
@@ -6119,7 +6119,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Jogo americano retangular preto com a marca TaMa em baixo-relevo no canto.",
+   "alt": "Jogo americano retangular com costura na borda, na cor preta, com a marca TaMa no canto.",
    "uso": [
     "catalogo"
    ],
@@ -6156,7 +6156,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Jogo americano retangular verde-escuro com a marca TaMa em baixo-relevo no canto.",
+   "alt": "Jogo americano retangular com costura na borda, na cor verde-escuro, com a marca TaMa no canto.",
    "uso": [
     "catalogo"
    ],
@@ -6193,7 +6193,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Envelope creme fechado com lacre de cera dourado com o símbolo TaMa, ao lado do carimbo.",
+   "alt": "Envelope creme fechado com lacre de cera, ao lado do carimbo, na cor dourada, com a marca TaMa com o símbolo no lacre.",
    "uso": [
     "curadoria",
     "catalogo"
@@ -6231,7 +6231,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Moletom azul-marinho com capuz e a marca TaMa no peito.",
+   "alt": "Moletom canguru com capuz, na cor azul-marinho, com a marca TaMa no peito.",
    "uso": [
     "home",
     "catalogo"
@@ -6269,7 +6269,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Moletom azul royal com capuz e a marca TaMa no peito.",
+   "alt": "Moletom canguru com capuz, na cor azul royal, com a marca TaMa no peito.",
    "uso": [
     "home",
     "catalogo"
@@ -6307,7 +6307,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Moletom branco com capuz e a marca TaMa no peito.",
+   "alt": "Moletom canguru com capuz, na cor branca, com a marca TaMa no peito.",
    "uso": [
     "home",
     "catalogo"
@@ -6345,7 +6345,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Moletom cinza com capuz e a marca TaMa no peito.",
+   "alt": "Moletom canguru com capuz, na cor cinza, com a marca TaMa no peito.",
    "uso": [
     "home",
     "catalogo"
@@ -6383,7 +6383,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Moletom preto com capuz e a marca TaMa no peito.",
+   "alt": "Moletom canguru com capuz, na cor preta, com a marca TaMa no peito.",
    "uso": [
     "home",
     "confeccoes",
@@ -6422,7 +6422,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Moletom rosa com capuz e a marca TaMa bordada no peito.",
+   "alt": "Moletom canguru com capuz, na cor rosa, com a marca TaMa no peito.",
    "uso": [
     "home",
     "catalogo"
@@ -6460,7 +6460,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Moletom verde com capuz e a marca TaMa no peito.",
+   "alt": "Moletom canguru com capuz, na cor verde, com a marca TaMa no peito.",
    "uso": [
     "home",
     "catalogo"
@@ -6498,7 +6498,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Moletom vermelho com capuz e a marca TaMa no peito.",
+   "alt": "Moletom canguru com capuz, na cor vermelha, com a marca TaMa no peito.",
    "uso": [
     "home",
     "catalogo"
@@ -6536,7 +6536,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Nécessaire azul-marinho com alça lateral e a marca TaMa em baixo-relevo.",
+   "alt": "Nécessaire com zíper e alça lateral, na cor azul-marinho, com a marca TaMa na frente.",
    "uso": [
     "catalogo"
    ],
@@ -6573,7 +6573,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Nécessaire caramelo com alça lateral e a marca TaMa em baixo-relevo.",
+   "alt": "Nécessaire com zíper e alça lateral, na cor caramelo, com a marca TaMa na frente.",
    "uso": [
     "catalogo"
    ],
@@ -6610,7 +6610,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Nécessaire preto com alça lateral e a marca TaMa em baixo-relevo.",
+   "alt": "Nécessaire com zíper e alça lateral, na cor preta, com a marca TaMa na frente.",
    "uso": [
     "catalogo"
    ],
@@ -6647,7 +6647,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Nécessaire terracota com alça lateral e a marca TaMa em baixo-relevo.",
+   "alt": "Nécessaire com zíper e alça lateral, na cor terracota, com a marca TaMa na frente.",
    "uso": [
     "brindes",
     "kits",
@@ -6670,7 +6670,7 @@
    "id": "polo-feminina~azul-marinho",
    "produto": "Polo feminina",
    "categoria": "vestuario",
-   "modelo": "Piquet, modelagem feminina",
+   "modelo": "Modelagem feminina",
    "cor": {
     "nome": "Azul-marinho",
     "hex": "#1E2A4A"
@@ -6686,7 +6686,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Polo feminina azul-marinho com a marca TaMa bordada no peito.",
+   "alt": "Camisa polo feminina, na cor azul-marinho, com a marca TaMa no peito.",
    "uso": [
     "home",
     "catalogo"
@@ -6708,7 +6708,7 @@
    "id": "polo-feminina~azul-royal",
    "produto": "Polo feminina",
    "categoria": "vestuario",
-   "modelo": "Piquet, modelagem feminina",
+   "modelo": "Modelagem feminina",
    "cor": {
     "nome": "Azul royal",
     "hex": "#1F4FB8"
@@ -6724,7 +6724,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Polo feminina azul royal com a marca TaMa bordada no peito.",
+   "alt": "Camisa polo feminina, na cor azul royal, com a marca TaMa no peito.",
    "uso": [
     "home",
     "confeccoes",
@@ -6747,7 +6747,7 @@
    "id": "polo-feminina~branco",
    "produto": "Polo feminina",
    "categoria": "vestuario",
-   "modelo": "Piquet, modelagem feminina",
+   "modelo": "Modelagem feminina",
    "cor": {
     "nome": "Branco",
     "hex": "#F7F5F0"
@@ -6763,7 +6763,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Polo feminina branca com a marca TaMa bordada no peito.",
+   "alt": "Camisa polo feminina, na cor branca, com a marca TaMa no peito.",
    "uso": [
     "home",
     "catalogo"
@@ -6785,7 +6785,7 @@
    "id": "polo-feminina~cinza",
    "produto": "Polo feminina",
    "categoria": "vestuario",
-   "modelo": "Piquet, modelagem feminina",
+   "modelo": "Modelagem feminina",
    "cor": {
     "nome": "Cinza",
     "hex": "#9A9A98"
@@ -6801,7 +6801,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Polo feminina cinza com a marca TaMa bordada no peito.",
+   "alt": "Camisa polo feminina, na cor cinza, com a marca TaMa no peito.",
    "uso": [
     "home",
     "catalogo"
@@ -6823,7 +6823,7 @@
    "id": "polo-feminina~preto",
    "produto": "Polo feminina",
    "categoria": "vestuario",
-   "modelo": "Piquet, modelagem feminina",
+   "modelo": "Modelagem feminina",
    "cor": {
     "nome": "Preto",
     "hex": "#1E1E1E"
@@ -6839,7 +6839,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Polo feminina preta com a marca TaMa bordada no peito.",
+   "alt": "Camisa polo feminina, na cor preta, com a marca TaMa no peito.",
    "uso": [
     "home",
     "catalogo"
@@ -6861,7 +6861,7 @@
    "id": "polo-feminina~rosa",
    "produto": "Polo feminina",
    "categoria": "vestuario",
-   "modelo": "Piquet, modelagem feminina",
+   "modelo": "Modelagem feminina",
    "cor": {
     "nome": "Rosa",
     "hex": "#E07A9B"
@@ -6877,7 +6877,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Polo feminina rosa com a marca TaMa bordada no peito.",
+   "alt": "Camisa polo feminina, na cor rosa, com a marca TaMa no peito.",
    "uso": [
     "home",
     "catalogo"
@@ -6899,7 +6899,7 @@
    "id": "polo-feminina~verde",
    "produto": "Polo feminina",
    "categoria": "vestuario",
-   "modelo": "Piquet, modelagem feminina",
+   "modelo": "Modelagem feminina",
    "cor": {
     "nome": "Verde",
     "hex": "#1F6B45"
@@ -6915,7 +6915,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Polo feminina verde com a marca TaMa bordada no peito.",
+   "alt": "Camisa polo feminina, na cor verde, com a marca TaMa no peito.",
    "uso": [
     "home",
     "catalogo"
@@ -6937,7 +6937,7 @@
    "id": "polo-feminina~vermelho",
    "produto": "Polo feminina",
    "categoria": "vestuario",
-   "modelo": "Piquet, modelagem feminina",
+   "modelo": "Modelagem feminina",
    "cor": {
     "nome": "Vermelho",
     "hex": "#C8202F"
@@ -6953,7 +6953,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Polo feminina vermelha com a marca TaMa bordada no peito.",
+   "alt": "Camisa polo feminina, na cor vermelha, com a marca TaMa no peito.",
    "uso": [
     "home",
     "catalogo"
@@ -6975,7 +6975,7 @@
    "id": "polo~azul-marinho",
    "produto": "Polo masculina",
    "categoria": "vestuario",
-   "modelo": "Piquet",
+   "modelo": "Gola e três botões",
    "cor": {
     "nome": "Azul-marinho",
     "hex": "#1E2A4A"
@@ -6991,7 +6991,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Polo masculina vermelha com a marca TaMa bordada no peito.",
+   "alt": "Camisa polo masculina, na cor azul-marinho, com a marca TaMa no peito.",
    "uso": [
     "home",
     "catalogo"
@@ -7013,7 +7013,7 @@
    "id": "polo~azul-royal",
    "produto": "Polo masculina",
    "categoria": "vestuario",
-   "modelo": "Piquet",
+   "modelo": "Gola e três botões",
    "cor": {
     "nome": "Azul royal",
     "hex": "#1F4FB8"
@@ -7029,7 +7029,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Polo masculina vermelha com a marca TaMa bordada no peito.",
+   "alt": "Camisa polo masculina, na cor azul royal, com a marca TaMa no peito.",
    "uso": [
     "home",
     "catalogo"
@@ -7051,7 +7051,7 @@
    "id": "polo~branco",
    "produto": "Polo masculina",
    "categoria": "vestuario",
-   "modelo": "Piquet",
+   "modelo": "Gola e três botões",
    "cor": {
     "nome": "Branco",
     "hex": "#F7F5F0"
@@ -7067,7 +7067,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Polo masculina branca com a marca TaMa bordada no peito.",
+   "alt": "Camisa polo masculina, na cor branca, com a marca TaMa no peito.",
    "uso": [
     "home",
     "catalogo"
@@ -7089,7 +7089,7 @@
    "id": "polo~cinza",
    "produto": "Polo masculina",
    "categoria": "vestuario",
-   "modelo": "Piquet",
+   "modelo": "Gola e três botões",
    "cor": {
     "nome": "Cinza",
     "hex": "#9A9A98"
@@ -7105,7 +7105,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Polo masculina vermelha com a marca TaMa bordada no peito.",
+   "alt": "Camisa polo masculina, na cor cinza, com a marca TaMa no peito.",
    "uso": [
     "home",
     "catalogo"
@@ -7127,7 +7127,7 @@
    "id": "polo~preto",
    "produto": "Polo masculina",
    "categoria": "vestuario",
-   "modelo": "Piquet",
+   "modelo": "Gola e três botões",
    "cor": {
     "nome": "Preto",
     "hex": "#1E1E1E"
@@ -7143,7 +7143,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Polo masculina preta com a marca TaMa bordada no peito.",
+   "alt": "Camisa polo masculina, na cor preta, com a marca TaMa no peito.",
    "uso": [
     "home",
     "catalogo"
@@ -7165,7 +7165,7 @@
    "id": "polo~rosa",
    "produto": "Polo masculina",
    "categoria": "vestuario",
-   "modelo": "Piquet",
+   "modelo": "Gola e três botões",
    "cor": {
     "nome": "Rosa",
     "hex": "#E07A9B"
@@ -7181,7 +7181,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Polo masculina rosa com a marca TaMa bordada no peito.",
+   "alt": "Camisa polo masculina, na cor rosa, com a marca TaMa no peito.",
    "uso": [
     "home",
     "catalogo"
@@ -7203,7 +7203,7 @@
    "id": "polo~verde",
    "produto": "Polo masculina",
    "categoria": "vestuario",
-   "modelo": "Piquet",
+   "modelo": "Gola e três botões",
    "cor": {
     "nome": "Verde",
     "hex": "#1F6B45"
@@ -7219,7 +7219,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Polo masculina vermelha com a marca TaMa bordada no peito.",
+   "alt": "Camisa polo masculina, na cor verde, com a marca TaMa no peito.",
    "uso": [
     "home",
     "catalogo"
@@ -7241,7 +7241,7 @@
    "id": "polo~vermelho",
    "produto": "Polo masculina",
    "categoria": "vestuario",
-   "modelo": "Piquet",
+   "modelo": "Gola e três botões",
    "cor": {
     "nome": "Vermelho",
     "hex": "#C8202F"
@@ -7257,7 +7257,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Polo masculina vermelha com a marca TaMa bordada no peito.",
+   "alt": "Camisa polo masculina, na cor vermelha, com a marca TaMa no peito.",
    "uso": [
     "home",
     "confeccoes",
@@ -7296,7 +7296,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Porta-contas dobrável azul-marinho com a marca TaMa em baixo-relevo.",
+   "alt": "Porta-contas dobrável aberto e fechado, na cor azul-marinho, com a marca TaMa na capa.",
    "uso": [
     "catalogo"
    ],
@@ -7333,7 +7333,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Porta-contas dobrável bordô com a marca TaMa em baixo-relevo.",
+   "alt": "Porta-contas dobrável aberto e fechado, na cor bordô, com a marca TaMa na capa.",
    "uso": [
     "catalogo"
    ],
@@ -7370,7 +7370,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Porta-contas dobrável café com a marca TaMa em baixo-relevo.",
+   "alt": "Porta-contas dobrável aberto e fechado, na cor café, com a marca TaMa na capa.",
    "uso": [
     "catalogo"
    ],
@@ -7407,7 +7407,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Porta-contas dobrável caramelo com a marca TaMa em baixo-relevo.",
+   "alt": "Porta-contas dobrável aberto e fechado, na cor caramelo, com a marca TaMa na capa.",
    "uso": [
     "catalogo"
    ],
@@ -7444,7 +7444,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Porta-contas dobrável havana com a marca TaMa em baixo-relevo.",
+   "alt": "Porta-contas dobrável aberto e fechado, na cor havana, com a marca TaMa na capa.",
    "uso": [
     "catalogo"
    ],
@@ -7481,7 +7481,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Porta-contas dobrável preto com a marca TaMa em baixo-relevo.",
+   "alt": "Porta-contas dobrável aberto e fechado, na cor preta, com a marca TaMa na capa.",
    "uso": [
     "catalogo"
    ],
@@ -7502,7 +7502,7 @@
    "id": "porta-lapis~azul-marinho",
    "produto": "Porta-canetas",
    "categoria": "canetas-escritorio",
-   "modelo": "Quadrado em couro",
+   "modelo": "Quadrado, com costura aparente",
    "cor": {
     "nome": "Azul-marinho",
     "hex": "#1E2A4A"
@@ -7518,7 +7518,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Porta-lápis quadrado em couro azul-marinho com a marca TaMa.",
+   "alt": "Porta-lápis com costura aparente e lápis, na cor azul-marinho, com a marca TaMa na frente.",
    "uso": [
     "catalogo"
    ],
@@ -7539,7 +7539,7 @@
    "id": "porta-lapis~cafe",
    "produto": "Porta-canetas",
    "categoria": "canetas-escritorio",
-   "modelo": "Quadrado em couro",
+   "modelo": "Quadrado, com costura aparente",
    "cor": {
     "nome": "Café",
     "hex": "#4A2E22"
@@ -7555,7 +7555,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Porta-lápis quadrado em couro café com a marca TaMa.",
+   "alt": "Porta-lápis com costura aparente e lápis, na cor café, com a marca TaMa na frente.",
    "uso": [
     "catalogo"
    ],
@@ -7576,7 +7576,7 @@
    "id": "porta-lapis~caramelo",
    "produto": "Porta-canetas",
    "categoria": "canetas-escritorio",
-   "modelo": "Quadrado em couro",
+   "modelo": "Quadrado, com costura aparente",
    "cor": {
     "nome": "Caramelo",
     "hex": "#A0623A"
@@ -7592,7 +7592,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Porta-lápis quadrado em couro caramelo com a marca TaMa.",
+   "alt": "Porta-lápis com costura aparente e lápis, na cor caramelo, com a marca TaMa na frente.",
    "uso": [
     "catalogo"
    ],
@@ -7613,7 +7613,7 @@
    "id": "porta-lapis~preto",
    "produto": "Porta-canetas",
    "categoria": "canetas-escritorio",
-   "modelo": "Quadrado em couro",
+   "modelo": "Quadrado, com costura aparente",
    "cor": {
     "nome": "Preto",
     "hex": "#1E1E1E"
@@ -7629,7 +7629,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Porta-lápis quadrado em couro preto com a marca TaMa.",
+   "alt": "Porta-lápis com costura aparente e lápis, na cor preta, com a marca TaMa na frente.",
    "uso": [
     "catalogo"
    ],
@@ -7666,7 +7666,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Pouch transparente com zíper e a marca TaMa impressa.",
+   "alt": "Pouch transparente com zíper, na cor transparente, com a marca TaMa na frente.",
    "uso": [
     "catalogo"
    ],
@@ -7703,7 +7703,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Sacola de presente azul royal com alças de cordão e a marca TaMa.",
+   "alt": "Sacola de presente com alças de cordão, na cor azul royal, com a marca TaMa na frente.",
    "uso": [
     "kits",
     "catalogo"
@@ -7741,7 +7741,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Sacola de presente cru com alças de cordão e a marca TaMa.",
+   "alt": "Sacola de presente com alças de cordão, na cor cru, com a marca TaMa na frente.",
    "uso": [
     "catalogo"
    ],
@@ -7778,7 +7778,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Sacola de presente preta com alças de cordão e a marca TaMa.",
+   "alt": "Sacola de presente com alças de cordão, na cor preta, com a marca TaMa na frente.",
    "uso": [
     "catalogo"
    ],
@@ -7815,7 +7815,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Sacola de presente vermelha com alças de cordão e a marca TaMa.",
+   "alt": "Sacola de presente com alças de cordão, na cor vermelha, com a marca TaMa na frente.",
    "uso": [
     "catalogo"
    ],
@@ -7836,7 +7836,7 @@
    "id": "squeeze~azul-royal",
    "produto": "Squeeze",
    "categoria": "garrafas-copos",
-   "modelo": "Plástico translúcido com bico",
+   "modelo": "Translúcido, com bico",
    "cor": {
     "nome": "Azul royal",
     "hex": "#1F4FB8"
@@ -7852,7 +7852,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Squeeze azul translúcido com a marca TaMa em branco.",
+   "alt": "Squeeze translúcido com bico, na cor azul royal, com a marca TaMa no corpo.",
    "uso": [
     "brindes",
     "catalogo"
@@ -7874,7 +7874,7 @@
    "id": "squeeze~branco",
    "produto": "Squeeze",
    "categoria": "garrafas-copos",
-   "modelo": "Plástico translúcido com bico",
+   "modelo": "Translúcido, com bico",
    "cor": {
     "nome": "Branco",
     "hex": "#F7F5F0"
@@ -7890,7 +7890,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Squeeze azul translúcido com a marca TaMa em branco.",
+   "alt": "Squeeze translúcido com bico, na cor branca, com a marca TaMa no corpo.",
    "uso": [
     "catalogo"
    ],
@@ -7911,7 +7911,7 @@
    "id": "squeeze~preto",
    "produto": "Squeeze",
    "categoria": "garrafas-copos",
-   "modelo": "Plástico translúcido com bico",
+   "modelo": "Translúcido, com bico",
    "cor": {
     "nome": "Preto",
     "hex": "#1E1E1E"
@@ -7927,7 +7927,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Squeeze azul translúcido com a marca TaMa em branco.",
+   "alt": "Squeeze translúcido com bico, na cor preta, com a marca TaMa no corpo.",
    "uso": [
     "catalogo"
    ],
@@ -7948,7 +7948,7 @@
    "id": "squeeze~verde",
    "produto": "Squeeze",
    "categoria": "garrafas-copos",
-   "modelo": "Plástico translúcido com bico",
+   "modelo": "Translúcido, com bico",
    "cor": {
     "nome": "Verde",
     "hex": "#1F6B45"
@@ -7964,7 +7964,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Squeeze azul translúcido com a marca TaMa em branco.",
+   "alt": "Squeeze translúcido com bico, na cor verde, com a marca TaMa no corpo.",
    "uso": [
     "catalogo"
    ],
@@ -7985,7 +7985,7 @@
    "id": "squeeze~vermelho",
    "produto": "Squeeze",
    "categoria": "garrafas-copos",
-   "modelo": "Plástico translúcido com bico",
+   "modelo": "Translúcido, com bico",
    "cor": {
     "nome": "Vermelho",
     "hex": "#C8202F"
@@ -8001,7 +8001,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Squeeze azul translúcido com a marca TaMa em branco.",
+   "alt": "Squeeze translúcido com bico, na cor vermelha, com a marca TaMa no corpo.",
    "uso": [
     "catalogo"
    ],
@@ -8022,7 +8022,7 @@
    "id": "taca-champagne-acrilico~azul-royal",
    "produto": "Taça de champagne em acrílico",
    "categoria": "garrafas-copos",
-   "modelo": "Flute 160 ml, acrílico",
+   "modelo": "Flute",
    "cor": {
     "nome": "Azul royal",
     "hex": "#1F4FB8"
@@ -8038,7 +8038,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Taça de champagne em acrílico azul royal com a marca TaMa em branco.",
+   "alt": "Taça flute, na cor azul royal, com a marca TaMa no bojo.",
    "uso": [
     "catalogo"
    ],
@@ -8059,7 +8059,7 @@
    "id": "taca-champagne-acrilico~branco",
    "produto": "Taça de champagne em acrílico",
    "categoria": "garrafas-copos",
-   "modelo": "Flute 160 ml, acrílico",
+   "modelo": "Flute",
    "cor": {
     "nome": "Branco",
     "hex": "#F7F5F0"
@@ -8075,7 +8075,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Taça de champagne em acrílico branco com a marca TaMa em branco.",
+   "alt": "Taça flute, na cor branca, com a marca TaMa no bojo.",
    "uso": [
     "catalogo"
    ],
@@ -8096,7 +8096,7 @@
    "id": "taca-champagne-acrilico~preto",
    "produto": "Taça de champagne em acrílico",
    "categoria": "garrafas-copos",
-   "modelo": "Flute 160 ml, acrílico",
+   "modelo": "Flute",
    "cor": {
     "nome": "Preto",
     "hex": "#1E1E1E"
@@ -8112,7 +8112,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Taça de champagne em acrílico preto com a marca TaMa em branco.",
+   "alt": "Taça flute, na cor preta, com a marca TaMa no bojo.",
    "uso": [
     "catalogo"
    ],
@@ -8133,7 +8133,7 @@
    "id": "taca-champagne-acrilico~vermelho",
    "produto": "Taça de champagne em acrílico",
    "categoria": "garrafas-copos",
-   "modelo": "Flute 160 ml, acrílico",
+   "modelo": "Flute",
    "cor": {
     "nome": "Vermelho",
     "hex": "#C8202F"
@@ -8149,7 +8149,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Taça de champagne em acrílico vermelho com a marca TaMa em branco.",
+   "alt": "Taça flute, na cor vermelha, com a marca TaMa no bojo.",
    "uso": [
     "catalogo"
    ],
@@ -8170,7 +8170,7 @@
    "id": "taca-gin-acrilico~azul-royal",
    "produto": "Taça de gin em acrílico",
    "categoria": "garrafas-copos",
-   "modelo": "Taça balão 600 ml, acrílico",
+   "modelo": "Taça balão",
    "cor": {
     "nome": "Azul royal",
     "hex": "#1F4FB8"
@@ -8186,7 +8186,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Taça de gin em acrílico azul royal com a marca TaMa em branco no bojo.",
+   "alt": "Taça balão de gin, na cor azul royal, com a marca TaMa no bojo.",
    "uso": [
     "catalogo"
    ],
@@ -8207,7 +8207,7 @@
    "id": "taca-gin-acrilico~branco",
    "produto": "Taça de gin em acrílico",
    "categoria": "garrafas-copos",
-   "modelo": "Taça balão 600 ml, acrílico",
+   "modelo": "Taça balão",
    "cor": {
     "nome": "Branco",
     "hex": "#F7F5F0"
@@ -8223,7 +8223,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Taça de gin em acrílico branco com a marca TaMa em branco no bojo.",
+   "alt": "Taça balão de gin, na cor branca, com a marca TaMa no bojo.",
    "uso": [
     "catalogo"
    ],
@@ -8244,7 +8244,7 @@
    "id": "taca-gin-acrilico~preto",
    "produto": "Taça de gin em acrílico",
    "categoria": "garrafas-copos",
-   "modelo": "Taça balão 600 ml, acrílico",
+   "modelo": "Taça balão",
    "cor": {
     "nome": "Preto",
     "hex": "#1E1E1E"
@@ -8260,7 +8260,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Taça de gin em acrílico preto com a marca TaMa em branco no bojo.",
+   "alt": "Taça balão de gin, na cor preta, com a marca TaMa no bojo.",
    "uso": [
     "catalogo"
    ],
@@ -8281,7 +8281,7 @@
    "id": "taca-gin-acrilico~vermelho",
    "produto": "Taça de gin em acrílico",
    "categoria": "garrafas-copos",
-   "modelo": "Taça balão 600 ml, acrílico",
+   "modelo": "Taça balão",
    "cor": {
     "nome": "Vermelho",
     "hex": "#C8202F"
@@ -8297,7 +8297,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Taça de gin em acrílico vermelho com a marca TaMa em branco no bojo.",
+   "alt": "Taça balão de gin, na cor vermelha, com a marca TaMa no bojo.",
    "uso": [
     "catalogo"
    ],
@@ -8318,7 +8318,7 @@
    "id": "taca-vinho-acrilico~azul-royal",
    "produto": "Taça de vinho em acrílico",
    "categoria": "garrafas-copos",
-   "modelo": "Taça 400 ml, acrílico",
+   "modelo": "Taça de vinho",
    "cor": {
     "nome": "Azul royal",
     "hex": "#1F4FB8"
@@ -8334,7 +8334,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Taça de vinho em acrílico azul royal com a marca TaMa em branco.",
+   "alt": "Taça de vinho, na cor azul royal, com a marca TaMa no bojo.",
    "uso": [
     "catalogo"
    ],
@@ -8355,7 +8355,7 @@
    "id": "taca-vinho-acrilico~bordo",
    "produto": "Taça de vinho em acrílico",
    "categoria": "garrafas-copos",
-   "modelo": "Taça 400 ml, acrílico",
+   "modelo": "Taça de vinho",
    "cor": {
     "nome": "Bordô",
     "hex": "#6B1E33"
@@ -8371,7 +8371,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Taça de vinho em acrílico bordô com a marca TaMa em branco.",
+   "alt": "Taça de vinho, na cor bordô, com a marca TaMa no bojo.",
    "uso": [
     "catalogo"
    ],
@@ -8392,7 +8392,7 @@
    "id": "taca-vinho-acrilico~branco",
    "produto": "Taça de vinho em acrílico",
    "categoria": "garrafas-copos",
-   "modelo": "Taça 400 ml, acrílico",
+   "modelo": "Taça de vinho",
    "cor": {
     "nome": "Branco",
     "hex": "#F7F5F0"
@@ -8408,7 +8408,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Taça de vinho em acrílico branco com a marca TaMa em branco.",
+   "alt": "Taça de vinho, na cor branca, com a marca TaMa no bojo.",
    "uso": [
     "catalogo"
    ],
@@ -8429,7 +8429,7 @@
    "id": "taca-vinho-acrilico~preto",
    "produto": "Taça de vinho em acrílico",
    "categoria": "garrafas-copos",
-   "modelo": "Taça 400 ml, acrílico",
+   "modelo": "Taça de vinho",
    "cor": {
     "nome": "Preto",
     "hex": "#1E1E1E"
@@ -8445,7 +8445,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Taça de vinho em acrílico preto com a marca TaMa em branco.",
+   "alt": "Taça de vinho, na cor preta, com a marca TaMa no bojo.",
    "uso": [
     "catalogo"
    ],
@@ -8466,7 +8466,7 @@
    "id": "vela~cafe",
    "produto": "Vela",
    "categoria": "casa-bem-estar",
-   "modelo": "Vidro com cinta de couro e pavio de madeira",
+   "modelo": "Copo de vidro, cinta e pavio de madeira",
    "cor": {
     "nome": "Café",
     "hex": "#4A2E22"
@@ -8482,7 +8482,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Vela em vidro com cinta de couro café e a marca TaMa.",
+   "alt": "Vela em copo de vidro com cinta e pavio de madeira, na cor café, com a marca TaMa na cinta.",
    "uso": [
     "catalogo"
    ],
@@ -8503,7 +8503,7 @@
    "id": "vela~couro",
    "produto": "Vela",
    "categoria": "casa-bem-estar",
-   "modelo": "Vidro com cinta de couro e pavio de madeira",
+   "modelo": "Copo de vidro, cinta e pavio de madeira",
    "cor": {
     "nome": "Caramelo",
     "hex": "#A0623A"
@@ -8519,7 +8519,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Vela em vidro com cinta de couro caramelo e a marca TaMa.",
+   "alt": "Vela em copo de vidro com cinta e pavio de madeira, na cor caramelo, com a marca TaMa na cinta.",
    "uso": [
     "brindes",
     "kits",
@@ -8542,7 +8542,7 @@
    "id": "vela~preto",
    "produto": "Vela",
    "categoria": "casa-bem-estar",
-   "modelo": "Vidro com cinta de couro e pavio de madeira",
+   "modelo": "Copo de vidro, cinta e pavio de madeira",
    "cor": {
     "nome": "Preto",
     "hex": "#1E1E1E"
@@ -8558,7 +8558,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Vela em vidro com cinta de couro preto e a marca TaMa.",
+   "alt": "Vela em copo de vidro com cinta e pavio de madeira, na cor preta, com a marca TaMa na cinta.",
    "uso": [
     "catalogo"
    ],

@@ -295,6 +295,8 @@ preparar_produtos()
 PRODUTOS_BY = {i['id']: i for i in PRODUTOS}
 for _h in HOME_PRODS:   # destaques da home: material e técnica vêm do catálogo (o campo meta do JSON não vale mais)
     _h['meta'] = spec_line(PRODUTOS_BY[_h['img']]) if _h['img'] in PRODUTOS_BY else 'Material e técnica sob consulta'
+    if _h['img'] in PRODUTOS_BY:   # texto alternativo também vem do catálogo (uma fonte só, editada em /admin/)
+        _h['alt'] = PRODUTOS_BY[_h['img']]['alt']
 CATALOGO = build_catalogo()   # depois de color_slug
 
 
@@ -400,7 +402,8 @@ def home_variants(h):
     out = {}
     for c in h['cores']:
         if len(c) > 2 and c[2] in IMAGES:
-            out[c[0]] = [IMAGES[c[2]]['stem'], IMAGES[c[2]]['widths'], f"{h['nome']}: {c[3] if len(c) > 3 else c[0].lower()}. Mockup ilustrativo."]
+            alt = PRODUTOS_BY[c[2]]['alt'] if c[2] in PRODUTOS_BY else f"{h['nome']}: {c[3] if len(c) > 3 else c[0].lower()}."
+            out[c[0]] = [IMAGES[c[2]]['stem'], IMAGES[c[2]]['widths'], f'{alt} Mockup ilustrativo.']
     return out if len(out) > 1 else {}
 
 

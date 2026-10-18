@@ -17,3 +17,6 @@ midia/produtos/geradas/
 midia/cenas/
 midia/curadoria/
 midia/kits/
+
+# Folhas de contato da auditoria de imagens (tools/auditar_imagens.py)
+midia/produtos/auditoria/

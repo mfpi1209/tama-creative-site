@@ -48,7 +48,7 @@ TEMAS = {
     'uniformes': ('Uniformes e confecções', 'Tecidos, modelagens e personalização para quem veste a marca.'),
 }
 TEMA_MIN = 3
-TIPOS = ('brindes', 'kits', 'confeccoes', 'branding', 'integrado')
+TIPOS = ('brindes', 'kits', 'confeccoes', 'ativacoes', 'hotelaria', 'integrado')   # os mesmos do formulário de proposta
 MESES = ('janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro')
 BRT = timezone(timedelta(hours=-3))
 FEED_PATH = '/blog/feed.xml'
@@ -194,7 +194,7 @@ def load(b):
     if not os.path.isdir(BLOG_SRC):
         return
     today = date.today()
-    known_items = set(b.PECA) | {it['slug'] for it in b.ALEM}
+    known_items = set(b.CATALOGO_BY) | set(b.ALIASES)   # ids do catálogo (src/data/produtos.json) ou slugs antigos
     seen = {}
     for fname in sorted(os.listdir(BLOG_SRC)):
         if not fname.endswith('.md') or fname.startswith(('_', '.')):
@@ -249,7 +249,7 @@ def load(b):
         a['pecas'] = meta.get('pecas') or []
         for s in a['pecas']:
             if s not in known_items:
-                _err(f'{fn}: peça {s!r} não existe em src/data/curadoria.json')
+                _err(f'{fn}: peça {s!r} não existe no catálogo (src/data/produtos.json)')
         a['relacionados'] = [re.sub(r'^\d{4}-\d{2}-\d{2}-', '', s) for s in (meta.get('relacionados') or [])]
         a['palavra_chave'] = meta.get('palavra_chave') or ''
         a['draft'] = meta.get('draft') is True
@@ -309,7 +309,7 @@ def _meta_line(a, author=True):
 
 
 def _cover_alt(a):
-    return ('Fotografia conceitual: ' if a['capa_conceitual'] else '') + a['capa_alt']
+    return ('Imagem ilustrativa: ' if a['capa_conceitual'] else '') + a['capa_alt']
 
 
 def post_card(b, a, level=3, sizes='(max-width: 760px) 92vw, (max-width: 1180px) 30vw, 380px'):
@@ -368,25 +368,19 @@ def article_page(b, a):
         if len(a['toc']) >= 2:
             toc = ('<nav class="post-toc" aria-labelledby="toc-t"><p class="post-toc-t" id="toc-t">Neste guia</p><ol>'
                    + ''.join(f'<li><a href="#{i}">{n}</a></li>' for i, n in a['toc']) + '</ol></nav>')
-        caption = '<figcaption>Fotografia conceitual</figcaption>' if a['capa_conceitual'] else ''
+        caption = '<figcaption>Imagem ilustrativa</figcaption>' if a['capa_conceitual'] else ''
         draft = '<p class="post-draft">Rascunho ou artigo agendado: não aparece no site publicado.</p>' if a['noindex'] else ''
-        # Peças da curadoria ligadas ao artigo
+        # Peças do catálogo ligadas ao artigo (a mesma base e o mesmo card do resto do site)
         pecas_html = ''
-        fotos = [s for s in a['pecas'] if s in b.PECA]
-        ideias = [it for it in b.ALEM if it['slug'] in a['pecas']]
-        if fotos or ideias:
+        fotos = [s for s in a['pecas'] if b.modelo(s)]
+        if fotos:
             if oc:
                 more = (f'/brindes-corporativos-premium/?ocasiao={oc}#pecas', f'Ver todas as ideias para {b.OCCS[oc].lower()}')
             else:
-                more = ('/brindes-corporativos-premium/', 'Ver a curadoria completa')
-            title = '<p class="eyebrow">Da curadoria TaMa</p><h2 id="pecas-a-t" class="section-title">Peças para começar a seleção</h2>'
-            intro = 'Escolha a cor de referência e toque em “+ Selecionar”: as peças seguem com o seu pedido de proposta.'
-            rail = b.product_rail(fotos, 'rail-post', title, intro, more=more) if fotos else (
-                f'<div class="section-head">{title}<p class="muted">{intro}</p></div>')
-            ideas_html = f'<div class="ideas" style="margin-top:28px">{"".join(b.idea_card(it) for it in ideias)}</div>' if ideias else ''
-            if ideias and not fotos:
-                ideas_html += f'<p style="margin-top:18px"><a class="link" href="{more[0]}">{more[1]} {b.ARROW}</a></p>'
-            pecas_html = f'<section class="section ivory" aria-labelledby="pecas-a-t"><div class="wrap">{rail}{ideas_html}</div></section>'
+                more = ('/catalogo/', 'Ver o catálogo completo')
+            title = '<p class="eyebrow">Do catálogo TaMa</p><h2 id="pecas-a-t" class="section-title">Peças para começar a seleção</h2>'
+            intro = 'Toque na cor para ver a foto e em “+ Selecionar”: as peças seguem com o seu pedido de proposta.'
+            pecas_html = f'<section class="section ivory" aria-labelledby="pecas-a-t"><div class="wrap">{b.product_rail(fotos, "rail-post", title, intro, more=more)}</div></section>'
         rel = related(a)
         rel_html = ''
         if rel:
@@ -398,7 +392,7 @@ def article_page(b, a):
         if a['servico']:
             servico = f'<a class="btn btn-line" href="{a["servico"]}">{SERVICOS.get(a["servico"], "Conhecer o serviço")}</a>'
         author = f'''<div class="post-author">{b.SELO}<div class="stack" style="gap:8px"><p><strong>TaMa Creative</strong></p>
-      <p class="muted">Estúdio criativo de brindes corporativos premium, kits e confecções, com visão de Trade Marketing: o público e a ocasião vêm antes da peça.</p>
+      <p class="muted">Brindes, confecções, kits e ativações para empresas, com visão de Trade Marketing: o público e a ocasião vêm antes da peça.</p>
       <div class="actions">{b.cta_link(tipo=a['proposta'], track_label='blog-autor-' + a['slug'])}{servico}</div></div></div>'''
         body = f'''<article class="post">
   <div class="wrap"><header class="post-head">
@@ -433,7 +427,10 @@ def article_page(b, a):
 SERVICOS = {
     '/brindes-corporativos/': 'Ver brindes corporativos',
     '/kits-corporativos/': 'Ver kits corporativos',
-    '/brindes-corporativos-premium/': 'Ver a curadoria',
+    '/brindes-corporativos-premium/': 'Ver ideias por ocasião',
+    '/catalogo/': 'Ver o catálogo',
+    '/ativacoes-promocionais/': 'Ver ativações',
+    '/hotelaria-e-gastronomia/': 'Ver hotelaria e gastronomia',
     '/confeccoes-personalizadas/': 'Ver confecções',
 }
 
@@ -576,7 +573,8 @@ def finalize(b):
     if not ARTS:
         return
     paths = {p['path'] for p in b.BUILT} | {FEED_PATH}
-    anchors = set(b.PECA) | {it['slug'] for it in b.ALEM} | {'pecas'}
+    na_pagina = {c['slug'] for c in b.CATALOGO if c['ocasioes']}   # /brindes-corporativos-premium/ mostra só modelos com ocasião
+    anchors = na_pagina | {k for k, v in b.ALIASES.items() if v in na_pagina} | {'pecas'}
     for p in b.BUILT:
         if not p['path'].startswith('/blog/'):
             continue
@@ -620,10 +618,9 @@ def cms_config(b):
     """config.yml do Decap CMS, gerado dos mesmos dados que o build valida: o editor só oferece valores válidos."""
     date_fmt = {'widget': 'datetime', 'format': 'YYYY-MM-DD', 'date_format': 'DD/MM/YYYY', 'time_format': False, 'picker_utc': True}
     capas = sorted(k for k in b.IMAGES if not k.startswith('blog-'))
-    pecas = ([_opt(f'{p["nome"]} (com foto)', p['slug']) for p in b.PECAS]
-             + [_opt(f'{it["nome"]} (além do óbvio)', it['slug']) for it in b.ALEM])
-    tipos = {'brindes': 'Brindes ou presentes', 'kits': 'Kits corporativos', 'confeccoes': 'Confecções e uniformes',
-             'integrado': 'Mais de um tipo'}
+    pecas = [_opt(f'{c["nome"]} ({b.CAT_PROD[c["categoria"]]})', c['slug']) for c in b.CATALOGO]
+    tipos = {'brindes': 'Brindes corporativos', 'kits': 'Kits premium', 'confeccoes': 'Confecções e uniformes',
+             'ativacoes': 'Ativação ou degustação', 'hotelaria': 'Hotelaria e gastronomia', 'integrado': 'Mais de uma frente'}
     fields = [
         {'label': 'Título do artigo (H1)', 'name': 'title', 'widget': 'string',
          'hint': 'Responde à busca principal com naturalidade. Até 110 caracteres.',
@@ -663,7 +660,7 @@ def cms_config(b):
          'hint': 'Desmarque só para fotos reais de trabalhos entregues. Conceituais aparecem identificadas no site.'},
         {'label': 'Enquadramento da capa', 'name': 'capa_posicao', 'widget': 'string', 'required': False,
          'hint': 'Opcional. Ex.: 50% 40% (horizontal e vertical) para mostrar outra parte da foto.'},
-        {'label': 'Peças da curadoria', 'name': 'pecas', 'widget': 'select', 'multiple': True, 'required': False, 'max': 9,
+        {'label': 'Peças do catálogo', 'name': 'pecas', 'widget': 'select', 'multiple': True, 'required': False, 'max': 9,
          'options': pecas, 'hint': 'Aparecem no fim do artigo com o botão "+ Selecionar" (levam o leitor à proposta). Até 9.'},
         {'label': 'Outros guias (relacionados)', 'name': 'relacionados', 'widget': 'relation', 'collection': 'blog',
          'search_fields': ['title'], 'value_field': '{{slug}}', 'display_fields': ['title'], 'multiple': True, 'required': False, 'max': 3,
@@ -700,7 +697,7 @@ def cms_config(b):
             'fields': fields,
         }, catalogo_collection(b)],
     }
-    return ('# Gerado por blog.py a cada build (não editar à mão): opções vindas de TEMAS, curadoria.json e das imagens do site.\n'
+    return ('# Gerado por blog.py a cada build (não editar à mão): opções vindas de TEMAS, do catálogo (produtos.json) e das imagens do site.\n'
             + yaml.safe_dump(cfg, allow_unicode=True, sort_keys=False, width=1000))
 
 

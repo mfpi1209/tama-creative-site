@@ -15,15 +15,15 @@ capa_alt: xícara mostarda com pires sobre pedra, ao lado de caixas terracota e 
 capa_conceitual: true
 capa_posicao: 50% 55%
 pecas:
-- vela-perfumada
-- caneca-de-ceramica
+- vela
+- caneca
 - garrafa-termica
-- moletom-exclusivo
-- bolsa-tote-estruturada
-- caixa-rigida-premium
-- ritual-de-cafe
-- vela-fragrancia-assinada
-- domino-madeira
+- moletom-com-capuz
+- ecobag
+- caixa-para-presente
+- copo-com-tampa
+- difusor-de-aromas
+- necessaire
 relacionados:
 - brindes-de-fim-de-ano-para-clientes
 - o-que-colocar-no-kit-de-boas-vindas
@@ -52,8 +52,8 @@ Presentes que vão para a cozinha, para o sofá ou para a mesa de café da manh�
 
 - **Manta:** textura e conforto, com a marca numa etiqueta discreta.
 - **Ritual de café:** coador, xícara e café, um gesto diário no lugar de mais uma caneca.
-- **Chá em latas:** blends com nomes criados para a empresa, em latas que continuam na cozinha.
-- **Vela com fragrância assinada:** a marca vira um cheiro, e o recipiente continua útil depois da vela.
+- **Chá em latas:** latas com a identidade da empresa, que continuam na cozinha depois do chá.
+- **Vela aromática:** com a marca na cinta ou no rótulo, e um recipiente que continua útil depois da vela.
 
 ### Para o dia a dia
 

@@ -1,0 +1,160 @@
+{
+  "name": "TaMa · Propostas 3/3: preparar a tabela (rodar uma vez)",
+  "nodes": [
+    {
+      "parameters": {},
+      "name": "Rodar uma vez",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        200
+      ],
+      "id": "b0453456-1a86-4f27-9753-4c68849223d7"
+    },
+    {
+      "parameters": {
+        "resource": "table",
+        "operation": "create",
+        "tableName": "tama_propostas",
+        "columns": {
+          "column": [
+            {
+              "name": "pedido_id",
+              "type": "string"
+            },
+            {
+              "name": "recebido_em",
+              "type": "string"
+            },
+            {
+              "name": "status",
+              "type": "string"
+            },
+            {
+              "name": "nome",
+              "type": "string"
+            },
+            {
+              "name": "empresa",
+              "type": "string"
+            },
+            {
+              "name": "contato",
+              "type": "string"
+            },
+            {
+              "name": "tipo",
+              "type": "string"
+            },
+            {
+              "name": "interesse",
+              "type": "string"
+            },
+            {
+              "name": "selecao",
+              "type": "string"
+            },
+            {
+              "name": "quantidade",
+              "type": "string"
+            },
+            {
+              "name": "data_desejada",
+              "type": "string"
+            },
+            {
+              "name": "orcamento",
+              "type": "string"
+            },
+            {
+              "name": "objetivo",
+              "type": "string"
+            },
+            {
+              "name": "consentimento",
+              "type": "string"
+            },
+            {
+              "name": "origem_pagina",
+              "type": "string"
+            },
+            {
+              "name": "primeira_pagina",
+              "type": "string"
+            },
+            {
+              "name": "referencia",
+              "type": "string"
+            },
+            {
+              "name": "utm_source",
+              "type": "string"
+            },
+            {
+              "name": "utm_medium",
+              "type": "string"
+            },
+            {
+              "name": "utm_campaign",
+              "type": "string"
+            },
+            {
+              "name": "utm_term",
+              "type": "string"
+            },
+            {
+              "name": "utm_content",
+              "type": "string"
+            },
+            {
+              "name": "notificacao",
+              "type": "string"
+            },
+            {
+              "name": "tentativas_aviso",
+              "type": "number"
+            },
+            {
+              "name": "erro_aviso",
+              "type": "string"
+            },
+            {
+              "name": "avisado_em",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {
+          "createIfNotExists": true
+        }
+      },
+      "name": "Criar tabela tama_propostas",
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        240,
+        200
+      ],
+      "id": "e74f9d4c-d28e-4b28-8e94-43fa7fc6ca92"
+    }
+  ],
+  "connections": {
+    "Rodar uma vez": {
+      "main": [
+        [
+          {
+            "node": "Criar tabela tama_propostas",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "tags": []
+}

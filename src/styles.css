@@ -28,8 +28,8 @@
   --shadow: 0 12px 30px rgba(61, 37, 16, .09);
   --shadow-lg: 0 24px 60px rgba(40, 25, 15, .18);
 
-  --f-serif: "Playfair Display", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
-  --f-sans: "DM Sans", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --f-serif: "Playfair Display", "Playfair Display Fallback", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  --f-sans: "DM Sans", "DM Sans Fallback", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
 
   --s-xs: .75rem;
   --s-sm: .875rem;
@@ -463,7 +463,11 @@ textarea { resize: vertical; min-height: 7.5em; line-height: 1.55; }
 .form-foot { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; }
 .form-status { font-size: .875rem; color: var(--muted); }
 .result { scroll-margin-top: calc(var(--header-h) + 24px); display: grid; gap: 14px; padding: clamp(22px, 3vw, 34px); background: var(--surface); border: 1px solid var(--line-strong); border-radius: var(--radius); box-shadow: var(--shadow); }
+.result[hidden] { display: none !important; }   /* o display:grid acima anularia o atributo hidden (caixa vazia sob "Enviar pedido") */
 .result h2 { font-size: 1.75rem; }
+.result .pedido-ref { font-size: .875rem; color: var(--muted); }
+.interest-note { margin: 0; padding: 10px 14px; border-radius: var(--radius); background: var(--ivory); font-size: .9375rem; }
+.interest-note[hidden] { display: none !important; }
 .result.ok { border-color: var(--ok); }
 .result textarea { min-height: 11em; font-size: .875rem; background: var(--bg); }
 .aside { display: grid; grid-template-columns: minmax(0, 1fr); gap: 26px; padding: clamp(22px, 3vw, 34px); background: var(--ivory); border-radius: var(--radius); }
@@ -835,3 +839,36 @@ html.cat-lock { overflow: hidden; }
 .pdp-vista[hidden] { display: none; }
 .prod-alt[hidden] { display: none; }
 @media (max-width: 600px) { .pdp-vista, .pdp-vista img { width: 76px; } .pdp-vista img { height: 76px; } }
+
+/* Home: as cinco frentes (3 em cima, 2 embaixo; 2 colunas no tablet; 1 no celular) */
+.service-grid.cinco { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+.service-grid.cinco > :nth-child(-n+3) { grid-column: span 2; }
+.service-grid.cinco > :nth-child(n+4) { grid-column: span 3; }
+@media (max-width: 1100px) {
+  .service-grid.cinco { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .service-grid.cinco > * { grid-column: auto; }
+  .service-grid.cinco > :last-child { grid-column: 1 / -1; }
+}
+@media (max-width: 760px) {
+  .service-grid.cinco { grid-template-columns: 1fr; }
+  .service-grid.cinco > :last-child { grid-column: auto; }
+}
+.kit-copy .link { justify-self: start; margin-top: 6px; }
+
+/* Celular: botão do WhatsApp menor e espaço no fim da página para ele não cobrir o rodapé */
+@media (max-width: 760px) {
+  .wa-float { width: 50px; height: 50px; right: 12px; bottom: calc(12px + env(safe-area-inset-bottom, 0px)); }
+  .wa-float .wa-icon { width: 28px; height: 28px; }
+  .site-footer { padding-bottom: 72px; }
+}
+
+/* Atributo hidden sempre vence (componentes com display próprio, como .form e .result, anulavam o hidden) */
+[hidden] { display: none !important; }
+/* Botão de proposta dentro do menu: só no menu do celular */
+.site-nav .nav-cta { display: none; }
+@media (max-width: 1080px) { .site-nav .nav-cta { display: inline-flex; justify-content: center; margin-top: 14px; } }
+/* Celular: a sacola do cabeçalho já mostra a contagem; a flutuante cobria o "+ Selecionar" da peça ao lado */
+@media (max-width: 760px) { .float-bag { display: none !important; } }
+
+/* Foco do botão da foto: o card corta o que fica fora (overflow), então o contorno vai para dentro */
+.prod-media:focus-visible { outline-offset: -3px; }

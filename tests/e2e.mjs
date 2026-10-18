@@ -236,7 +236,7 @@ try {
   ok(await page.$$eval('a[href^="/branding-identidade-visual/"], a[href^="/projetos/"]', a => a.length === 0), 'nenhum link para branding ou projetos');
   await page.goto(BASE + '/confeccoes-personalizadas/', { waitUntil: 'networkidle0' });
   ok(await page.$$eval('.studio-grid .product.studio', c => c.length === 10) && await page.$eval('.studio-grid', g => !!g.closest('section').querySelector('a[href="/catalogo/?categoria=vestuario"]')), 'confecções: 10 peças em estúdio com link para o catálogo filtrado');
-  ok(await page.$$eval('h1', h => h.length === 1 && /A identidade da sua marca também se veste/.test(h[0].textContent.replace(/\s+/g, ' '))) && await page.$eval('.foto-hero-photo img', i => i.loading === 'eager' && i.alt.length > 40) && await page.$$eval('.conf-pecas-list a', a => a.length === 4), 'confecções abre com a foto da equipe, um único H1 e os atalhos para as peças');
+  ok(await page.$$eval('h1', h => h.length === 1 && /A identidade da sua marca também se veste/.test(h[0].textContent.replace(/\s+/g, ' '))) && await page.$eval('.foto-hero-photo img', i => i.loading === 'eager' && i.alt.length > 40) && await page.$$eval('.atalhos-list a', a => a.length === 4), 'confecções abre com a foto da equipe, um único H1 e os atalhos para as peças');
   ok(await page.$$eval('#hero .slide img', i => i.every(x => /TaMa/.test(x.alt) && x.alt.length > 40)), 'cenas de confecções com texto alternativo descritivo');
   ok(!(await page.$('.garantias')), 'confecções não repete a faixa de confiança da home');
   ok(!(await page.$('#rail-conf')) && !(await page.$('#pecas-c-t')), 'confecções: sem o bloco "Do uniforme do dia a dia à peça do evento"');

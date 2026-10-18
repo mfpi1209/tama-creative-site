@@ -128,7 +128,7 @@ main { overflow-x: clip; }
 .head-actions { display: flex; align-items: center; gap: 10px; }
 .bag { position: relative; }
 .bag-count { position: absolute; top: -2px; right: -2px; min-width: 20px; height: 20px; padding: 0 5px; border-radius: 999px; background: var(--wine); color: #fff; font-size: .6875rem; font-weight: 700; line-height: 20px; text-align: center; }
-.bag-count[hidden] { display: none !important; }
+.bag-count[hidden], .result[hidden] { display: none !important; }
 .menu-btn { display: none; }
 @media (max-width: 1080px) {
   .menu-btn { display: inline-grid; }

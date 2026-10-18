@@ -1181,7 +1181,7 @@ def page_confeccoes():
         'description': 'Uniformes corporativos, polos bordadas, moletons e bonés para equipes e eventos, alinhados à identidade visual da sua empresa e pensados para quem veste.',
         'trail': [('/', 'Início'), ('/confeccoes-personalizadas/', 'Confecções')],
         'service': {'key': 'confeccoes', 'name': 'Confecções personalizadas e uniformes corporativos', 'type': 'Uniformes corporativos personalizados'},
-        'preload': preload_image('conf-evento-polos', '100vw'),
+        'preload': preload_image(CONF_SLIDES[0][1], '(max-width: 760px) 200vw, (max-width: 1100px) 140vw, 100vw'),  # mesma imagem e sizes do slide 1
         'body': hero_carousel(CONF_SLIDES, label='Confecções da TaMa Creative', assurances=False) + f'''
 <section class="section ivory" aria-labelledby="uso-t">
   <div class="wrap">

@@ -960,3 +960,14 @@ html.cat-lock { overflow: hidden; }
 .atalhos.centro .atalhos-title { justify-content: center; text-align: center; }
 @media (max-width: 900px) { .atalhos.centro .atalhos-title { justify-content: flex-start; text-align: left; } }
 @media (min-width: 901px) { .atalhos.centro .atalhos-list li:first-child { justify-content: center; } }
+/* traço: fio curto vinho acima do título e links sublinhados por um fio (mockup de brindes) */
+.atalhos.traco .atalhos-title { flex-direction: column; align-items: flex-start; gap: 0; }
+.atalhos.traco .atalhos-title::before { content: ""; width: 52px; height: 2px; margin-bottom: clamp(16px, 1.6vw, 22px); background: var(--wine); }
+.atalhos.traco .atalhos-list a { border-bottom: 1px solid var(--line-strong); padding-bottom: 6px; transition: border-color .2s ease; }
+.atalhos.traco .atalhos-list a:hover { border-color: var(--wine); }
+@media (max-width: 480px) { .foto-hero-title span, .foto-hero-title em { white-space: normal; } }
+@media (max-width: 600px) {
+  .atalhos.traco .atalhos-list { grid-template-columns: minmax(0, 1fr); row-gap: 0; }
+  .atalhos.traco .atalhos-list li, .atalhos.traco .atalhos-list li + li { border-left: 0; padding-left: 0; }
+  .atalhos.traco .atalhos-list a { display: flex; justify-content: space-between; width: 100%; padding-block: 8px; }
+}

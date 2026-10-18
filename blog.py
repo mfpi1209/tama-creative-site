@@ -45,7 +45,7 @@ TEMAS = {
     'uniformes': ('Uniformes e confecções', 'Tecidos, modelagens e personalização para quem veste a marca.'),
 }
 TEMA_MIN = 3
-TIPOS = ('brindes', 'kits', 'confeccoes', 'branding', 'integrado')
+TIPOS = ('brindes', 'kits', 'confeccoes', 'ativacoes', 'hotelaria', 'integrado')   # os mesmos do formulário de proposta
 MESES = ('janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro')
 BRT = timezone(timedelta(hours=-3))
 FEED_PATH = '/blog/feed.xml'
@@ -615,8 +615,8 @@ def cms_config(b):
     date_fmt = {'widget': 'datetime', 'format': 'YYYY-MM-DD', 'date_format': 'DD/MM/YYYY', 'time_format': False, 'picker_utc': True}
     capas = sorted(k for k in b.IMAGES if not k.startswith('blog-'))
     pecas = [_opt(f'{c["nome"]} ({b.CAT_PROD[c["categoria"]]})', c['slug']) for c in b.CATALOGO]
-    tipos = {'brindes': 'Brindes ou presentes', 'kits': 'Kits corporativos', 'confeccoes': 'Confecções e uniformes',
-             'integrado': 'Mais de um tipo'}
+    tipos = {'brindes': 'Brindes corporativos', 'kits': 'Kits e presentes', 'confeccoes': 'Confecções e uniformes',
+             'ativacoes': 'Ativação ou degustação', 'hotelaria': 'Hotelaria e gastronomia', 'integrado': 'Mais de uma frente'}
     fields = [
         {'label': 'Título do artigo (H1)', 'name': 'title', 'widget': 'string',
          'hint': 'Responde à busca principal com naturalidade. Até 110 caracteres.',

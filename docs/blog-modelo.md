@@ -17,9 +17,9 @@ capa: kit-presente
 capa_alt: descrição do que aparece na foto, sem começar por "foto de".
 capa_conceitual: true
 pecas:
-- kit-boas-vindas
-- caderno-premium
+- caderno-de-anotacoes
 - garrafa-termica
+- caneca
 relacionados: []
 draft: true
 ---

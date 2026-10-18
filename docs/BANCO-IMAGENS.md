@@ -1,15 +1,16 @@
 # Banco de imagens de produto
 
-Uma foto por peça, fundo claro uniforme, 1254 × 1254 px, com a identidade TaMa aplicada. O banco alimenta a home hoje e
-está preparado para o catálogo completo, a manutenção das fotos e, mais adiante, um marketplace.
+Uma entrada por foto, fundo claro uniforme, quadrada (1024 ou 1254 px), com a identidade TaMa aplicada como exemplo.
+É a **base única** do catálogo: a home, o `/catalogo/`, a página de ocasiões (`/brindes-corporativos-premium/`), as
+páginas de frente e os artigos do blog leem os mesmos modelos daqui. Está preparado para, mais adiante, um marketplace.
 
 ## Onde está cada coisa
 | Caminho | O que é |
 |---|---|
 | `src/data/produtos.json` | **Inventário: fonte da verdade.** Uma entrada por imagem, com produto, categoria, modelo, cor, material, técnica, texto alternativo, uso, aprovação, origem e hash do original. |
-| `midia/produtos/mestre/<id>.png` | Originais (PNG, 1254 px). Ficam só neste computador (fora do Git, como os masters dos mockups). |
+| `src/data/selecoes.json` | **Seleções editoriais** sobre o inventário (ver abaixo). Só guarda ids de modelo; nome, descrição, cores e fotos vêm sempre de `produtos.json`. |
+| `midia/produtos/mestre/<id>.png` | Originais (PNG, 1024 ou 1254 px). Ficam só neste computador (fora do Git, como os masters dos mockups). |
 | `img/produtos/<id>.webp` | Versão web (WebP, qualidade 92) que o build converte em AVIF/WebP/JPEG em vários tamanhos. O campo `arquivo` guarda o caminho público (`/img/produtos/…`); fotos enviadas pelo editor podem ter outro nome. |
-| `src/data/home-produtos.json` | Apresentação da home: quais imagens aparecem, em que ordem, com que texto. Aponta para os ids do inventário. |
 | `midia/produtos/indice.html` | Índice visual gerado para revisão (não vai para o site). |
 | `tools/produtos.py` | Importar, verificar e gerar o índice. |
 
@@ -18,20 +19,55 @@ Endereço: **https://tamacreative.com.br/admin/** (ou `/adm`), login com o GitHu
 Em **Catálogo de produtos** fica o próprio `src/data/produtos.json`, uma entrada por foto:
 
 - **Foto**: envia a imagem para `img/produtos/` (fundo claro, quadrada, de preferência 1254 px).
-- **Produto, categoria, descrição do modelo**: fotos com o mesmo nome de produto formam um único card no `/catalogo/`.
+- **Produto, categoria, descrição do modelo**: fotos com o mesmo nome de produto formam um único modelo (um card no
+  `/catalogo/`). Não escreva material nem capacidade no nome, na descrição ou no texto alternativo enquanto o material
+  não estiver confirmado: o build recusa (ver "Regra do build" abaixo).
 - **Cor**: nome e bolinha (seletor de cor, `#RRGGBB`).
 - **Material e técnica**: valor + situação. Só aparece no site o que estiver **Confirmado**; o resto sai como
-  "sob consulta". Vale para o `/catalogo/` e para os destaques da home (que leem o material e a técnica daqui).
+  "sob consulta". Vale para todo o site, porque todas as páginas leem o material e a técnica daqui.
 - **Texto alternativo**, **situação da foto** (Substituir e Retirada tiram a foto do site), **onde é usada**.
 - **Identificador**: deixe vazio em itens novos; o build gera `produto~cor`. Não mude o de itens existentes.
 
-Cada alteração vira um rascunho no fluxo de revisão (pull request com prévia do Netlify) e vai ao ar ao clicar em
-**Publicar**. O build confere categoria, cor, texto alternativo e se a foto existe: com erro, a publicação não acontece
-e o motivo aparece no log de deploy. O editor regrava o JSON com outra ordem de chaves e recuo de 2 espaços; isso não
-muda nada no site, e o `tools/produtos.py` volta ao formato padrão na próxima vez que salvar.
+Cada alteração vira um rascunho no fluxo de revisão (pull request no GitHub) e vai ao ar ao clicar em **Publicar**:
+o build do GitHub Actions gera e testa o site, e o Easypanel publica (ver `docs/DEPLOY.md`). O build confere
+categoria, cor, texto alternativo, se a foto existe e se algum texto afirma material sem confirmação: com erro, a
+publicação não acontece e o motivo aparece no log do GitHub Actions (aba Actions do repositório). O editor regrava o
+JSON com outra ordem de chaves e recuo de 2 espaços; isso não muda nada no site, e o `tools/produtos.py` volta ao
+formato padrão na próxima vez que salvar.
 
 Os originais em `img/produtos/` também são publicados em `/img/produtos/` (sem indexação), só para o editor mostrar a
 foto; o site usa as versões AVIF/WebP/JPEG geradas pelo build.
+
+## Modelos e seleções (`selecoes.json`)
+**Modelo** = todas as fotos com o mesmo `produto`. O id do modelo é o nome sem acento, em minúsculas, com hífens:
+"Polo masculina" → `polo-masculina`. Cada foto do modelo vira uma cor (bolinha) no card. Fotos `retirada` ou
+`substituir` ficam de fora.
+
+`src/data/selecoes.json` guarda só escolhas editoriais, sempre por id de modelo:
+
+| Chave | O que define |
+|---|---|
+| `home` | Modelos que aparecem na home, na ordem. |
+| `prioridade` | Ordem dos modelos dentro de cada categoria no catálogo (os que não estão na lista vêm depois, em ordem alfabética). |
+| `foto_base` | A foto que abre o card de um modelo (`modelo: id da foto`). Sem ela, abre a foto original do modelo (a que não é variação de cor). |
+| `ocasioes` | As ocasiões da página `/brindes-corporativos-premium/` (chave e nome). |
+| `ocasioes_por_modelo` | Em quais ocasiões cada modelo aparece. Modelo sem ocasião não entra nessa página (continua no catálogo). |
+| `aliases` | Slugs antigos (da home, da antiga curadoria e do catálogo) → id atual. Mantém funcionando seleções salvas no navegador, links antigos e peças de artigos. |
+
+O build para se `selecoes.json` apontar para um modelo que não existe em `produtos.json`. As amostras das páginas
+de frente (brindes, confecções, ativações, hotelaria) são listas de ids de modelo em `build.py` (`studio_block`).
+
+Ao **renomear um produto**, o id do modelo muda: atualize `selecoes.json` e acrescente o id antigo em `aliases`.
+
+## Regra do build: material não confirmado
+Enquanto o `material` de uma foto estiver `a_confirmar`, os campos `produto`, `modelo` (descrição) e `alt` não podem
+afirmar material nem capacidade. O build procura palavras como couro, acrílico, alumínio, inox, aço, algodão, piquet,
+cerâmica, bambu, vidro, madeira, papel, plástico, metal, cera e capacidades em ml (expressão `SPEC_RE` em `build.py`)
+e falha com a lista do que encontrou.
+
+A especificação a confirmar fica no próprio inventário: em `material` e `tecnica` (com `status: a_confirmar`) e em
+`observacao`, no formato `A confirmar com o fornecedor: couro ou sintético.` Quando o fornecedor confirmar, mude o
+`status` para `confirmado`; aí o site mostra a especificação e o nome pode citá-la.
 
 ## Nome das imagens (id)
 `<produto>[-<modelo>]~<cor>`, só minúsculas, números e hífen. Exemplos: `polo~vermelho`, `caneta-roller~bordo`,
@@ -52,8 +88,8 @@ inventário com os dados técnicos. Depois, preencha à mão no `produtos.json`:
 ```bash
 python -I tools/produtos.py importar ~/Downloads/nova.png --id caneca~branco-v2 --substitui caneca~branco
 ```
-A antiga passa a `retirada` e registra quem a substituiu; a nova entra em `revisao`. Troque o id nos lugares que a usam
-(`home-produtos.json`) e rode o build. O histórico fica no inventário.
+A antiga passa a `retirada` e registra quem a substituiu; a nova entra em `revisao`. Se a antiga era a `foto_base` do
+modelo em `selecoes.json`, troque pelo id novo e rode o build. O histórico fica no inventário.
 
 **Conferir** (rode antes de cada commit que mexa no banco)
 ```bash
@@ -76,13 +112,13 @@ Depois de ver a imagem, mude `aprovacao` para `aprovada` (ou `substituir`, com o
 | `cor` `{nome, hex}` | A cor da foto, como referência para o visitante. Sem declaração de estoque. |
 | `material`, `tecnica` `{valor, status}` | `status`: `a_confirmar` (sugestão editorial) ou `confirmado` (com fornecedor). **O site não publica um valor `a_confirmar` como especificação definitiva.** |
 | `alt` | Texto alternativo da imagem no site. |
-| `uso` | Onde a imagem aparece: `home`, depois `curadoria`, `catalogo`… Vazio = fora do site (não entra no build). |
+| `uso` | Registro de onde a imagem é usada (`catalogo`, `home`, `kits`…). Vazio vira `catalogo` no build. O que aparece em cada página é decidido por `selecoes.json` e pelas listas em `build.py`, não por este campo. |
 | `ilustrativa` | `true` para imagem gerada ou simulada. O site sempre apresenta como ilustrativa. |
 | `aprovacao` | `revisao` → `aprovada` \| `substituir` \| `retirada`. |
 | `origem` | De onde veio (ferramenta, data, fornecedor, fotógrafo). |
 | `substitui` | id da imagem que esta substituiu. |
 | `fornecedor`, `sku`, `estoque` | Vazios nesta fase (catálogo consultivo). Já existem para a fase de marketplace: SKU real do fornecedor, estoque e preço entram aqui, não no site estático. |
-| `observacao` | Avisos editoriais (ex.: "não chamar de couro legítimo sem confirmação"). |
+| `observacao` | Avisos editoriais e a especificação a confirmar (`A confirmar com o fornecedor: …`). |
 
 ## Variações de cor e produtos novos com IA
 `tools/variacoes.py` chama a API de imagens da OpenAI (modelo `gpt-image-1.5`). A chave vem de `OPENAI_API_KEY` ou de
@@ -97,11 +133,12 @@ puxam o fundo para o escuro. **Nunca envie fotos de terceiros como referência**
 reproduzir material nem marcas alheias. As imagens saem em 1024 px; importe com `tools/produtos.py importar`.
 
 ## Estado em 17/10/2026
-64 imagens: 40 geradas com IA (ferramenta informada: Sol 6.1 Leve) cobrindo os 38 modelos do catálogo inicial e 2
-variações de cor; 16 variações de cor (caneca, squeeze, copo e garrafa térmica) e 8 produtos novos (taças de acrílico,
-copo 360°, copos de café inox e de papel, copo térmico de vinho, jogo americano impresso) gerados com `tools/variacoes.py`. Todas em `revisao`, com material e técnica `a_confirmar`.
-Todas em uso: 16 na home (`src/data/home-produtos.json`), as 38 modelos no catálogo da curadoria (`/brindes-corporativos-premium/#catalogo`, gerado de `produtos.json` por `build_catalogo()` em `build.py`) e amostras nas páginas de brindes e confecções (`studio_block`).
+**208 imagens, 51 modelos**, todas ilustrativas (geradas com IA), todas com `aprovacao: revisao` e com material e
+técnica `a_confirmar`. Todas aparecem no `/catalogo/`; a home, a página de ocasiões, as páginas de frente e os artigos
+do blog mostram recortes dos mesmos modelos.
 
-Pendências de dados (do catálogo inicial): confirmar os dez modelos reais de caneta com o fornecedor; identificar o
-material e o modelo do saquinho de EVA/PVC; confirmar material das peças de hotelaria (não chamar de couro legítimo);
-capa dura × couro podem virar modelos separados depois da confirmação.
+Pendências de dados (lista completa em `docs/PENDENCIAS.md` › Confirmações de produto): confirmar material, técnica e
+capacidade dos 51 modelos; confirmar os dez modelos reais de caneta com o fornecedor; identificar o material (EVA ou
+PVC) e o modelo do saquinho transparente; couro legítimo ou sintético (agenda, cardápio, carteira, chaveiro com tira, estojo, nécessaire, porta-canetas, vela); acrílico e
+capacidade das taças; aprovar as 208 fotos; trocar as fotos com logo errado (carteira, chaveiro com tira, caneta
+ecológica natural; `tools/logo_ajuste.py`).

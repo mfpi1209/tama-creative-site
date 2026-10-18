@@ -1,8 +1,16 @@
-# O site oficial é servido pelo Easypanel (ver docs/DEPLOY.md). O Netlify só redireciona a cópia antiga
-# (tamacreative.netlify.app) para https://tamacreative.com.br, com 301 em todas as URLs, e não publica formulários.
-# Se o Netlify ainda estiver ligado ao repositório, o próximo build já publica só o redirecionamento.
-# Sem ligação com o Git, publicar uma vez:  netlify deploy --prod --dir netlify/redirecionar
-# O login do editor /admin/ (OAuth do Netlify para o GitHub) não depende do conteúdo publicado aqui.
+# O site oficial é servido pelo Easypanel (ver docs/DEPLOY.md). No Netlify:
+# - produção (tamacreative.netlify.app): só redireciona tudo para https://tamacreative.com.br (301), sem formulário;
+# - prévias de pull request (Deploy Previews, usadas pelo editor /admin/ em "Ver prévia"): geram o site completo
+#   para revisão. O Netlify marca as prévias com noindex. O formulário das prévias envia para /api/proposta, que não
+#   existe no Netlify: a prévia mostra o estado de erro e nenhum pedido fica parado em outro lugar.
+# Sem ligação com o Git, publicar o redirecionamento uma vez:  netlify deploy --prod --dir netlify/redirecionar
 [build]
   command = "echo 'Somente redirecionamento para tamacreative.com.br'"
   publish = "netlify/redirecionar"
+
+[context.deploy-preview]
+  command = "pip install -r requirements.txt && python build.py"
+  publish = "dist"
+
+[context.deploy-preview.environment]
+  PYTHON_VERSION = "3.13"

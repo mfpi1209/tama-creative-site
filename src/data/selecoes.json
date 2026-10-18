@@ -98,7 +98,7 @@
   "caneta-slim": "caneta-metalica~vermelho",
   "cardapio": "cardapio~azul-marinho",
   "carregador-sem-fio-de-mesa": "carregador-sem-fio-mesa~branco",
-  "cartao-com-envelope": "cartao~creme",
+  "cartao-com-envelope": "cartao~azul-marinho",
   "carteira": "carteira~caramelo",
   "chaveiro-abridor-de-garrafa": "chaveiro-abridor~azul-royal",
   "chaveiro-com-tira": "chaveiro-couro~preto",
@@ -150,7 +150,7 @@
   "taca-de-vinho": "taca-vinho-acrilico~preto",
   "taca-margarita": "taca-margarita~transparente",
   "taca-martini": "taca-martini~transparente",
-  "vela": "vela~couro"
+  "vela": "vela~verde"
  },
  "ocasioes": {
   "boas-vindas": "Boas-vindas",

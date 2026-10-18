@@ -7380,6 +7380,43 @@
    "atualizado_em": "2026-10-18"
   },
   {
+   "id": "cartao~azul-marinho",
+   "produto": "Cartão com envelope",
+   "categoria": "bolsas-embalagens",
+   "modelo": "Cartão dobrado com envelope",
+   "cor": {
+    "nome": "Azul-marinho",
+    "hex": "#1E2A4A"
+   },
+   "material": {
+    "valor": "Papel especial",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Hot stamping",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Cartão dobrado azul-marinho ao lado de um envelope creme, com a marca TaMa em dourado.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base cartao~creme.",
+   "arquivo": "/img/produtos/cartao~azul-marinho.webp",
+   "mestre": "midia/produtos/mestre/cartao~azul-marinho.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "ee6f6ded8253f499775a054b3eed90ee1792f0ee61ef299425960c6c9ed77c68",
+   "bytes": 1572730,
+   "atualizado_em": "2026-10-18"
+  },
+  {
    "fornecedor": null,
    "bytes": 1385047,
    "sku": null,
@@ -17072,6 +17109,43 @@
    "produto": "Vela",
    "alt": "Vela aromática em copo, com cinta e pavio, na cor preta, com a marca TaMa na cinta.",
    "substitui": null
+  },
+  {
+   "id": "vela~verde",
+   "produto": "Vela",
+   "categoria": "casa-bem-estar",
+   "modelo": "Cinta com botão de pressão",
+   "cor": {
+    "nome": "Verde",
+    "hex": "#1F6B45"
+   },
+   "material": {
+    "valor": "Vidro e couro",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Baixo-relevo na cinta",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Vela aromática em copo, com cinta verde e pavio, com a marca TaMa na cinta.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base vela~couro.",
+   "arquivo": "/img/produtos/vela~verde.webp",
+   "mestre": "midia/produtos/mestre/vela~verde.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "5ca73fa004a6788f2644b079806906f907d8a2d9d420fe80ab92a4f3c3e64e33",
+   "bytes": 1322411,
+   "atualizado_em": "2026-10-18"
   }
  ]
 }

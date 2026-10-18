@@ -234,7 +234,8 @@
   ],
   "vela~couro": [
    "Café",
-   "Preto"
+   "Preto",
+   "Verde"
   ],
   "difusor~natural": [
    "Âmbar"
@@ -379,6 +380,9 @@
    "Preto",
    "Cinza",
    "Verde-escuro"
+  ],
+  "cartao~creme": [
+   "Azul-marinho"
   ]
  }
 }

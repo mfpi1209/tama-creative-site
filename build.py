@@ -1444,7 +1444,7 @@ CONF_SLIDES = [
 def page_confeccoes():
     return {
         'path': '/confeccoes-personalizadas/', 'og': 'conf-equipe-kits', 'assunto': 'confecções e uniformes', 'title': 'Uniformes e confecções personalizadas para empresas | TaMa',
-        'description': 'Uniformes corporativos, polos bordadas, moletons e bonés para equipes e eventos, alinhados à identidade visual da sua empresa e pensados para quem veste.',
+        'description': 'Uniformes corporativos, polos, camisas, moletons e bonés para equipes e eventos, alinhados à identidade visual da sua empresa e pensados para quem veste.',
         'trail': [('/', 'Início'), ('/confeccoes-personalizadas/', 'Confecções')],
         'service': {'key': 'confeccoes', 'name': 'Confecções personalizadas e uniformes corporativos', 'type': 'Uniformes corporativos personalizados'},
         'preload': preload_image(CONF_SLIDES[0][1], HERO_SIZES),  # mesma imagem e sizes do slide 1
@@ -1459,8 +1459,8 @@ def page_confeccoes():
     </div>
   </div>
 </section>
-{studio_block(['polo-masculina', 'polo-feminina', 'camiseta-masculina', 'camiseta-feminina', 'moletom-com-capuz', 'bone', 'dolma', 'avental'],
-              'As peças de vestuário', 'Catálogo', 'Polo, camiseta, moletom, dólmã e avental, com a marca aplicada como exemplo.', 'estudio-c-t',
+{studio_block(['polo-masculina', 'polo-feminina', 'camisa-masculina', 'camisa-feminina', 'camiseta-masculina', 'camiseta-feminina', 'moletom-com-capuz', 'bone', 'dolma', 'avental'],
+              'As peças de vestuário', 'Catálogo', 'Polo, camisa, camiseta, moletom, dólmã e avental, com a marca aplicada como exemplo.', 'estudio-c-t',
               more=('/catalogo/?categoria=vestuario', 'Ver no catálogo'))}
 <section class="section ivory" aria-labelledby="tec-c-t">
   <div class="wrap split" style="align-items:start">
@@ -1599,7 +1599,7 @@ def page_sobre():
     <div class="section-head"><p class="eyebrow">O que fazemos</p><h2 id="faz-t" class="section-title">Cinco frentes, um mesmo cuidado com a marca</h2></div>
     <div class="cols-2">
       <div class="item">{arc()}<div><h3><a href="/brindes-corporativos/">Brindes corporativos</a></h3><p>Peças para clientes, equipes e eventos, escolhidas pelo uso.</p></div></div>
-      <div class="item">{arc()}<div><h3><a href="/confeccoes-personalizadas/">Confecções personalizadas</a></h3><p>Polos, camisetas, moletons, dólmãs e aventais com a marca da empresa.</p></div></div>
+      <div class="item">{arc()}<div><h3><a href="/confeccoes-personalizadas/">Confecções personalizadas</a></h3><p>Polos, camisas, camisetas, moletons, dólmãs e aventais com a marca da empresa.</p></div></div>
       <div class="item">{arc()}<div><h3><a href="/kits-corporativos/">Kits premium</a></h3><p>Caixa, cartão e peças compostos para uma ocasião.</p></div></div>
       <div class="item">{arc()}<div><h3><a href="/ativacoes-promocionais/">Ativações e degustações</a></h3><p>Ações em eventos, feiras e pontos de venda.</p></div></div>
       <div class="item">{arc()}<div><h3><a href="/hotelaria-e-gastronomia/">Hotelaria e gastronomia</a></h3><p>Cardápios, porta-contas, jogos americanos e uniformes.</p></div></div>

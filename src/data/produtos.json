@@ -2500,6 +2500,82 @@
    "substitui": null
   },
   {
+   "id": "camisa-feminina~branco",
+   "produto": "Camisa feminina",
+   "categoria": "vestuario",
+   "modelo": "Manga longa",
+   "cor": {
+    "nome": "Branco",
+    "hex": "#F7F5F0"
+   },
+   "material": {
+    "valor": "Tricoline",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camisa feminina de manga longa, na cor branca, com a marca TaMa bordada no peito.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Enviada pela TaMa em 18/10/2026. Ilustrativa.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/camisa-feminina~branco.webp",
+   "mestre": "midia/produtos/mestre/camisa-feminina~branco.webp",
+   "largura": 1254,
+   "altura": 1254,
+   "sha256": "900dc4116606a703b9422c102db05065a55b86500cd1c2460c7a24eb50b1aed6",
+   "bytes": 56554,
+   "atualizado_em": "2026-10-18",
+   "vista": "frente"
+  },
+  {
+   "id": "camisa-masculina~azul-claro",
+   "produto": "Camisa masculina",
+   "categoria": "vestuario",
+   "modelo": "Manga longa",
+   "cor": {
+    "nome": "Azul-claro",
+    "hex": "#A9C6EA"
+   },
+   "material": {
+    "valor": "Tricoline",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Bordado",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camisa masculina de manga longa, na cor azul-claro, com a marca TaMa bordada no peito.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Enviada pela TaMa em 18/10/2026. Ilustrativa.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/camisa-masculina~azul-claro.webp",
+   "mestre": "midia/produtos/mestre/camisa-masculina~azul-claro.webp",
+   "largura": 1254,
+   "altura": 1254,
+   "sha256": "86ea6642e8f6bcb484b0aa083e811a3505238ed312a30bee842c051da2c26f59",
+   "bytes": 115974,
+   "atualizado_em": "2026-10-18",
+   "vista": "frente"
+  },
+  {
    "fornecedor": null,
    "bytes": 1366251,
    "sku": null,

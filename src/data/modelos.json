@@ -98,6 +98,38 @@
    "descricao_seo": ""
   },
   {
+   "produto": "Camisa feminina",
+   "genero": "f",
+   "resumo": "De manga longa e botões, com modelagem acinturada, a camisa feminina personalizada é o uniforme de quem precisa de um visual formal no dia a dia. Funciona bem em recepção, atendimento, equipes executivas e eventos corporativos, com a marca aplicada de forma discreta no peito. Cor, tecido e aplicação da marca são definidos na proposta.",
+   "usos": [
+    "Recepção e atendimento",
+    "Equipes executivas",
+    "Eventos corporativos"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "",
+   "descricao_seo": ""
+  },
+  {
+   "produto": "Camisa masculina",
+   "genero": "f",
+   "resumo": "Com gola social, botões e manga longa, a camisa masculina personalizada dá um visual formal a equipes comerciais, consultores e times que representam a empresa diante de clientes. A marca entra no peito, de forma discreta e profissional. Cor, tecido e aplicação da marca são definidos na proposta.",
+   "usos": [
+    "Equipes comerciais",
+    "Reuniões com clientes",
+    "Eventos corporativos"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "",
+   "descricao_seo": ""
+  },
+  {
    "produto": "Camiseta feminina",
    "genero": "f",
    "resumo": "Versátil, a camiseta feminina personalizada veste equipes em eventos, convenções, ações promocionais e no dia a dia de lojas e escritórios. A modelagem feminina pensa em quem vai usar a peça, e ela também funciona bem em kits de boas-vindas e campanhas internas.",

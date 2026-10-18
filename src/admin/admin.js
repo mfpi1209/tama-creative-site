@@ -24,8 +24,9 @@
     }
   });
 
-  var TEMAS = { 'brindes-e-presentes': 'Brindes e presentes', 'kits-e-boas-vindas': 'Kits e boas-vindas', 'planejamento-de-compras': 'Planejamento de compras',
-    'personalizacao-e-materiais': 'Personalização e materiais', 'eventos-e-ativacoes': 'Eventos e ativações' };
+  var TEMAS = { 'brindes-e-presentes': 'Brindes e presentes', 'kits-e-boas-vindas': 'Kits e boas-vindas', 'confeccoes-e-personalizacao': 'Confecções e personalização',
+    'embalagem-e-acabamento': 'Embalagem e acabamento', 'eventos-e-ativacoes': 'Eventos e ativações', 'hotelaria-e-gastronomia': 'Hotelaria e gastronomia',
+    'planejamento-de-compras': 'Planejamento de compras' };
 
   function check(ok, text) {
     return h('li', { style: { color: ok ? '#2F6B4F' : '#A4322A', margin: '2px 0' } }, (ok ? '✓ ' : '✗ ') + text);

@@ -4,7 +4,7 @@ palavra_chave: quanto custa identidade visual
 status: ideia
 prioridade: media
 intencao: comercial
-tema: personalizacao-e-materiais
+tema: confeccoes-e-personalizacao
 destino: /branding-identidade-visual/
 ---
 Guia 7 da estratégia editorial (docs/SEO.md). Sem preços: falar do que muda o escopo (regra "nada inventado" de docs/BLOG.md).

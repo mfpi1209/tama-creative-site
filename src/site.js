@@ -361,6 +361,9 @@
       if (!b) return;
       var cat = b.getAttribute('data-cat');
       applyBlogFilter(cat, b.textContent.trim());
+      // no celular os filtros rolam de lado: mantém o escolhido à vista
+      var on = blogFilters.querySelector('[aria-pressed="true"]');
+      if (on && on.scrollIntoView) on.scrollIntoView({ block: 'nearest', inline: 'nearest' });
       track('filter_blog', { value: cat || 'todos' });
     });
   }

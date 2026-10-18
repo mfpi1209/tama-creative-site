@@ -39,9 +39,11 @@ DRAFTS = os.environ.get('BLOG_DRAFTS', '').lower() in ('1', 'true', 'yes')
 TEMAS = {
     'brindes-e-presentes': ('Brindes e presentes', 'Como escolher brindes e presentes para clientes, parceiros e equipes.'),
     'kits-e-boas-vindas': ('Kits e boas-vindas', 'Composição, apresentação e entrega de kits para quem chega e para equipes.'),
-    'planejamento-de-compras': ('Planejamento de compras', 'Regras, aprovações e prazos para comprar brindes com segurança.'),
-    'personalizacao-e-materiais': ('Personalização e materiais', 'Técnicas, materiais e acabamentos para aplicar a sua marca.'),
+    'confeccoes-e-personalizacao': ('Confecções e personalização', 'Uniformes, vestuário e técnicas para aplicar a sua marca.'),
+    'embalagem-e-acabamento': ('Embalagem e acabamento', 'Caixas, papéis, lacres e cartões que completam a apresentação do presente.'),
     'eventos-e-ativacoes': ('Eventos e ativações', 'Peças e kits que acompanham eventos, feiras e ações de marca.'),
+    'hotelaria-e-gastronomia': ('Hotelaria e gastronomia', 'Materiais com a identidade da marca para mesa, salão e equipe.'),
+    'planejamento-de-compras': ('Planejamento de compras', 'Briefing, orçamento, prazos, aprovações e regras para comprar brindes.'),
 }
 TEMA_MIN = 3
 RELACIONADOS_MAX = 2

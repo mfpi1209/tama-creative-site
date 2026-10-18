@@ -4,7 +4,7 @@ palavra_chave: brindes sustentáveis para empresas
 status: ideia
 prioridade: alta
 intencao: informacional
-tema: personalizacao-e-materiais
+tema: brindes-e-presentes
 destino: /brindes-corporativos/
 precisa_fontes: true
 ---

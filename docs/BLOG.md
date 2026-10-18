@@ -145,7 +145,7 @@ Em `build.py` o blog ocupa só o import, o item do menu e do rodapé, `og_type`/
 | `date` | sim | Publicação (`AAAA-MM-DD`). Data futura = não publica |
 | `updated` | não | Última revisão relevante; vira `dateModified` e `lastmod` |
 | `destaque` | não | `true` põe o artigo em destaque no índice entre os do mesmo dia |
-| `tema` | sim | Categoria: `brindes-e-presentes`, `kits-e-boas-vindas`, `planejamento-de-compras`, `personalizacao-e-materiais`, `eventos-e-ativacoes` (lista em `blog.py`, `TEMAS`). Vira filtro na listagem quando há artigo |
+| `tema` | sim | Categoria: `brindes-e-presentes`, `kits-e-boas-vindas`, `confeccoes-e-personalizacao`, `embalagem-e-acabamento`, `eventos-e-ativacoes`, `hotelaria-e-gastronomia`, `planejamento-de-compras` (lista em `blog.py`, `TEMAS`). Vira filtro na listagem quando há artigo |
 | `resumo` | não | Frase curta do card e da linha abaixo do H1 (até 160). Vazio usa `description` |
 | `ocasiao` | não | Chave da curadoria (`boas-vindas`, `eventos`, `executivos`, `campanhas`, `lancamentos`, `fim-de-ano`, `reconhecimento`). Gera o link `/brindes-corporativos-premium/?ocasiao=…` |
 | `servico` | não | Página de serviço ligada ao artigo (botão no quadro do autor) |
@@ -204,6 +204,19 @@ Em 18/10/2026 os quatro textos foram substituídos pelos do pacote de refatoraç
 O artigo de compliance não cita mais um valor em reais: ele orienta a verificar o parâmetro vigente. **Revisar até 31/01/2027** (`revisar_em`): conferir as três fontes oficiais e atualizar o texto se mudarem.
 
 A chamada final do artigo de fim de ano não fala em taças e copos, porque a curadoria do site não tem essas peças. O texto do artigo continua citando taças como opção a considerar.
+
+## Rascunhos do pacote de 50 artigos (18/10/2026)
+
+50 guias curtos (cerca de 300 palavras) do pacote `TaMa_Blog_50` estão em `src/blog/` com `draft: true`: não aparecem no site nem no sitemap. As capas, geradas por IA, ficam em `img/blog/capa-<slug>.jpg` (JPEG de alta qualidade, a partir dos PNG de 1672×941 do pacote) e trazem a legenda "Imagem ilustrativa gerada por IA".
+
+Na importação: os links para `/confeccoes/` passaram para `/confeccoes-personalizadas/`; as rotas inexistentes `/ativacoes/` e `/gastronomia-e-hotelaria/` saíram do texto (esses artigos ficam sem página de serviço e com proposta do tipo integrado); a linha final de links comerciais virou `[[cta]]`. Cada artigo ganhou título curto, palavra-chave, resumo e até 2 relacionados.
+
+Antes de liberar um bloco (trocar `draft` para `false` e `date` para o dia da publicação):
+- publique juntos os artigos que se citam, ou o build recusa o link para um rascunho;
+- confira as afirmações sobre normas sem fonte em `brindes-alegacoes-ambientais` (publicidade ambiental), `brindes-tecnologicos` (homologação), `degustacao-pdv-materiais`, `jogos-americanos`, `cardapios-personalizados` (alimentos), `aventais-personalizados`, `dolmas-personalizadas`, `uniformes-equipes-funcoes` e `uniforme-promotores` (EPI);
+- decida `kit-eventos-corporativos`: a busca "kit para evento corporativo" está em espera por causa do `/kits-para-eventos/` do subdomínio de brindes;
+- confirme a oferta antes de publicar artigos de produto que o site não mostra (taças, copos, cardápios, porta-contas, materiais de ativação) e o que `kit-versoes-publicos` promete sobre trocar itens depois da aprovação;
+- vigie a canibalização apontada no Painel de SEO: `kit-onboarding-presencial` × `o-que-colocar-no-kit-de-boas-vindas`, `presentes-agradecimento-parceiros` e `kit-relacionamento-clientes` × `brindes-de-fim-de-ano-para-clientes`, `entrega-brindes-multiplos-enderecos` × `kit-home-office-envio`, `brindes-alegacoes-ambientais` × pauta de brindes sustentáveis.
 
 ## Próximas pautas sugeridas
 

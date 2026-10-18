@@ -26,6 +26,8 @@
 .blog-filters[hidden], .post-card[hidden], .blog-empty[hidden] { display: none; }
 .blog-filters .chip[aria-pressed="true"] { background: var(--wine); border-color: var(--wine); }
 .blog-filters .chip:hover { border-color: var(--wine); }
+/* celular: uma linha com rolagem lateral, para os filtros não empurrarem os guias para baixo */
+@media (max-width: 560px) { .blog-filters { flex-wrap: nowrap; overflow-x: auto; margin-inline: calc(var(--gutter) * -1); padding: 2px var(--gutter) 8px; scrollbar-width: none; } .blog-filters .chip { flex: none; } }
 .blog-empty { display: grid; gap: 6px; justify-items: start; padding: 24px; background: var(--ivory); border-radius: var(--radius); color: var(--muted); }
 .blog-empty button { background: none; border: 0; cursor: pointer; }
 .post-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: clamp(20px, 2.4vw, 28px); }

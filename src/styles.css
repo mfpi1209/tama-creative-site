@@ -793,9 +793,10 @@ html.cat-lock { overflow: hidden; }
 .pdp-main img { width: 100%; height: 100%; object-fit: cover; transform-origin: var(--zx, 50%) var(--zy, 50%); transition: transform .25s ease; }
 .pdp-main:hover img { transform: none; }
 .pdp-main.is-zoom img { transform: scale(2); }
-.pdp-gallery .prod-zoom { top: 14px; right: 14px; width: 40px; height: 40px; padding: 0; border: 0; cursor: zoom-in; }
-.pdp-thumbs { display: flex; flex-wrap: wrap; gap: 10px; }
-.pdp-thumb { width: 76px; height: 76px; padding: 0; overflow: hidden; border: 1px solid var(--line); border-radius: 8px; background: #F3EEE7; cursor: pointer; }
+.pdp-main { position: relative; }
+.pdp-main .prod-zoom { top: auto; bottom: 14px; right: 14px; width: 40px; height: 40px; padding: 0; border: 0; cursor: zoom-in; }   /* embaixo: não cobre a ponta das canetas */
+.pdp-thumbs { display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); gap: 8px; }   /* até 8 fotos numa linha */
+.pdp-thumb { width: auto; height: auto; aspect-ratio: 1; padding: 0; overflow: hidden; border: 1px solid var(--line); border-radius: 8px; background: #F3EEE7; cursor: pointer; }
 .pdp-thumb img { width: 100%; height: 100%; object-fit: cover; }
 .pdp-thumb[aria-pressed="true"] { border: 2px solid var(--wine); }
 .pdp-info { display: grid; gap: 16px; position: sticky; top: calc(var(--header-h) + 24px); }
@@ -815,8 +816,9 @@ html.cat-lock { overflow: hidden; }
 @media (max-width: 900px) {
   .product.pdp { grid-template-columns: minmax(0, 1fr); }
   .pdp-info { position: static; }
-  .pdp-thumbs { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
+  .pdp-thumbs { display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; margin-inline: calc(var(--gutter) * -1); padding-inline: var(--gutter); scroll-padding-inline: var(--gutter); -webkit-mask-image: linear-gradient(90deg, #000 85%, transparent); mask-image: linear-gradient(90deg, #000 85%, transparent); }
   .pdp-thumb { flex: none; width: 64px; height: 64px; }
+  .pdp-spec div { grid-template-columns: 8rem 1fr; }
 }
 .product.pdp:hover { box-shadow: none; }
 @media (max-width: 600px) { .pdp-info .actions > * { flex: 1 1 100%; justify-content: center; } }

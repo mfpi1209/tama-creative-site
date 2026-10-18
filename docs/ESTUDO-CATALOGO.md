@@ -99,3 +99,34 @@
   - Ainda não há nenhuma dessas fotos no banco. Os prompts para gerá-las estão em `docs/PROMPTS-GRUPO-VERSO.md`.
 - **Medições:** Lighthouse móvel nas páginas de produto com desempenho 98–99 e SEO, acessibilidade e boas práticas 100;
   139 testes e2e.
+
+**Revisão em paralelo (3 agentes, 18/10/2026):**
+- **QA visual das 52 páginas** (104 cargas): sem erro e sem vazamento. Ajustes feitos:
+  - miniaturas numa linha no desktop;
+  - faixa até a borda, com esmaecido, no celular;
+  - "+" no canto de baixo, para não cobrir as canetas;
+  - ficha técnica mais estreita no celular.
+- **SEO e texto:**
+  - título "<nome> personalizado(a) | TaMa Creative", sem "com … com" e com até 60 caracteres;
+  - descrição por uso da categoria;
+  - textos de categoria e da ficha revisados;
+  - relacionados em rodízio (antes, 23 páginas não recebiam nenhum link de outra página de produto).
+- **Nomes que afirmavam material**, renomeados:
+  - "Chaveiro de couro" passou a "Chaveiro de tira com argola". A palavra "couro" é reservada por lei a couro legítimo.
+  - Taças sem "em acrílico".
+  - "Copo para café expresso" (era "em inox").
+  - "Caneta metálica de clique" (era "de alumínio").
+  - "Copo com estampa envolvente" (era "impressão 360°").
+  - "Saquinho transparente com zíper" (era "EVA/PVC").
+- **Prompts das fotos de grupo e verso:** `docs/PROMPTS-GRUPO-VERSO.md`, com 47 fotos de grupo e 16 de verso, e
+  prioridades.
+
+**Ainda para decidir:**
+1. **Conteúdo próprio por modelo.** Hoje só ~7 palavras por página são exclusivas de cada produto, o que traz risco de
+   conteúdo fino para o Google. Proposta:
+   - um cadastro por modelo no /admin/: resumo de 2 a 3 frases, usos, medidas quando confirmadas, gênero e título/descrição
+     para o Google;
+   - até lá, escolher entre indexar assim mesmo ou marcar como `noindex`.
+2. **Imagem de compartilhamento por produto.** Hoje todas usam a imagem padrão; seria preciso gerar uma versão
+   1200×630 de cada foto.
+3. **"Taça de gin em acrílico" na curadoria** (`curadoria.json`, sessão curadoria-cores): alinhar com o novo nome.

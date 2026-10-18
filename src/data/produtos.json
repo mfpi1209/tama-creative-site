@@ -2749,7 +2749,7 @@
   },
   {
    "id": "caneta-metalica~azul",
-   "produto": "Caneta metálica de alumínio",
+   "produto": "Caneta metálica de clique",
    "categoria": "canetas-escritorio",
    "modelo": "Clique, com anéis cromados",
    "cor": {
@@ -2787,7 +2787,7 @@
   },
   {
    "id": "caneta-metalica~prata",
-   "produto": "Caneta metálica de alumínio",
+   "produto": "Caneta metálica de clique",
    "categoria": "canetas-escritorio",
    "modelo": "Clique, com anéis cromados",
    "cor": {
@@ -2824,7 +2824,7 @@
   },
   {
    "id": "caneta-metalica~preto",
-   "produto": "Caneta metálica de alumínio",
+   "produto": "Caneta metálica de clique",
    "categoria": "canetas-escritorio",
    "modelo": "Clique, com anéis cromados",
    "cor": {
@@ -2861,7 +2861,7 @@
   },
   {
    "id": "caneta-metalica~vermelho",
-   "produto": "Caneta metálica de alumínio",
+   "produto": "Caneta metálica de clique",
    "categoria": "canetas-escritorio",
    "modelo": "Clique, com anéis cromados",
    "cor": {
@@ -3862,7 +3862,7 @@
   },
   {
    "id": "chaveiro-couro~cafe",
-   "produto": "Chaveiro de couro",
+   "produto": "Chaveiro de tira com argola",
    "categoria": "acessorios",
    "modelo": "Tira com argola",
    "cor": {
@@ -3899,7 +3899,7 @@
   },
   {
    "id": "chaveiro-couro~caramelo",
-   "produto": "Chaveiro de couro",
+   "produto": "Chaveiro de tira com argola",
    "categoria": "acessorios",
    "modelo": "Tira com argola",
    "cor": {
@@ -3937,7 +3937,7 @@
   },
   {
    "id": "chaveiro-couro~preto",
-   "produto": "Chaveiro de couro",
+   "produto": "Chaveiro de tira com argola",
    "categoria": "acessorios",
    "modelo": "Tira com argola",
    "cor": {
@@ -3974,7 +3974,7 @@
   },
   {
    "id": "copo-acrilico-360~azul-marinho",
-   "produto": "Copo com impressão 360°",
+   "produto": "Copo com estampa envolvente",
    "categoria": "garrafas-copos",
    "modelo": "Reutilizável, estampa envolvente",
    "cor": {
@@ -4011,7 +4011,7 @@
   },
   {
    "id": "copo-acrilico-360~bordo",
-   "produto": "Copo com impressão 360°",
+   "produto": "Copo com estampa envolvente",
    "categoria": "garrafas-copos",
    "modelo": "Reutilizável, estampa envolvente",
    "cor": {
@@ -4048,7 +4048,7 @@
   },
   {
    "id": "copo-acrilico-360~terracota",
-   "produto": "Copo com impressão 360°",
+   "produto": "Copo com estampa envolvente",
    "categoria": "garrafas-copos",
    "modelo": "Reutilizável, estampa envolvente",
    "cor": {
@@ -4085,7 +4085,7 @@
   },
   {
    "id": "copo-acrilico-360~verde-escuro",
-   "produto": "Copo com impressão 360°",
+   "produto": "Copo com estampa envolvente",
    "categoria": "garrafas-copos",
    "modelo": "Reutilizável, estampa envolvente",
    "cor": {
@@ -4122,9 +4122,9 @@
   },
   {
    "id": "copo-cafe-inox~branco",
-   "produto": "Copo de café em inox",
+   "produto": "Copo para café expresso",
    "categoria": "garrafas-copos",
-   "modelo": "Espresso, parede dupla, sem alça",
+   "modelo": "Para café expresso, sem alça",
    "cor": {
     "nome": "Branco",
     "hex": "#F7F5F0"
@@ -4159,9 +4159,9 @@
   },
   {
    "id": "copo-cafe-inox~inox",
-   "produto": "Copo de café em inox",
+   "produto": "Copo para café expresso",
    "categoria": "garrafas-copos",
-   "modelo": "Espresso, parede dupla, sem alça",
+   "modelo": "Para café expresso, sem alça",
    "cor": {
     "nome": "Inox",
     "hex": "#B8B8B5"
@@ -4196,9 +4196,9 @@
   },
   {
    "id": "copo-cafe-inox~preto",
-   "produto": "Copo de café em inox",
+   "produto": "Copo para café expresso",
    "categoria": "garrafas-copos",
-   "modelo": "Espresso, parede dupla, sem alça",
+   "modelo": "Para café expresso, sem alça",
    "cor": {
     "nome": "Preto",
     "hex": "#1E1E1E"
@@ -6193,7 +6193,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Envelope creme fechado com lacre de cera, ao lado do carimbo, na cor dourada, com a marca TaMa com o símbolo no lacre.",
+   "alt": "Envelope creme fechado com lacre de cera dourado com o símbolo da TaMa, ao lado do carimbo.",
    "uso": [
     "curadoria",
     "catalogo"
@@ -7518,7 +7518,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Porta-lápis com costura aparente e lápis, na cor azul-marinho, com a marca TaMa na frente.",
+   "alt": "Porta-canetas com costura aparente, com lápis, na cor azul-marinho, com a marca TaMa na frente.",
    "uso": [
     "catalogo"
    ],
@@ -7555,7 +7555,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Porta-lápis com costura aparente e lápis, na cor café, com a marca TaMa na frente.",
+   "alt": "Porta-canetas com costura aparente, com lápis, na cor café, com a marca TaMa na frente.",
    "uso": [
     "catalogo"
    ],
@@ -7592,7 +7592,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Porta-lápis com costura aparente e lápis, na cor caramelo, com a marca TaMa na frente.",
+   "alt": "Porta-canetas com costura aparente, com lápis, na cor caramelo, com a marca TaMa na frente.",
    "uso": [
     "catalogo"
    ],
@@ -7629,7 +7629,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Porta-lápis com costura aparente e lápis, na cor preta, com a marca TaMa na frente.",
+   "alt": "Porta-canetas com costura aparente, com lápis, na cor preta, com a marca TaMa na frente.",
    "uso": [
     "catalogo"
    ],
@@ -7648,7 +7648,7 @@
   },
   {
    "id": "pouch~transparente",
-   "produto": "Saquinho de EVA/PVC",
+   "produto": "Saquinho transparente com zíper",
    "categoria": "bolsas-embalagens",
    "modelo": "Pouch transparente com zíper",
    "cor": {
@@ -7666,7 +7666,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Pouch transparente com zíper, na cor transparente, com a marca TaMa na frente.",
+   "alt": "Saquinho transparente com zíper e a marca TaMa na frente.",
    "uso": [
     "catalogo"
    ],
@@ -8020,7 +8020,7 @@
   },
   {
    "id": "taca-champagne-acrilico~azul-royal",
-   "produto": "Taça de champagne em acrílico",
+   "produto": "Taça flute",
    "categoria": "garrafas-copos",
    "modelo": "Flute",
    "cor": {
@@ -8057,7 +8057,7 @@
   },
   {
    "id": "taca-champagne-acrilico~branco",
-   "produto": "Taça de champagne em acrílico",
+   "produto": "Taça flute",
    "categoria": "garrafas-copos",
    "modelo": "Flute",
    "cor": {
@@ -8094,7 +8094,7 @@
   },
   {
    "id": "taca-champagne-acrilico~preto",
-   "produto": "Taça de champagne em acrílico",
+   "produto": "Taça flute",
    "categoria": "garrafas-copos",
    "modelo": "Flute",
    "cor": {
@@ -8131,7 +8131,7 @@
   },
   {
    "id": "taca-champagne-acrilico~vermelho",
-   "produto": "Taça de champagne em acrílico",
+   "produto": "Taça flute",
    "categoria": "garrafas-copos",
    "modelo": "Flute",
    "cor": {
@@ -8168,7 +8168,7 @@
   },
   {
    "id": "taca-gin-acrilico~azul-royal",
-   "produto": "Taça de gin em acrílico",
+   "produto": "Taça de gin",
    "categoria": "garrafas-copos",
    "modelo": "Taça balão",
    "cor": {
@@ -8205,7 +8205,7 @@
   },
   {
    "id": "taca-gin-acrilico~branco",
-   "produto": "Taça de gin em acrílico",
+   "produto": "Taça de gin",
    "categoria": "garrafas-copos",
    "modelo": "Taça balão",
    "cor": {
@@ -8242,7 +8242,7 @@
   },
   {
    "id": "taca-gin-acrilico~preto",
-   "produto": "Taça de gin em acrílico",
+   "produto": "Taça de gin",
    "categoria": "garrafas-copos",
    "modelo": "Taça balão",
    "cor": {
@@ -8279,7 +8279,7 @@
   },
   {
    "id": "taca-gin-acrilico~vermelho",
-   "produto": "Taça de gin em acrílico",
+   "produto": "Taça de gin",
    "categoria": "garrafas-copos",
    "modelo": "Taça balão",
    "cor": {
@@ -8316,7 +8316,7 @@
   },
   {
    "id": "taca-vinho-acrilico~azul-royal",
-   "produto": "Taça de vinho em acrílico",
+   "produto": "Taça de vinho",
    "categoria": "garrafas-copos",
    "modelo": "Taça de vinho",
    "cor": {
@@ -8353,7 +8353,7 @@
   },
   {
    "id": "taca-vinho-acrilico~bordo",
-   "produto": "Taça de vinho em acrílico",
+   "produto": "Taça de vinho",
    "categoria": "garrafas-copos",
    "modelo": "Taça de vinho",
    "cor": {
@@ -8390,7 +8390,7 @@
   },
   {
    "id": "taca-vinho-acrilico~branco",
-   "produto": "Taça de vinho em acrílico",
+   "produto": "Taça de vinho",
    "categoria": "garrafas-copos",
    "modelo": "Taça de vinho",
    "cor": {
@@ -8427,7 +8427,7 @@
   },
   {
    "id": "taca-vinho-acrilico~preto",
-   "produto": "Taça de vinho em acrílico",
+   "produto": "Taça de vinho",
    "categoria": "garrafas-copos",
    "modelo": "Taça de vinho",
    "cor": {

@@ -540,13 +540,28 @@ def page_catalogo():
 # Texto de contexto das páginas de produto, por categoria (sem afirmar material ou técnica ainda não confirmados)
 CAT_TEXTO = {
     'vestuario': 'Peças para equipes, eventos e uniformes do dia a dia. A técnica de aplicação da marca (bordado, silk ou outra) e a grade de tamanhos são definidas na proposta, conforme o uso e o tecido.',
-    'canetas-escritorio': 'Itens que entram na rotina de trabalho: canetas, cadernos, agendas e organizadores. A técnica de aplicação da marca depende do material e é confirmada na proposta, com a arte para aprovação.',
-    'bolsas-embalagens': 'Bolsas e embalagens que acompanham o presente ou viram o próprio brinde. Formato, acabamento e aplicação da marca são definidos na proposta.',
-    'garrafas-copos': 'Garrafas, copos e canecas de uso diário, no escritório, em casa e em eventos. Capacidade, material e técnica de personalização são confirmados na proposta.',
-    'acessorios': 'Acessórios pequenos e úteis, que acompanham a pessoa no dia a dia. Material, acabamento e aplicação da marca são confirmados na proposta.',
+    'canetas-escritorio': 'Itens que entram na rotina de trabalho: canetas, cadernos, agendas e organizadores. A aplicação da marca depende do material e é confirmada na proposta.',
+    'bolsas-embalagens': 'Bolsas, embalagens e acabamentos (cartões, lacres) que acompanham o presente ou viram o próprio brinde. Formato, acabamento e aplicação da marca são definidos na proposta.',
+    'garrafas-copos': 'Garrafas, copos, canecas e taças para o dia a dia, eventos e presentes de fim de ano. Capacidade, material e técnica de personalização são confirmados na proposta.',
+    'acessorios': 'Acessórios úteis, que acompanham a pessoa no dia a dia. Material, acabamento e aplicação da marca são confirmados na proposta.',
     'casa-bem-estar': 'Peças para casa e bem-estar, pensadas para presentes de afeto e kits. Fragrância, material e embalagem são definidos na proposta.',
     'hotelaria-gastronomia': 'Itens para restaurantes, hotéis e eventos gastronômicos, com a identidade do seu negócio. Material e acabamento são confirmados na proposta.',
 }
+CAT_USO = {'vestuario': 'para uniformes, equipes e eventos', 'canetas-escritorio': 'para o escritório, eventos e kits',
+           'bolsas-embalagens': 'para presentes e kits corporativos', 'garrafas-copos': 'para eventos, presentes e kits',
+           'acessorios': 'para presentear clientes e equipes', 'casa-bem-estar': 'para presentes e kits corporativos',
+           'hotelaria-gastronomia': 'para restaurantes, hotéis e eventos'}
+# gênero do nome do modelo, para o título "… personalizada/personalizado" (o padrão é masculino)
+FEMININOS = ('Agenda', 'Caneca', 'Caneta', 'Carteira', 'Camiseta', 'Polo', 'Taça', 'Vela', 'Ecobag', 'Garrafa', 'Nécessaire', 'Dólmã', 'Caixa', 'Sacola')
+
+
+def titulo_produto(nome):
+    if 'personaliz' in nome.lower():
+        base = nome
+    else:
+        base = f"{nome} {'personalizada' if nome.split()[0] in FEMININOS else 'personalizado'}"
+    t = f'{base} | TaMa Creative'
+    return t if len(t) <= 60 else f'{base} | TaMa'
 
 
 def thumb(name, label, attrs):
@@ -573,45 +588,50 @@ def page_produto(c):
             thumbs.append(thumb(iid, {'verso': 'Verso', 'detalhe': 'Detalhe'}.get(vista, vista), f"data-v='{esc(json.dumps([m['stem'], m['widths'], alt]))}'"))
     base = c['base']
     mat, tec = base.get('material') or {}, base.get('tecnica') or {}
-    mat_txt = mat['valor'] if mat.get('status') == 'confirmado' and mat.get('valor') else 'Sob consulta: confirmado na proposta.'
+    mat_txt = mat['valor'] if mat.get('status') == 'confirmado' and mat.get('valor') else 'A confirmar na proposta.'
     tec_txt = tec['valor'] if tec.get('status') == 'confirmado' and tec.get('valor') else 'Definida na proposta, conforme o material, com a arte para aprovação.'
     tipo = 'confeccoes' if c['categoria'] == 'vestuario' else 'brindes'
     cat_nome = CAT_PROD.get(c['categoria'], 'Catálogo')
-    relacionados = [x for x in CATALOGO if x['categoria'] == c['categoria'] and x['slug'] != slug][:4]
+    mesma = [x for x in CATALOGO if x['categoria'] == c['categoria']]
+    i = mesma.index(c)
+    relacionados = [mesma[(i + k) % len(mesma)] for k in range(1, min(5, len(mesma)))]
+    if len(relacionados) < 4:   # categoria pequena (casa e bem-estar): completa com embalagens, que combinam em kits
+        relacionados += [x for x in CATALOGO if x['categoria'] == 'bolsas-embalagens'][:4 - len(relacionados)]
     rel_html = ''
     if relacionados:
         rel_html = f'''<section class="section" aria-labelledby="rel-t">
   <div class="wrap">
-    <div class="section-head row"><div class="stack" style="gap:12px"><p class="eyebrow">{cat_nome}</p><h2 id="rel-t" class="section-title">Outros modelos para combinar</h2></div><a class="link" href="/catalogo/?categoria={c['categoria']}#catalogo">Ver todos de {cat_nome.lower()} {ARROW}</a></div>
+    <div class="section-head row"><div class="stack" style="gap:12px"><p class="eyebrow">{cat_nome}</p><h2 id="rel-t" class="section-title">Outros modelos para combinar</h2></div><a class="link" href="/catalogo/?categoria={c['categoria']}#catalogo">Ver a categoria completa {ARROW}</a></div>
     <div class="studio-grid">{''.join(home_product_card(x) for x in relacionados)}</div>
   </div>
 </section>'''
-    n = len(cores)
-    lista = ', '.join(x[0].lower() for x in cores[:3]) + ('…' if n > 3 else '')
-    desc = f'{nome} para personalizar com a marca da sua empresa, em {n} {"cores" if n > 1 else "cor"} de referência ({lista}). Monte sua seleção e peça uma proposta à TaMa.'
+    n, nomes_cor = len(cores), [x[0].lower() for x in cores]
+    ct = (f'na cor de referência {nomes_cor[0]}' if n == 1 else f'nas cores de referência {nomes_cor[0]} e {nomes_cor[1]}' if n == 2
+          else f'em {n} cores de referência')
+    uso = CAT_USO.get(c['categoria'], 'para presentes e kits corporativos')
+    desc = f'{nome} com a marca da sua empresa, {uso}. Veja o modelo {ct} e peça uma proposta à TaMa.'
     if len(desc) > 160:
-        desc = f'{nome} para personalizar com a marca da sua empresa, em {n} cores de referência. Monte sua seleção e peça uma proposta à TaMa Creative.'
+        desc = f'{nome} com a marca da sua empresa, {uso}. Veja {n} cores de referência e peça uma proposta.'
     return {
-        'path': url, 'title': f'{nome} com a sua marca | TaMa Creative', 'description': desc,
+        'path': url, 'title': titulo_produto(nome), 'description': desc,
         'trail': [('/', 'Início'), ('/catalogo/', 'Catálogo'), (url, nome)], 'wp_type': 'ItemPage',
         'preload': preload_image(c['img'], '(max-width: 900px) 92vw, 1100px'),
         'body': f'''<section class="section pdp-sec">
   <div class="wrap">
     <div class="product pdp" data-slug="{slug}" data-pdp data-url="{url}">
       <div class="pdp-gallery">
-        <div class="prod-media pdp-main" data-hover-zoom>{picture(c['img'], c['alt'], '(max-width: 900px) 92vw, 1100px', eager=True)}</div>
-        <button class="prod-zoom" type="button" data-zoom="{slug}" aria-label="Ampliar foto de {esc(nome)}"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 3v10M3 8h10"/></svg></button>
+        <div class="prod-media pdp-main" data-hover-zoom>{picture(c['img'], c['alt'], '(max-width: 900px) 92vw, 1100px', eager=True)}<button class="prod-zoom" type="button" data-zoom="{slug}" aria-label="Ampliar foto de {esc(nome)}"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 3v10M3 8h10"/></svg></button></div>
         {f'<div class="pdp-thumbs" role="group" aria-label="Fotos de {esc(nome)}">{"".join(thumbs)}</div>' if len(thumbs) > 1 else ''}
       </div>
       <div class="pdp-info">
         <p class="eyebrow"><a href="/catalogo/?categoria={c['categoria']}#catalogo">{cat_nome}</a></p>
         <h1>{nome}</h1>
-        <p class="prod-desc pdp-desc">{c['descricao']}</p>
+        <p class="prod-desc pdp-desc">Modelo da imagem: {c['descricao']}</p>
         <div class="pdp-cores"><p class="pdp-label">Cor de referência: <strong class="color-name">{cores[0][0]}</strong></p>{swatches(dict(c, cores=cores))}</div>
         <dl class="pdp-spec">
           <div><dt>Material</dt><dd>{mat_txt}</dd></div>
           <div><dt>Personalização</dt><dd>{tec_txt}</dd></div>
-          <div><dt>Quantidade e prazo</dt><dd>Informados na proposta, conforme a quantidade e a técnica.</dd></div>
+          <div><dt>Quantidade e prazo</dt><dd>Informados na proposta, conforme o volume do pedido e a técnica.</dd></div>
         </dl>
         <p class="prod-meta" hidden>{c['meta']}</p>
         <div class="actions">
@@ -1192,7 +1212,7 @@ def page_brindes():
                   more=('/brindes-corporativos-premium/', 'Ver todas as peças'))}
   </div>
 </section>
-{studio_block(['cat-caneca', 'linha-garrafa', 'cat-copo', 'cat-squeeze', 'cat-caixa-personalizada', 'cat-necessaire', 'cat-chaveiro-de-couro', 'cat-vela'],
+{studio_block(['cat-caneca', 'linha-garrafa', 'cat-copo', 'cat-squeeze', 'cat-caixa-personalizada', 'cat-necessaire', 'cat-chaveiro-de-tira-com-argola', 'cat-vela'],
               'Modelos em estúdio, prontos para a sua marca', 'Catálogo', 'Uma amostra do catálogo: do brinde de evento ao presente executivo.', 'estudio-b-t',
               more=('/catalogo/', 'Ver o catálogo completo'))}
 <section class="section ivory" aria-labelledby="tec-t">

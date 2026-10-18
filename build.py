@@ -532,7 +532,7 @@ COLLECTIONS = [
     ('boas-vindas', 'Boas-vindas', 'Receba novas pessoas com identidade e cuidado.', 'kitp-kit-pratico'),
     ('eventos', 'Eventos', 'Presença de marca em cada encontro.', 'conf-evento-camisetas'),
     ('executivos', 'Presentes executivos', 'Gestos refinados para relações importantes.', 'kitp-kit-executivo'),
-    ('campanhas', 'Campanhas e ativações', 'Produtos com a personalidade da ação.', 'look-corporativo'),
+    ('campanhas', 'Campanhas e ativações', 'Degustações, promoções e ações no ponto de venda.', 'conf-degustacao'),
     ('lancamentos', 'Lançamentos', 'Uma estreia que as pessoas lembram.', 'papelaria-cores'),
     ('fim-de-ano', 'Fim de ano', 'Presentes para encerrar o ano perto de quem importa.', 'embalagem-presente'),
 ]
@@ -1156,7 +1156,7 @@ def page_curadoria():
 # Abertura de Confecções: pessoas usando as peças com a marca (cenas geradas com IA, ilustrativas; tools/cenas.py).
 # frame: --fx/--fy enquadram a foto no computador, --fx-m no celular.
 CONF_SLIDES = [
-    ('tone-linen', 'conf-equipe-kits', '--fx:58%;--fx-m:52%', 'Equipe de camisetas azul, preta e branca com a marca TaMa montando kits num ateliê claro.',
+    ('tone-linen', 'conf-equipe-kits', '--fx:58%;--fx-m:52%', 'Equipe de polo azul e camisetas preta e branca com a marca TaMa montando kits num ateliê claro.',
      'Confecções personalizadas', 'Uniformes corporativos e <em>confecções personalizadas</em>',
      'Polos, camisetas, dólmãs e moletons para equipes, eventos e o dia a dia, alinhados à identidade da sua empresa.',
      cta_link('Solicitar proposta', tipo='confeccoes', track_label='conf-hero-4') + '<a class="btn btn-line" href="/catalogo/?categoria=vestuario">Ver polos e moletons ' + ARROW + '</a>'),
@@ -1168,6 +1168,10 @@ CONF_SLIDES = [
      'Eventos e ações', 'Camisetas que viram <em>presença de marca</em>.',
      'Silk em camisetas para feiras, campanhas e ativações, com a cor e o corte certos para cada equipe.',
      cta_link('Planejar um evento', tipo='confeccoes', track_label='conf-hero-3') + '<a class="btn btn-line" href="/catalogo/?categoria=vestuario">Ver camisetas ' + ARROW + '</a>'),
+    ('tone-rose', 'conf-degustacao', '--fx:42%;--fx-m:40%', 'Promotoras de camiseta branca e avental verde e terracota com a marca TaMa servindo degustação de queijo num supermercado.',
+     'Ativações e degustações', 'Aventais que levam a marca <em>ao ponto de venda</em>.',
+     'Aventais, camisetas e toucas para degustações, promoções e equipes de loja.',
+     cta_link('Planejar uma ativação', tipo='confeccoes', track_label='conf-hero-5') + '<a class="btn btn-line" href="/catalogo/?categoria=vestuario">Ver aventais ' + ARROW + '</a>'),
 ]
 
 

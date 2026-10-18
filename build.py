@@ -1102,10 +1102,10 @@ def guias_block(chave, title='Guias para decidir com segurança'):
 </section>'''
 
 
-def end_cta(title='Conte o que você precisa.', text='Ocasião, público, quantidade e data: com isso a TaMa responde com uma proposta de peças, personalização e condições.', tipo=None, eyebrow='Solicitar proposta'):
+def end_cta(title='Conte o que você precisa.', text='Ocasião, público, quantidade e data: com isso a TaMa responde com uma proposta de peças, personalização e condições.', tipo=None, eyebrow='Solicitar proposta', label='Solicitar uma proposta'):
     return f'''<section class="end-cta" aria-labelledby="cta-t">
   <div class="wrap"><p class="eyebrow light">{eyebrow}</p><h2 id="cta-t">{title}</h2><p>{text}</p>
-  <div class="actions" style="justify-content:center">{cta_link('Solicitar uma proposta', tipo=tipo, cls='btn btn-light', track_label='end-cta')}{wa_button('btn btn-glass')}</div></div>
+  <div class="actions" style="justify-content:center">{cta_link(label, tipo=tipo, cls='btn btn-light', track_label='end-cta')}{wa_button('btn btn-glass')}</div></div>
 </section>'''
 
 

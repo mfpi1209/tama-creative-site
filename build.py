@@ -177,7 +177,7 @@ IMAGES = {}
 # largura real da foto do carrossel (fotos 3:2 na metade direita; no celular, um pouco maior que a tela por causa do corte)
 HERO_SIZES = '(max-width: 760px) 120vw, 95vw'
 CARROSSEL_HQ = {'hero-brindes', 'hero-v3-confeccoes', 'hero-kits', 'home-escritorio'}
-FOTOS_HQ = CARROSSEL_HQ | {'home-frente-brindes', 'home-frente-confeccoes', 'home-frente-kits', 'kits-header', 'conf-header'}   # fotos enviadas em alta pela TaMa (home e cabeçalhos de kits e confecções)
+FOTOS_HQ = CARROSSEL_HQ | {'home-frente-brindes', 'home-frente-confeccoes', 'home-frente-kits', 'kits-header', 'conf-header', 'ativ-header', 'hot-header'}   # fotos enviadas em alta pela TaMa (home e cabeçalhos de kits e confecções)
 
 
 def build_images():
@@ -1328,15 +1328,20 @@ def page_brindes():
     }
 
 
+ATIV_HERO_SIZES = '(max-width: 760px) 165vw, (max-width: 1100px) 110vw, 95vw'   # foto de ativações, mais larga (2,18:1)
 FOTO_HERO_SIZES = '(max-width: 760px) 135vw, (max-width: 1100px) 100vw, (min-width: 1573px) 1210px, 77vw'   # foto 16:9 dos cabeçalhos de kits e confecções: altura × 16:9 no computador; no celular, cortada em 4:3
 
 
-def foto_hero(trail, img, alt, eyebrow, linhas, destaque, desc, actions, legenda, pos_m='right'):
+def foto_hero(trail, img, alt, eyebrow, linhas, destaque, desc, actions, legenda, pos_m='right', desloc=0, sizes=None):
     # Cabeçalho dos mockups da TaMa (kits, confecções): a foto 16:9 ocupa a largura toda e o texto fica na parte clara à
     # esquerda, sem passar por cima do assunto (a altura acompanha a largura, então ele começa sempre depois da coluna de
     # texto). Até 1100 px o texto vem acima e a foto abaixo; no celular, cortada em 4:3 na direção de pos_m.
-    titulo = ' '.join(f'<span>{l}</span>' for l in linhas) + f' <em>{destaque}</em>'
-    return f'''<section class="foto-hero" aria-labelledby="foto-hero-t" style="--pos-m:{pos_m}">
+    # destaque: texto (ou lista de linhas) em itálico vinho. desloc: fração da largura da foto que fica para fora à direita,
+    # para fotos mais largas que 16:9 cujo assunto começaria perto demais do texto.
+    destaques = [destaque] if isinstance(destaque, str) else destaque
+    titulo = ' '.join(f'<span>{l}</span>' for l in linhas) + ' ' + ' '.join(f'<em>{d}</em>' for d in destaques)
+    ar = f"{IMAGES[img]['w']} / {IMAGES[img]['h']}" if img in IMAGES else '16 / 9'
+    return f'''<section class="foto-hero" aria-labelledby="foto-hero-t" style="--pos-m:{pos_m};--ar:{ar};--desloc:{desloc}">
   {crumbs(trail)}
   <div class="wrap foto-hero-inner"><div class="foto-hero-copy">
     <p class="eyebrow">{eyebrow}</p>
@@ -1344,7 +1349,7 @@ def foto_hero(trail, img, alt, eyebrow, linhas, destaque, desc, actions, legenda
     <p class="foto-hero-desc">{desc}</p>
     <div class="actions">{actions}</div>
   </div></div>
-  <figure class="foto-hero-photo">{picture(img, alt, FOTO_HERO_SIZES, eager=True)}<figcaption>{legenda}</figcaption></figure>
+  <figure class="foto-hero-photo">{picture(img, alt, sizes or FOTO_HERO_SIZES, eager=True)}<figcaption>{legenda}</figcaption></figure>
 </section>'''
 
 
@@ -1463,6 +1468,28 @@ def page_curadoria():
     }
 
 
+ICONES = {   # traço fino, cor do texto (currentColor)
+    'carrinho': '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 4h2.2l2.2 10.2h10.4l2-7.2H6.4"/><circle cx="9.5" cy="18.6" r="1.4"/><circle cx="16.6" cy="18.6" r="1.4"/></svg>',
+    'calendario': '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3.8" y="5.2" width="16.4" height="15" rx="2"/><path d="M3.8 9.6h16.4M8 3.4v3.6M16 3.4v3.6"/></svg>',
+    'talheres': '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 3v6.2a2 2 0 0 1-2 2h0M7 3v6.2a2 2 0 0 0 2 2h0M7 11.2V21M5 3v4.6M9 3v4.6"/><path d="M16.6 21V3.4c-1.9.9-3 3.3-3 6.6v3.4h3"/></svg>',
+    'chef': '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7.4 14.4v5.6h9.2v-5.6M7.4 17.2h9.2"/><path d="M7.4 14.4A3.6 3.6 0 0 1 6.9 7.3a4.4 4.4 0 0 1 8.2-1.6 3.6 3.6 0 1 1 1.5 8.7"/></svg>',
+    'cloche': '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 17.6h18M4.6 17.6a7.4 7.4 0 0 1 14.8 0M12 10.2V8.4M10.6 8.4h2.8"/></svg>',
+    'pessoas': '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="7.4" r="2.6"/><circle cx="5.8" cy="9.4" r="2"/><circle cx="18.2" cy="9.4" r="2"/><path d="M7.4 19.6v-2.2a4.6 4.6 0 0 1 9.2 0v2.2zM2.6 19.6v-1.4a3.2 3.2 0 0 1 4.2-3M21.4 19.6v-1.4a3.2 3.2 0 0 0-4.2-3"/></svg>',
+}
+
+
+def atalhos(titulo, itens, aria, linha=True, centro=False):
+    """Faixa de atalhos logo abaixo dos cabeçalhos de foto: título serifado e links com seta, separados por fios.
+    itens: (texto, link) ou (texto, link, ícone de ICONES)."""
+    lis = ''.join(f'<li><a href="{it[1]}">{ICONES.get(it[2], "") if len(it) > 2 else ""}<span>{it[0]}</span> {ARROW}</a></li>' for it in itens)
+    return f'''<section class="atalhos{'' if linha else ' sem-linha'}{' centro' if centro else ''}" aria-labelledby="{aria}">
+  <div class="wrap">
+    <h2 id="{aria}" class="atalhos-title">{titulo}</h2>
+    <ul class="atalhos-list" style="--n:{len(itens)}">{lis}</ul>
+  </div>
+</section>'''
+
+
 CONF_PECAS = [('Polos e camisetas', '/catalogo/?categoria=vestuario'), ('Camisas sociais', '/catalogo/?q=camisa'),
               ('Moletons', '/catalogo/?q=moletom'), ('Dólmãs e aventais', '/hotelaria-e-gastronomia/')]
 
@@ -1475,13 +1502,7 @@ def conf_hero(trail):
                      'Polos, camisetas, camisas, moletons, dólmãs e aventais personalizados para equipes, eventos e atendimento.',
                      cta_link('Solicitar proposta', tipo='confeccoes', track_label='conf-head')
                      + f'<a class="btn btn-line" href="#estudio-c-t">Explorar as peças {ARROW}</a>',
-                     'Imagem ilustrativa • Marca fictícia', pos_m='right center') + f'''
-<section class="conf-pecas" aria-labelledby="conf-pecas-t">
-  <div class="wrap">
-    <h2 id="conf-pecas-t" class="conf-pecas-title">Encontre as peças para sua equipe</h2>
-    <ul class="conf-pecas-list">{''.join(f'<li><a href="{h}">{t} {ARROW}</a></li>' for t, h in CONF_PECAS)}</ul>
-  </div>
-</section>'''
+                     'Imagem ilustrativa • Marca fictícia', pos_m='right center') + '\n' + atalhos('Encontre as peças para sua equipe', CONF_PECAS, 'conf-pecas-t')
 
 
 def page_confeccoes():
@@ -1524,6 +1545,21 @@ def page_confeccoes():
     }
 
 
+ATIV_FORMATOS = [('Degustações no ponto de venda', '#fmt-degustacao', 'carrinho'), ('Feiras e eventos', '#fmt-feiras', 'calendario'),
+                 ('Ações promocionais', '#fmt-promocao', 'pessoas')]
+
+
+def ativ_hero(trail):
+    return foto_hero(trail, 'ativ-header',
+                     'Degustação de suco de laranja num estande ao ar livre: promotora e promotor de polo e avental azul-marinho com a '
+                     'marca fictícia Solar servem um copo a uma cliente, com garrafas, laranjas e o balcão laranja com a marca.',
+                     'Ativações promocionais', ['Sua marca,'], ['mais perto de', 'quem compra.'],
+                     'Crie oportunidades para o público conhecer, experimentar e se conectar com o seu produto. Ações em lojas, feiras e '
+                     'eventos, planejadas conforme o objetivo da sua marca.',
+                     cta_link('Planejar minha ação', tipo='ativacoes', track_label='ativacoes-head') + '<a class="btn btn-line" href="#formatos">Conhecer os formatos</a>',
+                     'Imagem ilustrativa • Marca fictícia', pos_m='88% center', desloc=.07, sizes=ATIV_HERO_SIZES) + '\n' + atalhos('Uma ação para cada encontro.', ATIV_FORMATOS, 'ativ-atalhos-t', linha=False)
+
+
 def page_ativacoes():
     return {
         'path': '/ativacoes-promocionais/', 'og': 'conf-degustacao', 'title': 'Ativações promocionais e degustações para marcas | TaMa Creative',
@@ -1531,18 +1567,16 @@ def page_ativacoes():
         'trail': [('/', 'Início'), ('/ativacoes-promocionais/', 'Ativações')],
         'service': {'key': 'ativacoes', 'name': 'Ativações promocionais e degustações', 'type': 'Ativação promocional'},
         'assunto': 'uma ativação promocional ou degustação',
-        'preload': preload_image('conf-degustacao', '(max-width: 760px) 92vw, 46vw'),
-        'body': page_head('Ativações promocionais', 'Ativações promocionais e degustações para a sua marca',
-                          'Ações em eventos, feiras e pontos de venda para levar o produto e a marca até quem compra. A TaMa desenvolve a ação com você e coordena o que ela precisa, dos materiais com a sua marca à execução combinada na proposta.',
-                          cta_link('Planejar uma ativação', tipo='ativacoes', track_label='ativacoes-head') + '<a class="btn btn-line" href="#formatos">Ver formatos</a>',
-                          'conf-degustacao', 'Cena ilustrativa: equipe de camiseta e avental com a marca TaMa servindo degustação num supermercado.', obj='object-position:40% center') + f'''
+        'preload': preload_image('ativ-header', ATIV_HERO_SIZES),   # mesma imagem e sizes da foto do cabeçalho
+        'crumbs_inline': True,
+        'body': ativ_hero([('/', 'Início'), ('/ativacoes-promocionais/', 'Ativações')]) + f'''
 <section class="section ivory" id="formatos" aria-labelledby="formatos-t">
   <div class="wrap">
     <div class="section-head"><p class="eyebrow">Formatos</p><h2 id="formatos-t" class="section-title">Onde a ativação acontece</h2><p class="muted">Cada formato pede peças, equipe e cronograma diferentes. O ponto de partida é o que a ação precisa provocar e em quem.</p></div>
     <div class="cols-2">
-      <div class="item">{arc()}<div><h3>Degustação no ponto de venda</h3><p>O cliente prova o produto onde decide a compra: supermercados, empórios, lojas e farmácias.</p></div></div>
-      <div class="item">{arc()}<div><h3>Feiras e eventos</h3><p>Brindes, uniformes e materiais para o estande e para receber quem visita.</p></div></div>
-      <div class="item">{arc()}<div><h3>Promoção e amostragem</h3><p>Brindes, amostras e materiais para campanhas de venda, lançamentos e ações com distribuidores.</p></div></div>
+      <div class="item" id="fmt-degustacao">{arc()}<div><h3>Degustação no ponto de venda</h3><p>O cliente prova o produto onde decide a compra: supermercados, empórios, lojas e farmácias.</p></div></div>
+      <div class="item" id="fmt-feiras">{arc()}<div><h3>Feiras e eventos</h3><p>Brindes, uniformes e materiais para o estande e para receber quem visita.</p></div></div>
+      <div class="item" id="fmt-promocao">{arc()}<div><h3>Promoção e amostragem</h3><p>Brindes, amostras e materiais para campanhas de venda, lançamentos e ações com distribuidores.</p></div></div>
       <div class="item">{arc()}<div><h3>Ações internas</h3><p>Convenções, lançamentos para a equipe e datas da empresa, com kits e peças na mesma linguagem.</p></div></div>
     </div>
   </div>
@@ -1581,6 +1615,20 @@ def page_ativacoes():
     }
 
 
+HOT_ATALHOS = [('Mesa e salão', '#amb-salao', 'talheres'), ('Cozinha e atendimento', '#amb-cozinha', 'chef'), ('Hotelaria', '#amb-hospedes', 'cloche')]
+
+
+def hot_hero(trail):
+    return foto_hero(trail, 'hot-header',
+                     'Garçonete de camisa branca e avental verde-oliva com a marca fictícia Oliva arruma o guardanapo bordado num prato; '
+                     'na mesa, cardápio e porta-contas caramelo com a marca gravada, taças e jogo americano, num restaurante iluminado.',
+                     'Hotelaria e gastronomia', ['Sua identidade,'], ['em cada detalhe', 'de receber.'],
+                     'Cardápios, porta-contas, jogos americanos e uniformes personalizados para restaurantes, bares e hotéis. Peças que '
+                     'levam a identidade da sua casa à mesa e à equipe.',
+                     cta_link('Solicitar proposta', tipo='hotelaria', track_label='hotelaria-head') + f'<a class="btn btn-line" href="#hot-pecas-t">Explorar as peças</a>',
+                     'Imagem ilustrativa • Marca fictícia', pos_m='92% center') + '\n' + atalhos('Personalização que acompanha o seu atendimento.', HOT_ATALHOS, 'hot-atalhos-t', linha=False, centro=True)
+
+
 def page_hotelaria():
     return {
         'path': '/hotelaria-e-gastronomia/', 'title': 'Cardápios, porta-contas e uniformes para restaurantes | TaMa', 'og': 'conf-chef-dolma',
@@ -1588,19 +1636,17 @@ def page_hotelaria():
         'trail': [('/', 'Início'), ('/hotelaria-e-gastronomia/', 'Hotelaria e gastronomia')],
         'service': {'key': 'hotelaria', 'name': 'Produtos personalizados para hotelaria e gastronomia', 'type': 'Produtos personalizados para restaurantes e hotéis'},
         'assunto': 'produtos para hotelaria e gastronomia',
-        'preload': preload_image('conf-chef-dolma', '(max-width: 760px) 92vw, 46vw'),
-        'body': page_head('Hotelaria e gastronomia', 'Produtos personalizados para restaurantes, bares e hotéis',
-                          'Cardápios, porta-contas, jogos americanos, dólmãs e aventais com a marca da sua casa. A TaMa ajuda a escolher as peças para o salão, a cozinha e a equipe e coordena a produção.',
-                          cta_link('Solicitar proposta', tipo='hotelaria', track_label='hotelaria-head') + '<a class="btn btn-line" href="#hot-pecas-t">Ver peças</a>',
-                          'conf-chef-dolma', 'Cena ilustrativa: chef de dólmã branca com a marca TaMa bordada finalizando um prato.', obj='object-position:76% 20%') + f'''
+        'preload': preload_image('hot-header', FOTO_HERO_SIZES),   # mesma imagem e sizes da foto do cabeçalho
+        'crumbs_inline': True,
+        'body': hot_hero([('/', 'Início'), ('/hotelaria-e-gastronomia/', 'Hotelaria e gastronomia')]) + f'''
 <section class="section ivory" aria-labelledby="ambientes-t">
   <div class="wrap">
     <div class="section-head"><p class="eyebrow">Por ambiente</p><h2 id="ambientes-t" class="section-title">A marca em cada ponto de contato</h2></div>
     <div class="cols-2">
-      <div class="item">{arc()}<div><h3>Salão e mesa</h3><p>Cardápio, porta-contas e jogos americanos: o que o cliente segura durante toda a refeição.</p></div></div>
-      <div class="item">{arc()}<div><h3>Cozinha e equipe</h3><p>Dólmãs e aventais com a marca, em cores definidas no projeto.</p></div></div>
+      <div class="item" id="amb-salao">{arc()}<div><h3>Salão e mesa</h3><p>Cardápio, porta-contas e jogos americanos: o que o cliente segura durante toda a refeição.</p></div></div>
+      <div class="item" id="amb-cozinha">{arc()}<div><h3>Cozinha e equipe</h3><p>Dólmãs e aventais com a marca, em cores definidas no projeto.</p></div></div>
       <div class="item">{arc()}<div><h3>Bar e eventos</h3><p>Taças, copos e peças para eventos, degustações e datas especiais da casa.</p></div></div>
-      <div class="item">{arc()}<div><h3>Clientes e hóspedes</h3><p>Kits e brindes para receber, agradecer e fidelizar. <a class="link" href="/kits-corporativos/">Ver kits</a></p></div></div>
+      <div class="item" id="amb-hospedes">{arc()}<div><h3>Clientes e hóspedes</h3><p>Kits e brindes para receber, agradecer e fidelizar. <a class="link" href="/kits-corporativos/">Ver kits</a></p></div></div>
     </div>
   </div>
 </section>

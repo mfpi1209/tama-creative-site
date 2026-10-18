@@ -1,51 +1,64 @@
 /* TaMa Creative — blog (/blog/). Carregado só nas páginas do blog, depois de styles.css (ver blog.py).
    Usa os tokens de styles.css; não redefine nada global. */
 
-/* Índice e cards */
-.blog-head { padding-bottom: clamp(32px, 4vw, 52px); }
-.post-thumb { overflow: hidden; border-radius: var(--radius); background: var(--sand); }
-.post-thumb img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; transition: transform .6s ease; }
-.post-kicker { font-size: .6875rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--wine); }
+/* Índice e cards (direção do pacote de refatoração: destaque em caixa, filtros, cards com borda) */
+.blog-head { padding-bottom: clamp(28px, 3.5vw, 44px); }
+.blog-head h1, .post-head h1, .post-feature h2, .post-card h3, .prose h2, .blog-list-t { color: var(--wine); }
+.post-thumb { overflow: hidden; background: var(--sand); }
+.post-thumb img { width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; transition: transform .6s ease; }
+.post-kicker { font-size: .6875rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--coral); }
 .post-meta { font-size: .8125rem; color: var(--muted); }
 .post-meta a { color: var(--wine); font-weight: 700; }
 .post-meta a:hover { text-decoration: underline; text-underline-offset: 3px; }
-.post-feature { position: relative; display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: clamp(24px, 4vw, 56px); align-items: center; padding-bottom: clamp(40px, 5vw, 64px); border-bottom: 1px solid var(--line); }
-.post-feature .post-thumb img { aspect-ratio: 16 / 10; }
-.post-feature h2 { font-size: clamp(2rem, 1.5rem + 1.8vw, 2.9rem); }
+.post-feature { position: relative; display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); align-items: stretch; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+.post-feature .post-thumb picture { display: block; height: 100%; }
+.post-feature .post-thumb img { height: 100%; aspect-ratio: 16 / 9; }
+.post-feature-body { display: grid; gap: 14px; align-content: center; padding: clamp(24px, 3.5vw, 48px); }
+.post-feature h2 { font-size: clamp(1.75rem, 1.3rem + 1.5vw, 2.5rem); line-height: 1.12; }
 .post-feature h2 a::after, .post-card h3 a::after { content: ""; position: absolute; inset: 0; z-index: 1; }
 .post-feature:hover img, .post-card:hover img { transform: scale(1.04); }
 .post-feature:hover h2 a, .post-card:hover h3 a { color: var(--wine-2); }
 .post-feature h2 a:focus-visible, .post-card h3 a:focus-visible { outline: none; }
-.post-feature:has(a:focus-visible), .post-card:has(a:focus-visible) { outline: 2px solid var(--wine-2); outline-offset: 6px; border-radius: var(--radius); }
-.post-list { display: grid; gap: 28px; padding-top: clamp(40px, 5vw, 64px); }
-.post-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: clamp(28px, 3vw, 40px) clamp(20px, 2.4vw, 32px); }
-.post-card { position: relative; display: grid; gap: 12px; align-content: start; }
-.post-card .post-thumb { margin-bottom: 4px; }
-.post-card h3 { font-size: 1.5rem; line-height: 1.18; }
+.post-feature:has(a:focus-visible), .post-card:has(a:focus-visible) { outline: 2px solid var(--wine-2); outline-offset: 4px; }
+.post-list { display: grid; gap: 22px; padding-top: clamp(36px, 4.5vw, 56px); }
+.blog-list-t { font-size: clamp(1.6rem, 1.3rem + 1vw, 2.1rem); }
+.blog-filters { display: flex; flex-wrap: wrap; gap: 8px; }
+.blog-filters[hidden], .post-card[hidden], .blog-empty[hidden] { display: none; }
+.blog-filters .chip[aria-pressed="true"] { background: var(--wine); border-color: var(--wine); }
+.blog-filters .chip:hover { border-color: var(--wine); }
+.blog-empty { display: grid; gap: 6px; justify-items: start; padding: 24px; background: var(--ivory); border-radius: var(--radius); color: var(--muted); }
+.blog-empty button { background: none; border: 0; cursor: pointer; }
+.post-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: clamp(20px, 2.4vw, 28px); }
+.post-grid-2 { grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr)); max-width: 60rem; }
+.post-card { position: relative; display: grid; grid-template-rows: auto 1fr; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+.post-card-body { display: grid; gap: 10px; align-content: start; padding: 18px 20px 20px; }
+.post-card h3 { font-size: 1.375rem; line-height: 1.2; }
 .post-card p { color: var(--muted); font-size: .9375rem; line-height: 1.6; }
-.post-card .post-kicker { color: var(--wine); font-size: .6875rem; }
-.post-card .post-meta { font-size: .8125rem; }
+.post-card .link, .post-feature-body .link { justify-self: start; }
 
 /* Artigo */
 .post-head { display: grid; gap: 18px; max-width: 54rem; padding-block: clamp(16px, 3vw, 34px) clamp(26px, 4vw, 40px); }
-.post-head h1 { font-size: clamp(2.2rem, 1.45rem + 3vw, 3.75rem); line-height: 1.06; }
+.post-head h1 { font-size: clamp(2.1rem, 1.4rem + 2.8vw, 3.5rem); line-height: 1.08; max-width: 20em; }
 .post-head .lead { max-width: 40em; }
 .post-head .eyebrow a { text-decoration: underline; text-underline-offset: 3px; }
 .post-draft { justify-self: start; padding: 6px 12px; border-radius: 999px; background: var(--amber-soft); color: var(--ink); font-size: .8125rem; font-weight: 700; }
 .post-cover { margin-bottom: clamp(36px, 5vw, 64px); }
 .post-cover img { width: 100%; aspect-ratio: 21 / 9; object-fit: cover; border-radius: var(--radius); }
 .post-cover figcaption { margin-top: 10px; font-size: .75rem; color: var(--muted); }
-.post-layout { display: grid; grid-template-columns: minmax(0, 15rem) minmax(0, 44rem); gap: clamp(32px, 6vw, 96px); align-items: start; padding-bottom: clamp(56px, 7vw, 96px); }
-.post-layout.no-toc { grid-template-columns: minmax(0, 44rem); justify-content: center; }
+.post-layout { display: grid; grid-template-columns: minmax(0, 15rem) minmax(0, 45rem); gap: clamp(32px, 6vw, 96px); align-items: start; padding-bottom: clamp(56px, 7vw, 96px); }
+.post-layout.no-toc { grid-template-columns: minmax(0, 45rem); justify-content: center; }
 .post-body { min-width: 0; }
-.post-toc { position: sticky; top: calc(var(--header-h) + 28px); display: grid; gap: 12px; }
-.post-toc-t { font-size: .6875rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); }
-.post-toc ol { list-style: none; padding: 0; display: grid; border-left: 1px solid var(--line-strong); }
-.post-toc a { display: block; margin-left: -1px; padding: 7px 0 7px 16px; border-left: 2px solid transparent; font-size: .875rem; line-height: 1.4; color: var(--muted); transition: color .2s ease, border-color .2s ease; }
+.post-toc { position: sticky; top: calc(var(--header-h) + 28px); }
+.post-toc summary { list-style: none; font-family: var(--f-serif); font-size: 1.25rem; color: var(--wine); padding-bottom: 12px; margin-bottom: 4px; border-bottom: 1px solid var(--line-strong); }
+.post-toc summary::-webkit-details-marker { display: none; }
+.post-toc ol { list-style: none; padding: 0; display: grid; margin-top: 8px; }
+.post-toc a { display: block; padding: 7px 0 7px 12px; border-left: 2px solid transparent; font-size: .9375rem; line-height: 1.4; color: var(--muted); transition: color .2s ease, border-color .2s ease; }
 .post-toc a:hover { color: var(--wine); border-color: var(--wine); }
+@media (min-width: 981px) { .post-toc summary { pointer-events: none; } }
 
 /* Texto do artigo */
-.prose { font-size: 1.0625rem; line-height: 1.8; color: #3A3330; }
+.prose { font-size: 1.125rem; line-height: 1.7; color: #3A3330; }
+.prose .post-note { font-size: .875rem; line-height: 1.6; color: var(--muted); }
 .prose > * + * { margin-top: 1.15em; }
 .prose h2 { font-size: clamp(1.75rem, 1.35rem + 1.3vw, 2.3rem); line-height: 1.15; margin-top: 2.1em; }
 .prose h3 { font: 700 1.1875rem/1.35 var(--f-sans); letter-spacing: 0; color: var(--ink); margin-top: 1.8em; }
@@ -74,7 +87,8 @@
 .prose th { font-size: .6875rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); background: var(--ivory); }
 .post-callout { display: grid; gap: 14px; justify-items: start; margin-block: 2.2em; padding: clamp(20px, 3vw, 28px); background: var(--ivory); border-left: 3px solid var(--wine); border-radius: 0 var(--radius) var(--radius) 0; }
 .post-callout p { font-size: 1rem; line-height: 1.65; color: var(--ink); }
-.prose .post-callout .btn { text-decoration: none; }
+.post-callout .actions { display: flex; flex-wrap: wrap; gap: 12px 20px; align-items: center; }
+.prose .post-callout .btn, .prose .post-callout .link { text-decoration: none; }
 .prose .post-callout .btn-wine, .prose .post-callout .btn-wine:hover { color: #fff; }
 .sources { margin-top: 3em !important; padding-top: 1.6em; border-top: 1px solid var(--line-strong); font-size: .875rem; line-height: 1.65; color: var(--muted); }
 .sources h2 { font: 700 .75rem/1.2 var(--f-sans); letter-spacing: .2em; text-transform: uppercase; color: var(--muted); margin: 0 0 1em; }
@@ -89,13 +103,17 @@
 @media (max-width: 980px) {
   .post-feature { grid-template-columns: 1fr; }
   .post-layout, .post-layout.no-toc { grid-template-columns: minmax(0, 1fr); justify-content: stretch; }
-  .post-toc { position: static; padding: 18px 20px 14px; background: var(--ivory); border-radius: var(--radius); }
-  .post-toc ol { border-left: 0; }
-  .post-toc a { padding-left: 0; margin-left: 0; border-left: 0; }
+  .post-feature-body { padding: 22px 20px 26px; }
+  .post-toc { position: static; background: var(--ivory); border-radius: var(--radius); }
+  .post-toc summary { display: flex; justify-content: space-between; align-items: center; padding: 14px 18px; margin: 0; border: 0; cursor: pointer; }
+  .post-toc summary::after { content: ""; width: 9px; height: 9px; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: rotate(45deg); transition: transform .2s ease; }
+  .post-toc details[open] summary::after { transform: rotate(-135deg); }
+  .post-toc ol { margin: 0; padding: 0 18px 14px; }
+  .post-toc a { padding-left: 0; border-left: 0; }
   .post-cover img { aspect-ratio: 16 / 9; }
 }
 @media (max-width: 560px) {
-  .prose { font-size: 1rem; line-height: 1.75; }
+  .prose { font-size: 1.0625rem; line-height: 1.7; }
   .post-author { grid-template-columns: 1fr; }
   .post-author .selo { width: 52px; }
   .post-cover img { aspect-ratio: 4 / 3; }

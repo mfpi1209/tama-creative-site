@@ -403,10 +403,10 @@ def crumbs(trail):
     return f'<nav class="crumbs wrap" aria-label="Caminho"><ol>{"".join(lis)}</ol></nav>'
 
 
-def end_cta(title='Seu próximo projeto merece sair do óbvio.', text='Conte sua ideia. A TaMa cuida de transformar intenção em algo que se vê, usa e guarda.', tipo=None, eyebrow='Vamos criar algo para ficar?'):
+def end_cta(title='Seu próximo projeto merece sair do óbvio.', text='Conte sua ideia. A TaMa cuida de transformar intenção em algo que se vê, usa e guarda.', tipo=None, eyebrow='Vamos criar algo para ficar?', label='Solicitar uma proposta'):
     return f'''<section class="end-cta" aria-labelledby="cta-t">
   <div class="wrap"><p class="eyebrow light">{eyebrow}</p><h2 id="cta-t">{title}</h2><p>{text}</p>
-  <div class="actions" style="justify-content:center">{cta_link('Solicitar uma proposta', tipo=tipo, cls='btn btn-light', track_label='end-cta')}{wa_button('btn btn-glass')}</div></div>
+  <div class="actions" style="justify-content:center">{cta_link(label, tipo=tipo, cls='btn btn-light', track_label='end-cta')}{wa_button('btn btn-glass')}</div></div>
 </section>'''
 
 

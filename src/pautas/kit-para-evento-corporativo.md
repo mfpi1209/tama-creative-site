@@ -3,7 +3,7 @@ titulo: 'Kit para evento corporativo: o que colocar por tipo de evento'
 palavra_chave: kit para evento corporativo o que colocar
 status: espera
 intencao: informacional
-tema: eventos
+tema: eventos-e-ativacoes
 destino: /kits-corporativos/
 observacao: O subdomínio de brindes populares planeja /kits-para-eventos/. Alinhar antes, para não disputar a mesma busca.
 ---

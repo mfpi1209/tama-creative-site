@@ -4,7 +4,7 @@ palavra_chave: brindes de fim de ano para clientes
 status: publicada
 prioridade: alta
 intencao: informacional
-tema: fim-de-ano
+tema: brindes-e-presentes
 destino: /brindes-corporativos-premium/
 pico:
 - novembro

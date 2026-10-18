@@ -83,9 +83,9 @@ O passo 3 dispara o primeiro build da `main` e publica em produção. Em 13/10/2
 
 | URL | O que é |
 |---|---|
-| `/blog/` | Índice: artigo em destaque + cards (tema, título, resumo, data, tempo de leitura) |
-| `/blog/<slug>/` | Artigo: caminho, H1, autor TaMa Creative, datas, capa, sumário "Neste guia", texto, Fontes, peças da curadoria, outros guias e chamada para a proposta |
-| `/blog/tema/<tema>/` | Página do tema. **Só é criada quando o tema tem 3 artigos publicados**; antes disso o tema aparece só como etiqueta (evita páginas rasas no Google) |
+| `/blog/` | Índice: abertura curta, um artigo em destaque (o marcado com `destaque`, sem repetir na grade), filtros por categoria e cards (categoria, título, resumo). Os filtros são botões que só aparecem com JavaScript; sem ele, todos os cards ficam visíveis |
+| `/blog/<slug>/` | Artigo: caminho, categoria, H1, resumo, autor Equipe TaMa Creative (link para /sobre/), datas, capa com legenda, sumário "Neste guia" (um só `<details>`: aberto ao lado do texto no desktop, fechado no celular), texto em coluna de 720 px, peças da curadoria, até 2 outros guias e chamada para a proposta. Artigo sem `servico` nem `proposta` (compliance) fica só editorial: sem vitrine, sem botões de proposta e sem a faixa final |
+| `/blog/tema/<categoria>/` | Página da categoria. **Só é criada quando a categoria tem 3 artigos publicados**; antes disso a categoria aparece só como etiqueta e filtro (evita páginas rasas no Google) |
 | `/blog/feed.xml` | RSS 2.0 com os artigos publicados |
 | `/blog/<slug>/og.jpg` | Imagem de compartilhamento 1200×630 gerada da capa + logo oficial |
 
@@ -145,7 +145,8 @@ Em `build.py` o blog ocupa só o import, o item do menu e do rodapé, `og_type`/
 | `date` | sim | Publicação (`AAAA-MM-DD`). Data futura = não publica |
 | `updated` | não | Última revisão relevante; vira `dateModified` e `lastmod` |
 | `destaque` | não | `true` põe o artigo em destaque no índice entre os do mesmo dia |
-| `tema` | sim | `fim-de-ano`, `boas-vindas`, `politicas`, `eventos`, `sustentabilidade`, `marca`, `uniformes` (lista em `blog.py`, `TEMAS`) |
+| `tema` | sim | Categoria: `brindes-e-presentes`, `kits-e-boas-vindas`, `planejamento-de-compras`, `personalizacao-e-materiais`, `eventos-e-ativacoes` (lista em `blog.py`, `TEMAS`). Vira filtro na listagem quando há artigo |
+| `resumo` | não | Frase curta do card e da linha abaixo do H1 (até 160). Vazio usa `description` |
 | `ocasiao` | não | Chave da curadoria (`boas-vindas`, `eventos`, `executivos`, `campanhas`, `lancamentos`, `fim-de-ano`, `reconhecimento`). Gera o link `/brindes-corporativos-premium/?ocasiao=…` |
 | `servico` | não | Página de serviço ligada ao artigo (botão no quadro do autor) |
 | `proposta` | não | Tipo pré-selecionado no formulário: `brindes`, `kits`, `confeccoes`, `branding`, `integrado` |
@@ -154,9 +155,10 @@ Em `build.py` o blog ocupa só o import, o item do menu e do rodapé, `og_type`/
 | `capa_arquivo` | não | Imagem enviada pelo editor (`/img/blog/arquivo.jpg`). Quando preenchida, substitui `capa` |
 | `capa_alt` | sim | Descrição da foto. Com `capa_conceitual` (padrão), o site acrescenta "Fotografia conceitual:" e a legenda |
 | `capa_conceitual` | não | `false` só para fotos reais de trabalhos entregues |
+| `capa_legenda` | não | Legenda da capa, por exemplo `Imagem ilustrativa · Marcas fictícias`. Com ela, o texto alternativo fica só com `capa_alt` |
 | `capa_posicao` | não | Enquadramento CSS, por exemplo `50% 40%` |
 | `pecas` | não | Slugs de `src/data/curadoria.json`: peças com foto entram na vitrine (com "+ Selecionar"); ideias "além do óbvio" entram como cards |
-| `relacionados` | não | Slugs de artigos para "Outros guias". Sem ele: mesmo tema primeiro, depois os mais recentes |
+| `relacionados` | não | Até 2 slugs de artigos para "Outros guias". Sem ele: mesma categoria primeiro, depois os mais recentes |
 | `revisar_em` | não | Próxima revisão (`AAAA-MM-DD`). Aparece no Painel de SEO |
 | `revisar_motivo` | não | O que conferir na revisão. Exige `revisar_em` |
 | `draft` | não | `true` = não publica |
@@ -190,14 +192,18 @@ O build para com a lista de erros quando:
 
 ## Artigos publicados (outubro/2026)
 
-| Artigo | Consulta-alvo | Destino principal | Fontes externas |
-|---|---|---|---|
-| Brindes de fim de ano para clientes: como escolher sem parecer propaganda (destaque) | brindes de fim de ano para clientes | Curadoria `?ocasiao=fim-de-ano` | Nenhuma (orientação prática) |
-| Presente de Natal para funcionários: ideias além da cesta | presente de natal para funcionários | Kits + curadoria fim de ano | Nenhuma |
-| Brindes e compliance: limites de valor e política de presentes | política de brindes e presentes | Brindes corporativos | Decreto 10.889/2021, Leis 12.813/2013, 12.846/2013 e 14.520/2023, CF art. 37, Código de Conduta da Alta Administração, CEP, guias CGU 2015 e 2024 (conferidos em 12/10/2026) |
-| O que colocar no kit de boas-vindas, inclusive para quem trabalha remoto | o que colocar no kit de boas-vindas | Kits + curadoria boas-vindas | LGPD, arts. 5º e 6º |
+Em 18/10/2026 os quatro textos foram substituídos pelos do pacote de refatoração (`TaMa_Blog_Completo`), com título, descrição, resumo e consulta do `seo.json` do pacote e capas próprias (1672×941 px, imagens ilustrativas com marcas fictícias, em `img/blog/`). Os endereços e a data de publicação (12/10/2026) não mudaram; "Atualizado em" é 18/10/2026.
 
-**Revisar até janeiro/2027:** o valor em reais do limite de brinde no artigo de compliance. Ele é 1% do subsídio dos ministros do STF, R$ 46.366,19 desde fevereiro de 2025 pela Lei 14.520/2023. Se houver reajuste, atualize o texto, a nota e o campo `updated`.
+| Artigo | Categoria | Consulta-alvo | Destino principal | Fontes externas |
+|---|---|---|---|---|
+| Brindes de fim de ano para clientes: como escolher um presente que faça sentido (destaque) | Brindes e presentes | brindes de fim de ano para clientes | Curadoria `?ocasiao=fim-de-ano` | Nenhuma |
+| Presente de Natal para funcionários: como escolher para a equipe | Brindes e presentes | presente de natal para funcionários | Brindes corporativos | Nenhuma |
+| O que colocar no kit de boas-vindas: escolhas para receber sua equipe | Kits e boas-vindas | o que colocar no kit de boas-vindas | Kits corporativos | Nenhuma |
+| Brindes e compliance: o que conferir antes de presentear | Planejamento de compras | brindes e compliance | Nenhum (só editorial) | Decreto 10.889/2021, CGU (brindes, presentes e hospitalidades) e Lei 12.846/2013, consultados em 18/10/2026 |
+
+O artigo de compliance não cita mais um valor em reais: ele orienta a verificar o parâmetro vigente. **Revisar até 31/01/2027** (`revisar_em`): conferir as três fontes oficiais e atualizar o texto se mudarem.
+
+A chamada final do artigo de fim de ano não fala em taças e copos, porque a curadoria do site não tem essas peças. O texto do artigo continua citando taças como opção a considerar.
 
 ## Próximas pautas sugeridas
 
@@ -207,7 +213,17 @@ Seguem `docs/SEO.md`:
 3. Quanto custa uma identidade visual e o que entra no escopo. Sem preços: falar do que muda o escopo.
 4. Kit para evento corporativo, só depois de alinhar com o subdomínio de brindes.
 
-Quando um tema chegar a 3 artigos, a página `/blog/tema/<tema>/` aparece sozinha no próximo build.
+Quando uma categoria chegar a 3 artigos, a página `/blog/tema/<categoria>/` aparece sozinha no próximo build.
+
+## Verificações da refatoração (18/10/2026, local)
+
+- `python build.py` sem erros; links internos, capas e relacionados validados pelo build.
+- Listagem e quatro artigos em 360, 390, 768 e 1440 px: sem rolagem horizontal, um H1 por página, destaque sem repetir na grade, filtros funcionando (Todos + 3 categorias) e console sem erros.
+- Sumário: aberto ao lado do texto no desktop e recolhido no celular, sem HTML duplicado.
+- Compliance sem vitrine, sem botões de proposta e sem faixa final; três fontes oficiais citadas no texto.
+- Canonical, robots, title, `og:type`, `twitter:card`, `BlogPosting` e `BreadcrumbList` mantidos; sitemap com `lastmod` 2026-10-18.
+- O `tests/e2e.mjs` foi atualizado, mas não rodou neste computador (falta o puppeteer); as checagens equivalentes foram feitas no navegador.
+- Lighthouse e axe-core não foram refeitos depois da refatoração.
 
 ## Verificações (12/10/2026, rascunho blog-rascunho)
 

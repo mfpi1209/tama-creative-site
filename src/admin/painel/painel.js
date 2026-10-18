@@ -151,7 +151,7 @@
     var recebidos = S.arts.filter(function (o) {
       return o !== a && o.estado === 'publicado' && (o.links.indexOf('/blog/' + a.slug + '/') !== -1 || o.relacionados.indexOf(a.slug) !== -1);
     }).length;
-    c.push({ ok: recebidos > 0, nivel: recebidos > 0 ? 'ok' : 'info', texto: recebidos ? 'Citado por ' + recebidos + ' outro(s) artigo(s)' : 'Nenhum outro artigo cita este no texto ou em "Outros guias" (o site ainda mostra os do mesmo tema)' });
+    c.push({ ok: recebidos > 0, nivel: recebidos > 0 ? 'ok' : 'info', texto: recebidos ? 'Citado por ' + recebidos + ' outro(s) artigo(s)' : 'Nenhum outro artigo cita este no texto ou em "Outros guias" (o site ainda mostra os da mesma categoria)' });
     var conflito = S.conflitos.filter(function (x) { return x.a.dono === 'a:' + a.slug || x.b.dono === 'a:' + a.slug; });
     conflito.forEach(function (x) {
       var outro = x.a.dono === 'a:' + a.slug ? x.b : x.a;
@@ -305,7 +305,7 @@
       push(x.nivel === 'alto' ? 'erro' : 'aviso', cap(x.a.label) + ' e ' + x.b.label + ' disputam buscas parecidas ("' + x.a.consulta + '" × "' + x.b.consulta + '")', '#palavras', 'Ver mapa');
     });
     temas().forEach(function (t) {
-      if (t.pub === S.site.tema_min - 1) push('info', 'Falta 1 artigo publicado para o tema "' + t.label + '" ganhar página própria (/blog/tema/' + t.key + '/)', '#pautas', 'Ver pautas');
+      if (t.pub === S.site.tema_min - 1) push('info', 'Falta 1 artigo publicado para a categoria "' + t.label + '" ganhar página própria (/blog/tema/' + t.key + '/)', '#pautas', 'Ver pautas');
     });
     var ordem = { erro: 0, aviso: 1, info: 2 };
     return out.sort(function (x, y) { return ordem[x.nivel] - ordem[y.nivel]; });
@@ -349,7 +349,7 @@
           ' · <a href="/admin/#/workflow">Abrir fluxo</a></p></li>';
       }).join('') + '</ul></div>';
     }
-    h += '</div><div><h2>Temas</h2><div class="card"><p class="small muted" style="margin:0 0 8px">A página do tema (/blog/tema/…) aparece com ' + S.site.tema_min + ' artigos publicados.</p><ul class="temas">' +
+    h += '</div><div><h2>Categorias</h2><div class="card"><p class="small muted" style="margin:0 0 8px">A página da categoria (/blog/tema/…) aparece com ' + S.site.tema_min + ' artigos publicados.</p><ul class="temas">' +
       temas().map(function (t) {
         var pct = Math.min(100, Math.round(t.pub / S.site.tema_min * 100));
         return '<li><div class="row"><span>' + esc(t.label) + '</span><span class="small muted">' + t.pub + '/' + S.site.tema_min + ' publicados' + (t.fila ? ' · ' + t.fila + ' na fila' : '') + '</span></div>' +
@@ -364,7 +364,7 @@
 
   function telaPautas() {
     var h = '<h2>Pautas</h2><p class="intro">Uma pauta por consulta de busca. Mude o status no editor; o painel mostra prazos, picos e o artigo ligado.</p>';
-    h += '<div class="filters"><label>Tema <select id="f-tema"><option value="">Todos</option>' + Object.keys(S.site.temas).map(function (k) {
+    h += '<div class="filters"><label>Categoria <select id="f-tema"><option value="">Todos</option>' + Object.keys(S.site.temas).map(function (k) {
       return '<option value="' + k + '"' + (filtro.tema === k ? ' selected' : '') + '>' + esc(S.site.temas[k]) + '</option>';
     }).join('') + '</select></label><label><input type="checkbox" id="f-desc"' + (filtro.descartadas ? ' checked' : '') + '> Mostrar descartadas</label>' +
       '<a href="/admin/#/collections/pautas/new">+ Nova pauta</a></div>';
@@ -483,7 +483,7 @@
       var e = ESTADO[a.estado];
       return '<details class="card audit"><summary><div><h3>' + esc(a.title || a.slug) + '</h3><p class="meta">' + tag(e[0], e[1]) + ' ' +
         (a.pr && a.estado !== 'fluxo' ? tag('Edição: ' + (STATUS_FLUXO[a.pr.status] || 'no fluxo'), 'aviso') + ' ' : '') +
-        esc(S.site.temas[a.tema] || 'sem tema') + ' · ' + fmt(a.date) + ' · ' + a.palavras + ' palavras' +
+        esc(S.site.temas[a.tema] || 'sem categoria') + ' · ' + fmt(a.date) + ' · ' + a.palavras + ' palavras' +
         (a.erros ? ' · ' + tag(a.erros + ' a corrigir', 'erro') : '') + (a.avisos ? ' ' + tag(a.avisos + ' de atenção', 'aviso') : '') + '</p></div>' +
         '<span class="score" title="itens atendidos">' + a.nota + '</span></summary>' +
         '<ul class="checks">' + a.checks.map(function (c) { return '<li class="' + c.nivel + '">' + esc(c.texto) + '</li>'; }).join('') + '</ul>' +

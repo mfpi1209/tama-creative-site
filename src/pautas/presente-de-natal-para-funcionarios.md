@@ -4,7 +4,7 @@ palavra_chave: presente de natal para funcionários
 status: publicada
 prioridade: alta
 intencao: informacional
-tema: fim-de-ano
+tema: brindes-e-presentes
 destino: /kits-corporativos/
 pico:
 - novembro

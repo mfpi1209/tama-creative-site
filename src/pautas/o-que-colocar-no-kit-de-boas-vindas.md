@@ -3,7 +3,7 @@ titulo: 'O que colocar no kit de boas-vindas, inclusive para quem trabalha remot
 palavra_chave: o que colocar no kit de boas-vindas
 status: publicada
 intencao: informacional
-tema: boas-vindas
+tema: kits-e-boas-vindas
 destino: /kits-corporativos/
 artigo: o-que-colocar-no-kit-de-boas-vindas
 ---

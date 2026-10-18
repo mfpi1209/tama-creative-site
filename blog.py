@@ -34,18 +34,18 @@ IMG_EXT = ('.jpg', '.jpeg', '.png', '.webp')
 BLOG_IMG = {}  # chave -> arquivo de img/blog/ (imagens enviadas pelo editor)
 DRAFTS = os.environ.get('BLOG_DRAFTS', '').lower() in ('1', 'true', 'yes')
 
-# Temas do blog. A página /blog/tema/<chave>/ só é gerada quando o tema tem TEMA_MIN artigos publicados;
+# Categorias do blog (filtros da listagem). A página /blog/tema/<chave>/ só é gerada quando o tema tem TEMA_MIN artigos publicados;
 # antes disso o tema aparece só como etiqueta (evita páginas rasas no Google).
 TEMAS = {
-    'fim-de-ano': ('Fim de ano', 'Presentes para clientes, equipes e parceiros no encerramento do ano.'),
-    'boas-vindas': ('Boas-vindas', 'Kits e rituais para receber quem chega à empresa.'),
-    'politicas': ('Compliance e políticas', 'Regras, limites e boas práticas para presentear com segurança.'),
-    'eventos': ('Eventos', 'Peças e kits que acompanham encontros, feiras e convenções.'),
-    'sustentabilidade': ('Sustentabilidade', 'Materiais, escolhas e cuidados para brindes que duram.'),
-    'marca': ('Marca e identidade', 'Como a identidade visual ganha forma em objetos, embalagens e vestuário.'),
-    'uniformes': ('Uniformes e confecções', 'Tecidos, modelagens e personalização para quem veste a marca.'),
+    'brindes-e-presentes': ('Brindes e presentes', 'Como escolher brindes e presentes para clientes, parceiros e equipes.'),
+    'kits-e-boas-vindas': ('Kits e boas-vindas', 'Composição, apresentação e entrega de kits para quem chega e para equipes.'),
+    'planejamento-de-compras': ('Planejamento de compras', 'Regras, aprovações e prazos para comprar brindes com segurança.'),
+    'personalizacao-e-materiais': ('Personalização e materiais', 'Técnicas, materiais e acabamentos para aplicar a sua marca.'),
+    'eventos-e-ativacoes': ('Eventos e ativações', 'Peças e kits que acompanham eventos, feiras e ações de marca.'),
 }
 TEMA_MIN = 3
+RELACIONADOS_MAX = 2
+AUTOR = 'Equipe TaMa Creative'
 TIPOS = ('brindes', 'kits', 'confeccoes', 'branding', 'integrado')
 MESES = ('janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro')
 BRT = timezone(timedelta(hours=-3))
@@ -200,8 +200,12 @@ def render_markdown(b, body, a):
     # Atalho [[cta]] ou [[cta: texto]] -> chamada para a proposta dentro do texto
     def cta(m):
         text = m.group(1) or 'Quer ajuda para transformar estas ideias em uma seleção com a sua marca? Conte a ocasião e a TaMa propõe as peças.'
-        return (f'<aside class="post-callout" aria-label="Solicitar proposta"><p>{text}</p>'
-                f'{b.cta_link("Solicitar proposta", tipo=a["proposta"], track_label="blog-meio-" + a["slug"])}</aside>')
+        colecao = ''
+        if a['servico']:
+            colecao = (f'<a class="link" href="{a["servico"]}" data-track="article_to_collection" data-track-label="blog-meio-{a["slug"]}">'
+                       f'{SERVICOS.get(a["servico"], "Conhecer o serviço")} {b.ARROW}</a>')
+        return (f'<aside class="post-callout" aria-label="Solicitar proposta"><p>{text}</p><div class="actions">'
+                f'{b.cta_link("Solicitar proposta", tipo=a["proposta"], track_label="blog-meio-" + a["slug"])}{colecao}</div></aside>')
     out = re.sub(r'<p>\[\[cta(?::\s*(.*?))?\]\]</p>', cta, out)
     if '[[' in out:
         _err(f'{fn}: atalho desconhecido entre [[ ]] (só existe [[cta]] ou [[cta: texto]])')
@@ -239,6 +243,9 @@ def load(b):
         a['seo_title'] = str(meta.get('seo_title') or (f'{a["title"]} | TaMa Creative' if len(a['title']) <= 49 else a['title']))
         a['description'] = str(meta.get('description', ''))
         a['breadcrumb'] = str(meta.get('breadcrumb') or a['title'])
+        a['resumo'] = str(meta.get('resumo') or a['description'])
+        if len(a['resumo']) > 160:
+            _err(f'{fn}: resumo com {len(a["resumo"])} caracteres (máximo 160)')
         if len(a['title']) > 110:
             _err(f'{fn}: title com {len(a["title"])} caracteres (máximo 110)')
         if len(a['seo_title']) > 70:
@@ -268,11 +275,15 @@ def load(b):
         a['capa_alt'] = str(meta.get('capa_alt', ''))
         a['capa_conceitual'] = meta.get('capa_conceitual', True) is not False
         a['capa_posicao'] = meta.get('capa_posicao') or ''
+        a['legenda_propria'] = bool(meta.get('capa_legenda'))
+        a['capa_legenda'] = str(meta.get('capa_legenda') or ('Fotografia conceitual' if a['capa_conceitual'] else ''))
         a['pecas'] = meta.get('pecas') or []
         for s in a['pecas']:
             if s not in known_items:
                 _err(f'{fn}: peça {s!r} não existe em src/data/curadoria.json')
         a['relacionados'] = [re.sub(r'^\d{4}-\d{2}-\d{2}-', '', s) for s in (meta.get('relacionados') or [])]
+        if len(a['relacionados']) > RELACIONADOS_MAX:
+            _err(f'{fn}: no máximo {RELACIONADOS_MAX} relacionados')
         a['palavra_chave'] = meta.get('palavra_chave') or ''
         a['revisar_em'] = _date(meta['revisar_em'], fn, 'revisar_em') if meta.get('revisar_em') else None
         a['revisar_motivo'] = str(meta.get('revisar_motivo') or '')
@@ -358,7 +369,7 @@ def _head(b, extra=''):
 def _meta_line(a, author=True):
     parts = []
     if author:
-        parts.append('Por <a href="/sobre/">TaMa Creative</a>')
+        parts.append(f'Por <a href="/sobre/">{AUTOR}</a>')
     parts.append(f'<time datetime="{a["date"].isoformat()}">{fmt_date(a["date"])}</time>')
     if a['updated'] != a['date']:
         parts.append(f'Atualizado em <time datetime="{a["updated"].isoformat()}">{fmt_date(a["updated"])}</time>')
@@ -367,29 +378,37 @@ def _meta_line(a, author=True):
 
 
 def _cover_alt(a):
+    if a['legenda_propria']:
+        return a['capa_alt']
     return ('Fotografia conceitual: ' if a['capa_conceitual'] else '') + a['capa_alt']
+
+
+def _comercial(a):
+    """Artigo com vitrine e chamadas de proposta. Sem serviço nem tipo de proposta (ex.: compliance), só conteúdo editorial."""
+    return bool(a['servico'] or a['proposta'])
 
 
 def post_card(b, a, level=3, sizes='(max-width: 760px) 92vw, (max-width: 1180px) 30vw, 380px'):
     pos = f'object-position:{a["capa_posicao"]}' if a['capa_posicao'] else ''
-    return f'''<article class="post-card">
+    return f'''<article class="post-card" data-cat="{a['tema']}">
   <div class="post-thumb">{b.picture(a['capa'], '', sizes, style=pos)}</div>
-  <p class="post-kicker">{tema_label(a['tema'])}</p>
-  <h{level}><a href="{a['path']}">{a['title']}</a></h{level}>
-  <p>{a['description']}</p>
-  <p class="post-meta">{_meta_line(a, author=False)}</p>
+  <div class="post-card-body">
+    <p class="post-kicker">{tema_label(a['tema'])}</p>
+    <h{level}><a href="{a['path']}">{a['title']}</a></h{level}>
+    <p>{a['resumo']}</p>
+    <span class="link" aria-hidden="true">Ler o guia {b.ARROW}</span>
+  </div>
 </article>'''
 
 
 def post_feature(b, a):
     pos = f'object-position:{a["capa_posicao"]}' if a['capa_posicao'] else ''
     return f'''<article class="post-feature">
-  <div class="post-thumb">{b.picture(a['capa'], '', '(max-width: 980px) 92vw, 640px', eager=True, style=pos)}</div>
-  <div class="stack" style="gap:14px">
-    <p class="post-kicker">Mais recente · {tema_label(a['tema'])}</p>
+  <div class="post-thumb">{b.picture(a['capa'], '', '(max-width: 980px) 92vw, 760px', eager=True, style=pos)}</div>
+  <div class="post-feature-body">
+    <p class="post-kicker">Em destaque · {tema_label(a['tema'])}</p>
     <h2><a href="{a['path']}">{a['title']}</a></h2>
     <p class="muted">{a['description']}</p>
-    <p class="post-meta">{_meta_line(a, author=False)}</p>
     <span class="link" aria-hidden="true">Ler o guia {b.ARROW}</span>
   </div>
 </article>'''
@@ -400,7 +419,7 @@ def related(a):
     picked = [by_slug[s] for s in a['relacionados'] if s in by_slug and s != a['slug']]
     rest = [x for x in ARTS if x['slug'] != a['slug'] and x not in picked]
     rest.sort(key=lambda x: (x['tema'] != a['tema'], -x['date'].toordinal()))
-    return (picked + rest)[:3]
+    return (picked + rest)[:RELACIONADOS_MAX]
 
 
 def blog_jsonld(b, a):
@@ -421,18 +440,20 @@ def blog_jsonld(b, a):
 def article_page(b, a):
     def fn():
         oc = a['ocasiao']
+        com = _comercial(a)
         pos = f'object-position:{a["capa_posicao"]}' if a['capa_posicao'] else ''
         toc = ''
         if len(a['toc']) >= 2:
-            toc = ('<nav class="post-toc" aria-labelledby="toc-t"><p class="post-toc-t" id="toc-t">Neste guia</p><ol>'
-                   + ''.join(f'<li><a href="#{i}">{n}</a></li>' for i, n in a['toc']) + '</ol></nav>')
-        caption = '<figcaption>Fotografia conceitual</figcaption>' if a['capa_conceitual'] else ''
+            # Um só sumário: aberto ao lado do texto no desktop; no celular, site.js o fecha (details/summary)
+            toc = ('<nav class="post-toc" aria-label="Neste guia"><details open data-post-toc><summary>Neste guia</summary><ol>'
+                   + ''.join(f'<li><a href="#{i}">{n}</a></li>' for i, n in a['toc']) + '</ol></details></nav>')
+        caption = f'<figcaption>{a["capa_legenda"]}</figcaption>' if a['capa_legenda'] else ''
         draft = '<p class="post-draft">Rascunho ou artigo agendado: não aparece no site publicado.</p>' if a['noindex'] else ''
         # Peças da curadoria ligadas ao artigo
         pecas_html = ''
         fotos = [s for s in a['pecas'] if s in b.PECA]
         ideias = [it for it in b.ALEM if it['slug'] in a['pecas']]
-        if fotos or ideias:
+        if com and (fotos or ideias):
             if oc:
                 more = (f'/brindes-corporativos-premium/?ocasiao={oc}#pecas', f'Ver todas as ideias para {b.OCCS[oc].lower()}')
             else:
@@ -451,18 +472,22 @@ def article_page(b, a):
             rel_html = (f'<section class="section" aria-labelledby="rel-t"><div class="wrap"><div class="section-head row"><div class="stack" style="gap:12px">'
                         f'<p class="eyebrow">Continue lendo</p><h2 id="rel-t" class="section-title">Outros guias</h2></div>'
                         f'<a class="link" href="/blog/">Todos os guias {b.ARROW}</a></div>'
-                        f'<div class="post-grid">{"".join(post_card(b, x) for x in rel)}</div></div></section>')
-        servico = ''
-        if a['servico']:
-            servico = f'<a class="btn btn-line" href="{a["servico"]}">{SERVICOS.get(a["servico"], "Conhecer o serviço")}</a>'
-        author = f'''<div class="post-author">{b.SELO}<div class="stack" style="gap:8px"><p><strong>TaMa Creative</strong></p>
+                        f'<div class="post-grid post-grid-2">{"".join(post_card(b, x) for x in rel)}</div></div></section>')
+        actions = ''
+        if com:
+            servico = ''
+            if a['servico']:
+                servico = (f'<a class="btn btn-line" href="{a["servico"]}" data-track="article_to_collection" data-track-label="blog-autor-{a["slug"]}">'
+                           f'{SERVICOS.get(a["servico"], "Conhecer o serviço")}</a>')
+            actions = f'<div class="actions">{b.cta_link(tipo=a["proposta"], track_label="blog-autor-" + a["slug"])}{servico}</div>'
+        author = f'''<div class="post-author">{b.SELO}<div class="stack" style="gap:8px"><p><strong>{AUTOR}</strong></p>
       <p class="muted">Estúdio criativo de brindes corporativos premium, kits, confecções e branding, com visão de Trade Marketing: o público e a ocasião vêm antes da peça.</p>
-      <div class="actions">{b.cta_link(tipo=a['proposta'], track_label='blog-autor-' + a['slug'])}{servico}</div></div></div>'''
+      {actions}</div></div>'''
         body = f'''<article class="post">
   <div class="wrap"><header class="post-head">
     {draft}<p class="eyebrow">{tema_html(a['tema'])}</p>
     <h1>{a['title']}</h1>
-    <p class="lead">{a['description']}</p>
+    <p class="lead">{a['resumo']}</p>
     <p class="post-meta">{_meta_line(a)}</p>
   </header></div>
   <figure class="wrap post-cover">{b.picture(a['capa'], _cover_alt(a), '(max-width: 1280px) 92vw, 1184px', eager=True, style=pos)}{caption}</figure>
@@ -473,7 +498,7 @@ def article_page(b, a):
 </article>
 {pecas_html}
 {rel_html}
-{b.end_cta(tipo=a['proposta'])}'''
+{b.end_cta(tipo=a['proposta']) if com else ''}'''
         head = (f'<meta property="article:published_time" content="{a["date"].isoformat()}">'
                 f'<meta property="article:modified_time" content="{a["updated"].isoformat()}">'
                 f'<meta property="article:section" content="{b.esc(tema_label(a["tema"]))}">')
@@ -497,25 +522,37 @@ SERVICOS = {
 }
 
 
+def destaque(arts):
+    """Artigo em destaque no índice: o marcado como destaque (o mais recente deles) ou, sem marcação, o mais recente."""
+    return next((a for a in arts if a['destaque']), arts[0]) if arts else None
+
+
 def listing(b, arts, feature=True):
+    """Destaque + grade. O destaque não se repete na grade. Os filtros por categoria são botões que só aparecem com JavaScript
+    (site.js); sem ele, todos os cards ficam visíveis e são links comuns."""
     if not arts:
         return '<p class="empty">Os primeiros guias estão a caminho.</p>'
-    first, rest = (arts[0], arts[1:]) if feature else (None, arts)
+    first = destaque(arts) if feature else None
+    rest = [a for a in arts if a is not first]
     out = post_feature(b, first) if first else ''
     if rest:
-        head = '<h2 class="section-title" style="font-size:clamp(1.8rem,1.4rem + 1.4vw,2.4rem)">Mais guias</h2>' if first else '<h2 class="visually-hidden">Artigos</h2>'
-        out += f'<div class="post-list">{head}<div class="post-grid">{"".join(post_card(b, a) for a in rest)}</div></div>'
+        cats = [k for k in TEMAS if any(a['tema'] == k for a in rest)]
+        filtros = ''
+        if feature and len(cats) >= 2:
+            filtros = ('<div class="blog-filters" role="group" aria-label="Filtrar guias por categoria" data-blog-filters hidden>'
+                       '<button type="button" class="chip" data-cat="" aria-pressed="true">Todos</button>'
+                       + ''.join(f'<button type="button" class="chip" data-cat="{k}" aria-pressed="false">{tema_label(k)}</button>' for k in cats)
+                       + '</div><p class="visually-hidden" role="status" data-blog-status></p>')
+        head = '<h2 class="section-title blog-list-t">Explore os guias</h2>' if first else '<h2 class="visually-hidden">Artigos</h2>'
+        empty = ('<div class="blog-empty" data-blog-empty hidden><p>Nenhum guia nesta seleção.</p>'
+                 '<button type="button" class="link" data-cat="">Ver todos os guias</button></div>') if filtros else ''
+        out += f'<div class="post-list">{head}{filtros}<div class="post-grid" data-blog-grid>{"".join(post_card(b, a) for a in rest)}</div>{empty}</div>'
     return out
 
 
 def index_page(b):
     def fn():
         pub = [a for a in ARTS if not a['noindex']] + [a for a in ARTS if a['noindex']]
-        temas = temas_com_pagina()
-        temas_html = ''
-        if temas:
-            temas_html = ('<nav class="filters" aria-label="Temas do blog" style="flex-wrap:wrap;margin-top:8px">'
-                          + ''.join(f'<a class="chip" href="/blog/tema/{k}/">{tema_label(k)}</a>' for k in temas) + '</nav>')
         url = b.SITE + '/blog/'
         blog_ld = {'@type': 'Blog', '@id': url + '#blog', 'name': 'Blog TaMa Creative', 'url': url, 'inLanguage': 'pt-BR',
                    'publisher': {'@id': b.ORG_ID},
@@ -523,25 +560,27 @@ def index_page(b):
                                  'datePublished': a['date'].isoformat()} for a in pub if not a['noindex']]}
         latest = max((a['updated'] for a in pub if not a['noindex']), default=None)
         page = {
-            'path': '/blog/', 'title': 'Blog: guias de brindes corporativos e kits | TaMa Creative',
-            'description': 'Guias da TaMa Creative sobre brindes corporativos, kits e presentes de empresa: como escolher, o que incluir e como respeitar as regras de quem recebe.',
+            'path': '/blog/', 'title': 'Blog TaMa: guias de brindes, kits e personalização',
+            'description': 'Guias práticos para escolher brindes corporativos, montar kits e planejar presentes para clientes e equipes. Explore as ideias da TaMa Creative.',
             'trail': [('/', 'Início'), ('/blog/', 'Blog')], 'wp_type': 'CollectionPage', 'ld_extra': [blog_ld],
             'head': _head(b),
             'body': f'''<section class="page-head blog-head">
-  <div class="wrap"><div class="section-head" style="margin:0;max-width:52rem">
+  <div class="wrap"><div class="section-head" style="margin:0;max-width:46rem">
     <p class="eyebrow">Blog TaMa</p>
-    <h1>Guias para presentear em nome da sua marca</h1>
-    <p class="lead">Como escolher brindes e kits que as pessoas usam, o que colocar em cada ocasião e como respeitar as regras de quem recebe. Conteúdo prático, escrito pela TaMa Creative.</p>
-    {temas_html}
+    <h1>Ideias para a sua marca fazer parte da rotina.</h1>
+    <p class="lead">Guias para escolher brindes, montar kits, personalizar peças e planejar ações para clientes e equipes.</p>
   </div></div>
 </section>
 <section class="section" style="padding-top:0" aria-label="Artigos do blog">
   <div class="wrap">{listing(b, pub)}</div>
 </section>
-{b.end_cta()}''',
+{b.end_cta(title='Sua próxima ideia começa com uma boa escolha.',
+           text='Conte quem vai receber, qual é a ocasião e quando você precisa entregar. A TaMa ajuda a organizar as possibilidades.',
+           eyebrow='Vamos conversar?', label='Conversar sobre meu projeto')}''',
         }
-        if pub and pub[0]['capa']:
-            page['preload'] = b.preload_image(pub[0]['capa'], '(max-width: 980px) 92vw, 640px')
+        first = destaque(pub)
+        if first and first['capa']:
+            page['preload'] = b.preload_image(first['capa'], '(max-width: 980px) 92vw, 760px')
         if latest:
             page['lastmod'] = latest.isoformat()
         return page
@@ -557,9 +596,9 @@ def tema_page(b, key):
             'description': f'{desc} Guias práticos da TaMa Creative sobre {label.lower()}.'[:160],
             'trail': [('/', 'Início'), ('/blog/', 'Blog'), (f'/blog/tema/{key}/', label)], 'wp_type': 'CollectionPage',
             'head': _head(b), 'lastmod': max(a['updated'] for a in arts).isoformat(),
-            'body': f'''<section class="page-head blog-head"><div class="wrap"><div class="section-head" style="margin:0;max-width:52rem">
-  <p class="eyebrow">Blog TaMa · Tema</p><h1>{label}</h1><p class="lead">{desc}</p></div></div></section>
-<section class="section" style="padding-top:0" aria-label="Artigos do tema"><div class="wrap">{listing(b, arts, feature=False)}</div></section>
+            'body': f'''<section class="page-head blog-head"><div class="wrap"><div class="section-head" style="margin:0;max-width:46rem">
+  <p class="eyebrow">Blog TaMa · Categoria</p><h1>{label}</h1><p class="lead">{desc}</p></div></div></section>
+<section class="section" style="padding-top:0" aria-label="Artigos da categoria"><div class="wrap">{listing(b, arts, feature=False)}</div></section>
 {b.end_cta()}''',
         }
     return fn
@@ -696,6 +735,9 @@ def cms_config(b):
         {'label': 'Descrição (SEO)', 'name': 'description', 'widget': 'text',
          'hint': 'Resumo que aparece no Google, nos cards do blog e abaixo do título. De 70 a 160 caracteres.',
          'pattern': ['^[\\s\\S]{70,160}$', 'Use de 70 a 160 caracteres']},
+        {'label': 'Resumo do card', 'name': 'resumo', 'widget': 'string', 'required': False,
+         'hint': 'Uma frase curta para o card da listagem e a linha abaixo do título. Até 160 caracteres. Vazio usa a descrição.',
+         'pattern': ['^.{0,160}$', 'Use até 160 caracteres']},
         {'label': 'Palavra-chave principal', 'name': 'palavra_chave', 'widget': 'string',
          'hint': 'A busca que o artigo responde, como as pessoas digitam. Use-a no título, na descrição e no primeiro parágrafo.'},
         dict(date_fmt, label='Data de publicação', name='date', hint='Data futura = o artigo só aparece a partir desse dia (no próximo build).'),
@@ -707,13 +749,14 @@ def cms_config(b):
          'hint': 'Ex.: conferir o valor do limite de brindes (1% do subsídio do STF).'},
         {'label': 'Destaque no blog', 'name': 'destaque', 'widget': 'boolean', 'default': False, 'required': False,
          'hint': 'Coloca o artigo em destaque entre os publicados no mesmo dia.'},
-        {'label': 'Tema', 'name': 'tema', 'widget': 'select', 'options': [_opt(v[0], k) for k, v in TEMAS.items()]},
+        {'label': 'Categoria', 'name': 'tema', 'widget': 'select', 'options': [_opt(v[0], k) for k, v in TEMAS.items()],
+         'hint': 'Vira filtro na listagem do blog. A página da categoria aparece com 3 artigos publicados.'},
         {'label': 'Ocasião da curadoria', 'name': 'ocasiao', 'widget': 'select', 'required': False,
          'options': [_opt(v, k) for k, v in b.OCCS.items()],
          'hint': 'Liga o artigo à curadoria filtrada (/brindes-corporativos-premium/?ocasiao=…).'},
         {'label': 'Página de serviço', 'name': 'servico', 'widget': 'select', 'required': False,
          'options': [_opt(v.replace('Ver ', '').capitalize(), k) for k, v in SERVICOS.items()],
-         'hint': 'Botão para o serviço no fim do artigo. Todo artigo deve apontar para um serviço.'},
+         'hint': 'Botão para o serviço no fim do artigo. Sem serviço nem tipo de proposta, o artigo fica só editorial (sem vitrine nem chamadas comerciais), como o de compliance.'},
         {'label': 'Tipo de proposta', 'name': 'proposta', 'widget': 'select', 'required': False,
          'options': [_opt(v, k) for k, v in tipos.items()], 'hint': 'Já vem marcado no formulário quando o leitor clica em Solicitar proposta.'},
         {'label': 'Capa: imagem da biblioteca do site', 'name': 'capa', 'widget': 'select', 'required': False,
@@ -724,13 +767,15 @@ def cms_config(b):
          'hint': 'O que aparece na foto, para leitores de tela e para o Google. Ex.: caixa terracota com caderno e garrafa verde.'},
         {'label': 'A capa é uma fotografia conceitual', 'name': 'capa_conceitual', 'widget': 'boolean', 'default': True, 'required': False,
          'hint': 'Desmarque só para fotos reais de trabalhos entregues. Conceituais aparecem identificadas no site.'},
+        {'label': 'Legenda da capa', 'name': 'capa_legenda', 'widget': 'string', 'required': False,
+         'hint': 'Ex.: Imagem ilustrativa · Marcas fictícias. Vazio: "Fotografia conceitual" quando a capa for conceitual.'},
         {'label': 'Enquadramento da capa', 'name': 'capa_posicao', 'widget': 'string', 'required': False,
          'hint': 'Opcional. Ex.: 50% 40% (horizontal e vertical) para mostrar outra parte da foto.'},
         {'label': 'Peças da curadoria', 'name': 'pecas', 'widget': 'select', 'multiple': True, 'required': False, 'max': 9,
          'options': pecas, 'hint': 'Aparecem no fim do artigo com o botão "+ Selecionar" (levam o leitor à proposta). Até 9.'},
         {'label': 'Outros guias (relacionados)', 'name': 'relacionados', 'widget': 'relation', 'collection': 'blog',
-         'search_fields': ['title'], 'value_field': '{{slug}}', 'display_fields': ['title'], 'multiple': True, 'required': False, 'max': 3,
-         'hint': 'Até 3. Sem escolha, o site mostra os do mesmo tema e os mais recentes.'},
+         'search_fields': ['title'], 'value_field': '{{slug}}', 'display_fields': ['title'], 'multiple': True, 'required': False, 'max': 2,
+         'hint': 'Até 2. Sem escolha, o site mostra os da mesma categoria e os mais recentes.'},
         {'label': 'Rascunho (não publicar)', 'name': 'draft', 'widget': 'boolean', 'default': False, 'required': False,
          'hint': 'Marcado, o artigo não vai ao ar mesmo se for publicado no editor.'},
         {'label': 'Texto', 'name': 'body', 'widget': 'markdown', 'modes': ['rich_text', 'raw'],
@@ -779,7 +824,7 @@ def cms_config(b):
                 {'label': 'Intenção de busca', 'name': 'intencao', 'widget': 'select', 'required': False,
                  'options': [_opt(v, k) for k, v in INTENCOES.items()],
                  'hint': 'Informacional = quer aprender; comercial = compara opções; transacional = quer comprar ou orçar.'},
-                {'label': 'Tema', 'name': 'tema', 'widget': 'select', 'required': False,
+                {'label': 'Categoria', 'name': 'tema', 'widget': 'select', 'required': False,
                  'options': [_opt(v[0], k) for k, v in TEMAS.items()]},
                 {'label': 'Página de destino do link', 'name': 'destino', 'widget': 'select', 'required': False,
                  'options': [_opt(v.replace('Ver ', '').capitalize(), k) for k, v in SERVICOS.items()]},

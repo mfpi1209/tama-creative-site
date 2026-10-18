@@ -5,17 +5,19 @@
 title: 'Título do artigo: como aparece no H1 (até 110 caracteres)'
 breadcrumb: Título curto
 seo_title: 'Título para o Google, até 65 caracteres | TaMa'
-description: Resumo de 70 a 160 caracteres. Aparece no Google, nos cards do blog e abaixo do título.
+description: Resumo de 70 a 160 caracteres. Aparece no Google.
+resumo: Frase curta para o card da listagem e a linha abaixo do título (até 160 caracteres).
 palavra_chave: consulta principal que o artigo responde
 date: 2026-10-13
 destaque: false
-tema: fim-de-ano
+tema: brindes-e-presentes
 ocasiao: fim-de-ano
 servico: /kits-corporativos/
 proposta: kits
 capa: kit-presente
 capa_alt: descrição do que aparece na foto, sem começar por "foto de".
 capa_conceitual: true
+# capa_legenda: Imagem ilustrativa · Marcas fictícias   # opcional
 pecas:
 - kit-boas-vindas
 - caderno-premium

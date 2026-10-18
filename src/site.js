@@ -99,7 +99,15 @@
     menuBtn.setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu');
     nav.classList.toggle('is-open', open);
   }
-  if (menuBtn) menuBtn.addEventListener('click', function () { setMenu(menuBtn.getAttribute('aria-expanded') !== 'true'); });
+  if (menuBtn) menuBtn.addEventListener('click', function () {
+    var abrir = menuBtn.getAttribute('aria-expanded') !== 'true';
+    setMenu(abrir);
+    if (abrir) { var l = nav.querySelector('a'); if (l) l.focus(); }   // os links vêm antes do botão no HTML: o foco vai para eles
+  });
+  // menu do celular aberto: se o foco sair do menu e do botão (Tab depois do último link), o menu fecha
+  if (nav) nav.addEventListener('focusout', function (e) {
+    if (nav.classList.contains('is-open') && e.relatedTarget && !nav.contains(e.relatedTarget) && e.relatedTarget !== menuBtn) setMenu(false);
+  });
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape' && nav && nav.classList.contains('is-open')) { setMenu(false); menuBtn.focus(); }
   });

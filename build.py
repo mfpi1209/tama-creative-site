@@ -915,7 +915,7 @@ def hero_carousel(slides=None, label='Destaques da TaMa Creative', assurances=Tr
     <p class="slide-desc">{desc}</p>
     <div class="actions">{actions}</div>
   </div></div>
-  <div class="slide-photo">{picture(img, alt, '(max-width: 760px) 200vw, (max-width: 1100px) 140vw, 100vw', eager=(i == 0), low=(i > 0))}</div>
+  <div class="slide-photo">{picture(img, alt, '(max-width: 760px) 200vw, (max-width: 1100px) 140vw, 100vw' if i == 0 else '(max-width: 760px) 100vw, (max-width: 1100px) 140vw, 100vw', eager=(i == 0), low=(i > 0))}</div>
 </div>''')
     dots = ''.join(f'<button class="dot" type="button" data-slide="{i}" aria-label="Mostrar slide {i + 1} de {n}" aria-controls="slide-{i + 1}"{" aria-current=\"true\"" if i == 0 else ""}></button>' for i in range(n))
     strip = ASSURANCES if assurances else ''

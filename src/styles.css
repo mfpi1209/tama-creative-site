@@ -28,8 +28,8 @@
   --shadow: 0 12px 30px rgba(61, 37, 16, .09);
   --shadow-lg: 0 24px 60px rgba(40, 25, 15, .18);
 
-  --f-serif: "Playfair Display", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
-  --f-sans: "DM Sans", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --f-serif: "Playfair Display", "Playfair Display Fallback", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  --f-sans: "DM Sans", "DM Sans Fallback", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
 
   --s-xs: .75rem;
   --s-sm: .875rem;
@@ -747,3 +747,6 @@ body:has(.wa-float) .float-bag { bottom: calc(88px + env(safe-area-inset-bottom,
 @media (max-width: 1080px) { .site-nav .nav-cta { display: inline-flex; justify-content: center; margin-top: 14px; } }
 /* Celular: a sacola do cabeçalho já mostra a contagem; a flutuante cobria o "+ Selecionar" da peça ao lado */
 @media (max-width: 760px) { .float-bag { display: none !important; } }
+
+/* Foco do botão da foto: o card corta o que fica fora (overflow), então o contorno vai para dentro */
+.prod-media:focus-visible { outline-offset: -3px; }

@@ -529,9 +529,9 @@ def brand_note():
 
 
 COLLECTIONS = [
-    ('boas-vindas', 'Boas-vindas', 'Receba novas pessoas com identidade e cuidado.', 'kit-presente'),
-    ('eventos', 'Eventos', 'Presença de marca em cada encontro.', 'hero-wear'),
-    ('executivos', 'Presentes executivos', 'Gestos refinados para relações importantes.', 'hero-gift'),
+    ('boas-vindas', 'Boas-vindas', 'Receba novas pessoas com identidade e cuidado.', 'kitp-kit-pratico'),
+    ('eventos', 'Eventos', 'Presença de marca em cada encontro.', 'conf-evento-camisetas'),
+    ('executivos', 'Presentes executivos', 'Gestos refinados para relações importantes.', 'kitp-kit-executivo'),
     ('campanhas', 'Campanhas e ativações', 'Produtos com a personalidade da ação.', 'look-corporativo'),
     ('lancamentos', 'Lançamentos', 'Uma estreia que as pessoas lembram.', 'papelaria-cores'),
     ('fim-de-ano', 'Fim de ano', 'Presentes para encerrar o ano perto de quem importa.', 'embalagem-presente'),

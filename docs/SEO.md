@@ -8,7 +8,7 @@ ajustar um title no código, o código vale; atualize esta tabela.
 | URL | Title (car.) | Description (car.) | Robots | H1 |
 |---|---|---|---|---|
 | `/` | TaMa Creative \| Brindes, confecções, kits e ativações (53) | Brindes corporativos, uniformes, kits e ativações promocionais com a marca da sua empresa. A TaMa cria e coordena da escolha das peças à entrega. (145) | index | Brindes, confecções e ativações para dar presença à sua marca. (1º slide da abertura) |
-| `/catalogo/` | Catálogo: 51 modelos de brindes e confecções \| TaMa Creative (60) | 51 modelos para personalizar com a sua marca: vestuário, canetas, bolsas, embalagens, garrafas, acessórios e casa. Monte sua seleção e peça uma proposta. (153) | index | 51 modelos para a sua marca |
+| `/catalogo/` | Catálogo: 52 modelos de brindes e confecções \| TaMa Creative (60) | 52 modelos para personalizar com a sua marca: vestuário, canetas, bolsas, embalagens, garrafas, acessórios e casa. Monte sua seleção e peça uma proposta. (153) | index | 52 modelos para a sua marca |
 | `/brindes-corporativos/` | Brindes corporativos personalizados para empresas \| TaMa Creative (65) | Brindes personalizados para empresas com curadoria de materiais e acabamento premium: presentes para clientes, colaboradores e eventos. Peça uma proposta. (154) | index | Brindes corporativos personalizados, escolhidos para serem usados |
 | `/kits-corporativos/` | Kits corporativos personalizados: boas-vindas e eventos \| TaMa (62) | Kits onboarding, kits para eventos e presentes para clientes, montados com curadoria, embalagem própria e a identidade da sua empresa. Solicite uma proposta. (157) | index | Kits corporativos personalizados para cada momento |
 | `/brindes-corporativos-premium/` | Brindes e presentes corporativos por ocasião \| TaMa Creative (60) | Ideias de brindes e presentes corporativos para boas-vindas, eventos, fim de ano, reconhecimento e lançamentos, com a marca da sua empresa. Monte a seleção. (156) | index | Brindes e presentes corporativos por ocasião |
@@ -59,7 +59,7 @@ Três páginas falam de brindes. Cada uma tem um papel; não deixe duas mirarem 
 | Página | Papel | Não usar no title/H1 |
 |---|---|---|
 | `/brindes-corporativos/` | Página do **serviço**: o que é, como funciona, para quem. Alvo de "brindes corporativos personalizados". | Lista de modelos ou "catálogo" |
-| `/catalogo/` | **Navegação de modelos** (51 modelos, cores, seleção). Alvo de buscas por peça ("caneca personalizada", "ecobag personalizada"), não do termo genérico. | "Brindes corporativos personalizados" como termo principal |
+| `/catalogo/` | **Navegação de modelos** (52 modelos, cores, seleção). Alvo de buscas por peça ("caneca personalizada", "ecobag personalizada"), não do termo genérico. | "Brindes corporativos personalizados" como termo principal |
 | `/brindes-corporativos-premium/` | **Ideias por ocasião** (boas-vindas, fim de ano, reconhecimento…), uma seleção editorial sobre o catálogo. Alvo de buscas com ocasião. | "Premium" e o termo genérico de brindes |
 
 O endereço `/brindes-corporativos-premium/` foi mantido (links antigos e do blog), mas o termo "presentes premium"

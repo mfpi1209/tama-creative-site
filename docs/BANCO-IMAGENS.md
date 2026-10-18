@@ -133,12 +133,12 @@ puxam o fundo para o escuro. **Nunca envie fotos de terceiros como referência**
 reproduzir material nem marcas alheias. As imagens saem em 1024 px; importe com `tools/produtos.py importar`.
 
 ## Estado em 17/10/2026
-**208 imagens, 51 modelos**, todas ilustrativas (geradas com IA), todas com `aprovacao: revisao` e com material e
+**229 imagens, 52 modelos**, todas ilustrativas (geradas com IA), todas com `aprovacao: revisao` e com material e
 técnica `a_confirmar`. Todas aparecem no `/catalogo/`; a home, a página de ocasiões, as páginas de frente e os artigos
 do blog mostram recortes dos mesmos modelos.
 
 Pendências de dados (lista completa em `docs/PENDENCIAS.md` › Confirmações de produto): confirmar material, técnica e
-capacidade dos 51 modelos; confirmar os dez modelos reais de caneta com o fornecedor; identificar o material (EVA ou
+capacidade dos 52 modelos; confirmar os dez modelos reais de caneta com o fornecedor; identificar o material (EVA ou
 PVC) e o modelo do saquinho transparente; couro legítimo ou sintético (agenda, cardápio, carteira, chaveiro com tira, estojo, nécessaire, porta-canetas, vela); acrílico e
-capacidade das taças; aprovar as 208 fotos; trocar as fotos com logo errado (carteira, chaveiro com tira, caneta
-ecológica natural; `tools/logo_ajuste.py`).
+capacidade das taças; aprovar as 229 fotos; conferir as fotos refeitas com o logo oficial em 17/10/2026 (carteira, chaveiro com tira, caneta
+natural e outras 44; `tools/logo_ajuste.py`).

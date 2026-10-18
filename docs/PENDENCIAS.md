@@ -50,13 +50,13 @@ capacidade antes da confirmação (ver `docs/BANCO-IMAGENS.md`).
 
 | Item | Bloqueia |
 |---|---|
-| Material, técnica e capacidade dos 51 modelos (com o fornecedor) | Mostrar especificação no catálogo; usar palavras como "couro", "inox" ou "400 ml" no nome e na descrição |
-| Os dez modelos reais de caneta (básica, giro, grip, ponta touch, ecológica kraft, ecológica natural, executiva com estojo, executiva esferográfica, executiva roller, slim) | Manter as dez no catálogo como modelos reais |
+| Material, técnica e capacidade dos 52 modelos (com o fornecedor) | Mostrar especificação no catálogo; usar palavras como "couro", "inox" ou "400 ml" no nome e na descrição |
+| Os dez modelos reais de caneta (básica, giro, grip, ponta touch, parda (kraft), natural (bambu), executiva com estojo, executiva esferográfica, executiva roller, slim) | Manter as dez no catálogo como modelos reais |
 | Saquinho transparente: EVA ou PVC, e qual modelo | Descrição do saquinho |
 | Couro legítimo ou sintético: agenda, cardápio, carteira, chaveiro com tira, estojo de escritório, nécessaire, porta-canetas e vela (peças que citam couro no inventário) | Chamar de couro; separar em modelos diferentes, se for o caso |
 | Taças de champagne, gin e vinho: se são de acrílico e qual a capacidade | Descrição e capacidade das taças |
-| Aprovação das 208 fotos (todas ilustrativas, geradas com IA) | Marcar como `aprovada`; hoje todas aparecem como ilustrativas |
-| Trocar fotos com o logo errado: **Carteira**, **Chaveiro com tira**, **Caneta ecológica natural** | Aprovação dessas fotos (precisam de nova imagem ou ajuste com `tools/logo_ajuste.py`) |
+| Aprovação das 229 fotos (todas ilustrativas, geradas com IA) | Marcar como `aprovada`; hoje todas aparecem como ilustrativas |
+| Conferir as 47 fotos refeitas com o logo oficial em 17/10/2026 (inclui **Carteira**, **Chaveiro com tira**, **Caneta natural**) | Aprovação dessas fotos (precisam de nova imagem ou ajuste com `tools/logo_ajuste.py`) |
 
 ## (e) Ideias sem foto que saíram do site
 

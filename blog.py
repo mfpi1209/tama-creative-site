@@ -309,7 +309,8 @@ def _meta_line(a, author=True):
 
 
 def _cover_alt(a):
-    return ('Imagem ilustrativa: ' if a['capa_conceitual'] else '') + a['capa_alt']
+    """O alt só descreve a foto; a nota "Imagem ilustrativa" fica na legenda (figcaption), não repetida no alt."""
+    return a['capa_alt']
 
 
 def post_card(b, a, level=3, sizes='(max-width: 760px) 92vw, (max-width: 1180px) 30vw, 380px'):
@@ -368,7 +369,7 @@ def article_page(b, a):
         if len(a['toc']) >= 2:
             toc = ('<nav class="post-toc" aria-labelledby="toc-t"><p class="post-toc-t" id="toc-t">Neste guia</p><ol>'
                    + ''.join(f'<li><a href="#{i}">{n}</a></li>' for i, n in a['toc']) + '</ol></nav>')
-        caption = '<figcaption>Imagem ilustrativa</figcaption>' if a['capa_conceitual'] else ''
+        caption = f'<figcaption>{b.CAP}</figcaption>' if a['capa_conceitual'] else ''   # capa conceitual, sem marca aplicada
         draft = '<p class="post-draft">Rascunho ou artigo agendado: não aparece no site publicado.</p>' if a['noindex'] else ''
         # Peças do catálogo ligadas ao artigo (a mesma base e o mesmo card do resto do site)
         pecas_html = ''
@@ -378,7 +379,7 @@ def article_page(b, a):
                 more = (b.collection_href(oc), 'Ver presentes de fim de ano' if oc == 'fim-de-ano' else f'Ver todas as ideias para {b.OCCS[oc].lower()}')
             else:
                 more = ('/catalogo/', 'Ver o catálogo completo')
-            title = '<p class="eyebrow">Do catálogo TaMa</p><h2 id="pecas-a-t" class="section-title">Peças para começar a seleção</h2>'
+            title = '<p class="eyebrow">Do catálogo</p><h2 id="pecas-a-t" class="section-title">Peças para começar a seleção</h2>'
             intro = 'Toque na cor para ver a foto e em “+ Selecionar”: as peças seguem com o seu pedido de proposta.'
             pecas_html = f'<section class="section ivory" aria-labelledby="pecas-a-t"><div class="wrap">{b.product_rail(fotos, "rail-post", title, intro, more=more)}</div></section>'
         rel = related(a)
@@ -386,13 +387,13 @@ def article_page(b, a):
         if rel:
             rel_html = (f'<section class="section" aria-labelledby="rel-t"><div class="wrap"><div class="section-head row"><div class="stack" style="gap:12px">'
                         f'<p class="eyebrow">Continue lendo</p><h2 id="rel-t" class="section-title">Outros guias</h2></div>'
-                        f'<a class="link" href="/blog/">Todos os guias {b.ARROW}</a></div>'
+                        f'<a class="link" href="/blog/">Ver todos os guias {b.ARROW}</a></div>'
                         f'<div class="post-grid">{"".join(post_card(b, x) for x in rel)}</div></div></section>')
         servico = ''
         if a['servico']:
             servico = f'<a class="btn btn-line" href="{a["servico"]}">{SERVICOS.get(a["servico"], "Conhecer o serviço")}</a>'
         author = f'''<div class="post-author">{b.SELO}<div class="stack" style="gap:8px"><p><strong>TaMa Creative</strong></p>
-      <p class="muted">Brindes, confecções, kits e ativações para empresas, com visão de Trade Marketing: o público e a ocasião vêm antes da peça.</p>
+      <p class="muted">{b.ASSINATURA} Visão de Trade Marketing: o público e a ocasião vêm antes da peça.</p>
       <div class="actions">{b.cta_link(tipo=a['proposta'], track_label='blog-autor-' + a['slug'])}{servico}</div></div></div>'''
         body = f'''<article class="post">
   <div class="wrap"><header class="post-head">
@@ -416,7 +417,7 @@ def article_page(b, a):
         return {
             'path': a['path'], 'title': a['seo_title'], 'og_title': a['title'], 'description': a['description'],
             'index': not a['noindex'], 'lastmod': a['updated'].isoformat(),
-            'trail': [('/', 'Início'), ('/blog/', 'Blog'), (a['path'], a['breadcrumb'])],
+            'trail': [('/', 'Início'), ('/blog/', 'Conteúdos'), (a['path'], a['breadcrumb'])],
             'og_type': 'article', 'og_image': a['path'] + 'og.jpg',
             'preload': b.preload_image(a['capa'], '(max-width: 1280px) 92vw, 1184px'),
             'head': _head(b, head), 'ld_extra': [blog_jsonld(b, a)], 'body': body, 'blog': a,
@@ -430,9 +431,9 @@ SERVICOS = {
     '/brindes-por-ocasiao/': 'Ver brindes por ocasião',
     '/brindes-de-fim-de-ano/': 'Ver brindes de fim de ano',
     '/catalogo/': 'Ver o catálogo',
-    '/ativacoes-promocionais/': 'Ver ativações',
+    '/ativacoes-promocionais/': 'Ver ativações promocionais',
     '/hotelaria-e-gastronomia/': 'Ver hotelaria e gastronomia',
-    '/confeccoes-personalizadas/': 'Ver confecções',
+    '/confeccoes-personalizadas/': 'Ver uniformes e confecções',
 }
 
 
@@ -464,11 +465,11 @@ def index_page(b):
         page = {
             'path': '/blog/', 'title': 'Blog: guias de brindes corporativos e kits | TaMa Creative',
             'description': 'Guias da TaMa Creative sobre brindes corporativos, kits e presentes de empresa: como escolher, o que incluir e como respeitar as regras de quem recebe.',
-            'trail': [('/', 'Início'), ('/blog/', 'Blog')], 'wp_type': 'CollectionPage', 'ld_extra': [blog_ld],
+            'trail': [('/', 'Início'), ('/blog/', 'Conteúdos')], 'wp_type': 'CollectionPage', 'ld_extra': [blog_ld],
             'head': _head(b),
             'body': f'''<section class="page-head blog-head">
   <div class="wrap"><div class="section-head" style="margin:0;max-width:52rem">
-    <p class="eyebrow">Blog TaMa</p>
+    <p class="eyebrow">Conteúdos</p>
     <h1>Guias para presentear em nome da sua marca</h1>
     <p class="lead">Como escolher brindes e kits que as pessoas usam, o que colocar em cada ocasião e como respeitar as regras de quem recebe. Conteúdo prático, escrito pela TaMa Creative.</p>
     {temas_html}
@@ -494,10 +495,10 @@ def tema_page(b, key):
         return {
             'path': f'/blog/tema/{key}/', 'title': f'{label}: guias e ideias | Blog TaMa Creative',
             'description': f'{desc} Guias práticos da TaMa Creative sobre {label.lower()}.'[:160],
-            'trail': [('/', 'Início'), ('/blog/', 'Blog'), (f'/blog/tema/{key}/', label)], 'wp_type': 'CollectionPage',
+            'trail': [('/', 'Início'), ('/blog/', 'Conteúdos'), (f'/blog/tema/{key}/', label)], 'wp_type': 'CollectionPage',
             'head': _head(b), 'lastmod': max(a['updated'] for a in arts).isoformat(),
             'body': f'''<section class="page-head blog-head"><div class="wrap"><div class="section-head" style="margin:0;max-width:52rem">
-  <p class="eyebrow">Blog TaMa · Tema</p><h1>{label}</h1><p class="lead">{desc}</p></div></div></section>
+  <p class="eyebrow">Conteúdos · Tema</p><h1>{label}</h1><p class="lead">{desc}</p></div></div></section>
 <section class="section" style="padding-top:0" aria-label="Artigos do tema"><div class="wrap">{listing(b, arts, feature=False)}</div></section>
 {b.end_cta()}''',
         }

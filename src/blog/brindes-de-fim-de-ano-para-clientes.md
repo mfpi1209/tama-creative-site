@@ -11,7 +11,7 @@ ocasiao: fim-de-ano
 servico: /brindes-de-fim-de-ano/
 proposta: brindes
 capa: hero-gift
-capa_alt: caderno azul, bandeja em couro, garrafa térmica verde, xícara mostarda e caixas de presente sobre blocos de pedra.
+capa_alt: caderno azul, bandeja caramelo, garrafa térmica verde, xícara mostarda e caixas de presente sobre blocos de pedra.
 capa_conceitual: true
 pecas:
 - caneta-executiva-com-estojo

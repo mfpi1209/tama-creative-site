@@ -21,7 +21,7 @@ LOGOS_OFICIAIS = os.path.join(ROOT, '..', 'tama-creative-logos', 'svg')
 CFG = json.load(open(os.path.join(ROOT, 'site.config.json'), encoding='utf-8'))
 for key in ('site_url', 'whatsapp', 'email', 'instagram', 'ga4_id', 'redirect_netlify_subdomain', 'form_endpoint'):
     env = os.environ.get(key.upper())
-    if env is not None:
+    if env:   # vazia = não definida (o Dockerfile passa ARG sem valor como variável vazia)
         CFG[key] = env.lower() in ('1', 'true', 'yes') if key == 'redirect_netlify_subdomain' else env
 SITE = CFG['site_url'].rstrip('/')
 WA = re.sub(r'\D', '', CFG.get('whatsapp') or '')

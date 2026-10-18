@@ -1173,8 +1173,8 @@ def faq(items, title='Perguntas frequentes', eyebrow='Dúvidas', intro='Resposta
 </section>'''
 
 
-# Método TaMa em 6 etapas: faixa compacta "Do briefing à entrega." da home (process_strip), faixa completa process_band
-# (fora da home desde a onda 3) e variante clara em /kits-corporativos/.
+# Método TaMa em 6 etapas: faixa compacta "Do briefing à entrega." da home (process_strip) e a seção padrão
+# process_section (os mesmos 6 cartões em todas as páginas de frente, em /brindes-de-fim-de-ano/ e em /sobre/).
 # Ícones de linha originais, desenhados para o site numa grade 48×48 (sem dependência nem licença de terceiros).
 STEP_ICONS = {
     'briefing': '<path d="M18 26h-2l-6 5v-5a4 4 0 0 1-4-4V12a4 4 0 0 1 4-4h16a4 4 0 0 1 4 4v8"/><path d="M22 20h16a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4v5l-6-5H22a4 4 0 0 1-4-4V24a4 4 0 0 1 4-4z"/><circle cx="30" cy="29" r="5.5"/><circle cx="30" cy="29" r="2.2"/>',
@@ -1201,17 +1201,15 @@ def steps_html(light=False):
         f'<h3>{t}</h3><p>{d}</p></li>' for i, (t, d, k) in enumerate(STEPS)) + '</ol>'
 
 
-def process_band():
-    return f'''<section class="process" aria-labelledby="proc-t">
+def process_section(eyebrow, titulo, apoio='', aria='processo-t', light=True, sid=None, cls='ivory'):
+    """Seção padrão do passo a passo: section-head (eyebrow e título contextuais por página, parágrafo de apoio opcional)
+    e os 6 cartões de STEPS, sempre com os mesmos nomes, textos e ícones. Posição padrão nas páginas: depois das peças
+    ou kits e antes das perguntas. cls: fundo da seção ('ivory' ou '' para o fundo claro); sid: id da seção (âncora)."""
+    apoio_html = f'<p class="muted">{apoio}</p>' if apoio else ''
+    return f'''<section class="section{' ' + cls if cls else ''} process-section"{f' id="{sid}"' if sid else ''} aria-labelledby="{aria}">
   <div class="wrap">
-    <div class="process-grid">
-      <div class="process-intro"><h2 id="proc-t">Do briefing<br>à entrega.</h2><p>Seis etapas, do briefing à entrega, com a arte aprovada por você antes da produção.</p></div>
-      {steps_html()}
-    </div>
-    <div class="process-cta">
-      <div><h3>Pronto para tirar sua ideia do papel?</h3><p>Envie objetivo, público e data: a proposta traz peças, quantidades e condições.</p></div>
-      {cta_link(cls='btn btn-light', track_label='process')}
-    </div>
+    <div class="section-head"><p class="eyebrow">{eyebrow}</p><h2 id="{aria}" class="section-title">{titulo}</h2>{apoio_html}</div>
+    {steps_html(light=light)}
   </div>
 </section>'''
 
@@ -1593,6 +1591,7 @@ def page_brindes():
     </div>
   </div>
 </section>
+{process_section('Como trabalhamos', 'Do briefing à entrega do seu brinde', 'Seis etapas, com a peça, a personalização e a arte aprovadas por você antes da produção.', 'brindes-como-t')}
 ''' + faq([
             ('Qual é a quantidade mínima?', 'Varia conforme a peça e a técnica de personalização. Informe a quantidade aproximada no pedido: a proposta indica as quantidades viáveis e alternativas.'),
             ('Quanto tempo leva?', 'Depende da produção e da personalização de cada peça. Por isso pedimos a data desejada já no primeiro contato e confirmamos o prazo na proposta.'),
@@ -1686,12 +1685,7 @@ def page_kits():
     </div>
   </div>
 </section>
-<section class="section ivory" aria-labelledby="kit-m-t">
-  <div class="wrap">
-    <div class="section-head"><p class="eyebrow">Do briefing à entrega</p><h2 id="kit-m-t" class="section-title">Como montamos o seu kit</h2><p class="muted">As mesmas seis etapas de todo projeto da TaMa, com a arte aprovada por você antes da produção.</p></div>
-    {steps_html(light=True)}
-  </div>
-</section>
+{process_section('Do briefing à entrega', 'Como montamos o seu kit', 'Seis etapas, com a composição, a embalagem e a arte aprovadas por você antes da produção.', 'kit-m-t')}
 ''' + faq([
             ('O que colocar em um kit de boas-vindas?', 'Uma combinação que funciona: uma peça de uso diário (garrafa, caderno), um mimo que gere afeto (caneca, manta) e um material sobre a cultura da empresa, como uma carta de boas-vindas. A proposta ajusta a composição ao seu público.'),
             ('Dá para ter versões diferentes do mesmo kit?', 'Sim. A proposta pode prever versões por área ou ocasião, mantendo a mesma linguagem visual.'),
@@ -1824,6 +1818,7 @@ def page_confeccoes():
     </dl>
   </div>
 </section>
+{process_section('Como trabalhamos', 'Da peça escolhida ao uniforme entregue', 'Seis etapas, com tecido, modelagem, grade de tamanhos e arte aprovados por você antes da produção.', 'conf-como-t', cls='')}
 ''' + faq([
             ('Bordado ou estampa: qual escolher?', 'O bordado costuma durar mais e transmite sofisticação, por isso funciona bem em polos e uniformes. A estampa permite mais cores e áreas maiores, o que combina com camisetas de campanha e eventos.'),
             ('Qual é a quantidade mínima?', 'Varia conforme a peça, o tecido e a técnica de personalização. Informe quantas pessoas e a grade aproximada no pedido: a proposta indica as quantidades viáveis.'),
@@ -1880,20 +1875,10 @@ def page_ativacoes():
     </dl>
   </div>
 </section>
-<section class="section ivory" aria-labelledby="ativ-como-t">
-  <div class="wrap">
-    <div class="section-head"><p class="eyebrow">Como planejamos</p><h2 id="ativ-como-t" class="section-title">Da ideia ao dia da ação</h2><p class="muted">Quatro passos para a ação chegar pronta ao ponto de venda, à feira ou ao evento.</p></div>
-    <ol class="steps light">
-      <li class="step"><b>01</b><strong>Objetivo</strong><span>O que a ação precisa provocar, em quem e onde.</span></li>
-      <li class="step"><b>02</b><strong>Formato</strong><span>Local, duração, público esperado e o que será entregue.</span></li>
-      <li class="step"><b>03</b><strong>Materiais</strong><span>Uniformes, brindes e peças com a marca, com arte aprovada antes da produção.</span></li>
-      <li class="step"><b>04</b><strong>Execução</strong><span>Cronograma, entrega dos materiais e acompanhamento combinados na proposta.</span></li>
-    </ol>
-  </div>
-</section>
 {studio_block(['avental', 'ecobag', 'camiseta-masculina', 'camiseta-feminina', 'bone', 'copo-360', 'squeeze', 'taca-de-champanhe'],
               'Peças que costumam entrar em ativações', 'Catálogo', 'Escolha as cores de referência e adicione à seleção: as peças seguem com o pedido.', 'ativ-pecas-t',
               more=('/catalogo/', 'Ver o catálogo completo'))}
+{process_section('Como planejamos', 'Da ideia ao dia da ação', 'O objetivo da ação, o formato (local, duração e público esperado) e os materiais entram já no briefing. O cronograma e a entrega dos materiais são combinados na proposta, com a arte aprovada por você antes da produção.', 'ativ-como-t')}
 ''' + faq([
             ('Que tipo de ativação vocês fazem?', 'Degustações e promoções no ponto de venda, ações em feiras e eventos e ativações internas. Conte o objetivo, o público e o local: a proposta indica o formato e o que entra nele.'),
             ('Quem cuida da equipe e da logística?', 'Diga no pedido se a ação precisa de equipe, transporte ou montagem. A proposta separa o que a TaMa coordena e o que fica com a sua empresa, com o local ou com o organizador.'),
@@ -1952,6 +1937,7 @@ def page_hotelaria():
     </dl>
   </div>
 </section>
+{process_section('Como trabalhamos', 'Da escolha das peças à mesa', 'Seis etapas, com material, acabamento e arte aprovados por você antes da produção.', 'hot-como-t', cls='')}
 ''' + faq([
             ('Quais peças vocês personalizam para restaurantes e hotéis?', 'Cardápios, porta-contas, jogos americanos, dólmãs, aventais, taças e copos, além de kits e brindes para clientes. Se a peça que você procura não está no catálogo, descreva no pedido.'),
             ('As peças aguentam o uso diário?', 'Conte no pedido a rotina das peças (lavagens, uso na cozinha, área externa): a proposta indica material, acabamento e cuidados.'),
@@ -2008,17 +1994,7 @@ def page_fim_de_ano():
 {studio_block(['agenda', 'caneta-executiva-com-estojo', 'vela', 'caixa-para-presente'],
               'Peças que acompanham o próximo ano', 'Para presentear', 'Agenda, caneta, vela e caixa para completar o presente; cartão e lacre fecham a embalagem.', 'presentear-t',
               more=('/catalogo/', 'Ver o catálogo'), sid='presentear')}
-<section class="section ivory" id="personalizacao" aria-labelledby="fda-como-t">
-  <div class="wrap">
-    <div class="section-head"><p class="eyebrow">Como planejamos</p><h2 id="fda-como-t" class="section-title">Do briefing à entrega antes do recesso</h2><p class="muted">Quatro passos para os presentes chegarem com a sua marca, a mensagem certa e a data combinada.</p></div>
-    <ol class="steps light">
-      <li class="step"><b>01</b><strong>Público</strong><span>Para quem são os presentes: clientes, parceiros ou equipe.</span></li>
-      <li class="step"><b>02</b><strong>Seleção</strong><span>Peças, kits, cores e embalagem, montados a partir do catálogo.</span></li>
-      <li class="step"><b>03</b><strong>Arte e mensagem</strong><span>Aplicação da marca e texto do cartão aprovados antes da produção.</span></li>
-      <li class="step"><b>04</b><strong>Entrega</strong><span>Endereços e data combinados na proposta.</span></li>
-    </ol>
-  </div>
-</section>
+{process_section('Como planejamos', 'Do briefing à entrega antes do recesso', 'Para quem são os presentes, as peças, a embalagem e a mensagem do cartão entram no briefing e na proposta; a arte é aprovada por você antes da produção e a entrega segue os endereços e a data combinados.', 'fda-como-t', sid='personalizacao')}
 """ + faq([
             ('Com quanto tempo de antecedência devo pedir?', 'Quanto antes, mais opções de peças, cores e embalagens. Informe a data de entrega no pedido e o prazo é confirmado na proposta.'),
             ('Dá para enviar para vários endereços?', 'Conte no pedido quantos destinos são e onde ficam: a proposta diz como a entrega é organizada.'),
@@ -2052,14 +2028,14 @@ def page_sobre():
     </div>
   </div>
 </section>
-<section class="section" aria-labelledby="como-t">
+{process_section('Como trabalhamos', 'Da escolha das peças à entrega', 'A TaMa entende o objetivo, propõe as peças e coordena com os fornecedores a aplicação da sua marca, os materiais e a execução até a entrega.', 'como-t', cls='')}
+<section class="section ivory" aria-labelledby="sustenta-t">
   <div class="wrap">
-    <div class="section-head"><p class="eyebrow">Como trabalhamos</p><h2 id="como-t" class="section-title">Da escolha das peças à entrega</h2><p class="muted">A TaMa entende o objetivo, propõe as peças e coordena com os fornecedores a aplicação da sua marca, os materiais e a execução até a entrega.</p></div>
-    <div class="cols-2">
-      <div class="item">{arc()}<div><h3>Visão de Trade Marketing</h3><p>Público, ocasião de uso e execução vêm antes da escolha de qualquer peça.</p></div></div>
-      <div class="item">{arc()}<div><h3>Seleção sob medida</h3><p>Peças alinhadas ao público, à ocasião e ao investimento, escolhidas para cada projeto.</p></div></div>
-      <div class="item">{arc()}<div><h3>Tudo em um pedido</h3><p>Brindes, kits, uniformes e materiais de ativação no mesmo pedido, com uma única linguagem.</p></div></div>
-      <div class="item">{arc()}<div><h3>Da arte à entrega</h3><p>Arte e especificações aprovadas antes da produção e materiais conferidos antes da entrega.</p></div></div>
+    <div class="section-head"><p class="eyebrow">Nosso jeito</p><h2 id="sustenta-t" class="section-title">O que sustenta cada projeto</h2></div>
+    <div class="cols-3">
+      <div class="col">{arc('c1')}<h3>Visão de Trade Marketing</h3><p>Público, ocasião de uso e execução vêm antes da escolha de qualquer peça.</p></div>
+      <div class="col">{arc('c2')}<h3>Seleção sob medida</h3><p>Peças alinhadas ao público, à ocasião e ao investimento, escolhidas para cada projeto.</p></div>
+      <div class="col">{arc('c3')}<h3>Tudo em um pedido</h3><p>Brindes, kits, uniformes e materiais de ativação no mesmo pedido, com uma única linguagem.</p></div>
     </div>
   </div>
 </section>

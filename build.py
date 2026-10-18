@@ -682,18 +682,18 @@ def page_produto(c):
         <p class="prod-desc pdp-desc">Modelo da imagem: {c['descricao']}</p>
         {usos_html}
         <div class="pdp-cores"><p class="pdp-label">Cor de referência: <strong class="color-name">{cores[0][0]}</strong></p>{swatches(dict(c, cores=cores))}</div>
-        <dl class="pdp-spec">
-          {medidas}
-          <div><dt>Material</dt><dd>{mat_txt}</dd></div>
-          <div><dt>Personalização</dt><dd>{tec_txt}</dd></div>
-          <div><dt>Quantidade e prazo</dt><dd>Informados na proposta, conforme o volume do pedido e a técnica.</dd></div>
-        </dl>
         <p class="prod-meta" hidden>{c['meta']}</p>
         <div class="actions">
           <button class="pick btn-pick-lg" type="button" data-slug="{slug}" aria-pressed="false"><span class="when-off">+ Adicionar à seleção</span><span class="when-on">✓ Na seleção</span><span class="visually-hidden">: {nome}</span></button>
           {cta_link('Solicitar proposta', tipo=tipo, track_label='produto')}
         </div>
         {wa_button('btn btn-line', 'Tirar dúvidas no WhatsApp')}
+        <dl class="pdp-spec">
+          {medidas}
+          <div><dt>Material</dt><dd>{mat_txt}</dd></div>
+          <div><dt>Personalização</dt><dd>{tec_txt}</dd></div>
+          <div><dt>Quantidade e prazo</dt><dd>Informados na proposta, conforme o volume do pedido e a técnica.</dd></div>
+        </dl>
         <p class="pdp-sobre">{CAT_TEXTO.get(c['categoria'], '')}</p>
         <p class="note">Imagem ilustrativa com a identidade TaMa como exemplo: no seu pedido entram a marca e as cores da sua empresa. Cores de referência, sem declaração de estoque.</p>
       </div>

@@ -1008,6 +1008,13 @@ html.cat-lock { overflow: hidden; }
 .atalhos.traco .atalhos-title::before { content: ""; width: 52px; height: 2px; margin-bottom: clamp(16px, 1.6vw, 22px); background: var(--wine); }
 .atalhos.traco .atalhos-list a { border-bottom: 1px solid var(--line-strong); padding-bottom: 6px; transition: border-color .2s ease; }
 .atalhos.traco .atalhos-list a:hover { border-color: var(--wine); }
+/* 5 atalhos (brindes): colunas do tamanho do texto, para nenhum rótulo quebrar em duas linhas; até 1100 px não cabem
+   numa linha só e vão 3 por linha */
+@media (min-width: 901px) { .atalhos.traco .atalhos-list { grid-template-columns: repeat(var(--n, 4), auto); } }
+@media (min-width: 901px) and (max-width: 1100px) {
+  .atalhos.traco .atalhos-list { grid-template-columns: repeat(3, auto); row-gap: 4px; }
+  .atalhos.traco .atalhos-list li:nth-child(3n+1) { border-left: 0; padding-left: 0; }
+}
 @media (max-width: 480px) { .foto-hero-title span, .foto-hero-title em { white-space: normal; } }
 @media (max-width: 600px) {
   .atalhos.traco .atalhos-list { grid-template-columns: minmax(0, 1fr); row-gap: 0; }

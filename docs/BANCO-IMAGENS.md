@@ -135,7 +135,7 @@ Depois de ver a imagem, mude `aprovacao` para `aprovada` (ou `substituir`, com o
 | Campo | Uso |
 |---|---|
 | `id`, `arquivo`, `mestre`, `largura`, `altura`, `bytes`, `sha256`, `atualizado_em` | Técnicos; o `importar` preenche. |
-| `produto`, `categoria`, `modelo` | Catálogo. Categorias: `vestuario`, `canetas-escritorio`, `bolsas-embalagens`, `garrafas-copos`, `acessorios`, `casa-bem-estar`, `hotelaria-gastronomia`. |
+| `produto`, `categoria`, `modelo` | Catálogo. Categorias: `vestuario`, `canetas-escritorio`, `tecnologia`, `bolsas-embalagens`, `garrafas-copos`, `acessorios`, `casa-bem-estar`, `hotelaria-gastronomia`. |
 | `cor` `{nome, hex}` | A cor da foto, como referência para o visitante. Sem declaração de estoque. |
 | `material`, `tecnica` `{valor, status}` | `status`: `a_confirmar` (sugestão editorial) ou `confirmado` (com fornecedor). **O site não publica um valor `a_confirmar` como especificação definitiva.** |
 | `alt` | Texto alternativo da imagem no site. |

@@ -51,22 +51,42 @@
   "porta-contas",
   "jogo-americano-retangular",
   "jogo-americano-oval",
-  "jogo-americano-impresso"
+  "jogo-americano-impresso",
+  "power-bank-slim",
+  "fone-de-ouvido-sem-fio",
+  "carregador-sem-fio-de-mesa",
+  "estojo-organizador-de-tecnologia",
+  "headphone",
+  "caixa-de-som",
+  "power-bank-com-ventosas",
+  "pen-drive-cartao",
+  "pen-drive-giratorio",
+  "pen-drive-natural"
  ],
  "foto_base": {
   "bolsa-listrada-com-inicial": "bolsa-listrada~rosa-e-verde",
   "caderno-de-anotacoes": "caderno~azul-royal",
+  "caixa-de-som": "caixa-de-som~azul-marinho",
   "caixa-para-presente": "caixa-personalizada~bordo",
   "camiseta-feminina": "camiseta-feminina~preto",
   "camiseta-masculina": "camiseta~branco",
   "caneca": "caneca~branco",
   "caneta-executiva-com-estojo": "caneta-executiva-estojo~preto",
+  "carregador-sem-fio-de-mesa": "carregador-sem-fio-mesa~preto",
   "dolma": "dolma~branco",
   "ecobag": "ecobag~cru",
+  "estojo-organizador-de-tecnologia": "estojo-tecnologia~azul-marinho",
+  "fone-de-ouvido-sem-fio": "fone-sem-fio~branco",
   "garrafa-termica": "garrafa-termica~vermelho",
+  "headphone": "headphone~preto",
   "moletom-com-capuz": "moletom~cinza",
+  "pen-drive-cartao": "pen-drive-cartao~azul-royal",
+  "pen-drive-giratorio": "pen-drive-giratorio~preto",
+  "pen-drive-natural": "pen-drive-natural~natural",
   "polo-feminina": "polo-feminina~azul-royal",
-  "polo-masculina": "polo~vermelho"
+  "polo-masculina": "polo~vermelho",
+  "power-bank-com-ventosas": "power-bank-ventosa~azul-royal",
+  "power-bank-slim": "power-bank-slim~preto"
  },
  "ocasioes": {
   "boas-vindas": "Boas-vindas",
@@ -280,6 +300,55 @@
    "boas-vindas",
    "eventos",
    "reconhecimento"
+  ],
+  "pen-drive-cartao": [
+   "eventos",
+   "lancamentos",
+   "campanhas"
+  ],
+  "pen-drive-giratorio": [
+   "eventos",
+   "campanhas"
+  ],
+  "pen-drive-natural": [
+   "eventos",
+   "lancamentos"
+  ],
+  "power-bank-slim": [
+   "boas-vindas",
+   "eventos",
+   "campanhas"
+  ],
+  "power-bank-com-ventosas": [
+   "eventos",
+   "campanhas",
+   "boas-vindas"
+  ],
+  "carregador-sem-fio-de-mesa": [
+   "executivos",
+   "fim-de-ano",
+   "reconhecimento",
+   "boas-vindas"
+  ],
+  "fone-de-ouvido-sem-fio": [
+   "executivos",
+   "fim-de-ano",
+   "reconhecimento"
+  ],
+  "headphone": [
+   "executivos",
+   "reconhecimento",
+   "fim-de-ano"
+  ],
+  "caixa-de-som": [
+   "fim-de-ano",
+   "reconhecimento",
+   "executivos"
+  ],
+  "estojo-organizador-de-tecnologia": [
+   "boas-vindas",
+   "executivos",
+   "fim-de-ano"
   ]
  },
  "aliases": {

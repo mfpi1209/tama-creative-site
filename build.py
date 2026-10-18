@@ -1156,7 +1156,7 @@ def page_curadoria():
 # Abertura de Confecções: pessoas usando as peças com a marca (cenas geradas com IA, ilustrativas; tools/cenas.py).
 # frame: --fx/--fy enquadram a foto no computador, --fx-m no celular.
 CONF_SLIDES = [
-    ('tone-linen', 'conf-escritorio', '--fx:62%;--fy:30%;--fx-m:62%', 'Três colegas de polo azul-marinho e moletom cinza com a marca TaMa trabalhando juntos em um escritório.',
+    ('tone-linen', 'conf-equipe-kits', '--fx:58%;--fx-m:52%', 'Equipe de camisetas azul, preta e branca com a marca TaMa montando kits num ateliê claro.',
      'Confecções personalizadas', 'Uniformes corporativos e <em>confecções personalizadas</em>',
      'Polos, camisetas, dólmãs e moletons para equipes, eventos e o dia a dia, alinhados à identidade da sua empresa.',
      cta_link('Solicitar proposta', tipo='confeccoes', track_label='conf-hero-4') + '<a class="btn btn-line" href="/catalogo/?categoria=vestuario">Ver polos e moletons ' + ARROW + '</a>'),
@@ -1164,7 +1164,7 @@ CONF_SLIDES = [
      'Gastronomia e hotelaria', 'Dólmãs feitas para o <em>calor da cozinha</em>.',
      'Dólmãs e aventais bordados com a sua marca, em cores e em jeans.',
      cta_link('Conversar sobre uniformes', tipo='confeccoes', track_label='conf-hero-2') + '<a class="btn btn-line" href="/catalogo/?categoria=vestuario">Ver dólmãs e aventais ' + ARROW + '</a>'),
-    ('tone-sage', 'conf-evento-camisetas', '--fx:70%;--fy:30%;--fx-m:70%', 'Equipe de evento de camisetas pretas com a marca TaMa entregando uma ecobag com a marca a um visitante.',
+    ('tone-sage', 'conf-estande-evento', '--fx:72%;--fx-m:70%', 'Equipe de polo branca e camiseta vermelha com a marca TaMa atendendo visitantes e entregando ecobags num estande de feira.',
      'Eventos e ações', 'Camisetas que viram <em>presença de marca</em>.',
      'Silk em camisetas para feiras, campanhas e ativações, com a cor e o corte certos para cada equipe.',
      cta_link('Planejar um evento', tipo='confeccoes', track_label='conf-hero-3') + '<a class="btn btn-line" href="/catalogo/?categoria=vestuario">Ver camisetas ' + ARROW + '</a>'),

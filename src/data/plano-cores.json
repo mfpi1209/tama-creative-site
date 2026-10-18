@@ -1,0 +1,384 @@
+{
+ "observacao": "Paleta de cores com foto por produto do catálogo. Chave = id da foto-base (a que já existe no banco); valor = cores que o produto deve ter com foto própria. tools/gerar_cores.py gera as que faltam com tools/variacoes.py e importa no banco. Produtos ausentes aqui ficam só com a cor da foto (ex.: bambu, kraft, pouch transparente, difusor).",
+ "cores": {
+  "Vermelho": "#C8202F",
+  "Azul royal": "#1F4FB8",
+  "Azul-marinho": "#1E2A4A",
+  "Preto": "#1E1E1E",
+  "Branco": "#F7F5F0",
+  "Verde": "#1F6B45",
+  "Cinza": "#9A9A98",
+  "Bordô": "#6B1E33",
+  "Vinho": "#6B1E33",
+  "Caramelo": "#A0623A",
+  "Café": "#4A2E22",
+  "Cru": "#EDE3D0",
+  "Terracota": "#B5603A",
+  "Prata": "#B8B8B5",
+  "Inox": "#B8B8B5",
+  "Havana": "#7A4A2E",
+  "Jeans": "#2F4470",
+  "Kraft": "#C4A07A",
+  "Âmbar": "#B8742A",
+  "Verde-escuro": "#1F4A35",
+  "Rosa": "#E07A9B",
+  "Transparente": "#E9EEF0",
+  "Rosé": "#E8B4A8",
+  "Fumê": "#8A8580",
+  "Verde-limão": "#B5D334",
+  "Laranja": "#E8792B",
+  "Azul": "#1F4FB8",
+  "Roxo": "#6E3FA3",
+  "Pink": "#E0408A",
+  "Amarelo": "#F2C230",
+  "Dourado": "#C9A24A",
+  "Azul-claro": "#9CC3E6",
+  "Turquesa": "#2BB5A8",
+  "Rosa e azul": "#D99BC8",
+  "Branco e turquesa": "#7FD6CC",
+  "Natural": "#C9A86A"
+ },
+ "paleta": {
+  "polo~vermelho": [
+   "Azul royal",
+   "Preto",
+   "Branco",
+   "Azul-marinho",
+   "Cinza",
+   "Verde",
+   "Rosa"
+  ],
+  "polo-feminina~azul-royal": [
+   "Vermelho",
+   "Preto",
+   "Branco",
+   "Azul-marinho",
+   "Cinza",
+   "Verde",
+   "Rosa"
+  ],
+  "camiseta~azul-royal": [
+   "Vermelho",
+   "Preto",
+   "Branco",
+   "Azul-marinho",
+   "Cinza",
+   "Verde",
+   "Rosa"
+  ],
+  "camiseta-feminina~vermelho": [
+   "Azul royal",
+   "Preto",
+   "Branco",
+   "Azul-marinho",
+   "Cinza",
+   "Verde",
+   "Rosa"
+  ],
+  "moletom~preto": [
+   "Azul royal",
+   "Vermelho",
+   "Cinza",
+   "Azul-marinho",
+   "Branco",
+   "Verde",
+   "Rosa"
+  ],
+  "dolma~branco": [
+   "Preto",
+   "Azul-marinho",
+   "Jeans",
+   "Rosa"
+  ],
+  "avental~jeans": [
+   "Preto",
+   "Vermelho",
+   "Cru",
+   "Azul-marinho",
+   "Verde",
+   "Rosa"
+  ],
+  "caderno~azul-royal": [
+   "Vermelho",
+   "Preto",
+   "Verde",
+   "Azul-marinho"
+  ],
+  "agenda-couro~caramelo": [
+   "Café",
+   "Preto",
+   "Azul-marinho"
+  ],
+  "estojo-couro~caramelo": [
+   "Café",
+   "Preto",
+   "Azul-marinho"
+  ],
+  "porta-lapis~caramelo": [
+   "Café",
+   "Preto",
+   "Azul-marinho"
+  ],
+  "caneta-metalica~azul": [
+   "Preto",
+   "Vermelho",
+   "Prata"
+  ],
+  "caneta-grip~azul": [
+   "Preto",
+   "Vermelho",
+   "Branco"
+  ],
+  "caneta-plastica~vermelho": [
+   "Azul royal",
+   "Preto",
+   "Branco"
+  ],
+  "caneta-executiva~preto": [
+   "Azul-marinho",
+   "Bordô",
+   "Prata"
+  ],
+  "caneta-executiva-estojo~preto": [
+   "Azul-marinho",
+   "Bordô"
+  ],
+  "caneta-roller~bordo": [
+   "Preto",
+   "Azul-marinho",
+   "Prata"
+  ],
+  "caneta-touch~preto": [
+   "Azul royal",
+   "Vermelho",
+   "Prata"
+  ],
+  "caneta-giro~vermelho": [
+   "Preto",
+   "Azul royal",
+   "Prata"
+  ],
+  "caixa-personalizada~bordo": [
+   "Preto",
+   "Azul-marinho",
+   "Cru"
+  ],
+  "ecobag~cru": [
+   "Preto",
+   "Vermelho",
+   "Verde"
+  ],
+  "necessaire~terracota": [
+   "Preto",
+   "Caramelo",
+   "Azul-marinho"
+  ],
+  "sacola-presente~azul-royal": [
+   "Vermelho",
+   "Preto",
+   "Cru"
+  ],
+  "taca-gin-acrilico~vermelho": [
+   "Azul royal",
+   "Preto",
+   "Branco",
+   "Rosa"
+  ],
+  "taca-champagne-acrilico~vermelho": [
+   "Azul royal",
+   "Preto",
+   "Branco",
+   "Transparente",
+   "Turquesa"
+  ],
+  "taca-vinho-acrilico~bordo": [
+   "Azul royal",
+   "Preto",
+   "Branco"
+  ],
+  "copo-acrilico-360~terracota": [
+   "Bordô",
+   "Azul-marinho",
+   "Verde-escuro"
+  ],
+  "copo-cafe-inox~inox": [
+   "Preto",
+   "Branco"
+  ],
+  "copo-papel~preto": [
+   "Branco",
+   "Kraft"
+  ],
+  "copo-termico-vinho~azul-marinho": [
+   "Preto",
+   "Vermelho",
+   "Verde"
+  ],
+  "carteira~preto": [
+   "Café",
+   "Caramelo"
+  ],
+  "chaveiro-couro~caramelo": [
+   "Café",
+   "Preto"
+  ],
+  "chaveiro-abridor~vermelho": [
+   "Azul royal",
+   "Preto",
+   "Prata"
+  ],
+  "guarda-chuva~preto": [
+   "Azul-marinho",
+   "Vermelho",
+   "Verde"
+  ],
+  "vela~couro": [
+   "Café",
+   "Preto"
+  ],
+  "difusor~natural": [
+   "Âmbar"
+  ],
+  "cardapio~bordo": [
+   "Preto",
+   "Verde-escuro",
+   "Café",
+   "Caramelo",
+   "Azul-marinho"
+  ],
+  "porta-contas~azul-marinho": [
+   "Preto",
+   "Bordô",
+   "Café",
+   "Caramelo",
+   "Havana"
+  ],
+  "jogo-americano-retangular~havana": [
+   "Preto",
+   "Verde-escuro",
+   "Bordô",
+   "Caramelo",
+   "Azul-marinho"
+  ],
+  "jogo-americano-oval~taupe": [
+   "Preto",
+   "Verde-escuro",
+   "Bordô",
+   "Caramelo",
+   "Azul-marinho"
+  ],
+  "jogo-americano-impresso~vermelho": [
+   "Azul-marinho",
+   "Preto",
+   "Verde-escuro"
+  ],
+  "bone~verde": [
+   "Preto",
+   "Azul-marinho",
+   "Azul royal",
+   "Vermelho",
+   "Branco",
+   "Cinza",
+   "Rosa"
+  ],
+  "avental-laco~verde-escuro": [
+   "Preto",
+   "Azul-marinho",
+   "Vermelho",
+   "Cru",
+   "Rosa",
+   "Caramelo"
+  ],
+  "taca-coupe~transparente": [
+   "Rosé",
+   "Fumê"
+  ],
+  "taca-gin-pe-colorido~vermelho": [
+   "Verde",
+   "Vinho",
+   "Azul",
+   "Amarelo",
+   "Pink"
+  ],
+  "taca-gin-degrade~rosa-e-azul": [
+   "Branco e turquesa"
+  ],
+  "taca-gin-borda-dourada~preto": [
+   "Branco"
+  ],
+  "copo-long-drink~rosa": [
+   "Transparente",
+   "Branco",
+   "Dourado",
+   "Azul-claro"
+  ],
+  "copo-acrilico-colorido~verde-limao": [
+   "Transparente",
+   "Laranja",
+   "Vermelho",
+   "Azul",
+   "Rosa"
+  ],
+  "copo-tampa-canudo~vermelho": [
+   "Laranja",
+   "Verde",
+   "Azul",
+   "Rosa",
+   "Roxo",
+   "Preto",
+   "Transparente"
+  ],
+  "copo-cordao~verde": [
+   "Preto",
+   "Azul"
+  ],
+  "pen-drive-cartao~azul-royal": [
+   "Preto",
+   "Vermelho",
+   "Branco"
+  ],
+  "pen-drive-giratorio~preto": [
+   "Azul royal",
+   "Vermelho",
+   "Verde"
+  ],
+  "pen-drive-natural~natural": [
+   "Café",
+   "Caramelo"
+  ],
+  "power-bank-slim~preto": [
+   "Azul-marinho",
+   "Prata",
+   "Branco"
+  ],
+  "power-bank-ventosa~azul-royal": [
+   "Preto",
+   "Branco",
+   "Rosa"
+  ],
+  "carregador-sem-fio-mesa~preto": [
+   "Branco",
+   "Azul-marinho"
+  ],
+  "fone-sem-fio~branco": [
+   "Preto",
+   "Azul-marinho",
+   "Rosa"
+  ],
+  "headphone~preto": [
+   "Branco",
+   "Azul-marinho",
+   "Cinza"
+  ],
+  "caixa-de-som~azul-marinho": [
+   "Preto",
+   "Vermelho",
+   "Cinza"
+  ],
+  "estojo-tecnologia~azul-marinho": [
+   "Preto",
+   "Cinza",
+   "Verde-escuro"
+  ]
+ }
+}

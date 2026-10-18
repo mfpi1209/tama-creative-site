@@ -5,7 +5,7 @@ status: publicada
 prioridade: alta
 intencao: informacional
 tema: brindes-e-presentes
-destino: /brindes-corporativos-premium/
+destino: /brindes-de-fim-de-ano/
 pico:
 - novembro
 artigo: brindes-de-fim-de-ano-para-clientes

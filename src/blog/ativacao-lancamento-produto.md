@@ -8,7 +8,8 @@ palavra_chave: materiais para lançamento de produto
 date: 2026-10-18
 destaque: false
 tema: eventos-e-ativacoes
-proposta: integrado
+servico: /ativacoes-promocionais/
+proposta: ativacoes
 capa_arquivo: /img/blog/capa-ativacao-lancamento-produto.jpg
 capa_alt: Embalagens de produto, recipientes de degustação e avental em ação ilustrativa.
 capa_legenda: Imagem ilustrativa gerada por IA · Marcas, produtos e cenas fictícios

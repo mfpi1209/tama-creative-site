@@ -5,6 +5,6 @@ status: ideia
 prioridade: media
 intencao: comercial
 tema: confeccoes-e-personalizacao
-destino: /branding-identidade-visual/
+observacao: A página de branding saiu do site (redireciona); confirmar se esta pauta continua e para onde ela aponta.
 ---
 Guia 7 da estratégia editorial (docs/SEO.md). Sem preços: falar do que muda o escopo (regra "nada inventado" de docs/BLOG.md).

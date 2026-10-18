@@ -19,9 +19,9 @@ capa_alt: descrição do que aparece na foto, sem começar por "foto de".
 capa_conceitual: true
 # capa_legenda: Imagem ilustrativa · Marcas fictícias   # opcional
 pecas:
-- kit-boas-vindas
-- caderno-premium
+- caderno-de-anotacoes
 - garrafa-termica
+- caneca
 relacionados: []
 # revisar_em: 2027-01-31          # opcional: próxima revisão (lei, valor ou dado que pode mudar)
 # revisar_motivo: o que conferir   # opcional; exige revisar_em

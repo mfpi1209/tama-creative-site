@@ -8,7 +8,8 @@ palavra_chave: checklist de materiais para evento corporativo
 date: 2026-10-18
 destaque: false
 tema: eventos-e-ativacoes
-proposta: integrado
+servico: /ativacoes-promocionais/
+proposta: ativacoes
 capa_arquivo: /img/blog/capa-evento-checklist-materiais.jpg
 capa_alt: Materiais de evento NEXO com camiseta, sacolas, credenciais e caderno.
 capa_legenda: Imagem ilustrativa gerada por IA · Marcas, produtos e cenas fictícios

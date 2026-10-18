@@ -2,72 +2,125 @@
 
 ## Títulos, descriptions e H1 por URL
 
+Valores de `build.py` (chaves `title` e `description` de cada `page_*`) e de `blog.py`, em 17/10/2026. Se alguém
+ajustar um title no código, o código vale; atualize esta tabela.
+
 | URL | Title (car.) | Description (car.) | Robots | H1 |
 |---|---|---|---|---|
-| `/` | TaMa Creative \| Brindes corporativos premium, kits e branding (61) | Estúdio criativo que transforma a identidade da sua empresa em brindes corporativos premium, kits, uniformes e identidade visual. Solicite uma proposta. (152) | index | Presentes que fortalecem marcas. (v2: os termos de busca ficam no title, na description e no texto de apoio da abertura) |
+| `/` | TaMa Creative \| Brindes, confecções, kits e ativações (53) | Brindes corporativos, uniformes, kits e ativações promocionais com a marca da sua empresa. A TaMa cria e coordena da escolha das peças à entrega. (145) | index | Brindes, confecções e ativações para dar presença à sua marca. (1º slide da abertura) |
+| `/catalogo/` | Catálogo: 52 modelos de brindes e confecções \| TaMa Creative (60) | 52 modelos para personalizar com a sua marca: vestuário, canetas, bolsas, embalagens, garrafas, acessórios e casa. Monte sua seleção e peça uma proposta. (153) | index | 52 modelos para a sua marca |
 | `/brindes-corporativos/` | Brindes corporativos personalizados para empresas \| TaMa Creative (65) | Brindes personalizados para empresas com curadoria de materiais e acabamento premium: presentes para clientes, colaboradores e eventos. Peça uma proposta. (154) | index | Brindes corporativos personalizados, escolhidos para serem usados |
 | `/kits-corporativos/` | Kits corporativos personalizados: boas-vindas e eventos \| TaMa (62) | Kits onboarding, kits para eventos e presentes para clientes, montados com curadoria, embalagem própria e a identidade da sua empresa. Solicite uma proposta. (157) | index | Kits corporativos personalizados para cada momento |
-| `/brindes-corporativos-premium/` | Brindes corporativos premium: curadoria de presentes \| TaMa Creative (68) | 38 ideias de brindes e presentes corporativos com cores da sua marca: couro, cerâmica, papelaria, vestuário e peças além do óbvio. Monte sua seleção. (149) | index | Brindes corporativos premium: 38 ideias para a sua marca |
-| `/confeccoes-personalizadas/` | Uniformes corporativos e confecções personalizadas \| TaMa Creative (66) | Uniformes corporativos, polos bordadas, moletons e bonés para equipes e eventos, alinhados à identidade visual da sua empresa e pensados para quem veste. (153) | index | Uniformes corporativos e confecções personalizadas |
-| `/branding-identidade-visual/` | Criação de identidade visual e branding para empresas \| TaMa (60) | Posicionamento, identidade visual, papelaria e embalagens para empresas: marcas que se mantêm reconhecíveis do digital ao brinde e ao uniforme. (143) | index | Criação de identidade visual e branding para empresas |
-| `/projetos/` | Projetos \| TaMa Creative (24) | Projetos realizados e exemplos conceituais… (129) | **noindex** | Projetos |
-| `/projetos/identidade-tama-creative/` | Projeto: identidade visual TaMa Creative \| TaMa Creative (56) | Como a TaMa Creative ganhou símbolo, padrão gráfico, selo e aplicações… (142) | index | Identidade visual TaMa Creative |
-| `/sobre/` | Sobre a TaMa Creative \| Estúdio criativo com visão de Trade Marketing (69) | A TaMa Creative é um estúdio criativo que une curadoria, criação e visão de Trade Marketing… (157) | index | Um estúdio criativo nascido do Trade Marketing |
-| `/solicitar-proposta/` | Solicitar proposta \| TaMa Creative (34) | Peça uma proposta de brindes corporativos, kits, uniformes ou identidade visual… (140) | index | Vamos dar forma à sua ideia? |
-| `/privacidade/` | Política de privacidade \| TaMa Creative (39) | Como a TaMa Creative trata os dados enviados… (123) | index | Política de privacidade |
+| `/brindes-por-ocasiao/` | Brindes e presentes corporativos por ocasião \| TaMa Creative (60) | Ideias de brindes e presentes corporativos para boas-vindas, eventos, fim de ano, reconhecimento e lançamentos, com a marca da sua empresa. Monte a seleção. (156) | index | Brindes e presentes corporativos por ocasião |
+| `/confeccoes-personalizadas/` | Uniformes corporativos e confecções personalizadas \| TaMa Creative (66) | Uniformes corporativos, polos bordadas, moletons e bonés para equipes e eventos, alinhados à identidade visual da sua empresa e pensados para quem veste. (153) | index | Uniformes corporativos e confecções personalizadas (1º slide) |
+| `/ativacoes-promocionais/` | Ativações promocionais e degustações para marcas \| TaMa Creative (64) | Degustações, ações em feiras e eventos e promoções no ponto de venda, com uniformes, brindes e materiais na identidade da sua marca. Peça uma proposta. (151) | index | Ativações promocionais e degustações para a sua marca |
+| `/hotelaria-e-gastronomia/` | Cardápios, porta-contas e uniformes para restaurantes \| TaMa (60) | Cardápios, porta-contas, jogos americanos, dólmãs e aventais com a marca do seu restaurante, bar, café ou hotel. Monte a seleção e peça uma proposta. (149) | index | Produtos personalizados para restaurantes, bares e hotéis |
+| `/sobre/` | Sobre a TaMa Creative \| Brindes, confecções, kits e ativações (61) | A TaMa Creative desenvolve e coordena brindes, confecções, kits personalizados e ativações promocionais para empresas, com visão de Trade Marketing. (148) | index | Quem é a TaMa Creative |
+| `/solicitar-proposta/` | Solicitar proposta de brindes, kits e confecções \| TaMa (55) | Peça uma proposta de brindes corporativos, kits ou uniformes. Conte a ocasião e a TaMa Creative propõe as possibilidades. (121) | index | Vamos dar forma à sua ideia? |
+| `/privacidade/` | Política de privacidade \| TaMa Creative (39) | Como a TaMa Creative trata os dados enviados pelo formulário de proposta, conforme a Lei Geral de Proteção de Dados (LGPD). (123) | index | Política de privacidade |
+| `/blog/` | Blog: guias de brindes corporativos e kits \| TaMa Creative (58) | Guias da TaMa Creative sobre brindes corporativos, kits e presentes de empresa… (151) | index | Guias para presentear em nome da sua marca |
+| `/blog/brindes-de-fim-de-ano-para-clientes/` | Brindes de fim de ano para clientes: como escolher bem \| TaMa (61) | (158) | index | Título do artigo |
+| `/blog/presente-de-natal-para-funcionarios/` | Presente de Natal para funcionários: ideias além da cesta \| TaMa (64) | (147) | index | Título do artigo |
+| `/blog/o-que-colocar-no-kit-de-boas-vindas/` | O que colocar no kit de boas-vindas (inclusive remoto) \| TaMa (61) | (153) | index | Título do artigo |
+| `/blog/brindes-e-compliance-politica-de-presentes/` | Política de brindes e presentes: limites e compliance \| TaMa (60) | (159) | index | Título do artigo |
 | `/obrigado/`, `/404.html` | — | — | **noindex** | — |
 
-Canonical absoluto em `https://tamacreative.com.br/...` (configurável por `SITE_URL`). Sitemap só com as páginas indexáveis. As URLs filtradas da curadoria (`?categoria=`, `?ocasiao=`) mantêm o canonical da página sem parâmetros, então não geram conteúdo duplicado.
+O número de modelos no title, na description e no H1 do `/catalogo/` vem do catálogo (`len(CATALOGO)`) e muda
+sozinho quando entram ou saem modelos.
 
-## Mapa de palavras-chave
+**Fora do site:** `/branding-identidade-visual/` e `/branding` redirecionam (301) para `/`; `/projetos/` e as páginas
+de projetos redirecionam para `/sobre/`. A TaMa não oferece branding, e não há projetos publicados. Essas URLs não
+estão no sitemap.
 
-Base: análise qualitativa da SERP (outubro/2026, a partir de busca na web). **Volumes, dificuldade e CPC são desconhecidos**: valide no Google Keyword Planner e, depois do lançamento, no Search Console antes de priorizar.
+Canonical absoluto em `https://tamacreative.com.br/...` (configurável por `SITE_URL`). Sitemap só com as páginas
+indexáveis. As URLs filtradas (`?categoria=`, `?ocasiao=`) mantêm o canonical da página sem parâmetros, então não
+geram conteúdo duplicado.
 
-| URL | Termo principal | Secundários | Observação da SERP |
+## Mapa de intenção de busca
+
+**Não há dados de volume de busca, dificuldade ou CPC.** As consultas abaixo são exemplos do que cada tipo de
+visitante provavelmente procura, não termos validados. Antes de priorizar, conferir no Google Keyword Planner e,
+depois de alguns meses no ar, nas consultas reais do Search Console.
+
+| Intenção | Exemplos de consulta (hipóteses) | Página principal | Páginas de apoio |
 |---|---|---|---|
-| `/` | estúdio de brindes corporativos e branding | TaMa Creative; brindes, kits e uniformes personalizados para empresas | Termos de marca e combinação de serviços |
-| `/brindes-corporativos/` | brindes corporativos personalizados | brindes personalizados para empresas; curadoria de brindes corporativos | Termo genérico dominado por catálogos de volume; secundário de longo prazo |
-| `/brindes-corporativos-premium/` | brindes corporativos premium | ideias de brindes corporativos premium; presentes corporativos exclusivos; brindes para clientes VIP | **Alvo mais realista**: concorrência média, nenhum estúdio forte |
-| `/kits-corporativos/` | kit corporativo personalizado | kit onboarding personalizado; kit de boas-vindas para colaboradores; kit para eventos corporativos | "kit de boas-vindas" é informacional (blogs de RH); "personalizado" é transacional |
-| `/confeccoes-personalizadas/` | uniformes corporativos personalizados | confecção personalizada para empresas; camisa polo bordada para empresa | Disputa por preço/volume; diferenciar por "alinhado à identidade visual" |
-| `/branding-identidade-visual/` | criação de identidade visual para empresas | branding para empresas; identidade visual corporativa; manual de marca | Termos genéricos são informacionais e dominados por portais |
-| `/sobre/` | TaMa Creative | estúdio criativo trade marketing | Só marca |
-| `/solicitar-proposta/` | orçamento de brindes corporativos | orçamento de kit corporativo | Conversão, prioridade baixa |
+| Brindes corporativos e personalizados | brindes corporativos personalizados; brindes personalizados para empresas | `/brindes-corporativos/` (o serviço) | `/catalogo/` (os modelos, para quem já quer ver peças) |
+| Kits corporativos e presentes premium | kit corporativo personalizado; kit de boas-vindas para colaboradores; presente corporativo premium | `/kits-corporativos/` | `/brindes-por-ocasiao/` (ideias por ocasião); artigos de boas-vindas e Natal |
+| Confecções e uniformes | uniformes corporativos personalizados; camisa polo bordada para empresa | `/confeccoes-personalizadas/` | `/catalogo/` (vestuário) |
+| Restaurantes e hotéis | cardápio personalizado para restaurante; porta-contas personalizado; dólmã com logo | `/hotelaria-e-gastronomia/` | `/catalogo/` (hotelaria e gastronomia) |
+| Ativações e degustações | ativação promocional; degustação em supermercado; ação promocional no ponto de venda | `/ativacoes-promocionais/` | `/confeccoes-personalizadas/` (uniformes da equipe) |
+| Marca | TaMa Creative | `/` | `/sobre/` |
+| Pedido | orçamento de brindes corporativos; orçamento de kit corporativo | `/solicitar-proposta/` | — |
+
+### Disputas a evitar
+
+Três páginas falam de brindes. Cada uma tem um papel; não deixe duas mirarem a mesma consulta:
+
+| Página | Papel | Não usar no title/H1 |
+|---|---|---|
+| `/brindes-corporativos/` | Página do **serviço**: o que é, como funciona, para quem. Alvo de "brindes corporativos personalizados". | Lista de modelos ou "catálogo" |
+| `/catalogo/` | **Navegação de modelos** (52 modelos, cores, seleção). Alvo de buscas por peça ("caneca personalizada", "ecobag personalizada"), não do termo genérico. | "Brindes corporativos personalizados" como termo principal |
+| `/brindes-por-ocasiao/` | **Ideias por ocasião** (boas-vindas, fim de ano, reconhecimento…), uma seleção editorial sobre o catálogo. Alvo de buscas com ocasião. | "Premium" e o termo genérico de brindes |
+
+O endereço `/brindes-por-ocasiao/` foi mantido (links antigos e do blog), mas o termo "presentes premium"
+passou para `/kits-corporativos/`. Se um dia a página de ocasiões mudar de endereço, é preciso redirecionar (301) a
+URL antiga e atualizar os links do blog.
+
+Regra geral: links internos com texto descritivo apontando para a página principal da intenção (ex.: "brindes
+corporativos" → `/brindes-corporativos/`, "ver os modelos" → `/catalogo/`).
+
+## Papel do blog
+
+O blog atrai quem ainda está pesquisando e leva essa pessoa às páginas comerciais. Cada artigo gera estes links
+(ver `docs/BLOG.md`):
+
+- Botão do serviço no quadro do autor (`servico` do artigo): hoje `/kits-corporativos/` (boas-vindas e Natal),
+  `/brindes-corporativos/` (compliance) e `/brindes-por-ocasiao/` (fim de ano).
+- Peças do catálogo no fim do artigo, com "+ Selecionar", e o link "Ver todas as ideias para…" para
+  `/brindes-por-ocasiao/?ocasiao=…` (ou "Ver o catálogo completo" → `/catalogo/` quando o artigo não tem
+  ocasião).
+- Chamada para a proposta com o tipo já escolhido no formulário.
+- Links no texto para outros artigos e páginas de serviço.
+
+Na data table de pedidos, `primeira_pagina` começando com `/blog/` mostra quantos pedidos começaram no blog
+(ver `docs/MEDICAO.md`).
 
 ## Estratégia editorial (prioridade por sazonalidade)
 
-| # | Guia | Consulta-alvo | Página de destino do link |
-|---|---|---|---|
-| 1 | Brindes de fim de ano para clientes: como escolher sem parecer propaganda | brindes de fim de ano para clientes | Curadoria premium |
-| 2 | Presente de Natal para funcionários: ideias além da cesta | presente de natal para funcionários | Kits corporativos |
-| 3 | O que colocar no kit de boas-vindas (inclusive remoto) | o que colocar no kit de boas-vindas | Kits corporativos |
-| 4 | Kit para evento corporativo: o que colocar por tipo de evento | kit para evento corporativo o que colocar | Kits corporativos |
-| 5 | Brindes e compliance: limites de valor e política de presentes | política de brindes e presentes | Curadoria premium |
-| 6 | Brindes sustentáveis de verdade: materiais e como evitar greenwashing | brindes sustentáveis para empresas | Brindes corporativos |
-| 7 | Quanto custa uma identidade visual e o que entra no escopo | quanto custa identidade visual | Branding |
-| 8 | Uniforme corporativo: tecido, modelagem e bordado x silk | como escolher uniforme corporativo | Confecções |
+| # | Guia | Consulta-alvo (hipótese) | Página de destino do link | Situação |
+|---|---|---|---|---|
+| 1 | Brindes de fim de ano para clientes: como escolher sem parecer propaganda | brindes de fim de ano para clientes | Ideias por ocasião (fim de ano) | Publicado |
+| 2 | Presente de Natal para funcionários: ideias além da cesta | presente de natal para funcionários | Kits corporativos | Publicado |
+| 3 | O que colocar no kit de boas-vindas (inclusive remoto) | o que colocar no kit de boas-vindas | Kits corporativos | Publicado |
+| 4 | Kit para evento corporativo: o que colocar por tipo de evento | kit para evento corporativo o que colocar | Kits corporativos | Em espera (o subdomínio de brindes populares planeja `/kits-para-eventos/`) |
+| 5 | Brindes e compliance: limites de valor e política de presentes | política de brindes e presentes | Brindes corporativos | Publicado |
+| 6 | Brindes sustentáveis de verdade: materiais e como evitar greenwashing | brindes sustentáveis para empresas | Brindes corporativos | A escrever; depende de materiais confirmados pelo fornecedor |
+| 7 | Uniforme corporativo: tecido, modelagem e bordado x silk | como escolher uniforme corporativo | Confecções | A escrever |
 
-Os temas 1 e 2 são urgentes (pico de busca em novembro). Cada guia precisa de conteúdo original e útil; não produzir páginas genéricas em massa.
-
-**Blog (outubro/2026):** os temas 1, 2, 3 e 5 foram escritos em `/blog/` (rascunho para aprovação). O tema 4 fica em espera porque o subdomínio de brindes populares planeja `/kits-para-eventos/`. Títulos, descriptions, estrutura e o passo a passo de publicação estão em `docs/BLOG.md`. Depois de publicar: pedir indexação dos guias 1 e 2 no Search Console e acompanhar consultas e CTR por artigo.
+O antigo tema "quanto custa uma identidade visual" saiu da lista: a TaMa não oferece branding. Cada guia precisa de
+conteúdo original e útil; não produzir páginas genéricas em massa. Títulos, descriptions, estrutura e o passo a passo
+de publicação estão em `docs/BLOG.md`. Depois de publicar: pedir indexação dos guias 1 e 2 no Search Console e
+acompanhar consultas e CTR por artigo.
 
 ## Checklist — Search Console e Analytics
 
 **Quando o domínio estiver no ar**
 - [ ] Confirmar `https://tamacreative.com.br` com cadeado e `www` redirecionando para o domínio sem www.
-- [ ] Ativar `REDIRECT_NETLIFY_SUBDOMAIN=true`, rodar `python build.py` e publicar (redireciona tamacreative.netlify.app → domínio, evitando duplicidade).
-- [ ] Search Console: adicionar a propriedade de **domínio** `tamacreative.com.br` (verificação por registro TXT no DNS do Netlify).
+- [ ] Conferir que `tamacreative.netlify.app` responde 301 para o domínio (ver `docs/DEPLOY.md` › Netlify).
+- [ ] Search Console: adicionar a propriedade de **domínio** `tamacreative.com.br` (verificação por registro TXT no
+      DNS do domínio). Pendente: depende de acesso da TaMa.
 - [ ] Enviar `https://tamacreative.com.br/sitemap.xml`.
-- [ ] Inspecionar `/`, `/brindes-corporativos-premium/` e `/kits-corporativos/` e pedir indexação.
-- [ ] Conferir em Indexação › Páginas que `/projetos/`, `/obrigado/` e `/404.html` aparecem como "excluídas por noindex" (esperado).
+- [ ] Inspecionar e pedir indexação de `/`, `/catalogo/`, `/brindes-corporativos/`, `/kits-corporativos/`,
+      `/ativacoes-promocionais/` e `/hotelaria-e-gastronomia/`.
+- [ ] Em Indexação › Páginas, conferir que `/obrigado/` e `/404.html` aparecem como "excluídas por noindex" e que
+      `/branding-identidade-visual/` e `/projetos/` aparecem como "página com redirecionamento" (esperado).
 - [ ] Testar uma página no Teste de Pesquisa Aprimorada (dados estruturados: Organization, BreadcrumbList).
 
-**Analytics (GA4)**
-- [ ] Criar a propriedade GA4 e copiar o ID (G-XXXXXXX).
-- [ ] Preencher `GA4_ID` e publicar. O banner de consentimento passa a aparecer; o GA só carrega após "Aceitar".
-- [ ] Em Admin › Eventos, marcar como conversão: `form_submit_success`, `whatsapp_click`.
-- [ ] Conferir no DebugView os eventos: `cta_solicitar_proposta`, `whatsapp_click`, `view_service`, `select_product`, `filter_curadoria`, `form_start`, `form_submit_success`, `form_submit_error`.
+**Analytics (GA4)**: ativação, eventos e conversões em `docs/MEDICAO.md`. Resumo: criar a propriedade, preencher
+`ga4_id`, publicar e marcar só `proposta_gravada` como conversão principal (`whatsapp_click` no máximo como
+micro-conversão: clique não é venda).
 
 **Contínuo**
-- [ ] Mensal: Core Web Vitals (campo) no Search Console; consultas e CTR por página.
+- [ ] Mensal: Core Web Vitals (campo) no Search Console; consultas e CTR por página; conferir se alguma consulta
+      aparece em duas páginas que disputam entre si (ver "Disputas a evitar").
 - [ ] A cada nova página: title e description únicos, um H1, links internos para a página de serviço correspondente.

@@ -16,15 +16,15 @@ capa_arquivo: /img/blog/capa-natal-equipes.png
 capa_alt: Garrafa, bolsa clara, caderno e organizador apresentados como opções de presentes para equipes.
 capa_legenda: Imagem ilustrativa · Marcas fictícias
 pecas:
-- manta-de-aconchego
-- caneca-de-ceramica
+- vela
+- caneca
 - garrafa-termica
-- moletom-exclusivo
-- bolsa-tote-estruturada
-- embalagem-presente
-- ritual-de-cafe
-- vela-fragrancia-assinada
-- domino-madeira
+- moletom-com-capuz
+- ecobag
+- caixa-para-presente
+- copo-com-tampa
+- difusor-de-aromas
+- necessaire
 relacionados:
 - brindes-de-fim-de-ano-para-clientes
 - o-que-colocar-no-kit-de-boas-vindas

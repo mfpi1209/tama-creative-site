@@ -8,7 +8,8 @@ palavra_chave: identidade visual de restaurante
 date: 2026-10-18
 destaque: false
 tema: hotelaria-e-gastronomia
-proposta: integrado
+servico: /hotelaria-e-gastronomia/
+proposta: hotelaria
 capa_arquivo: /img/blog/capa-identidade-mesa-equipe.jpg
 capa_alt: Conjunto OLIVA com cardápio, porta-contas, guardanapo e avental personalizados.
 capa_legenda: Imagem ilustrativa gerada por IA · Marcas, produtos e cenas fictícios

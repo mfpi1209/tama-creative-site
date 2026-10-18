@@ -30,11 +30,42 @@ jobs:
       - run: pip install -r requirements.txt
       - name: Gerar o site
         run: python build.py
+      # Checagens antes de publicar: se qualquer uma falhar, nem a branch deploy nem a imagem são atualizadas.
+      - name: Testes de fluxo (tests/e2e.mjs, Chrome do runner, envio do formulário interceptado)
+        run: |
+          npm i --no-save --no-audit --no-fund puppeteer-core@25.12.0
+          python -m http.server 8099 --directory dist >/dev/null 2>&1 &
+          sleep 2
+          EDGE_PATH=/usr/bin/google-chrome node tests/e2e.mjs http://127.0.0.1:8099
       - name: Montar contexto da imagem
         run: |
           mkdir -p ctx/deploy
           cp -r dist ctx/dist
-          cp deploy/nginx.conf deploy/common-headers.conf deploy/security-headers.conf deploy/Dockerfile.static ctx/deploy/
+          cp deploy/nginx.conf deploy/security-headers.conf deploy/admin-headers.conf deploy/Dockerfile.static ctx/deploy/
+      - name: Construir a imagem e testar o Nginx (configuração, rotas e redirecionamentos)
+        run: |
+          IMG=$(echo "$IMAGE" | tr '[:upper:]' '[:lower:]')
+          docker build -f ctx/deploy/Dockerfile.static -t "$IMG:latest" -t "$IMG:${GITHUB_SHA::7}" ctx
+          docker run --rm "$IMG:latest" nginx -t
+          docker run -d --name site-teste -p 8080:80 "$IMG:latest"
+          sleep 2
+          check() { got=$(curl -s -o /dev/null -w '%{http_code}' "http://127.0.0.1:8080$1"); [ "$got" = "$2" ] || { echo "FALHOU $1: $got (esperado $2)"; exit 1; }; echo "ok $1 $got"; }
+          check / 200
+          check /catalogo/ 200
+          check /solicitar-proposta/ 200
+          check /ativacoes-promocionais/ 200
+          check /hotelaria-e-gastronomia/ 200
+          check /brindes-de-fim-de-ano/ 200
+          check /fim-de-ano 301
+          loc=$(curl -s -o /dev/null -w '%{redirect_url}' "http://127.0.0.1:8080/fim-de-ano?utm_source=instagram"); case "$loc" in */brindes-de-fim-de-ano/?utm_source=instagram) echo "ok /fim-de-ano mantém a campanha";; *) echo "FALHOU /fim-de-ano: $loc"; exit 1;; esac
+          check /brindes/ 301
+          check /branding-identidade-visual/ 301
+          check /projetos/ 301
+          check /pagina-que-nao-existe 404
+          check /api/proposta 403
+          check /_redirects 404
+          curl -sI http://127.0.0.1:8080/ | grep -qi '^strict-transport-security' || { echo "FALHOU: sem HSTS"; exit 1; }
+          docker rm -f site-teste
       - name: Publicar branch deploy (site pronto + Dockerfile, usada pelo Easypanel)
         run: |
           cd ctx
@@ -50,12 +81,13 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      - name: Construir e enviar a imagem
+      - name: Enviar a imagem
         run: |
           IMG=$(echo "$IMAGE" | tr '[:upper:]' '[:lower:]')
-          docker build -f ctx/deploy/Dockerfile.static -t "$IMG:latest" -t "$IMG:${GITHUB_SHA::7}" ctx
           docker push "$IMG:latest"
           docker push "$IMG:${GITHUB_SHA::7}"
+      # Deploy automático: só depois de confirmar no Easypanel qual origem o app "site" usa (ver docs/DEPLOY.md).
+      # Com o segredo EASYPANEL_DEPLOY_WEBHOOK criado no GitHub, cada push na main que passar nas checagens publica.
       - name: Avisar o Easypanel (se o webhook estiver configurado)
         env:
           HOOK: ${{ secrets.EASYPANEL_DEPLOY_WEBHOOK }}

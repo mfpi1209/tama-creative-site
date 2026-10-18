@@ -13,7 +13,8 @@ MOCK = os.path.join(ROOT, 'midia', 'mockups')
 DEST = os.path.join(ROOT, 'img', 'marca')
 
 
-PECAS = {p['img']: p for p in json.load(open(os.path.join(ROOT, 'src', 'data', 'curadoria.json'), encoding='utf-8'))['pecas']}
+_CUR = os.path.join(ROOT, 'src', 'data', 'curadoria.json')   # retirado: o catálogo agora vem só de produtos.json
+PECAS = {p['img']: p for p in json.load(open(_CUR, encoding='utf-8'))['pecas']} if os.path.exists(_CUR) else {}
 
 
 def _slug(s):

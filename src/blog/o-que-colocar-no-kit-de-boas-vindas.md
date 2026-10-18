@@ -16,15 +16,15 @@ capa_arquivo: /img/blog/capa-kit-boas-vindas.png
 capa_alt: Kit de boas-vindas em caixa verde com caderno, caneta, copo, organizador e cartão.
 capa_legenda: Imagem ilustrativa · Marcas fictícias
 pecas:
-- kit-boas-vindas
-- caderno-premium
+- caixa-para-presente
+- caderno-de-anotacoes
 - garrafa-termica
-- caneca-de-ceramica
-- moletom-exclusivo
-- kit-de-papelaria
-- calendario-perpetuo
-- garrafa-vidro-cortica
-- cabo-estojo-couro
+- caneca
+- moletom-com-capuz
+- porta-canetas
+- estojo-de-escritorio
+- copo-com-tampa
+- ecobag
 relacionados:
 - brindes-de-fim-de-ano-para-clientes
 - presente-de-natal-para-funcionarios

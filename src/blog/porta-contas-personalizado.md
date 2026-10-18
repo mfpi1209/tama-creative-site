@@ -8,7 +8,8 @@ palavra_chave: porta-contas personalizado
 date: 2026-10-18
 destaque: false
 tema: hotelaria-e-gastronomia
-proposta: integrado
+servico: /hotelaria-e-gastronomia/
+proposta: hotelaria
 capa_arquivo: /img/blog/capa-porta-contas-personalizado.jpg
 capa_alt: Porta-contas aberto e fechado em tons castanho e verde, com marca OLIVA.
 capa_legenda: Imagem ilustrativa gerada por IA · Marcas, produtos e cenas fictícios

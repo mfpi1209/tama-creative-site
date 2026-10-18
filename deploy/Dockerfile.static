@@ -1,10 +1,7 @@
 # Imagem final do site: só Nginx + o site já gerado (dist/ é gerado no GitHub Actions).
 FROM nginx:1.27-alpine
 COPY deploy/nginx.conf /etc/nginx/conf.d/default.conf
-COPY deploy/common-headers.conf deploy/security-headers.conf /etc/nginx/snippets/
+COPY deploy/security-headers.conf /etc/nginx/snippets/security-headers.conf
+COPY deploy/admin-headers.conf /etc/nginx/snippets/admin-headers.conf
 COPY dist /usr/share/nginx/html
-# cabeçalhos de /admin/ gerados pelo build (blog.py); arquivos só do Netlify não ficam públicos
-RUN mv /usr/share/nginx/html/_nginx/admin-headers.conf /etc/nginx/snippets/ \
- && rm -rf /usr/share/nginx/html/_nginx /usr/share/nginx/html/_headers /usr/share/nginx/html/_redirects \
- && nginx -t
 EXPOSE 80

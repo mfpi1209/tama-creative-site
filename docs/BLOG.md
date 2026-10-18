@@ -1,10 +1,12 @@
 # Blog — tamacreative.com.br/blog/
 
-Guias que atraem quem procura brindes, kits e presentes corporativos e levam essas pessoas à curadoria e ao pedido de proposta. Cada artigo é um arquivo Markdown em `src/blog/`; o build gera as páginas, o RSS, o sitemap e os dados estruturados.
+Guias que atraem quem procura brindes, kits e presentes corporativos e levam essas pessoas ao catálogo, às ideias por ocasião e ao pedido de proposta. Cada artigo é um arquivo Markdown em `src/blog/`; o build gera as páginas, o RSS, o sitemap e os dados estruturados.
 
 ## Editor visual (/admin/)
 
-Endereço: **https://tamacreative.netlify.app/admin/**. Depois da troca de DNS, também funciona em **https://tamacreative.com.br/admin/**. O login é feito com a conta do GitHub. No Easypanel, o login continua passando pelo site `tamacreative` do Netlify (não apague esse site); detalhes e cabeçalhos do Nginx em `DEPLOY.md` › "Easypanel (Nginx)".
+Endereço: **https://tamacreative.com.br/admin/** (servido pelo Easypanel). O login é feito com a conta do GitHub, pelo serviço `cms-auth` do Easypanel (passos 1 a 3 abaixo).
+
+O mesmo editor também administra o **catálogo de produtos** (fotos, cores, material e técnica): ver `docs/BANCO-IMAGENS.md` › Editor do catálogo. `/adm` redireciona para `/admin/`.
 
 O editor é o Decap CMS 3.16.3, servido pelo próprio site, sem script de terceiros. Ele grava no repositório privado **mfpi1209/tama-creative-site**. Só entra quem tem acesso de escrita ao repositório; para dar acesso a outra pessoa, adicione o GitHub dela como colaboradora.
 
@@ -21,8 +23,8 @@ O editor é o Decap CMS 3.16.3, servido pelo próprio site, sem script de tercei
    - palavra-chave no título, na descrição e no primeiro parágrafo;
    - seções, número de palavras, chamada para proposta, serviço e texto alternativo da capa.
 5. **Salvar:** cria um rascunho no fluxo editorial ("Fluxo de trabalho"). Por trás, é um pull request no GitHub. O Netlify gera uma **prévia com endereço próprio**; o link aparece no editor ("Ver prévia"). A prévia fica fora do Google.
-6. **Revisar e aprovar:** mova o card para "Em revisão" e depois para "Pronto". **"Publicar" é a aprovação:** o editor faz o merge na `main`, o Netlify gera o site e a produção é atualizada em alguns minutos.
-7. Se o build encontrar um erro (por exemplo, link quebrado ou descrição longa demais), a publicação não acontece e a produção continua como estava. O motivo aparece no log de deploy do Netlify.
+6. **Revisar e aprovar:** mova o card para "Em revisão" e depois para "Pronto". **"Publicar" é a aprovação:** o editor faz o merge na `main`; o GitHub Actions gera e testa o site e atualiza a branch `deploy`, e o Easypanel publica (ver `docs/DEPLOY.md`).
+7. Se o build ou os testes encontrarem um erro (por exemplo, link quebrado ou descrição longa demais), a publicação não acontece e a produção continua como estava. O motivo aparece no log do GitHub Actions (ou no log da prévia do Netlify).
 
 Rascunho também pode ser marcado com a chave "Rascunho (não publicar)": ele não vai ao ar nem se for publicado.
 
@@ -62,21 +64,23 @@ Rode o build, sirva `dist/` e, na pasta do projeto, `npx decap-server` (porta 80
 
 ### Configuração única (feita pelo responsável pela conta)
 
+O login do editor roda no Easypanel: o serviço `cms-auth` (código em `deploy/cms-auth/`) faz o OAuth com o GitHub e o Nginx do site o expõe em `https://tamacreative.com.br/api/cms-auth/`. O Netlify não participa do login.
+
 | Passo | Onde | O quê |
 |---|---|---|
-| 1 | GitHub › Settings › Developer settings › OAuth Apps › New OAuth App | Nome: `Editor do blog TaMa`. Homepage: `https://tamacreative.netlify.app`. Authorization callback URL: `https://api.netlify.com/auth/done`. Gere o Client secret |
-| 2 | Netlify › site tamacreative › Site configuration › Access & security › OAuth › Install provider | GitHub. Cole o Client ID e o Client secret do passo 1 |
-| 3 | Netlify › Site configuration › Build & deploy › Continuous deployment › Link repository | GitHub › `mfpi1209/tama-creative-site`, branch `main`. Comando e pasta vêm do `netlify.toml`. Deixe "Deploy Previews" ligado para pull requests |
+| 1 | GitHub › Settings › Developer settings › OAuth Apps › **New OAuth App** | Nome: `Editor do site TaMa`. Homepage URL: `https://tamacreative.com.br`. Authorization callback URL: `https://tamacreative.com.br/api/cms-auth/callback`. Registre, copie o **Client ID** e gere o **Client secret** |
+| 2 | Easypanel › projeto `tama` › app **`cms-auth`** › **Environment** | `GITHUB_CLIENT_ID=` e `GITHUB_CLIENT_SECRET=` do passo 1. Salve e clique em **Deploy**. Não precisa de domínio: o acesso é pela rede interna |
+| 3 | Easypanel › app do site › **Deploy** | Publica o Nginx que encaminha `/api/cms-auth/` para `tama_cms-auth` |
 
-O passo 3 dispara o primeiro build da `main` e publica em produção. Em 13/10/2026, o conteúdo do repositório era o mesmo da produção, mais o editor: as 18 páginas foram comparadas uma a uma.
+O Nginx procura o serviço pelo nome interno **`tama_cms-auth`**, na **porta 80** (a porta que o serviço informa no log: "cms-auth na porta 80"). Se o projeto, o serviço ou a porta forem outros, ajuste `set $cms_auth_upstream` em `deploy/nginx.conf`.
 
-### Publicação depois da ligação com o Git
+Quem edita precisa de acesso de escrita ao repositório `mfpi1209/tama-creative-site` (colaborador no GitHub).
 
-- **Produção = branch `main`.** Cada push ou merge na `main` gera e publica o site. Para mudar o site, commite e envie (`git push`) só depois do OK.
-- O `netlify deploy --prod` pela linha de comando continua funcionando, mas é sobrescrito pelo próximo build da `main`. Prefira o Git.
-- Rascunhos com alias (`netlify deploy --alias …`) continuam valendo para aprovações fora do editor.
-- O build no Netlify usa Python 3.13 (`netlify.toml`). O plugin `netlify/plugins/cache-imagens` guarda `.cache/` entre builds. Com cache, o build leva segundos; sem cache, cerca de 2 minutos.
-- Os logos oficiais têm cópia versionada em `brand/logos/`, porque o Netlify só enxerga o repositório. Se os SVGs de `tama-creative-logos/svg` mudarem, o build local avisa; copie os arquivos e faça commit.
+### Publicação
+
+- **Produção = branch `main` → GitHub Actions → Easypanel** (ver `docs/DEPLOY.md`). Commite e envie (`git push`) só depois do OK.
+- O Netlify não publica mais o site: `tamacreative.netlify.app` redireciona para o domínio. Se o Netlify continuar ligado ao repositório, as prévias de pull request geram o site completo para revisão.
+- Os logos oficiais têm cópia versionada em `brand/logos/`, porque o build só enxerga o repositório. Se os SVGs de `tama-creative-logos/svg` mudarem, o build local avisa; copie os arquivos e faça commit.
 - Os masters dos mockups (`midia/mockups/mestre/`, 51 MB) ficam fora do Git, só neste computador.
 
 ## Estrutura
@@ -108,7 +112,7 @@ Cada artigo traz:
 | `img/blog/` | Imagens enviadas pelo editor. O build gera AVIF/WebP/JPEG como nas outras fotos |
 | `docs/blog-modelo.md` | Modelo para escrever sem o editor |
 
-Gerados a cada build: `dist/admin/config.yml`, `preview.css` e `logo.svg`. O `config.yml` é montado com os temas, as ocasiões, as peças da curadoria e as imagens do site, então o editor só oferece valores que o build aceita.
+Gerados a cada build: `dist/admin/config.yml`, `preview.css` e `logo.svg`. O `config.yml` é montado com os temas, as ocasiões, os modelos do catálogo e as imagens do site, então o editor só oferece valores que o build aceita.
 
 Em `build.py` o blog ocupa só o import, o item do menu e do rodapé, `og_type`/`og_image`/`head` no `shell()`, o `lastmod` do sitemap e os ganchos. Dependências: `Markdown` e `PyYAML` (em `requirements.txt`).
 
@@ -147,9 +151,9 @@ Em `build.py` o blog ocupa só o import, o item do menu e do rodapé, `og_type`/
 | `destaque` | não | `true` põe o artigo em destaque no índice entre os do mesmo dia |
 | `tema` | sim | Categoria: `brindes-e-presentes`, `kits-e-boas-vindas`, `confeccoes-e-personalizacao`, `embalagem-e-acabamento`, `eventos-e-ativacoes`, `hotelaria-e-gastronomia`, `planejamento-de-compras` (lista em `blog.py`, `TEMAS`). Vira filtro na listagem quando há artigo |
 | `resumo` | não | Frase curta do card e da linha abaixo do H1 (até 160). Vazio usa `description` |
-| `ocasiao` | não | Chave da curadoria (`boas-vindas`, `eventos`, `executivos`, `campanhas`, `lancamentos`, `fim-de-ano`, `reconhecimento`). Gera o link `/brindes-corporativos-premium/?ocasiao=…` |
+| `ocasiao` | não | Chave da curadoria (`boas-vindas`, `eventos`, `executivos`, `campanhas`, `lancamentos`, `fim-de-ano`, `reconhecimento`). Gera o link `/brindes-por-ocasiao/?ocasiao=…` |
 | `servico` | não | Página de serviço ligada ao artigo (botão no quadro do autor) |
-| `proposta` | não | Tipo pré-selecionado no formulário: `brindes`, `kits`, `confeccoes`, `branding`, `integrado` |
+| `proposta` | não | Tipo pré-selecionado no formulário: `brindes`, `kits`, `confeccoes`, `ativacoes`, `hotelaria`, `integrado` |
 | `palavra_chave` | não | Consulta principal; vai para `keywords` do JSON-LD |
 | `capa` | sim, ou `capa_arquivo` | Nome de uma imagem de `img/` (`.jpg`) ou `img/v2/` (`.webp`), sem extensão |
 | `capa_arquivo` | não | Imagem enviada pelo editor (`/img/blog/arquivo.jpg`). Quando preenchida, substitui `capa` |
@@ -157,7 +161,7 @@ Em `build.py` o blog ocupa só o import, o item do menu e do rodapé, `og_type`/
 | `capa_conceitual` | não | `false` só para fotos reais de trabalhos entregues |
 | `capa_legenda` | não | Legenda da capa, por exemplo `Imagem ilustrativa · Marcas fictícias`. Com ela, o texto alternativo fica só com `capa_alt` |
 | `capa_posicao` | não | Enquadramento CSS, por exemplo `50% 40%` |
-| `pecas` | não | Slugs de `src/data/curadoria.json`: peças com foto entram na vitrine (com "+ Selecionar"); ideias "além do óbvio" entram como cards |
+| `pecas` | não | Ids de modelo do catálogo (`src/data/produtos.json`, ex.: `caneca`, `polo-masculina`), escolhidos no editor em **Peças do catálogo** (até 9). Entram no fim do artigo com "+ Selecionar". Slugs antigos da curadoria continuam aceitos pelos `aliases` de `src/data/selecoes.json` |
 | `relacionados` | não | Até 2 slugs de artigos para "Outros guias". Sem ele: mesma categoria primeiro, depois os mais recentes |
 | `revisar_em` | não | Próxima revisão (`AAAA-MM-DD`). Aparece no Painel de SEO |
 | `revisar_motivo` | não | O que conferir na revisão. Exige `revisar_em` |
@@ -170,7 +174,7 @@ Em `build.py` o blog ocupa só o import, o item do menu e do rodapé, `og_type`/
 | Chamada para a proposta no meio do texto | Linha sozinha com `[[cta]]` ou `[[cta: texto próprio]]` |
 | Tabelas | Markdown padrão; ficam roláveis no celular |
 | Notas de fonte | `texto.[^id]` no corpo e `[^id]: Fonte. [Link](https://…)` no fim |
-| Links internos | Caminho relativo (`/kits-corporativos/`). O build confere se a página existe, inclusive âncoras da curadoria |
+| Links internos | Caminho relativo (`/kits-corporativos/`). O build confere se a página existe, inclusive âncoras de `/brindes-por-ocasiao/` (`#pecas` ou id de modelo) |
 
 ## O que o build verifica
 

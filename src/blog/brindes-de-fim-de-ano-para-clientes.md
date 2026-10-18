@@ -10,21 +10,21 @@ updated: 2026-10-18
 destaque: true
 tema: brindes-e-presentes
 ocasiao: fim-de-ano
-servico: /brindes-corporativos-premium/
+servico: /brindes-de-fim-de-ano/
 proposta: brindes
 capa_arquivo: /img/blog/capa-fim-de-ano-clientes.png
 capa_alt: Caixa terracota com duas taças de espumante personalizadas, cartão e fita de tecido.
 capa_legenda: Imagem ilustrativa · Marcas fictícias
 pecas:
-- bandeja-em-couro
-- agenda-executiva
-- manta-de-aconchego
-- caixa-rigida-premium
-- embalagem-presente
-- sacola-corporativa
-- tabua-de-queijos
-- cha-em-latas
-- guardanapos-de-linho
+- caneta-executiva-com-estojo
+- agenda
+- vela
+- caixa-para-presente
+- cartao-com-envelope
+- sacola-para-presente
+- copo-de-vinho-com-tampa
+- taca-de-vinho
+- difusor-de-aromas
 relacionados:
 - o-que-colocar-no-kit-de-boas-vindas
 - presente-de-natal-para-funcionarios

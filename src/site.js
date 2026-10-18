@@ -252,9 +252,80 @@
       rail.scrollLeft = 0;
     });
   });
-  // catálogo da curadoria: ?categoria= na URL já abre filtrado (ex.: link "Ver no catálogo" das confecções)
-  var catParam = new URLSearchParams(location.search).get('categoria');
-  if (catParam) document.querySelectorAll('[data-rail-filter="catalogo-grid"]').forEach(function (c) { if (c.getAttribute('data-value') === catParam) c.click(); });
+  /* ---------- Catálogo: busca, filtro lateral (gaveta no celular) e estado na URL ---------- */
+  var catBox = document.querySelector('[data-catalogo]');
+  if (catBox) {
+    var catForm = document.getElementById('cat-form'), catQ = document.getElementById('cat-q');
+    var catCards = [].slice.call(catBox.querySelectorAll('#catalogo-grid .product'));
+    var catSide = document.getElementById('cat-filtros'), catScrim = catBox.querySelector('.cat-scrim'), catOpener = catBox.querySelector('[data-cat-open]');
+    var catFAM = {};
+    try { catFAM = JSON.parse(catBox.getAttribute('data-familias')); } catch (e) {}
+    var catNorm = function (s) { return String(s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim(); };
+    var catState = function () {
+      var c = catForm.querySelector('input[name="categoria"]:checked');
+      return { q: catNorm(catQ.value), cat: c ? c.value : '', cores: [].map.call(catForm.querySelectorAll('input[name="cor"]:checked'), function (i) { return i.value; }) };
+    };
+    var catApply = function (push) {
+      var st = catState(), n = 0, words = st.q ? st.q.split(' ') : [];
+      catCards.forEach(function (p) {
+        var hay = p.getAttribute('data-busca') || '', fams = (p.getAttribute('data-cores') || '').split(' ');
+        var ok = (!st.cat || p.getAttribute('data-cat') === st.cat)
+          && words.every(function (w) { return hay.indexOf(w) !== -1; })
+          && (!st.cores.length || st.cores.some(function (f) { return fams.indexOf(f) !== -1; }));
+        p.hidden = !ok;
+        if (ok) n++;
+        // com filtro de cor, o card já mostra a peça numa cor da família escolhida
+        if (ok && st.cores.length) {
+          var sw = [].filter.call(p.querySelectorAll('.swatch'), function (b) { return st.cores.indexOf(catFAM[b.getAttribute('data-color')]) !== -1; })[0];
+          if (sw && sw.getAttribute('aria-pressed') !== 'true') paintColor(p.getAttribute('data-slug'), sw.getAttribute('data-color'));
+        }
+      });
+      catBox.querySelectorAll('[data-cat-n]').forEach(function (el) { el.textContent = n; });
+      document.getElementById('cat-count').lastChild.textContent = n === 1 ? ' modelo' : ' modelos';
+      document.getElementById('cat-vazio').hidden = n > 0;
+      var active = (st.cat ? 1 : 0) + st.cores.length, badge = catBox.querySelector('[data-cat-badge]');
+      badge.hidden = !active; badge.textContent = active;
+      if (push) {
+        var u = new URLSearchParams();
+        if (catQ.value.trim()) u.set('q', catQ.value.trim());
+        if (st.cat) u.set('categoria', st.cat);
+        if (st.cores.length) u.set('cor', st.cores.join(','));
+        history.replaceState(null, '', location.pathname + (u.toString() ? '?' + u : '') + '#catalogo');
+      }
+    };
+    var catTimerQ;
+    catQ.addEventListener('input', function () { clearTimeout(catTimerQ); catTimerQ = setTimeout(function () { catApply(true); }, 150); });
+    catForm.addEventListener('change', function () { catApply(true); });
+    catForm.addEventListener('submit', function (e) { e.preventDefault(); catQ.blur(); });
+    catForm.addEventListener('reset', function () { setTimeout(function () { catApply(true); }, 0); });
+    // URL de entrada: ?categoria=vestuario&cor=azul,verde&catQ=caneca (links internos e compartilhamento)
+    var catParams = new URLSearchParams(location.search);
+    if (catParams.get('q')) catQ.value = catParams.get('q');
+    var catPc = catForm.querySelector('input[name="categoria"][value="' + (catParams.get('categoria') || '').replace(/[^a-z-]/g, '') + '"]');
+    if (catPc) catPc.checked = true;
+    (catParams.get('cor') || '').split(',').forEach(function (f) { var i = catForm.querySelector('input[name="cor"][value="' + f.replace(/[^a-z-]/g, '') + '"]'); if (i) i.checked = true; });
+    if (catParams.toString()) catApply(false);
+    // gaveta de filtros (celular e tablet)
+    var catOpenSide = function (open) {
+      catSide.classList.toggle('is-open', open);
+      catScrim.hidden = !open;
+      catOpener.setAttribute('aria-expanded', String(open));
+      document.documentElement.classList.toggle('cat-lock', open);
+      if (open) { catSide.setAttribute('role', 'dialog'); catSide.setAttribute('aria-modal', 'true'); var f = catSide.querySelector('input:checked') || catSide.querySelector('input'); if (f) f.focus(); }
+      else { catSide.removeAttribute('role'); catSide.removeAttribute('aria-modal'); catOpener.focus(); }
+    };
+    catOpener.addEventListener('click', function () { catOpenSide(true); });
+    catBox.querySelectorAll('[data-cat-close]').forEach(function (b) { b.addEventListener('click', function () { catOpenSide(false); }); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && catSide.classList.contains('is-open')) catOpenSide(false); });
+    // celular: uma ou duas fotos por linha (lembrado neste navegador)
+    var catGrid = document.getElementById('catalogo-grid');
+    var catSetCols = function (n) {
+      catGrid.classList.toggle('cols-2', n === '2');
+      catBox.querySelectorAll('[data-cat-cols]').forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-cat-cols') === n)); });
+    };
+    catBox.querySelectorAll('[data-cat-cols]').forEach(function (b) { b.addEventListener('click', function () { catSetCols(b.getAttribute('data-cat-cols')); store('tama-cat-cols', b.getAttribute('data-cat-cols')); }); });
+    if (store('tama-cat-cols') === '2') catSetCols('2');
+  }
 
   /* ---------- Carrossel da abertura ---------- */
   var hero = document.getElementById('hero');

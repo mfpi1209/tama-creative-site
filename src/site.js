@@ -328,12 +328,16 @@
     var catFAM = {}, catOCC = {};
     try { catFAM = JSON.parse(catBox.getAttribute('data-familias')); } catch (e) {}
     try { catOCC = JSON.parse(catBox.getAttribute('data-ocasioes')) || {}; } catch (e) {}
-    // ocasião (?ocasiao=fim-de-ano, vinda das páginas de ocasião): fora do formulário, mostrada como etiqueta removível
-    var catOcc = '', catOccBox = catBox.querySelector('[data-cat-occ]');
+    // ocasião: radio na lateral (name="ocasiao"), espelhado na etiqueta removível acima da grade e em ?ocasiao= na URL
+    var catOccBox = catBox.querySelector('[data-cat-occ]');
+    var catSetOcc = function (k) {   // k já validado contra catOCC; sem radio para k (ou k vazio), volta para "Todas"
+      var r = (k && catForm.querySelector('input[name="ocasiao"][value="' + k + '"]')) || catForm.querySelector('input[name="ocasiao"][value=""]');
+      if (r) r.checked = true;
+    };
     var catNorm = function (s) { return String(s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim(); };
     var catState = function () {
-      var c = catForm.querySelector('input[name="categoria"]:checked');
-      return { q: catNorm(catQ.value), cat: c ? c.value : '', occ: catOcc, cores: [].map.call(catForm.querySelectorAll('input[name="cor"]:checked'), function (i) { return i.value; }) };
+      var c = catForm.querySelector('input[name="categoria"]:checked'), o = catForm.querySelector('input[name="ocasiao"]:checked');
+      return { q: catNorm(catQ.value), cat: c ? c.value : '', occ: o && catOCC.hasOwnProperty(o.value) ? o.value : '', cores: [].map.call(catForm.querySelectorAll('input[name="cor"]:checked'), function (i) { return i.value; }) };
     };
     var catApply = function (push) {
       var st = catState(), n = 0, words = st.q ? st.q.split(' ') : [];
@@ -371,15 +375,16 @@
     catQ.addEventListener('input', function () { clearTimeout(catTimerQ); catTimerQ = setTimeout(function () { catApply(true); }, 150); });
     catForm.addEventListener('change', function () { catApply(true); });
     catForm.addEventListener('submit', function (e) { e.preventDefault(); catQ.blur(); });
-    catForm.addEventListener('reset', function () { catOcc = ''; setTimeout(function () { catApply(true); }, 0); });
-    // remover a ocasião: a etiqueta some, então o foco vai para o total de modelos
+    catForm.addEventListener('reset', function () { setTimeout(function () { catApply(true); }, 0); });   // o reset volta os radios para "Todas"
+    // remover a ocasião: a etiqueta some (e o radio volta para "Todas"), então o foco vai para o total de modelos
     catOccBox.querySelector('[data-cat-occ-clear]').addEventListener('click', function () {
-      catOcc = ''; catApply(true);
+      catSetOcc(''); catApply(true);
       var cc = document.getElementById('cat-count'); cc.setAttribute('tabindex', '-1'); cc.focus({ preventScroll: true });
     });
     // URL de entrada: ?categoria=vestuario&cor=azul,verde&q=caneca&ocasiao=fim-de-ano (links internos e compartilhamento)
     var catParams = new URLSearchParams(location.search);
-    if (catOCC.hasOwnProperty(catParams.get('ocasiao') || '')) catOcc = catParams.get('ocasiao');   // ocasião desconhecida abre sem filtro
+    var catPo = catParams.get('ocasiao') || '';
+    catSetOcc(catOCC.hasOwnProperty(catPo) ? catPo : '');   // ocasião desconhecida abre sem filtro ("Todas")
     if (catParams.get('q')) catQ.value = catParams.get('q');
     var catPc = catForm.querySelector('input[name="categoria"][value="' + (catParams.get('categoria') || '').replace(/[^a-z-]/g, '') + '"]');
     if (catPc) catPc.checked = true;

@@ -176,7 +176,10 @@ IMAGES = {}
 
 # largura real da foto do carrossel (fotos 3:2 na metade direita; no celular, um pouco maior que a tela por causa do corte)
 HERO_SIZES = '(max-width: 760px) 120vw, 95vw'
-CARROSSEL_HQ = {'hero-brindes', 'hero-v3-confeccoes', 'hero-kits', 'home-escritorio'}
+CARROSSEL_HQ = {'hero-brindes', 'fim-header', 'hero-v3-confeccoes', 'hero-kits', 'home-escritorio'}
+# fotos do carrossel mais estreitas que 1,9:1 que também já trazem o vazio do texto à esquerda (fim-header: a parede
+# iluminada ocupa o primeiro terço; a taça solta começa em ~37% da largura)
+CARROSSEL_RESPIRO = {'fim-header'}
 FOTOS_HQ = CARROSSEL_HQ | {'home-frente-brindes', 'home-frente-confeccoes', 'home-frente-kits', 'kits-header', 'conf-header', 'ativ-header', 'hot-header', 'brindes-header', 'brindes-entrega', 'fim-header'}   # fotos enviadas em alta pela TaMa (home e cabeçalhos de kits e confecções)
 
 
@@ -492,12 +495,17 @@ def busca_norm(s):
 
 
 def catalogo_block():
-    """Catálogo: busca + filtro lateral (categoria e família de cor) e grade grande. No celular, os filtros abrem numa
-    gaveta. O estado vai para a URL (?q=, ?categoria=, ?cor=), para compartilhar o resultado. ?ocasiao= (links das
-    páginas de ocasião) filtra pelo data-occ dos cards e aparece como etiqueta removível acima da grade."""
+    """Catálogo: busca + filtro lateral (categoria, ocasião e família de cor) e grade grande. No celular, os filtros abrem
+    numa gaveta. O estado vai para a URL (?q=, ?categoria=, ?ocasiao=, ?cor=), para compartilhar o resultado. A ocasião
+    filtra pelo data-occ dos cards e também aparece como etiqueta removível acima da grade (links das páginas de ocasião)."""
     cats = [(k, v, sum(1 for c in CATALOGO if c['categoria'] == k)) for k, v in CAT_PROD.items()]
     cat_opts = (f'<label class="cat-opt"><input type="radio" name="categoria" value="" checked> <span>Todas</span> <small>{len(CATALOGO)}</small></label>'
                 + ''.join(f'<label class="cat-opt"><input type="radio" name="categoria" value="{k}"> <span>{v}</span> <small>{n}</small></label>' for k, v, n in cats if n))
+    # ocasião: mesma regra do data-occ dos cards; Fim de ano vem logo depois de "Todas" (temporada), as outras seguem a ordem do selecoes.json
+    occs = sorted(OCCS.items(), key=lambda kv: kv[0] != 'fim-de-ano')
+    occ_opts = (f'<label class="cat-opt"><input type="radio" name="ocasiao" value="" checked> <span>Todas</span> <small>{len(CATALOGO)}</small></label>'
+                + ''.join(f'<label class="cat-opt{" is-season" if k == "fim-de-ano" else ""}"><input type="radio" name="ocasiao" value="{k}"> <span>{v}</span> <small>{n}</small></label>'
+                          for k, v, n in ((k, v, sum(1 for c in CATALOGO if k in c['ocasioes'])) for k, v in occs) if n))
     cor_opts = ''.join(f'<label class="cat-opt cor"><input type="checkbox" name="cor" value="{k}"> <i style="--c:{hexv}" aria-hidden="true"></i><span>{nome}</span></label>'
                        for k, (nome, hexv, _) in FAMILIAS.items())
     cards = []
@@ -518,6 +526,7 @@ def catalogo_block():
       <div class="cat-side-head"><p class="cat-side-title" id="cat-filtros-t">Filtros</p><button class="icon-btn" type="button" data-cat-close aria-label="Fechar filtros"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
       <form class="cat-form" id="cat-form">
         <fieldset><legend>Categoria</legend>{cat_opts}</fieldset>
+        <fieldset><legend>Ocasião</legend>{occ_opts}</fieldset>
         <fieldset><legend>Cor</legend>{cor_opts}</fieldset>
         <button class="link cat-clear" type="reset">Limpar filtros</button>
       </form>
@@ -1210,6 +1219,11 @@ def hero_carousel(slides=None, label='Destaques da TaMa Creative', assurances=Tr
         ('tone-cream', 'hero-brindes', '--fx:100%;--fx-m:96%', 'Bolsa cru com alças bordô, caderno creme com caneta dourada, taça e garrafa bordô e copo creme, com a marca TaMa aplicada como exemplo.', 'Para empresas', 'Brindes, confecções e ativações para dar <em>presença à sua marca</em>.',
          'Criamos e coordenamos soluções personalizadas para empresas, da escolha das peças à entrega.',
          cta_link('Solicitar proposta', track_label='hero-1') + '<a class="btn btn-line" href="/catalogo/">Ver produtos ' + ARROW + '</a>'),
+        # temporada: o fim de ano vem logo depois da abertura e leva à página da ocasião
+        # --cw:460px: os botões quebram em duas linhas em 1440 px e o texto termina antes da taça solta
+        ('tone-cream', 'fim-header', '--fx:100%;--fx-m:100%;--cw:460px', 'Caixa de presente terracota aberta com duas taças flute e o cartão "Obrigado por fazer parte da nossa história", com o símbolo de uma marca fictícia; ao lado, uma taça sobre mesa iluminada pelo sol.', 'Fim de ano', 'Um brinde a quem <em>fez parte do seu ano.</em>',
+         'Taças, copos e kits com a sua marca para agradecer clientes e equipes.',
+         cta_link('Solicitar proposta', tipo='kits', track_label='hero-fim-de-ano') + '<a class="btn btn-line" href="/brindes-de-fim-de-ano/">Ver presentes de fim de ano ' + ARROW + '</a>'),
         ('tone-sage', 'hero-v3-confeccoes', '--fx:72%;--fx-m:72%', 'Polo vermelha, moletom azul royal e camiseta branca com a marca TaMa.', 'Confecções personalizadas', 'Sua marca no <em>uniforme</em> da equipe.',
          'Polos, camisetas, moletons, dólmãs e aventais nas cores definidas no projeto.',
          cta_link('Solicitar proposta', tipo='confeccoes', track_label='hero-2') + '<a class="btn btn-line" href="/confeccoes-personalizadas/">Conhecer soluções ' + ARROW + '</a>'),
@@ -1230,7 +1244,7 @@ def hero_carousel(slides=None, label='Destaques da TaMa Creative', assurances=Tr
         if img in CARROSSEL_HQ and img in IMAGES:   # fotos do carrossel: no computador a área da foto segue a imagem (inteira, sem corte)
             w, h = IMAGES[img]['w'], IMAGES[img]['h']
             frame = f"{frame};--ar:{w}/{h}"
-            cls = ' inteira' + (' respiro' if w / h >= 1.9 else '')   # respiro: a foto já traz o espaço vazio do texto à esquerda
+            cls = ' inteira' + (' respiro' if w / h >= 1.9 or img in CARROSSEL_RESPIRO else '')   # respiro: a foto já traz o espaço vazio do texto à esquerda
         tag = 'h1' if i == 0 else 'p'
         out.append(f'''<div class="slide {tone}{cls}{' is-active' if i == 0 else ''}" id="slide-{i + 1}" role="group" aria-roledescription="slide" aria-label="{i + 1} de {n}" style="{frame}"{'' if i == 0 else ' aria-hidden="true" inert'}>
   <div class="wrap slide-inner"><div class="slide-copy">
@@ -1981,6 +1995,8 @@ def build_static():
         '/degustacao         /ativacoes-promocionais/        301',
         '/hotelaria          /hotelaria-e-gastronomia/       301',
         '/gastronomia        /hotelaria-e-gastronomia/       301',
+        '/fim-de-ano         /brindes-de-fim-de-ano/         301',
+        '/natal              /brindes-de-fim-de-ano/         301',
         '/projetos/*         /sobre/                         301',
         '/contato            /solicitar-proposta/            301',
         '/proposta           /solicitar-proposta/            301',

@@ -72,8 +72,9 @@ try {
   console.log('Carrossel da abertura');
   await page.setViewport({ width: 1280, height: 900 });
   await page.goto(BASE + '/', { waitUntil: 'networkidle0' });
-  ok(await page.$$eval('h1', h => h.length) === 1 && await page.$$eval('#hero .slide', s => s.length) === 5, 'home tem um único H1 com 5 slides');
-  ok(await page.$$eval('#hero .slide .btn-line', a => a.map(x => x.getAttribute('href')).join()) === '/catalogo/,/confeccoes-personalizadas/,/kits-corporativos/,/catalogo/?categoria=canetas-escritorio#catalogo,/ativacoes-promocionais/', 'slides levam a rotas reais do site (catálogo, confecções, kits, escritório, ativações)');
+  ok(await page.$$eval('h1', h => h.length) === 1 && await page.$$eval('#hero .slide', s => s.length) === 6 && await page.$eval('[data-hero-count]', c => c.parentElement.textContent.replace(/\s+/g, ' ').trim() === '01 / 06') && await page.$$eval('#hero .dot', d => d.length === 6), 'home tem um único H1 com 6 slides (contador 01 / 06 e 6 pontos)');
+  ok(await page.$$eval('#hero .slide .btn-line', a => a.map(x => x.getAttribute('href')).join()) === '/catalogo/,/brindes-de-fim-de-ano/,/confeccoes-personalizadas/,/kits-corporativos/,/catalogo/?categoria=canetas-escritorio#catalogo,/ativacoes-promocionais/', 'slides levam a rotas reais do site (catálogo, fim de ano, confecções, kits, escritório, ativações)');
+  ok(await page.$eval('#slide-2', s => s.querySelector('.eyebrow').textContent === 'Fim de ano' && s.querySelector('p.slide-title').textContent.replace(/\s+/g, ' ') === 'Um brinde a quem fez parte do seu ano.' && s.querySelector('.btn-line').getAttribute('href') === '/brindes-de-fim-de-ano/' && s.querySelector('[data-track-label="hero-fim-de-ano"]').getAttribute('href') === '/solicitar-proposta/?tipo=kits' && /fictícia/.test(s.querySelector('img').alt)), 'slide 2 é o de fim de ano: leva a /brindes-de-fim-de-ano/ e ao pedido de kits, sem H1 e com a marca fictícia no texto alternativo');
   ok(await page.$$eval('.kits-home .kit-card', k => k.length === 5 && k.filter(x => x.classList.contains('big')).length === 2 && k.every(x => x.querySelector('img').alt.length > 20)), 'kits premium: dois destaques e três menores, com texto alternativo');
   ok(await page.$$eval('.kits-home .kit-occ a', a => a.length === 6 && a.every(x => /^\/brindes-corporativos-premium\/\?ocasiao=[a-z-]+#pecas$/.test(x.getAttribute('href')))), 'atalhos por ocasião levam às ideias filtradas');
   ok(await page.$$eval('#hero .slide-copy', s => s.every(x => !x.querySelector('.hero-meta'))) && await page.$$eval('.garantias li', l => l.length === 3), 'frases de confiança saem do banner e ficam na faixa abaixo do carrossel');
@@ -110,7 +111,11 @@ try {
   ok(await page.$eval('#slide-2', s => s.classList.contains('is-active') && !s.hasAttribute('aria-hidden')), 'seta avança para o slide 2');
   ok(await page.$eval('#slide-1', s => s.hasAttribute('inert')), 'slide inativo fica inerte (fora do foco)');
   ok(await page.$eval('[data-hero-pause]', b => b.getAttribute('aria-pressed') === 'true'), 'com movimento reduzido, a troca automática começa pausada');
-  ok(await page.$eval('[data-hero-count]', c => c.textContent === '02'), 'contador acompanha o slide (02 / 04)');
+  ok(await page.$eval('[data-hero-count]', c => c.textContent === '02'), 'contador acompanha o slide (02 / 06)');
+  await Promise.all([page.waitForNavigation({ waitUntil: 'networkidle0' }), page.click('#slide-2 .btn-line')]);
+  ok(new URL(page.url()).pathname === '/brindes-de-fim-de-ano/' && /Um brinde a quem\s*fez parte do seu ano\./.test(await page.$eval('h1', h => h.textContent.replace(/\s+/g, ' '))), 'o slide de fim de ano leva a /brindes-de-fim-de-ano/');
+  await page.goto(BASE + '/', { waitUntil: 'networkidle0' });
+  await page.click('[data-hero-next]');
   ok(await page.$$eval('#hero .slide', s => new Set(s.map(x => getComputedStyle(x).backgroundColor)).size === 4), 'cada slide tem o seu tom de fundo');
   ok(await page.$$eval('#hero .slide img', i => i[0].loading === 'eager' && i[0].getAttribute('fetchpriority') === 'high' && i.slice(1).every(x => x.loading === 'lazy')), 'só a primeira foto do carrossel é prioritária');
   ok(await page.$$eval('#hero .slide', s => s.every(x => { if (x.classList.contains('respiro')) return true; const c = x.querySelector('.slide-copy').getBoundingClientRect(), p = x.querySelector('.slide-photo').getBoundingClientRect(); return c.right <= p.left + p.width * 0.18; })), 'no computador o texto não invade a área nítida da foto');
@@ -118,9 +123,27 @@ try {
   ok(await page.$eval('#hero', h => !h.classList.contains('is-stopped') && h.classList.contains('is-held')), 'retomar a troca com o foco no carrossel mantém a pausa enquanto o foco estiver nele');
   await page.click('[data-hero-pause]');
   ok(await page.$eval('[data-hero-pause]', b => b.getAttribute('aria-pressed') === 'true' && b.getAttribute('aria-label') === 'Retomar troca automática'), 'botão de pausa alterna e atualiza o rótulo');
+  // slide de fim de ano (fim-header): a taça solta começa em ~36% da largura da foto e a caixa termina em ~98%.
+  // Mede onde essas faixas caem na tela (object-fit: cover + object-position) e onde termina o texto de fato.
+  const fimFrame = () => page.$eval('#slide-2', s => {
+    const ph = s.querySelector('.slide-photo').getBoundingClientRect(), img = s.querySelector('img'), r = img.getBoundingClientRect();
+    const iw = +img.getAttribute('width'), ih = +img.getAttribute('height'), k = Math.max(r.width / iw, r.height / ih), sw = iw * k;
+    const x0 = r.left - (sw - r.width) * parseFloat(getComputedStyle(img).objectPosition) / 100, at = f => x0 + f * sw;
+    let texto = 0;
+    for (const el of s.querySelector('.slide-copy').children) { const g = document.createRange(); g.selectNodeContents(el); for (const q of g.getClientRects()) texto = Math.max(texto, q.right); }
+    const c = s.querySelector('.slide-copy').getBoundingClientRect();
+    return { texto, taca: at(0.36), caixa: at(0.98), left: Math.max(ph.left, r.left), right: Math.min(ph.right, r.right, innerWidth), acima: ph.top >= c.bottom - 1 };
+  });
+  for (const w of [1440, 1280]) {
+    await page.setViewport({ width: w, height: 900 });
+    const f = await fimFrame();
+    ok(f.texto <= f.taca && f.taca >= f.left && f.caixa <= f.right + 1, `fim de ano em ${w} px: taças e caixa inteiras na foto e o texto termina antes da taça (${Math.round(f.texto)} ≤ ${Math.round(f.taca)})`);
+  }
   await page.setViewport({ width: 390, height: 844, isMobile: true, hasTouch: true });
   await page.goto(BASE + '/', { waitUntil: 'networkidle0' });
   ok(await page.$$eval('#hero .slide', s => s.every(x => x.querySelector('.slide-photo').getBoundingClientRect().top >= x.querySelector('.slide-copy').getBoundingClientRect().bottom - 1)), 'no celular o texto fica acima da foto, sem sobreposição');
+  const fm = await fimFrame();
+  ok(fm.acima && fm.taca >= fm.left && fm.caixa <= fm.right + 1, 'fim de ano no celular: a taça solta e a caixa aparecem inteiras abaixo do texto');
   for (const w of [320, 768, 1024, 1180, 1440]) {
     await page.setViewport({ width: w, height: 900 });
     ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), `carrossel sem rolagem horizontal em ${w} px`);
@@ -244,8 +267,9 @@ try {
   ok(await catVisible() === 11 && await page.$eval('input[name="categoria"][value="vestuario"]', i => i.checked), '?categoria=vestuario abre o catálogo já filtrado (11 peças de vestuário)');
   // ocasião pela URL (links da página de fim de ano): usa o data-occ dos cards, mostra a etiqueta e combina com a categoria
   await page.goto(BASE + '/catalogo/?ocasiao=fim-de-ano', { waitUntil: 'networkidle0' });
-  const occFim = await page.$$eval('#catalogo-grid .product', g => ({ n: g.filter(x => !x.hidden).length, e: g.filter(x => (x.dataset.occ || '').split(' ').includes('fim-de-ano')).length, fora: g.filter(x => !x.hidden && !(x.dataset.occ || '').split(' ').includes('fim-de-ano')).length }));
+  const occFim = await page.$$eval('#catalogo-grid .product', g => ({ n: g.filter(x => !x.hidden).length, e: g.filter(x => (x.dataset.occ || '').split(' ').includes('fim-de-ano')).length, fora: g.filter(x => !x.hidden && !(x.dataset.occ || '').split(' ').includes('fim-de-ano')).length, slugs: g.filter(x => !x.hidden).map(x => x.dataset.slug).join() }));
   ok(occFim.n === occFim.e && occFim.fora === 0 && occFim.n >= 20 && await catVisible() === occFim.n, `?ocasiao=fim-de-ano mostra só os modelos de fim de ano (${occFim.n})`);
+  ok(await page.$eval('#cat-filtros input[name="ocasiao"][value="fim-de-ano"]', i => i.checked) && await page.$eval('#cat-filtros input[name="ocasiao"][value=""]', i => !i.checked), '?ocasiao=fim-de-ano já abre com o radio Fim de ano marcado');
   ok(await page.$eval('[data-cat-occ]', b => !b.hidden && b.textContent.includes('Fim de ano')) && await page.$eval('[data-cat-badge]', b => !b.hidden && b.textContent === '1'), 'o filtro de ocasião aparece como etiqueta e conta no botão Filtros');
   await page.$eval('#cat-filtros input[name="categoria"][value="garrafas-copos"]', el => el.scrollIntoView({ block: 'center' }));
   await page.click('#cat-filtros input[name="categoria"][value="garrafas-copos"]'); await sleep(200);
@@ -253,9 +277,43 @@ try {
   ok(occCat.n === occCat.e && occCat.n > 0 && occCat.n < occFim.n && /ocasiao=fim-de-ano/.test(await page.evaluate(() => location.search)) && /categoria=garrafas-copos/.test(await page.evaluate(() => location.search)), `ocasião + categoria combinam e ficam na URL (${occCat.n})`);
   await page.$eval('[data-cat-occ-clear]', el => el.scrollIntoView({ block: 'center' }));
   await page.click('[data-cat-occ-clear]'); await sleep(200);
-  ok(await page.$eval('[data-cat-occ]', b => b.hidden) && !/ocasiao=/.test(await page.evaluate(() => location.search)) && await catVisible() === 24, 'remover a etiqueta tira só a ocasião (fica Garrafas e copos, 24 modelos)');
+  ok(await page.$eval('[data-cat-occ]', b => b.hidden) && !/ocasiao=/.test(await page.evaluate(() => location.search)) && await catVisible() === 24 && await page.$eval('#cat-filtros input[name="ocasiao"][value=""]', i => i.checked), 'remover a etiqueta tira só a ocasião (fica Garrafas e copos, 24 modelos) e o radio volta para Todas');
   await page.goto(BASE + '/catalogo/?ocasiao=nao-existe', { waitUntil: 'networkidle0' });
-  ok(await catVisible() === nModelos && await page.$eval('[data-cat-occ]', b => b.hidden), 'ocasião desconhecida na URL abre o catálogo sem filtro');
+  ok(await catVisible() === nModelos && await page.$eval('[data-cat-occ]', b => b.hidden) && await page.$eval('#cat-filtros input[name="ocasiao"][value=""]', i => i.checked), 'ocasião desconhecida na URL abre o catálogo sem filtro (radio em Todas)');
+  // ocasião no filtro lateral: Todas + as 7 ocasiões com contagem (Fim de ano logo depois de Todas), entre Categoria e Cor
+  await page.goto(BASE + '/catalogo/', { waitUntil: 'networkidle0' });
+  const occSide = await page.$$eval('#cat-filtros fieldset', fs => {
+    const f = fs.find(x => x.querySelector('legend').textContent === 'Ocasião');
+    const r = f ? [...f.querySelectorAll('input[name="ocasiao"]')] : [];
+    const cards = [...document.querySelectorAll('#catalogo-grid .product')];
+    return { ordem: fs.map(x => x.querySelector('legend').textContent).join(), vals: r.map(i => i.value).join(), todas: !!r[0] && r[0].value === '' && r[0].checked && r[0].parentNode.querySelector('span').textContent === 'Todas',
+      contagem: r.slice(1).every(i => +i.parentNode.querySelector('small').textContent === cards.filter(c => (c.dataset.occ || '').split(' ').includes(i.value)).length && cards.length > 0) };
+  });
+  ok(occSide.ordem === 'Categoria,Ocasião,Cor' && occSide.vals.split(',').length === 8 && occSide.vals.startsWith(',fim-de-ano,') && occSide.todas && occSide.contagem, `filtro lateral tem Ocasião (Todas + 7, Fim de ano primeiro) com a contagem dos cards (${occSide.vals})`);
+  await page.$eval('#cat-filtros input[name="ocasiao"][value="fim-de-ano"]', el => el.scrollIntoView({ block: 'center' }));
+  await page.click('#cat-filtros input[name="ocasiao"][value="fim-de-ano"]'); await sleep(200);
+  ok(await page.$$eval('#catalogo-grid .product', g => g.filter(x => !x.hidden).map(x => x.dataset.slug).join()) === occFim.slugs && /ocasiao=fim-de-ano/.test(await page.evaluate(() => location.search)) && await page.$eval('[data-cat-occ]', b => !b.hidden && b.textContent.includes('Fim de ano')), 'marcar Fim de ano mostra os mesmos modelos de ?ocasiao=fim-de-ano, grava a URL e mostra a etiqueta');
+  await page.click('#cat-filtros input[name="cor"][value="verde"]'); await sleep(200);
+  const occCor = await page.$$eval('#catalogo-grid .product', g => g.filter(x => !x.hidden).every(x => (x.dataset.occ || '').split(' ').includes('fim-de-ano') && (x.dataset.cores || '').split(' ').includes('verde')));
+  ok(occCor && /ocasiao=fim-de-ano/.test(await page.evaluate(() => location.search)) && /cor=verde/.test(await page.evaluate(() => location.search)) && await page.$eval('[data-cat-badge]', b => b.textContent === '2'), 'ocasião + cor combinam, ficam na URL e contam 2 no botão Filtros');
+  await page.click('#cat-filtros input[name="ocasiao"][value=""]'); await sleep(200);
+  ok(!/ocasiao=/.test(await page.evaluate(() => location.search)) && /cor=verde/.test(await page.evaluate(() => location.search)) && await page.$eval('[data-cat-occ]', b => b.hidden), 'Todas tira só a ocasião (a cor fica)');
+  await page.click('#cat-filtros input[name="ocasiao"][value="fim-de-ano"]'); await sleep(200);
+  await page.$eval('#cat-filtros .cat-clear', el => el.scrollIntoView({ block: 'center' }));
+  await page.click('#cat-filtros .cat-clear'); await sleep(200);
+  ok(await catVisible() === nModelos && !/ocasiao=|cor=/.test(await page.evaluate(() => location.search)) && await page.$eval('[data-cat-occ]', b => b.hidden) && await page.$eval('#cat-filtros input[name="ocasiao"][value=""]', i => i.checked) && await page.$eval('[data-cat-badge]', b => b.hidden), `Limpar filtros tira a ocasião e volta aos ${nModelos} modelos`);
+  // celular: a ocasião aparece na gaveta e conta no botão
+  await page.setViewport({ width: 390, height: 844, isMobile: true, hasTouch: true });
+  await page.goto(BASE + '/catalogo/?ocasiao=fim-de-ano&categoria=garrafas-copos', { waitUntil: 'networkidle0' });
+  ok(await page.$eval('[data-cat-badge]', b => !b.hidden && b.textContent === '2'), 'celular: ocasião + categoria contam 2 no botão Filtros');
+  await page.$eval('[data-cat-open]', el => el.scrollIntoView({ block: 'center' }));
+  await page.click('[data-cat-open]'); await sleep(400);
+  await page.$eval('#cat-filtros input[name="ocasiao"][value="eventos"]', el => el.scrollIntoView({ block: 'center' }));
+  await page.click('#cat-filtros input[name="ocasiao"][value="eventos"]'); await sleep(200);
+  const nEv = await catVisible();
+  ok(await page.$eval('#cat-filtros', s => s.classList.contains('is-open')) && /ocasiao=eventos/.test(await page.evaluate(() => location.search)) && await page.$eval('.cat-side-foot [data-cat-n]', e => +e.textContent) === nEv && await page.$eval('[data-cat-occ-name]', e => e.textContent === 'Eventos'), `celular: trocar a ocasião na gaveta atualiza a URL, a etiqueta e o total do botão (${nEv})`);
+  await page.keyboard.press('Escape'); await sleep(300);
+  await page.setViewport({ width: 1280, height: 900 });
   await page.goto(BASE + '/brindes-corporativos/', { waitUntil: 'networkidle0' });
   ok(await page.$$eval('.studio-grid .product.studio', c => c.length === 12) && await page.$$eval('.studio-grid', g => g.length === 1), 'brindes: uma grade só, com 12 modelos do catálogo');
   ok(await colorsHavePhoto(page, '.studio-grid .product'), 'brindes: toda cor mostrada tem foto própria');

@@ -177,7 +177,7 @@ IMAGES = {}
 # largura real da foto do carrossel (fotos 3:2 na metade direita; no celular, um pouco maior que a tela por causa do corte)
 HERO_SIZES = '(max-width: 760px) 120vw, 95vw'
 CARROSSEL_HQ = {'hero-brindes', 'hero-v3-confeccoes', 'hero-kits', 'home-escritorio'}
-FOTOS_HQ = CARROSSEL_HQ | {'home-frente-brindes', 'home-frente-confeccoes', 'home-frente-kits'}   # fotos da home enviadas em alta pela TaMa
+FOTOS_HQ = CARROSSEL_HQ | {'home-frente-brindes', 'home-frente-confeccoes', 'home-frente-kits', 'kits-header'}   # fotos enviadas em alta pela TaMa (home e cabeçalho dos kits)
 
 
 def build_images():
@@ -1125,7 +1125,7 @@ def shell(page, body):
 {SPRITE}
 {header(page['path'])}
 <main id="conteudo" tabindex="-1">
-{crumbs(page['trail']) if page.get('trail') else ''}
+{crumbs(page['trail']) if page.get('trail') and not page.get('crumbs_inline') else ''}
 {body}
 </main>
 {footer()}
@@ -1313,17 +1313,37 @@ def page_brindes():
     }
 
 
+KITS_HERO_SIZES = '(max-width: 760px) 135vw, (max-width: 1100px) 100vw, (min-width: 1573px) 1210px, 77vw'   # foto do cabeçalho dos kits: altura × 16:9 no computador; no celular, cortada em 4:3 sem perder as três caixas
+
+
+def kits_hero(trail):
+    # Cabeçalho do mockup da TaMa: a foto ocupa a largura toda e o texto fica na parte creme à esquerda, sem passar por
+    # cima das caixas (a altura acompanha a largura, então as caixas começam sempre depois da coluna de texto). Até
+    # 1100 px o texto vem acima e a foto abaixo (no celular, cortada em direção às caixas).
+    alt = ('Três kits corporativos abertos com marcas fictícias (Pulso, Nexo e Flora): caixas com garrafa, caderno, caneta, '
+           'caneca e cartão, mostrando como cada kit segue a identidade da empresa.')
+    return f'''<section class="kits-hero" aria-labelledby="kits-hero-t">
+  {crumbs(trail)}
+  <div class="wrap kits-hero-inner"><div class="kits-hero-copy">
+    <p class="eyebrow">Kits corporativos</p>
+    <h1 id="kits-hero-t" class="kits-hero-title"><span>A identidade</span> <span>da sua empresa.</span> <em>Em cada detalhe.</em></h1>
+    <p class="kits-hero-desc">Cores, peças e embalagens que traduzem a sua marca. Kits personalizados para receber, reconhecer e criar conexões.</p>
+    <div class="actions">{cta_link('Montar meu kit', tipo='kits', track_label='kits-head')}<a class="btn btn-line" href="#kits">Explorar kits</a></div>
+  </div></div>
+  <figure class="kits-hero-photo">{picture('kits-header', alt, KITS_HERO_SIZES, eager=True)}<figcaption>Mockups ilustrativos • Marcas fictícias</figcaption></figure>
+</section>'''
+
+
 def page_kits():
+    trail = [('/', 'Início'), ('/kits-corporativos/', 'Kits corporativos')]
     return {
         'path': '/kits-corporativos/', 'og': 'kitp-kit-completo', 'assunto': 'kits corporativos', 'title': 'Kits corporativos personalizados: boas-vindas e eventos | TaMa',
         'description': 'Kits de boas-vindas, kits para eventos e presentes para clientes, com curadoria, embalagem personalizada e a marca da sua empresa. Solicite uma proposta.',
-        'trail': [('/', 'Início'), ('/kits-corporativos/', 'Kits corporativos')],
+        'trail': trail,
         'service': {'key': 'kits', 'name': 'Kits corporativos personalizados', 'type': 'Kits corporativos'},
-        'preload': preload_image('kitp-kit-completo', '(max-width: 760px) 92vw, 46vw'),
-        'body': page_head('Kits corporativos', 'Kits corporativos personalizados para cada momento',
-                          'Kits de boas-vindas, kits para eventos e presentes para clientes, montados com curadoria, embalagem personalizada e a marca da sua empresa.',
-                          cta_link('Solicitar proposta de kit', tipo='kits', track_label='kits-head') + '<a class="btn btn-line" href="#kits">Ver os kits</a>',
-                          'kitp-kit-completo', 'Kit completo em bordô com pasta, agenda, garrafa, caneca, guarda-chuva e acessórios com a marca TaMa.') + f'''
+        'preload': preload_image('kits-header', KITS_HERO_SIZES),   # mesma imagem e sizes da foto do cabeçalho
+        'crumbs_inline': True,   # o caminho fica sobre a área creme da foto, logo abaixo do cabeçalho do site
+        'body': kits_hero(trail) + f'''
 <section class="section kits-page" id="kits" aria-labelledby="kits-p-t" style="padding-top:clamp(24px,3vw,40px)">
   <div class="wrap">
     <div class="section-head"><p class="eyebrow">Kits premium</p><h2 id="kits-p-t" class="section-title">Kits de referência para adaptar à sua marca</h2><p class="muted">Cinco composições para começar. Peças, embalagem e cartão se ajustam ao seu público, à ocasião e ao investimento.</p></div>

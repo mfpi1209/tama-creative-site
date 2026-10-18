@@ -52,7 +52,7 @@
 
 ## 4. Pontos para decidir
 
-1. **Altura da página no celular:** com 1 foto por linha, o /catalogo/ passa de 14.400 para 32.100 px (52 cards). A busca
+1. **Decidido em 18/10/2026: mantém 1 foto por linha no celular.** **Altura da página no celular:** com 1 foto por linha, o /catalogo/ passa de 14.400 para 32.100 px (52 cards). A busca
    e o botão de filtros ficam fixos no topo, o que ajuda. Se parecer longo demais, há duas saídas:
    - começar em 2 por linha (o visitante pode trocar);
    - mostrar 12 modelos e um botão "Ver mais".

@@ -177,7 +177,7 @@ IMAGES = {}
 # largura real da foto do carrossel (fotos 3:2 na metade direita; no celular, um pouco maior que a tela por causa do corte)
 HERO_SIZES = '(max-width: 760px) 120vw, 95vw'
 CARROSSEL_HQ = {'hero-brindes', 'hero-v3-confeccoes', 'hero-kits', 'home-escritorio'}
-FOTOS_HQ = CARROSSEL_HQ | {'home-frente-brindes', 'home-frente-confeccoes', 'home-frente-kits', 'kits-header', 'conf-header', 'ativ-header'}   # fotos enviadas em alta pela TaMa (home e cabeçalhos de kits e confecções)
+FOTOS_HQ = CARROSSEL_HQ | {'home-frente-brindes', 'home-frente-confeccoes', 'home-frente-kits', 'kits-header', 'conf-header', 'ativ-header', 'hot-header'}   # fotos enviadas em alta pela TaMa (home e cabeçalhos de kits e confecções)
 
 
 def build_images():
@@ -1456,15 +1456,18 @@ def page_curadoria():
 ICONES = {   # traço fino, cor do texto (currentColor)
     'carrinho': '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 4h2.2l2.2 10.2h10.4l2-7.2H6.4"/><circle cx="9.5" cy="18.6" r="1.4"/><circle cx="16.6" cy="18.6" r="1.4"/></svg>',
     'calendario': '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3.8" y="5.2" width="16.4" height="15" rx="2"/><path d="M3.8 9.6h16.4M8 3.4v3.6M16 3.4v3.6"/></svg>',
+    'talheres': '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 3v6.2a2 2 0 0 1-2 2h0M7 3v6.2a2 2 0 0 0 2 2h0M7 11.2V21M5 3v4.6M9 3v4.6"/><path d="M16.6 21V3.4c-1.9.9-3 3.3-3 6.6v3.4h3"/></svg>',
+    'chef': '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7.4 14.4v5.6h9.2v-5.6M7.4 17.2h9.2"/><path d="M7.4 14.4A3.6 3.6 0 0 1 6.9 7.3a4.4 4.4 0 0 1 8.2-1.6 3.6 3.6 0 1 1 1.5 8.7"/></svg>',
+    'cloche': '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 17.6h18M4.6 17.6a7.4 7.4 0 0 1 14.8 0M12 10.2V8.4M10.6 8.4h2.8"/></svg>',
     'pessoas': '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="7.4" r="2.6"/><circle cx="5.8" cy="9.4" r="2"/><circle cx="18.2" cy="9.4" r="2"/><path d="M7.4 19.6v-2.2a4.6 4.6 0 0 1 9.2 0v2.2zM2.6 19.6v-1.4a3.2 3.2 0 0 1 4.2-3M21.4 19.6v-1.4a3.2 3.2 0 0 0-4.2-3"/></svg>',
 }
 
 
-def atalhos(titulo, itens, aria, linha=True):
+def atalhos(titulo, itens, aria, linha=True, centro=False):
     """Faixa de atalhos logo abaixo dos cabeçalhos de foto: título serifado e links com seta, separados por fios.
     itens: (texto, link) ou (texto, link, ícone de ICONES)."""
     lis = ''.join(f'<li><a href="{it[1]}">{ICONES.get(it[2], "") if len(it) > 2 else ""}<span>{it[0]}</span> {ARROW}</a></li>' for it in itens)
-    return f'''<section class="atalhos{'' if linha else ' sem-linha'}" aria-labelledby="{aria}">
+    return f'''<section class="atalhos{'' if linha else ' sem-linha'}{' centro' if centro else ''}" aria-labelledby="{aria}">
   <div class="wrap">
     <h2 id="{aria}" class="atalhos-title">{titulo}</h2>
     <ul class="atalhos-list" style="--n:{len(itens)}">{lis}</ul>
@@ -1597,6 +1600,20 @@ def page_ativacoes():
     }
 
 
+HOT_ATALHOS = [('Mesa e salão', '#amb-salao', 'talheres'), ('Cozinha e atendimento', '#amb-cozinha', 'chef'), ('Hotelaria', '#amb-hospedes', 'cloche')]
+
+
+def hot_hero(trail):
+    return foto_hero(trail, 'hot-header',
+                     'Garçonete de camisa branca e avental verde-oliva com a marca fictícia Oliva arruma o guardanapo bordado num prato; '
+                     'na mesa, cardápio e porta-contas caramelo com a marca gravada, taças e jogo americano, num restaurante iluminado.',
+                     'Hotelaria e gastronomia', ['Sua identidade,'], ['em cada detalhe', 'de receber.'],
+                     'Cardápios, porta-contas, jogos americanos e uniformes personalizados para restaurantes, bares e hotéis. Peças que '
+                     'levam a identidade da sua casa à mesa e à equipe.',
+                     cta_link('Solicitar proposta', tipo='hotelaria', track_label='hotelaria-head') + f'<a class="btn btn-line" href="#hot-pecas-t">Explorar as peças</a>',
+                     'Imagem ilustrativa • Marca fictícia', pos_m='92% center') + '\n' + atalhos('Personalização que acompanha o seu atendimento.', HOT_ATALHOS, 'hot-atalhos-t', linha=False, centro=True)
+
+
 def page_hotelaria():
     return {
         'path': '/hotelaria-e-gastronomia/', 'title': 'Cardápios, porta-contas e uniformes para restaurantes | TaMa', 'og': 'conf-chef-dolma',
@@ -1604,19 +1621,17 @@ def page_hotelaria():
         'trail': [('/', 'Início'), ('/hotelaria-e-gastronomia/', 'Hotelaria e gastronomia')],
         'service': {'key': 'hotelaria', 'name': 'Produtos personalizados para hotelaria e gastronomia', 'type': 'Produtos personalizados para restaurantes e hotéis'},
         'assunto': 'produtos para hotelaria e gastronomia',
-        'preload': preload_image('conf-chef-dolma', '(max-width: 760px) 92vw, 46vw'),
-        'body': page_head('Hotelaria e gastronomia', 'Produtos personalizados para restaurantes, bares e hotéis',
-                          'Cardápios, porta-contas, jogos americanos, dólmãs e aventais com a marca da sua casa. A TaMa ajuda a escolher as peças para o salão, a cozinha e a equipe e coordena a produção.',
-                          cta_link('Solicitar proposta', tipo='hotelaria', track_label='hotelaria-head') + '<a class="btn btn-line" href="#hot-pecas-t">Ver peças</a>',
-                          'conf-chef-dolma', 'Cena ilustrativa: chef de dólmã branca com a marca TaMa bordada finalizando um prato.', obj='object-position:76% 20%') + f'''
+        'preload': preload_image('hot-header', FOTO_HERO_SIZES),   # mesma imagem e sizes da foto do cabeçalho
+        'crumbs_inline': True,
+        'body': hot_hero([('/', 'Início'), ('/hotelaria-e-gastronomia/', 'Hotelaria e gastronomia')]) + f'''
 <section class="section ivory" aria-labelledby="ambientes-t">
   <div class="wrap">
     <div class="section-head"><p class="eyebrow">Por ambiente</p><h2 id="ambientes-t" class="section-title">A marca em cada ponto de contato</h2></div>
     <div class="cols-2">
-      <div class="item">{arc()}<div><h3>Salão e mesa</h3><p>Cardápio, porta-contas e jogos americanos: o que o cliente segura durante toda a refeição.</p></div></div>
-      <div class="item">{arc()}<div><h3>Cozinha e equipe</h3><p>Dólmãs e aventais com a marca, em cores definidas no projeto.</p></div></div>
+      <div class="item" id="amb-salao">{arc()}<div><h3>Salão e mesa</h3><p>Cardápio, porta-contas e jogos americanos: o que o cliente segura durante toda a refeição.</p></div></div>
+      <div class="item" id="amb-cozinha">{arc()}<div><h3>Cozinha e equipe</h3><p>Dólmãs e aventais com a marca, em cores definidas no projeto.</p></div></div>
       <div class="item">{arc()}<div><h3>Bar e eventos</h3><p>Taças, copos e peças para eventos, degustações e datas especiais da casa.</p></div></div>
-      <div class="item">{arc()}<div><h3>Clientes e hóspedes</h3><p>Kits e brindes para receber, agradecer e fidelizar. <a class="link" href="/kits-corporativos/">Ver kits</a></p></div></div>
+      <div class="item" id="amb-hospedes">{arc()}<div><h3>Clientes e hóspedes</h3><p>Kits e brindes para receber, agradecer e fidelizar. <a class="link" href="/kits-corporativos/">Ver kits</a></p></div></div>
     </div>
   </div>
 </section>

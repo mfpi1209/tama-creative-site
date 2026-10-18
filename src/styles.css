@@ -732,3 +732,10 @@ body:has(.wa-float) .float-bag { bottom: calc(88px + env(safe-area-inset-bottom,
   .service-grid.cinco > :last-child { grid-column: auto; }
 }
 .kit-copy .link { justify-self: start; margin-top: 6px; }
+
+/* Celular: botão do WhatsApp menor e espaço no fim da página para ele não cobrir o rodapé */
+@media (max-width: 760px) {
+  .wa-float { width: 50px; height: 50px; right: 12px; bottom: calc(12px + env(safe-area-inset-bottom, 0px)); }
+  .wa-float .wa-icon { width: 28px; height: 28px; }
+  .site-footer { padding-bottom: 72px; }
+}

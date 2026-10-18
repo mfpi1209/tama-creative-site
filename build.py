@@ -197,7 +197,21 @@ def build_images():
                 if not os.path.exists(cached):
                     r = im if w == im.width else im.resize((w, h), Image.LANCZOS)
                     r.save(cached, 'JPEG' if ext == 'jpg' else ext.upper(), **kw)
-                shutil.copy2(cached, os.path.join(out, f'{stem}-{w}.{ext}'))
+                IMG_FILES.setdefault(stem, []).append((cached, os.path.join(out, f'{stem}-{w}.{ext}')))
+
+
+IMG_FILES = {}   # stem -> [(arquivo no cache, destino em dist/img)]; só os referenciados são publicados
+
+
+def publish_used_images():
+    """Copia para dist/img só as imagens que alguma página, script, CSS ou feed referencia (pelo stem com hash)."""
+    texto = ''.join(open(os.path.join(dp, f), encoding='utf-8', errors='ignore').read()
+                    for dp, _, fs in os.walk(DIST) for f in fs if f.endswith(('.html', '.js', '.css', '.xml', '.json', '.yml')))
+    usados = [st for st in IMG_FILES if st in texto]
+    for st in usados:
+        for src, dst in IMG_FILES[st]:
+            shutil.copy2(src, dst)
+    print(f'imagens: {len(usados)} de {len(IMG_FILES)} usadas nas páginas')
 
 
 def img_url(name, ext='webp', min_w=640):
@@ -762,7 +776,11 @@ DIALOGS = '''<dialog class="drawer" id="drawer" aria-labelledby="drawer-t">
 def shell(page, body):
     url = SITE + page['path']
     robots = 'index, follow' if page.get('index', True) else 'noindex, follow'
-    og_img = SITE + page.get('og_image', '/og-default.jpg')
+    og_img, og_w, og_h = SITE + page.get('og_image', '/og-default.jpg'), 1200, 630
+    if page.get('og') in IMAGES:   # imagem da própria página (jpg de 1280 px), em vez da imagem padrão
+        m = IMAGES[page['og']]
+        og_w = next((w for w in m['widths'] if w >= 1200), m['widths'][-1]); og_h = round(m['h'] * og_w / m['w'])
+        og_img = SITE + f'/img/{m["stem"]}-{og_w}.jpg'
     config = json.dumps({'whatsapp': WA, 'ga4': GA4}, separators=(',', ':'))
     consent = ''
     if GA4:
@@ -799,8 +817,8 @@ def shell(page, body):
 <meta property="og:description" content="{esc(page['description'])}">
 <meta property="og:url" content="{url}">
 <meta property="og:image" content="{og_img}">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
+<meta property="og:image:width" content="{og_w}">
+<meta property="og:image:height" content="{og_h}">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="/assets/{CSS_FILE}">
 {page.get('head', '')}
@@ -891,7 +909,7 @@ def hero_carousel(slides=None, label='Destaques da TaMa Creative', assurances=Tr
 
 def page_home():
     return {
-        'path': '/', 'title': 'TaMa Creative | Brindes, confecções, kits e ativações para empresas',
+        'path': '/', 'title': 'TaMa Creative | Brindes, confecções, kits e ativações', 'og': 'hero-brindes',
         'og_title': 'TaMa Creative · Brindes, confecções e ativações para empresas',
         'description': 'Brindes corporativos, uniformes, kits e ativações promocionais com a marca da sua empresa. A TaMa cria e coordena da escolha das peças à entrega.',
         'assunto': 'um projeto para a minha empresa',
@@ -918,7 +936,7 @@ def page_home():
 
 def page_brindes():
     return {
-        'path': '/brindes-corporativos/', 'title': 'Brindes corporativos personalizados para empresas | TaMa Creative',
+        'path': '/brindes-corporativos/', 'og': 'hero-gift', 'title': 'Brindes corporativos personalizados para empresas | TaMa Creative',
         'description': 'Brindes personalizados para empresas com curadoria de materiais e acabamento premium: presentes para clientes, colaboradores e eventos. Peça uma proposta.',
         'trail': [('/', 'Início'), ('/brindes-corporativos/', 'Brindes corporativos')],
         'service': {'key': 'brindes', 'name': 'Brindes corporativos personalizados', 'type': 'Brindes corporativos'},
@@ -973,7 +991,7 @@ def page_brindes():
 
 def page_kits():
     return {
-        'path': '/kits-corporativos/', 'title': 'Kits corporativos personalizados: boas-vindas e eventos | TaMa',
+        'path': '/kits-corporativos/', 'og': 'kitp-kit-completo', 'title': 'Kits corporativos personalizados: boas-vindas e eventos | TaMa',
         'description': 'Kits onboarding, kits para eventos e presentes para clientes, montados com curadoria, embalagem própria e a identidade da sua empresa. Solicite uma proposta.',
         'trail': [('/', 'Início'), ('/kits-corporativos/', 'Kits corporativos')],
         'service': {'key': 'kits', 'name': 'Kits corporativos personalizados', 'type': 'Kits corporativos'},
@@ -1101,7 +1119,7 @@ CONF_SLIDES = [
 
 def page_confeccoes():
     return {
-        'path': '/confeccoes-personalizadas/', 'title': 'Uniformes corporativos e confecções personalizadas | TaMa Creative',
+        'path': '/confeccoes-personalizadas/', 'og': 'conf-equipe-kits', 'title': 'Uniformes corporativos e confecções personalizadas | TaMa Creative',
         'description': 'Uniformes corporativos, polos bordadas, moletons e bonés para equipes e eventos, alinhados à identidade visual da sua empresa e pensados para quem veste.',
         'trail': [('/', 'Início'), ('/confeccoes-personalizadas/', 'Confecções')],
         'service': {'key': 'confeccoes', 'name': 'Confecções personalizadas e uniformes corporativos', 'type': 'Uniformes corporativos personalizados'},
@@ -1140,7 +1158,7 @@ def page_confeccoes():
 
 def page_ativacoes():
     return {
-        'path': '/ativacoes-promocionais/', 'title': 'Ativações promocionais e degustações para marcas | TaMa Creative',
+        'path': '/ativacoes-promocionais/', 'og': 'conf-degustacao', 'title': 'Ativações promocionais e degustações para marcas | TaMa Creative',
         'description': 'Degustações, ações em feiras e eventos e promoções no ponto de venda, com uniformes, brindes e materiais na identidade da sua marca. Peça uma proposta.',
         'trail': [('/', 'Início'), ('/ativacoes-promocionais/', 'Ativações')],
         'service': {'key': 'ativacoes', 'name': 'Ativações promocionais e degustações', 'type': 'Ativação promocional'},
@@ -1197,7 +1215,7 @@ def page_ativacoes():
 
 def page_hotelaria():
     return {
-        'path': '/hotelaria-e-gastronomia/', 'title': 'Cardápios, porta-contas e uniformes para restaurantes e hotéis | TaMa',
+        'path': '/hotelaria-e-gastronomia/', 'title': 'Cardápios, porta-contas e uniformes para restaurantes | TaMa', 'og': 'conf-chef-dolma',
         'description': 'Cardápios, porta-contas, jogos americanos, dólmãs e aventais com a marca do seu restaurante, bar, café ou hotel. Monte a seleção e peça uma proposta.',
         'trail': [('/', 'Início'), ('/hotelaria-e-gastronomia/', 'Hotelaria e gastronomia')],
         'service': {'key': 'hotelaria', 'name': 'Produtos personalizados para hotelaria e gastronomia', 'type': 'Produtos personalizados para restaurantes e hotéis'},
@@ -1440,7 +1458,8 @@ def build_static():
 
     indexable = [p for p in BUILT if p.get('index', True) and p['path'] != '/404.html']
     write('robots.txt', f'User-agent: *\nAllow: /\nDisallow: /admin/\n\nSitemap: {SITE}/sitemap.xml\n')
-    urls = ''.join(f'<url><loc>{SITE}{p["path"]}</loc><lastmod>{p.get("lastmod", BUILD_DATE)}</lastmod></url>' for p in indexable)
+    # lastmod só onde a data é real (artigos do blog); a data do build mudaria em todas as páginas a cada publicação
+    urls = ''.join(f'<url><loc>{SITE}{p["path"]}</loc>' + (f'<lastmod>{p["lastmod"]}</lastmod>' if p.get('lastmod') else '') + '</url>' for p in indexable)
     write('sitemap.xml', f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{urls}</urlset>\n')
     redirects = [
         '/brindes            /catalogo/                      301',
@@ -1525,6 +1544,7 @@ def main():
     blog.finalize(sys.modules[__name__])
     build_static()
     blog.post_static(sys.modules[__name__])  # editor /admin/ e seus cabeçalhos
+    publish_used_images()
     html_all = ''.join(open(os.path.join(dp, f), encoding='utf-8').read() for dp, _, fs in os.walk(DIST) for f in fs if f.endswith('.html'))
     leftovers = [p for p in ('[WhatsApp]', '[e-mail]', '[@instagram]', '@@') if p in html_all]
     total = sum(os.path.getsize(os.path.join(dp, f)) for dp, _, fs in os.walk(DIST) for f in fs)

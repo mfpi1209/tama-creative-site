@@ -542,6 +542,7 @@ def catalogo_block():
         <div class="cat-view" role="group" aria-label="Fotos por linha no celular"><button type="button" data-cat-cols="1" aria-pressed="true" aria-label="Uma foto por linha"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="4" width="14" height="16" rx="1.5"/></svg></button><button type="button" data-cat-cols="2" aria-pressed="false" aria-label="Duas fotos por linha"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="4" width="7.5" height="16" rx="1.5"/><rect x="13" y="4" width="7.5" height="16" rx="1.5"/></svg></button></div>
       </div>
       <div class="studio-grid cat-grid" id="catalogo-grid">{''.join(cards)}</div>
+      <div class="cat-mais" data-cat-mais-box hidden><p>Mostrando <strong data-cat-vistos></strong> de <strong data-cat-total></strong> modelos</p><button class="btn btn-line" type="button" data-cat-mais>Ver mais modelos</button></div>
       <div class="cat-empty" id="cat-vazio" hidden><p><strong>Nenhum modelo com esses filtros.</strong> Tente outra busca ou <button class="link" type="reset" form="cat-form">limpe os filtros</button>. Se não encontrou a peça, descreva no pedido: a TaMa cota sob encomenda.</p>{cta_link('Pedir uma peça que não está aqui', tipo='brindes', cls='btn btn-line btn-sm', track_label='catalogo-vazio')}</div>
       <p class="note" style="margin-top:18px">{NOTE_IMAGENS}</p>
     </div>
@@ -694,18 +695,18 @@ def page_produto(c):
         <p class="prod-desc pdp-desc">Modelo da imagem: {c['descricao']}</p>
         {usos_html}
         <div class="pdp-cores"><p class="pdp-label">Cor de referência: <strong class="color-name">{cores[0][0]}</strong></p>{swatches(dict(c, cores=cores))}</div>
-        <dl class="pdp-spec">
-          {medidas}
-          <div><dt>Material</dt><dd>{mat_txt}</dd></div>
-          <div><dt>Personalização</dt><dd>{tec_txt}</dd></div>
-          <div><dt>Quantidade e prazo</dt><dd>Informados na proposta, conforme o volume do pedido e a técnica.</dd></div>
-        </dl>
         <p class="prod-meta" hidden>{c['meta']}</p>
         <div class="actions">
           <button class="pick btn-pick-lg" type="button" data-slug="{slug}" aria-pressed="false"><span class="when-off">+ Adicionar à seleção</span><span class="when-on">✓ Na seleção</span><span class="visually-hidden">: {nome}</span></button>
           {cta_link('Solicitar proposta', tipo=tipo, track_label='produto')}
         </div>
         {wa_button('btn btn-line', 'Tirar dúvidas no WhatsApp')}
+        <dl class="pdp-spec">
+          {medidas}
+          <div><dt>Material</dt><dd>{mat_txt}</dd></div>
+          <div><dt>Personalização</dt><dd>{tec_txt}</dd></div>
+          <div><dt>Quantidade e prazo</dt><dd>Informados na proposta, conforme o volume do pedido e a técnica.</dd></div>
+        </dl>
         <p class="pdp-sobre">{CAT_TEXTO.get(c['categoria'], '')}</p>
         <p class="note">Imagem ilustrativa com a identidade TaMa como exemplo: no seu pedido entram a marca e as cores da sua empresa. Cores de referência, sem declaração de estoque.</p>
       </div>

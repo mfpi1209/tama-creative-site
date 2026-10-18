@@ -17,6 +17,7 @@ escolher pela descrição. Para coordenar uma onda inteira, abra a sessão com o
 | Editor de SEO e conteúdo | `.claude/agents/editor-seo-conteudo.md` | Página nova; revisão de SEO; build recusou texto; afirmação sem confirmação | Tabela de titles (≤ 60), descriptions (≤ 160) e H1; reescritas seguras; `docs/SEO.md` atualizado | sonnet | Sim |
 | Redator do blog | `.claude/agents/redator-blog.md` | Nova pauta; atualização de artigo; revisão de fontes | Artigo em `src/blog/`, front matter válido, fontes com status 200 e data, links para serviço e proposta | sonnet | Sim |
 | Curador do catálogo e das imagens | `.claude/agents/curador-catalogo-imagens.md` | Produto, cor, vista ou cena nova; logo errado; alt recusado; mudança de seleção | Custo estimado antes, folha de contato, entradas no banco, `verificar` sem erro, lista para o dono aprovar | sonnet | Sim |
+| Curador de brindes de tecnologia | `.claude/agents/curador-tecnologia.md` | Peça tech nova (pen drive, power bank, fone, caixa de som, estojo de tecnologia, carregador, hub, suporte, mouse pad); logo em peça pequena; texto que cite GB, mAh, W ou bluetooth | Ficha por modelo (nome neutro, id, cores, área da logo, prompt), especificação da categoria `tecnologia`, custo estimado, pendências de especificação | sonnet | Sim (só `docs/PLANO-TECNOLOGIA.md`) |
 | Dev front-end e build | `.claude/agents/dev-front-build.md` | Implementar especificações; bug de página, filtro, menu ou estilo; e2e quebrado | Diff pontual, build e e2e verdes com e sem temporada, testes atualizados | sonnet | Sim |
 | QA de links e acessibilidade | `.claude/agents/qa-links-acessibilidade.md` | Antes e depois de juntar as branches; antes do push; depois do Deploy | Placar (e2e, axe, links), falhas com gravidade e dono, tabela de 301 e sitemap, veredito | sonnet | Não |
 | DevOps e publicação | `.claude/agents/devops-publicacao.md` | 301, cabeçalho, CSP; CI vermelho; login do `/admin/`; formulário; hora de publicar | Diff de infraestrutura com `check` no CI, `nginx -t`, roteiro de publicação e checagem em produção | sonnet | Sim |
@@ -33,6 +34,7 @@ textos).
 | `build.py`, `blog.py`, `src/site.js`, `src/styles.css`, `src/blog.css`, `src/admin/`, `tests/e2e.mjs`, `requirements.txt` | `dev-front-build` |
 | `src/data/produtos.json`, `selecoes.json`, `plano-cores.json`, `mockups.json`, `img/produtos/`, `img/marca/`, `midia/` (local), `docs/BANCO-IMAGENS.md`, `docs/AUDITORIA-IMAGENS.md` | `curador-catalogo-imagens` |
 | `src/data/modelos.json` | `curador-catalogo-imagens` (o editor de SEO revisa os textos pela especificação ou com a posse da onda) |
+| `docs/PLANO-TECNOLOGIA.md` | `curador-tecnologia` (o que ele especifica para dados, build e testes é aplicado pelos donos acima) |
 | `src/blog/*.md`, `img/blog/`, tabela de artigos em `docs/BLOG.md` | `redator-blog` |
 | `docs/SEO.md` | `editor-seo-conteudo` |
 | `.github/workflows/`, `deploy/`, `Dockerfile`, `.dockerignore`, `netlify.toml`, `netlify/`, `docs/DEPLOY.md`, `docs/PROPOSTAS.md` | `devops-publicacao` |
@@ -75,6 +77,20 @@ diagnóstico → plano em ondas → execução em paralelo por arquivo → QA �
    explícito faz o push na `main`, sem force. O GitHub Actions gera, testa e atualiza a branch `deploy`.
 6. **Deploy no Easypanel**: o dono clica em **Deploy** no app do site; o `devops-publicacao` e o QA conferem a
    produção (`docs/DEPLOY.md` › Checagem depois de publicar).
+
+### Passagem de bastão: linha de tecnologia
+
+```
+curador-tecnologia → OK do dono (linha e custo) → curador-catalogo-imagens + dev-front-build → editor-seo-conteudo → QA
+```
+
+1. O `curador-tecnologia` mantém `docs/PLANO-TECNOLOGIA.md`: modelos, ids, cores, onde vai a logo, prompts, ocasiões,
+   kits, custo estimado e o que falta confirmar (capacidade, potência, bateria, certificações).
+2. O dono aprova a linha e o custo. Sem esse OK, nada é gerado.
+3. Em paralelo: o `dev-front-build` cria a categoria `tecnologia` (build, `tools/produtos.py`, atalho e e2e) e o
+   `curador-catalogo-imagens` gera, confere na folha de contato e importa as fotos, com ocasiões e `foto_base`.
+4. O `editor-seo-conteudo` revisa resumos, "ideal para" e o texto da categoria; o QA confere filtros, páginas de
+   modelo e alts. As especificações seguem "a confirmar na proposta" até a TaMa confirmar com o fornecedor.
 
 ## Regras que valem para todos
 

@@ -1319,6 +1319,191 @@
    "atualizado_em": "2026-10-18"
   },
   {
+   "id": "bolsa-listrada~amarelo-e-rosa",
+   "produto": "Bolsa listrada com inicial",
+   "categoria": "bolsas-embalagens",
+   "modelo": "Listras largas e letra aplicada",
+   "cor": {
+    "nome": "Amarelo e rosa",
+    "hex": "#F2D530"
+   },
+   "material": {
+    "valor": "Lona listrada",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Letra aplicada com costura e etiqueta tecida com a marca",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Bolsa com listras amarelas e rosa, letra T aplicada na frente, alças amarelas e etiqueta com a marca TaMa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base bolsa-listrada~rosa-e-verde.",
+   "arquivo": "/img/produtos/bolsa-listrada~amarelo-e-rosa.webp",
+   "mestre": "midia/produtos/mestre/bolsa-listrada~amarelo-e-rosa.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "315ed8166635d7eb1b2c2aea7e4f5bf4c5d6ddd44a968959fbe8a3aeecccde4e",
+   "bytes": 1416862,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "id": "bolsa-listrada~azul-e-branco",
+   "produto": "Bolsa listrada com inicial",
+   "categoria": "bolsas-embalagens",
+   "modelo": "Listras largas e letra aplicada",
+   "cor": {
+    "nome": "Azul e branco",
+    "hex": "#1F4FB8"
+   },
+   "material": {
+    "valor": "Lona listrada",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Letra aplicada com costura e etiqueta tecida com a marca",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Bolsa com listras azuis e brancas, letra T aplicada na frente, alças azuis e etiqueta com a marca TaMa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base bolsa-listrada~rosa-e-verde.",
+   "arquivo": "/img/produtos/bolsa-listrada~azul-e-branco.webp",
+   "mestre": "midia/produtos/mestre/bolsa-listrada~azul-e-branco.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "7e84df9a8ca5c7c107be1504ff91f56652dc3f8b3afbcb1acc2b27a39b7617ea",
+   "bytes": 1497358,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "id": "bolsa-listrada~laranja-e-azul",
+   "produto": "Bolsa listrada com inicial",
+   "categoria": "bolsas-embalagens",
+   "modelo": "Listras largas e letra aplicada",
+   "cor": {
+    "nome": "Laranja e azul",
+    "hex": "#F07A1A"
+   },
+   "material": {
+    "valor": "Lona listrada",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Letra aplicada com costura e etiqueta tecida com a marca",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Bolsa com listras laranja e azuis, letra T aplicada na frente, alças azuis e etiqueta com a marca TaMa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base bolsa-listrada~rosa-e-verde.",
+   "arquivo": "/img/produtos/bolsa-listrada~laranja-e-azul.webp",
+   "mestre": "midia/produtos/mestre/bolsa-listrada~laranja-e-azul.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "e68820fe159d22b5ce635440075faa6dec54a688e951525d77656baf15ff083d",
+   "bytes": 1568237,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "id": "bolsa-listrada~rosa-e-verde",
+   "produto": "Bolsa listrada com inicial",
+   "categoria": "bolsas-embalagens",
+   "modelo": "Listras largas e letra aplicada",
+   "cor": {
+    "nome": "Rosa e verde",
+    "hex": "#2E8B57"
+   },
+   "material": {
+    "valor": "Lona listrada",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Letra aplicada com costura e etiqueta tecida com a marca",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Bolsa com listras rosa e verdes, letra T aplicada na frente, alças verdes e etiqueta com a marca TaMa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Imagem gerada com IA (OpenAI gpt-image-1.5) em 18/10/2026, a partir da identidade TaMa e de uma referência de formato enviada pela TaMa (sem marcas de terceiros). Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Foto-base. A letra aplicada é um exemplo (T de TaMa): no projeto entra a inicial ou a letra escolhida.",
+   "arquivo": "/img/produtos/bolsa-listrada~rosa-e-verde.webp",
+   "mestre": "midia/produtos/mestre/bolsa-listrada~rosa-e-verde.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "0ac314d4b0d034c448197565e5f82dbfcf9b4ef2eaf1d7f57d2f67c6f5e3dd4f",
+   "bytes": 1576084,
+   "atualizado_em": "2026-10-18"
+  },
+  {
+   "id": "bolsa-listrada~vermelho-e-rosa",
+   "produto": "Bolsa listrada com inicial",
+   "categoria": "bolsas-embalagens",
+   "modelo": "Listras largas e letra aplicada",
+   "cor": {
+    "nome": "Vermelho e rosa",
+    "hex": "#D62839"
+   },
+   "material": {
+    "valor": "Lona listrada",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "Letra aplicada com costura e etiqueta tecida com a marca",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Bolsa com listras vermelhas e rosa, letra T aplicada na frente, alças vermelhas e etiqueta com a marca TaMa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
+   "substitui": null,
+   "observacao": "Variação de cor gerada a partir da foto-base bolsa-listrada~rosa-e-verde.",
+   "arquivo": "/img/produtos/bolsa-listrada~vermelho-e-rosa.webp",
+   "mestre": "midia/produtos/mestre/bolsa-listrada~vermelho-e-rosa.png",
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "e219a5c48196a28de7e424822bca4e46c7df785b8822ca84f47fe01cb0640507",
+   "bytes": 1511888,
+   "atualizado_em": "2026-10-18"
+  },
+  {
    "fornecedor": null,
    "bytes": 1392260,
    "sku": null,

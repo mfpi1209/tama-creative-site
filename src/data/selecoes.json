@@ -43,6 +43,7 @@
   "taca-martini",
   "taca-margarita",
   "ecobag",
+  "bolsa-listrada-com-inicial",
   "caixa-para-presente",
   "sacola-para-presente",
   "necessaire",
@@ -53,6 +54,7 @@
   "jogo-americano-impresso"
  ],
  "foto_base": {
+  "bolsa-listrada-com-inicial": "bolsa-listrada~rosa-e-verde",
   "caderno-de-anotacoes": "caderno~azul-royal",
   "caixa-para-presente": "caixa-personalizada~bordo",
   "camiseta-feminina": "camiseta-feminina~preto",
@@ -273,6 +275,11 @@
   "copo-com-cordao": [
    "fim-de-ano",
    "eventos"
+  ],
+  "bolsa-listrada-com-inicial": [
+   "boas-vindas",
+   "eventos",
+   "reconhecimento"
   ]
  },
  "aliases": {

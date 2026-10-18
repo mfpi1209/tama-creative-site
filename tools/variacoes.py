@@ -64,7 +64,7 @@ def chave_do_arquivo():
 
 NOVO = ('The first image is a style reference only: the ENTIRE background of the new photo must be the same flat, uniform, warm '
         'off-white (#F6F2EC) from edge to edge, exactly like the first image: no gradient, no dark area, no glow, no vignette, no halo. '
-        'Same soft diffuse studio lighting, camera height and product scale, product centered with a soft contact shadow. Do not show the mug. The second image is the exact official logo: reproduce it faithfully, letter by letter ("TaMa" '
+        'Same soft diffuse studio lighting, camera height and product scale, product centered with a soft contact shadow.{sem_estilo} The second image is the exact official logo: reproduce it faithfully, letter by letter ("TaMa" '
         'in serif, "CREATIVE" in small spaced capitals, leaf symbol at the left). Create a NEW catalog photo of: {desc}. Apply the logo '
         '{aplicacao}. No other brands or logos, no other text, no people, no props, no watermark. Photorealistic catalog quality.')
 
@@ -82,7 +82,7 @@ def novo(a):
         print('já existe:', os.path.relpath(dest, ROOT)); return
     t = time.time()
     try:
-        png, usage = edit(key, a.modelo, a.qualidade, estilo, NOVO.format(desc=a.descricao, aplicacao=a.aplicacao), fidelidade='high', extras=[a.logo], tamanho=a.tamanho)
+        png, usage = edit(key, a.modelo, a.qualidade, estilo, NOVO.format(desc=a.descricao, aplicacao=a.aplicacao, sem_estilo=' Do not show the mug.' if a.estilo.startswith('caneca') else ''), fidelidade='high', extras=[a.logo], tamanho=a.tamanho)
     except urllib.error.HTTPError as e:
         sys.exit(f'{a.id}: HTTP {e.code} {e.read()[:400].decode(errors="replace")}')
     open(dest, 'wb').write(png)

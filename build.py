@@ -899,9 +899,22 @@ def kit_card(i, slug, name, desc, big):
             f'<a class="link" href="/solicitar-proposta/?tipo=kits&amp;interesse={urllib.parse.quote(interesse)}" data-track="cta_solicitar_proposta" data-track-label="kit-{slug}" data-interesse="{interesse}">Quero este kit {ARROW}</a></div></article>')
 
 
-def kit_cards():
-    """Os kits corporativos (home e página de kits): dois destaques e três menores."""
-    return ''.join(kit_card(i, slug, name, desc, i < 2) for i, (slug, name, desc) in enumerate(HOME_KITS))
+def kit_cards(kits=None, inicio=0):
+    """Os kits corporativos (home e página de kits): dois destaques e três menores. inicio: numeração do primeiro."""
+    return ''.join(kit_card(inicio + i, slug, name, desc, i < 2) for i, (slug, name, desc) in enumerate(kits or HOME_KITS))
+
+
+# Mais cinco kits da página de kits, recriados a partir de referências enviadas pela TaMa (sem marcas de terceiros), na
+# identidade TaMa e com caixas em cores diferentes (fotos img/v2/kitp-<slug>.webp, originais em midia/produtos/geradas/).
+# Peças, material e técnica ficam a confirmar na proposta: os textos não afirmam material.
+MAIS_KITS = [
+    ('kit-escritorio', 'Kit Escritório', 'Caderno com elástico, caneta, caneca com alça clara e porta-copo, na caixa preta com berço.'),
+    ('kit-cafe', 'Kit Café', 'Garrafa térmica e quatro xícaras com pires, na caixa terracota com berço.'),
+    ('kit-conectado', 'Kit Conectado', 'Fone de ouvido sem fio com estojo, garrafa com tampa clara e caneca, na caixa azul-marinho com berço.'),
+    ('kit-executivo-verde', 'Kit Executivo', 'Caderno com capa de fecho, caneta e garrafa térmica, na caixa verde-escura com berço.'),
+    ('kit-petiscos', 'Kit Petiscos', 'Petisqueira redonda com quatro divisórias, na caixa clara com palha decorativa.'),
+]
+KITS_BY = {k[0]: k for k in HOME_KITS + MAIS_KITS}
 
 
 def kits_block(compacto=False):
@@ -1590,6 +1603,13 @@ def page_kits():
     <p class="note" style="margin-top:18px">Os kits aparecem na identidade TaMa como exemplo. No seu projeto, caixa, cartão e peças levam a marca e as cores da sua empresa; a composição é confirmada na proposta. Imagens ilustrativas.</p>
   </div>
 </section>
+<section class="section ivory kits-page" id="kits-mais" aria-labelledby="kits-mais-t">
+  <div class="wrap">
+    <div class="section-head"><p class="eyebrow">Mais kits</p><h2 id="kits-mais-t" class="section-title">Para a mesa, o café e o dia a dia</h2><p class="muted">Mais cinco composições, cada uma numa caixa de cor diferente. No seu projeto, caixa, berço e peças seguem a paleta da sua empresa.</p></div>
+    <div class="kit-grid">{kit_cards(MAIS_KITS, inicio=len(HOME_KITS))}</div>
+    <p class="note" style="margin-top:18px">Imagens ilustrativas com a marca TaMa como exemplo. Peças, material e personalização são confirmados na proposta.</p>
+  </div>
+</section>
 {prova_block('kits')}
 <section class="section ivory" aria-labelledby="tipos-t">
   <div class="wrap">
@@ -1889,10 +1909,13 @@ def page_hotelaria():
 
 
 
-# Kits da página de fim de ano (fotos img/v2/kitp-kit-brinde.webp e kitp-kit-coquetel.webp)
+# Kits da página de fim de ano (fotos img/v2/kitp-kit-brinde.webp e kitp-kit-coquetel.webp), mais o Kit Café e o Kit
+# Petiscos da página de kits
 FIM_DE_ANO_KITS = [
     ('kit-brinde', 'Kit Brinde', 'Duas taças coupe caneladas, caixa rígida com berço e cartão personalizado.'),
     ('kit-coquetel', 'Kit Coquetel', 'Taça martini, taça margarita, taça de gin e copo long drink, com caixa e cartão.'),
+    KITS_BY['kit-cafe'],
+    KITS_BY['kit-petiscos'],
 ]
 
 

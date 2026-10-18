@@ -1,260 +1,389 @@
 {
- "name": "Site · Proposta (formulário)",
- "nodes": [
-  {
-   "id": "1744ac47-8e5a-4e0e-9622-30109bfc52db",
-   "name": "Formulário do site",
-   "type": "n8n-nodes-base.webhook",
-   "typeVersion": 2,
-   "position": [
-    0,
-    0
-   ],
-   "parameters": {
-    "httpMethod": "POST",
-    "path": "proposta",
-    "responseMode": "responseNode",
-    "options": {}
-   },
-   "webhookId": "3cc5c528-5bc4-454d-b0c3-4d4f715c5b2a"
-  },
-  {
-   "id": "ae060926-2b69-4a3a-95ca-e083406cd627",
-   "name": "É um pedido válido?",
-   "type": "n8n-nodes-base.if",
-   "typeVersion": 2.2,
-   "position": [
-    240,
-    0
-   ],
-   "parameters": {
-    "conditions": {
-     "options": {
-      "caseSensitive": true,
-      "leftValue": "",
-      "typeValidation": "loose",
-      "version": 2
-     },
-     "conditions": [
-      {
-       "id": "39a12f80-f993-42d8-a19d-f81fd977e857",
-       "leftValue": "={{ $json.body['bot-field'] || '' }}",
-       "rightValue": "",
-       "operator": {
-        "type": "string",
-        "operation": "empty",
-        "singleValue": true
-       }
+  "name": "TaMa · Propostas 1/3: receber e gravar",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "proposta",
+        "responseMode": "responseNode",
+        "options": {}
       },
-      {
-       "id": "e5edd1a6-852f-4c93-8c85-54e0a45f6d54",
-       "leftValue": "={{ $json.body.nome || '' }}",
-       "rightValue": "",
-       "operator": {
-        "type": "string",
-        "operation": "notEmpty",
-        "singleValue": true
-       }
-      },
-      {
-       "id": "3d8a32c0-1876-4d88-ad97-1a7b080a6342",
-       "leftValue": "={{ $json.body.contato || '' }}",
-       "rightValue": "",
-       "operator": {
-        "type": "string",
-        "operation": "notEmpty",
-        "singleValue": true
-       }
-      },
-      {
-       "id": "cbe39587-e4fc-4cc9-8810-bc858a992b66",
-       "leftValue": "={{ $json.body.consentimento || '' }}",
-       "rightValue": "",
-       "operator": {
-        "type": "string",
-        "operation": "notEmpty",
-        "singleValue": true
-       }
-      }
-     ],
-     "combinator": "and"
+      "name": "Formulário do site",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        0,
+        300
+      ],
+      "id": "01936a8a-b3d5-49a2-bace-3edc36f7c438",
+      "webhookId": "tama-proposta"
     },
-    "options": {}
-   }
-  },
-  {
-   "id": "f74ccb94-9133-45eb-9fdf-cec46631ab82",
-   "name": "Montar lead",
-   "type": "n8n-nodes-base.set",
-   "typeVersion": 3.4,
-   "position": [
-    480,
-    -100
-   ],
-   "parameters": {
-    "assignments": {
-     "assignments": [
-      {
-       "id": "9450dbfa-a626-4def-83cb-b29339ba0569",
-       "name": "recebido_em",
-       "value": "={{ $now.toISO() }}",
-       "type": "string"
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "// Normaliza e valida o pedido. Não confia no navegador: limita tamanhos e confere os obrigatórios.\nconst b = $json.body || {};\nconst h = $json.headers || {};\nconst t = (k, n) => String(b[k] ?? '').replace(/\\u0000/g, '').trim().slice(0, n);\nconst viaSite = String(h['x-tama-envio'] || '') === 'fetch';\nlet pedidoId = t('pedido_id', 64);\n// Envio sem JavaScript (sem identificador): o servidor cria um.\nif (!pedidoId && !viaSite) pedidoId = 'sjs-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 10);\nconst pedido = {\n  pedido_id: pedidoId,\n  recebido_em: new Date().toISOString(),\n  status: 'novo',\n  nome: t('nome', 120), empresa: t('empresa', 160), contato: t('contato', 160),\n  tipo: t('tipo', 40), interesse: t('interesse', 160), selecao: t('selecao', 2000),\n  quantidade: t('quantidade', 20), data_desejada: t('data', 20), orcamento: t('orcamento', 60),\n  objetivo: t('objetivo', 4000), consentimento: t('consentimento', 10),\n  origem_pagina: t('origem_pagina', 200), primeira_pagina: t('primeira_pagina', 200), referencia: t('referencia', 200),\n  utm_source: t('utm_source', 100), utm_medium: t('utm_medium', 100), utm_campaign: t('utm_campaign', 100),\n  utm_term: t('utm_term', 100), utm_content: t('utm_content', 100),\n  notificacao: 'pendente', tentativas_aviso: 0, erro_aviso: '', avisado_em: '',\n};\nconst tipos = ['brindes', 'kits', 'confeccoes', 'ativacoes', 'hotelaria', 'integrado'];\nconst erros = [];\nif (!/^(sjs-[a-z0-9-]{6,40}|[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})$/i.test(pedido.pedido_id)) erros.push('pedido_id');\nif (pedido.nome.length < 2) erros.push('nome');\nconst digitos = pedido.contato.replace(/\\D/g, '');\nif (!/^[^\\s@]+@[^\\s@]+\\.[^\\s@]{2,}$/.test(pedido.contato) && digitos.length < 10) erros.push('contato');\nif (!tipos.includes(pedido.tipo)) erros.push('tipo');\nif (pedido.objetivo.length < 10) erros.push('objetivo');\nif (pedido.consentimento !== 'sim') erros.push('consentimento');\nreturn { json: { spam: t('bot-field', 200) !== '', valido: erros.length === 0, erros, pedido } };"
       },
-      {
-       "id": "65e07f1b-5a9a-47c3-bc38-3933acbb5afd",
-       "name": "nome",
-       "value": "={{ $json.body['nome'] || '' }}",
-       "type": "string"
-      },
-      {
-       "id": "d7a7c4f6-2a77-4ccd-9b02-55cfa0815c90",
-       "name": "empresa",
-       "value": "={{ $json.body['empresa'] || '' }}",
-       "type": "string"
-      },
-      {
-       "id": "f8ec9cbb-b46b-4e01-aafc-45ea622a2baa",
-       "name": "contato",
-       "value": "={{ $json.body['contato'] || '' }}",
-       "type": "string"
-      },
-      {
-       "id": "b878bf4b-960d-436c-90a2-b692fb783843",
-       "name": "tipo",
-       "value": "={{ $json.body['tipo'] || '' }}",
-       "type": "string"
-      },
-      {
-       "id": "17bde559-5dfa-423c-9563-20d0c5eab197",
-       "name": "selecao",
-       "value": "={{ $json.body['selecao'] || '' }}",
-       "type": "string"
-      },
-      {
-       "id": "6229cfae-192e-477d-b7da-a443a3aca85d",
-       "name": "quantidade",
-       "value": "={{ $json.body['quantidade'] || '' }}",
-       "type": "string"
-      },
-      {
-       "id": "8c0a227a-f0a3-45d7-a7a9-e402fce79276",
-       "name": "data",
-       "value": "={{ $json.body['data'] || '' }}",
-       "type": "string"
-      },
-      {
-       "id": "6bbfb2a1-b00a-463f-8a2e-4804279cf207",
-       "name": "orcamento",
-       "value": "={{ $json.body['orcamento'] || '' }}",
-       "type": "string"
-      },
-      {
-       "id": "9e0f83c4-d4cf-4d91-940f-ac50f6ce3f71",
-       "name": "objetivo",
-       "value": "={{ $json.body['objetivo'] || '' }}",
-       "type": "string"
-      },
-      {
-       "id": "a6203d48-0b0d-4512-ae59-7a0acec38f53",
-       "name": "consentimento",
-       "value": "={{ $json.body['consentimento'] || '' }}",
-       "type": "string"
-      },
-      {
-       "id": "1c34bc47-f8eb-4004-8553-d35e0d55e70b",
-       "name": "ip",
-       "value": "={{ $json.headers['x-real-ip'] || '' }}",
-       "type": "string"
-      },
-      {
-       "id": "91a85d25-050c-4152-9451-d1b7f1e8252d",
-       "name": "origem",
-       "value": "site · solicitar proposta",
-       "type": "string"
-      }
-     ]
+      "name": "Validar e normalizar",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        220,
+        300
+      ],
+      "id": "f55abb77-c756-412b-97e7-b4333d2018ac"
     },
-    "options": {}
-   }
-  },
-  {
-   "id": "7c40a1e6-be58-4f3b-8955-19f084653882",
-   "name": "Recebido (200)",
-   "type": "n8n-nodes-base.respondToWebhook",
-   "typeVersion": 1.1,
-   "position": [
-    960,
-    -100
-   ],
-   "parameters": {
-    "respondWith": "json",
-    "responseBody": "={{ { ok: true } }}",
-    "options": {
-     "responseCode": 200
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "8e73b9cd-20c3-4592-95b8-509490ea5e96",
+              "leftValue": "={{ $json.spam }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "name": "É spam (honeypot)?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        440,
+        300
+      ],
+      "id": "a9a02d47-e2f6-4336-8c34-25eb6e10b0b4"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ { \"ok\": true } }}",
+        "options": {
+          "responseCode": 200
+        }
+      },
+      "name": "Ignorado (sem gravar)",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        660,
+        140
+      ],
+      "id": "ddf4c793-917b-4c7e-abac-2d4e2040b877"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "72b597d8-390c-488d-b358-60d751c1abcb",
+              "leftValue": "={{ $json.valido }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "name": "Pedido válido?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        660,
+        400
+      ],
+      "id": "2dc09ce8-95fd-47c3-938d-79bbc199ed55"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ { \"ok\": false, \"gravado\": false, \"erro\": \"invalido\", \"campos\": $json.erros } }}",
+        "options": {
+          "responseCode": 422
+        }
+      },
+      "name": "Inválido (422)",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        880,
+        560
+      ],
+      "id": "cbdf97ee-1375-4525-8bf1-6b0f83674647"
+    },
+    {
+      "parameters": {
+        "resource": "row",
+        "operation": "rowExists",
+        "dataTableId": {
+          "__rl": true,
+          "mode": "name",
+          "value": "tama_propostas"
+        },
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "pedido_id",
+              "condition": "eq",
+              "keyValue": "={{ $json.pedido.pedido_id }}"
+            }
+          ]
+        }
+      },
+      "name": "Já gravado (reenvio)?",
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        880,
+        260
+      ],
+      "id": "1c9d1057-fd3e-47e5-bd08-30a6a8f75192"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ { \"ok\": true, \"gravado\": true, \"duplicado\": true, \"pedido_id\": $json.pedido.pedido_id, \"mensagem\": \"Pedido recebido.\" } }}",
+        "options": {
+          "responseCode": 200
+        }
+      },
+      "name": "Já gravado (200)",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        1100,
+        160
+      ],
+      "id": "d5b4e8f2-fc55-4c6c-930d-1058031bba72"
+    },
+    {
+      "parameters": {
+        "resource": "row",
+        "operation": "rowNotExists",
+        "dataTableId": {
+          "__rl": true,
+          "mode": "name",
+          "value": "tama_propostas"
+        },
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "pedido_id",
+              "condition": "eq",
+              "keyValue": "={{ $json.pedido.pedido_id }}"
+            }
+          ]
+        }
+      },
+      "name": "Pedido novo?",
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        880,
+        400
+      ],
+      "id": "8bd26cf1-6bb5-4cfb-90d2-730ac3943452"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "// Só as colunas da tabela (o Data Table grava exatamente estes campos).\nreturn { json: $json.pedido };"
+      },
+      "name": "Linha da tabela",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1100,
+        400
+      ],
+      "id": "fe48c986-fd71-4601-b588-295effe6ee15"
+    },
+    {
+      "parameters": {
+        "resource": "row",
+        "operation": "insert",
+        "dataTableId": {
+          "__rl": true,
+          "mode": "name",
+          "value": "tama_propostas"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "name": "Gravar pedido",
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        1320,
+        400
+      ],
+      "id": "9acd23c8-d2b6-4791-91a3-005d2ec16a26"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ { \"ok\": true, \"gravado\": true, \"duplicado\": false, \"pedido_id\": $json.pedido_id, \"mensagem\": \"Pedido recebido. A TaMa responde pelo contato informado.\" } }}",
+        "options": {
+          "responseCode": 200
+        }
+      },
+      "name": "Gravado (200)",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        1540,
+        400
+      ],
+      "id": "a371fb59-f1a9-4c1a-b6a8-f2fa36728703"
     }
-   }
-  },
-  {
-   "id": "317a08a2-3e21-4d3b-b4b6-7e96beb8f6a8",
-   "name": "Ignorado (200)",
-   "type": "n8n-nodes-base.respondToWebhook",
-   "typeVersion": 1.1,
-   "position": [
-    480,
-    120
-   ],
-   "parameters": {
-    "respondWith": "json",
-    "responseBody": "={{ { ok: true } }}",
-    "options": {
-     "responseCode": 200
+  ],
+  "connections": {
+    "Formulário do site": {
+      "main": [
+        [
+          {
+            "node": "Validar e normalizar",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Validar e normalizar": {
+      "main": [
+        [
+          {
+            "node": "É spam (honeypot)?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "É spam (honeypot)?": {
+      "main": [
+        [
+          {
+            "node": "Ignorado (sem gravar)",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Pedido válido?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Pedido válido?": {
+      "main": [
+        [
+          {
+            "node": "Já gravado (reenvio)?",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Pedido novo?",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Inválido (422)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Já gravado (reenvio)?": {
+      "main": [
+        [
+          {
+            "node": "Já gravado (200)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Pedido novo?": {
+      "main": [
+        [
+          {
+            "node": "Linha da tabela",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Linha da tabela": {
+      "main": [
+        [
+          {
+            "node": "Gravar pedido",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gravar pedido": {
+      "main": [
+        [
+          {
+            "node": "Gravado (200)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
-   }
-  }
- ],
- "connections": {
-  "Formulário do site": {
-   "main": [
-    [
-     {
-      "node": "É um pedido válido?",
-      "type": "main",
-      "index": 0
-     }
-    ]
-   ]
   },
-  "É um pedido válido?": {
-   "main": [
-    [
-     {
-      "node": "Montar lead",
-      "type": "main",
-      "index": 0
-     }
-    ],
-    [
-     {
-      "node": "Ignorado (200)",
-      "type": "main",
-      "index": 0
-     }
-    ]
-   ]
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "saveDataErrorExecution": "all",
+    "saveDataSuccessExecution": "all"
   },
-  "Montar lead": {
-   "main": [
-    [
-     {
-      "node": "Recebido (200)",
-      "type": "main",
-      "index": 0
-     }
-    ]
-   ]
-  }
- },
- "settings": {
-  "executionOrder": "v1"
- }
+  "meta": {
+    "descricao": "Recebe o POST do site (/api/proposta via Nginx), valida, grava na data table tama_propostas e só então responde gravado=true. Reenvio com o mesmo pedido_id não duplica. Se a gravação falhar, o workflow falha e o webhook responde 500: o site mostra erro, nunca sucesso. O aviso ao responsável é feito pelo workflow 2/3."
+  },
+  "tags": []
 }

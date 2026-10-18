@@ -1384,12 +1384,13 @@ def page_sobre():
 
 
 def page_proposta():
-    tipos = [('brindes', 'Brindes ou presentes'), ('kits', 'Kits corporativos'), ('confeccoes', 'Confecções e uniformes'), ('integrado', 'Mais de um tipo')]
+    tipos = [('brindes', 'Brindes corporativos'), ('kits', 'Kits e presentes'), ('confeccoes', 'Confecções e uniformes'),
+             ('ativacoes', 'Ativação ou degustação'), ('hotelaria', 'Hotelaria e gastronomia'), ('integrado', 'Mais de uma frente ou ainda não sei')]
     choices = ''.join(f'<label class="choice"><input type="radio" name="tipo" value="{v}" required> {t}</label>' for v, t in tipos)
     contacts = contact_lines()
     contact_block = f'<div class="stack" style="gap:10px"><p class="eyebrow">Fale direto</p><div class="contact-lines">{"".join(contacts)}</div></div>' if contacts else ''
     wa_retry = f'<a class="btn btn-line" href="https://wa.me/{WA}" data-wa-summary data-track="whatsapp_click" data-track-label="erro-envio" rel="noopener">{CHAT} Enviar pelo WhatsApp</a>' if WA else ''
-    alt_contact = 'pelo WhatsApp ou por e-mail' if (WA or EMAIL) else 'mais tarde'
+    alt_contact = ' ou '.join(x for x in (WA and 'pelo WhatsApp', EMAIL and 'por e-mail') if x) or 'mais tarde'
     return {
         'path': '/solicitar-proposta/', 'title': 'Solicitar proposta de brindes, kits e confecções | TaMa',
         'description': 'Peça uma proposta de brindes corporativos, kits ou uniformes. Conte a ocasião e a TaMa Creative propõe as possibilidades.',
@@ -1403,6 +1404,14 @@ def page_proposta():
       <form class="form" id="proposal-form" name="proposta" method="POST" action="{'/obrigado/' if NETLIFY_FORMS else FORM_ENDPOINT}" data-endpoint="{FORM_ENDPOINT}"{' data-netlify="true" netlify-honeypot="bot-field"' if NETLIFY_FORMS else ''} novalidate>
         <input type="hidden" name="form-name" value="proposta">
         <p hidden><label>Não preencha este campo <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+        <!-- preenchidos pelo site.js: identificador do pedido (o mesmo em cada nova tentativa, para não duplicar), interesse vindo do botão clicado, página de origem e UTMs -->
+        <input type="hidden" name="pedido_id" id="f-pedido-id">
+        <input type="hidden" name="interesse" id="f-interesse">
+        <input type="hidden" name="origem_pagina" id="f-origem-pagina">
+        <input type="hidden" name="primeira_pagina" id="f-primeira-pagina">
+        <input type="hidden" name="referencia" id="f-referencia">
+        <input type="hidden" name="utm_source" id="f-utm_source"><input type="hidden" name="utm_medium" id="f-utm_medium"><input type="hidden" name="utm_campaign" id="f-utm_campaign"><input type="hidden" name="utm_term" id="f-utm_term"><input type="hidden" name="utm_content" id="f-utm_content">
+        <p class="interest-note" id="interest-note" hidden></p>
         <div class="form-grid">
           <div class="field"><label for="f-nome">Nome <span class="req" aria-hidden="true">*</span></label><input id="f-nome" name="nome" autocomplete="name" required aria-describedby="f-nome-error"><p class="field-error" id="f-nome-error"></p></div>
           <div class="field"><label for="f-empresa">Empresa</label><input id="f-empresa" name="empresa" autocomplete="organization"></div>
@@ -1411,8 +1420,8 @@ def page_proposta():
         <fieldset class="fieldset" id="f-tipo" aria-describedby="f-tipo-error"><legend>Tipo de projeto <span class="req" aria-hidden="true">*</span></legend><div class="choices">{choices}</div><p class="field-error" id="f-tipo-error"></p></fieldset>
         <div class="field" id="picked-wrap" hidden><span class="field-label">Peças selecionadas</span><ul class="picked-list" id="picked-list" aria-label="Peças selecionadas na curadoria"></ul><input type="hidden" name="selecao" id="f-selecao"><a class="link" href="/brindes-corporativos-premium/">Adicionar mais peças {ARROW}</a></div>
         <div class="form-grid">
-          <div class="field" data-show-for="brindes kits confeccoes integrado"><label for="f-qtd">Quantidade aproximada</label><input id="f-qtd" name="quantidade" type="number" min="1" inputmode="numeric" placeholder="Ex.: 80"></div>
-          <div class="field" data-show-for="brindes kits confeccoes integrado"><label for="f-data">Data desejada</label><input id="f-data" name="data" type="date"></div>
+          <div class="field" data-show-for="brindes kits confeccoes ativacoes hotelaria integrado"><label for="f-qtd">Quantidade aproximada</label><input id="f-qtd" name="quantidade" type="number" min="1" inputmode="numeric" placeholder="Ex.: 80"></div>
+          <div class="field" data-show-for="brindes kits confeccoes ativacoes hotelaria integrado"><label for="f-data">Data desejada</label><input id="f-data" name="data" type="date"></div>
           <div class="field full"><label for="f-orcamento">Orçamento estimado (opcional)</label><select id="f-orcamento" name="orcamento"><option value="">Prefiro não informar</option><option>Até R$ 5 mil</option><option>R$ 5 mil a R$ 20 mil</option><option>R$ 20 mil a R$ 50 mil</option><option>Acima de R$ 50 mil</option></select></div>
           <div class="field full"><label for="f-objetivo">Objetivo da ação <span class="req" aria-hidden="true">*</span></label><textarea id="f-objetivo" name="objetivo" required aria-describedby="f-objetivo-error" placeholder="Ex.: receber 40 novas pessoas em março com um kit que apresente a cultura da empresa."></textarea><p class="field-error" id="f-objetivo-error"></p></div>
         </div>
@@ -1420,8 +1429,8 @@ def page_proposta():
         <div class="form-foot"><button class="btn btn-wine" type="submit" id="submit-btn">Enviar pedido {ARROW}</button><p class="form-status" id="form-status" role="status" aria-live="polite"></p></div>
       </form>
       <div class="result" id="form-result" hidden tabindex="-1"></div>
-      <template id="tpl-ok"><p class="eyebrow">Pedido enviado</p><h2>Recebemos o seu pedido</h2><p class="muted">Vamos responder pelo contato informado. Se quiser, guarde o resumo abaixo.</p><label for="f-resumo-ok" class="visually-hidden">Resumo do pedido</label><textarea id="f-resumo-ok" readonly></textarea><div class="actions"><button class="btn btn-line" type="button" data-copy>Copiar resumo</button><a class="btn btn-line" href="/brindes-corporativos-premium/">Voltar à curadoria</a></div><p class="form-status" data-copy-status aria-live="polite"></p></template>
-      <template id="tpl-error"><p class="eyebrow">Envio não concluído</p><h2>Não conseguimos enviar agora</h2><p class="muted">O pedido não chegou até nós. Tente de novo em instantes ou envie o resumo {alt_contact}.</p><label for="f-resumo-err" class="visually-hidden">Resumo do pedido</label><textarea id="f-resumo-err" readonly></textarea><div class="actions"><button class="btn btn-wine" type="button" data-retry>Tentar de novo</button><button class="btn btn-line" type="button" data-copy>Copiar resumo</button>{wa_retry}</div><p class="form-status" data-copy-status aria-live="polite"></p></template>
+      <template id="tpl-ok"><p class="eyebrow">Pedido registrado</p><h2>Recebemos o seu pedido</h2><p class="muted">O pedido foi gravado e a TaMa responde pelo contato informado. Se quiser, guarde o resumo abaixo.</p><p class="pedido-ref">Número do pedido: <strong data-pedido-ref></strong></p><label for="f-resumo-ok" class="visually-hidden">Resumo do pedido</label><textarea id="f-resumo-ok" readonly></textarea><div class="actions"><button class="btn btn-line" type="button" data-copy>Copiar resumo</button><a class="btn btn-line" href="/catalogo/">Ver o catálogo</a></div><p class="form-status" data-copy-status aria-live="polite"></p></template>
+      <template id="tpl-error"><p class="eyebrow">Envio não confirmado</p><h2>Não conseguimos confirmar o seu pedido</h2><p class="muted">Não recebemos a confirmação de que o pedido foi gravado. Tente de novo em instantes: se ele já tiver chegado, não será duplicado. Se preferir, envie o resumo {alt_contact}.</p><label for="f-resumo-err" class="visually-hidden">Resumo do pedido</label><textarea id="f-resumo-err" readonly></textarea><div class="actions"><button class="btn btn-wine" type="button" data-retry>Tentar de novo</button><button class="btn btn-line" type="button" data-copy>Copiar resumo</button>{wa_retry}</div><p class="form-status" data-copy-status aria-live="polite"></p></template>
     </div>
     <aside class="aside" aria-labelledby="depois-t">
       <div class="stack" style="gap:14px"><h2 id="depois-t">O que acontece depois</h2><ol><li><span>Lemos o seu pedido e, se precisar, fazemos perguntas rápidas.</span></li><li><span>Preparamos a proposta com conceito, peças, quantidades e condições.</span></li><li><span>Você aprova a arte antes de qualquer peça entrar em produção.</span></li></ol></div>

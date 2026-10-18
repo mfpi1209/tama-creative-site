@@ -1,0 +1,311 @@
+{
+  "name": "TaMa · Propostas 2/3: avisar o responsável (com nova tentativa)",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes",
+              "minutesInterval": 1
+            }
+          ]
+        }
+      },
+      "name": "A cada minuto",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        200
+      ],
+      "id": "0541babc-aec4-4208-90f8-46441ef3bfe4"
+    },
+    {
+      "parameters": {},
+      "name": "Reenviar agora (manual)",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        400
+      ],
+      "id": "6f845103-dc72-41ff-85cc-4c32103a5f57"
+    },
+    {
+      "parameters": {
+        "resource": "row",
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "mode": "name",
+          "value": "tama_propostas"
+        },
+        "matchType": "allConditions",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "notificacao",
+              "condition": "neq",
+              "keyValue": "enviada"
+            },
+            {
+              "keyName": "tentativas_aviso",
+              "condition": "lt",
+              "keyValue": "20"
+            }
+          ]
+        },
+        "returnAll": false,
+        "limit": 20
+      },
+      "name": "Pedidos sem aviso",
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        240,
+        300
+      ],
+      "id": "e0a69e6c-3759-45a5-b556-ed58866db630"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "// Monta o e-mail de aviso de cada pedido pendente.\nconst p = $json;\nconst tipos = { brindes: 'Brindes corporativos', kits: 'Kits e presentes', confeccoes: 'Confecções e uniformes', ativacoes: 'Ativação ou degustação', hotelaria: 'Hotelaria e gastronomia', integrado: 'Mais de uma frente ou ainda não sei' };\nconst linhas = [\n  'Novo pedido de proposta pelo site', '',\n  'Número: ' + String(p.pedido_id).slice(0, 8).toUpperCase() + '  (id completo: ' + p.pedido_id + ')',\n  'Recebido em: ' + p.recebido_em, '',\n  'Nome: ' + p.nome, 'Empresa: ' + (p.empresa || '—'), 'Contato: ' + p.contato,\n  'Tipo: ' + (tipos[p.tipo] || p.tipo), 'Interesse: ' + (p.interesse || '—'),\n  'Peças selecionadas: ' + (p.selecao || '—'), 'Quantidade: ' + (p.quantidade || '—'),\n  'Data desejada: ' + (p.data_desejada || '—'), 'Orçamento: ' + (p.orcamento || '—'), '',\n  'Objetivo:', p.objetivo, '',\n  'Origem: página ' + (p.origem_pagina || '—') + ' · primeira página ' + (p.primeira_pagina || '—') + ' · referência ' + (p.referencia || '—'),\n  'UTM: ' + (['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'].map(k => p[k]).filter(Boolean).join(' / ') || '—'),\n];\nreturn { json: { pedido_id: p.pedido_id, tentativas: Number(p.tentativas_aviso || 0), assunto: 'Pedido de proposta ' + String(p.pedido_id).slice(0, 8).toUpperCase() + ' · ' + p.nome + (p.empresa ? ' (' + p.empresa + ')' : ''), texto: linhas.join('\\n') } };"
+      },
+      "name": "Montar aviso",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        460,
+        300
+      ],
+      "id": "2f508498-d15f-4e14-b7bc-860ea6be5fa5"
+    },
+    {
+      "parameters": {
+        "fromEmail": "DEFINIR_REMETENTE@tamacreative.com.br",
+        "toEmail": "DEFINIR_EMAIL_DO_RESPONSAVEL",
+        "subject": "={{ $json.assunto }}",
+        "emailFormat": "text",
+        "text": "={{ $json.texto }}",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "name": "Enviar e-mail ao responsável",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        680,
+        300
+      ],
+      "id": "a294507d-57e4-4d77-a8a2-03424256945e",
+      "onError": "continueErrorOutput",
+      "credentials": {
+        "smtp": {
+          "id": "DEFINIR",
+          "name": "SMTP TaMa"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "return { json: { pedido_id: $('Montar aviso').item.json.pedido_id, notificacao: 'enviada', avisado_em: new Date().toISOString(), erro_aviso: '', tentativas_aviso: $('Montar aviso').item.json.tentativas + 1 } };"
+      },
+      "name": "Marcar avisado",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        900,
+        200
+      ],
+      "id": "b35e2714-d525-4f35-af5a-7b24f4854930"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "return { json: { pedido_id: $('Montar aviso').item.json.pedido_id, notificacao: 'falhou', erro_aviso: String(($json.error && ($json.error.message || $json.error)) || 'erro no envio').slice(0, 300), tentativas_aviso: $('Montar aviso').item.json.tentativas + 1 } };"
+      },
+      "name": "Marcar falha (tenta de novo)",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        900,
+        420
+      ],
+      "id": "356461b2-d0cf-4194-b145-c8867f39366d"
+    },
+    {
+      "parameters": {
+        "resource": "row",
+        "operation": "update",
+        "dataTableId": {
+          "__rl": true,
+          "mode": "name",
+          "value": "tama_propostas"
+        },
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "pedido_id",
+              "condition": "eq",
+              "keyValue": "={{ $json.pedido_id }}"
+            }
+          ]
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "name": "Atualizar pedido (avisado)",
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        1120,
+        200
+      ],
+      "id": "392cb6e9-f9af-4e3d-b37f-34f5c252d70c"
+    },
+    {
+      "parameters": {
+        "resource": "row",
+        "operation": "update",
+        "dataTableId": {
+          "__rl": true,
+          "mode": "name",
+          "value": "tama_propostas"
+        },
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "pedido_id",
+              "condition": "eq",
+              "keyValue": "={{ $json.pedido_id }}"
+            }
+          ]
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "name": "Atualizar pedido (falha)",
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        1120,
+        420
+      ],
+      "id": "1844eebf-09f6-47f0-ac0d-d4931a8968ba"
+    }
+  ],
+  "connections": {
+    "A cada minuto": {
+      "main": [
+        [
+          {
+            "node": "Pedidos sem aviso",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Reenviar agora (manual)": {
+      "main": [
+        [
+          {
+            "node": "Pedidos sem aviso",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Pedidos sem aviso": {
+      "main": [
+        [
+          {
+            "node": "Montar aviso",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Montar aviso": {
+      "main": [
+        [
+          {
+            "node": "Enviar e-mail ao responsável",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Enviar e-mail ao responsável": {
+      "main": [
+        [
+          {
+            "node": "Marcar avisado",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Marcar falha (tenta de novo)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Marcar avisado": {
+      "main": [
+        [
+          {
+            "node": "Atualizar pedido (avisado)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Marcar falha (tenta de novo)": {
+      "main": [
+        [
+          {
+            "node": "Atualizar pedido (falha)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "saveDataErrorExecution": "all",
+    "saveDataSuccessExecution": "none"
+  },
+  "meta": {
+    "descricao": "A cada minuto, envia por e-mail os pedidos de tama_propostas com notificacao diferente de 'enviada' (até 20 tentativas). Falha no envio não apaga nada: o pedido fica 'falhou' e é tentado de novo. Para reenviar um aviso, mude notificacao para 'pendente' na data table."
+  },
+  "tags": []
+}

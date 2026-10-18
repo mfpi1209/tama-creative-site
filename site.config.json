@@ -1,5 +1,5 @@
 {
-  "_doc": "Configuração pública do site. Variáveis de ambiente com o mesmo nome em maiúsculas sobrescrevem estes valores no build (ex.: SITE_URL, WHATSAPP). Nada aqui é segredo: o webhook do n8n NÃO entra neste arquivo, ele fica só na variável N8N_WEBHOOK_URL do Netlify.",
+  "_doc": "Configuração pública do site. Variáveis de ambiente com o mesmo nome em maiúsculas sobrescrevem estes valores no build (ex.: SITE_URL, WHATSAPP). Nada aqui é segredo. form_endpoint: /api/proposta (o Nginx repassa ao n8n; ver docs/PROPOSTAS.md). Dados da empresa (razao_social, cnpj, cidade, responsavel_comercial, email, instagram): só preencher com informação confirmada pela TaMa; campo vazio = não aparece no site.",
   "site_url": "https://tamacreative.com.br",
   "brand": "TaMa Creative",
   "whatsapp": "5511932279301",
@@ -8,5 +8,10 @@
   "ga4_id": "",
   "redirect_netlify_subdomain": false,
   "netlify_subdomain": "https://tamacreative.netlify.app",
-  "mockups_marca": true
+  "mockups_marca": true,
+  "form_endpoint": "/api/proposta",
+  "razao_social": "",
+  "cnpj": "",
+  "cidade": "",
+  "responsavel_comercial": ""
 }

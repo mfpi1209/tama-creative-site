@@ -221,7 +221,9 @@ try {
   ok(await page.$eval('#picked-list', l => l.children.length === 3), 'as 3 peças selecionadas aparecem no formulário');
   const selecao = await page.$eval('#f-selecao', i => i.value);
   ok(selecao.includes('Garrafa térmica (Azul royal)') && selecao.includes('Baralho exclusivo'), 'campo enviado leva peças e cores');
-  ok(await page.$$eval('input[name="tipo"]', l => l.map(i => i.value).join()) === 'brindes,kits,confeccoes,integrado', 'formulário sem o tipo branding');
+  ok(await page.$$eval('input[name="tipo"]', l => l.map(i => i.value).join()) === 'brindes,kits,confeccoes,ativacoes,hotelaria,integrado', 'formulário com as frentes atuais (sem branding)');
+  ok(await page.$eval('#form-result', r => r.getBoundingClientRect().height === 0), 'nenhuma caixa vazia sob "Enviar pedido"');
+  ok(/^[0-9a-f-]{36}$/.test(await page.$eval('#f-pedido-id', i => i.value)), 'pedido tem identificador para nova tentativa sem duplicar');
   await page.click('input[name="tipo"][value="kits"]');
   ok(await page.$eval('#f-qtd', i => !i.disabled && !i.closest('[data-show-for]').hidden), 'kits mostra quantidade e data');
   await page.click('input[name="tipo"][value="kits"]');
@@ -242,25 +244,37 @@ try {
   page.on('request', req => {
     if (req.method() === 'POST' && ['/', '/api/proposta'].includes(new URL(req.url()).pathname)) {
       posted = req.postData() || '';
-      return req.respond(mode === 'ok' ? { status: 200, contentType: 'text/html', body: 'ok' } : { status: 500, contentType: 'text/plain', body: 'erro' });
+      const id = new URLSearchParams(posted).get('pedido_id');
+      // contrato do n8n (docs/PROPOSTAS.md): só {"gravado": true, "pedido_id": <o enviado>} confirma o pedido
+      if (mode === 'ok') return req.respond({ status: 200, contentType: 'application/json', body: JSON.stringify({ ok: true, gravado: true, pedido_id: id }) });
+      if (mode === 'html') return req.respond({ status: 200, contentType: 'text/html', body: 'ok' });
+      return req.respond({ status: 500, contentType: 'text/plain', body: 'erro' });
     }
     req.continue();
   });
   await fill();
   await page.click('#submit-btn');
   await page.waitForSelector('#form-result:not([hidden])');
-  ok(await page.$eval('#form-result', r => r.textContent.includes('Não conseguimos enviar')), 'falha do servidor mostra erro (nunca sucesso)');
+  ok(await page.$eval('#form-result', r => r.textContent.includes('Não conseguimos confirmar')), 'falha do servidor mostra erro (nunca sucesso)');
   const decoded = new URLSearchParams(posted);
   ok(decoded.get('form-name') === 'proposta' && decoded.has('bot-field') && (decoded.get('selecao') || '').includes('Garrafa térmica (Azul royal)'), 'POST inclui form-name, honeypot e seleção');
   await page.click('[data-retry]');
   ok(await page.$eval('#proposal-form', f => !f.hidden), '"Tentar de novo" reabre o formulário com os dados');
+  mode = 'html';
+  await page.waitForFunction(() => !document.getElementById('submit-btn').disabled);
+  await page.click('#submit-btn');
+  await page.waitForSelector('#form-result:not([hidden])');
+  ok(await page.$eval('#form-result', r => r.textContent.includes('Não conseguimos confirmar')), 'HTTP 200 sem confirmação de gravação mostra erro (nunca sucesso)');
+  await page.click('[data-retry]');
+  const idAntes = new URLSearchParams(posted).get('pedido_id');
   mode = 'ok';
   await page.waitForFunction(() => !document.getElementById('submit-btn').disabled);
   await page.click('#submit-btn');
   ok(await page.waitForFunction(() => document.querySelector('#form-result h2')?.textContent.includes('Recebemos'), { timeout: 8000 }).then(() => true, () => false), 'resposta 200 mostra "Recebemos o seu pedido"');
+  ok(new URLSearchParams(posted).get('pedido_id') === idAntes, 'nova tentativa reenvia o mesmo identificador (o n8n não duplica)');
   ok(await page.evaluate(() => (localStorage.getItem('tama-selecao') || '[]') === '[]'), 'seleção é limpa após envio confirmado');
   const events = await page.evaluate(() => (window.dataLayer || []).map(e => e.event).filter(Boolean));
-  ok(['form_start', 'form_submit_error', 'form_submit_success'].every(e => events.includes(e)), `eventos do formulário disparados (${[...new Set(events)].join(', ')})`);
+  ok(['form_start', 'proposta_falha', 'proposta_gravada'].every(e => events.includes(e)), `eventos do formulário disparados (${[...new Set(events)].join(', ')})`);
   console.log('Blog');
   const bp = await browser.newPage();
   await bp.emulateMediaFeatures([{ name: 'prefers-reduced-motion', value: 'reduce' }]);

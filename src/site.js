@@ -39,8 +39,37 @@
   }
   document.addEventListener('click', function (e) {
     var t = e.target.closest('[data-track]');
-    if (t) track(t.getAttribute('data-track'), { label: t.getAttribute('data-track-label') || t.textContent.trim().slice(0, 60), page: location.pathname });
+    if (!t) return;
+    var p = { label: t.getAttribute('data-track-label') || t.textContent.trim().slice(0, 60), page: location.pathname };
+    if (t.getAttribute('data-interesse')) p.interesse = t.getAttribute('data-interesse');
+    track(t.getAttribute('data-track'), p);
   });
+
+  /* ---------- Origem da visita (só nesta sessão do navegador): primeira página, site de referência e UTMs ----------
+     Vai junto com o pedido de proposta para saber o que gera pedidos. Nada pessoal; não é enviado ao analytics. */
+  function sget(k) { try { return JSON.parse(sessionStorage.getItem(k) || 'null'); } catch (e) { return null; } }
+  function sset(k, v) { try { if (v === null) sessionStorage.removeItem(k); else sessionStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
+  var origem = sget('tama-origem') || {};
+  if (!origem.primeira_pagina) {
+    origem.primeira_pagina = location.pathname;
+    try { var ref = document.referrer ? new URL(document.referrer) : null; if (ref && ref.host !== location.host) origem.referencia = ref.host; } catch (e) {}
+  }
+  var query = new URLSearchParams(location.search);
+  ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'].forEach(function (k) { var v = query.get(k); if (v) origem[k] = v.slice(0, 100); });
+  sset('tama-origem', origem);
+  var paginaAnterior = sget('tama-ultima-pagina');
+  if (location.pathname !== '/solicitar-proposta/') sset('tama-ultima-pagina', location.pathname);
+
+  /* ---------- WhatsApp com o contexto da página e da seleção ---------- */
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('a[href^="https://wa.me/"]');
+    if (!a || a.hasAttribute('data-wa-summary') || !CFG.whatsapp) return;
+    var assunto = a.getAttribute('data-interesse') || document.body.getAttribute('data-assunto') || 'um projeto';
+    var msg = 'Olá, TaMa! Vim pelo site e gostaria de conversar sobre ' + assunto + '.';
+    var sel = getSel();
+    if (sel.length) msg += '\nPeças que selecionei: ' + sel.map(label).join('; ') + '.';
+    a.href = 'https://wa.me/' + CFG.whatsapp + '?text=' + encodeURIComponent(msg);
+  }, true);
   var service = document.body.getAttribute('data-service');
   if (service) track('view_service', { service: service });
 
@@ -377,9 +406,29 @@
     });
   };
   form.addEventListener('change', function (e) { if (e.target.name === 'tipo') syncType(); });
-  var pre = new URLSearchParams(location.search).get('tipo');
+  var pre = query.get('tipo');
   if (pre) { var r = form.querySelector('input[name="tipo"][value="' + pre.replace(/[^a-z]/g, '') + '"]'); if (r) r.checked = true; }
   syncType();
+
+  // Identificador do pedido: o mesmo em cada nova tentativa (o n8n não duplica um pedido já gravado);
+  // um novo só depois de um envio confirmado.
+  function novoId() {
+    if (window.crypto && crypto.randomUUID) return crypto.randomUUID();
+    var a = new Uint8Array(16); crypto.getRandomValues(a); a[6] = (a[6] & 15) | 64; a[8] = (a[8] & 63) | 128;
+    var h = [].map.call(a, function (b) { return (b + 256).toString(16).slice(1); }).join('');
+    return h.slice(0, 8) + '-' + h.slice(8, 12) + '-' + h.slice(12, 16) + '-' + h.slice(16, 20) + '-' + h.slice(20);
+  }
+  var pedidoId = sget('tama-pedido-id') || novoId();
+  sset('tama-pedido-id', pedidoId);
+  var setField = function (name, v) { if (form[name]) form[name].value = v || ''; };
+  setField('pedido_id', pedidoId);
+  var interesse = (query.get('interesse') || '').slice(0, 120);
+  setField('interesse', interesse);
+  if (interesse) { var note = document.getElementById('interest-note'); note.textContent = 'Interesse: ' + interesse; note.hidden = false; }
+  var origemPagina = paginaAnterior || '';
+  if (!origemPagina) { try { var rf = document.referrer ? new URL(document.referrer) : null; if (rf && rf.host === location.host) origemPagina = rf.pathname; } catch (e) {} }
+  setField('origem_pagina', origemPagina);
+  ['primeira_pagina', 'referencia', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'].forEach(function (k) { setField(k, origem[k]); });
 
   var setError = function (id, msg) {
     var el = document.getElementById(id), err = document.getElementById(id + '-error');
@@ -408,7 +457,8 @@
 
   var summaryText = function () {
     var fd = new FormData(form), tipo = form.querySelector('input[name="tipo"]:checked');
-    var lines = ['Pedido de proposta · TaMa Creative', '', 'Nome: ' + (fd.get('nome') || ''), 'Empresa: ' + (fd.get('empresa') || '—'), 'Contato: ' + (fd.get('contato') || ''), 'Tipo de projeto: ' + (tipo ? tipo.parentNode.textContent.trim() : '—')];
+    var lines = ['Pedido de proposta · TaMa Creative', 'Número do pedido: ' + pedidoId.slice(0, 8).toUpperCase(), '', 'Nome: ' + (fd.get('nome') || ''), 'Empresa: ' + (fd.get('empresa') || '—'), 'Contato: ' + (fd.get('contato') || ''), 'Tipo de projeto: ' + (tipo ? tipo.parentNode.textContent.trim() : '—')];
+    if (fd.get('interesse')) lines.push('Interesse: ' + fd.get('interesse'));
     if (fd.get('quantidade')) lines.push('Quantidade: ' + fd.get('quantidade'));
     if (fd.get('data')) { var p = String(fd.get('data')).split('-'); lines.push('Data desejada: ' + p[2] + '/' + p[1] + '/' + p[0]); }
     if (fd.get('orcamento')) lines.push('Orçamento: ' + fd.get('orcamento'));
@@ -423,6 +473,7 @@
     result.className = 'result' + (kind === 'ok' ? ' ok' : '');
     result.hidden = false;
     var box = result.querySelector('textarea'); if (box) box.value = summaryText();
+    var ref = result.querySelector('[data-pedido-ref]'); if (ref) ref.textContent = pedidoId.slice(0, 8).toUpperCase();
     var wa = result.querySelector('[data-wa-summary]');
     if (wa && CFG.whatsapp) wa.href = 'https://wa.me/' + CFG.whatsapp + '?text=' + encodeURIComponent(summaryText());
     var h = result.querySelector('h2');
@@ -442,29 +493,46 @@
       submitBtn.focus({ preventScroll: true });
     }
   });
+  // Só mostra "Recebemos o seu pedido" quando o n8n confirma que GRAVOU este pedido: {"gravado": true, "pedido_id": <o enviado>}.
+  // HTTP 200 sem essa confirmação, erro, timeout ou falha de rede mostram o estado de erro (com nova tentativa sem duplicar).
+  var sending = false;
   form.addEventListener('submit', function (e) {
     e.preventDefault();
+    if (sending) return;
     if (!validate()) { statusEl.textContent = 'Revise os campos destacados.'; return; }
+    sending = true;
     statusEl.textContent = 'Enviando…';
     submitBtn.disabled = true;
+    submitBtn.setAttribute('aria-busy', 'true');
     var body = new URLSearchParams(new FormData(form)).toString();
     var controller = 'AbortController' in window ? new AbortController() : null;
-    var timer = controller ? setTimeout(function () { controller.abort(); }, 15000) : null;
-    fetch(form.getAttribute('data-endpoint') || '/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: body, signal: controller ? controller.signal : undefined })
+    var timer = controller ? setTimeout(function () { controller.abort(); }, 20000) : null;
+    var tipoAtual = (form.querySelector('input[name="tipo"]:checked') || {}).value || '';
+    fetch(form.getAttribute('data-endpoint') || '/api/proposta', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded', 'Accept': 'application/json', 'X-TaMa-Envio': 'fetch' },
+      body: body, signal: controller ? controller.signal : undefined
+    })
       .then(function (r) {
-        if (!r.ok) throw new Error('HTTP ' + r.status);
+        if (!r.ok) throw new Error('http_' + r.status);
+        return r.json().catch(function () { throw new Error('resposta_invalida'); });
+      })
+      .then(function (d) {
+        if (!d || d.gravado !== true || d.pedido_id !== pedidoId) throw new Error('nao_confirmado');
         statusEl.textContent = '';
         form.hidden = true;
         showResult('ok');
-        track('form_submit_success', { tipo: (form.querySelector('input[name="tipo"]:checked') || {}).value || '', pecas: getSel().length });
+        track('proposta_gravada', { tipo: tipoAtual, pecas: getSel().length, origem: form.origem_pagina.value || '', duplicado: !!d.duplicado });
         setSel([]);
+        sset('tama-pedido-id', null);   // o próximo pedido nesta sessão ganha outro número
       })
       .catch(function (err) {
+        var motivo = err && err.name === 'AbortError' ? 'tempo_esgotado' : (err instanceof TypeError ? 'rede' : String((err && err.message) || err).slice(0, 40));
         statusEl.textContent = '';
         form.hidden = true;
         showResult('error');
-        track('form_submit_error', { reason: String((err && err.message) || err).slice(0, 80) });
+        track('proposta_falha', { tipo: tipoAtual, motivo: motivo });
       })
-      .then(function () { if (timer) clearTimeout(timer); submitBtn.disabled = false; });
+      .then(function () { if (timer) clearTimeout(timer); sending = false; submitBtn.disabled = false; submitBtn.removeAttribute('aria-busy'); });
   });
 })();

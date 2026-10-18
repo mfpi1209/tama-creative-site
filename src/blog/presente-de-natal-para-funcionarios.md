@@ -52,8 +52,8 @@ Presentes que vão para a cozinha, para o sofá ou para a mesa de café da manh�
 
 - **Manta:** textura e conforto, com a marca numa etiqueta discreta.
 - **Ritual de café:** coador, xícara e café, um gesto diário no lugar de mais uma caneca.
-- **Chá em latas:** blends com nomes criados para a empresa, em latas que continuam na cozinha.
-- **Vela com fragrância assinada:** a marca vira um cheiro, e o recipiente continua útil depois da vela.
+- **Chá em latas:** latas com a identidade da empresa, que continuam na cozinha depois do chá.
+- **Vela aromática:** com a marca na cinta ou no rótulo, e um recipiente que continua útil depois da vela.
 
 ### Para o dia a dia
 

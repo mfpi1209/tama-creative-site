@@ -171,11 +171,11 @@
    "eventos",
    "campanhas"
   ],
-  "copo-com-impressao-360": [
+  "copo-360": [
    "eventos",
    "campanhas"
   ],
-  "taca-de-champagne": [
+  "taca-de-champanhe": [
    "eventos",
    "lancamentos",
    "fim-de-ano"
@@ -211,8 +211,8 @@
   "cat-bone": "bone",
   "cat-caixa-personalizada": "caixa-para-presente",
   "cat-caneca": "caneca",
-  "cat-caneta-bambu": "caneta-ecologica-natural",
-  "cat-caneta-ecologica-em-kraft": "caneta-ecologica-kraft",
+  "cat-caneta-bambu": "caneta-natural",
+  "cat-caneta-ecologica-em-kraft": "caneta-kraft",
   "cat-caneta-executiva-esferografica": "caneta-executiva-esferografica",
   "cat-caneta-executiva-roller": "caneta-executiva-roller",
   "cat-caneta-metalica-com-giro": "caneta-com-acionamento-por-giro",
@@ -226,7 +226,7 @@
   "cat-chaveiro-abridor-de-garrafa": "chaveiro-abridor-de-garrafa",
   "cat-chaveiro-de-couro": "chaveiro-com-tira",
   "cat-copo": "copo-com-tampa",
-  "cat-copo-com-impressao-360": "copo-com-impressao-360",
+  "cat-copo-com-impressao-360": "copo-360",
   "cat-copo-de-cafe-em-inox": "copo-de-cafe",
   "cat-copo-de-papel-com-tampa": "copo-para-viagem",
   "cat-copo-termico-de-vinho": "copo-de-vinho-com-tampa",
@@ -242,7 +242,7 @@
   "cat-sacola-personalizada": "sacola-para-presente",
   "cat-saquinho-de-eva-pvc": "saquinho-transparente",
   "cat-squeeze": "squeeze",
-  "cat-taca-de-champagne-em-acrilico": "taca-de-champagne",
+  "cat-taca-de-champagne-em-acrilico": "taca-de-champanhe",
   "cat-taca-de-gin-em-acrilico": "taca-de-gin",
   "cat-taca-de-vinho-em-acrilico": "taca-de-vinho",
   "cat-vela": "vela",
@@ -263,6 +263,10 @@
   "polo-personalizada": "polo-masculina",
   "sacola-corporativa": "sacola-para-presente",
   "uniforme-personalizado": "dolma",
-  "vela-perfumada": "vela"
+  "vela-perfumada": "vela",
+  "caneta-ecologica-natural": "caneta-natural",
+  "caneta-ecologica-kraft": "caneta-kraft",
+  "copo-com-impressao-360": "copo-360",
+  "taca-de-champagne": "taca-de-champanhe"
  }
 }

@@ -615,7 +615,7 @@ def cms_config(b):
     date_fmt = {'widget': 'datetime', 'format': 'YYYY-MM-DD', 'date_format': 'DD/MM/YYYY', 'time_format': False, 'picker_utc': True}
     capas = sorted(k for k in b.IMAGES if not k.startswith('blog-'))
     pecas = [_opt(f'{c["nome"]} ({b.CAT_PROD[c["categoria"]]})', c['slug']) for c in b.CATALOGO]
-    tipos = {'brindes': 'Brindes corporativos', 'kits': 'Kits e presentes', 'confeccoes': 'Confecções e uniformes',
+    tipos = {'brindes': 'Brindes corporativos', 'kits': 'Kits premium', 'confeccoes': 'Confecções e uniformes',
              'ativacoes': 'Ativação ou degustação', 'hotelaria': 'Hotelaria e gastronomia', 'integrado': 'Mais de uma frente'}
     fields = [
         {'label': 'Título do artigo (H1)', 'name': 'title', 'widget': 'string',

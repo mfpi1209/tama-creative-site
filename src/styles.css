@@ -739,3 +739,11 @@ body:has(.wa-float) .float-bag { bottom: calc(88px + env(safe-area-inset-bottom,
   .wa-float .wa-icon { width: 28px; height: 28px; }
   .site-footer { padding-bottom: 72px; }
 }
+
+/* Atributo hidden sempre vence (componentes com display próprio, como .form e .result, anulavam o hidden) */
+[hidden] { display: none !important; }
+/* Botão de proposta dentro do menu: só no menu do celular */
+.site-nav .nav-cta { display: none; }
+@media (max-width: 1080px) { .site-nav .nav-cta { display: inline-flex; justify-content: center; margin-top: 14px; } }
+/* Celular: a sacola do cabeçalho já mostra a contagem; a flutuante cobria o "+ Selecionar" da peça ao lado */
+@media (max-width: 760px) { .float-bag { display: none !important; } }

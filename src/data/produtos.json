@@ -1484,7 +1484,7 @@
   },
   {
    "id": "caneta-bambu~natural",
-   "produto": "Caneta ecológica natural",
+   "produto": "Caneta natural",
    "categoria": "canetas-escritorio",
    "modelo": "Corpo claro com detalhes prateados",
    "cor": {
@@ -1502,7 +1502,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Caneta ecológica natural (corpo claro com detalhes prateados) na cor natural, com a marca TaMa aplicada como exemplo de personalização. Imagem ilustrativa.",
+   "alt": "Caneta natural (corpo claro com detalhes prateados) na cor natural, com a marca TaMa aplicada como exemplo de personalização. Imagem ilustrativa.",
    "uso": [
     "home",
     "catalogo"
@@ -2080,7 +2080,7 @@
   },
   {
    "id": "caneta-kraft~natural",
-   "produto": "Caneta ecológica kraft",
+   "produto": "Caneta kraft",
    "categoria": "canetas-escritorio",
    "modelo": "Corpo tom kraft com detalhes pretos",
    "cor": {
@@ -2098,7 +2098,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Caneta ecológica kraft (corpo tom kraft com detalhes pretos) na cor kraft, com a marca TaMa aplicada como exemplo de personalização. Imagem ilustrativa.",
+   "alt": "Caneta kraft (corpo tom kraft com detalhes pretos) na cor kraft, com a marca TaMa aplicada como exemplo de personalização. Imagem ilustrativa.",
    "uso": [
     "home",
     "catalogo"
@@ -3343,9 +3343,9 @@
   },
   {
    "id": "copo-acrilico-360~azul-marinho",
-   "produto": "Copo com impressão 360°",
+   "produto": "Copo 360°",
    "categoria": "garrafas-copos",
-   "modelo": "Estampa em toda a volta",
+   "modelo": "Área de marca em toda a volta",
    "cor": {
     "nome": "Azul-marinho",
     "hex": "#1E2A4A"
@@ -3361,7 +3361,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Copo com impressão 360° (estampa em toda a volta) na cor azul-marinho, com a marca TaMa aplicada como exemplo de personalização. Imagem ilustrativa.",
+   "alt": "Copo 360° (área de marca em toda a volta) na cor azul-marinho, com a marca TaMa aplicada como exemplo de personalização. Imagem ilustrativa.",
    "uso": [
     "catalogo"
    ],
@@ -3380,9 +3380,9 @@
   },
   {
    "id": "copo-acrilico-360~bordo",
-   "produto": "Copo com impressão 360°",
+   "produto": "Copo 360°",
    "categoria": "garrafas-copos",
-   "modelo": "Estampa em toda a volta",
+   "modelo": "Área de marca em toda a volta",
    "cor": {
     "nome": "Bordô",
     "hex": "#6B1E33"
@@ -3398,7 +3398,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Copo com impressão 360° (estampa em toda a volta) na cor bordô, com a marca TaMa aplicada como exemplo de personalização. Imagem ilustrativa.",
+   "alt": "Copo 360° (área de marca em toda a volta) na cor bordô, com a marca TaMa aplicada como exemplo de personalização. Imagem ilustrativa.",
    "uso": [
     "catalogo"
    ],
@@ -3417,9 +3417,9 @@
   },
   {
    "id": "copo-acrilico-360~terracota",
-   "produto": "Copo com impressão 360°",
+   "produto": "Copo 360°",
    "categoria": "garrafas-copos",
-   "modelo": "Estampa em toda a volta",
+   "modelo": "Área de marca em toda a volta",
    "cor": {
     "nome": "Terracota",
     "hex": "#B5603A"
@@ -3435,7 +3435,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Copo com impressão 360° (estampa em toda a volta) na cor terracota, com a marca TaMa aplicada como exemplo de personalização. Imagem ilustrativa.",
+   "alt": "Copo 360° (área de marca em toda a volta) na cor terracota, com a marca TaMa aplicada como exemplo de personalização. Imagem ilustrativa.",
    "uso": [
     "catalogo"
    ],
@@ -3454,9 +3454,9 @@
   },
   {
    "id": "copo-acrilico-360~verde-escuro",
-   "produto": "Copo com impressão 360°",
+   "produto": "Copo 360°",
    "categoria": "garrafas-copos",
-   "modelo": "Estampa em toda a volta",
+   "modelo": "Área de marca em toda a volta",
    "cor": {
     "nome": "Verde-escuro",
     "hex": "#1F4A35"
@@ -3472,7 +3472,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Copo com impressão 360° (estampa em toda a volta) na cor verde-escuro, com a marca TaMa aplicada como exemplo de personalização. Imagem ilustrativa.",
+   "alt": "Copo 360° (área de marca em toda a volta) na cor verde-escuro, com a marca TaMa aplicada como exemplo de personalização. Imagem ilustrativa.",
    "uso": [
     "catalogo"
    ],
@@ -5508,7 +5508,7 @@
    "id": "lacre~dourado",
    "produto": "Lacre",
    "categoria": "bolsas-embalagens",
-   "modelo": "Com o símbolo da marca, aplicado com carimbo",
+   "modelo": "Com o símbolo da marca",
    "cor": {
     "nome": "Dourado",
     "hex": "#C9A15F"
@@ -5524,7 +5524,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Lacre (com o símbolo da marca, aplicado com carimbo) na cor dourado, com a marca TaMa aplicada como exemplo de personalização. Imagem ilustrativa.",
+   "alt": "Lacre (com o símbolo da marca) na cor dourado, com a marca TaMa aplicada como exemplo de personalização. Imagem ilustrativa.",
    "uso": [
     "curadoria",
     "catalogo"
@@ -7237,7 +7237,7 @@
   },
   {
    "id": "taca-champagne-acrilico~azul-royal",
-   "produto": "Taça de champagne",
+   "produto": "Taça de champanhe",
    "categoria": "garrafas-copos",
    "modelo": "Modelo flute",
    "cor": {
@@ -7255,7 +7255,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Taça de champagne (modelo flute) na cor azul royal, com a marca TaMa aplicada como exemplo de personalização. Imagem ilustrativa.",
+   "alt": "Taça de champanhe (modelo flute) na cor azul royal, com a marca TaMa aplicada como exemplo de personalização. Imagem ilustrativa.",
    "uso": [
     "catalogo"
    ],
@@ -7274,7 +7274,7 @@
   },
   {
    "id": "taca-champagne-acrilico~branco",
-   "produto": "Taça de champagne",
+   "produto": "Taça de champanhe",
    "categoria": "garrafas-copos",
    "modelo": "Modelo flute",
    "cor": {
@@ -7292,7 +7292,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Taça de champagne (modelo flute) na cor branco, com a marca TaMa aplicada como exemplo de personalização. Imagem ilustrativa.",
+   "alt": "Taça de champanhe (modelo flute) na cor branco, com a marca TaMa aplicada como exemplo de personalização. Imagem ilustrativa.",
    "uso": [
     "catalogo"
    ],
@@ -7311,7 +7311,7 @@
   },
   {
    "id": "taca-champagne-acrilico~preto",
-   "produto": "Taça de champagne",
+   "produto": "Taça de champanhe",
    "categoria": "garrafas-copos",
    "modelo": "Modelo flute",
    "cor": {
@@ -7329,7 +7329,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Taça de champagne (modelo flute) na cor preto, com a marca TaMa aplicada como exemplo de personalização. Imagem ilustrativa.",
+   "alt": "Taça de champanhe (modelo flute) na cor preto, com a marca TaMa aplicada como exemplo de personalização. Imagem ilustrativa.",
    "uso": [
     "catalogo"
    ],
@@ -7348,7 +7348,7 @@
   },
   {
    "id": "taca-champagne-acrilico~vermelho",
-   "produto": "Taça de champagne",
+   "produto": "Taça de champanhe",
    "categoria": "garrafas-copos",
    "modelo": "Modelo flute",
    "cor": {
@@ -7366,7 +7366,7 @@
    "fornecedor": null,
    "sku": null,
    "estoque": null,
-   "alt": "Taça de champagne (modelo flute) na cor vermelho, com a marca TaMa aplicada como exemplo de personalização. Imagem ilustrativa.",
+   "alt": "Taça de champanhe (modelo flute) na cor vermelho, com a marca TaMa aplicada como exemplo de personalização. Imagem ilustrativa.",
    "uso": [
     "catalogo"
    ],

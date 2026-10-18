@@ -66,6 +66,11 @@
     var a = e.target.closest('a[href^="https://wa.me/"]');
     if (!a || a.hasAttribute('data-wa-summary') || !CFG.whatsapp) return;
     var assunto = a.getAttribute('data-interesse') || document.body.getAttribute('data-assunto') || 'um projeto';
+    var pf = document.getElementById('proposal-form');   // no formulário: o interesse ou o tipo marcado
+    if (pf && !a.getAttribute('data-interesse')) {
+      var ti = pf.querySelector('input[name="tipo"]:checked');
+      assunto = (pf.interesse && pf.interesse.value) || (ti ? ti.parentNode.textContent.trim().toLowerCase() : assunto);
+    }
     var msg = 'Olá, TaMa! Vim pelo site e gostaria de conversar sobre ' + assunto + '.';
     var sel = getSel();
     if (sel.length) msg += '\nPeças que selecionei: ' + sel.map(label).join('; ') + '.';
@@ -439,6 +444,11 @@
   setField('interesse', interesse);
   if (interesse) { var note = document.getElementById('interest-note'); note.textContent = 'Interesse: ' + interesse; note.hidden = false; }
   var origemPagina = paginaAnterior || '';
+  // vindo de uma página de frente (ex.: "Montar pedido com a seleção" na Hotelaria), o tipo já vem marcado
+  var tipoPorPagina = { '/brindes-corporativos/': 'brindes', '/brindes-corporativos-premium/': 'brindes', '/kits-corporativos/': 'kits', '/confeccoes-personalizadas/': 'confeccoes', '/ativacoes-promocionais/': 'ativacoes', '/hotelaria-e-gastronomia/': 'hotelaria' };
+  if (!form.querySelector('input[name="tipo"]:checked') && tipoPorPagina[origemPagina]) {
+    var rt = form.querySelector('input[name="tipo"][value="' + tipoPorPagina[origemPagina] + '"]'); if (rt) { rt.checked = true; syncType(); }
+  }
   if (!origemPagina) { try { var rf = document.referrer ? new URL(document.referrer) : null; if (rf && rf.host === location.host) origemPagina = rf.pathname; } catch (e) {} }
   setField('origem_pagina', origemPagina);
   ['primeira_pagina', 'referencia', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'].forEach(function (k) { setField(k, origem[k]); });

@@ -56,7 +56,7 @@ Algumas perguntas ajudam a filtrar as ideias:
 
 Peças de uso diário funcionam bem, e ideias menos óbvias também: uma tábua de queijos que aparece em todo encontro de fim de semana, guardanapos de linho com bordado tom sobre tom, chás em latas que ficam na cozinha depois do último sachê. O que importa é o presente fazer sentido para a vida de quem recebe.
 
-[[cta: Quer uma seleção pensada para a sua carteira de clientes? Conte quem vai receber e o que vocês viveram neste ano. A TaMa propõe peças, embalagem e mensagem.]]
+[[cta: Quer uma seleção pensada para a sua carteira de clientes? Conte quem vai receber e o que vocês viveram neste ano. A TaMa propõe peças, embalagem e cartão.]]
 
 ## A marca na medida certa
 

@@ -599,7 +599,19 @@
     var cards = document.querySelectorAll('#gift-grid .product, #idea-grid .idea');
     var countEl = document.getElementById('gift-count'), emptyEl = document.getElementById('gift-empty');
     var alemHead = document.getElementById('alem-head');
+    // abertura por ocasião: foto e texto vêm do <template data-occ-hero> da ocasião escolhida (a de "todas" já está na página)
+    var heroTodas = document.querySelector('.foto-hero'), heroAtual = 'todas';
+    var trocaHero = function () {
+      var k = state.occ;
+      if (!heroTodas || k === heroAtual) return;
+      var tpl = document.querySelector('template[data-occ-hero="' + k + '"]');
+      var atual = document.querySelector('.foto-hero');
+      var novo = k === 'todas' || !tpl ? heroTodas : tpl.content.firstElementChild.cloneNode(true);
+      if (atual && novo !== atual) atual.replaceWith(novo);
+      heroAtual = k;
+    };
     var apply = function () {
+      trocaHero();
       var n = 0, nAlem = 0;
       cards.forEach(function (g) {
         var cat = g.getAttribute('data-cat');

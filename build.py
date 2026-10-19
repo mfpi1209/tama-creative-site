@@ -215,11 +215,11 @@ IMAGES = {}
 
 # largura real da foto do carrossel (fotos 3:2 na metade direita; no celular, um pouco maior que a tela por causa do corte)
 HERO_SIZES = '(max-width: 760px) 120vw, 95vw'
-CARROSSEL_HQ = {'hero-brindes-v2', 'fim-header', 'hero-v3-confeccoes-v2', 'hero-kits-v2', 'home-escritorio-v2'}
+CARROSSEL_HQ = {'hero-brindes-v2', 'fim-header', 'hero-v3-confeccoes-v2', 'hero-kits-v2', 'home-escritorio-v2', 'slide-ativacoes'}
 # fotos do carrossel mais estreitas que 1,9:1 que também já trazem o vazio do texto à esquerda (fim-header: a parede
 # iluminada ocupa o primeiro terço; a taça solta começa em ~37% da largura)
 CARROSSEL_RESPIRO = {'fim-header'}
-FOTOS_HQ = CARROSSEL_HQ | {'home-frente-brindes-v2', 'home-frente-confeccoes-v2', 'home-frente-kits-v2', 'kits-header', 'conf-header', 'ativ-header', 'hot-header', 'brindes-header', 'brindes-entrega', 'fim-header', 'blog-header', 'sobre-header'}   # fotos enviadas em alta pela TaMa (home e cabeçalhos de kits e confecções)
+FOTOS_HQ = CARROSSEL_HQ | {'home-frente-brindes-v2', 'home-frente-confeccoes-v2', 'home-frente-kits-v2', 'kits-header', 'conf-header', 'ativ-header', 'hot-header', 'brindes-header', 'brindes-entrega', 'fim-header', 'blog-header', 'sobre-header', 'ocasiao-boas-vindas', 'ocasiao-eventos', 'ocasiao-executivos', 'ocasiao-campanhas', 'ocasiao-lancamentos', 'ocasiao-reconhecimento', 'sobre-caderno', 'sobre-uniforme', 'sobre-caixa', 'slide-ativacoes'}   # fotos enviadas em alta pela TaMa (home e cabeçalhos de kits e confecções)
 
 
 def build_images():
@@ -840,7 +840,7 @@ def prova_block(chave):
     tid = f'prova-{chave}-t'
     demo = ''
     if MOCKUPS and 'caderno-azul--casa-mirelo' in IMAGES and 'caderno-azul' in IMAGES:
-        sz = '(max-width: 760px) 42vw, 220px'
+        sz = '(max-width: 760px) 46vw, (max-width: 1180px) 28vw, 340px'
         demo = (f'<div class="prova-demo"><div class="prova-pair">'
                 f'<figure>{picture("caderno-azul", "Caderno azul com a marca TaMa Creative aplicada na capa.", sz)}<figcaption>TaMa Creative</figcaption></figure>'
                 f'<figure>{picture("caderno-azul--casa-mirelo", "O mesmo caderno azul com a marca fictícia Casa Mirelo aplicada na capa.", sz)}<figcaption>Casa Mirelo · marca fictícia</figcaption></figure>'
@@ -849,8 +849,8 @@ def prova_block(chave):
     return f'''<section class="section prova{' sem-demo' if not demo else ''}" aria-labelledby="{tid}">
   <div class="wrap">
     <div class="prova-in">
-      <div class="prova-head"><p class="eyebrow">Como a TaMa trabalha</p><h2 id="{tid}" class="section-title">O que sustenta cada projeto</h2><p class="muted">{intro}</p></div>
       {demo}
+      <div class="prova-head"><p class="eyebrow">Como a TaMa trabalha</p><h2 id="{tid}" class="section-title">A mesma peça. <em>A marca da sua empresa.</em></h2><p class="muted">{intro}</p></div>
       <ul class="prova-list">{itens}</ul>
     </div>
   </div>
@@ -1047,6 +1047,25 @@ def nav_menu(path):
             + grupo('contato', 'Contato', contato))
 
 
+# Redes sociais no rodapé. Endereços provisórios (placeholders) até a TaMa confirmar os perfis: troque o href aqui
+# (o Instagram usa site.config.json › instagram quando preenchido).
+REDES = [
+    ('Instagram', f'https://www.instagram.com/{IG}/' if IG else '#', '<rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r=".9" fill="currentColor" stroke="none"/>'),
+    ('LinkedIn', '#', '<rect x="3.5" y="3.5" width="17" height="17" rx="3"/><path d="M8 10.5V16M8 7.8v.1M11.5 16v-3.2c0-1.4.9-2.3 2.1-2.3s1.9.9 1.9 2.3V16M11.5 10.5V16"/>'),
+    ('Facebook', '#', '<rect x="3.5" y="3.5" width="17" height="17" rx="5"/><path d="M13.2 20.5v-6.7h2.3l.4-2.6h-2.7V9.6c0-.8.3-1.3 1.4-1.3h1.4V6c-.3 0-1.1-.1-2.1-.1-2.1 0-3.4 1.2-3.4 3.5v1.8H8.2v2.6h2.3v6.7"/>'),
+    ('YouTube', '#', '<rect x="2.8" y="5.8" width="18.4" height="12.4" rx="3.6"/><path d="M10.4 9.6v4.8l4.2-2.4z" fill="currentColor" stroke="none"/>'),
+]
+
+
+def redes_html():
+    lis = ''
+    for nome, href, svg in REDES:
+        extra = ' data-placeholder' if href == '#' else ' rel="noopener"'
+        lis += (f'<li><a href="{href}" aria-label="TaMa Creative no {nome}"{extra}>'
+                f'<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">{svg}</svg></a></li>')
+    return f'<ul class="footer-social" aria-label="Redes sociais">{lis}</ul>'
+
+
 def header(path):
     links = nav_menu(path)
     return f'''<a class="skip" href="#conteudo">Pular para o conteúdo</a>
@@ -1096,7 +1115,7 @@ def footer():
     empresa = empresa_linha()
     return f'''<footer class="site-footer">
   <div class="wrap footer-grid">
-    <div class="footer-brand"><a class="brand" href="/" aria-label="TaMa Creative, página inicial">{LOGO_DECOR}</a><p>{ASSINATURA} A TaMa seleciona as peças, personaliza com a marca da sua empresa e coordena os fornecedores até a entrega.</p></div>
+    <div class="footer-brand"><a class="brand" href="/" aria-label="TaMa Creative, página inicial">{LOGO_DECOR}</a><p>{ASSINATURA} A TaMa seleciona as peças, personaliza com a marca da sua empresa e coordena os fornecedores até a entrega.</p>{redes_html()}</div>
     <div><p class="footer-title">Soluções</p><ul class="footer-links">{sol}</ul></div>
     <div><p class="footer-title">Ocasiões e catálogo</p><ul class="footer-links">{ocas}</ul></div>
     <div><p class="footer-title">TaMa</p><ul class="footer-links"><li><a href="/sobre/">Sobre</a></li><li><a href="/blog/">Conteúdos</a></li><li><a href="/privacidade/">Privacidade</a></li><li><button class="link-btn" type="button" data-consent-open>Cookies</button></li></ul></div>
@@ -1196,10 +1215,13 @@ def steps_html(light=False):
         f'<h3>{t}</h3><p>{d}</p></li>' for i, (t, d, k) in enumerate(STEPS)) + '</ol>'
 
 
-def process_section(eyebrow, titulo, apoio='', aria='processo-t', light=True, sid=None, cls='ivory'):
+def process_section(eyebrow, titulo, apoio='', aria='processo-t', light=True, sid=None, cls='ivory', verde=True):
     """Seção padrão do passo a passo: section-head (eyebrow e título contextuais por página, parágrafo de apoio opcional)
     e os 6 cartões de STEPS, sempre com os mesmos nomes, textos e ícones. Posição padrão nas páginas: depois das peças
     ou kits e antes das perguntas. cls: fundo da seção ('ivory' ou '' para o fundo claro); sid: id da seção (âncora)."""
+    # verde (on-dark) por padrão: destaca o método entre blocos claros; verde=False onde a seção vizinha já é verde (kits)
+    if verde:
+        cls, light = 'on-dark', False
     apoio_html = f'<p class="muted">{apoio}</p>' if apoio else ''
     return f'''<section class="section{' ' + cls if cls else ''} process-section"{f' id="{sid}"' if sid else ''} aria-labelledby="{aria}">
   <div class="wrap">
@@ -1459,7 +1481,7 @@ def hero_carousel(slides=None, label='Destaques da TaMa Creative', assurances=Tr
         ('tone-linen', 'home-escritorio-v2', '--fx:100%;--fx-m:68%', 'Caderno azul-marinho, canetas, porta-canetas e estojo pretos e bandeja creme, com a marca fictícia Casa Mirelo.', 'Canetas e escritório', 'Boas ideias merecem <em>boa companhia</em>.',
          'Blocos, cadernos, canetas e acessórios para a rotina profissional.',
          cta_link('Solicitar proposta', track_label='hero-4') + '<a class="btn btn-line" href="/catalogo/?categoria=canetas-escritorio#catalogo">Ver canetas e escritório ' + ARROW + '</a>'),
-        ('tone-sage', 'conf-degustacao-v2', '--fx:42%;--fx-m:40%', 'Cena ilustrativa: equipe de camiseta branca e avental com a marca fictícia Solar servindo degustação num supermercado.', 'Ativações promocionais', 'Sua marca perto de quem <em>compra</em>.',
+        ('tone-cream', 'slide-ativacoes', '--fx:100%;--fx-m:70%', 'Kit de ativação da marca fictícia Solar: avental preto, camiseta branca, boné amarelo, copinhos de degustação numa bandeja e display de balcão.', 'Ativações promocionais', 'Sua marca perto de quem <em>compra</em>.',
          'Degustações, ações em feiras e eventos e promoções no ponto de venda, com uniformes, materiais e brindes na identidade da sua marca.',
          cta_link('Solicitar proposta', tipo='ativacoes', track_label='hero-5') + '<a class="btn btn-line" href="/ativacoes-promocionais/">Conhecer as ativações ' + ARROW + '</a>'),
     ]
@@ -1684,7 +1706,7 @@ def page_kits():
     </div>
   </div>
 </section>
-{process_section('Do briefing à entrega', 'Como montamos o seu kit', 'Seis etapas, com a composição, a embalagem e a arte aprovadas por você antes da produção.', 'kit-m-t')}
+{process_section('Do briefing à entrega', 'Como montamos o seu kit', 'Seis etapas, com a composição, a embalagem e a arte aprovadas por você antes da produção.', 'kit-m-t', verde=False)}
 ''' + faq([
             ('O que colocar em um kit de boas-vindas?', 'Uma combinação que funciona: uma peça de uso diário (garrafa, caderno), um mimo que gere afeto (caneca, manta) e um material sobre a cultura da empresa, como uma carta de boas-vindas. A proposta ajusta a composição ao seu público.'),
             ('Dá para ter versões diferentes do mesmo kit?', 'Sim. A proposta pode prever versões por área ou ocasião, mantendo a mesma linguagem visual.'),
@@ -1692,6 +1714,42 @@ def page_kits():
             ('Com quanto tempo de antecedência devo pedir?', 'Quanto antes, mais opções de peças e acabamentos. Informe a data desejada no pedido e confirmamos o prazo na proposta.'),
         ], title='Perguntas sobre kits') + guias_block('kits') + end_cta('Vamos montar o seu kit?', 'Conte a ocasião, o público e a quantidade: a TaMa propõe a composição, a caixa e o cartão com a sua marca.', tipo='kits'),
     }
+
+
+# Abertura de /brindes-por-ocasiao/: foto e texto mudam com a ocasião escolhida (o site.js troca pelo <template>).
+# (imagem, alt, eyebrow, linhas do título, destaque em itálico, apoio). Todas as fotos com marcas fictícias.
+OCC_HEROS = {
+    'todas': ('brindes-header', 'Brindes com marcas fictícias sobre blocos de pedra: garrafa azul Nexo, ecobag Vera, copo Elo e caderno verde.',
+              'Brindes por ocasião', ['Cada ocasião'], 'pede um presente.',
+              'Boas-vindas, eventos, fim de ano, reconhecimento: escolha a ocasião, veja as peças que a TaMa sugere e envie a seleção junto com o pedido de proposta.'),
+    'boas-vindas': ('ocasiao-boas-vindas', 'Kit de boas-vindas da marca fictícia Nexo numa caixa kraft: garrafa e caderno azul-petróleo, crachá e cartão, com uma caneca ao lado.',
+                    'Boas-vindas', ['Um começo'], 'com a cara da sua empresa.',
+                    'Kits com caderno, garrafa, caneca e crachá na identidade da sua marca, para quem chega se sentir parte do time desde o primeiro dia.'),
+    'eventos': ('ocasiao-eventos', 'Brindes de evento da marca fictícia Solar: ecobags com alças amarelas, copos, boné e cordão sobre blocos de pedra.',
+                'Eventos', ['Sua marca'], 'presente em cada encontro.',
+                'Ecobags, copos, bonés e cordões para estandes, feiras e convenções, nas cores da sua empresa.'),
+    'executivos': ('ocasiao-executivos', 'Presentes executivos da marca fictícia Orla: caneta em estojo, caderno preto, porta-cartões e garrafa metálica sobre pedra escura.',
+                   'Presentes executivos', ['Gestos à altura'], 'de relações importantes.',
+                   'Canetas em estojo, cadernos, porta-cartões e garrafas com acabamento sóbrio para clientes, parceiros e diretoria.'),
+    'campanhas': ('ocasiao-campanhas', 'Kit de campanha da marca fictícia Vera: copos, squeeze, camiseta branca e uma bandeja de degustação sobre blocos de pedra.',
+                  'Campanhas e ativações', ['Ações que'], 'chegam ao ponto de venda.',
+                  'Copos, squeezes, camisetas e materiais para degustações, promoções e ativações com a marca da sua empresa.'),
+    'lancamentos': ('ocasiao-lancamentos', 'Caixa de lançamento da marca fictícia Pulso aberta com papel de seda, produto embrulhado em azul, caderno e cartão.',
+                    'Lançamentos', ['Um lançamento'], 'que começa na caixa.',
+                    'Caixas de envio, papel de seda, cartão e peças para apresentar um produto à imprensa, a parceiros e à equipe.'),
+    'fim-de-ano': ('fim-header', 'Caixa de presente terracota aberta com duas taças flute e cartão, com o símbolo de uma marca fictícia, e uma taça ao lado.',
+                   'Fim de ano', ['Um brinde a quem'], 'fez parte do seu ano.',
+                   'Taças, copos e presentes personalizados para agradecer clientes, reconhecer equipes e celebrar parcerias.'),
+    'reconhecimento': ('ocasiao-reconhecimento', 'Presente de reconhecimento da marca fictícia Flora: garrafa e vela verdes e cartão numa caixa clara com laço verde.',
+                       'Reconhecimento', ['Um obrigado'], 'que fica na mesa.',
+                       'Presentes para reconhecer metas, tempo de casa e projetos entregues: garrafa, vela, caixa e cartão com a sua marca.'),
+}
+
+
+def occ_hero(trail, k):
+    img, alt, eyebrow, linhas, destaque, desc = OCC_HEROS[k]
+    acoes = cta_link(tipo='brindes', track_label='ocasiao-head-' + k) + f'<a class="btn btn-line" href="#pecas">Ver as peças</a>'
+    return foto_hero(trail, img, alt, eyebrow, linhas, destaque, desc, acoes, NOTA_FICTICIA, pos_m='80% center')
 
 
 def page_curadoria():
@@ -1712,12 +1770,12 @@ def page_curadoria():
         'service': {'key': 'ocasioes', 'name': 'Brindes e presentes corporativos por ocasião', 'type': 'Brindes corporativos'},
         'assunto': 'brindes e presentes por ocasião',
         'wp_type': 'CollectionPage', 'ld_extra': [item_list],
-        'body': text_head('Brindes por ocasião', 'Brindes e presentes corporativos por ocasião',
-                          'Boas-vindas, eventos, fim de ano, reconhecimento: escolha a ocasião, veja as peças que a TaMa sugere e envie a seleção junto com o pedido de proposta. Todas as peças vêm do mesmo catálogo.') + f'''
+        'crumbs_inline': True,
+        'preload': preload_image('brindes-header', FOTO_HERO_SIZES),
+        'body': occ_hero([('/', 'Início'), ('/brindes-por-ocasiao/', 'Brindes por ocasião')], 'todas') + ''.join(f'<template data-occ-hero="{k}">{occ_hero([('/', 'Início'), ('/brindes-por-ocasiao/', 'Brindes por ocasião')], k)}</template>' for k in OCC_HEROS if k != 'todas') + f'''
 {season_callout('ocasioes')}
 <section class="section ivory" id="pecas" style="padding-top:clamp(32px,4vw,52px)" aria-label="Peças por ocasião">
   <div class="wrap">
-    {brand_note()}
     <div class="stack" style="gap:12px;margin-bottom:26px">
       <div class="filters" role="group" aria-label="Filtrar por ocasião" style="flex-wrap:wrap">{occ_chips}</div>
       <div class="filters" role="group" aria-label="Filtrar por categoria" style="flex-wrap:wrap">{cat_chips}</div>
@@ -2040,14 +2098,22 @@ def page_sobre():
 <section class="section question" aria-label="A pergunta que abre cada projeto">
   <div class="wrap"><p class="eyebrow light">Ponto de partida</p><blockquote>O que queremos que as pessoas lembrem da sua marca?</blockquote><p style="margin-top:16px;max-width:36rem">É a pergunta que abre cada projeto. A resposta orienta a seleção das peças, a personalização e a execução.</p></div>
 </section>
-<section class="editorial" aria-labelledby="ed-t">
-  <div class="wrap editorial-grid">
-    <div class="editorial-text">
-      <p class="eyebrow">O que nos move</p>
+<section class="manifesto" aria-labelledby="ed-t">
+  <div class="wrap">
+    <div class="manifesto-head">
+      <p class="eyebrow light">O que nos move</p>
       <h2 id="ed-t">Marca não é o que se diz. <em>É o que fica.</em></h2>
-      <p>Um caderno aberto todos os dias. Um uniforme usado com orgulho. Uma caixa guardada na estante. A TaMa leva a sua marca às escolhas de produto, cor e acabamento, pensando no público e na ocasião antes da peça.</p>
+      <p>Uma marca se constrói nos objetos que as pessoas escolhem manter por perto. É para esses momentos que a TaMa trabalha.</p>
     </div>
-    <div class="editorial-photo">{picture('editorial-kit-cores', 'Peças em cores variadas com a marca TaMa: pasta, agenda, garrafa, caneca, caixa, guarda-chuva, carregador e caderno.', '(max-width: 760px) 92vw, 55vw')}</div>
+    <ol class="manifesto-cenas" role="list">
+      <li><figure>{picture('sobre-caderno', 'Mãos escrevendo num caderno aberto pela manhã; ao lado, um caderno verde da marca fictícia Vera e uma xícara de café.', '(max-width: 760px) 92vw, 31vw')}<figcaption><span>01</span>Um caderno aberto <em>todos os dias.</em></figcaption></figure></li>
+      <li><figure>{picture('sobre-uniforme', 'Barista de polo azul-marinho com a marca fictícia Elo bordada no peito, preparando café num balcão iluminado.', '(max-width: 760px) 92vw, 31vw')}<figcaption><span>02</span>Um uniforme usado <em>com orgulho.</em></figcaption></figure></li>
+      <li><figure>{picture('sobre-caixa', 'Caixa azul-petróleo da marca fictícia Nexo guardada numa estante, entre livros, uma planta e porta-retratos.', '(max-width: 760px) 92vw, 31vw')}<figcaption><span>03</span>Uma caixa guardada <em>na estante.</em></figcaption></figure></li>
+    </ol>
+    <div class="manifesto-fecho">
+      <p>Por isso a TaMa começa pelo público e pela ocasião, e só depois escolhe a peça, a cor e o acabamento. A marca é da sua empresa; o cuidado para ela ficar é o nosso trabalho.</p>
+      <p class="manifesto-nota">{NOTA_FICTICIA}</p>
+    </div>
   </div>
 </section>
 {dados_html}

@@ -399,7 +399,7 @@ try {
     await page.goto(BASE + path, { waitUntil: 'networkidle0' });
     const p = await page.evaluate(() => ({
       secoes: document.querySelectorAll('section.process-section').length,
-      listas: document.querySelectorAll('ol.process-steps.light').length,
+      listas: document.querySelectorAll('ol.process-steps').length,
       nomes: [...document.querySelectorAll('.process-step h3')].map(h => h.textContent.trim()).join(','),
       icones: document.querySelectorAll('.process-step .process-icon').length,
       antigo: document.querySelectorAll('.steps, .step').length,
@@ -625,8 +625,15 @@ try {
   ok(rob.includes('Disallow: /admin/') && !rob.includes('/brindes/'), 'robots.txt sem o app /brindes/ e com o editor fora da busca');
 
   console.log('Aberturas e cabeçalho do site');
+  // ocasiões: abertura com foto que troca com a ocasião escolhida (um H1 só, foto em alta, marca fictícia)
+  await bp.goto(BASE + '/brindes-por-ocasiao/?ocasiao=eventos', { waitUntil: 'networkidle0' });
+  ok(await bp.evaluate(() => document.querySelectorAll('h1').length === 1 && /Sua marca/.test(document.querySelector('.foto-hero h1').textContent) && /ocasiao-eventos/.test(document.querySelector('.foto-hero-photo img').getAttribute('srcset') || '') && document.querySelectorAll('template[data-occ-hero]').length === 7),
+     '/brindes-por-ocasiao/: abertura com foto por ocasião (eventos) e um H1 só');
+  await bp.click('.chip[data-filter="occ"][data-value="todas"]'); await sleep(200);
+  ok(await bp.evaluate(() => /Cada ocasião/.test(document.querySelector('.foto-hero h1').textContent)), '/brindes-por-ocasiao/: "Todas" volta à abertura geral');
+  ok(!(await bp.$('.brand-note')), '/brindes-por-ocasiao/: sem o bloco antigo "Sua marca é a protagonista"');
   // páginas sem foto de abertura usam o mesmo cabeçalho de texto (text_head): eyebrow + um H1 + apoio no mesmo bloco
-  for (const p of ['/solicitar-proposta/', '/obrigado/', '/privacidade/', '/404.html', '/brindes-por-ocasiao/', '/catalogo/caneca/', idx.posts[0]]) {
+  for (const p of ['/solicitar-proposta/', '/obrigado/', '/privacidade/', '/404.html', '/catalogo/caneca/', idx.posts[0]]) {
     await bp.goto(BASE + p, { waitUntil: 'networkidle0' });
     const t = await bp.evaluate(() => { const c = document.querySelector('.text-head-copy'); return { h1s: document.querySelectorAll('h1').length, bloco: !!c, ordem: !!c && !!c.querySelector('.eyebrow') && c.querySelector('.eyebrow').compareDocumentPosition(c.querySelector('h1')) === 4 && !!c.querySelector('.lead'), foto: !!document.querySelector('.foto-hero, .text-head img') }; });
     ok(t.h1s === 1 && t.bloco && t.ordem && !t.foto, `${p}: cabeçalho de texto padrão (eyebrow, H1 único e apoio), sem foto`);

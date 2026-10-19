@@ -40,7 +40,7 @@
   --s-2xl: clamp(2.4rem, 1.6rem + 3.4vw, 4.2rem);
   --s-hero: clamp(2.7rem, 1.6rem + 4.4vw, 4.9rem);
 
-  --gutter: clamp(16px, 4vw, 48px);
+  --gutter: clamp(16px, 3vw, 48px);   /* mesma margem do cabeçalho */
   --radius: 6px;
   --header-h: 78px;
   color-scheme: light;
@@ -67,7 +67,7 @@ button { font: inherit; color: inherit; }
 .skip:focus { top: 12px; }
 
 /* Layout */
-.wrap { max-width: 1280px; margin-inline: auto; padding-inline: var(--gutter); }
+.wrap { max-width: 1440px; margin-inline: auto; padding-inline: var(--gutter); }
 .section { padding-block: clamp(60px, 8vw, 104px); }
 /* duas seções seguidas com o mesmo fundo: o respiro da anterior já basta (evita ~200 px de vazio) */
 .section:not(.ivory):not(.on-dark) + .section:not(.ivory):not(.on-dark) { padding-top: 0; }
@@ -756,7 +756,7 @@ body:has(.wa-float) .float-bag { bottom: calc(88px + env(safe-area-inset-bottom,
 /* Catálogo: busca acima da grade, filtro lateral (categoria e família de cor) e fotos grandes. Abaixo de 1200 px os
    filtros abrem numa gaveta (a partir de 1200 px ficam na lateral); no celular, uma foto por linha (ou duas, à
    escolha do visitante). */
-.cat-layout { max-width: 1280px; margin-top: clamp(20px, 2.4vw, 32px); display: grid; grid-template-columns: 240px minmax(0, 1fr); gap: 0 clamp(28px, 3vw, 44px); align-items: start; }
+.cat-layout { max-width: 1440px; margin-top: clamp(20px, 2.4vw, 32px); display: grid; grid-template-columns: 240px minmax(0, 1fr); gap: 0 clamp(28px, 3vw, 44px); align-items: start; }
 .cat-side { position: sticky; top: calc(var(--header-h) + 20px); max-height: calc(100dvh - var(--header-h) - 40px); overflow-y: auto; overscroll-behavior: contain; padding: 4px 4px 12px 0; }
 .cat-side-head, .cat-side-foot, .cat-open, .cat-view, .cat-scrim { display: none; }
 .cat-side-title { font: 400 1.5rem/1.2 var(--f-serif); }
@@ -915,7 +915,7 @@ html.cat-lock { overflow: hidden; }
 
 /* Home: faixa de garantias + três frentes (mockup "Trio editorial", 18/10/2026) */
 /* Faixa de garantias: 3 itens centrados, divisórias finas, fio da largura do conteúdo embaixo */
-.garantias { list-style: none; margin: 0 auto; padding: 20px 0 22px; width: min(100% - 2 * var(--gutter), 1280px - 2 * var(--gutter)); display: flex; justify-content: center; align-items: center; border-bottom: 1px solid var(--line-strong); border-bottom-color: color-mix(in srgb, var(--wine) 22%, var(--bg)); font-size: .9375rem; line-height: 1.3; color: var(--muted); color: color-mix(in srgb, var(--muted) 70%, var(--ink)); }
+.garantias { list-style: none; margin: 0 auto; padding: 20px 0 22px; width: min(100% - 2 * var(--gutter), 1440px - 2 * var(--gutter)); display: flex; justify-content: center; align-items: center; border-bottom: 1px solid var(--line-strong); border-bottom-color: color-mix(in srgb, var(--wine) 22%, var(--bg)); font-size: .9375rem; line-height: 1.3; color: var(--muted); color: color-mix(in srgb, var(--muted) 70%, var(--ink)); }
 .garantias li { position: relative; display: inline-flex; align-items: center; gap: 14px; padding-inline: clamp(18px, 3.8vw, 56px); white-space: nowrap; }
 .garantias li:first-child { padding-left: 0; }
 .garantias li:last-child { padding-right: 0; }
@@ -1434,3 +1434,4 @@ body:has(.pdp-wrap) .crumbs.wrap { max-width: 1440px; padding-inline: clamp(16px
   .product.pdp { grid-template-columns: minmax(0, 1fr); gap: 22px; }
   .pdp-info { position: static; }
 }
+@media (min-width: 1360px) { .studio-grid.cat-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }   /* largura de 1440px: 4 modelos por linha */

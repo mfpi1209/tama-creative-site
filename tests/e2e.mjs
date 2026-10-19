@@ -46,19 +46,20 @@ try {
   const links = await page.$$eval('a[href^="/"]', as => [...new Set(as.map(a => a.getAttribute('href').split('#')[0].split('?')[0]))]);
   const broken = [];
   for (const l of links) { const r = await fetch(BASE + l); await r.arrayBuffer(); if (r.status !== 200) broken.push(l + ' ' + r.status); }
-  const catHref = await page.$eval('#site-nav', n => [...n.querySelectorAll('a')].map(a => [a.textContent.trim(), a.getAttribute('href')]).find(([t]) => t === 'Catálogo completo')?.[1]);
-  ok(catHref === '/catalogo/', `menu Catálogo › "Catálogo completo" abre /catalogo/ (${catHref})`);
+  const catHref = await page.$eval('#sub-categoria', n => [...n.querySelectorAll('a')].map(a => [a.textContent.trim(), a.getAttribute('href')]).find(([t]) => t === 'Ver o catálogo completo')?.[1]);
+  ok(catHref === '/catalogo/', `menu Por categoria › "Ver o catálogo completo" abre /catalogo/ (${catHref})`);
+  ok(await page.$eval('#site-nav .head-search', f => f.getAttribute('action') === '/catalogo/' && f.querySelector('input').name === 'q'), 'menu do celular tem a busca no catálogo (/catalogo/?q=)');
   ok(broken.length === 0, `${links.length} links internos respondem 200${broken.length ? ' — quebrados: ' + broken.join(', ') : ''}`);
   await page.evaluate(() => localStorage.setItem('tama-consent', 'denied'));   // o aviso de cookies (testado adiante) cobriria o fim do menu no celular
   await page.reload({ waitUntil: 'networkidle0' });
   await page.click('#menu-btn');
   ok(await page.$eval('#site-nav', n => n.classList.contains('is-open')), 'menu mobile abre');
-  await page.click('[aria-controls="sub-solucoes"]');
-  ok(await page.$eval('[aria-controls="sub-solucoes"]', b => b.getAttribute('aria-expanded') === 'true') && await page.$eval('#sub-solucoes', d => getComputedStyle(d).display !== 'none' && d.querySelectorAll('a').length === 5), 'no celular, Soluções abre em acordeão com as cinco áreas');
-  await page.click('[aria-controls="sub-ocasioes"]');
-  ok(await page.$eval('[aria-controls="sub-solucoes"]', b => b.getAttribute('aria-expanded') === 'false'), 'abrir outro grupo fecha o anterior');
+  await page.click('[aria-controls="sub-brindes"]');
+  ok(await page.$eval('[aria-controls="sub-brindes"]', b => b.getAttribute('aria-expanded') === 'true') && await page.$eval('#sub-brindes', d => getComputedStyle(d).display !== 'none' && d.querySelectorAll('.nav-seg').length === 3), 'no celular, Brindes abre em acordeão com os três segmentos');
+  await page.click('[aria-controls="sub-ocasiao"]');
+  ok(await page.$eval('[aria-controls="sub-brindes"]', b => b.getAttribute('aria-expanded') === 'false'), 'abrir outro grupo fecha o anterior');
   await page.keyboard.press('Escape');
-  ok(await page.$eval('[aria-controls="sub-ocasioes"]', b => b.getAttribute('aria-expanded') === 'false') && await page.$eval('#site-nav', n => n.classList.contains('is-open')), 'Esc fecha primeiro o submenu, com o menu ainda aberto');
+  ok(await page.$eval('[aria-controls="sub-ocasiao"]', b => b.getAttribute('aria-expanded') === 'false') && await page.$eval('#site-nav', n => n.classList.contains('is-open')), 'Esc fecha primeiro o submenu, com o menu ainda aberto');
   await page.keyboard.press('Escape');
   ok(!(await page.$eval('#site-nav', n => n.classList.contains('is-open'))), 'Esc fecha o menu mobile');
   await page.goto('about:blank');
@@ -282,13 +283,20 @@ try {
   ok(await page.$$eval('.pdp-vista:not([hidden])', b => b.map(x => x.textContent).join()) === 'Frente,Verso,Bordado', 'polo: vistas Frente, Verso e Bordado');
   await page.click('.pdp-vista[data-vista="detalhe"]'); await sleep(300);
   ok(await page.$eval('.pdp-main img', i => (i.getAttribute('srcset') || '').includes('polo~azul-marinho-bordado')), 'vista Bordado mostra o close do bordado na cor escolhida');
-  await page.click('.pdp-thumb[data-thumb-color="Branco"]'); await sleep(300);
+  await page.click('.pdp .swatch[data-color="Branco"]'); await sleep(300);
   ok(await page.$$eval('.pdp-vista:not([hidden])', b => b.map(x => x.textContent).join()) === 'Frente,Verso' && await page.$eval('.pdp-main img', i => (i.getAttribute('srcset') || '').includes('polo~branco.')), 'trocar de cor volta para a frente e mostra só as vistas que existem');
   await page.goto(BASE + '/catalogo/caneca/?cor=verde', { waitUntil: 'networkidle0' });
   await page.click('.pdp-thumb[data-thumb-color="Azul royal"]'); await sleep(300);
   ok(await page.evaluate(() => location.search === '?cor=azul-royal' && document.querySelector('.pdp .color-name').textContent === 'Azul royal'), 'miniatura troca a cor e atualiza a URL');
   ok(await page.$eval('.pdp .pick', b => b.getAttribute('aria-pressed') === 'true') && (await page.evaluate(() => JSON.parse(localStorage.getItem('tama-selecao')))).some(x => x.s === 'caneca' && x.c === 'Azul royal'), 'na página do modelo, a peça já selecionada aparece marcada e a troca de cor vai para a seleção');
   ok(await page.$$eval('.studio-grid .product', ps => ps.length === 4 && ps.every(p => p.getAttribute('data-cat') === 'garrafas-copos')), 'página do modelo sugere 4 modelos da mesma categoria');
+  // passos 2 e 3: a ocasião e a quantidade seguem com a peça para a seleção e para o link da proposta
+  ok(await page.$$eval('.pdp-steps > li', l => l.length === 3) && await page.$$eval('#pdp-ocasiao option', o => o.length === 8), 'página do modelo: passos cor, ocasião (7 opções) e quantidade');
+  await page.select('#pdp-ocasiao', 'Fim de ano');
+  await page.click('.pdp-qty [data-qty="1"]'); await page.click('.pdp-qty [data-qty="1"]'); await sleep(200);
+  const pdpSel = (await page.evaluate(() => JSON.parse(localStorage.getItem('tama-selecao')))).find(x => x.s === 'caneca');
+  const pdpHref = await page.$eval('[data-pdp-proposta]', a => decodeURIComponent(a.getAttribute('href')));
+  ok(pdpSel && pdpSel.o === 'Fim de ano' && pdpSel.q === 15 && pdpHref.includes('interesse=Caneca (Azul royal), para Fim de ano, cerca de 15 un.'), `ocasião e quantidade vão para a seleção e para "Solicitar proposta só desta peça" (${pdpHref})`);
   // modelo novo: bolsa listrada com a inicial T (cinco cores, todas com foto e a marca TaMa na etiqueta)
   await page.goto(BASE + '/catalogo/bolsa-listrada-com-inicial/', { waitUntil: 'networkidle0' });
   const bolsa = await page.evaluate(() => ({ h1: document.querySelector('h1').textContent, thumbs: [...document.querySelectorAll('.pdp-thumb')].map(t => t.getAttribute('data-thumb-color')).join(), alt: document.querySelector('.pdp-main img').alt, resumo: (document.querySelector('.pdp-resumo') || {}).textContent || '', crumbs: [...document.querySelectorAll('.crumbs li')].map(l => l.textContent.trim()).join(' / ') }));
@@ -358,11 +366,13 @@ try {
   ok(maisKits.map(k => k.h).join() === 'Kit Escritório,Kit Café,Kit Conectado,Kit Executivo,Kit Petiscos' && maisKits.filter(k => k.big).length === 2 && maisKits.map(k => k.n).join() === 'Kit 06,Kit 07,Kit 08,Kit 09,Kit 10', 'kits: seção "Mais kits" com Escritório, Café, Conectado, Executivo e Petiscos (dois destaques, numerados de 06 a 10)');
   ok(maisKits.every(k => k.ok && /\/img\/kitp-kit-[a-z-]+\./.test(k.img) && k.alt.length > 30 && !/mercedes|apple|airpods|agrocete|rc business|bayer|loja agro|alibaba|bambu|inox|madeira|couro/i.test(k.alt) && k.href === '/solicitar-proposta/?tipo=kits&interesse=' + encodeURIComponent(k.h)), 'kits novos: foto carregada, texto alternativo sem marcas de terceiros nem material afirmado e "Solicitar proposta deste kit" com o interesse');
   ok(!(await page.$('#rail-kits')) && await page.$eval('#comp-t', h => { const next = h.closest('section').nextElementSibling; return next && !!next.querySelector('#kit-m-t'); }), 'kits: depois de "Três camadas" vem direto "Como montamos o seu kit" (sem o bloco de peças)');
-  ok(await page.$$eval('#site-nav > .nav-link, #site-nav > .nav-group > .nav-toggle', a => a.map(x => x.textContent.trim()).join()) === 'Soluções,Ocasiões,Catálogo,Sobre,Conteúdos,Contato', 'menu com Soluções, Ocasiões, Catálogo, Sobre, Conteúdos e Contato (e o fim de ano na temporada)');
-  ok(await page.$$eval('#sub-solucoes a', a => a.map(x => x.textContent.trim()).join()) === 'Brindes corporativos,Uniformes e confecções,Kits corporativos,Ativações promocionais,Hotelaria e gastronomia', 'submenu Soluções com as cinco áreas pelo nome oficial');
+  ok(await page.$$eval('#site-nav > .nav-link, #site-nav > .nav-group > .nav-toggle', a => a.map(x => x.textContent.trim()).join()) === 'Brindes,Kits,Confecções,Por categoria,Por ocasião,Sobre,Blog', 'menu com Brindes, Kits, Confecções, Por categoria, Por ocasião, Sobre e Blog');
+  ok(await page.$$eval('#sub-brindes .nav-seg', a => a.map(x => x.getAttribute('href')).join()) === '/brindes-corporativos/,/hotelaria-e-gastronomia/,/ativacoes-promocionais/' && await page.$$eval('#sub-brindes .nav-seg img', i => i.length === 3), 'painel Brindes com os três segmentos e fotos (empresas, hotelaria, ativações)');
+  ok(await page.$$eval('#sub-categoria .nav-cat', c => c.length >= 6 && c.every(x => x.querySelector('.nav-cat-t').getAttribute('href').startsWith('/catalogo/?categoria=') && x.querySelectorAll('li').length >= 2)), 'painel Por categoria: cada categoria com modelos e link para o catálogo filtrado');
+  ok(await page.$eval('.header-row .head-search', f => f.getAttribute('action') === '/catalogo/' && f.querySelector('input[name="q"]')), 'busca no catálogo na linha de cima do cabeçalho');
   ok(await page.$$eval('.site-footer .footer-links', ls => ls[0] && [...ls[0].querySelectorAll('a')].map(x => x.textContent.trim()).join() === 'Brindes corporativos,Uniformes e confecções,Kits corporativos,Ativações promocionais,Hotelaria e gastronomia') && await page.$eval('.site-footer a[href="/blog/"]', a => a.textContent === 'Conteúdos'), 'rodapé repete as cinco áreas com os nomes do menu e chama o blog de "Conteúdos", como o menu');
   ok(await page.$$eval('.foto-hero figcaption, .entrega-foto figcaption', f => f.length >= 1 && f.every(x => x.textContent === 'Imagem ilustrativa • Marca fictícia')) && await page.$$eval('.kits-page .note', n => n.length === 2 && n.every(x => /^Imagem ilustrativa: a marca (TaMa aparece|é fictícia e aparece) como exemplo; no seu projeto, entra a marca da sua empresa\./.test(x.textContent))), 'kits: legenda padrão da marca fictícia no cabeçalho e nota padrão (marca TaMa ou fictícia como exemplo) sob os kits');
-  ok(await page.$$eval('#sub-ocasioes a', a => a.some(x => x.getAttribute('href') === '/brindes-de-fim-de-ano/') && a.at(-1).getAttribute('href') === '/brindes-por-ocasiao/'), 'submenu Ocasiões leva ao fim de ano e a todas as ocasiões');
+  ok(await page.$$eval('#sub-ocasiao a', a => a.some(x => x.getAttribute('href') === '/brindes-de-fim-de-ano/') && a.filter(x => x.classList.contains('nav-occ')).length === 7 && a.at(-1).getAttribute('href') === '/brindes-por-ocasiao/'), 'painel Por ocasião com as 7 ocasiões, o fim de ano e todas as ocasiões');
   ok(await page.$$eval('a[href^="/branding-identidade-visual/"], a[href^="/projetos/"]', a => a.length === 0), 'nenhum link para branding ou projetos');
   await page.goto(BASE + '/confeccoes-personalizadas/', { waitUntil: 'networkidle0' });
   ok(await page.$$eval('.studio-grid .product.studio', c => c.length === 10) && await page.$eval('.studio-grid', g => !!g.closest('section').querySelector('a[href="/catalogo/?categoria=vestuario"]')), 'confecções: 10 peças em estúdio com link para o catálogo filtrado');
@@ -634,7 +644,7 @@ try {
   ok(await bp.evaluate(() => /Cada ocasião/.test(document.querySelector('.foto-hero h1').textContent)), '/brindes-por-ocasiao/: "Todas" volta à abertura geral');
   ok(!(await bp.$('.brand-note')), '/brindes-por-ocasiao/: sem o bloco antigo "Sua marca é a protagonista"');
   // páginas sem foto de abertura usam o mesmo cabeçalho de texto (text_head): eyebrow + um H1 + apoio no mesmo bloco
-  for (const p of ['/solicitar-proposta/', '/obrigado/', '/privacidade/', '/404.html', '/catalogo/caneca/', idx.posts[0]]) {
+  for (const p of ['/solicitar-proposta/', '/obrigado/', '/privacidade/', '/404.html', idx.posts[0]]) {
     await bp.goto(BASE + p, { waitUntil: 'networkidle0' });
     const t = await bp.evaluate(() => { const c = document.querySelector('.text-head-copy'); return { h1s: document.querySelectorAll('h1').length, bloco: !!c, ordem: !!c && !!c.querySelector('.eyebrow') && c.querySelector('.eyebrow').compareDocumentPosition(c.querySelector('h1')) === 4 && !!c.querySelector('.lead'), foto: !!document.querySelector('.foto-hero, .text-head img') }; });
     ok(t.h1s === 1 && t.bloco && t.ordem && !t.foto, `${p}: cabeçalho de texto padrão (eyebrow, H1 único e apoio), sem foto`);

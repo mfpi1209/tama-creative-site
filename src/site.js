@@ -115,13 +115,13 @@
   if (menuBtn) menuBtn.addEventListener('click', function () {
     var abrir = menuBtn.getAttribute('aria-expanded') !== 'true';
     setMenu(abrir);
-    if (abrir) { var l = nav.querySelector('a'); if (l) l.focus(); }   // os links vêm antes do botão no HTML: o foco vai para eles
+    if (abrir) { var l = nav.querySelector('input, a'); if (l) l.focus(); }   // a busca e os links vêm antes do botão no HTML: o foco vai para eles
   });
   // menu do celular aberto: se o foco sair do menu e do botão (Tab depois do último link), o menu fecha
   if (nav) nav.addEventListener('focusout', function (e) {
     if (nav.classList.contains('is-open') && e.relatedTarget && !nav.contains(e.relatedTarget) && e.relatedTarget !== menuBtn) setMenu(false);
   });
-  /* submenus (Soluções, Ocasiões, Catálogo, Contato): botão com aria-expanded; um aberto por vez */
+  /* painéis (Brindes, Por categoria, Por ocasião): botão com aria-expanded; um aberto por vez */
   var desk = window.matchMedia ? window.matchMedia('(min-width: 1240px)') : { matches: true };
   var toggles = [].slice.call(document.querySelectorAll('[data-nav-toggle]'));
   function setSub(btn, open) { btn.setAttribute('aria-expanded', String(open)); btn.parentElement.classList.toggle('is-open', open); }
@@ -163,7 +163,7 @@
     var vistos = {};
     return (Array.isArray(raw) ? raw : []).map(function (x) {
       x = typeof x === 'string' ? { s: x, c: null } : x;
-      if (x && ALIAS[x.s]) x = { s: ALIAS[x.s], c: x.c };   // seleção salva antes da base única
+      if (x && ALIAS[x.s]) x = { s: ALIAS[x.s], c: x.c, o: x.o, q: x.q };   // seleção salva antes da base única
       return x;
     }).filter(function (x) {
       if (!x || !CAT[x.s] || vistos[x.s]) return false;
@@ -174,7 +174,17 @@
   }
   function setSel(list) { store(STORE_KEY, JSON.stringify(list)); render(); }
   function find(sel, slug) { for (var i = 0; i < sel.length; i++) if (sel[i].s === slug) return i; return -1; }
-  function label(x) { return CAT[x.s].n + (x.c ? ' (' + x.c + ')' : ''); }
+  function extras(x) { return [x.o ? 'para ' + x.o : '', x.q ? 'cerca de ' + x.q + ' un.' : ''].filter(Boolean).join(', '); }   // ocasião e quantidade escolhidas na página do produto
+  function label(x) { var e = extras(x); return CAT[x.s].n + (x.c ? ' (' + x.c + ')' : '') + (e ? ', ' + e : ''); }
+  // ocasião e quantidade digitadas na página do produto (só na página daquele modelo)
+  function pdpExtras(slug) {
+    var box = document.querySelector('[data-pdp][data-slug="' + slug + '"]'), r = {};
+    if (!box) return r;
+    var o = box.querySelector('[data-pdp-occ]'), q = box.querySelector('[data-pdp-qtd]');
+    if (o && o.value) r.o = o.value;
+    if (q && parseInt(q.value, 10) > 0) r.q = parseInt(q.value, 10);
+    return r;
+  }
   function firstColor(slug) { return (CAT[slug].c[0] || [])[0] || null; }
   function cardColor(slug) {
     var card = document.querySelector('.product[data-slug="' + slug + '"]');
@@ -183,7 +193,9 @@
   function toggle(slug) {
     var sel = getSel(), i = find(sel, slug);
     if (i === -1) {
-      sel.push({ s: slug, c: CAT[slug].c.length ? cardColor(slug) : null });
+      var novo = { s: slug, c: CAT[slug].c.length ? cardColor(slug) : null }, ex = pdpExtras(slug);
+      if (ex.o) novo.o = ex.o; if (ex.q) novo.q = ex.q;
+      sel.push(novo);
       toast('Adicionado à sua seleção');
       track('select_product', { item: slug });
     } else {
@@ -242,7 +254,7 @@
       li.appendChild(thumb(x));
       var info = document.createElement('div');
       var st = document.createElement('strong'); st.textContent = CAT[x.s].n; info.appendChild(st);
-      var sm = document.createElement('small'); sm.textContent = x.c ? 'Cor de referência: ' + x.c : 'Ideia além do óbvio'; info.appendChild(sm);
+      var sm = document.createElement('small'); sm.textContent = (x.c ? 'Cor de referência: ' + x.c : 'Ideia além do óbvio') + (extras(x) ? ' · ' + extras(x) : ''); info.appendChild(sm);
       li.appendChild(info);
       var rm = document.createElement('button'); rm.type = 'button'; rm.textContent = 'Remover';
       rm.setAttribute('aria-label', 'Remover ' + CAT[x.s].n + ' da seleção');
@@ -508,6 +520,48 @@
     var pdpSw = pdpCor && [].filter.call(pdp.querySelectorAll('.swatch'), function (b) { return pdpSlugCor(b.getAttribute('data-color')) === pdpCor; })[0];
     // a cor do link vale mais que a cor guardada na seleção (render() pinta a seleção logo depois deste trecho)
     setTimeout(function () { if (pdpSw) paintColor(pdpSlug, pdpSw.getAttribute('data-color')); pdpSync(false); }, 0);
+    // resumo em 2 linhas com "Ler mais" (só quando o texto passa de 2 linhas)
+    var more = pdp.querySelector('[data-pdp-more]');
+    if (more) {
+      var moreBtn = more.querySelector('.pdp-more'), moreP = more.querySelector('.pdp-resumo');
+      more.classList.add('is-clamp');
+      if (moreP.scrollHeight > moreP.clientHeight + 2) {
+        moreBtn.hidden = false;
+        moreBtn.addEventListener('click', function () {
+          var aberto = more.classList.toggle('is-clamp') === false;
+          moreBtn.setAttribute('aria-expanded', String(aberto)); moreBtn.textContent = aberto ? 'Ler menos' : 'Ler mais';
+        });
+      } else more.classList.remove('is-clamp');
+    }
+    // passos 2 e 3: ocasião e quantidade seguem com a peça (seleção, link da proposta e WhatsApp)
+    var pdpOcc = pdp.querySelector('[data-pdp-occ]'), pdpQtd = pdp.querySelector('[data-pdp-qtd]'), pdpProp = pdp.querySelector('[data-pdp-proposta]');
+    var pdpLink = function () {
+      if (!pdpProp) return;
+      var x = { s: pdpSlug, c: pdp.getAttribute('data-color') || firstColor(pdpSlug) }, ex = pdpExtras(pdpSlug);
+      x.o = ex.o; x.q = ex.q;
+      var it = label(x);
+      pdpProp.setAttribute('data-interesse', it);
+      pdpProp.href = '/solicitar-proposta/?tipo=' + encodeURIComponent(pdp.getAttribute('data-tipo') || 'brindes') + '&interesse=' + encodeURIComponent(it);
+    };
+    var pdpSalva = function () {
+      var sel = getSel(), i = find(sel, pdpSlug), ex = pdpExtras(pdpSlug);
+      if (i !== -1) { sel[i].o = ex.o; sel[i].q = ex.q; setSel(sel); }
+      pdpLink();
+    };
+    var salvo = getSel()[find(getSel(), pdpSlug)];
+    if (salvo) { if (salvo.o && pdpOcc) pdpOcc.value = salvo.o; if (salvo.q && pdpQtd) pdpQtd.value = salvo.q; }
+    if (pdpOcc) pdpOcc.addEventListener('change', pdpSalva);
+    if (pdpQtd) pdpQtd.addEventListener('change', pdpSalva);
+    pdp.querySelectorAll('[data-qty]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var n = parseInt(pdpQtd.value, 10) || 0, passo = n >= 100 ? 50 : n >= 20 ? 10 : 5;   // passos maiores em quantidades maiores
+        n = b.getAttribute('data-qty') === '1' ? (n ? n + passo : 10) : Math.max(0, n - passo);
+        pdpQtd.value = n || '';
+        pdpSalva();
+      });
+    });
+    new MutationObserver(pdpLink).observe(pdp, { attributes: true, attributeFilter: ['data-color'] });
+    setTimeout(pdpLink, 0);
     // zoom: com mouse, a foto amplia 2x seguindo o cursor (no toque, o "+" abre a foto ampliada)
     var zoomBox = pdp.querySelector('[data-hover-zoom]');
     if (zoomBox && window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {

@@ -725,34 +725,40 @@ def page_produto(c):
         'trail': [('/', 'Início'), ('/catalogo/', 'Catálogo'), (url, nome)], 'wp_type': 'ItemPage',
         'preload': preload_image(c['img'], '(max-width: 900px) 92vw, 1100px'),
         'body': f'''<section class="section pdp-sec">
-  <div class="wrap">
-    <div class="product pdp" data-slug="{slug}" data-pdp data-url="{url}" data-vistas="{esc(json.dumps(vistas, ensure_ascii=False, separators=(',', ':')))}">
+  <div class="wrap pdp-wrap">
+    <div class="product pdp" data-slug="{slug}" data-pdp data-url="{url}" data-tipo="{tipo}" data-vistas="{esc(json.dumps(vistas, ensure_ascii=False, separators=(',', ':')))}">
       <div class="pdp-gallery">
-        <div class="prod-media pdp-main" data-hover-zoom>{picture(c['img'], c['alt'], '(max-width: 900px) 92vw, 1100px', eager=True)}<button class="prod-zoom" type="button" data-zoom="{slug}" aria-label="Ampliar foto de {esc(nome)}"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 3v10M3 8h10"/></svg></button></div>
-        {vistas_html}
-        {f'<div class="pdp-thumbs" role="group" aria-label="Cores de {esc(nome)}">{"".join(thumbs)}</div>' if len(thumbs) > 1 else ''}
+        <div class="pdp-rail">{vistas_html}{f'<div class="pdp-thumbs" role="group" aria-label="Cores de {esc(nome)}">{"".join(thumbs)}</div>' if len(thumbs) > 1 else ''}</div>
+        <div class="prod-media pdp-main" data-hover-zoom>{picture(c['img'], c['alt'], '(max-width: 900px) 92vw, 840px', eager=True)}<button class="prod-zoom" type="button" data-zoom="{slug}" aria-label="Ampliar foto de {esc(nome)}"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 3v10M3 8h10"/></svg></button><p class="pdp-ilustra">Imagem ilustrativa</p></div>
       </div>
       <div class="pdp-info">
-        {text_head(f'<a href="/catalogo/?categoria={c["categoria"]}#catalogo">{cat_nome}</a>', nome, esc(info['resumo']) if info.get('resumo') else '', lead_cls='pdp-resumo', inner=True)}
-        <p class="prod-desc pdp-desc">Modelo da imagem: {c['descricao']}</p>
-        {usos_html}
-        <div class="pdp-cores"><p class="pdp-label">Cor de referência: <strong class="color-name">{cores[0][0]}</strong></p>{swatches(dict(c, cores=cores))}</div>
+        <p class="eyebrow"><a href="/catalogo/?categoria={c["categoria"]}#catalogo">{cat_nome}</a></p>
+        <h1 class="pdp-title">{nome}</h1>
+        <div class="pdp-resumo-box" data-pdp-more><p class="pdp-resumo">{esc(info['resumo']) + ' ' if info.get('resumo') else ''}<span class="prod-desc pdp-desc">Modelo da imagem: {c['descricao']}</span></p><button class="pdp-more" type="button" aria-expanded="false" hidden>Ler mais</button></div>
         <p class="prod-meta" hidden>{c['meta']}</p>
-        <div class="actions">
-          <button class="pick btn-pick-lg" type="button" data-slug="{slug}" aria-pressed="false"><span class="when-off">+ Adicionar à seleção</span><span class="when-on">✓ Na seleção</span><span class="visually-hidden">: {nome}</span></button>
-          <a class="btn btn-wine" href="/solicitar-proposta/?tipo={tipo}&amp;interesse={urllib.parse.quote(nome + ' (' + cores[0][0] + ')')}" data-track="cta_solicitar_proposta" data-track-label="produto" data-interesse="{esc(nome)} ({esc(cores[0][0])})">Solicitar proposta {ARROW}</a>
+        <ol class="pdp-steps">
+          <li class="pdp-cores"><p class="pdp-q"><b aria-hidden="true">1</b>Cor de referência: <strong class="color-name">{cores[0][0]}</strong></p>{swatches(dict(c, cores=cores))}</li>
+          <li><label class="pdp-q" for="pdp-ocasiao"><b aria-hidden="true">2</b>Para qual ocasião?</label>
+            <select class="pdp-select" id="pdp-ocasiao" data-pdp-occ><option value="">Selecione uma ocasião (opcional)</option>{''.join(f'<option>{v}</option>' for v in OCCS.values())}</select></li>
+          <li><label class="pdp-q" for="pdp-qtd"><b aria-hidden="true">3</b>Quantidade aproximada</label>
+            <div class="pdp-qty"><button type="button" data-qty="-1" aria-label="Diminuir a quantidade">−</button><input id="pdp-qtd" type="number" inputmode="numeric" min="1" step="1" placeholder="ex.: 50" data-pdp-qtd><button type="button" data-qty="1" aria-label="Aumentar a quantidade">+</button></div></li>
+        </ol>
+        <div class="pdp-cta">
+          <button class="pick btn-pick-lg pdp-add" type="button" data-slug="{slug}" aria-pressed="false"><span class="when-off">+ Adicionar à seleção</span><span class="when-on">✓ Na seleção</span><span class="visually-hidden">: {nome}</span></button>
+          <a class="pdp-link" href="/solicitar-proposta/?tipo={tipo}&amp;interesse={urllib.parse.quote(nome + ' (' + cores[0][0] + ')')}" data-track="cta_solicitar_proposta" data-track-label="produto" data-interesse="{esc(nome)} ({esc(cores[0][0])})" data-pdp-proposta>Solicitar proposta só desta peça {ARROW}</a>
         </div>
-        {wa_button()}
-        <dl class="pdp-spec">
-          {medidas}
-          <div><dt>Material</dt><dd>{mat_txt}</dd></div>
-          <div><dt>Personalização</dt><dd>{tec_txt}</dd></div>
-          <div><dt>Quantidade e prazo</dt><dd>Informados na proposta, conforme o volume do pedido e a técnica.</dd></div>
-        </dl>
-        <p class="pdp-sobre">{CAT_TEXTO.get(c['categoria'], '')}</p>
-        <p class="note">{NOTE_IMAGENS}</p>
+        <p class="pdp-wa">Dúvidas? <a href="https://wa.me/{WA}" data-track="whatsapp_click" data-track-label="produto" data-interesse="{esc(nome)}" rel="noopener">Conversar no WhatsApp</a></p>
+        {usos_html}
       </div>
     </div>
+    <dl class="pdp-spec">
+      {medidas}
+      <div><dt>Material</dt><dd>{mat_txt}</dd></div>
+      <div><dt>Personalização</dt><dd>{tec_txt}</dd></div>
+      <div><dt>Quantidade e prazo</dt><dd>Informados na proposta, conforme o volume do pedido e a técnica.</dd></div>
+    </dl>
+    <p class="pdp-sobre">{CAT_TEXTO.get(c['categoria'], '')}</p>
+    <p class="note">{NOTE_IMAGENS}</p>
   </div>
 </section>
 {rel_html}
@@ -1018,32 +1024,51 @@ def season_callout(where):
             f'</div></aside>')
 
 
+# Segmentos dentro de "Brindes" (o produto principal da TaMa): para quem o brinde é usado
+MENU_SEGMENTOS = [('/brindes-corporativos/', 'Empresas e equipes', 'Clientes, colaboradores e parceiros', 'brindes-header'),
+                  ('/hotelaria-e-gastronomia/', 'Hotelaria e gastronomia', 'Cardápios, porta-contas, taças e mesa', 'hot-header'),
+                  ('/ativacoes-promocionais/', 'Ativações e degustações', 'Copos, materiais e brindes de ponto de venda', 'ativ-header')]
+
+
 def nav_menu(path):
-    """Menu principal: Soluções, Ocasiões e Catálogo abrem submenus (botão com aria-expanded; no celular viram acordeão);
-    Sobre, Conteúdos e Contato. Na temporada, "Fim de ano" vem antes de tudo."""
+    """Menu principal (2ª linha do cabeçalho): Brindes ▾ (segmentos), Kits, Confecções, Por categoria ▾, Por ocasião ▾,
+    Sobre e Blog. Os painéis são botões com aria-expanded; no celular viram acordeão com listas simples."""
     def cur(p):
         return ' aria-current="page"' if path.startswith(p) else ''
 
-    def grupo(chave, rotulo, itens, extra=''):
-        ativo = any(path.startswith(h.split('?')[0]) for h, _t in itens if h.split('?')[0] != '/')
-        lis = ''.join(f'<li><a href="{h}"{cur(h) if "?" not in h else ""}>{t}</a></li>' for h, t in itens)
-        return (f'<div class="nav-group{" is-current" if ativo else ""}"><button class="nav-link nav-toggle" type="button" aria-expanded="false" '
+    def grupo(chave, rotulo, painel, ativos, cls=''):
+        ativo = any(path.startswith(h) for h in ativos if h != '/')
+        return (f'<div class="nav-group nav-mega{cls}{" is-current" if ativo else ""}"><button class="nav-link nav-toggle" type="button" aria-expanded="false" '
                 f'aria-controls="sub-{chave}" data-nav-toggle>{rotulo}<svg class="nav-caret" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5l3 3 3-3"/></svg></button>'
-                f'<div class="nav-sub" id="sub-{chave}"><ul>{lis}</ul>{extra}</div></div>')
+                f'<div class="nav-sub" id="sub-{chave}"><div class="nav-sub-in">{painel}</div></div></div>')
 
+    segs = ''.join(f'<li><a class="nav-seg" href="{h}"{cur(h)}><img src="{img_url(img, "webp", 420)}" alt="" loading="lazy" width="420" height="236">'
+                   f'<strong>{t}</strong><span>{d}</span></a></li>' for h, t, d, img in MENU_SEGMENTOS if img in IMAGES)
+    p_brindes = (f'<p class="nav-sub-lead">Brindes com a marca da sua empresa, para cada tipo de negócio</p><ul class="nav-segs">{segs}</ul>'
+                 f'<a class="nav-sub-all" href="/catalogo/">Ver o catálogo completo {ARROW}</a>')
+    cols = ''
+    for k, nome in CAT_PROD.items():
+        mods = [c for c in CATALOGO if c['categoria'] == k][:3]
+        if not mods:
+            continue
+        itens = ''.join(f'<li><a href="/catalogo/{c["slug"]}/"><img src="{img_url(c["img"], "webp", 420)}" alt="" loading="lazy" width="40" height="40"><span>{c["nome"]}</span></a></li>' for c in mods)
+        cols += f'<div class="nav-cat"><a class="nav-cat-t" href="/catalogo/?categoria={k}#catalogo">{nome} {ARROW}</a><ul>{itens}</ul></div>'
+    p_cat = f'<div class="nav-cats">{cols}</div><a class="nav-sub-all" href="/catalogo/">Ver o catálogo completo {ARROW}</a>'
     occs = sorted(OCCS.items(), key=lambda kv: kv[0] != (SEASON or 'fim-de-ano'))
-    ocasioes = [(collection_href(k), v) for k, v in occs] + [('/brindes-por-ocasiao/', 'Todas as ocasiões')]
-    catalogo = [(f'/catalogo/?categoria={k}#catalogo', v) for k, v in CAT_PROD.items()] + [('/catalogo/', 'Catálogo completo')]
-    contato = ([(f'https://wa.me/{WA}', f'WhatsApp: {fmt_phone(WA)}')] if WA else []) + ([(f'mailto:{EMAIL}', EMAIL)] if EMAIL else []) \
-        + [('/solicitar-proposta/', 'Solicitar proposta')]
-    season = ''   # o fim de ano fica só dentro de Ocasiões (sem item duplicado no topo do menu)
-    return (season
-            + grupo('solucoes', 'Soluções', NAV)
-            + grupo('ocasioes', 'Ocasiões', ocasioes)   # o fim de ano está na lista: fora da temporada ele acende "Ocasiões"
-            + grupo('catalogo', 'Catálogo', catalogo)
-            + f'<a class="nav-link" href="/sobre/"{cur("/sobre/")}>Sobre</a>'
-            + f'<a class="nav-link" href="/blog/"{cur("/blog/")}>Conteúdos</a>'
-            + grupo('contato', 'Contato', contato))
+    oitens = ''
+    for k, v in occs:
+        img = OCC_HEROS.get(k, (None,))[0]
+        foto = f'<img src="{img_url(img, "webp", 420)}" alt="" loading="lazy" width="420" height="315">' if img in IMAGES else ''
+        tag = ' <em>temporada</em>' if k == SEASON else ''
+        oitens += f'<li><a class="nav-occ" href="{collection_href(k)}">{foto}<span>{v}{tag}</span></a></li>'
+    p_occ = f'<ul class="nav-occs">{oitens}</ul><a class="nav-sub-all" href="/brindes-por-ocasiao/">Ver todas as ocasiões {ARROW}</a>'
+    return (grupo('brindes', 'Brindes', p_brindes, [h for h, *_ in MENU_SEGMENTOS], ' nav-main')
+            + f'<a class="nav-link" href="/kits-corporativos/"{cur("/kits-corporativos/")}>Kits</a>'
+            + f'<a class="nav-link" href="/confeccoes-personalizadas/"{cur("/confeccoes-personalizadas/")}>Confecções</a>'
+            + grupo('categoria', 'Por categoria', p_cat, ['/catalogo/'])
+            + grupo('ocasiao', 'Por ocasião', p_occ, ['/brindes-por-ocasiao/', '/brindes-de-fim-de-ano/'])
+            + f'<a class="nav-link nav-sep" href="/sobre/"{cur("/sobre/")}>Sobre</a>'
+            + f'<a class="nav-link" href="/blog/"{cur("/blog/")}>Blog</a>')
 
 
 # Redes sociais no rodapé. Endereços provisórios (placeholders) até a TaMa confirmar os perfis: troque o href aqui
@@ -1065,20 +1090,33 @@ def redes_html():
     return f'<ul class="footer-social" aria-label="Redes sociais">{lis}</ul>'
 
 
+SEARCH_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 20 20"/></svg>'
+
+
+def busca_form(sid):
+    return (f'<form class="head-search" role="search" action="/catalogo/"><label class="visually-hidden" for="{sid}">Buscar no catálogo</label>'
+            f'{SEARCH_SVG}<input id="{sid}" name="q" type="search" placeholder="Buscar no catálogo: caneca, polo, kit…" autocomplete="off"></form>')
+
+
 def header(path):
     links = nav_menu(path)
+    wa = (f'<a class="head-wa" href="https://wa.me/{WA}" data-track="whatsapp_click" rel="noopener">{CHAT}<span>WhatsApp</span></a>' if WA else '')
     return f'''<a class="skip" href="#conteudo">Pular para o conteúdo</a>
 <aside class="announce" aria-label="Destaques da TaMa"><div class="wrap">{ANNOUNCE_SEASON if SEASON == 'fim-de-ano' else f'<p>{ASSINATURA}</p>'}<ul>{''.join(f'<li>{g}</li>' for g in GARANTIAS)}</ul></div></aside>
 <header class="site-header">
   <div class="wrap header-row">
     <a class="brand" href="/" aria-label="TaMa Creative, página inicial">{LOGO_DECOR}</a>
-    <nav class="site-nav" id="site-nav" aria-label="Principal">{links}{cta_link(cls='btn btn-wine nav-cta', track_label='menu-celular')}</nav>
+    {busca_form('busca-topo')}
     <div class="head-actions">
+      {wa}
       <button class="icon-btn bag" type="button" data-open-drawer aria-label="Sua seleção de peças">{BAG_SVG}<span class="bag-label" aria-hidden="true">Seleção</span><span class="bag-count" data-sel-count hidden>0</span></button>
       {cta_link('<span class="cta-long">Solicitar proposta</span><span class="cta-short">Proposta</span>', cls='btn btn-wine btn-sm head-cta', track_label='header')}
       <button class="icon-btn menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Abrir menu"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="i-open" d="M4 8h16M4 16h16"/><path class="i-close" d="M6 6l12 12M18 6L6 18"/></svg></button>
     </div>
   </div>
+  <div class="nav-bar"><div class="wrap">
+    <nav class="site-nav" id="site-nav" aria-label="Principal">{busca_form('busca-menu')}{links}{cta_link(cls='btn btn-wine nav-cta', track_label='menu-celular')}</nav>
+  </div></div>
 </header>'''
 
 

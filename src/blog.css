@@ -117,3 +117,6 @@
   .post-author .selo { width: 52px; }
   .post-cover img { aspect-ratio: 4 / 3; }
 }
+
+/* atalho para a proposta logo no início do artigo (o leitor que chega pelo Google) */
+.post-head-cta { margin-top: 10px; font-size: .9375rem; }

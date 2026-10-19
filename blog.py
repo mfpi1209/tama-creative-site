@@ -488,7 +488,7 @@ def article_page(b, a):
       {actions}</div></div>'''
         # cabeçalho de texto padrão do site (build.text_head): eyebrow, título e apoio nas mesmas medidas das outras páginas
         body = f'''<article class="post">
-  <div class="wrap">{b.text_head(tema_html(a['tema']), a['title'], a['resumo'], extra=f'<p class="post-meta">{_meta_line(a)}</p>', antes=draft, cls='post-head', inner=True, tag='header')}</div>
+  <div class="wrap">{b.text_head(tema_html(a['tema']), a['title'], a['resumo'], extra=f'<p class="post-meta">{_meta_line(a)}</p><p class="post-head-cta">{b.cta_link(tipo=a["proposta"], cls="link", track_label="blog-topo-" + a["slug"])}</p>', antes=draft, cls='post-head', inner=True, tag='header')}</div>
   <figure class="wrap post-cover">{b.picture(a['capa'], _cover_alt(a), '(max-width: 1280px) 92vw, 1184px', eager=True, style=pos)}{caption}</figure>
   <div class="wrap post-layout{'' if toc else ' no-toc'}">
     {toc}

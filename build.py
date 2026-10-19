@@ -1036,8 +1036,7 @@ def nav_menu(path):
     catalogo = [(f'/catalogo/?categoria={k}#catalogo', v) for k, v in CAT_PROD.items()] + [('/catalogo/', 'Catálogo completo')]
     contato = ([(f'https://wa.me/{WA}', f'WhatsApp: {fmt_phone(WA)}')] if WA else []) + ([(f'mailto:{EMAIL}', EMAIL)] if EMAIL else []) \
         + [('/solicitar-proposta/', 'Solicitar proposta')]
-    season = (f'<a class="nav-link nav-season" href="/brindes-de-fim-de-ano/"{cur("/brindes-de-fim-de-ano/")}>Fim de ano</a>'
-              if SEASON == 'fim-de-ano' else '')
+    season = ''   # o fim de ano fica só dentro de Ocasiões (sem item duplicado no topo do menu)
     return (season
             + grupo('solucoes', 'Soluções', NAV)
             + grupo('ocasioes', 'Ocasiões', ocasioes)   # o fim de ano está na lista: fora da temporada ele acende "Ocasiões"

@@ -1534,7 +1534,6 @@ def page_home():
         'preload': preload_image('hero-brindes-v2', HERO_SIZES),
         'body': hero_carousel() + f'''
 {frentes_section()}
-{prova_block('home')}
 {process_strip()}
 {home_products_block()}
 {kits_block(compacto=True)}

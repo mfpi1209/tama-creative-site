@@ -211,6 +211,8 @@ A chamada final do artigo de fim de ano não fala em taças e copos, porque a cu
 
 ## Rascunhos do pacote de 50 artigos (18/10/2026)
 
+**Bloco 1 publicado em 18/10/2026 (10 artigos que só citam uns aos outros ou guias já publicados):** briefing-brindes-corporativos, orcamento-brindes-comparar, prazo-brindes-cronograma, aprovacao-arte-brindes, amostra-brinde, embalagem-brindes, papel-seda-personalizado, lacre-fita-personalizados, caixa-rigida-transporte e kit-home-office-envio. Com eles, Planejamento de compras e Embalagem e acabamento passaram de 3 artigos e ganharam página de categoria. Os outros 40 continuam em rascunho. `tests/e2e.mjs` conta 14 artigos publicados: atualize o número a cada bloco.
+
 50 guias curtos (cerca de 300 palavras) do pacote `TaMa_Blog_50` estão em `src/blog/` com `draft: true`: não aparecem no site nem no sitemap. As capas, geradas por IA, ficam em `img/blog/capa-<slug>.jpg` (JPEG de alta qualidade, a partir dos PNG de 1672×941 do pacote) e trazem a legenda "Imagem ilustrativa gerada por IA".
 
 Na importação: os links para `/confeccoes/` passaram para `/confeccoes-personalizadas/`; as rotas inexistentes `/ativacoes/` e `/gastronomia-e-hotelaria/` saíram do texto (esses artigos ficam sem página de serviço e com proposta do tipo integrado); a linha final de links comerciais virou `[[cta]]`. Cada artigo ganhou título curto, palavra-chave, resumo e até 2 relacionados.

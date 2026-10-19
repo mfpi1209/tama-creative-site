@@ -16,7 +16,7 @@ capa_legenda: Imagem ilustrativa gerada por IA · Marcas, produtos e cenas fict�
 relacionados:
 - caixa-rigida-transporte
 - papel-seda-personalizado
-draft: true
+draft: false
 ---
 
 A embalagem para brindes deve proteger o conteúdo, organizar a apresentação e acompanhar a forma de entrega. Escolher a caixa antes de definir o objeto pode gerar espaço excessivo ou uma montagem difícil de repetir.

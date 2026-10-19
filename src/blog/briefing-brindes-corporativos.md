@@ -16,7 +16,7 @@ capa_legenda: Imagem ilustrativa gerada por IA · Marcas, produtos e cenas fict�
 relacionados:
 - orcamento-brindes-comparar
 - prazo-brindes-cronograma
-draft: true
+draft: false
 ---
 
 Um briefing de brindes reúne as informações que orientam a escolha: quem recebe, qual é a ocasião, quantas peças serão necessárias, quanto pode ser investido e quando a entrega precisa acontecer. Ele permite comparar propostas que atendam ao mesmo objetivo.

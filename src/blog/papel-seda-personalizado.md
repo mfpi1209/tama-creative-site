@@ -16,7 +16,7 @@ capa_legenda: Imagem ilustrativa gerada por IA · Marcas, produtos e cenas fict�
 relacionados:
 - lacre-fita-personalizados
 - embalagem-brindes
-draft: true
+draft: false
 ---
 
 O papel de seda personalizado pode criar uma camada de apresentação entre a embalagem e o presente. Para funcionar bem, precisa ter dimensão e quantidade compatíveis com o conteúdo, sem dificultar a abertura.

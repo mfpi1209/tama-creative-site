@@ -533,7 +533,7 @@ try {
     rss: document.querySelector('link[rel="alternate"][type="application/rss+xml"]')?.getAttribute('href'),
     ld: JSON.parse(document.querySelector('script[type="application/ld+json"]').textContent)['@graph'].map(x => x['@type']),
   }));
-  ok(idx.h1 === 1 && idx.posts.length === 4, `/blog/ tem um H1 e lista 4 artigos (${idx.posts.length})`);
+  ok(idx.h1 === 1 && idx.posts.length === 14, `/blog/ tem um H1 e lista 14 artigos (${idx.posts.length})`);
   // abertura no padrão das páginas de área (foto_hero): eyebrow, título em duas partes, foto eager à direita e dois botões
   const abre = await bp.evaluate(() => {
     const img = document.querySelector('.foto-hero-photo img');
@@ -557,7 +557,7 @@ try {
     bts[0].click();
     return { n: bts.length, shown: !document.querySelector('[data-blog-filters]').hidden, pressed: kits.getAttribute('aria-pressed'), vis };
   });
-  ok(filtro.shown && filtro.n === 4 && filtro.vis.length === 1 && filtro.vis[0] === 'kits-e-boas-vindas', 'filtros por categoria (Todos + 3) mostram só os guias da categoria');
+  ok(filtro.shown && filtro.n === 5 && filtro.vis.length === 2 && filtro.vis.every(c => c === 'kits-e-boas-vindas'), 'filtros por categoria (Todos + 4) mostram só os guias da categoria');
   ok(idx.navCurrent === '/blog/' && idx.footer, 'Blog no menu (página atual marcada) e no rodapé');
   ok(idx.rss === '/blog/feed.xml' && idx.ld.includes('Blog') && idx.ld.includes('CollectionPage'), 'índice com RSS e JSON-LD Blog + CollectionPage');
   const blogBroken = [];
@@ -579,6 +579,7 @@ try {
         curadoria: [...document.querySelectorAll('main a[href*="?ocasiao="]')].map(x => x.getAttribute('href')),
         sources: [...document.querySelectorAll('.prose a[href^="https://"]')].filter(x => /gov\.br/.test(x.href)).length,
         vitrine: !!document.querySelector('#rail-post, .post-author .btn, .end-cta'),
+        pecas: !!document.querySelector('#rail-post'),
         caption: document.querySelector('.post-cover figcaption')?.textContent || '',
       };
     });
@@ -590,7 +591,7 @@ try {
     ok(a.caption.startsWith('Imagem ilustrativa'), `${post}: capa identificada como imagem ilustrativa`);
     ok((await fetch(BASE + new URL(a.ogImage).pathname).then(async r => (await r.arrayBuffer(), r))).status === 200, `${post}: imagem de compartilhamento própria`);
     if (post.includes('compliance')) ok(a.sources >= 3, `${post}: fontes oficiais citadas no texto (${a.sources})`);
-    else ok(a.curadoria.length > 0 || a.links.includes('/brindes-de-fim-de-ano/'), `${post}: link para as ideias da ocasião (fim de ano: página própria)`);
+    else if (a.pecas) ok(a.curadoria.length > 0 || a.links.includes('/brindes-de-fim-de-ano/'), `${post}: artigo com peças do catálogo leva às ideias da ocasião (fim de ano: página própria)`);
     for (const l of a.links) { const r = await fetch(BASE + l); await r.arrayBuffer(); if (r.status !== 200) blogBroken.push(post + ' → ' + l + ' ' + r.status); }
   }
   ok(blogBroken.length === 0, `links internos dos artigos respondem 200${blogBroken.length ? ' — ' + blogBroken.join(', ') : ''}`);
@@ -602,7 +603,7 @@ try {
   await bp.evaluate(() => { localStorage.clear(); localStorage.setItem('tama-consent', 'denied'); });
   const feed = await (await fetch(BASE + '/blog/feed.xml')).text();
   const items = [...feed.matchAll(/<item>[\s\S]*?<link>([^<]+)<\/link>/g)].map(m => new URL(m[1]).pathname);
-  ok(items.length === 4 && items.every(p => idx.posts.includes(p)), `RSS com os 4 artigos (${items.length})`);
+  ok(items.length === 14 && items.every(p => idx.posts.includes(p)), `RSS com os 14 artigos (${items.length})`);
   const sitemap = await (await fetch(BASE + '/sitemap.xml')).text();
   ok(['/blog/', ...idx.posts].every(p => sitemap.includes(p + '</loc>')), 'sitemap inclui o blog e os artigos');
 

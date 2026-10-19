@@ -16,7 +16,7 @@ capa_legenda: Imagem ilustrativa gerada por IA · Marcas, produtos e cenas fict�
 relacionados:
 - papel-seda-personalizado
 - embalagem-brindes
-draft: true
+draft: false
 ---
 
 Lacre e fita podem ligar visualmente os elementos de uma embalagem. O cuidado está em dar uma função a cada detalhe: fechar, identificar ou apresentar, sem criar etapas desnecessárias para quem monta ou abre o presente.

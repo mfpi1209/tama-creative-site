@@ -751,7 +751,7 @@ body:has(.wa-float) .float-bag { bottom: calc(88px + env(safe-area-inset-bottom,
 /* Catálogo: busca acima da grade, filtro lateral (categoria e família de cor) e fotos grandes. Abaixo de 1200 px os
    filtros abrem numa gaveta (a partir de 1200 px ficam na lateral); no celular, uma foto por linha (ou duas, à
    escolha do visitante). */
-.cat-layout { max-width: 1440px; display: grid; grid-template-columns: 240px minmax(0, 1fr); gap: 0 clamp(28px, 3vw, 44px); align-items: start; }
+.cat-layout { max-width: 1280px; margin-top: clamp(20px, 2.4vw, 32px); display: grid; grid-template-columns: 240px minmax(0, 1fr); gap: 0 clamp(28px, 3vw, 44px); align-items: start; }
 .cat-side { position: sticky; top: calc(var(--header-h) + 20px); max-height: calc(100dvh - var(--header-h) - 40px); overflow-y: auto; overscroll-behavior: contain; padding: 4px 4px 12px 0; }
 .cat-side-head, .cat-side-foot, .cat-open, .cat-view, .cat-scrim { display: none; }
 .cat-side-title { font: 400 1.5rem/1.2 var(--f-serif); }

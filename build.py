@@ -697,7 +697,7 @@ def page_produto(c):
     medidas = (f'<div><dt>Medidas</dt><dd>{esc(med["valor"])}</dd></div>' if med.get('status') == 'confirmado' and med.get('valor') else '')
     usos = [u for u in (info.get('usos') or []) if u]
     usos_html = (f'<div class="pdp-usos"><p class="pdp-label">Ideal para</p><ul>{"".join(f"<li>{esc(u)}</li>" for u in usos)}</ul></div>' if usos else '')
-    tipo = 'confeccoes' if c['categoria'] == 'vestuario' else 'brindes'
+    tipo = {'vestuario': 'confeccoes', 'hotelaria-gastronomia': 'hotelaria'}.get(c['categoria'], 'brindes')
     cat_nome = CAT_PROD.get(c['categoria'], 'Catálogo')
     mesma = [x for x in CATALOGO if x['categoria'] == c['categoria']]
     i = mesma.index(c)
@@ -740,7 +740,7 @@ def page_produto(c):
         <p class="prod-meta" hidden>{c['meta']}</p>
         <div class="actions">
           <button class="pick btn-pick-lg" type="button" data-slug="{slug}" aria-pressed="false"><span class="when-off">+ Adicionar à seleção</span><span class="when-on">✓ Na seleção</span><span class="visually-hidden">: {nome}</span></button>
-          {cta_link('Solicitar proposta', tipo=tipo, track_label='produto')}
+          <a class="btn btn-wine" href="/solicitar-proposta/?tipo={tipo}&amp;interesse={urllib.parse.quote(nome + ' (' + cores[0][0] + ')')}" data-track="cta_solicitar_proposta" data-track-label="produto" data-interesse="{esc(nome)} ({esc(cores[0][0])})">Solicitar proposta {ARROW}</a>
         </div>
         {wa_button()}
         <dl class="pdp-spec">
@@ -1468,7 +1468,8 @@ def hero_carousel(slides=None, label='Destaques da TaMa Creative', assurances=Tr
         slides.insert(0, slides.pop(1))   # temporada: o slide de fim de ano abre o carrossel
         h1 = f'<h1 class="visually-hidden">{ASSINATURA.rstrip(".")}</h1>'
     n = len(slides)
-    nota = nota_marca(s[3] for s in slides)   # legenda do carrossel conforme a marca que aparece nas fotos
+    # legenda curta (cabe ao lado dos controles em qualquer largura), conforme a marca que aparece nas fotos
+    nota = {NOTA_FICTICIA_LONGA: NOTA_FICTICIA, NOTA_TAMA: NOTA_TAMA_CURTA}.get(nota_marca(s[3] for s in slides), 'Imagens ilustrativas • Marcas fictícias e TaMa como exemplo')
     out = []
     for i, (tone, img, frame, alt, eyebrow, title, desc, actions) in enumerate(slides):
         cls = ''

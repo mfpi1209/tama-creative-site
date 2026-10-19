@@ -827,7 +827,7 @@ PROVA_INTRO = {
     'hotelaria': 'Em restaurantes, bares e hotéis, a marca aparece da mesa à equipe. É assim que a TaMa conduz cada projeto.',
 }
 PROVAS = [   # textos do /sobre/ ("Como trabalhamos") e da faixa de destaques
-    ('Visão de Trade Marketing', 'Público, ocasião de uso e execução vêm antes da escolha de qualquer peça.'),
+    ('O público vem antes da peça', 'Quem recebe, a ocasião e o uso vêm antes da escolha de qualquer peça.'),
     ('Arte aprovada por você antes da produção', 'Arte e especificações aprovadas antes da produção e materiais conferidos antes da entrega.'),
     ('Tudo em um pedido', 'Brindes, kits, uniformes e materiais de ativação no mesmo pedido, com uma única linguagem.'),
 ]
@@ -1559,7 +1559,6 @@ def page_brindes():
     </div>
   </div>
 </section>
-{prova_block('brindes')}
 {studio_block(['caderno-de-anotacoes', 'agenda', 'caneta-executiva-com-estojo', 'garrafa-termica', 'caneca', 'copo-com-tampa', 'ecobag', 'necessaire', 'caixa-para-presente', 'guarda-chuva', 'vela', 'difusor-de-aromas'],
               'Peças para a sua marca', 'Brindes', 'Uma amostra do catálogo: do brinde de evento ao presente executivo. Toque na cor para ver a foto e adicione à sua seleção.', 'estudio-b-t',
               more=('/catalogo/', f'Ver os {len(CATALOGO)} modelos do catálogo'))}
@@ -1661,7 +1660,6 @@ def page_kits():
     <p class="note" style="margin-top:18px">{nota_kits(MAIS_KITS)}</p>
   </div>
 </section>
-{prova_block('kits')}
 <section class="section ivory" aria-labelledby="tipos-t">
   <div class="wrap">
     <div class="section-head"><p class="eyebrow">Tipos de kit</p><h2 id="tipos-t" class="section-title">Um kit para cada relação</h2><p class="muted">Quem recebe e o motivo definem as peças, a embalagem e a mensagem. Estes são os pedidos mais comuns.</p></div>
@@ -1799,7 +1797,6 @@ def page_confeccoes():
     </div>
   </div>
 </section>
-{prova_block('confeccoes')}
 {studio_block(['polo-masculina', 'polo-feminina', 'camisa-masculina', 'camisa-feminina', 'camiseta-masculina', 'camiseta-feminina', 'moletom-com-capuz', 'bone', 'dolma', 'avental'],
               'Peças de vestuário para a sua marca', 'Catálogo', 'Polo, camisa, camiseta, moletom, dólmã e avental. Toque na cor de referência e adicione à seleção: as peças seguem com o pedido de proposta.', 'estudio-c-t',
               more=('/catalogo/?categoria=vestuario', 'Ver vestuário no catálogo'))}
@@ -1858,7 +1855,6 @@ def page_ativacoes():
     </div>
   </div>
 </section>
-{prova_block('ativacoes')}
 <section class="section" aria-labelledby="ativ-inclui-t">
   <div class="wrap split" style="align-items:start">
     <div class="stack" style="gap:12px"><p class="eyebrow">O que pode fazer parte</p><h2 id="ativ-inclui-t" class="section-title">Tudo o que a ação precisa, com a sua marca</h2><p class="muted">O escopo de cada ativação (materiais, equipe, logística e regras do local ou do organizador) é definido com você e confirmado na proposta.</p></div>
@@ -1918,7 +1914,6 @@ def page_hotelaria():
     </div>
   </div>
 </section>
-{prova_block('hotelaria')}
 {studio_block(['cardapio', 'porta-contas', 'jogo-americano-retangular', 'jogo-americano-oval', 'jogo-americano-impresso', 'dolma', 'avental', 'taca-de-vinho'],
               'Peças para salão, cozinha e equipe', 'Catálogo', 'Toque na cor para ver a foto e adicione à seleção: as peças seguem com o pedido de proposta.', 'hot-pecas-t',
               more=('/catalogo/?categoria=hotelaria-gastronomia', 'Ver hotelaria no catálogo'))}
@@ -2004,7 +1999,7 @@ def page_sobre():
     dados_html = f'<section class="section" aria-labelledby="dados-t"><div class="wrap split" style="align-items:start"><div class="stack" style="gap:12px"><p class="eyebrow">Dados da empresa</p><h2 id="dados-t" class="section-title">TaMa Creative</h2></div><dl class="pack">{dados}</dl></div></section>' if dados else ''
     return {
         'path': '/sobre/', 'title': 'Sobre a TaMa Creative | Brindes, uniformes, kits e ativações',
-        'description': 'A TaMa Creative seleciona, personaliza e coordena brindes, uniformes, kits, ativações e peças de hotelaria com a marca da sua empresa, com visão de Trade Marketing.',
+        'description': 'A TaMa Creative seleciona, personaliza e coordena brindes, uniformes, kits, ativações e peças de hotelaria com a marca da sua empresa.',
         'trail': trail, 'wp_type': 'AboutPage', 'assunto': 'um projeto para a minha empresa',
         'preload': preload_image('sobre-header', FOTO_HERO_SIZES),   # mesma imagem e sizes da foto do cabeçalho
         'crumbs_inline': True,
@@ -2014,7 +2009,7 @@ def page_sobre():
                           'barbante e tesoura, em estúdio com luz natural. Pessoa ilustrativa, sem rosto.',
                           'Sobre a TaMa', ['A marca do cliente'], 'em cada escolha.',
                           'A TaMa Creative é uma prestadora de serviços que seleciona as peças, personaliza com a identidade da sua empresa e '
-                          'coordena a produção até a entrega. Brindes, uniformes, kits e ativações com visão de Trade Marketing: o público e a '
+                          'coordena a produção até a entrega. Brindes, uniformes, kits e ativações pensados para quem recebe: o público e a '
                           'ocasião vêm antes da peça.',
                           cta_link(track_label='sobre-head') + '<a class="btn btn-line" href="#como-t">Como trabalhamos</a>',
                           'Imagem ilustrativa • Marcas fictícias', pos_m='70% center') + f'''
@@ -2035,7 +2030,7 @@ def page_sobre():
   <div class="wrap">
     <div class="section-head"><p class="eyebrow">Nosso jeito</p><h2 id="sustenta-t" class="section-title">O que sustenta cada projeto</h2></div>
     <div class="cols-3">
-      <div class="col">{arc('c1')}<h3>Visão de Trade Marketing</h3><p>Público, ocasião de uso e execução vêm antes da escolha de qualquer peça.</p></div>
+      <div class="col">{arc('c1')}<h3>O público vem antes da peça</h3><p>Público, ocasião de uso e execução vêm antes da escolha de qualquer peça.</p></div>
       <div class="col">{arc('c2')}<h3>Seleção sob medida</h3><p>Peças alinhadas ao público, à ocasião e ao investimento, escolhidas para cada projeto.</p></div>
       <div class="col">{arc('c3')}<h3>Tudo em um pedido</h3><p>Brindes, kits, uniformes e materiais de ativação no mesmo pedido, com uma única linguagem.</p></div>
     </div>

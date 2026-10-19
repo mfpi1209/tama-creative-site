@@ -484,7 +484,7 @@ def article_page(b, a):
                            f'{SERVICOS.get(a["servico"], "Conhecer o serviço")}</a>')
             actions = f'<div class="actions">{b.cta_link(tipo=a["proposta"], track_label="blog-autor-" + a["slug"])}{servico}</div>'
         author = f'''<div class="post-author">{b.SELO}<div class="stack" style="gap:8px"><p><strong>{AUTOR}</strong></p>
-      <p class="muted">{b.ASSINATURA} Visão de Trade Marketing: o público e a ocasião vêm antes da peça.</p>
+      <p class="muted">{b.ASSINATURA} O público e a ocasião vêm antes da peça.</p>
       {actions}</div></div>'''
         # cabeçalho de texto padrão do site (build.text_head): eyebrow, título e apoio nas mesmas medidas das outras páginas
         body = f'''<article class="post">

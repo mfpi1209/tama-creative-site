@@ -16,7 +16,7 @@ capa_legenda: Imagem ilustrativa gerada por IA · Marcas, produtos e cenas fict�
 relacionados:
 - kit-home-office-envio
 - embalagem-brindes
-draft: true
+draft: false
 ---
 
 A caixa de apresentação organiza a experiência de abertura. A caixa de transporte acompanha o trajeto e precisa ser avaliada para o conteúdo e a operação de envio. Em alguns projetos, serão duas peças diferentes.

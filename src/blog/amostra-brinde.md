@@ -16,7 +16,7 @@ capa_legenda: Imagem ilustrativa gerada por IA · Marcas, produtos e cenas fict�
 relacionados:
 - aprovacao-arte-brindes
 - orcamento-brindes-comparar
-draft: true
+draft: false
 ---
 
 A amostra de um brinde deve responder a perguntas definidas antes de chegar à mesa. Sem critérios, a avaliação fica restrita a “gostei” ou “não gostei” e deixa decisões importantes para depois da compra.

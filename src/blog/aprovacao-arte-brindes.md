@@ -16,7 +16,7 @@ capa_legenda: Imagem ilustrativa gerada por IA · Marcas, produtos e cenas fict�
 relacionados:
 - amostra-brinde
 - prazo-brindes-cronograma
-draft: true
+draft: false
 ---
 
 A aprovação de arte é o momento de conferir o que será aplicado no produto. Ela precisa ligar o arquivo ao objeto real: tamanho, posição, cor e técnica devem estar claros antes da liberação.

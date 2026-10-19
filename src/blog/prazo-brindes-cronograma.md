@@ -16,7 +16,7 @@ capa_legenda: Imagem ilustrativa gerada por IA · Marcas, produtos e cenas fict�
 relacionados:
 - aprovacao-arte-brindes
 - briefing-brindes-corporativos
-draft: true
+draft: false
 ---
 
 O cronograma de brindes personalizados precisa incluir escolha, aprovação, produção, montagem e entrega. Contar somente o tempo informado para produzir pode deixar a campanha sem margem para etapas anteriores e posteriores.

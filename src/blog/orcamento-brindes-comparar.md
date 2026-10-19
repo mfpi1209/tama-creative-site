@@ -16,7 +16,7 @@ capa_legenda: Imagem ilustrativa gerada por IA · Marcas, produtos e cenas fict�
 relacionados:
 - briefing-brindes-corporativos
 - amostra-brinde
-draft: true
+draft: false
 ---
 
 Comparar orçamentos de brindes corporativos exige olhar para o que cada proposta inclui. O menor preço unitário pode estar associado a outro modelo, outra personalização ou etapas que ainda serão cobradas.

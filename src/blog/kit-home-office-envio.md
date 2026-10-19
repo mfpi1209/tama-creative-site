@@ -16,7 +16,7 @@ capa_legenda: Imagem ilustrativa gerada por IA · Marcas, produtos e cenas fict�
 relacionados:
 - caixa-rigida-transporte
 - entrega-brindes-multiplos-enderecos
-draft: true
+draft: false
 ---
 
 No kit para home office, a experiência começa antes de abrir a caixa: ela depende de o pacote chegar ao endereço correto, em boas condições e no momento combinado. Composição e logística precisam ser decididas juntas.

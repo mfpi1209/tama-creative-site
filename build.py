@@ -125,7 +125,44 @@ ALIASES = SEL['aliases']
 # banco de imagens de produto (docs/BANCO-IMAGENS.md): uma entrada por imagem; o catálogo agrupa por produto
 PRODUTOS = json.load(open(os.path.join(SRC, 'data', 'produtos.json'), encoding='utf-8'))['imagens']
 CAT_PROD = {'vestuario': 'Vestuário', 'canetas-escritorio': 'Canetas e escritório', 'tecnologia': 'Tecnologia', 'bolsas-embalagens': 'Bolsas e embalagens', 'garrafas-copos': 'Garrafas e copos',
-            'acessorios': 'Acessórios', 'casa-bem-estar': 'Casa e bem-estar', 'hotelaria-gastronomia': 'Hotelaria e gastronomia'}
+            'cozinha-bar': 'Cozinha e bar', 'acessorios': 'Acessórios', 'casa-bem-estar': 'Casa e bem-estar', 'hotelaria-gastronomia': 'Hotelaria e gastronomia'}
+# Tipos de peça (menu Brindes e Confecções, filtro ?tipo= do catálogo): o 1º padrão que casa com o id do modelo (o nome do
+# banco de imagens sem acentos, ex.: taca-de-gin) define o tipo, então a ordem é a prioridade. O nome de exibição de
+# modelos.json não entra ("Vela aromática em copo" não é copo). Sem padrão, a categoria tecnologia vira o tipo tecnologia.
+# Chaves e rótulos dos brindes: lista da apresentação de 20/10 (lotes.json › tipos).
+TIPOS = [
+    ('tacas', 'Taças', r'^(taca|flute)s?\b'),
+    ('copos', 'Copos', r'^copos?\b'),                                   # inclusive "Copo de vinho com tampa"
+    ('porta-vinho', 'Porta-vinho', r'^porta-vinhos?\b|-para-vinho\b'),  # "Estojo para vinho", "Bolsa térmica para vinho"
+    ('canecas', 'Canecas', r'^canecas?\b'),
+    ('xicaras', 'Xícaras', r'^xicaras?\b'),
+    ('squeezes', 'Squeezes e garrafas', r'^(squeeze|garrafa)s?\b'),    # âncora no início: "Chaveiro abridor de garrafa" fica de fora
+    ('agendas', 'Agendas e cadernos', r'^(agenda|caderno|caderneta|bloco)s?\b'),
+    ('canetas', 'Canetas', r'^canetas?\b'),
+    ('mochilas', 'Mochilas e ecobags', r'^(mochila|ecobag)s?\b|^sacola-de-alca-longa\b'),
+    ('polos', 'Camisetas polo', r'^polos?\b|^camiseta-polo\b'),         # antes de camisetas
+    ('camisetas', 'Camisetas', r'^camisetas?\b'),
+    ('moletons', 'Blusas de moletom', r'^(blusa-de-)?moletom\b|^moletons\b'),
+    ('camisas', 'Camisas', r'^camisas?\b'),
+    ('dolmas', 'Dólmãs', r'^dolmas?\b'),
+    ('aventais', 'Aventais', r'^aventa(l|is)\b'),
+    ('bones', 'Bonés', r'^bones?\b'),
+    # tipos dos modelos novos que não estão no menu (filtram o catálogo pelo ?tipo=)
+    ('bolsas', 'Bolsas e nécessaires', r'^(bolsa|necessaire)s?\b'),
+    ('escritorio', 'Escritório', r'^(porta-canetas|porta-cartao|porta-cartoes|suporte-de-celular|estojo-de-escritorio)\b'),
+    ('cozinha', 'Cozinha', r'^(tabua|kit-churrasco|cortador)\b'),
+    ('bar', 'Bar', r'^(coqueteleira|abridor|porta-lata)\b'),
+]
+TIPO_DA_CATEGORIA = {'tecnologia': 'tecnologia'}
+TIPO_ROTULO = {**{k: r for k, r, _ in TIPOS}, 'tecnologia': 'Tecnologia'}
+_TIPOS_RE = [(k, re.compile(p)) for k, _, p in TIPOS]
+
+
+def tipo_do_modelo(slug, categoria):
+    """Tipo de peça do modelo (chave de TIPO_ROTULO) ou '' quando nenhum padrão casa."""
+    return next((k for k, rx in _TIPOS_RE if rx.search(slug)), TIPO_DA_CATEGORIA.get(categoria, ''))
+
+
 # cores de referência sem foto, por categoria (catálogo inicial do pacote tama-home-v2); as demais categorias mostram só a cor da foto
 CORES_REF = {'vestuario': [['Vermelho', '#C8202F'], ['Azul royal', '#1F4FB8'], ['Azul-marinho', '#1E2A4A'], ['Preto', '#1E1E1E'], ['Branco', '#F7F5F0'], ['Cinza', '#9A9A98'], ['Verde', '#1F6B45']],
              'hotelaria-gastronomia': [['Preto', '#1E1E1E'], ['Verde', '#1F4A35'], ['Marrom café', '#4A2E22'], ['Havana', '#7A4A2E'], ['Vinho', '#6B1E33'], ['Caramelo', '#A0623A'], ['Azul', '#1E2A4A']]}
@@ -157,7 +194,7 @@ def build_catalogo():
         grupo = next((i for i in extras if i['vista'] == 'grupo'), None)
         versos = {i['cor']['nome']: i['id'] for i in extras if i['vista'] == 'verso'}
         detalhes = {i['cor']['nome']: i['id'] for i in extras if i['vista'] == 'detalhe'}
-        out.append({'slug': slug, 'nome': nome, 'img': base['id'], 'categoria': base['categoria'], 'descricao': base.get('modelo') or '',
+        out.append({'slug': slug, 'nome': nome, 'img': base['id'], 'categoria': base['categoria'], 'tipo': tipo_do_modelo(slug, base['categoria']), 'descricao': base.get('modelo') or '',
                     'meta': spec_line(base), 'alt': base['alt'], 'cores': cores, 'ocasioes': SEL.get('ocasioes_por_modelo', {}).get(slug, []),
                     'url': f'/catalogo/{slug}/', 'grupo': grupo and [grupo['id'], grupo['alt']], 'versos': versos, 'detalhes': detalhes,
                     'extras': [[i['id'], i['vista'], i['alt']] for i in extras if i['vista'] != 'grupo'], 'base': base})
@@ -219,7 +256,7 @@ CARROSSEL_HQ = {'hero-brindes-v2', 'fim-header', 'hero-v3-confeccoes-v2', 'hero-
 # fotos do carrossel mais estreitas que 1,9:1 que também já trazem o vazio do texto à esquerda (fim-header: a parede
 # iluminada ocupa o primeiro terço; a taça solta começa em ~37% da largura)
 CARROSSEL_RESPIRO = {'fim-header'}
-FOTOS_HQ = CARROSSEL_HQ | {'home-frente-brindes-v2', 'home-frente-confeccoes-v2', 'home-frente-kits-v2', 'kits-header', 'conf-header', 'ativ-header', 'hot-header', 'brindes-header', 'brindes-entrega', 'fim-header', 'blog-header', 'sobre-header', 'ocasiao-boas-vindas', 'ocasiao-eventos', 'ocasiao-executivos', 'ocasiao-campanhas', 'ocasiao-lancamentos', 'ocasiao-reconhecimento', 'sobre-caderno', 'sobre-uniforme', 'sobre-caixa', 'slide-ativacoes'}   # fotos enviadas em alta pela TaMa (home e cabeçalhos de kits e confecções)
+FOTOS_HQ = CARROSSEL_HQ | {'home-frente-brindes-v2', 'home-frente-confeccoes-v2', 'home-frente-kits-v2', 'kits-header', 'kits-header-v3', 'conf-header', 'ativ-header', 'hot-header', 'brindes-header', 'brindes-entrega', 'fim-header', 'blog-header', 'sobre-header', 'ocasiao-boas-vindas', 'ocasiao-eventos', 'ocasiao-executivos', 'ocasiao-campanhas', 'ocasiao-lancamentos', 'ocasiao-reconhecimento', 'sobre-caderno', 'sobre-uniforme', 'sobre-caixa', 'slide-ativacoes'}   # fotos enviadas em alta pela TaMa (home e cabeçalhos de kits e confecções)
 
 
 def build_images():
@@ -539,12 +576,18 @@ def busca_norm(s):
 
 
 def catalogo_block():
-    """Catálogo: busca + filtro lateral (categoria, ocasião e família de cor) e grade grande. No celular, os filtros abrem
-    numa gaveta. O estado vai para a URL (?q=, ?categoria=, ?ocasiao=, ?cor=), para compartilhar o resultado. A ocasião
-    filtra pelo data-occ dos cards e também aparece como etiqueta removível acima da grade (links das páginas de ocasião)."""
+    """Catálogo: busca + filtro lateral (categoria, tipo de peça, ocasião e família de cor) e grade grande. No celular, os
+    filtros abrem numa gaveta. O estado vai para a URL (?q=, ?tipo=, ?categoria=, ?ocasiao=, ?cor=), para compartilhar o
+    resultado. O tipo (data-tipo, links do menu) e a ocasião (data-occ, links das páginas de ocasião) também aparecem como
+    etiqueta removível acima da grade."""
     cats = [(k, v, sum(1 for c in CATALOGO if c['categoria'] == k)) for k, v in CAT_PROD.items()]
     cat_opts = (f'<label class="cat-opt"><input type="radio" name="categoria" value="" checked> <span>Todas</span> <small>{len(CATALOGO)}</small></label>'
                 + ''.join(f'<label class="cat-opt"><input type="radio" name="categoria" value="{k}"> <span>{v}</span> <small>{n}</small></label>' for k, v, n in cats if n))
+    # tipo de peça: na ordem do menu (brindes, depois confecções, depois os demais), só os tipos com modelo
+    ordem_t = list(dict.fromkeys(MENU_BRINDES + [k for k, _ in MENU_CONFECCOES] + list(TIPO_ROTULO)))
+    tipo_opts = (f'<label class="cat-opt"><input type="radio" name="tipo" value="" checked> <span>Todos</span> <small>{len(CATALOGO)}</small></label>'
+                 + ''.join(f'<label class="cat-opt"><input type="radio" name="tipo" value="{k}"> <span>{TIPO_ROTULO[k]}</span> <small>{n}</small></label>'
+                           for k, n in ((k, sum(1 for c in CATALOGO if c['tipo'] == k)) for k in ordem_t) if n))
     # ocasião: mesma regra do data-occ dos cards; Fim de ano vem logo depois de "Todas" (temporada), as outras seguem a ordem do selecoes.json
     occs = sorted(OCCS.items(), key=lambda kv: kv[0] != (SEASON or 'fim-de-ano'))   # a ocasião da temporada vem primeiro
     occ_opts = (f'<label class="cat-opt"><input type="radio" name="ocasiao" value="" checked> <span>Todas</span> <small>{len(CATALOGO)}</small></label>'
@@ -558,18 +601,20 @@ def catalogo_block():
         fams = sorted({FAMILIA_DA_COR.get(n, '') for n in cores} - {''})
         busca = busca_norm(' '.join([c['nome'], c.get('descricao') or ''] + cores))   # a categoria é filtro, não termo de busca
         cards.append(home_product_card(c, eager=i < 2, sizes='(max-width: 760px) 92vw, (max-width: 1180px) 32vw, 360px',
-                                       extra=f' data-cores="{" ".join(fams)}" data-busca="{esc(busca)}"'))
+                                       extra=f' data-tipo="{c["tipo"]}" data-cores="{" ".join(fams)}" data-busca="{esc(busca)}"'))
     familias_json = esc(json.dumps(FAMILIA_DA_COR, ensure_ascii=False, separators=(',', ':')))
     ocasioes_json = esc(json.dumps(OCCS, ensure_ascii=False, separators=(',', ':')))
+    tipos_json = esc(json.dumps(TIPO_ROTULO, ensure_ascii=False, separators=(',', ':')))
     lupa = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 20 20"/></svg>'
     return f'''<section class="section catalogo" id="catalogo" aria-labelledby="catalogo-t" style="padding-top:0">
-  <div class="wrap cat-layout" data-catalogo data-familias="{familias_json}" data-ocasioes="{ocasioes_json}">
+  <div class="wrap cat-layout" data-catalogo data-familias="{familias_json}" data-ocasioes="{ocasioes_json}" data-tipos="{tipos_json}">
     <h2 id="catalogo-t" class="visually-hidden">Modelos</h2>
     <div class="cat-scrim" data-cat-close hidden></div>
     <div class="cat-side" id="cat-filtros" aria-labelledby="cat-filtros-t">
       <div class="cat-side-head"><p class="cat-side-title" id="cat-filtros-t">Filtros</p><button class="icon-btn" type="button" data-cat-close aria-label="Fechar filtros"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
       <form class="cat-form" id="cat-form">
         <fieldset><legend>Categoria</legend>{cat_opts}</fieldset>
+        <fieldset><legend>Tipo de peça</legend>{tipo_opts}</fieldset>
         <fieldset><legend>Ocasião</legend>{occ_opts}</fieldset>
         <fieldset><legend>Cor</legend>{cor_opts}</fieldset>
         <button class="link cat-clear" type="reset">Limpar filtros</button>
@@ -581,6 +626,7 @@ def catalogo_block():
         <div class="cat-search">{lupa}<label class="visually-hidden" for="cat-q">Buscar no catálogo</label><input id="cat-q" type="search" form="cat-form" name="q" placeholder="Buscar: caneca, polo…" autocomplete="off" enterkeyhint="search"></div>
         <button class="btn btn-line cat-open" type="button" aria-controls="cat-filtros" aria-expanded="false" data-cat-open><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M7 12h10M10 17h4"/></svg>Filtros<span class="cat-badge" data-cat-badge hidden></span></button>
       </div>
+      <div class="cat-occ" data-cat-tipo hidden><span>Tipo:</span><span class="cat-occ-chip"><strong data-cat-tipo-name></strong><button type="button" data-cat-tipo-clear aria-label="Remover o filtro de tipo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></span></div>
       <div class="cat-occ" data-cat-occ hidden><span>Ocasião:</span><span class="cat-occ-chip"><strong data-cat-occ-name></strong><button type="button" data-cat-occ-clear aria-label="Remover o filtro de ocasião"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></span></div>
       <div class="cat-status"><p id="cat-count" role="status" aria-live="polite"><strong data-cat-n>{len(CATALOGO)}</strong> modelos</p>
         <div class="cat-view" role="group" aria-label="Fotos por linha no celular"><button type="button" data-cat-cols="1" aria-pressed="true" aria-label="Uma foto por linha"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="4" width="14" height="16" rx="1.5"/></svg></button><button type="button" data-cat-cols="2" aria-pressed="false" aria-label="Duas fotos por linha"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="4" width="7.5" height="16" rx="1.5"/><rect x="13" y="4" width="7.5" height="16" rx="1.5"/></svg></button></div>
@@ -622,6 +668,7 @@ CAT_TEXTO = {
     'tecnologia': 'Itens de tecnologia para a rotina de quem trabalha no escritório, em casa ou em trânsito: pen drives, power banks, carregadores, fones, caixas de som e organizadores. Capacidade, potência, compatibilidade e aplicação da marca são confirmadas na proposta.',
     'bolsas-embalagens': 'Bolsas, embalagens e acabamentos (cartões, lacres) que acompanham o presente ou viram o próprio brinde. Formato, acabamento e aplicação da marca são definidos na proposta.',
     'garrafas-copos': 'Garrafas, copos, canecas e taças para o dia a dia, eventos e presentes de fim de ano. Capacidade, material e técnica de personalização são confirmados na proposta.',
+    'cozinha-bar': 'Peças para preparar, servir e brindar: tábuas, utensílios, acessórios de bar e porta-vinhos para presentes e kits. Material, acabamento e aplicação da marca são confirmados na proposta.',
     'acessorios': 'Acessórios úteis, que acompanham a pessoa no dia a dia. Material, acabamento e aplicação da marca são confirmados na proposta.',
     'casa-bem-estar': 'Peças para casa e bem-estar, pensadas para presentes de afeto e kits. Fragrância, material e embalagem são definidos na proposta.',
     'hotelaria-gastronomia': 'Itens para restaurantes, hotéis e eventos gastronômicos, com a identidade do seu negócio. Material e acabamento são confirmados na proposta.',
@@ -629,6 +676,7 @@ CAT_TEXTO = {
 CAT_USO = {'vestuario': 'para uniformes, equipes e eventos', 'canetas-escritorio': 'para o escritório, eventos e kits',
            'tecnologia': 'para equipes, eventos e kits',
            'bolsas-embalagens': 'para presentes e kits corporativos', 'garrafas-copos': 'para eventos, presentes e kits',
+           'cozinha-bar': 'para presentes, kits e eventos',
            'acessorios': 'para presentear clientes e equipes', 'casa-bem-estar': 'para presentes e kits corporativos',
            'hotelaria-gastronomia': 'para restaurantes, hotéis e eventos'}
 # gênero do nome do modelo, para o título "… personalizada/personalizado" (o padrão é masculino)
@@ -919,21 +967,46 @@ HOME_KITS = [
 ]
 
 
-# Fotos dos kits da home editadas com marcas fictícias e caixas fora do bordô (img/v2/kitp-<slug>-v2.webp): o cliente vê a
-# marca dele no kit, não a da TaMa. slug -> (imagem, marca fictícia, cor). Os demais kits seguem em kitp-<slug>.webp.
+# Fotos dos kits editadas com marcas fictícias e caixas fora do bordô (img/v2/): o cliente vê a marca dele no kit, não a da
+# TaMa. slug -> (imagem, marca fictícia, cor da caixa). Os demais kits seguem em kitp-<slug>.webp. Gelato Experience e Mesa de
+# Descobertas usam as fotos do slide 3 da apresentação de 20/10 (-v3); os kits novos (KITS_NOVOS), as fotos geradas para ela.
 KIT_FOTOS = {
-    'gelato-experience': ('kitp-gelato-experience-v2', 'Nexo', 'caixa azul-petróleo'),
-    'mesa-de-descobertas': ('kitp-mesa-de-descobertas-v2', 'Elo', 'caixa grafite'),
+    'gelato-experience': ('kitp-gelato-experience-v3', 'Nexo', 'caixa redonda azul-petróleo'),
+    'mesa-de-descobertas': ('kitp-mesa-de-descobertas-v3', 'Elo', 'caixa em tom natural com lousa'),
     'kit-pratico': ('kitp-kit-pratico-v2', 'Pulso', 'peças azul-marinho e caixa creme'),
     'em-movimento': ('kitp-em-movimento-v2', 'Flora', 'peças verde-oliva e mochila preta'),
     'pausa-e-inspiracao': ('kitp-pausa-e-inspiracao-v2', 'Orla', 'caixa creme e peças azul-acinzentadas'),
+    'kit-boas-vindas-tech': ('kits-header-v3', 'Lume', 'caixa grafite com berço claro'),   # a mesma foto do topo da página
+    'kit-cozinha': ('kitp-kit-cozinha', 'Brasa', 'caixa verde-oliva com berço'),
+    'kit-agradecimento': ('kitp-kit-agradecimento', 'Aura', 'caixa azul-acinzentada com berço'),
+    'kit-caipirinha': ('kitp-kit-caipirinha', 'Vila', 'caixa em tom natural com tampa'),
+    'kit-gin': ('kitp-kit-gin', 'Noa', 'caixa preta com berço'),
+    'kit-vinho': ('kitp-kit-vinho', 'Terra', 'caixa café com berço'),
+}
+# Foto anterior dos kits que trocaram de foto: vale enquanto a nova não estiver em img/v2/.
+KIT_FOTOS_ANTES = {
+    'gelato-experience': ('kitp-gelato-experience-v2', 'Nexo', 'caixa azul-petróleo'),
+    'mesa-de-descobertas': ('kitp-mesa-de-descobertas-v2', 'Elo', 'caixa grafite'),
 }
 
 
+def kit_foto(slug):
+    """(imagem, marca fictícia, cor) do kit: a de KIT_FOTOS se a foto já existe, senão a anterior (KIT_FOTOS_ANTES ou
+    kitp-<slug>). None se nenhuma existe: o card sai da página e o build não quebra enquanto uma foto nova é gerada."""
+    for f in (KIT_FOTOS.get(slug), KIT_FOTOS_ANTES.get(slug), ('kitp-' + slug, '', '')):
+        if f and f[0] in IMAGES:
+            return f
+    return None
+
+
 def kit_card(i, slug, name, desc, big):
-    """Card de um kit (foto KIT_FOTOS[slug] ou img/v2/kitp-<slug>.webp): "Solicitar proposta deste kit" abre o pedido com tipo=kits e o interesse."""
+    """Card de um kit (foto de kit_foto: KIT_FOTOS[slug] ou img/v2/kitp-<slug>.webp): "Solicitar proposta deste kit" abre o
+    pedido com tipo=kits e o interesse. Sem foto, devolve '' (o kit fica fora da grade)."""
+    f = kit_foto(slug)
+    if not f:
+        return ''
     interesse = name if name.startswith('Kit') else 'Kit ' + name
-    foto, marca, cor = KIT_FOTOS.get(slug, ('kitp-' + slug, '', ''))
+    foto, marca, cor = f
     alt = f'{name}: {desc}' + (f' Marca fictícia {marca}; {cor}.' if marca else '')   # só descreve a foto; a nota fica sob a grade
     return (f'<article class="kit-card{" big" if big else ""}">'
             f'{picture(foto, alt, "(max-width: 760px) 92vw, 46vw" if big else "(max-width: 760px) 92vw, 31vw")}'
@@ -948,7 +1021,8 @@ def kit_cards(kits=None, inicio=0):
 
 def nota_kits(kits):
     """Nota sob uma grade de kits: a primeira frase diz qual marca aparece nas fotos (TaMa, fictícia ou as duas)."""
-    return nota_marca('marca fictícia' if k[0] in KIT_FOTOS else 'marca TaMa' for k in kits) + NOTE_KITS_EXTRA
+    fotos = [kit_foto(k[0]) for k in kits]
+    return nota_marca('marca fictícia' if f[1] else 'marca TaMa' for f in fotos if f) + NOTE_KITS_EXTRA
 
 
 # Mais cinco kits da página de kits, recriados a partir de referências enviadas pela TaMa (sem marcas de terceiros), na
@@ -961,7 +1035,63 @@ MAIS_KITS = [
     ('kit-executivo-verde', 'Kit Executivo', 'Caderno com capa de fecho, caneta e garrafa térmica, na caixa verde-escura com berço.'),
     ('kit-petiscos', 'Kit Petiscos', 'Petisqueira redonda com quatro divisórias, na caixa clara com palha decorativa.'),
 ]
-KITS_BY = {k[0]: k for k in HOME_KITS + MAIS_KITS}
+# Kits novos da apresentação de 20/10 (../lotes.json › kits_novos), com marcas fictícias e fotos em img/v2/ (KIT_FOTOS).
+# Os textos não afirmam material; os kits de drinque e de vinho são só de acessórios, sem bebida.
+KITS_NOVOS = [
+    ('kit-boas-vindas-tech', 'Kit Boas-vindas Conectado', 'Para receber quem chega: caderneta, caneta, copo com tampa, fone de ouvido sem fio com estojo, power bank e caixa de som.'),
+    ('kit-cozinha', 'Kit Cozinha', 'Para quem gosta de cozinhar e receber: tábua com facas de queijo, potinhos e avental.'),
+    ('kit-agradecimento', 'Kit de Agradecimento', 'Cartão "Obrigado", vela em copo, caneca e caderno pequeno, para agradecer clientes, parceiros e equipes.'),
+    ('kit-caipirinha', 'Kit Caipirinha', 'Coqueteleira, socador, tábua pequena, faca e dois copos baixos. Sem bebida: acessórios para preparar.'),
+    ('kit-gin', 'Kit Gin', 'Duas taças de gin, colher bailarina, dosador e potinhos para especiarias. Sem bebida: acessórios para preparar.'),
+    ('kit-vinho', 'Kit Vinho', 'Duas taças de vinho, saca-rolhas e tampa para a garrafa. Sem bebida: acessórios para servir.'),
+]
+KITS_BY = {k[0]: k for k in HOME_KITS + MAIS_KITS + KITS_NOVOS}
+
+
+# /kits-corporativos/ por tipo de kit: (âncora, título, linha de apoio, kits). O menu aponta para estas âncoras. Um kit pode
+# entrar em dois tipos (o Kit Prático serve ao escritório e às boas-vindas) e mantém o mesmo número nos dois.
+KITS_TIPOS = [
+    ('kits-escritorio', 'Kit escritório', 'Peças de mesa e de uso diário para a rotina de trabalho, com a marca da sua empresa.', ['kit-escritorio', 'kit-pratico']),
+    ('kits-cozinha', 'Kit cozinha', 'Para receber à mesa: peças para servir, harmonizar e compartilhar.', ['kit-cozinha', 'mesa-de-descobertas', 'gelato-experience', 'kit-petiscos']),
+    ('kits-boas-vindas', 'Kit boas-vindas', 'Peças úteis desde o primeiro dia, para quem chega se sentir parte da equipe.', ['kit-boas-vindas-tech', 'kit-conectado', 'kit-pratico']),
+    ('kits-executivo', 'Kit executivo', 'Para lideranças, clientes especiais e quem viaja a trabalho.', ['kit-executivo-verde', 'em-movimento']),
+    ('kits-pausa', 'Kit pausa', 'Para o café, a leitura e um momento de pausa no meio do dia.', ['pausa-e-inspiracao', 'kit-cafe']),
+    ('kits-agradecimento', 'Kit de agradecimento', 'Para agradecer clientes, parceiros e equipes, com a mensagem da sua empresa no cartão.', ['kit-agradecimento']),
+    ('kits-fim-de-ano', 'Kit fim de ano', 'Para brindar com clientes e equipes; os kits de drinque e de vinho trazem os acessórios, sem bebida.', ['kit-brinde', 'kit-coquetel', 'kit-caipirinha', 'kit-gin', 'kit-vinho']),
+]
+
+
+def kits_grandes(n):
+    """Quantos dos n cards de uma grade vão em destaque (.big, 2 por linha; os demais 3 por linha), sem buraco na grade."""
+    return 0 if n % 3 == 0 else 2 if n % 3 == 2 else min(n, 4)
+
+
+def kits_tipos_html():
+    """Uma seção por tipo de kit (KITS_TIPOS), com os cards no padrão kit_card. Kit sem foto em img/ fica fora (kit_foto); um
+    tipo sem nenhum kit com foto mantém a âncora, o título e o convite para pedir a composição."""
+    todos = {k[0]: k for k in HOME_KITS + MAIS_KITS + KITS_NOVOS + FIM_DE_ANO_KITS}
+    faltam = [s for _sid, _t, _l, slugs in KITS_TIPOS for s in slugs if s not in todos]
+    if faltam:
+        raise SystemExit(f'KITS_TIPOS cita kits que não existem: {faltam}')
+    tipos = [(sid, titulo, linha, [todos[s] for s in slugs if kit_foto(s)]) for sid, titulo, linha, slugs in KITS_TIPOS]
+    num, html = {}, []   # num: slug -> número do kit na página (o mesmo quando o kit aparece em dois tipos)
+    for j, (sid, titulo, linha, kits) in enumerate(tipos):
+        g = kits_grandes(len(kits))
+        cards = ''.join(kit_card(num.setdefault(slug, len(num)), slug, name, desc, i < g) for i, (slug, name, desc) in enumerate(kits))
+        corpo = (f'<div class="kit-grid">{cards}</div>' if kits else
+                 '<p class="kit-vazio">Conte a ocasião e o público no pedido: a TaMa propõe a composição, a caixa e o cartão com a sua marca. '
+                 f'<a class="link" href="/solicitar-proposta/?tipo=kits&amp;interesse={urllib.parse.quote(titulo)}" data-track="cta_solicitar_proposta" data-track-label="{sid}" data-interesse="{titulo}">Solicitar proposta {ARROW}</a></p>')
+        fim = ''
+        if j == len(tipos) - 1:   # depois do último tipo: outra composição e a nota das fotos de todos os kits da página
+            fim = (f'\n    <div class="kit-foot"><p class="muted">Prefere outra composição? Conte a ocasião e o público no pedido.</p>{cta_link(tipo="kits", track_label="kits-lista")}</div>'
+                   f'\n    <p class="note" style="margin-top:18px">{nota_kits([k for t in tipos for k in t[3]])}</p>')
+        html.append(f'''<section class="section kits-page kits-tipo{' ivory' if j % 2 else ''}{' um' if len(kits) == 1 else ''}" id="{sid}" aria-labelledby="{sid}-t">
+  <div class="wrap">
+    <div class="kits-tipo-in"><div class="section-head"><h2 id="{sid}-t" class="section-title">{titulo}</h2><p class="muted">{linha}</p></div>
+    {corpo}</div>{fim}
+  </div>
+</section>''')
+    return '\n'.join(html)
 
 
 def kits_block(compacto=False):
@@ -1024,49 +1154,62 @@ def season_callout(where):
             f'</div></aside>')
 
 
-# Segmentos dentro de "Brindes" (o produto principal da TaMa): para quem o brinde é usado
-MENU_SEGMENTOS = [('/brindes-corporativos/', 'Empresas e equipes', 'Clientes, colaboradores e parceiros', 'brindes-header'),
-                  ('/hotelaria-e-gastronomia/', 'Hotelaria e gastronomia', 'Cardápios, porta-contas, taças e mesa', 'hot-header'),
-                  ('/ativacoes-promocionais/', 'Ativações e degustações', 'Copos, materiais e brindes de ponto de venda', 'ativ-header')]
+# Menu da apresentação de 20/10: Brindes ▾ (tipos de peça), Kits ▾, Confecções ▾, Ativações ▾, Sobre e Blog.
+# Tipos de brinde e de confecção levam ao catálogo filtrado (/catalogo/?tipo=<chave>#catalogo, rótulos em TIPO_ROTULO).
+MENU_BRINDES = ['agendas', 'canetas', 'canecas', 'copos', 'xicaras', 'tacas', 'squeezes', 'porta-vinho', 'mochilas', 'tecnologia']
+# Tipo sem modelo no catálogo fica fora do menu (sem link vazio). Exceção, enquanto True: os 9 tipos de brinde aparecem
+# mesmo vazios, porque os modelos novos da lista de 20/10 entram no banco depois (o integrador importa as fotos).
+MENU_TIPOS_VAZIOS = True
+MENU_CONFECCOES = [('polos', 'Camiseta polo'), ('camisetas', 'Camiseta'), ('moletons', 'Blusa de moletom'), ('camisas', 'Camisa'),
+                   ('dolmas', 'Dólmã'), ('aventais', 'Avental'), ('bones', 'Bonés')]
+MENU_KITS = [('Kit escritório', '#kits-escritorio'), ('Kit cozinha', '#kits-cozinha'), ('Kit boas-vindas', '#kits-boas-vindas'),
+             ('Kit executivo', '#kits-executivo'), ('Kit pausa', '#kits-pausa'), ('Kit de agradecimento', '#kits-agradecimento'),
+             ('Kit fim de ano', '#kits-fim-de-ano')]   # âncoras de /kits-corporativos/
+MENU_ATIVACOES = [('Buffet completo', '#fmt-buffet'), ('Decoração', '#fmt-decoracao')]   # âncoras de /ativacoes-promocionais/
 
 
 def nav_menu(path):
-    """Menu principal (2ª linha do cabeçalho): Brindes ▾ (segmentos), Kits, Confecções, Por categoria ▾, Por ocasião ▾,
-    Sobre e Blog. Os painéis são botões com aria-expanded; no celular viram acordeão com listas simples."""
-    def cur(p):
-        return ' aria-current="page"' if path.startswith(p) else ''
+    """Menu principal (2ª linha do cabeçalho): Brindes ▾ (lista dos tipos de peça e, abaixo, as páginas de brindes),
+    Kits ▾, Confecções ▾, Ativações ▾, Sobre e Blog; os quatro painéis são listas no mesmo formato. Os painéis são botões com aria-expanded; no celular viram
+    acordeão. O grupo da página atual ganha aria-current="true" no botão, e o link da página, aria-current="page"."""
+    def cur(p, exato=False):
+        return ' aria-current="page"' if (path == p if exato else path.startswith(p)) else ''
 
-    def grupo(chave, rotulo, painel, ativos, cls=''):
-        ativo = any(path.startswith(h) for h in ativos if h != '/')
+    def grupo(chave, rotulo, painel, ativo, cls=''):
+        atual = ' aria-current="true"' if ativo else ''
         return (f'<div class="nav-group nav-mega{cls}{" is-current" if ativo else ""}"><button class="nav-link nav-toggle" type="button" aria-expanded="false" '
-                f'aria-controls="sub-{chave}" data-nav-toggle>{rotulo}<svg class="nav-caret" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5l3 3 3-3"/></svg></button>'
+                f'aria-controls="sub-{chave}" data-nav-toggle{atual}>{rotulo}<svg class="nav-caret" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5l3 3 3-3"/></svg></button>'
                 f'<div class="nav-sub" id="sub-{chave}"><div class="nav-sub-in">{painel}</div></div></div>')
 
-    segs = ''.join(f'<li><a class="nav-seg" href="{h}"{cur(h)}><img src="{img_url(img, "webp", 420)}" alt="" loading="lazy" width="420" height="236">'
-                   f'<strong>{t}</strong><span>{d}</span></a></li>' for h, t, d, img in MENU_SEGMENTOS if img in IMAGES)
-    p_brindes = (f'<p class="nav-sub-lead">Brindes com a marca da sua empresa, para cada tipo de negócio</p><ul class="nav-segs">{segs}</ul>'
-                 f'<a class="nav-sub-all" href="/catalogo/">Ver o catálogo completo {ARROW}</a>')
-    cols = ''
-    for k, nome in CAT_PROD.items():
-        mods = [c for c in CATALOGO if c['categoria'] == k][:3]
-        if not mods:
-            continue
-        itens = ''.join(f'<li><a href="/catalogo/{c["slug"]}/"><img src="{img_url(c["img"], "webp", 420)}" alt="" loading="lazy" width="40" height="40"><span>{c["nome"]}</span></a></li>' for c in mods)
-        cols += f'<div class="nav-cat"><a class="nav-cat-t" href="/catalogo/?categoria={k}#catalogo">{nome} {ARROW}</a><ul>{itens}</ul></div>'
-    p_cat = f'<div class="nav-cats">{cols}</div><a class="nav-sub-all" href="/catalogo/">Ver o catálogo completo {ARROW}</a>'
-    occs = sorted(OCCS.items(), key=lambda kv: kv[0] != (SEASON or 'fim-de-ano'))
-    oitens = ''
-    for k, v in occs:
-        img = OCC_HEROS.get(k, (None,))[0]
-        foto = f'<img src="{img_url(img, "webp", 420)}" alt="" loading="lazy" width="420" height="315">' if img in IMAGES else ''
-        tag = ' <em>temporada</em>' if k == SEASON else ''
-        oitens += f'<li><a class="nav-occ" href="{collection_href(k)}">{foto}<span>{v}{tag}</span></a></li>'
-    p_occ = f'<ul class="nav-occs">{oitens}</ul><a class="nav-sub-all" href="/brindes-por-ocasiao/">Ver todas as ocasiões {ARROW}</a>'
-    return (grupo('brindes', 'Brindes', p_brindes, [h for h, *_ in MENU_SEGMENTOS], ' nav-main')
-            + f'<a class="nav-link" href="/kits-corporativos/"{cur("/kits-corporativos/")}>Kits</a>'
-            + f'<a class="nav-link" href="/confeccoes-personalizadas/"{cur("/confeccoes-personalizadas/")}>Confecções</a>'
-            + grupo('categoria', 'Por categoria', p_cat, ['/catalogo/'])
-            + grupo('ocasiao', 'Por ocasião', p_occ, ['/brindes-por-ocasiao/', '/brindes-de-fim-de-ano/'])
+    por_tipo = {}
+    for c in CATALOGO:
+        por_tipo.setdefault(c['tipo'], []).append(c)
+    # página de um modelo (/catalogo/<id>/): vestuário marca Confecções; os demais modelos e o catálogo marcam Brindes
+    m = re.match(r'^/catalogo/([^/]+)/$', path)
+    mod = CATALOGO_BY.get(m.group(1)) if m else None
+    conf_atual = path.startswith('/confeccoes-personalizadas/') or bool(mod and mod['categoria'] == 'vestuario')
+    brindes_atual = not conf_atual and path.startswith(('/brindes-corporativos/', '/hotelaria-e-gastronomia/', '/brindes-por-ocasiao/', '/brindes-de-fim-de-ano/', '/catalogo/'))
+
+    tipos_b = ''.join(f'<li><a href="/catalogo/?tipo={k}#catalogo">{TIPO_ROTULO[k]}</a></li>'
+                      for k in MENU_BRINDES if por_tipo.get(k) or (MENU_TIPOS_VAZIOS and k != 'tecnologia'))
+    fim = (f'<li><a class="nav-season" href="/brindes-de-fim-de-ano/"{cur("/brindes-de-fim-de-ano/")}>Fim de ano <em>temporada</em></a></li>'
+           if SEASON == 'fim-de-ano' else '')
+    p_brindes = (f'<ul class="nav-list">{tipos_b}</ul>'
+                 f'<ul class="nav-list nav-list-pe"><li><a href="/brindes-corporativos/"{cur("/brindes-corporativos/")}>Brindes corporativos</a></li>'
+                 f'<li><a href="/hotelaria-e-gastronomia/"{cur("/hotelaria-e-gastronomia/")}>Hotelaria e gastronomia</a></li>'
+                 f'<li><a href="/brindes-por-ocasiao/"{cur("/brindes-por-ocasiao/")}>Por ocasião</a></li>{fim}</ul>'
+                 f'<a class="nav-sub-all" href="/catalogo/"{cur("/catalogo/", True)}>Catálogo completo {ARROW}</a>')
+    kits = ''.join(f'<li><a href="/kits-corporativos/{a}">{t}</a></li>' for t, a in MENU_KITS)
+    p_kits = f'<ul class="nav-list">{kits}</ul><a class="nav-sub-all" href="/kits-corporativos/"{cur("/kits-corporativos/")}>Ver todos os kits {ARROW}</a>'
+    conf = ''.join(f'<li><a href="/catalogo/?tipo={k}#catalogo">{t}</a></li>' for k, t in MENU_CONFECCOES if por_tipo.get(k))
+    p_conf = (f'<ul class="nav-list">{conf}</ul>'
+              f'<a class="nav-sub-all" href="/confeccoes-personalizadas/"{cur("/confeccoes-personalizadas/")}>Uniformes e confecções {ARROW}</a>')
+    ativ = ''.join(f'<li><a href="/ativacoes-promocionais/{a}">{t}</a></li>' for t, a in MENU_ATIVACOES)
+    p_ativ = f'<ul class="nav-list">{ativ}</ul><a class="nav-sub-all" href="/ativacoes-promocionais/"{cur("/ativacoes-promocionais/")}>Conhecer ativações {ARROW}</a>'
+    return (grupo('brindes', 'Brindes', p_brindes, brindes_atual, ' nav-main nav-drop')
+            + grupo('kits', 'Kits', p_kits, path.startswith('/kits-corporativos/'), ' nav-drop')
+            + grupo('confeccoes', 'Confecções', p_conf, conf_atual, ' nav-drop')
+            + grupo('ativacoes', 'Ativações', p_ativ, path.startswith('/ativacoes-promocionais/'), ' nav-drop')
             + f'<a class="nav-link nav-sep" href="/sobre/"{cur("/sobre/")}>Sobre</a>'
             + f'<a class="nav-link" href="/blog/"{cur("/blog/")}>Blog</a>')
 
@@ -1684,54 +1827,47 @@ def foto_hero(trail, img, alt, eyebrow, linhas, destaque, desc, actions, legenda
 </section>'''
 
 
+# Topo de /kits-corporativos/: kit de boas-vindas da marca fictícia Lume (img/v2/kits-header-v3.webp). Enquanto a foto não
+# existir, fica a anterior (kits-header), com o texto alternativo dela.
+KITS_TOPO = ('kits-header-v3', 'Kit de boas-vindas aberto da marca fictícia Lume, numa caixa grafite com berço claro: caderneta, '
+             'caneta, copo com tampa, fone de ouvido sem fio com estojo, power bank e caixa de som.')
+
+
+def kits_topo():
+    return KITS_TOPO[0] if KITS_TOPO[0] in IMAGES else 'kits-header'
+
+
 def kits_hero(trail):
-    return foto_hero(trail, 'kits-header',
+    topo = kits_topo()
+    return foto_hero(trail, topo,
+                     KITS_TOPO[1] if topo == KITS_TOPO[0] else
                      'Três kits corporativos abertos com marcas fictícias (Pulso, Nexo e Flora): caixas com garrafa, caderno, caneta, '
                      'caneca e cartão, mostrando como cada kit segue a identidade da empresa.',
                      'Kits corporativos', ['A identidade', 'da sua empresa.'], 'Em cada detalhe.',
                      'Cores, peças e embalagens que traduzem a sua marca. Kits personalizados para receber, reconhecer e criar conexões.',
                      cta_link(tipo='kits', track_label='kits-head') + '<a class="btn btn-line" href="#kits">Conhecer os kits</a>',
-                     NOTA_FICTICIA, pos_m='96% center')
+                     NOTA_FICTICIA, pos_m='72% center' if topo == KITS_TOPO[0] else '96% center')
 
 
 def page_kits():
     trail = [('/', 'Início'), ('/kits-corporativos/', 'Kits corporativos')]
+    topo = kits_topo()
+    chips = ''.join(f'<a class="chip" href="#{sid}">{titulo}</a>' for sid, titulo, _l, _k in KITS_TIPOS)
     return {
-        'path': '/kits-corporativos/', 'og': 'kits-header', 'assunto': 'kits corporativos', 'title': 'Kits corporativos e de boas-vindas | TaMa Creative',
+        'path': '/kits-corporativos/', 'og': topo, 'assunto': 'kits corporativos', 'title': 'Kits corporativos e de boas-vindas | TaMa Creative',
         'description': 'Kits de boas-vindas, kits para eventos e presentes para clientes, com curadoria, embalagem personalizada e a marca da sua empresa. Solicite uma proposta.',
         'trail': trail,
         'service': {'key': 'kits', 'name': 'Kits corporativos personalizados', 'type': 'Kits corporativos'},
-        'preload': preload_image('kits-header', FOTO_HERO_SIZES),   # mesma imagem e sizes da foto do cabeçalho
+        'preload': preload_image(topo, FOTO_HERO_SIZES),   # mesma imagem e sizes da foto do cabeçalho
         'crumbs_inline': True,   # o caminho fica sobre a área creme da foto, logo abaixo do cabeçalho do site
         'body': kits_hero(trail) + season_callout('kits') + f'''
-<section class="section kits-page" id="kits" aria-labelledby="kits-p-t" style="padding-top:clamp(24px,3vw,40px)">
+<section class="section kits-intro" id="kits" aria-labelledby="kits-p-t" style="padding-top:clamp(24px,3vw,40px)">
   <div class="wrap">
-    <div class="section-head"><p class="eyebrow">Kits corporativos</p><h2 id="kits-p-t" class="section-title">Kits de referência para adaptar à sua marca</h2><p class="muted">Cinco composições para começar. A TaMa ajusta peças, embalagem e cartão ao seu público, à ocasião e ao investimento, sempre com a marca da sua empresa.</p></div>
-    <div class="kit-grid">{kit_cards()}</div>
-    <div class="kit-foot"><p class="muted">Prefere outra composição? Conte a ocasião e o público no pedido.</p>{cta_link(tipo='kits', track_label='kits-lista')}</div>
-    <p class="note" style="margin-top:18px">{nota_kits(HOME_KITS)}</p>
+    <div class="section-head"><p class="eyebrow">Kits corporativos</p><h2 id="kits-p-t" class="section-title">Kits de referência para adaptar à sua marca</h2><p class="muted">Composições organizadas por tipo de kit. A TaMa ajusta peças, embalagem e cartão ao seu público, à ocasião e ao investimento, sempre com a marca da sua empresa.</p></div>
+    <nav class="kit-occ kit-tipos" aria-label="Tipos de kit"><span>Veja por tipo:</span>{chips}</nav>
   </div>
 </section>
-<section class="section ivory kits-page" id="kits-mais" aria-labelledby="kits-mais-t">
-  <div class="wrap">
-    <div class="section-head"><p class="eyebrow">Mais kits</p><h2 id="kits-mais-t" class="section-title">Para a mesa, o café e o dia a dia</h2><p class="muted">Mais cinco composições, cada uma numa caixa de cor diferente. No seu projeto, caixa, berço e peças seguem a paleta da sua empresa.</p></div>
-    <div class="kit-grid">{kit_cards(MAIS_KITS, inicio=len(HOME_KITS))}</div>
-    <p class="note" style="margin-top:18px">{nota_kits(MAIS_KITS)}</p>
-  </div>
-</section>
-<section class="section ivory" aria-labelledby="tipos-t">
-  <div class="wrap">
-    <div class="section-head"><p class="eyebrow">Tipos de kit</p><h2 id="tipos-t" class="section-title">Um kit para cada relação</h2><p class="muted">Quem recebe e o motivo definem as peças, a embalagem e a mensagem. Estes são os pedidos mais comuns.</p></div>
-    <div class="cols-2">
-      <div class="item">{arc()}<div><h3>Kit de boas-vindas (onboarding)</h3><p>Recebe quem chega com peças úteis e um primeiro contato com a cultura da empresa.</p></div></div>
-      <div class="item">{arc()}<div><h3>Kit para eventos</h3><p>Convenções, lançamentos e feiras: peças que acompanham a programação e levam a mensagem para casa.</p></div></div>
-      <div class="item">{arc()}<div><h3>Kit para clientes especiais</h3><p>Relacionamento, fim de ano e agradecimentos, com presentes que parecem escolhidos para a pessoa.</p></div></div>
-      <div class="item">{arc()}<div><h3>Kit de reconhecimento</h3><p>Metas, tempo de casa e conquistas da equipe celebradas com algo que dura.</p></div></div>
-      <div class="item">{arc()}<div><h3>Kit de lançamento</h3><p>Para imprensa, parceiros e clientes conhecerem um produto ou uma marca nova.</p></div></div>
-      <div class="item">{arc()}<div><h3>Kit vestuário</h3><p>Moletom, polo, boné e bolsa na mesma linguagem para equipes e campanhas.</p></div></div>
-    </div>
-  </div>
-</section>
+{kits_tipos_html()}
 <section class="section on-dark" aria-labelledby="comp-t">
   <div class="wrap">
     <div class="section-head"><p class="eyebrow light">Como compomos</p><h2 id="comp-t" class="section-title">Três camadas em todo kit</h2><p class="muted">Uma regra simples para que o kit seja usado, lembrado e reconhecido.</p></div>
@@ -1915,7 +2051,29 @@ def page_confeccoes():
 
 
 ATIV_FORMATOS = [('Degustações no ponto de venda', '#fmt-degustacao', 'carrinho'), ('Feiras e eventos', '#fmt-feiras', 'calendario'),
-                 ('Ações promocionais', '#fmt-promocao', 'pessoas')]
+                 ('Ações promocionais', '#fmt-promocao', 'pessoas'), ('Buffet completo', '#fmt-buffet', 'cloche'), ('Decoração', '#fmt-decoracao', 'arranjo')]
+# ícone de Decoração (arranjo num vaso), no mesmo traço fino dos demais
+ICONES['arranjo'] = ('<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8.4 14.4h7.2l-1.1 6.2H9.5z"/>'
+                     '<path d="M12 14.4V8.6"/><circle cx="12" cy="6" r="2.4"/><path d="M12 12.2c-2.2 0-3.6-1.2-4-3 2.2 0 3.6 1.2 4 3z'
+                     'M12 11c2.2 0 3.6-1.2 4-3-2.2 0-3.6 1.2-4 3z"/></svg>')
+# Buffet e decoração: a TaMa coordena com parceiros especializados (sem cardápio, capacidade nem preço no site). Cenas em
+# img/v2/ com marcas fictícias; só entram as que já existem em img/.
+ATIV_EVENTO = 'Buffet ou decoração para evento'   # interesse que segue para o pedido de proposta
+ATIV_CENAS = [('ativ-buffet', 'Buffet corporativo montado num evento: mesa com rechauds, travessas e pratos, equipe de avental servindo, '
+                              'toalha e placa com a marca fictícia Solar.'),
+              ('ativ-decoracao', 'Salão de evento corporativo decorado: mesas redondas postas, arranjos de flores e painel ao fundo com a marca '
+                                 'fictícia Oliva.')]
+
+
+def ativ_cenas():
+    figs = ''.join(f'<figure>{picture(img, alt, "(max-width: 760px) 92vw, 46vw")}<figcaption>Cena ilustrativa · marca fictícia</figcaption></figure>'
+                   for img, alt in ATIV_CENAS if img in IMAGES)
+    return f'\n    <div class="ativ-cenas">{figs}</div>' if figs else ''
+
+
+def ativ_evento_link(label):
+    return (f'<a class="link" href="/solicitar-proposta/?tipo=ativacoes&amp;interesse={urllib.parse.quote(ATIV_EVENTO)}" data-track="cta_solicitar_proposta" '
+            f'data-track-label="{label}" data-interesse="{ATIV_EVENTO}">Solicitar proposta</a>')
 
 
 def ativ_hero(trail):
@@ -1947,7 +2105,9 @@ def page_ativacoes():
       <div class="item" id="fmt-feiras">{arc()}<div><h3>Feiras e eventos</h3><p>Brindes, uniformes e materiais para o estande e para receber quem visita.</p></div></div>
       <div class="item" id="fmt-promocao">{arc()}<div><h3>Promoção e amostragem</h3><p>Brindes, amostras e materiais para campanhas de venda, lançamentos e ações com distribuidores.</p></div></div>
       <div class="item">{arc()}<div><h3>Ações internas</h3><p>Convenções, lançamentos para a equipe e datas da empresa, com kits e peças na mesma linguagem.</p></div></div>
-    </div>
+      <div class="item" id="fmt-buffet">{arc()}<div><h3>Buffet completo</h3><p>Buffet para eventos corporativos, lançamentos e encontros da empresa, coordenado pela TaMa com parceiros especializados. O formato do serviço é definido com você na proposta. {ativ_evento_link('ativ-buffet')}</p></div></div>
+      <div class="item" id="fmt-decoracao">{arc()}<div><h3>Decoração</h3><p>Ambientação do espaço do evento na identidade da sua marca, do painel às mesas, coordenada pela TaMa com parceiros especializados. O escopo é definido com você na proposta. {ativ_evento_link('ativ-decoracao')}</p></div></div>
+    </div>{ativ_cenas()}
   </div>
 </section>
 <section class="section" aria-labelledby="ativ-inclui-t">
@@ -1966,7 +2126,7 @@ def page_ativacoes():
               more=('/catalogo/', 'Ver o catálogo completo'))}
 {process_section('Como planejamos', 'Da ideia ao dia da ação', 'O objetivo da ação, o formato (local, duração e público esperado) e os materiais entram já no briefing. O cronograma e a entrega dos materiais são combinados na proposta, com a arte aprovada por você antes da produção.', 'ativ-como-t')}
 ''' + faq([
-            ('Que tipo de ativação vocês fazem?', 'Degustações e promoções no ponto de venda, ações em feiras e eventos e ativações internas. Conte o objetivo, o público e o local: a proposta indica o formato e o que entra nele.'),
+            ('Que tipo de ativação vocês fazem?', 'Degustações e promoções no ponto de venda, ações em feiras e eventos, ativações internas e, com parceiros especializados, buffet completo e decoração para eventos. Conte o objetivo, o público e o local: a proposta indica o formato e o que entra nele.'),
             ('Quem cuida da equipe e da logística?', 'Diga no pedido se a ação precisa de equipe, transporte ou montagem. A proposta separa o que a TaMa coordena e o que fica com a sua empresa, com o local ou com o organizador.'),
             ('Com quanto tempo de antecedência devo pedir?', 'Quanto antes, mais opções de materiais e de datas. Informe a data da ação no pedido e o prazo é confirmado na proposta.'),
             ('Precisa de autorização do local?', 'Lojas, supermercados e eventos costumam ter regras próprias para ações. Envie o local e as regras do organizador, se já tiver: a proposta indica quem cuida de cada autorização.'),
@@ -2037,6 +2197,9 @@ def page_hotelaria():
 FIM_DE_ANO_KITS = [
     ('kit-brinde', 'Kit Brinde', 'Duas taças coupe caneladas, caixa rígida com berço e cartão personalizado.'),
     ('kit-coquetel', 'Kit Coquetel', 'Taça martini, taça margarita, taça de gin e copo long drink, com caixa e cartão.'),
+    KITS_BY['kit-caipirinha'],   # os três kits de drinque e de vinho da apresentação de 20/10: só acessórios, sem bebida
+    KITS_BY['kit-gin'],
+    KITS_BY['kit-vinho'],
     KITS_BY['kit-cafe'],
     KITS_BY['kit-petiscos'],
 ]
@@ -2047,7 +2210,9 @@ FIM_ATALHOS = [('Taças e copos', '#brindar'), ('Conjuntos e embalagens', '#kits
 
 def page_fim_de_ano():
     """Ocasião "Fim de ano": taças e copos para brindar, kits prontos e peças para presentear, todos do catálogo."""
-    kits = ''.join(kit_card(i, slug, name, desc, True) for i, (slug, name, desc) in enumerate(FIM_DE_ANO_KITS))
+    com_foto = [k for k in FIM_DE_ANO_KITS if kit_foto(k[0])]
+    g = kits_grandes(len(com_foto))
+    kits = ''.join(kit_card(i, slug, name, desc, i < g) for i, (slug, name, desc) in enumerate(com_foto))
     return {
         'path': '/brindes-de-fim-de-ano/', 'og': 'kitp-kit-brinde', 'title': 'Brindes de fim de ano e Natal para empresas | TaMa',
         'description': 'Brindes de fim de ano e presentes de Natal com a marca da sua empresa: taças, copos e kits para clientes e equipes. Peça uma proposta.',
@@ -2176,7 +2341,7 @@ def page_sobre():
 
 def page_proposta():
     tipos = [('brindes', 'Brindes corporativos'), ('kits', 'Kits corporativos'), ('confeccoes', 'Uniformes e confecções'),
-             ('ativacoes', 'Ativações promocionais'), ('hotelaria', 'Hotelaria e gastronomia'), ('integrado', 'Mais de uma área ou ainda não sei')]
+             ('ativacoes', 'Ativações promocionais, buffet ou decoração para evento'), ('hotelaria', 'Hotelaria e gastronomia'), ('integrado', 'Mais de uma área ou ainda não sei')]
     choices = ''.join(f'<label class="choice"><input type="radio" name="tipo" value="{v}" required> {t}</label>' for v, t in tipos)
     contacts = contact_lines()
     contact_block = f'<div class="stack" style="gap:10px"><p class="eyebrow">Fale direto</p><div class="contact-lines">{"".join(contacts)}</div></div>' if contacts else ''

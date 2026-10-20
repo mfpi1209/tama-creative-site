@@ -1435,3 +1435,58 @@ body:has(.pdp-wrap) .crumbs.wrap { max-width: 1440px; padding-inline: clamp(16px
   .pdp-info { position: static; }
 }
 @media (min-width: 1360px) { .studio-grid.cat-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }   /* largura de 1440px: 4 modelos por linha */
+
+/* apresentação 20/10: menu e tipos */
+/* Brindes ▾, Kits ▾, Confecções ▾ e Ativações ▾: listas curtas num painel estreito abaixo do botão (build.py: nav_menu).
+   Em Brindes, a segunda lista (páginas de brindes) vem separada por um fio, com o selo da temporada em Fim de ano */
+.nav-list-pe em { display: inline-block; margin-left: 8px; padding: 1px 7px; border-radius: 999px; background: var(--wine); color: #fff; font: 600 .625rem/1.6 var(--f-sans); font-style: normal; letter-spacing: .06em; text-transform: uppercase; }
+.nav-list-pe .nav-season::before { display: none; }
+@media (min-width: 1240px) {
+  .nav-group.nav-drop { position: relative; }
+  .nav-group.nav-drop > .nav-sub { left: 0; right: auto; width: max-content; min-width: 250px; max-width: 340px; padding: 10px 8px 14px; border: 1px solid var(--line); border-top: 0; border-radius: 0 0 10px 10px; }
+  .nav-drop .nav-list a { min-height: 40px; padding: 0 14px; border-radius: 6px; font-size: .9375rem; }
+  .nav-drop .nav-list a:hover, .nav-drop .nav-list a:focus-visible { background: var(--ivory); color: var(--wine); }
+  .nav-drop .nav-list-pe { margin: 6px 0 0; padding-top: 6px; border-top: 1px solid var(--line); }
+  .nav-drop .nav-list-pe a { min-height: 36px; font-size: .875rem; }
+  /* Brindes tem a lista mais longa (até 15 linhas): linhas um pouco mais baixas para caber inteira em 1240×768 com a faixa da temporada */
+  .nav-main.nav-drop .nav-list a { min-height: 36px; }
+  .nav-main.nav-drop .nav-list-pe a { min-height: 32px; }
+  .nav-drop .nav-sub-all { display: flex !important; min-height: 40px; margin: 8px 14px 0; padding-top: 8px; border-top: 1px solid var(--line); }
+  /* clicou num link do painel (âncora na mesma página): o painel não reabre pelo mouse até o ponteiro sair do grupo */
+  .nav-group.is-fechado:not(.is-open) > .nav-sub { display: none; }
+  /* grupo da página atual (botão com aria-current="true"): o mesmo traço dos links de página, sob o texto */
+  .nav-bar .nav-toggle[aria-current="true"]::after { left: 14px; right: 32px; bottom: 9px; background: var(--amber-soft); }
+}
+@media (max-width: 1239px) {
+  .nav-sub .nav-list-pe { margin-top: 6px; padding-top: 6px; border-top: 1px solid var(--line); }
+}
+
+/* apresentação 20/10: kits e ativações */
+/* /kits-corporativos/ por tipo de kit (build.py: kits_tipos_html): chips para os tipos logo após a abertura e uma seção
+   por tipo (âncoras do menu), com respiro menor que o de .section para as sete seções não alongarem demais a página */
+.section.kits-intro { padding-bottom: clamp(28px, 3vw, 40px); }
+.kits-intro .section-head { margin-bottom: 22px; }
+.section.kits-tipo { padding-block: clamp(44px, 5vw, 72px); }
+.kits-tipo .section-head { margin-bottom: clamp(20px, 2.4vw, 32px); }
+.kit-vazio { max-width: 46rem; margin: 0; padding: 20px 22px; border: 1px solid var(--line); border-radius: var(--radius); background: #FFFDF9; color: var(--muted); }
+.kit-vazio .link { display: inline-flex; margin-top: 6px; }
+@media (min-width: 861px) {   /* tipo com um kit só: texto à esquerda e o card à direita, sem meia grade vazia */
+  .kits-tipo.um .kits-tipo-in { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(24px, 4vw, 64px); align-items: center; }
+  .kits-tipo.um .section-head { margin-bottom: 0; }
+  .kits-tipo.um .kit-grid { grid-template-columns: minmax(0, 1fr); }
+  .kits-tipo.um .kit-card { grid-column: auto; }
+}
+/* /ativacoes-promocionais/: cenas de buffet e decoração logo abaixo dos formatos (build.py: ativ_cenas); com uma cena só,
+   ela não estica até a largura toda */
+.ativ-cenas { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(14px, 2vw, 24px); margin-top: clamp(32px, 4vw, 48px); }
+.ativ-cenas:has(> figure:only-child) { grid-template-columns: minmax(0, 1fr); max-width: 720px; }
+.ativ-cenas figure { margin: 0; }
+.ativ-cenas picture, .ativ-cenas img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; border-radius: var(--radius); }
+.ativ-cenas figcaption { margin-top: 8px; font-size: var(--s-xs); color: var(--muted); }
+@media (max-width: 760px) { .ativ-cenas { grid-template-columns: minmax(0, 1fr); } }
+/* cinco atalhos com ícone em Ativações: entre 901 e 1280 px, três colunas (3 + 2) para os rótulos não quebrarem em três linhas */
+@media (min-width: 901px) and (max-width: 1280px) {
+  .atalhos[aria-labelledby="ativ-atalhos-t"] .atalhos-list { grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: 8px; }
+  .atalhos[aria-labelledby="ativ-atalhos-t"] .atalhos-list li { justify-content: flex-start; }
+  .atalhos[aria-labelledby="ativ-atalhos-t"] .atalhos-list li:nth-child(3n + 1) { border-left: 0; padding-left: 0; }
+}

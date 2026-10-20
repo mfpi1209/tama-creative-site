@@ -121,7 +121,7 @@
   if (nav) nav.addEventListener('focusout', function (e) {
     if (nav.classList.contains('is-open') && e.relatedTarget && !nav.contains(e.relatedTarget) && e.relatedTarget !== menuBtn) setMenu(false);
   });
-  /* painéis (Brindes, Por categoria, Por ocasião): botão com aria-expanded; um aberto por vez */
+  /* painéis (Brindes, Kits, Confecções, Ativações): botão com aria-expanded; um aberto por vez */
   var desk = window.matchMedia ? window.matchMedia('(min-width: 1240px)') : { matches: true };
   var toggles = [].slice.call(document.querySelectorAll('[data-nav-toggle]'));
   function setSub(btn, open) { btn.setAttribute('aria-expanded', String(open)); btn.parentElement.classList.toggle('is-open', open); }
@@ -144,6 +144,15 @@
   // toque fora do menu (no fundo da página) fecha o menu do celular
   document.addEventListener('click', function (e) {
     if (nav && nav.classList.contains('is-open') && !nav.contains(e.target) && !menuBtn.contains(e.target)) setMenu(false);
+  });
+  // link de um painel para uma âncora da mesma página (/kits-corporativos/#kits-pausa): a página só rola, então o painel e
+  // o menu do celular fecham aqui; no computador, o painel também não reabre pelo mouse até o ponteiro sair do grupo
+  if (nav) nav.addEventListener('click', function (e) {
+    var a = e.target.closest('.nav-sub a[href]');
+    if (!a) return;
+    var g = a.closest('.nav-group');
+    closeSubs(); setMenu(false);
+    if (g && desk.matches) { g.classList.add('is-fechado'); g.addEventListener('mouseleave', function sai() { g.classList.remove('is-fechado'); g.removeEventListener('mouseleave', sai); }); }
   });
   // ao passar para a largura de computador, o menu do celular não fica aberto por trás
   if (window.matchMedia) { var mqDesk = window.matchMedia('(min-width: 1240px)'); var fecha = function () { if (mqDesk.matches) setMenu(false); }; if (mqDesk.addEventListener) mqDesk.addEventListener('change', fecha); }
@@ -365,9 +374,17 @@
     var catForm = document.getElementById('cat-form'), catQ = document.getElementById('cat-q');
     var catCards = [].slice.call(catBox.querySelectorAll('#catalogo-grid .product'));
     var catSide = document.getElementById('cat-filtros'), catScrim = catBox.querySelector('.cat-scrim'), catOpener = catBox.querySelector('[data-cat-open]');
-    var catFAM = {}, catOCC = {};
+    var catFAM = {}, catOCC = {}, catTIPOS = {};
     try { catFAM = JSON.parse(catBox.getAttribute('data-familias')); } catch (e) {}
     try { catOCC = JSON.parse(catBox.getAttribute('data-ocasioes')) || {}; } catch (e) {}
+    try { catTIPOS = JSON.parse(catBox.getAttribute('data-tipos')) || {}; } catch (e) {}
+    // tipo de peça (links do menu: ?tipo=canecas): radio na lateral (name="tipo", só tipos com modelo), etiqueta removível
+    // acima da grade e ?tipo= na URL; combina com categoria, ocasião, cor e busca
+    var catTipoBox = catBox.querySelector('[data-cat-tipo]');
+    var catSetTipo = function (k) {   // sem radio para k (tipo desconhecido ou ainda sem modelo), volta para "Todos"
+      var r = (k && catForm.querySelector('input[name="tipo"][value="' + k + '"]')) || catForm.querySelector('input[name="tipo"][value=""]');
+      if (r) r.checked = true;
+    };
     // ocasião: radio na lateral (name="ocasiao"), espelhado na etiqueta removível acima da grade e em ?ocasiao= na URL
     var catOccBox = catBox.querySelector('[data-cat-occ]');
     var catSetOcc = function (k) {   // k já validado contra catOCC; sem radio para k (ou k vazio), volta para "Todas"
@@ -376,8 +393,8 @@
     };
     var catNorm = function (s) { return String(s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim(); };
     var catState = function () {
-      var c = catForm.querySelector('input[name="categoria"]:checked'), o = catForm.querySelector('input[name="ocasiao"]:checked');
-      return { q: catNorm(catQ.value), cat: c ? c.value : '', occ: o && catOCC.hasOwnProperty(o.value) ? o.value : '', cores: [].map.call(catForm.querySelectorAll('input[name="cor"]:checked'), function (i) { return i.value; }) };
+      var c = catForm.querySelector('input[name="categoria"]:checked'), o = catForm.querySelector('input[name="ocasiao"]:checked'), t = catForm.querySelector('input[name="tipo"]:checked');
+      return { q: catNorm(catQ.value), cat: c ? c.value : '', tipo: t && catTIPOS.hasOwnProperty(t.value) ? t.value : '', occ: o && catOCC.hasOwnProperty(o.value) ? o.value : '', cores: [].map.call(catForm.querySelectorAll('input[name="cor"]:checked'), function (i) { return i.value; }) };
     };
     // mostra 12 modelos por vez (todos continuam no HTML, para o Google e para quem está sem JavaScript); "Ver mais"
     // libera mais 12. Ao mudar busca ou filtro, volta a 12. O quanto já foi aberto fica no histórico (voltar da página
@@ -389,6 +406,7 @@
       catCards.forEach(function (p) {
         var hay = p.getAttribute('data-busca') || '', fams = (p.getAttribute('data-cores') || '').split(' ');
         var ok = (!st.cat || p.getAttribute('data-cat') === st.cat)
+          && (!st.tipo || p.getAttribute('data-tipo') === st.tipo)
           && (!st.occ || (' ' + (p.getAttribute('data-occ') || '') + ' ').indexOf(' ' + st.occ + ' ') !== -1)
           && words.every(function (w) { return hay.indexOf(w) !== -1; })
           && (!st.cores.length || st.cores.some(function (f) { return fams.indexOf(f) !== -1; }));
@@ -406,16 +424,19 @@
       document.getElementById('cat-vazio').hidden = n > 0;
       catOccBox.hidden = !st.occ;
       catOccBox.querySelector('[data-cat-occ-name]').textContent = st.occ ? catOCC[st.occ] : '';
+      catTipoBox.hidden = !st.tipo;
+      catTipoBox.querySelector('[data-cat-tipo-name]').textContent = st.tipo ? catTIPOS[st.tipo] : '';
       var vistos = Math.min(n, catLimite), resto = n - vistos;
       catMaisBox.hidden = resto <= 0;
       catBox.querySelector('[data-cat-vistos]').textContent = vistos;
       catBox.querySelector('[data-cat-total]').textContent = n;
       catMais.textContent = 'Ver mais ' + Math.min(CAT_PAG, resto) + (Math.min(CAT_PAG, resto) === 1 ? ' modelo' : ' modelos');
-      var active = (st.cat ? 1 : 0) + (st.occ ? 1 : 0) + st.cores.length, badge = catBox.querySelector('[data-cat-badge]');
+      var active = (st.cat ? 1 : 0) + (st.tipo ? 1 : 0) + (st.occ ? 1 : 0) + st.cores.length, badge = catBox.querySelector('[data-cat-badge]');
       badge.hidden = !active; badge.textContent = active;
       if (push) {
         var u = new URLSearchParams();
         if (catQ.value.trim()) u.set('q', catQ.value.trim());
+        if (st.tipo) u.set('tipo', st.tipo);
         if (st.cat) u.set('categoria', st.cat);
         if (st.occ) u.set('ocasiao', st.occ);
         if (st.cores.length) u.set('cor', st.cores.join(','));
@@ -432,6 +453,10 @@
       catSetOcc(''); catLimite = CAT_PAG; catApply(true);
       var cc = document.getElementById('cat-count'); cc.setAttribute('tabindex', '-1'); cc.focus({ preventScroll: true });
     });
+    catTipoBox.querySelector('[data-cat-tipo-clear]').addEventListener('click', function () {
+      catSetTipo(''); catLimite = CAT_PAG; catApply(true);
+      var cc = document.getElementById('cat-count'); cc.setAttribute('tabindex', '-1'); cc.focus({ preventScroll: true });
+    });
     catMais.addEventListener('click', function () {
       var antes = catLimite;
       catLimite += CAT_PAG;
@@ -442,10 +467,12 @@
       var alvo = novo && (novo.querySelector('.prod-link, a[href]') || novo);
       if (alvo) alvo.focus({ preventScroll: true });
     });
-    // URL de entrada: ?categoria=vestuario&cor=azul,verde&q=caneca&ocasiao=fim-de-ano (links internos e compartilhamento)
+    // URL de entrada: ?tipo=canecas&categoria=vestuario&cor=azul,verde&q=caneca&ocasiao=fim-de-ano (links internos e compartilhamento)
     var catParams = new URLSearchParams(location.search);
     var catPo = catParams.get('ocasiao') || '';
     catSetOcc(catOCC.hasOwnProperty(catPo) ? catPo : '');   // ocasião desconhecida abre sem filtro ("Todas")
+    var catPt = (catParams.get('tipo') || '').replace(/[^a-z-]/g, '');
+    catSetTipo(catTIPOS.hasOwnProperty(catPt) ? catPt : '');   // tipo desconhecido abre sem filtro ("Todos")
     if (catParams.get('q')) catQ.value = catParams.get('q');
     var catPc = catForm.querySelector('input[name="categoria"][value="' + (catParams.get('categoria') || '').replace(/[^a-z-]/g, '') + '"]');
     if (catPc) catPc.checked = true;

@@ -23,7 +23,7 @@ INDICE = os.path.join(ROOT, 'midia', 'produtos', 'indice.html')
 ID_RE = re.compile(r'^[a-z0-9]+(-[a-z0-9]+)*(~[a-z0-9]+(-[a-z0-9]+)*)?$')
 OBRIGATORIOS = ('produto', 'categoria', 'cor', 'alt', 'aprovacao', 'origem')
 APROVACAO = ('revisao', 'aprovada', 'substituir', 'retirada')
-CATEGORIAS = ('vestuario', 'canetas-escritorio', 'tecnologia', 'bolsas-embalagens', 'garrafas-copos', 'acessorios', 'casa-bem-estar', 'hotelaria-gastronomia')
+CATEGORIAS = ('vestuario', 'canetas-escritorio', 'tecnologia', 'bolsas-embalagens', 'garrafas-copos', 'cozinha-bar', 'acessorios', 'casa-bem-estar', 'hotelaria-gastronomia')
 
 
 def carregar():

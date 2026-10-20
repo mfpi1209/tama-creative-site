@@ -105,37 +105,140 @@
   "cortador-de-pizza",
   "coqueteleira",
   "abridor-de-garrafa-de-mesa",
-  "porta-lata-termico"
+  "porta-lata-termico",
+  "garrafa-shaker",
+  "caneca-termica-tipo-chope",
+  "copo-para-salada-com-garfo-e-molheira",
+  "garrafa-termica-slim-com-tampa-de-botao",
+  "garrafa-termica-classica-grande",
+  "garrafa-termica-com-display-de-temperatura-na-tampa",
+  "copo-termico-com-tampa-abridor",
+  "garrafa-slim-com-alca-na-tampa",
+  "garrafa-transparente-com-capa-e-tampa-natural",
+  "taca-coupe-lisa-de-haste-longa",
+  "caneca-transparente-de-parede-dupla",
+  "caneca-de-chope-colorida",
+  "caneca-termica-com-misturador-automatico",
+  "caneca-com-alca-natural",
+  "caneca-termica-com-tampa-natural",
+  "caneca-termica-alta-com-tampa-natural-e-canudo",
+  "caneca-de-viagem-com-display-de-temperatura",
+  "copo-com-luva-canelada",
+  "copo-com-estampa-em-toda-a-volta",
+  "copo-termico-antiqueda-com-tampa-flip",
+  "garrafa-termica-com-base-natural",
+  "garrafa-termica-com-revestimento-natural",
+  "copo-termico-com-faixa-natural",
+  "copo-termico-com-revestimento-natural-e-alca",
+  "caneca-de-chope-transparente",
+  "caneta-com-marca-texto",
+  "agenda-de-bolso-vertical",
+  "agenda-bicolor-com-porta-caneta",
+  "bloco-espiral-com-capa-translucida-e-caneta",
+  "bloco-de-mesa-com-argolas",
+  "bloco-capa-dura-com-caneta-na-capa",
+  "caderno-com-capa-natural-e-caneta",
+  "caderno-com-faixas-elasticas-porta-celular",
+  "bloco-wire-o-com-espiral-no-topo",
+  "caderno-com-aba-de-fechamento-e-bolso-porta-cartao",
+  "caderno-de-capa-bicolor",
+  "caderneta-espiral-parda-com-caneta",
+  "caderno-com-faixa-superior-e-plaquinha",
+  "regua",
+  "lapis",
+  "trofeu-recortado-com-base",
+  "mouse-pad-com-apoio-de-punho",
+  "fone-intra-auricular-com-fio-em-estojo",
+  "cabo-usb",
+  "chaveiro-redondo-com-detalhe-natural",
+  "chaveiro-em-tom-natural",
+  "frasco-de-alcool-gel",
+  "toalha-de-rosto",
+  "sacola-metalizada-com-sanfona",
+  "sacola-transparente-com-almofada-inflavel",
+  "mochila-saco-bicolor-com-bolso-frontal",
+  "mochila-saco-transparente",
+  "mochila-simples-com-bolso-frontal",
+  "mochila-antifurto",
+  "mochila-roll-top",
+  "caixa-para-presente-com-tampa-transparente",
+  "abridor-redondo-com-ima",
+  "bule-transparente-com-tampa-natural",
+  "jogo-de-facas-de-queijo-em-estojo",
+  "tabua-de-queijos-com-gaveta-e-utensilios",
+  "suporte-com-5-facas-de-queijo",
+  "porta-copos-redondo",
+  "suporte-para-canecas",
+  "faca-com-cabo-natural",
+  "socador-de-caipirinha",
+  "colher-em-tom-natural",
+  "canudo-reutilizavel-com-escova",
+  "colher-bailarina",
+  "suporte-para-utensilios-de-drinque",
+  "tabua-de-petiscos-com-cabo",
+  "tabua-com-cabo-e-encaixe-para-copo",
+  "tabua-no-formato-do-mapa-do-brasil",
+  "petisqueira-quadrada",
+  "petisqueira-com-divisorias",
+  "ramequim",
+  "saca-rolhas-tipo-garcom",
+  "estojo-com-acessorios-de-vinho"
  ],
  "foto_base": {
   "abridor-de-garrafa-de-mesa": "abridor-mesa~preto",
+  "abridor-redondo-com-ima": "abridor-ima~prata",
   "agenda": "agenda-couro~cafe",
+  "agenda-bicolor-com-porta-caneta": "agenda-bicolor-porta-caneta~caramelo",
+  "agenda-de-bolso-vertical": "agenda-bolso-vertical~preto",
   "agenda-diaria-wire-o": "agenda-diaria~azul-marinho",
   "avental": "avental~rosa",
   "avental-com-laco": "avental-laco~verde-escuro",
+  "bloco-capa-dura-com-caneta-na-capa": "bloco-caneta-capa~preto",
   "bloco-com-autoadesivos-e-caneta": "bloco-autoadesivos~kraft",
+  "bloco-de-mesa-com-argolas": "bloco-mesa-argolas~preto",
+  "bloco-espiral-com-capa-translucida-e-caneta": "bloco-capa-translucida~azul-royal",
+  "bloco-wire-o-com-espiral-no-topo": "bloco-wireo-topo~azul-marinho",
   "bolsa-listrada-com-inicial": "bolsa-listrada~laranja-e-azul",
   "bolsa-termica": "bolsa-termica~cinza",
   "bolsa-termica-para-vinho": "bolsa-vinho~cinza",
   "bone": "bone~vermelho",
   "bone-aba-reta": "bone-aba-reta~preto",
   "bone-trucker": "bone-trucker~azul-marinho",
+  "bule-transparente-com-tampa-natural": "bule-vidro~transparente",
+  "cabo-usb": "cabo-usb~preto",
+  "caderneta-espiral-parda-com-caneta": "caderneta-kraft-caneta~kraft",
   "caderno-a5-com-elastico": "caderno-a5~preto",
+  "caderno-com-aba-de-fechamento-e-bolso-porta-cartao": "caderno-aba-bolso~preto",
+  "caderno-com-capa-natural-e-caneta": "caderno-capa-bambu~natural",
+  "caderno-com-faixa-superior-e-plaquinha": "caderno-faixa-plaquinha~preto",
+  "caderno-com-faixas-elasticas-porta-celular": "caderno-porta-celular~cinza",
   "caderno-de-anotacoes": "caderno~azul-marinho",
+  "caderno-de-capa-bicolor": "caderno-capa-bicolor~preto",
   "caixa-de-som": "caixa-de-som~vermelho",
   "caixa-para-presente": "caixa-personalizada~azul-marinho",
+  "caixa-para-presente-com-tampa-transparente": "caixa-tampa-transparente~bronze",
   "camisa-feminina": "camisa-feminina~cinza",
   "camisa-masculina": "camisa-masculina~rosa-claro",
   "camiseta-feminina": "camiseta-feminina~preto",
   "camiseta-masculina": "camiseta~branco",
   "caneca": "caneca~vermelho",
+  "caneca-com-alca-natural": "caneca-alca-madeira~branco",
   "caneca-com-borda-contrastante": "caneca-borda~branco",
   "caneca-com-faixa-natural": "caneca-faixa-natural~branco",
+  "caneca-de-chope-colorida": "caneca-chope-colorida~pink",
+  "caneca-de-chope-transparente": "caneca-chope-transparente~transparente",
   "caneca-de-parede-dupla": "caneca-parede-dupla~preto",
+  "caneca-de-viagem-com-display-de-temperatura": "caneca-viagem-display~preto",
+  "caneca-termica-alta-com-tampa-natural-e-canudo": "caneca-alta-canudo-bambu~verde-escuro",
+  "caneca-termica-com-misturador-automatico": "caneca-misturador~preto",
   "caneca-termica-com-tampa": "caneca-termica-tampa~verde-escuro",
+  "caneca-termica-com-tampa-natural": "caneca-tampa-bambu~preto",
+  "caneca-termica-tipo-chope": "caneca-chopp-termica~prata",
+  "caneca-transparente-de-parede-dupla": "caneca-transparente-parede-dupla~transparente",
   "caneta-basica": "caneta-plastica~branco",
   "caneta-com-acionamento-por-giro": "caneta-giro~vermelho",
   "caneta-com-grip": "caneta-grip~preto",
+  "caneta-com-marca-texto": "caneta-marca-texto~preto",
   "caneta-com-ponta-touch": "caneta-touch~prata",
   "caneta-e-lapiseira-em-estojo": "kit-caneta-lapiseira~preto",
   "caneta-executiva-com-estojo": "caneta-executiva-estojo~preto",
@@ -144,71 +247,120 @@
   "caneta-natural": "caneta-bambu~natural",
   "caneta-parda": "caneta-kraft~natural",
   "caneta-slim": "caneta-metalica~vermelho",
+  "canudo-reutilizavel-com-escova": "canudo-inox~prata",
   "cardapio": "cardapio~azul-marinho",
   "carregador-sem-fio-de-mesa": "carregador-sem-fio-mesa~branco",
   "cartao-com-envelope": "cartao~azul-marinho",
   "carteira": "carteira~caramelo",
   "chaveiro-abridor-de-garrafa": "chaveiro-abridor~azul-royal",
   "chaveiro-com-tira": "chaveiro-couro~preto",
+  "chaveiro-em-tom-natural": "chaveiro-madeira~natural",
+  "chaveiro-redondo-com-detalhe-natural": "chaveiro-bambu~prata",
+  "colher-bailarina": "colher-bailarina~prata",
+  "colher-em-tom-natural": "colher-madeira~natural",
   "copo-360": "copo-acrilico-360~azul-marinho",
   "copo-baixo": "copo-baixo~transparente",
   "copo-colorido-texturizado": "copo-acrilico-colorido~laranja",
   "copo-com-cordao": "copo-cordao~verde",
+  "copo-com-estampa-em-toda-a-volta": "copo-estampa-total~laranja",
+  "copo-com-luva-canelada": "copo-luva-canelada~cru-salpicado",
   "copo-com-tampa": "copo-termico~branco",
   "copo-com-tampa-e-canudo": "copo-tampa-canudo~roxo",
   "copo-de-cafe": "copo-cafe-inox~inox",
   "copo-de-vinho-com-tampa": "copo-termico-vinho~preto",
   "copo-long-drink": "copo-long-drink~dourado",
+  "copo-para-salada-com-garfo-e-molheira": "copo-salada~verde",
   "copo-para-viagem": "copo-papel~kraft",
   "copo-retratil": "copo-retratil~azul-royal",
   "copo-reutilizavel-com-tampa": "copo-reutilizavel~cru",
+  "copo-termico-antiqueda-com-tampa-flip": "copo-antiqueda~preto",
   "copo-termico-com-alca": "copo-termico-alca~preto",
+  "copo-termico-com-faixa-natural": "copo-faixa-bambu~preto",
+  "copo-termico-com-revestimento-natural-e-alca": "copo-bambu-alca~natural",
+  "copo-termico-com-tampa-abridor": "copo-termico-tampa-abridor~preto",
   "coqueteleira": "coqueteleira~prata",
   "cortador-de-pizza": "cortador-pizza~vermelho",
   "difusor-de-aromas": "difusor~ambar",
   "dolma": "dolma~jeans",
   "ecobag": "ecobag~verde",
+  "estojo-com-acessorios-de-vinho": "estojo-acessorios-vinho~natural",
   "estojo-de-escritorio": "estojo-couro~cafe",
   "estojo-organizador-de-tecnologia": "estojo-tecnologia~verde-escuro",
   "estojo-para-vinho": "porta-vinho-estojo~preto",
+  "faca-com-cabo-natural": "faca-cabo-madeira~natural",
   "flute-com-borda-dourada": "flute-borda-dourada~transparente",
   "fone-de-ouvido-sem-fio": "fone-sem-fio~rosa",
+  "fone-intra-auricular-com-fio-em-estojo": "fone-fio-estojo~branco",
+  "frasco-de-alcool-gel": "alcool-gel~branco",
   "garrafa-com-compartimento": "garrafa-compartimento~branco",
   "garrafa-esportiva-grande": "garrafa-esportiva~azul-royal",
+  "garrafa-shaker": "garrafa-shaker~transparente",
+  "garrafa-slim-com-alca-na-tampa": "garrafa-slim-alca~branco",
   "garrafa-termica": "garrafa-termica~azul-royal",
+  "garrafa-termica-classica-grande": "garrafa-termica-classica~verde",
+  "garrafa-termica-com-base-natural": "garrafa-base-natural~preto",
+  "garrafa-termica-com-display-de-temperatura-na-tampa": "garrafa-display~preto",
+  "garrafa-termica-com-revestimento-natural": "garrafa-bambu~natural",
+  "garrafa-termica-slim-com-tampa-de-botao": "garrafa-termica-slim-botao~branco",
+  "garrafa-transparente-com-capa-e-tampa-natural": "garrafa-vidro-capa~turquesa",
   "guarda-chuva": "guarda-chuva~vermelho",
   "headphone": "headphone~cinza",
   "jogo-americano-impresso": "jogo-americano-impresso~vermelho",
   "jogo-americano-oval": "jogo-americano-oval~taupe",
   "jogo-americano-retangular": "jogo-americano-retangular~verde-escuro",
+  "jogo-de-facas-de-queijo-em-estojo": "facas-queijo-estojo~preto",
   "kit-churrasco-em-estojo": "kit-churrasco~preto",
   "lacre": "lacre~dourado",
+  "lapis": "lapis~natural",
+  "mochila-antifurto": "mochila-antifurto~cinza-mesclado",
   "mochila-de-ombro": "mochila-ombro~preto",
   "mochila-para-notebook": "mochila-notebook~preto",
+  "mochila-roll-top": "mochila-roll-top~azul-marinho",
   "mochila-saco": "mochila-saco~vermelho",
+  "mochila-saco-bicolor-com-bolso-frontal": "mochila-saco-bicolor~cinza",
+  "mochila-saco-transparente": "mochila-saco-transparente~transparente-com-cordao-preto",
+  "mochila-simples-com-bolso-frontal": "mochila-bolso-frontal~preto",
   "moletom-com-capuz": "moletom~verde",
+  "mouse-pad-com-apoio-de-punho": "mouse-pad-punho~preto",
   "necessaire": "necessaire~preto",
   "necessaire-colorida": "necessaire-colorida~rosa",
   "pen-drive-cartao": "pen-drive-cartao~branco",
   "pen-drive-giratorio": "pen-drive-giratorio~preto",
   "pen-drive-natural": "pen-drive-natural~natural",
+  "petisqueira-com-divisorias": "petisqueira-divisorias~natural",
+  "petisqueira-quadrada": "petisqueira-quadrada~natural",
   "polo-feminina": "polo-feminina~azul-royal",
   "polo-masculina": "polo~vermelho",
   "porta-canetas": "porta-lapis~preto",
   "porta-cartao": "porta-cartao~prata",
   "porta-contas": "porta-contas~preto",
+  "porta-copos-redondo": "porta-copos~natural",
   "porta-lata-termico": "porta-lata~azul-marinho",
   "power-bank-com-ventosas": "power-bank-ventosa~rosa",
   "power-bank-slim": "power-bank-slim~prata",
+  "ramequim": "ramequim~branco",
+  "regua": "regua-madeira~natural",
+  "saca-rolhas-tipo-garcom": "saca-rolhas-garcom~prata",
   "sacola-de-alca-longa": "sacola-alca-longa~cru",
+  "sacola-metalizada-com-sanfona": "sacola-metalizada~prata",
   "sacola-para-presente": "sacola-presente~vermelho",
+  "sacola-transparente-com-almofada-inflavel": "sacola-inflavel~transparente",
   "saquinho-transparente": "pouch~transparente",
+  "socador-de-caipirinha": "socador~natural",
   "squeeze": "squeeze~verde",
-  "squeeze-dobravel": "squeeze-dobravel~azul-royal",
   "squeeze-com-mosquetao": "squeeze-metalico~azul-royal",
+  "squeeze-dobravel": "squeeze-dobravel~azul-royal",
+  "suporte-com-5-facas-de-queijo": "suporte-facas-queijo~natural",
   "suporte-de-celular": "suporte-celular~preto",
+  "suporte-para-canecas": "suporte-caneca~natural",
+  "suporte-para-utensilios-de-drinque": "suporte-utensilios-drink~natural",
+  "tabua-com-cabo-e-encaixe-para-copo": "tabua-encaixe-copo~natural",
+  "tabua-de-petiscos-com-cabo": "tabua-raquete~natural",
   "tabua-de-queijos-com-facas": "tabua-queijos~natural",
+  "tabua-de-queijos-com-gaveta-e-utensilios": "tabua-gaveta~natural",
+  "tabua-no-formato-do-mapa-do-brasil": "tabua-mapa-brasil~natural",
   "taca-coupe-canelada": "taca-coupe~rose",
+  "taca-coupe-lisa-de-haste-longa": "taca-coupe-lisa~transparente",
   "taca-de-champanhe": "taca-champagne-acrilico~turquesa",
   "taca-de-gin": "taca-gin-acrilico~rosa",
   "taca-de-gin-com-borda-dourada": "taca-gin-borda-dourada~preto",
@@ -218,6 +370,8 @@
   "taca-de-vinho": "taca-vinho-acrilico~preto",
   "taca-margarita": "taca-margarita~transparente",
   "taca-martini": "taca-martini~transparente",
+  "toalha-de-rosto": "toalha-rosto~branco",
+  "trofeu-recortado-com-base": "trofeu-recortado~preto",
   "vela": "vela~verde",
   "xicara-de-cafe-com-pires": "xicara-cafe~branco",
   "xicara-de-cha-com-pires": "xicara-cha~branco"
@@ -652,6 +806,391 @@
    "eventos",
    "campanhas",
    "fim-de-ano"
+  ],
+  "garrafa-shaker": [
+   "campanhas",
+   "eventos",
+   "boas-vindas"
+  ],
+  "caneca-termica-tipo-chope": [
+   "eventos",
+   "fim-de-ano",
+   "campanhas"
+  ],
+  "copo-para-salada-com-garfo-e-molheira": [
+   "campanhas",
+   "boas-vindas",
+   "eventos"
+  ],
+  "garrafa-termica-slim-com-tampa-de-botao": [
+   "boas-vindas",
+   "campanhas",
+   "executivos"
+  ],
+  "garrafa-termica-classica-grande": [
+   "reconhecimento",
+   "fim-de-ano",
+   "executivos"
+  ],
+  "garrafa-termica-com-display-de-temperatura-na-tampa": [
+   "executivos",
+   "lancamentos",
+   "fim-de-ano"
+  ],
+  "copo-termico-com-tampa-abridor": [
+   "eventos",
+   "fim-de-ano",
+   "campanhas"
+  ],
+  "garrafa-slim-com-alca-na-tampa": [
+   "boas-vindas",
+   "campanhas",
+   "eventos"
+  ],
+  "garrafa-transparente-com-capa-e-tampa-natural": [
+   "boas-vindas",
+   "campanhas",
+   "fim-de-ano"
+  ],
+  "taca-coupe-lisa-de-haste-longa": [
+   "lancamentos",
+   "eventos",
+   "fim-de-ano"
+  ],
+  "caneca-transparente-de-parede-dupla": [
+   "executivos",
+   "lancamentos",
+   "fim-de-ano"
+  ],
+  "caneca-de-chope-colorida": [
+   "eventos",
+   "campanhas",
+   "fim-de-ano"
+  ],
+  "caneca-termica-com-misturador-automatico": [
+   "boas-vindas",
+   "lancamentos",
+   "fim-de-ano"
+  ],
+  "caneca-com-alca-natural": [
+   "boas-vindas",
+   "fim-de-ano",
+   "reconhecimento"
+  ],
+  "caneca-termica-com-tampa-natural": [
+   "boas-vindas",
+   "executivos",
+   "fim-de-ano"
+  ],
+  "caneca-termica-alta-com-tampa-natural-e-canudo": [
+   "boas-vindas",
+   "campanhas",
+   "fim-de-ano"
+  ],
+  "caneca-de-viagem-com-display-de-temperatura": [
+   "executivos",
+   "lancamentos",
+   "fim-de-ano"
+  ],
+  "copo-com-luva-canelada": [
+   "boas-vindas",
+   "campanhas",
+   "eventos"
+  ],
+  "copo-com-estampa-em-toda-a-volta": [
+   "eventos",
+   "campanhas",
+   "lancamentos"
+  ],
+  "copo-termico-antiqueda-com-tampa-flip": [
+   "boas-vindas",
+   "executivos",
+   "campanhas"
+  ],
+  "garrafa-termica-com-base-natural": [
+   "executivos",
+   "boas-vindas",
+   "fim-de-ano"
+  ],
+  "garrafa-termica-com-revestimento-natural": [
+   "executivos",
+   "reconhecimento",
+   "fim-de-ano"
+  ],
+  "copo-termico-com-faixa-natural": [
+   "boas-vindas",
+   "executivos",
+   "fim-de-ano"
+  ],
+  "copo-termico-com-revestimento-natural-e-alca": [
+   "executivos",
+   "reconhecimento",
+   "fim-de-ano"
+  ],
+  "caneca-de-chope-transparente": [
+   "eventos",
+   "fim-de-ano",
+   "campanhas"
+  ],
+  "caneta-com-marca-texto": [
+   "boas-vindas",
+   "eventos",
+   "campanhas"
+  ],
+  "agenda-de-bolso-vertical": [
+   "executivos",
+   "fim-de-ano",
+   "reconhecimento"
+  ],
+  "agenda-bicolor-com-porta-caneta": [
+   "executivos",
+   "fim-de-ano",
+   "reconhecimento"
+  ],
+  "bloco-espiral-com-capa-translucida-e-caneta": [
+   "eventos",
+   "boas-vindas",
+   "campanhas"
+  ],
+  "bloco-de-mesa-com-argolas": [
+   "boas-vindas",
+   "executivos",
+   "fim-de-ano"
+  ],
+  "bloco-capa-dura-com-caneta-na-capa": [
+   "boas-vindas",
+   "eventos",
+   "campanhas"
+  ],
+  "caderno-com-capa-natural-e-caneta": [
+   "boas-vindas",
+   "fim-de-ano",
+   "executivos"
+  ],
+  "caderno-com-faixas-elasticas-porta-celular": [
+   "boas-vindas",
+   "executivos",
+   "campanhas"
+  ],
+  "bloco-wire-o-com-espiral-no-topo": [
+   "eventos",
+   "campanhas",
+   "boas-vindas"
+  ],
+  "caderno-com-aba-de-fechamento-e-bolso-porta-cartao": [
+   "executivos",
+   "fim-de-ano",
+   "reconhecimento"
+  ],
+  "caderno-de-capa-bicolor": [
+   "fim-de-ano",
+   "boas-vindas",
+   "executivos"
+  ],
+  "caderneta-espiral-parda-com-caneta": [
+   "eventos",
+   "boas-vindas",
+   "campanhas"
+  ],
+  "caderno-com-faixa-superior-e-plaquinha": [
+   "boas-vindas",
+   "reconhecimento",
+   "campanhas"
+  ],
+  "regua": [
+   "campanhas",
+   "eventos",
+   "boas-vindas"
+  ],
+  "lapis": [
+   "campanhas",
+   "eventos",
+   "boas-vindas"
+  ],
+  "trofeu-recortado-com-base": [
+   "reconhecimento",
+   "campanhas",
+   "eventos"
+  ],
+  "mouse-pad-com-apoio-de-punho": [
+   "boas-vindas",
+   "campanhas",
+   "executivos"
+  ],
+  "fone-intra-auricular-com-fio-em-estojo": [
+   "boas-vindas",
+   "eventos",
+   "campanhas"
+  ],
+  "cabo-usb": [
+   "boas-vindas",
+   "eventos",
+   "campanhas"
+  ],
+  "chaveiro-redondo-com-detalhe-natural": [
+   "eventos",
+   "reconhecimento",
+   "fim-de-ano"
+  ],
+  "chaveiro-em-tom-natural": [
+   "eventos",
+   "campanhas",
+   "boas-vindas"
+  ],
+  "frasco-de-alcool-gel": [
+   "campanhas",
+   "eventos",
+   "boas-vindas"
+  ],
+  "toalha-de-rosto": [
+   "campanhas",
+   "eventos",
+   "boas-vindas"
+  ],
+  "sacola-metalizada-com-sanfona": [
+   "fim-de-ano",
+   "lancamentos",
+   "eventos"
+  ],
+  "sacola-transparente-com-almofada-inflavel": [
+   "eventos",
+   "campanhas",
+   "fim-de-ano"
+  ],
+  "mochila-saco-bicolor-com-bolso-frontal": [
+   "boas-vindas",
+   "eventos",
+   "campanhas"
+  ],
+  "mochila-saco-transparente": [
+   "eventos",
+   "campanhas",
+   "boas-vindas"
+  ],
+  "mochila-simples-com-bolso-frontal": [
+   "boas-vindas",
+   "eventos",
+   "campanhas"
+  ],
+  "mochila-antifurto": [
+   "executivos",
+   "reconhecimento",
+   "boas-vindas"
+  ],
+  "mochila-roll-top": [
+   "reconhecimento",
+   "boas-vindas",
+   "executivos"
+  ],
+  "caixa-para-presente-com-tampa-transparente": [
+   "executivos",
+   "fim-de-ano",
+   "lancamentos"
+  ],
+  "abridor-redondo-com-ima": [
+   "campanhas",
+   "eventos",
+   "fim-de-ano"
+  ],
+  "bule-transparente-com-tampa-natural": [
+   "executivos",
+   "fim-de-ano",
+   "reconhecimento"
+  ],
+  "jogo-de-facas-de-queijo-em-estojo": [
+   "fim-de-ano",
+   "executivos",
+   "reconhecimento"
+  ],
+  "tabua-de-queijos-com-gaveta-e-utensilios": [
+   "fim-de-ano",
+   "executivos",
+   "reconhecimento"
+  ],
+  "suporte-com-5-facas-de-queijo": [
+   "fim-de-ano",
+   "executivos",
+   "reconhecimento"
+  ],
+  "porta-copos-redondo": [
+   "fim-de-ano",
+   "campanhas",
+   "boas-vindas"
+  ],
+  "suporte-para-canecas": [
+   "fim-de-ano",
+   "boas-vindas",
+   "executivos"
+  ],
+  "faca-com-cabo-natural": [
+   "fim-de-ano",
+   "eventos",
+   "campanhas"
+  ],
+  "socador-de-caipirinha": [
+   "eventos",
+   "fim-de-ano",
+   "campanhas"
+  ],
+  "colher-em-tom-natural": [
+   "fim-de-ano",
+   "eventos",
+   "campanhas"
+  ],
+  "canudo-reutilizavel-com-escova": [
+   "campanhas",
+   "eventos",
+   "boas-vindas"
+  ],
+  "colher-bailarina": [
+   "lancamentos",
+   "eventos",
+   "fim-de-ano"
+  ],
+  "suporte-para-utensilios-de-drinque": [
+   "fim-de-ano",
+   "executivos",
+   "eventos"
+  ],
+  "tabua-de-petiscos-com-cabo": [
+   "fim-de-ano",
+   "eventos",
+   "reconhecimento"
+  ],
+  "tabua-com-cabo-e-encaixe-para-copo": [
+   "eventos",
+   "fim-de-ano",
+   "campanhas"
+  ],
+  "tabua-no-formato-do-mapa-do-brasil": [
+   "fim-de-ano",
+   "eventos",
+   "executivos"
+  ],
+  "petisqueira-quadrada": [
+   "fim-de-ano",
+   "eventos",
+   "executivos"
+  ],
+  "petisqueira-com-divisorias": [
+   "fim-de-ano",
+   "executivos",
+   "eventos"
+  ],
+  "ramequim": [
+   "fim-de-ano",
+   "campanhas",
+   "eventos"
+  ],
+  "saca-rolhas-tipo-garcom": [
+   "fim-de-ano",
+   "executivos",
+   "reconhecimento"
+  ],
+  "estojo-com-acessorios-de-vinho": [
+   "executivos",
+   "fim-de-ano",
+   "reconhecimento"
   ]
  },
  "aliases": {

@@ -227,10 +227,10 @@ try {
   const catVisible = () => page.$$eval('#catalogo-grid .product', g => g.filter(x => !x.hidden && getComputedStyle(x).display !== 'none').length);   // conta o que está mesmo na tela
   const catMatch = () => page.$$eval('#catalogo-grid .product', g => g.filter(x => !x.hidden).length);   // modelos que passam no filtro (com ou sem "Ver mais")
   const nModelos = +(await page.$eval('h1', h => (h.textContent.match(/(\d+) modelos/) || [])[1]));
-  ok(await page.$$eval('h1', h => h.length === 1) && nModelos === 113, `página do catálogo tem H1 com o total de 113 modelos (${nModelos})`);
+  ok(await page.$$eval('h1', h => h.length === 1) && nModelos === 190, `página do catálogo tem H1 com o total de 190 modelos (${nModelos})`);
   // abertura da mesma família dos cabeçalhos com foto, sem foto: eyebrow, "78 modelos" + "para a sua marca." em itálico vinho, apoio e a busca logo abaixo
   ok(await page.evaluate(() => { const h = document.querySelector('.text-head.text-head-xl'); const q = document.getElementById('cat-q'); return !!h && h.querySelector('.eyebrow')?.textContent === 'Catálogo' && h.querySelector('h1 em')?.textContent === 'para a sua marca.' && !!h.querySelector('.lead') && !h.querySelector('img') && !!q && q.getBoundingClientRect().top >= h.getBoundingClientRect().bottom - 1 && q.getBoundingClientRect().top - h.getBoundingClientRect().bottom < 260; }), 'catálogo: abertura sem foto com "para a sua marca." em destaque e a busca logo abaixo');
-  ok(await page.$$eval('#catalogo-grid .product[data-cat="garrafas-copos"]', g => g.length) === 37 && await page.$eval('input[name="categoria"][value="garrafas-copos"]', i => i.parentNode.querySelector('small').textContent === '37'), 'Garrafas e copos tem 37 modelos (11 + 13 de fim de ano + 13 da apresentação de 20/10)');
+  ok(await page.$$eval('#catalogo-grid .product[data-cat="garrafas-copos"]', g => g.length) === 62 && await page.$eval('input[name="categoria"][value="garrafas-copos"]', i => i.parentNode.querySelector('small').textContent === '62'), 'Garrafas e copos tem 62 modelos (11 + 13 de fim de ano + 38 da apresentação de 20/10)');
   // 12 modelos por vez: todos ficam no HTML (Google), "Ver mais" libera mais 12 e leva o foco ao primeiro novo
   const abrirTodos = async () => { while (await page.$eval('[data-cat-mais-box]', b => !b.hidden)) { await page.$eval('[data-cat-mais]', b => b.click()); await sleep(80); } };
   ok(await catVisible() === 12 && await page.$$eval('#catalogo-grid .product', (g, n) => g.length === n, nModelos)
@@ -240,7 +240,7 @@ try {
   ok(await catVisible() === 24 && await page.evaluate(() => { const c = document.activeElement.closest('.product'); return !!c && [...document.querySelectorAll('#catalogo-grid .product:not([hidden])')].indexOf(c) === 12; }), '"Ver mais" mostra mais 12 e leva o foco ao 13º modelo');
   await abrirTodos();
   ok(await catVisible() === nModelos && await page.$$eval('#catalogo-grid .product .prod-media > picture img', (i, n) => i.length === n && i.every(x => x.alt.length > 15), nModelos), 'catálogo mostra todos os modelos do banco, com texto alternativo');
-  ok(await page.$$eval('#catalogo-grid .product[data-slug="caneca"] .swatch', s => s.length === 5), 'caneca tem 5 cores com foto');
+  ok(await page.$$eval('#catalogo-grid .product[data-slug="caneca"] .swatch', s => s.length === 6), 'caneca tem 6 cores com foto');
   ok(await colorsHavePhoto(page, '#catalogo-grid .product.studio'), 'toda cor mostrada no catálogo tem foto própria (nenhuma bolinha sem efeito)');
   await page.$eval('#catalogo-grid .product[data-slug="caneca"]', el => el.scrollIntoView({ block: 'center' }));
   await page.click('#catalogo-grid .product[data-slug="caneca"] .swatch[data-color="Verde"]');
@@ -252,7 +252,8 @@ try {
   await page.$eval('#cat-q', el => el.scrollIntoView({ block: 'center' }));
   await page.type('#cat-q', 'caneca');
   await sleep(400);
-  ok(await catVisible() === 5 && /q=caneca/.test(await page.evaluate(() => location.search)), 'busca "caneca" mostra os 5 modelos de caneca e grava ?q= na URL');
+  const nBusca = await catMatch();
+  ok(nBusca === 15 && /q=caneca/.test(await page.evaluate(() => location.search)), `busca "caneca" acha os 15 modelos com caneca no nome e grava ?q= na URL (${nBusca})`);
   await page.$eval('#cat-q', el => { el.value = ''; el.dispatchEvent(new Event('input', { bubbles: true })); }); await sleep(400);
   await page.$eval('#cat-filtros input[name="categoria"][value="hotelaria-gastronomia"]', el => el.scrollIntoView({ block: 'center' }));
   await page.click('#cat-filtros input[name="categoria"][value="hotelaria-gastronomia"]'); await sleep(200);
@@ -287,7 +288,7 @@ try {
   await page.goto(BASE + '/catalogo/caneca/?cor=verde', { waitUntil: 'networkidle0' });
   const pdp = await page.evaluate(() => ({ h1: document.querySelector('h1').textContent, cor: document.querySelector('.pdp .color-name').textContent, img: document.querySelector('.pdp-main img').getAttribute('srcset') || '', canon: document.querySelector('link[rel=canonical]').href, thumbs: document.querySelectorAll('.pdp-thumb').length, pressed: (document.querySelector('.pdp-thumb[aria-pressed="true"]') || {}).getAttribute && document.querySelector('.pdp-thumb[aria-pressed="true"]').getAttribute('data-thumb-color'), crumbs: [...document.querySelectorAll('.crumbs li')].map(l => l.textContent.trim()).join(' / ') }));
   ok(pdp.h1 === 'Caneca' && pdp.cor === 'Verde' && pdp.img.includes('caneca~verde') && pdp.pressed === 'Verde', '?cor=verde abre a página da caneca já na cor verde (foto, nome e miniatura)');
-  ok(pdp.canon.endsWith('/catalogo/caneca/') && pdp.thumbs === 5 && pdp.crumbs === 'Início / Catálogo / Caneca', 'página do modelo: canonical sem a cor, 5 miniaturas e caminho');
+  ok(pdp.canon.endsWith('/catalogo/caneca/') && pdp.thumbs === 6 && pdp.crumbs === 'Início / Catálogo / Caneca', 'página do modelo: canonical sem a cor, 6 miniaturas e caminho');
   ok(await page.evaluate(() => { const r = document.querySelector('.pdp-resumo'); const u = document.querySelectorAll('.pdp-usos li'); return !!r && r.textContent.split(/\s+/).length >= 30 && u.length >= 2 && document.title.startsWith('Caneca personalizada'); }), 'página do modelo mostra o resumo e os usos do cadastro, com título "Caneca personalizada"');
   // vistas da cor (frente, verso, bordado) na polo: acompanham a cor escolhida
   await page.goto(BASE + '/catalogo/polo-masculina/?cor=azul-marinho', { waitUntil: 'networkidle0' });
@@ -316,7 +317,7 @@ try {
   await page.goto(BASE + '/catalogo/?categoria=vestuario', { waitUntil: 'networkidle0' });
   ok(await catMatch() === 13 && await page.$eval('input[name="categoria"][value="vestuario"]', i => i.checked), '?categoria=vestuario abre o catálogo já filtrado (13 peças de vestuário)');
   await page.goto(BASE + '/catalogo/?categoria=tecnologia', { waitUntil: 'networkidle0' });
-  ok(await catVisible() === 10 && await page.$eval('input[name="categoria"][value="tecnologia"]', i => i.checked && i.parentNode.querySelector('small').textContent === '10'), '?categoria=tecnologia abre o catálogo já filtrado (10 modelos de tecnologia, contador 10)');
+  ok(await catVisible() === 12 && await catMatch() === 13 && await page.$eval('input[name="categoria"][value="tecnologia"]', i => i.checked && i.parentNode.querySelector('small').textContent === '13'), '?categoria=tecnologia abre o catálogo já filtrado (13 modelos de tecnologia, 12 na 1ª página, contador 13)');
   // tipo de peça pela URL (links dos painéis Brindes e Confecções): data-tipo dos cards, radio, etiqueta, contador e URL
   const TIPOS_BRINDE = ['agendas', 'canetas', 'canecas', 'copos', 'xicaras', 'tacas', 'squeezes', 'porta-vinho', 'mochilas'];
   await page.goto(BASE + '/catalogo/?tipo=canecas', { waitUntil: 'networkidle0' });
@@ -354,7 +355,7 @@ try {
   ok(occCat.n === occCat.e && occCat.n > 0 && occCat.n < occFim.n && /ocasiao=fim-de-ano/.test(await page.evaluate(() => location.search)) && /categoria=garrafas-copos/.test(await page.evaluate(() => location.search)), `ocasião + categoria combinam e ficam na URL (${occCat.n})`);
   await page.$eval('[data-cat-occ-clear]', el => el.scrollIntoView({ block: 'center' }));
   await page.click('[data-cat-occ-clear]'); await sleep(200);
-  ok(await page.$eval('[data-cat-occ]', b => b.hidden) && !/ocasiao=/.test(await page.evaluate(() => location.search)) && await catMatch() === 37 && await page.$eval('#cat-filtros input[name="ocasiao"][value=""]', i => i.checked), 'remover a etiqueta tira só a ocasião (fica Garrafas e copos, 37 modelos) e o radio volta para Todas');
+  ok(await page.$eval('[data-cat-occ]', b => b.hidden) && !/ocasiao=/.test(await page.evaluate(() => location.search)) && await catMatch() === 62 && await page.$eval('#cat-filtros input[name="ocasiao"][value=""]', i => i.checked), 'remover a etiqueta tira só a ocasião (fica Garrafas e copos, 62 modelos) e o radio volta para Todas');
   await page.goto(BASE + '/catalogo/?ocasiao=nao-existe', { waitUntil: 'networkidle0' });
   ok(await catMatch() === nModelos && await page.$eval('[data-cat-occ]', b => b.hidden) && await page.$eval('#cat-filtros input[name="ocasiao"][value=""]', i => i.checked), 'ocasião desconhecida na URL abre o catálogo sem filtro (radio em Todas)');
   // ocasião no filtro lateral: Todas + as 7 ocasiões com contagem (Fim de ano logo depois de Todas), entre Categoria e Cor

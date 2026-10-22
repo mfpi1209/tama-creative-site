@@ -63,6 +63,9 @@ jobs:
           check /projetos/ 301
           check /pagina-que-nao-existe 404
           check /api/proposta 403
+          check /admin/inventario/ 200
+          check /inventario 301
+          check /api/admin/login 403
           check /_redirects 404
           curl -sI http://127.0.0.1:8080/ | grep -qi '^strict-transport-security' || { echo "FALHOU: sem HSTS"; exit 1; }
           docker rm -f site-teste

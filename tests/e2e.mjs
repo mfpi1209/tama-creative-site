@@ -891,6 +891,37 @@ try {
      'publicar: produtos.json no mesmo formato (indentação 1, quebra no fim), só com as linhas da cor nova e das situações');
   ok(await ip.$eval('#barra', b => b.hidden) && await ip.evaluate(() => !localStorage.getItem('tama-inventario-rascunho')), 'depois de publicar: barra de pendências some e o rascunho do navegador é apagado');
   await ip.close();
+
+  // login com usuário e senha (serviço admin-api, simulado): sem sessão aparece o formulário; senha errada avisa; certa abre o inventário
+  const lp = await browser.newPage();
+  await lp.setViewport({ width: 1280, height: 900 });
+  await lp.setRequestInterception(true);
+  let sessao = false, tentativas = 0;
+  lp.on('request', req => {
+    const u = new URL(req.url());
+    if (!u.pathname.startsWith('/api/admin/')) return req.continue();
+    const j = (st, d) => req.respond({ status: st, contentType: 'application/json', body: JSON.stringify(d) });
+    const rota = u.pathname.slice('/api/admin'.length);
+    if (rota === '/eu') return sessao ? j(200, { usuario: 'tama' }) : j(401, { erro: 'login' });
+    if (rota === '/login') { tentativas++; const d = JSON.parse(req.postData() || '{}'); if (d.senha === 'certa') { sessao = true; return j(200, { usuario: 'tama' }); } return j(401, { erro: 'Usuário ou senha incorretos.' }); }
+    if (!sessao) return j(401, { erro: 'login' });
+    if (rota === '/ler') { const f = path.join(RAIZ, JSON.parse(req.postData()).path); return j(200, { texto: fs.readFileSync(f, 'utf8') }); }
+    if (rota === '/rascunhos') return j(200, []);
+    return j(404, {});
+  });
+  await lp.goto(BASE + '/admin/inventario/', { waitUntil: 'networkidle0' });
+  await lp.waitForSelector('#form-login');
+  ok(await lp.$eval('.tabs', t => t.hidden) && await lp.$eval('#l-senha', i => i.type === 'password' && i.autocomplete === 'current-password'), 'inventário sem sessão mostra o login (usuário e senha) e esconde as abas');
+  await lp.type('#l-usuario', 'tama'); await lp.type('#l-senha', 'errada');
+  await lp.click('#l-ok');
+  await lp.waitForFunction(() => !document.getElementById('l-erro').hidden);
+  ok(await lp.$eval('#l-erro', e => e.textContent === 'Usuário ou senha incorretos.') && await lp.$('#form-login'), 'senha errada: avisa e continua no login');
+  await lp.$eval('#l-senha', i => (i.value = '')); await lp.type('#l-senha', 'certa');
+  await lp.click('#l-ok');
+  await lp.waitForSelector('#sec-resumo .kpi');
+  ok(tentativas === 2 && await lp.$eval('.tabs', t => !t.hidden) && /conectado como tama/.test(await lp.$eval('#fonte', f => f.textContent)) && !!(await lp.$('#sair')),
+     'senha certa: abre o inventário pelo serviço, com "conectado como" e Sair');
+  await lp.close();
 } finally {
   await browser.close();
 }

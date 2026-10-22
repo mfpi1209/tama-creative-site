@@ -3,8 +3,38 @@
 Tela para a TaMa operar o catálogo sozinha: ver o que está no site, o que é novo e o que está fora, decidir o que entra
 e o que sai, editar textos, enviar fotos e criar produtos e kits. Nada muda no site até clicar em **Publicar**.
 
-Endereço: **https://tamacreative.com.br/admin/inventario/**, ou o botão verde "Inventário de produtos e kits" no canto
-do editor (`/admin/`). Usa o mesmo login do editor: entre primeiro em `/admin/` com a conta do GitHub.
+Endereço: **https://tamacreative.com.br/admin/inventario/** (ou **/inventario**). Login com **usuário e senha** da
+TaMa, sem conta no GitHub (app `admin-api` do Easypanel, abaixo). A equipe técnica também pode entrar com o login do
+GitHub do editor (`/admin/`).
+
+## Acesso com usuário e senha (app `admin-api`)
+O serviço `deploy/admin-api/server.py` confere a senha, abre uma sessão (cookie assinado, HttpOnly, 12 horas) e grava
+no GitHub com um token que fica só no servidor. O Nginx do site encaminha `/api/admin/` para ele; o login aceita
+poucas tentativas por minuto (Nginx) e trava o IP após 5 senhas erradas em 15 minutos. Senhas são guardadas só como
+hash (PBKDF2-SHA256).
+
+### Ligar no Easypanel (uma vez)
+1. **Token do GitHub**: em github.com › Settings › Developer settings › Personal access tokens › Fine-grained tokens ›
+   Generate new token. Repository access: só `mfpi1209/tama-creative-site`. Permissions › Repository: **Contents:
+   Read and write** e **Pull requests: Read and write**. Validade: 1 ano (anote a data para renovar).
+2. **Usuário e senha**: no computador, na pasta do site, `python tools/admin_senha.py tama` (digite a senha duas vezes;
+   mínimo 10 caracteres). Sai uma linha `tama:pbkdf2_sha256$…`. Para mais pessoas, repita com outro nome.
+3. **Segredo das sessões**: `python tools/admin_senha.py --segredo`.
+4. No Easypanel, no mesmo projeto do site: **+ Service › App**, nome **`admin-api`**. Source: GitHub
+   `mfpi1209/tama-creative-site`, branch `main`, Build path **`deploy/admin-api`**, Dockerfile. Sem domínio.
+5. Environment do app:
+   ```
+   GITHUB_TOKEN=<token do passo 1>
+   ADMIN_USUARIOS=<linha do passo 2>;<outra linha, se houver>
+   ADMIN_SEGREDO=<valor do passo 3>
+   ```
+   (opcionais: `GITHUB_REPO`, `GITHUB_BRANCH`, `ALLOWED_ORIGIN`, `SESSAO_HORAS`.) Deploy.
+6. Confira: `https://tamacreative.com.br/api/admin/health` responde `ok` e `/admin/inventario/` pede usuário e senha.
+   O nome interno precisa ser `tama_admin-api` (projeto `tama`, app `admin-api`), que é o que o Nginx procura; com
+   outro projeto, ajuste `deploy/nginx.conf`.
+
+Trocar a senha: gere a linha de novo e substitua em `ADMIN_USUARIOS` (Deploy). Tirar o acesso: apague a linha; a sessão
+aberta cai na hora. Trocar `ADMIN_SEGREDO` desconecta todo mundo. Cada publicação registra no commit quem publicou.
 
 ## Abas
 | Aba | O que mostra |
@@ -69,6 +99,7 @@ título, linha e kits de cada seção de `/kits-corporativos/`; o menu aponta pa
 campos obrigatórios e listas (`preparar_kits`).
 
 ## Testar no computador (sem GitHub)
+Sem o app `admin-api`, em localhost a tela usa o servidor local abaixo.
 ```
 python -I tools/admin_local.py          # grava direto nos arquivos desta pasta (src/data/, img/produtos/, img/v2/)
 python build.py && python -m http.server 8215 --directory dist
@@ -83,4 +114,6 @@ simulam esse servidor e não gravam nada.
 | `src/admin/inventario/` | `index.html`, `inventario.css`, `inventario.js` |
 | `blog.py` › `inventario_dados()` | gera `/admin/inventario/opcoes.json` |
 | `tools/admin_local.py` | servidor local de teste |
+| `deploy/admin-api/` | serviço de login com usuário e senha (Easypanel) |
+| `tools/admin_senha.py` | gera a linha de cada usuário e o segredo das sessões |
 | `build.py` › `FORA_DO_SITE`, `preparar_kits()` | modelos fora do site e validação dos kits |

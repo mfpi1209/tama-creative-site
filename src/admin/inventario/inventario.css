@@ -57,7 +57,7 @@ main { padding: 24px var(--gutter) 80px; max-width: 1360px; margin: 0 auto; }
 .btn-sm { min-height: 32px; padding: 4px 10px; font-size: 13px; }
 .link-btn { background: none; border: 0; padding: 0; font: inherit; color: var(--wine-2); text-decoration: underline; cursor: pointer; }
 label { display: block; font-size: 13px; font-weight: 600; color: var(--muted); margin: 0 0 4px; }
-input[type="text"], input[type="search"], input:not([type]), select, textarea { width: 100%; font: inherit; padding: 8px 10px; border: 1px solid var(--line-strong); border-radius: var(--radius); background: #fff; color: var(--ink); }
+input[type="text"], input[type="search"], input[type="password"], input:not([type]), select, textarea { width: 100%; font: inherit; padding: 8px 10px; border: 1px solid var(--line-strong); border-radius: var(--radius); background: #fff; color: var(--ink); }
 textarea { min-height: 84px; resize: vertical; }
 input[type="color"] { width: 44px; height: 38px; padding: 2px; border: 1px solid var(--line-strong); border-radius: var(--radius); background: #fff; cursor: pointer; }
 .campo { margin: 0 0 14px; }

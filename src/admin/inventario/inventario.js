@@ -1,7 +1,9 @@
 /* Inventário de produtos e kits (/admin/inventario/). Ver docs/INVENTARIO.md.
    Lê src/data/produtos.json, modelos.json, selecoes.json e kits.json do repositório e grava as alterações de volta:
-   - produção: API do GitHub com o token que o Decap CMS guarda no navegador (localStorage "decap-cms-user"); cada
-     publicação é um pull request (branch inventario/…) que entra na main na hora ("Publicar") ou fica como rascunho;
+   - produção: login com usuário e senha no serviço admin-api (/api/admin/, deploy/admin-api/), que grava no GitHub
+     com um token guardado no servidor; cada publicação é um pull request (branch inventario/…) que entra na main na
+     hora ("Publicar") ou fica como rascunho;
+   - equipe técnica: API do GitHub com o token que o Decap CMS guarda no navegador (localStorage "decap-cms-user");
    - localhost: servidor local (python tools/admin_local.py, porta 8081), que grava direto nos arquivos.
    As alterações ficam numa lista de operações, guardada no navegador até publicar. Na hora de publicar, os arquivos são
    lidos de novo e as operações aplicadas por cima: o que outra pessoa publicou nesse meio-tempo não se perde.
@@ -115,13 +117,37 @@
     };
   }
 
+  // serviço com usuário e senha (deploy/admin-api/server.py): mesma interface das outras fontes
+  var API_ADMIN = '/api/admin';
+  function chamarApi(metodo, rota, corpo) {
+    return fetch(API_ADMIN + rota, { method: metodo, credentials: 'same-origin', cache: 'no-store',
+      headers: corpo ? { 'Content-Type': 'application/json' } : {}, body: corpo ? JSON.stringify(corpo) : undefined })
+      .then(function (r) {
+        return r.json().catch(function () { return {}; }).then(function (d) {
+          if (r.status === 401 && rota !== '/login') throw new Error('login');
+          if (!r.ok) throw new Error(d.erro || ('o servidor respondeu ' + r.status));
+          return d;
+        });
+      });
+  }
+  function FonteServidor(usuario) {
+    return {
+      nome: 'conectado como ' + usuario, servidor: true,
+      ler: function (path) { return chamarApi('POST', '/ler', { path: path }).then(function (d) { return d.texto; }); },
+      salvar: function (arquivos, mensagem, publicar) { return chamarApi('POST', '/salvar', { arquivos: arquivos, mensagem: mensagem, publicar: publicar }); },
+      rascunhos: function () { return chamarApi('GET', '/rascunhos'); },
+      publicarRascunho: function (r) { return chamarApi('POST', '/rascunhos/publicar', { n: r.n }); },
+      descartarRascunho: function (r) { return chamarApi('POST', '/rascunhos/descartar', { n: r.n }); }
+    };
+  }
+
   function FonteLocal(url) {
     function chamar(action, params) {
       return fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action: action, params: params }) })
         .then(function (r) { if (!r.ok) return r.text().then(function (t) { throw new Error('servidor local respondeu ' + r.status + ': ' + t.slice(0, 200)); }); return r.json(); });
     }
     return {
-      nome: 'servidor local (grava direto nos arquivos)',
+      nome: 'servidor local (grava direto nos arquivos)', local: true,
       ler: function (path) { return chamar('getEntry', { branch: 'main', path: path }).then(function (e) { return e && e.data; }); },
       salvar: function (arquivos, mensagem) {
         return chamar('persistEntry', { branch: 'main', options: { commitMessage: mensagem }, entry: { slug: 'inventario',
@@ -887,7 +913,7 @@
         (erros.length ? '<ul class="erros">' + erros.slice(0, 30).map(function (e) { return '<li>' + esc(e) + '</li>'; }).join('') + (erros.length > 30 ? '<li>e mais ' + (erros.length - 30) + '</li>' : '') + '</ul>' : '') +
         campo('pub-msg', 'O que mudou (opcional)', '<textarea id="pub-msg" placeholder="ex.: entram as canecas novas; sai o boné aba reta"></textarea>') +
         '<div class="botoes"><button type="button" class="btn" id="pub-ok"' + (erros.length ? ' disabled' : '') + '>Publicar no site</button>' +
-        (S.fonte.rascunhos && !local() ? '<button type="button" class="btn btn-line" id="pub-rasc"' + (erros.length ? ' disabled' : '') + '>Salvar como rascunho</button>' : '') +
+        (!S.fonte.local ? '<button type="button" class="btn btn-line" id="pub-rasc"' + (erros.length ? ' disabled' : '') + '>Salvar como rascunho</button>' : '') +
         '<button type="button" class="btn btn-sai" id="pub-descartar">Descartar tudo</button></div>' +
         '<p class="small muted">Rascunho: fica guardado para revisão (pull request) e pode ser publicado depois, nesta tela ou no GitHub.</p></div></div>'
         : '<p class="vazio">Nenhuma alteração por enquanto. Edite produtos e kits nas outras abas; tudo aparece aqui antes de ir ao ar.</p>') +
@@ -947,12 +973,13 @@
       return S.fonte.salvar(arquivos, mensagem, agora);
     }).then(function (r) {
       S.ops = []; S.arquivos = {}; salvarRascunho();
-      var msg = r.publicado ? (local() ? 'Gravado nos arquivos locais. Rode o build para ver no site local.' :
+      var msg = r.publicado ? (S.fonte.local ? 'Gravado nos arquivos locais. Rode o build para ver no site local.' :
         'Publicado. O site é gerado e testado em alguns minutos e vai ao ar no próximo Deploy (automático, se o webhook do Easypanel estiver ligado).')
         : 'Rascunho salvo para revisão.';
       return carregar().then(function () { aviso(msg + (r.url ? ' <a href="' + esc(r.url) + '" target="_blank" rel="noopener">Ver no GitHub</a>' : ''), 'ok'); });
     }).catch(function (e) {
-      aviso(e.message === 'login' ? 'O login expirou: entre de novo em <a href="/admin/">/admin/</a> e volte aqui (as alterações ficam guardadas).' : 'Não consegui publicar: ' + esc(e.message) + '. As alterações continuam guardadas.', 'erro');
+      aviso(e.message === 'login' ? (S.fonte.servidor ? 'A sessão expirou. <a href="">Entre de novo</a>: as alterações ficam guardadas neste navegador.'
+        : 'O login expirou: entre de novo em <a href="/admin/">/admin/</a> e volte aqui (as alterações ficam guardadas).') : 'Não consegui publicar: ' + esc(e.message) + '. As alterações continuam guardadas.', 'erro');
       botoes.forEach(function (b) { b.disabled = false; });
     });
   }
@@ -982,29 +1009,80 @@
 
     fetch('/admin/inventario/opcoes.json', { cache: 'no-store' }).then(function (r) { if (!r.ok) throw new Error('opcoes.json ' + r.status); return r.json(); }).then(function (op) {
       S.op = op;
+      // 1º: sessão no serviço de usuário e senha; sem o serviço (404/erro de rede), login do GitHub ou servidor local
+      return fetch(API_ADMIN + '/eu', { credentials: 'same-origin', cache: 'no-store' }).then(function (r) {
+        if (r.ok) return r.json().then(function (d) { return { usuario: d.usuario }; });
+        return { semSessao: r.status === 401 };
+      }, function () { return {}; });
+    }).then(function (sess) {
+      if (!sess) return;
       var u = usuario();
-      if (u && u.token) S.fonte = FonteGitHub(u.token, op.repo, op.branch || 'main');
-      else if (local()) S.fonte = FonteLocal(op.decap_local || 'http://localhost:8081/api/v1');
-      else {
-        aviso('');
-        $('sec-resumo').hidden = false;
-        $('sec-resumo').innerHTML = '<div class="card login"><h2>Entre primeiro no editor</h2><p>O inventário usa o mesmo login do editor do site (conta do GitHub com acesso ao repositório).</p>' +
-          '<a class="btn" href="/admin/">Entrar no editor</a><p class="small muted">Depois de entrar, volte a esta página: o login fica guardado neste navegador.</p></div>';
-        return;
-      }
-      $('fonte').textContent = S.fonte.nome + (u && u.login ? ' · ' + u.login : '');
-      lerRascunho();
-      var tab = (location.hash || '').replace('#', '');
-      S.tab = { resumo: 1, produtos: 1, kits: 1, alteracoes: 1 }[tab] ? tab : 'resumo';
-      return carregar().then(function () {
-        mostrarTab(S.tab);
-        if (S.ops.length) aviso('Você tem ' + plural(mudancas().length, 'alteração guardada', 'alterações guardadas') + ' neste navegador, ainda não publicadas.', '');
-      });
+      if (sess.usuario) S.fonte = FonteServidor(sess.usuario);
+      else if (sess.semSessao && !(u && u.token)) return telaLogin();
+      else if (u && u.token) S.fonte = FonteGitHub(u.token, S.op.repo, S.op.branch || 'main');
+      else if (local()) S.fonte = FonteLocal(S.op.decap_local || 'http://localhost:8081/api/v1');
+      else return telaLogin(true);
+      return abrirInventario(u);
     }).catch(function (e) {
-      aviso(e.message === 'login' ? 'O login do editor expirou. <a href="/admin/">Entre de novo</a> e volte aqui.' :
+      aviso(e.message === 'login' ? (S.fonte && S.fonte.servidor ? 'A sessão expirou. <a href="">Entre de novo</a>.' : 'O login do editor expirou. <a href="/admin/">Entre de novo</a> e volte aqui.') :
         local() && /fetch|Failed|NetworkError|servidor local/.test(e.message) ? 'Servidor local não encontrado: rode <code>python tools/admin_local.py</code> na pasta do site e recarregue.' :
         'Não consegui carregar o inventário: ' + esc(e.message), 'erro');
     });
+  }
+
+  function abrirInventario(u) {
+    document.querySelector('.tabs').hidden = false;
+    $('fonte').innerHTML = esc(S.fonte.nome + (u && u.login && !S.fonte.servidor ? ' · ' + u.login : '')) +
+      (S.fonte.servidor ? ' · <button type="button" class="link-btn" id="sair">Sair</button>' : '');
+    if ($('sair')) $('sair').onclick = function () {
+      if (S.ops.length && !confirm('Você tem alterações não publicadas. Elas ficam guardadas neste navegador. Sair mesmo assim?')) return;
+      chamarApi('POST', '/sair', {}).catch(function () {}).then(function () { location.reload(); });
+    };
+    lerRascunho();
+    var tab = (location.hash || '').replace('#', '');
+    S.tab = { resumo: 1, produtos: 1, kits: 1, alteracoes: 1 }[tab] ? tab : 'resumo';
+    return carregar().then(function () {
+      mostrarTab(S.tab);
+      if (S.ops.length) aviso('Você tem ' + plural(mudancas().length, 'alteração guardada', 'alterações guardadas') + ' neste navegador, ainda não publicadas.', '');
+    });
+  }
+
+  // Login com usuário e senha (serviço admin-api). semServico: a página está no ar sem o serviço configurado.
+  function telaLogin(semServico) {
+    aviso('');
+    document.querySelector('.tabs').hidden = true;
+    var sec = $('sec-resumo');
+    sec.hidden = false;
+    if (semServico) {
+      sec.innerHTML = '<div class="card login"><h2>Entrar no inventário</h2><p>O acesso com usuário e senha ainda não está ligado neste endereço.</p>' +
+        '<p class="small muted">Equipe técnica: confira o app admin-api no Easypanel (docs/INVENTARIO.md) ou entre pelo <a href="/admin/">editor com o GitHub</a>.</p></div>';
+      return;
+    }
+    sec.innerHTML = '<form class="card login" id="form-login" novalidate><h2>Entrar no inventário</h2>' +
+      '<p class="muted">Use o usuário e a senha da TaMa.</p>' +
+      campo('l-usuario', 'Usuário', '<input id="l-usuario" name="username" type="text" autocomplete="username" autocapitalize="none" spellcheck="false" required>') +
+      campo('l-senha', 'Senha', '<input id="l-senha" name="password" type="password" autocomplete="current-password" required>') +
+      '<p class="erro-campo" id="l-erro" role="alert" hidden></p>' +
+      '<button type="submit" class="btn" id="l-ok">Entrar</button>' +
+      '<p class="small muted" style="margin-top:14px">Esqueceu a senha? Peça uma nova a quem administra o site.</p></form>';
+    var f = $('form-login');
+    $('l-usuario').focus();
+    f.onsubmit = function (e) {
+      e.preventDefault();
+      var u = $('l-usuario').value.trim(), s = $('l-senha').value, erro = $('l-erro');
+      erro.hidden = true;
+      if (!u || !s) { erro.textContent = 'Preencha o usuário e a senha.'; erro.hidden = false; return; }
+      $('l-ok').disabled = true;
+      chamarApi('POST', '/login', { usuario: u, senha: s }).then(function (d) {
+        $('l-senha').value = '';
+        S.fonte = FonteServidor(d.usuario);
+        sec.innerHTML = '';
+        return abrirInventario(null);
+      }).catch(function (err) {
+        erro.textContent = err.message === 'login' ? 'Usuário ou senha incorretos.' : err.message;
+        erro.hidden = false; $('l-ok').disabled = false; $('l-senha').select();
+      });
+    };
   }
 
   window.TAMA_INVENTARIO = { aplicar: aplicar, validar: validar, slug: slug, estado: function () { return S; } };   // usado nos testes (tests/e2e.mjs)

@@ -7,6 +7,7 @@
 | https://tamacreative.com.br | Easypanel (Traefik → container Nginx com o site gerado) | Oficial. |
 | https://tamacreative.netlify.app | Netlify (cópia antiga) | Deve só redirecionar (301) para o domínio. Ver "Netlify" abaixo. |
 | /api/proposta | Nginx do site → n8n (`tama_n8n:5678/webhook/proposta`) | Ver `docs/PROPOSTAS.md`. |
+| /api/admin/ | Nginx do site → app `admin-api` (`tama_admin-api:8080`) | Login com usuário e senha do Inventário. Ver `docs/INVENTARIO.md`. |
 
 ## Do commit ao ar
 

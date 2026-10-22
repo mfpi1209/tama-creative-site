@@ -784,6 +784,113 @@ try {
   }
   ok(barra && barra.includes('Atendimento consultivo|Arte aprovada antes da produção|Coordenação do pedido à entrega') && diff.length === 0, `barra do topo (3 compromissos) e cabeçalho iguais em todas as páginas, inclusive no blog${diff.length ? ' — diferem: ' + diff.join(', ') : ''}`);
   await bp.close();
+
+  console.log('Inventário (/admin/inventario/)');
+  // A página lê e grava pelo servidor local (tools/admin_local.py, porta 8081). Aqui ele é simulado: getEntry devolve os
+  // arquivos do repositório e persistEntry só guarda o que seria gravado (nada é escrito em disco).
+  const RAIZ = path.dirname(path.dirname(new URL(import.meta.url).pathname));
+  const ip = await browser.newPage();
+  await ip.setViewport({ width: 1366, height: 900 });
+  await ip.setRequestInterception(true);
+  let gravado = null, chamadas = [];
+  ip.on('request', req => {
+    if (/:8081\/api\/v1/.test(req.url())) {
+      if (req.method() === 'OPTIONS') return req.respond({ status: 204, headers: { 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Headers': 'Content-Type', 'Access-Control-Allow-Methods': 'POST' } });
+      const { action, params } = JSON.parse(req.postData() || '{}');
+      chamadas.push(action);
+      const cors = { 'Access-Control-Allow-Origin': '*' };
+      if (action === 'getEntry') {
+        const f = path.join(RAIZ, params.path);
+        return fs.existsSync(f) ? req.respond({ status: 200, contentType: 'application/json', headers: cors, body: JSON.stringify({ file: { path: params.path }, data: fs.readFileSync(f, 'utf8') }) })
+          : req.respond({ status: 404, contentType: 'application/json', headers: cors, body: '{}' });
+      }
+      if (action === 'persistEntry') { gravado = params; return req.respond({ status: 200, contentType: 'application/json', headers: cors, body: '{"message":"ok"}' }); }
+    }
+    req.continue();
+  });
+  const invHtml = await (await fetch(BASE + '/admin/inventario/')).text();
+  const invOp = await (await fetch(BASE + '/admin/inventario/opcoes.json')).json();
+  ok(invHtml.includes('noindex') && !invHtml.includes('"imagens"') && invOp.categorias && invOp.spec_re && Object.keys(invOp.imagens).length > 100 && admHtml.includes('href="/admin/inventario/"'),
+     'Inventário ligado ao editor, com noindex, sem dados de produto na página e com as opções do build (categorias, regra de material, miniaturas)');
+  await ip.goto(BASE + '/admin/inventario/#resumo', { waitUntil: 'networkidle0' });
+  await ip.evaluate(() => localStorage.removeItem('tama-inventario-rascunho'));
+  await ip.reload({ waitUntil: 'networkidle0' });
+  await ip.waitForSelector('#sec-resumo .kpi');
+  // contagens da tela = contagem pelos dados: produto novo (todas as fotos a aprovar), existente com cores novas, fora do site
+  const dadosP = JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/produtos.json'), 'utf8')).imagens;
+  const grupos = {}; dadosP.forEach(i => (grupos[i.produto] = grupos[i.produto] || []).push(i));
+  const vis = i => ['aprovada', 'revisao'].includes(i.aprovacao);
+  const esperado = { novos: 0, cores: 0, fora: 0 };
+  Object.values(grupos).forEach(g => { const v = g.filter(vis); if (!v.some(i => (i.vista || 'frente') === 'frente')) esperado.fora++; else if (v.every(i => i.aprovacao === 'revisao')) esperado.novos++; else if (v.some(i => i.aprovacao === 'revisao')) esperado.cores++; });
+  const kpis = await ip.$$eval('#sec-resumo .kpi b', b => b.map(x => +x.textContent));
+  ok(kpis[0] === Object.keys(grupos).length - esperado.fora && kpis[1] === esperado.novos && kpis[2] === esperado.cores,
+     `resumo: ${kpis[0]} modelos no site, ${kpis[1]} produtos novos e ${kpis[2]} existentes com cores novas, como nos dados`);
+  ok(await ip.$$eval('#sec-resumo tbody tr', r => r.length >= 5 && r.every(t => t.querySelectorAll('td').length === 6)), 'resumo: tabela existentes × novos por categoria');
+  await ip.click('[data-tab="produtos"]');
+  await ip.click('[data-sit-f="produto-novo"]');
+  ok(await ip.$$eval('#sec-produtos .item', c => c.length) === Math.min(esperado.novos, 60) && await ip.$$eval('#sec-produtos .item .tag.novo', t => t.every(x => x.textContent === 'Produto novo')),
+     'produtos: filtro "Produtos novos" mostra só os produtos novos');
+  // tirar um modelo do site, editar texto e acrescentar uma cor com foto
+  await ip.click('[data-sit-f=""]');
+  await ip.type('#busca-p', 'Caneca');
+  await ip.click('[data-produto="Caneca"]');
+  await ip.waitForSelector('#m-tirar');
+  ip.on('dialog', d => d.accept());
+  await ip.click('#m-tirar'); await sleep(150);
+  await ip.$eval('#m-resumo', t => { t.value = 'Resumo de teste.'; t.dispatchEvent(new Event('change')); }); await sleep(150);
+  await ip.evaluate(async () => {
+    const c = document.createElement('canvas'); c.width = c.height = 1100; const x = c.getContext('2d'); x.fillStyle = '#F6F2EC'; x.fillRect(0, 0, 1100, 1100); x.fillStyle = '#2E8B57'; x.fillRect(300, 250, 500, 620);
+    const dt = new DataTransfer(); dt.items.add(new File([await new Promise(r => c.toBlob(r, 'image/png'))], 'cor.png', { type: 'image/png' }));
+    const inp = document.getElementById('nc-arq'); inp.files = dt.files; inp.dispatchEvent(new Event('change'));
+  });
+  await ip.waitForFunction(() => !document.getElementById('nc-ok').disabled);
+  await ip.type('#nc-cor', 'Verde teste');
+  await ip.click('#nc-ok'); await sleep(200);
+  await ip.click('#gaveta-fechar');
+  await ip.click('[data-tab="alteracoes"]');
+  const mud = await ip.$$eval('.mudancas li', l => l.map(x => x.querySelector('.tag').textContent + ': ' + x.querySelector('p').textContent));
+  // as cores antigas saem e a nova entra (como "Novo"): o modelo continua no site, então a linha é "Alterado" com o detalhe
+  ok(mud.length === 1 && /^Alterado: Caneca: 1 cor\/foto nova, \d+ cores saem do site, textos e destaques$/.test(mud[0]) && await ip.$eval('#barra-texto', b => b.textContent === '1 alteração não publicada'),
+     `alterações: uma linha para a Caneca com o que entra e o que sai, também na barra do topo (${mud.join(' | ')})`);
+  // material no nome com material não confirmado: erro e publicação bloqueada (mesma regra do build)
+  await ip.click('[data-tab="produtos"]');
+  await ip.click('[data-produto="Caneca"]');
+  await ip.waitForSelector('#m-desc');
+  await ip.$eval('#m-desc', i => { i.value = 'Clássica de porcelana'; i.dispatchEvent(new Event('change')); }); await sleep(150);
+  await ip.click('#gaveta-fechar');
+  await ip.click('[data-tab="alteracoes"]');
+  ok(await ip.$$eval('.erros li', l => l.some(x => /"porcelana"/.test(x.textContent))) && await ip.$eval('#pub-ok', b => b.disabled), 'material sem confirmação na descrição vira erro e bloqueia a publicação');
+  await ip.click('[data-tab="produtos"]');
+  await ip.click('[data-produto="Caneca"]');
+  await ip.waitForSelector('#m-desc');
+  await ip.$eval('#m-desc', i => { i.value = 'Clássica, com alça'; i.dispatchEvent(new Event('change')); }); await sleep(150);
+  await ip.click('#gaveta-fechar');
+  // kit: tirar do site
+  await ip.click('[data-tab="kits"]');
+  await ip.click('[data-kit="kit-gin"]');
+  await ip.waitForSelector('#k-tirar');
+  await ip.click('#k-tirar'); await sleep(150);
+  await ip.click('#gaveta-fechar');
+  await ip.click('[data-tab="alteracoes"]');
+  ok(await ip.$$eval('.mudancas li p', l => l.some(x => /Kit sai do site: Kit Gin/.test(x.textContent))) && !(await ip.$('.erros')), 'kits: "Kit sai do site" na lista, sem erros');
+  // publicar (local): os JSON gravados mantêm o formato do repositório e só mudam o necessário
+  await ip.click('#pub-ok');
+  await ip.waitForFunction(() => document.getElementById('status').classList.contains('ok'), { timeout: 15000 });
+  const arqs = Object.fromEntries((gravado?.entry?.dataFiles || []).map(f => [f.path, f.raw]));
+  const assets = (gravado?.entry?.assets || []).map(a => a.path);
+  const prodNovo = arqs['src/data/produtos.json'] ? JSON.parse(arqs['src/data/produtos.json']).imagens : [];
+  const caneca = prodNovo.filter(i => i.produto === 'Caneca');
+  const nova = prodNovo.find(i => i.id === 'caneca~verde-teste');
+  const kitsNovo = arqs['src/data/kits.json'] ? JSON.parse(arqs['src/data/kits.json']) : {};
+  const origP = fs.readFileSync(path.join(RAIZ, 'src/data/produtos.json'), 'utf8').split('\n'), novoP = (arqs['src/data/produtos.json'] || '').split('\n');
+  ok(caneca.length > 1 && caneca.filter(i => i.id !== 'caneca~verde-teste').every(i => i.aprovacao === 'retirada') && nova && nova.arquivo === '/' + assets[0] && /^img\/produtos\/caneca~verde-teste\.(webp|png)$/.test(assets[0]) && nova.cor.hex && nova.alt,
+     `publicar: Caneca sai do site (todas as fotos "retirada") e a cor nova entra com a foto em ${assets[0] || '?'}`);
+  ok(arqs['src/data/modelos.json'] && JSON.parse(arqs['src/data/modelos.json']).modelos.find(m => m.produto === 'Caneca').resumo === 'Resumo de teste.' && (kitsNovo.kits || []).find(k => k.slug === 'kit-gin')?.situacao === 'fora',
+     'publicar: resumo em modelos.json e "fora" do Kit Gin em kits.json');
+  ok(novoP.length > origP.length && novoP.length - origP.length < 40 && arqs['src/data/produtos.json'].endsWith('}\n') && origP.slice(0, 20).join('\n') === novoP.slice(0, 20).join('\n'),
+     'publicar: produtos.json no mesmo formato (indentação 1, quebra no fim), só com as linhas da cor nova e das situações');
+  ok(await ip.$eval('#barra', b => b.hidden) && await ip.evaluate(() => !localStorage.getItem('tama-inventario-rascunho')), 'depois de publicar: barra de pendências some e o rascunho do navegador é apagado');
+  await ip.close();
 } finally {
   await browser.close();
 }

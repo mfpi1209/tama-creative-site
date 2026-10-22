@@ -268,7 +268,8 @@ def build_images():
     sources = [(fn[:-4], os.path.join(IMG_SRC, fn)) for fn in os.listdir(IMG_SRC) if fn.lower().endswith('.jpg')]
     v2 = os.path.join(IMG_SRC, 'v2')
     if os.path.isdir(v2):
-        sources += [(fn[:-5], os.path.join(v2, fn)) for fn in os.listdir(v2) if fn.lower().endswith('.webp')]
+        # .webp das fotos do site; .png/.jpg chegam pelo /admin/inventario/ (navegadores que não gravam WebP)
+        sources += [(os.path.splitext(fn)[0], os.path.join(v2, fn)) for fn in sorted(os.listdir(v2)) if fn.lower().endswith(('.webp', '.png', '.jpg', '.jpeg'))]
     produtos = os.path.join(IMG_SRC, 'produtos')   # banco de imagens de produto (src/data/produtos.json); só as usadas entram no site
     if os.path.isdir(produtos):
         usadas = {i['id'] for i in PRODUTOS if i.get('uso') and i.get('aprovacao') not in ('retirada', 'substituir')}
@@ -434,6 +435,11 @@ def spec_line(im):
 preparar_produtos()
 PRODUTOS_BY = {i['id']: i for i in PRODUTOS}
 CATALOGO = build_catalogo()   # depois de color_slug
+# Modelos fora do site: todas as fotos em "retirada"/"substituir" (o /admin/inventario/ tira um modelo inteiro assim).
+# Cadastros em modelos.json e referências em selecoes.json e nas páginas continuam válidos e são ignorados, para o
+# modelo poder voltar ao site sem perder textos nem posições.
+FORA_DO_SITE = {color_slug(i['produto']) for i in PRODUTOS} - {c['slug'] for c in CATALOGO}
+FORA_NOMES = {i['produto'] for i in PRODUTOS if color_slug(i['produto']) in FORA_DO_SITE}
 # Cadastro por modelo (src/data/modelos.json, editado em /admin/ › Catálogo › Modelos): resumo, usos, medidas, gênero,
 # título e descrição para o Google. Ligado ao catálogo pelo nome do produto; o build barra dado inválido.
 _MODELOS_JSON = os.path.join(SRC, 'data', 'modelos.json')
@@ -444,6 +450,9 @@ def preparar_modelos():
     nomes, erros, vistos = {c['nome'] for c in CATALOGO}, [], set()
     for m in MODELOS:
         p = m.get('produto') or ''
+        if p in FORA_NOMES:   # modelo fora do site: o cadastro fica guardado para quando ele voltar
+            vistos.add(p)
+            continue
         if p not in nomes:
             erros.append(f'"{p}": não há produto com esse nome no catálogo (o nome tem de ser igual ao do banco de imagens)')
         if p in vistos:
@@ -472,7 +481,7 @@ def preparar_modelos():
 
 preparar_modelos()
 CATALOGO_BY = {c['slug']: c for c in CATALOGO}
-_falta = [m for m in SEL.get('home', []) + SEL.get('prioridade', []) + list(SEL.get('foto_base', {})) + list(SEL.get('ocasioes_por_modelo', {})) + list(ALIASES.values()) if m not in CATALOGO_BY]
+_falta = [m for m in SEL.get('home', []) + SEL.get('prioridade', []) + list(SEL.get('foto_base', {})) + list(SEL.get('ocasioes_por_modelo', {})) + list(ALIASES.values()) if m not in CATALOGO_BY and m not in FORA_DO_SITE]
 if _falta:
     raise SystemExit(f'selecoes.json aponta para modelos que não existem em produtos.json: {sorted(set(_falta))}')
 
@@ -480,7 +489,10 @@ if _falta:
 def modelo(slug):
     """Modelo do catálogo por id atual ou por slug antigo (aliases). Id desconhecido para o build: uma página não
     pode perder um card em silêncio (ex.: produto renomeado no /admin/ sem alias em selecoes.json)."""
-    m = CATALOGO_BY.get(ALIASES.get(slug, slug))
+    slug = ALIASES.get(slug, slug)
+    m = CATALOGO_BY.get(slug)
+    if not m and slug in FORA_DO_SITE:   # tirado do site no inventário: a página segue sem o card
+        return None
     if not m:
         raise SystemExit(f'Modelo {slug!r} não existe em produtos.json (renomeado? acrescente o id antigo em aliases de selecoes.json)')
     return m
@@ -830,7 +842,7 @@ def studio_block(slugs, title, eyebrow, intro, aria, more=None, sid=None, cls=''
 
 
 def home_products_block():
-    cards = ''.join(home_product_card(CATALOGO_BY[s]) for s in SEL['home'])
+    cards = ''.join(home_product_card(CATALOGO_BY[s]) for s in SEL['home'] if s in CATALOGO_BY)
     return f'''<section class="section home-prods" aria-labelledby="prods-t">
   <div class="wrap">
     <div class="section-head row">
@@ -956,38 +968,51 @@ def ocasioes_faixa(title='Brindes por ocasião'):
 </section>'''
 
 
-# Kits corporativos da home (fotos da apresentação TaMa, pacote tama-home-v2): dois destaques e três menores.
-# As ocasiões continuam como atalhos para a curadoria filtrada.
-HOME_KITS = [
-    ('gelato-experience', 'Gelato Experience', 'Duas taças, duas colheres longas, colher de servir e três toppings. Caixa e cartão personalizados.'),
-    ('mesa-de-descobertas', 'Mesa de Descobertas', 'Bandeja, dois potinhos, espátula, faca, geleia e mel. Caixa e cartões de harmonização.'),
-    ('kit-pratico', 'Kit Prático', 'Bloco de notas, kit mouse, porta-trecos, porta-lápis, estojo e embalagem personalizada.'),
-    ('em-movimento', 'Em Movimento', 'Mochila, nécessaire, pasta executiva, tag de mala e porta-passaporte.'),
-    ('pausa-e-inspiracao', 'Pausa e Inspiração', 'Caderno com amarração, vela em copo com cinta, caixa e cartão.'),
-]
+# Kits do site (home, /kits-corporativos/ e fim de ano): src/data/kits.json, editado em /admin/inventario/ › Kits.
+# Cada kit: slug, nome, descrição, foto (nome em img/v2/, sem extensão), marca fictícia e cor da caixa da foto (vazias =
+# marca TaMa), foto_anterior (vale enquanto a nova não existe) e situacao ("fora" tira o kit de todas as páginas).
+# home, fim_de_ano e tipos (seções de /kits-corporativos/, âncoras do menu) são listas de slugs.
+KITS_DADOS = json.load(open(os.path.join(SRC, 'data', 'kits.json'), encoding='utf-8'))
 
 
-# Fotos dos kits editadas com marcas fictícias e caixas fora do bordô (img/v2/): o cliente vê a marca dele no kit, não a da
-# TaMa. slug -> (imagem, marca fictícia, cor da caixa). Os demais kits seguem em kitp-<slug>.webp. Gelato Experience e Mesa de
-# Descobertas usam as fotos do slide 3 da apresentação de 20/10 (-v3); os kits novos (KITS_NOVOS), as fotos geradas para ela.
-KIT_FOTOS = {
-    'gelato-experience': ('kitp-gelato-experience-v3', 'Nexo', 'caixa redonda azul-petróleo'),
-    'mesa-de-descobertas': ('kitp-mesa-de-descobertas-v3', 'Elo', 'caixa em tom natural com lousa'),
-    'kit-pratico': ('kitp-kit-pratico-v2', 'Pulso', 'peças azul-marinho e caixa creme'),
-    'em-movimento': ('kitp-em-movimento-v2', 'Flora', 'peças verde-oliva e mochila preta'),
-    'pausa-e-inspiracao': ('kitp-pausa-e-inspiracao-v2', 'Orla', 'caixa creme e peças azul-acinzentadas'),
-    'kit-boas-vindas-tech': ('kits-header-v3', 'Lume', 'caixa grafite com berço claro'),   # a mesma foto do topo da página
-    'kit-cozinha': ('kitp-kit-cozinha', 'Brasa', 'caixa verde-oliva com berço'),
-    'kit-agradecimento': ('kitp-kit-agradecimento', 'Aura', 'caixa azul-acinzentada com berço'),
-    'kit-caipirinha': ('kitp-kit-caipirinha', 'Vila', 'caixa em tom natural com tampa'),
-    'kit-gin': ('kitp-kit-gin', 'Noa', 'caixa preta com berço'),
-    'kit-vinho': ('kitp-kit-vinho', 'Terra', 'caixa café com berço'),
-}
+def preparar_kits():
+    erros, vistos = [], set()
+    for n, k in enumerate(KITS_DADOS.get('kits') or [], 1):
+        nome = f"{k.get('slug') or '(sem slug)'} (kit {n})"
+        if not re.fullmatch(r'[a-z0-9]+(-[a-z0-9]+)*', k.get('slug') or ''):
+            erros.append(f'{nome}: slug inválido (só minúsculas, números e hífen)')
+        if k.get('slug') in vistos:
+            erros.append(f'{nome}: slug repetido')
+        vistos.add(k.get('slug'))
+        if not (k.get('nome') and k.get('descricao')):
+            erros.append(f'{nome}: nome e descrição são obrigatórios')
+        if k.get('situacao', 'no_site') not in ('no_site', 'fora'):
+            erros.append(f'{nome}: situação inválida')
+    refs = KITS_DADOS.get('home', []) + KITS_DADOS.get('fim_de_ano', []) + [s for t in KITS_DADOS.get('tipos', []) for s in t.get('kits', [])]
+    erros += [f'lista cita kit que não existe: {s}' for s in sorted(set(refs) - vistos)]
+    for t in KITS_DADOS.get('tipos', []):
+        if not (re.fullmatch(r'kits-[a-z0-9-]+', t.get('ancora') or '') and t.get('titulo')):
+            erros.append(f"tipo {t.get('titulo') or '?'}: âncora (kits-...) e título são obrigatórios")
+    if erros:
+        raise SystemExit('Kits (src/data/kits.json) com erro:\n  ' + '\n  '.join(erros))
+
+
+preparar_kits()
+KITS_TODOS = KITS_DADOS['kits']
+KITS_BY = {k['slug']: (k['slug'], k['nome'], k['descricao']) for k in KITS_TODOS if k.get('situacao', 'no_site') != 'fora'}
+
+
+def kits_da_lista(chave):
+    """Kits de uma lista de kits.json (home, fim_de_ano), na ordem, sem os que estão fora do site."""
+    return [KITS_BY[s] for s in KITS_DADOS.get(chave, []) if s in KITS_BY]
+
+
+# Kits corporativos da home: dois destaques e três menores. As ocasiões continuam como atalhos para a curadoria filtrada.
+HOME_KITS = kits_da_lista('home')
+# slug -> (imagem, marca fictícia, cor da caixa); sem foto cadastrada, o kit usa img/v2/kitp-<slug>.webp
+KIT_FOTOS = {k['slug']: (k['foto'], k.get('marca_ficticia') or '', k.get('cor_caixa') or '') for k in KITS_TODOS if k.get('foto')}
 # Foto anterior dos kits que trocaram de foto: vale enquanto a nova não estiver em img/v2/.
-KIT_FOTOS_ANTES = {
-    'gelato-experience': ('kitp-gelato-experience-v2', 'Nexo', 'caixa azul-petróleo'),
-    'mesa-de-descobertas': ('kitp-mesa-de-descobertas-v2', 'Elo', 'caixa grafite'),
-}
+KIT_FOTOS_ANTES = {k['slug']: (k['foto_anterior'], k.get('marca_anterior') or '', k.get('cor_caixa_anterior') or '') for k in KITS_TODOS if k.get('foto_anterior')}
 
 
 def kit_foto(slug):
@@ -1025,40 +1050,10 @@ def nota_kits(kits):
     return nota_marca('marca fictícia' if f[1] else 'marca TaMa' for f in fotos if f) + NOTE_KITS_EXTRA
 
 
-# Mais cinco kits da página de kits, recriados a partir de referências enviadas pela TaMa (sem marcas de terceiros), na
-# identidade TaMa e com caixas em cores diferentes (fotos img/v2/kitp-<slug>.webp, originais em midia/produtos/geradas/).
-# Peças, material e técnica ficam a confirmar na proposta: os textos não afirmam material.
-MAIS_KITS = [
-    ('kit-escritorio', 'Kit Escritório', 'Caderno com elástico, caneta, caneca com alça clara e porta-copo, na caixa preta com berço.'),
-    ('kit-cafe', 'Kit Café', 'Garrafa térmica e quatro xícaras com pires, na caixa terracota com berço.'),
-    ('kit-conectado', 'Kit Conectado', 'Fone de ouvido sem fio com estojo, garrafa com tampa clara e caneca, na caixa azul-marinho com berço.'),
-    ('kit-executivo-verde', 'Kit Executivo', 'Caderno com capa de fecho, caneta e garrafa térmica, na caixa verde-escura com berço.'),
-    ('kit-petiscos', 'Kit Petiscos', 'Petisqueira redonda com quatro divisórias, na caixa clara com palha decorativa.'),
-]
-# Kits novos da apresentação de 20/10 (../lotes.json › kits_novos), com marcas fictícias e fotos em img/v2/ (KIT_FOTOS).
-# Os textos não afirmam material; os kits de drinque e de vinho são só de acessórios, sem bebida.
-KITS_NOVOS = [
-    ('kit-boas-vindas-tech', 'Kit Boas-vindas Conectado', 'Para receber quem chega: caderneta, caneta, copo com tampa, fone de ouvido sem fio com estojo, power bank e caixa de som.'),
-    ('kit-cozinha', 'Kit Cozinha', 'Para quem gosta de cozinhar e receber: tábua com facas de queijo, potinhos e avental.'),
-    ('kit-agradecimento', 'Kit de Agradecimento', 'Cartão "Obrigado", vela em copo, caneca e caderno pequeno, para agradecer clientes, parceiros e equipes.'),
-    ('kit-caipirinha', 'Kit Caipirinha', 'Coqueteleira, socador, tábua pequena, faca e dois copos baixos. Sem bebida: acessórios para preparar.'),
-    ('kit-gin', 'Kit Gin', 'Duas taças de gin, colher bailarina, dosador e potinhos para especiarias. Sem bebida: acessórios para preparar.'),
-    ('kit-vinho', 'Kit Vinho', 'Duas taças de vinho, saca-rolhas e tampa para a garrafa. Sem bebida: acessórios para servir.'),
-]
-KITS_BY = {k[0]: k for k in HOME_KITS + MAIS_KITS + KITS_NOVOS}
-
-
-# /kits-corporativos/ por tipo de kit: (âncora, título, linha de apoio, kits). O menu aponta para estas âncoras. Um kit pode
-# entrar em dois tipos (o Kit Prático serve ao escritório e às boas-vindas) e mantém o mesmo número nos dois.
-KITS_TIPOS = [
-    ('kits-escritorio', 'Kit escritório', 'Peças de mesa e de uso diário para a rotina de trabalho, com a marca da sua empresa.', ['kit-escritorio', 'kit-pratico']),
-    ('kits-cozinha', 'Kit cozinha', 'Para receber à mesa: peças para servir, harmonizar e compartilhar.', ['kit-cozinha', 'mesa-de-descobertas', 'gelato-experience', 'kit-petiscos']),
-    ('kits-boas-vindas', 'Kit boas-vindas', 'Peças úteis desde o primeiro dia, para quem chega se sentir parte da equipe.', ['kit-boas-vindas-tech', 'kit-conectado', 'kit-pratico']),
-    ('kits-executivo', 'Kit executivo', 'Para lideranças, clientes especiais e quem viaja a trabalho.', ['kit-executivo-verde', 'em-movimento']),
-    ('kits-pausa', 'Kit pausa', 'Para o café, a leitura e um momento de pausa no meio do dia.', ['pausa-e-inspiracao', 'kit-cafe']),
-    ('kits-agradecimento', 'Kit de agradecimento', 'Para agradecer clientes, parceiros e equipes, com a mensagem da sua empresa no cartão.', ['kit-agradecimento']),
-    ('kits-fim-de-ano', 'Kit fim de ano', 'Para brindar com clientes e equipes; os kits de drinque e de vinho trazem os acessórios, sem bebida.', ['kit-brinde', 'kit-coquetel', 'kit-caipirinha', 'kit-gin', 'kit-vinho']),
-]
+# /kits-corporativos/ por tipo de kit: (âncora, título, linha de apoio, kits), de kits.json › tipos. O menu aponta para
+# estas âncoras. Um kit pode entrar em dois tipos (o Kit Prático serve ao escritório e às boas-vindas) e mantém o mesmo
+# número nos dois.
+KITS_TIPOS = [(t['ancora'], t['titulo'], t.get('linha') or '', t.get('kits') or []) for t in KITS_DADOS.get('tipos', [])]
 
 
 def kits_grandes(n):
@@ -1069,11 +1064,7 @@ def kits_grandes(n):
 def kits_tipos_html():
     """Uma seção por tipo de kit (KITS_TIPOS), com os cards no padrão kit_card. Kit sem foto em img/ fica fora (kit_foto); um
     tipo sem nenhum kit com foto mantém a âncora, o título e o convite para pedir a composição."""
-    todos = {k[0]: k for k in HOME_KITS + MAIS_KITS + KITS_NOVOS + FIM_DE_ANO_KITS}
-    faltam = [s for _sid, _t, _l, slugs in KITS_TIPOS for s in slugs if s not in todos]
-    if faltam:
-        raise SystemExit(f'KITS_TIPOS cita kits que não existem: {faltam}')
-    tipos = [(sid, titulo, linha, [todos[s] for s in slugs if kit_foto(s)]) for sid, titulo, linha, slugs in KITS_TIPOS]
+    tipos = [(sid, titulo, linha, [KITS_BY[s] for s in slugs if s in KITS_BY and kit_foto(s)]) for sid, titulo, linha, slugs in KITS_TIPOS]
     num, html = {}, []   # num: slug -> número do kit na página (o mesmo quando o kit aparece em dois tipos)
     for j, (sid, titulo, linha, kits) in enumerate(tipos):
         g = kits_grandes(len(kits))
@@ -2192,17 +2183,8 @@ def page_hotelaria():
 
 
 
-# Kits da página de fim de ano (fotos img/v2/kitp-kit-brinde.webp e kitp-kit-coquetel.webp), mais o Kit Café e o Kit
-# Petiscos da página de kits
-FIM_DE_ANO_KITS = [
-    ('kit-brinde', 'Kit Brinde', 'Duas taças coupe caneladas, caixa rígida com berço e cartão personalizado.'),
-    ('kit-coquetel', 'Kit Coquetel', 'Taça martini, taça margarita, taça de gin e copo long drink, com caixa e cartão.'),
-    KITS_BY['kit-caipirinha'],   # os três kits de drinque e de vinho da apresentação de 20/10: só acessórios, sem bebida
-    KITS_BY['kit-gin'],
-    KITS_BY['kit-vinho'],
-    KITS_BY['kit-cafe'],
-    KITS_BY['kit-petiscos'],
-]
+# Kits da página de fim de ano: kits.json › fim_de_ano.
+FIM_DE_ANO_KITS = kits_da_lista('fim_de_ano')
 
 
 FIM_ATALHOS = [('Taças e copos', '#brindar'), ('Conjuntos e embalagens', '#kits-fim-de-ano'), ('Personalização e mensagens', '#personalizacao')]

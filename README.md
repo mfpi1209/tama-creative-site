@@ -14,6 +14,7 @@ redireciona para o domínio.
   `docs/DEPLOY.md`.
 
 Conteúdo do catálogo e do blog também pode ser editado em `/admin/` (ver `docs/BANCO-IMAGENS.md` e `docs/BLOG.md`).
+Produtos e kits (o que entra e o que sai, fotos, aprovação) ficam no Inventário, `/admin/inventario/` (ver `docs/INVENTARIO.md`).
 
 ## Documentação
 

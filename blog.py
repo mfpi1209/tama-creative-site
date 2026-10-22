@@ -956,6 +956,20 @@ def painel_dados(b):
     }
 
 
+def inventario_dados(b):
+    """Opções públicas do Inventário (/admin/inventario/): categorias, ocasiões, a regra de material (SPEC_RE) e as miniaturas
+    já geradas pelo build (nome da imagem -> URL; fotos retiradas abrem pelo original em /img/produtos/). Produtos, modelos, seleções e kits são lidos do repositório com o login."""
+    return {
+        'site': b.SITE, 'repo': CMS_REPO, 'branch': CMS_BRANCH, 'decap_local': DECAP_LOCAL,
+        'categorias': b.CAT_PROD, 'ocasioes': b.OCCS, 'spec_re': b.SPEC_RE.pattern,
+        'tipos_de_peca': b.TIPO_ROTULO,
+        # só fotos que o site já usa (produtos no catálogo e a foto atual de cada kit): o build apaga do dist as imagens
+        # que nenhuma página cita, e esta lista não pode segurar as que saíram
+        'imagens': {n: b.img_url(n, 'webp', 420) for n in sorted(b.IMAGES)
+                    if n in b.PRODUTOS_BY or n in {k.get('foto') for k in b.KITS_TODOS} or n in {'kitp-' + k['slug'] for k in b.KITS_TODOS}},
+    }
+
+
 def post_static(b):
     """Depois de build_static(): copia o editor (src/admin/), grava config.yml e preview.css e os cabeçalhos de /admin/."""
     if not os.path.isdir(ADMIN_SRC):
@@ -966,6 +980,7 @@ def post_static(b):
     b.write('/admin/config.yml', cms_config(b))
     b.write('/admin/preview.css', b.CSS + b.minify_css(open(BLOG_CSS, encoding='utf-8').read()))
     b.write('/admin/painel/site.json', json.dumps(painel_dados(b), ensure_ascii=False))
+    b.write('/admin/inventario/opcoes.json', json.dumps(inventario_dados(b), ensure_ascii=False))
     with open(os.path.join(b.DIST, '_headers'), 'a', encoding='utf-8') as f:
         f.write(f'/admin/*\n  X-Robots-Tag: noindex, nofollow\n  Cache-Control: no-cache\n  Content-Security-Policy: {ADMIN_CSP}\n')
     # mesmos cabeçalhos para o Nginx do Easypanel (deploy/nginx.conf, location /admin/); o Dockerfile move para /etc/nginx/snippets/

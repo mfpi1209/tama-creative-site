@@ -455,7 +455,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Azul-marinho",
     "hex": "#1E2A4A"
@@ -492,7 +492,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-18",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Café",
     "hex": "#4A2E22"
@@ -531,7 +531,7 @@
    "altura": 1254,
    "atualizado_em": "2026-10-17",
    "largura": 1254,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Caramelo",
     "hex": "#A0623A"
@@ -568,7 +568,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Preto",
     "hex": "#1E1E1E"
@@ -901,7 +901,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-18",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Azul-marinho",
     "hex": "#1E2A4A"
@@ -954,7 +954,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -990,7 +990,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -1010,7 +1010,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-18",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Caramelo",
     "hex": "#A0623A"
@@ -1063,7 +1063,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -1099,7 +1099,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -1119,7 +1119,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Cru",
     "hex": "#EDE3D0"
@@ -1172,7 +1172,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -1192,7 +1192,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-18",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Preto",
     "hex": "#1E1E1E"
@@ -1245,7 +1245,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -1281,7 +1281,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -1301,7 +1301,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-18",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Rosa",
     "hex": "#E07A9B"
@@ -1354,7 +1354,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -1390,7 +1390,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -1410,7 +1410,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-18",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Verde-escuro",
     "hex": "#1F4A35"
@@ -1463,7 +1463,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -1499,7 +1499,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -1519,7 +1519,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-18",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Vermelho",
     "hex": "#C8202F"
@@ -1572,7 +1572,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -1608,7 +1608,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -1628,7 +1628,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-18",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Azul-marinho",
     "hex": "#1E2A4A"
@@ -1681,7 +1681,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -1701,7 +1701,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-18",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Cru",
     "hex": "#EDE3D0"
@@ -1739,7 +1739,7 @@
    "altura": 1254,
    "atualizado_em": "2026-10-17",
    "largura": 1254,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Jeans",
     "hex": "#2F4470"
@@ -1776,7 +1776,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-18",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Preto",
     "hex": "#1E1E1E"
@@ -1829,7 +1829,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -1849,7 +1849,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-18",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Rosa",
     "hex": "#E07A9B"
@@ -1902,7 +1902,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -1922,7 +1922,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-18",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Verde",
     "hex": "#1F6B45"
@@ -1975,7 +1975,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -1995,7 +1995,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-18",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Vermelho",
     "hex": "#C8202F"
@@ -2048,7 +2048,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -2638,7 +2638,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
    "substitui": null,
    "observacao": "Variação de cor gerada a partir da foto-base bolsa-listrada~rosa-e-verde.",
@@ -2675,7 +2675,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
    "substitui": null,
    "observacao": "Variação de cor gerada a partir da foto-base bolsa-listrada~rosa-e-verde.",
@@ -2712,7 +2712,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
    "substitui": null,
    "observacao": "Variação de cor gerada a partir da foto-base bolsa-listrada~rosa-e-verde.",
@@ -2749,7 +2749,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Imagem gerada com IA (OpenAI gpt-image-1.5) em 18/10/2026, a partir da identidade TaMa e de uma referência de formato enviada pela TaMa (sem marcas de terceiros). Ilustrativa: não é foto do produto final.",
    "substitui": null,
    "observacao": "Foto-base. A letra aplicada é um exemplo (T de TaMa): no projeto entra a inicial ou a letra escolhida.",
@@ -2786,7 +2786,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
    "substitui": null,
    "observacao": "Variação de cor gerada a partir da foto-base bolsa-listrada~rosa-e-verde.",
@@ -3363,7 +3363,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Azul-marinho",
     "hex": "#1E2A4A"
@@ -3416,7 +3416,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Variação de cor feita localmente (tools/recolorir.py) a partir de bone~verde-bordado, com a cor medida na foto de frente bone~azul-marinho, em 18/10/2026. Ilustrativa.",
    "substitui": null,
    "observacao": "",
@@ -3452,7 +3452,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Variação de cor feita localmente (tools/recolorir.py) a partir de bone~verde-verso, com a cor medida na foto de frente bone~azul-marinho, em 18/10/2026. Ilustrativa.",
    "substitui": null,
    "observacao": "",
@@ -3509,7 +3509,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Azul royal",
     "hex": "#1F4FB8"
@@ -3562,7 +3562,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Variação de cor feita localmente (tools/recolorir.py) a partir de bone~verde-bordado, com a cor medida na foto de frente bone~azul-royal, em 18/10/2026. Ilustrativa.",
    "substitui": null,
    "observacao": "",
@@ -3598,7 +3598,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Variação de cor feita localmente (tools/recolorir.py) a partir de bone~verde-verso, com a cor medida na foto de frente bone~azul-royal, em 18/10/2026. Ilustrativa.",
    "substitui": null,
    "observacao": "",
@@ -3618,7 +3618,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-18",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Branco",
     "hex": "#F7F5F0"
@@ -3671,7 +3671,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Variação de cor feita localmente (tools/recolorir.py) a partir de bone~verde-verso, com a cor medida na foto de frente bone~branco, em 18/10/2026. Ilustrativa.",
    "substitui": null,
    "observacao": "",
@@ -3691,7 +3691,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Cinza",
     "hex": "#9A9A98"
@@ -3744,7 +3744,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Variação de cor feita localmente (tools/recolorir.py) a partir de bone~verde-bordado, com a cor medida na foto de frente bone~cinza, em 18/10/2026. Ilustrativa.",
    "substitui": null,
    "observacao": "",
@@ -3780,7 +3780,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Variação de cor feita localmente (tools/recolorir.py) a partir de bone~verde-verso, com a cor medida na foto de frente bone~cinza, em 18/10/2026. Ilustrativa.",
    "substitui": null,
    "observacao": "",
@@ -3800,7 +3800,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Preto",
     "hex": "#1E1E1E"
@@ -3853,7 +3853,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Variação de cor feita localmente (tools/recolorir.py) a partir de bone~verde-bordado, com a cor medida na foto de frente bone~preto, em 18/10/2026. Ilustrativa.",
    "substitui": null,
    "observacao": "",
@@ -3889,7 +3889,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Variação de cor feita localmente (tools/recolorir.py) a partir de bone~verde-verso, com a cor medida na foto de frente bone~preto, em 18/10/2026. Ilustrativa.",
    "substitui": null,
    "observacao": "",
@@ -3909,7 +3909,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Rosa",
     "hex": "#E07A9B"
@@ -3962,7 +3962,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Variação de cor feita localmente (tools/recolorir.py) a partir de bone~verde-bordado, com a cor medida na foto de frente bone~rosa, em 18/10/2026. Ilustrativa.",
    "substitui": null,
    "observacao": "",
@@ -3998,7 +3998,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Variação de cor feita localmente (tools/recolorir.py) a partir de bone~verde-verso, com a cor medida na foto de frente bone~rosa, em 18/10/2026. Ilustrativa.",
    "substitui": null,
    "observacao": "",
@@ -4019,7 +4019,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Verde",
     "hex": "#1F4A35"
@@ -4072,7 +4072,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto de frente) em 18/10/2026. Ilustrativa.",
    "substitui": null,
    "observacao": "Foto-base das variações de cor locais.",
@@ -4108,7 +4108,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto de frente) em 18/10/2026. Ilustrativa.",
    "substitui": null,
    "observacao": "Foto-base das variações de cor locais.",
@@ -4128,7 +4128,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Vermelho",
     "hex": "#C8202F"
@@ -4181,7 +4181,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Variação de cor feita localmente (tools/recolorir.py) a partir de bone~verde-bordado, com a cor medida na foto de frente bone~vermelho, em 18/10/2026. Ilustrativa.",
    "substitui": null,
    "observacao": "",
@@ -4217,7 +4217,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Variação de cor feita localmente (tools/recolorir.py) a partir de bone~verde-verso, com a cor medida na foto de frente bone~vermelho, em 18/10/2026. Ilustrativa.",
    "substitui": null,
    "observacao": "",
@@ -5052,7 +5052,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Azul-marinho",
     "hex": "#1E2A4A"
@@ -5091,7 +5091,7 @@
    "altura": 1254,
    "atualizado_em": "2026-10-17",
    "largura": 1254,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Azul royal",
     "hex": "#1F4FB8"
@@ -5203,7 +5203,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Preto",
     "hex": "#1E1E1E"
@@ -5240,7 +5240,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Verde",
     "hex": "#1F6B45"
@@ -5278,7 +5278,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Vermelho",
     "hex": "#C8202F"
@@ -5330,7 +5330,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Imagem gerada com IA (OpenAI gpt-image-1.5, produto novo no padrão do banco) em 18/10/2026. Ilustrativa: não é foto do produto final.",
    "substitui": null,
    "observacao": "Foto-base da linha de tecnologia (docs/PLANO-TECNOLOGIA.md).",
@@ -5404,7 +5404,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
    "substitui": null,
    "observacao": "Variação de cor gerada a partir da foto-base caixa-de-som~azul-marinho.",
@@ -5478,7 +5478,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
    "substitui": null,
    "observacao": "Variação de cor gerada a partir da foto-base caixa-de-som~azul-marinho.",
@@ -5515,7 +5515,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
    "substitui": null,
    "observacao": "Variação de cor gerada a partir da foto-base caixa-de-som~azul-marinho.",
@@ -5538,7 +5538,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Azul-marinho",
     "hex": "#1E2A4A"
@@ -5578,7 +5578,7 @@
    "altura": 1254,
    "atualizado_em": "2026-10-17",
    "largura": 1254,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Bordô",
     "hex": "#6B1E33"
@@ -5690,7 +5690,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-18",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Cru",
     "hex": "#EDE3D0"
@@ -5765,7 +5765,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Preto",
     "hex": "#1E1E1E"
@@ -5891,7 +5891,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Gerada com IA (OpenAI gpt-image-1.5) a partir da foto enviada pela TaMa, em 18/10/2026. Ilustrativa.",
    "substitui": null,
    "observacao": "",
@@ -5930,7 +5930,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Gerada com IA (OpenAI gpt-image-1.5) ou recolorida localmente a partir dela, em 18/10/2026. Ilustrativa.",
    "substitui": null,
    "observacao": "",
@@ -5965,7 +5965,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Gerada com IA (OpenAI gpt-image-1.5) a partir da foto enviada pela TaMa, em 18/10/2026. Ilustrativa.",
    "substitui": null,
    "observacao": "",
@@ -6004,7 +6004,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Gerada com IA (OpenAI gpt-image-1.5) ou recolorida localmente a partir dela, em 18/10/2026. Ilustrativa.",
    "substitui": null,
    "observacao": "",
@@ -6040,7 +6040,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Gerada com IA (OpenAI gpt-image-1.5) ou recolorida localmente a partir dela, em 18/10/2026. Ilustrativa.",
    "substitui": null,
    "observacao": "",
@@ -6075,7 +6075,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Enviada pela TaMa em 18/10/2026. Ilustrativa.",
    "substitui": null,
    "observacao": "",
@@ -6114,7 +6114,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Gerada com IA (OpenAI gpt-image-1.5) ou recolorida localmente a partir dela, em 18/10/2026. Ilustrativa.",
    "substitui": null,
    "observacao": "",
@@ -6149,7 +6149,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Gerada com IA (OpenAI gpt-image-1.5) a partir da foto enviada pela TaMa, em 18/10/2026. Ilustrativa.",
    "substitui": null,
    "observacao": "",
@@ -6188,7 +6188,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Gerada com IA (OpenAI gpt-image-1.5) ou recolorida localmente a partir dela, em 18/10/2026. Ilustrativa.",
    "substitui": null,
    "observacao": "",
@@ -6224,7 +6224,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Gerada com IA (OpenAI gpt-image-1.5) ou recolorida localmente a partir dela, em 18/10/2026. Ilustrativa.",
    "substitui": null,
    "observacao": "",
@@ -6259,7 +6259,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Gerada com IA (OpenAI gpt-image-1.5) a partir da foto enviada pela TaMa, em 18/10/2026. Ilustrativa.",
    "substitui": null,
    "observacao": "",
@@ -6298,7 +6298,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Gerada com IA (OpenAI gpt-image-1.5) ou recolorida localmente a partir dela, em 18/10/2026. Ilustrativa.",
    "substitui": null,
    "observacao": "",
@@ -6334,7 +6334,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Gerada com IA (OpenAI gpt-image-1.5) ou recolorida localmente a partir dela, em 18/10/2026. Ilustrativa.",
    "substitui": null,
    "observacao": "",
@@ -6369,7 +6369,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Gerada com IA (OpenAI gpt-image-1.5) a partir da foto enviada pela TaMa, em 18/10/2026. Ilustrativa.",
    "substitui": null,
    "observacao": "",
@@ -6408,7 +6408,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Gerada com IA (OpenAI gpt-image-1.5) ou recolorida localmente a partir dela, em 18/10/2026. Ilustrativa.",
    "substitui": null,
    "observacao": "",
@@ -6443,7 +6443,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Enviada pela TaMa em 18/10/2026. Ilustrativa.",
    "substitui": null,
    "observacao": "",
@@ -6482,7 +6482,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Gerada com IA (OpenAI gpt-image-1.5) ou recolorida localmente a partir dela, em 18/10/2026. Ilustrativa.",
    "substitui": null,
    "observacao": "",
@@ -6517,7 +6517,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Gerada com IA (OpenAI gpt-image-1.5) a partir da foto enviada pela TaMa, em 18/10/2026. Ilustrativa.",
    "substitui": null,
    "observacao": "",
@@ -6556,7 +6556,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Gerada com IA (OpenAI gpt-image-1.5) ou recolorida localmente a partir dela, em 18/10/2026. Ilustrativa.",
    "substitui": null,
    "observacao": "",
@@ -6592,7 +6592,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Gerada com IA (OpenAI gpt-image-1.5) ou recolorida localmente a partir dela, em 18/10/2026. Ilustrativa.",
    "substitui": null,
    "observacao": "",
@@ -6627,7 +6627,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Gerada com IA (OpenAI gpt-image-1.5) a partir da foto enviada pela TaMa, em 18/10/2026. Ilustrativa.",
    "substitui": null,
    "observacao": "",
@@ -6666,7 +6666,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Gerada com IA (OpenAI gpt-image-1.5) ou recolorida localmente a partir dela, em 18/10/2026. Ilustrativa.",
    "substitui": null,
    "observacao": "",
@@ -6701,7 +6701,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Gerada com IA (OpenAI gpt-image-1.5) a partir da foto enviada pela TaMa, em 18/10/2026. Ilustrativa.",
    "substitui": null,
    "observacao": "",
@@ -6740,7 +6740,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Gerada com IA (OpenAI gpt-image-1.5) ou recolorida localmente a partir dela, em 18/10/2026. Ilustrativa.",
    "substitui": null,
    "observacao": "",
@@ -6776,7 +6776,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Gerada com IA (OpenAI gpt-image-1.5) ou recolorida localmente a partir dela, em 18/10/2026. Ilustrativa.",
    "substitui": null,
    "observacao": "",
@@ -6811,7 +6811,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Gerada com IA (OpenAI gpt-image-1.5) a partir da foto enviada pela TaMa, em 18/10/2026. Ilustrativa.",
    "substitui": null,
    "observacao": "",
@@ -6850,7 +6850,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Gerada com IA (OpenAI gpt-image-1.5) ou recolorida localmente a partir dela, em 18/10/2026. Ilustrativa.",
    "substitui": null,
    "observacao": "",
@@ -6886,7 +6886,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Gerada com IA (OpenAI gpt-image-1.5) ou recolorida localmente a partir dela, em 18/10/2026. Ilustrativa.",
    "substitui": null,
    "observacao": "",
@@ -6921,7 +6921,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Gerada com IA (OpenAI gpt-image-1.5) a partir da foto enviada pela TaMa, em 18/10/2026. Ilustrativa.",
    "substitui": null,
    "observacao": "",
@@ -6960,7 +6960,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Gerada com IA (OpenAI gpt-image-1.5) ou recolorida localmente a partir dela, em 18/10/2026. Ilustrativa.",
    "substitui": null,
    "observacao": "",
@@ -6981,7 +6981,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-18",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Azul-marinho",
     "hex": "#1E2A4A"
@@ -7034,7 +7034,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -7070,7 +7070,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -7091,7 +7091,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-18",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Azul royal",
     "hex": "#1F4FB8"
@@ -7144,7 +7144,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -7180,7 +7180,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -7201,7 +7201,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-18",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Branco",
     "hex": "#F7F5F0"
@@ -7254,7 +7254,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -7275,7 +7275,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-18",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Cinza",
     "hex": "#9A9A98"
@@ -7328,7 +7328,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -7364,7 +7364,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -7385,7 +7385,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-18",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Preto",
     "hex": "#1E1E1E"
@@ -7438,7 +7438,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -7474,7 +7474,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -7495,7 +7495,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-18",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Rosa",
     "hex": "#E07A9B"
@@ -7548,7 +7548,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -7584,7 +7584,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -7605,7 +7605,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-18",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Verde",
     "hex": "#1F6B45"
@@ -7658,7 +7658,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -7694,7 +7694,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -7716,7 +7716,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-18",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Vermelho",
     "hex": "#C8202F"
@@ -7769,7 +7769,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -7805,7 +7805,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -7826,7 +7826,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-18",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Azul-marinho",
     "hex": "#1E2A4A"
@@ -7879,7 +7879,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -7915,7 +7915,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -7937,7 +7937,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-18",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Azul royal",
     "hex": "#1F4FB8"
@@ -7990,7 +7990,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -8026,7 +8026,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -8047,7 +8047,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Branco",
     "hex": "#F7F5F0"
@@ -8100,7 +8100,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -8121,7 +8121,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-18",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Cinza",
     "hex": "#9A9A98"
@@ -8174,7 +8174,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -8210,7 +8210,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -8231,7 +8231,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-18",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Preto",
     "hex": "#1E1E1E"
@@ -8284,7 +8284,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -8320,7 +8320,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -8341,7 +8341,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-18",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Rosa",
     "hex": "#E07A9B"
@@ -8394,7 +8394,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -8430,7 +8430,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -8451,7 +8451,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-18",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Verde",
     "hex": "#1F6B45"
@@ -8504,7 +8504,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -8540,7 +8540,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -8561,7 +8561,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-18",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Vermelho",
     "hex": "#C8202F"
@@ -8614,7 +8614,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -8650,7 +8650,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -10188,7 +10188,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Azul royal",
     "hex": "#1F4FB8"
@@ -10228,7 +10228,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Branco",
     "hex": "#F7F5F0"
@@ -10303,7 +10303,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Preto",
     "hex": "#1E1E1E"
@@ -10341,7 +10341,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-18",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Verde",
     "hex": "#1F6B45"
@@ -10379,7 +10379,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Vermelho",
     "hex": "#C8202F"
@@ -10417,7 +10417,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-18",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Natural",
     "hex": "#C9A86A"
@@ -10454,7 +10454,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Azul-marinho",
     "hex": "#1E2A4A"
@@ -10491,7 +10491,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Bordô",
     "hex": "#6B1E33"
@@ -10530,7 +10530,7 @@
    "altura": 1254,
    "atualizado_em": "2026-10-17",
    "largura": 1254,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Preto",
     "hex": "#1E1E1E"
@@ -10567,7 +10567,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Azul-marinho",
     "hex": "#1E2A4A"
@@ -10604,7 +10604,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Bordô",
     "hex": "#6B1E33"
@@ -10678,7 +10678,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Prata",
     "hex": "#B8B8B5"
@@ -10715,7 +10715,7 @@
    "altura": 1254,
    "atualizado_em": "2026-10-17",
    "largura": 1254,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Preto",
     "hex": "#1E1E1E"
@@ -10789,7 +10789,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Azul royal",
     "hex": "#1F4FB8"
@@ -10900,7 +10900,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Prata",
     "hex": "#B8B8B5"
@@ -10937,7 +10937,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Preto",
     "hex": "#1E1E1E"
@@ -11012,7 +11012,7 @@
    "altura": 1254,
    "atualizado_em": "2026-10-17",
    "largura": 1254,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Vermelho",
     "hex": "#C8202F"
@@ -11086,7 +11086,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Azul royal",
     "hex": "#1F4FB8"
@@ -11123,7 +11123,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Branco",
     "hex": "#F7F5F0"
@@ -11197,7 +11197,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Preto",
     "hex": "#1E1E1E"
@@ -11271,7 +11271,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Vermelho",
     "hex": "#C8202F"
@@ -11309,7 +11309,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-18",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Pardo",
     "hex": "#C4A07A"
@@ -11458,7 +11458,7 @@
    "altura": 1254,
    "atualizado_em": "2026-10-17",
    "largura": 1254,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Azul royal",
     "hex": "#1F4FB8"
@@ -11569,7 +11569,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Prata",
     "hex": "#B8B8B5"
@@ -11606,7 +11606,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Preto",
     "hex": "#1E1E1E"
@@ -11680,7 +11680,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Vermelho",
     "hex": "#C8202F"
@@ -11717,7 +11717,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Azul royal",
     "hex": "#1F4FB8"
@@ -11754,7 +11754,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-18",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Branco",
     "hex": "#F7F5F0"
@@ -11865,7 +11865,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Preto",
     "hex": "#1E1E1E"
@@ -11939,7 +11939,7 @@
    "altura": 1254,
    "atualizado_em": "2026-10-17",
    "largura": 1254,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Vermelho",
     "hex": "#C8202F"
@@ -11976,7 +11976,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Azul-marinho",
     "hex": "#1E2A4A"
@@ -12014,7 +12014,7 @@
    "altura": 1254,
    "atualizado_em": "2026-10-17",
    "largura": 1254,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Bordô",
     "hex": "#6B1E33"
@@ -12051,7 +12051,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Prata",
     "hex": "#B8B8B5"
@@ -12088,7 +12088,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Preto",
     "hex": "#1E1E1E"
@@ -12162,7 +12162,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Azul royal",
     "hex": "#1F4FB8"
@@ -12236,7 +12236,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Prata",
     "hex": "#B8B8B5"
@@ -12273,7 +12273,7 @@
    "altura": 1254,
    "atualizado_em": "2026-10-17",
    "largura": 1254,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Preto",
     "hex": "#1E1E1E"
@@ -12347,7 +12347,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Vermelho",
     "hex": "#C8202F"
@@ -12421,7 +12421,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Azul-marinho",
     "hex": "#1E2A4A"
@@ -12458,7 +12458,7 @@
    "altura": 1254,
    "atualizado_em": "2026-10-17",
    "largura": 1254,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Bordô",
     "hex": "#6B1E33"
@@ -12495,7 +12495,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Café",
     "hex": "#4A2E22"
@@ -12532,7 +12532,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Caramelo",
     "hex": "#A0623A"
@@ -12569,7 +12569,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Preto",
     "hex": "#1E1E1E"
@@ -12606,7 +12606,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Verde-escuro",
     "hex": "#1F4A35"
@@ -12658,7 +12658,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
    "substitui": null,
    "observacao": "Variação de cor gerada a partir da foto-base carregador-sem-fio-mesa~preto.",
@@ -12695,7 +12695,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
    "substitui": null,
    "observacao": "Variação de cor gerada a partir da foto-base carregador-sem-fio-mesa~preto.",
@@ -12769,7 +12769,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Imagem gerada com IA (OpenAI gpt-image-1.5, produto novo no padrão do banco) em 18/10/2026. Ilustrativa: não é foto do produto final.",
    "substitui": null,
    "observacao": "Foto-base da linha de tecnologia (docs/PLANO-TECNOLOGIA.md).",
@@ -12806,7 +12806,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
    "substitui": null,
    "observacao": "Variação de cor gerada a partir da foto-base cartao~creme.",
@@ -12829,7 +12829,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Creme",
     "hex": "#F2EADB"
@@ -12866,7 +12866,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Café",
     "hex": "#4A2E22"
@@ -12903,7 +12903,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Caramelo",
     "hex": "#A0623A"
@@ -12940,7 +12940,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Preto",
     "hex": "#1E1E1E"
@@ -12977,7 +12977,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Azul royal",
     "hex": "#1F4FB8"
@@ -13125,7 +13125,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Prata",
     "hex": "#B8B8B5"
@@ -13162,7 +13162,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Preto",
     "hex": "#1E1E1E"
@@ -13199,7 +13199,7 @@
    "altura": 1254,
    "atualizado_em": "2026-10-17",
    "largura": 1254,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Vermelho",
     "hex": "#C8202F"
@@ -13273,7 +13273,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Café",
     "hex": "#4A2E22"
@@ -13311,7 +13311,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Caramelo",
     "hex": "#A0623A"
@@ -13348,7 +13348,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-18",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Preto",
     "hex": "#1E1E1E"
@@ -13496,7 +13496,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Azul-marinho",
     "hex": "#1E2A4A"
@@ -13533,7 +13533,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Bordô",
     "hex": "#6B1E33"
@@ -13570,7 +13570,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Terracota",
     "hex": "#B5603A"
@@ -13607,7 +13607,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Verde-escuro",
     "hex": "#1F4A35"
@@ -13696,7 +13696,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
    "substitui": null,
    "observacao": "Variação de cor gerada a partir da foto-base copo-acrilico-colorido~verde-limao.",
@@ -13733,7 +13733,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
    "substitui": null,
    "observacao": "Variação de cor gerada a partir da foto-base copo-acrilico-colorido~verde-limao.",
@@ -13770,7 +13770,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
    "substitui": null,
    "observacao": "Variação de cor gerada a partir da foto-base copo-acrilico-colorido~verde-limao.",
@@ -13807,7 +13807,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
    "substitui": null,
    "observacao": "Variação de cor gerada a partir da foto-base copo-acrilico-colorido~verde-limao.",
@@ -13844,7 +13844,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Imagem gerada com IA (OpenAI gpt-image-1.5) em 18/10/2026, a partir da identidade TaMa e de referências de formato enviadas pela TaMa (sem marcas de terceiros). Ilustrativa: não é foto do produto final.",
    "substitui": null,
    "observacao": "Foto-base do fim de ano.",
@@ -13881,7 +13881,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
    "substitui": null,
    "observacao": "Variação de cor gerada a partir da foto-base copo-acrilico-colorido~verde-limao.",
@@ -14029,7 +14029,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Imagem gerada com IA (OpenAI gpt-image-1.5) em 18/10/2026, a partir da identidade TaMa e de referências de formato enviadas pela TaMa (sem marcas de terceiros). Ilustrativa: não é foto do produto final.",
    "substitui": null,
    "observacao": "Foto-base do fim de ano.",
@@ -14162,7 +14162,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Branco",
     "hex": "#F7F5F0"
@@ -14236,7 +14236,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Prateado",
     "hex": "#B8B8B5"
@@ -14273,7 +14273,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Preto",
     "hex": "#1E1E1E"
@@ -14325,7 +14325,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
    "substitui": null,
    "observacao": "Variação de cor gerada a partir da foto-base copo-cordao~verde.",
@@ -14399,7 +14399,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
    "substitui": null,
    "observacao": "Variação de cor gerada a partir da foto-base copo-cordao~verde.",
@@ -14436,7 +14436,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Imagem gerada com IA (OpenAI gpt-image-1.5) em 18/10/2026, a partir da identidade TaMa e de referências de formato enviadas pela TaMa (sem marcas de terceiros). Ilustrativa: não é foto do produto final.",
    "substitui": null,
    "observacao": "Foto-base do fim de ano.",
@@ -14584,7 +14584,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
    "substitui": null,
    "observacao": "Variação de cor gerada a partir da foto-base copo-long-drink~rosa.",
@@ -14621,7 +14621,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
    "substitui": null,
    "observacao": "Variação de cor gerada a partir da foto-base copo-long-drink~rosa.",
@@ -14658,7 +14658,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
    "substitui": null,
    "observacao": "Variação de cor gerada a partir da foto-base copo-long-drink~rosa.",
@@ -14695,7 +14695,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Imagem gerada com IA (OpenAI gpt-image-1.5) em 18/10/2026, a partir da identidade TaMa e de referências de formato enviadas pela TaMa (sem marcas de terceiros). Ilustrativa: não é foto do produto final.",
    "substitui": null,
    "observacao": "Foto-base do fim de ano.",
@@ -14732,7 +14732,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
    "substitui": null,
    "observacao": "Variação de cor gerada a partir da foto-base copo-long-drink~rosa.",
@@ -14865,7 +14865,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Branco",
     "hex": "#F7F5F0"
@@ -14902,7 +14902,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Pardo",
     "hex": "#C4A07A"
@@ -14939,7 +14939,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Preto",
     "hex": "#1E1E1E"
@@ -15583,7 +15583,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
    "substitui": null,
    "observacao": "Variação de cor gerada a partir da foto-base copo-tampa-canudo~vermelho.",
@@ -15620,7 +15620,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
    "substitui": null,
    "observacao": "Variação de cor gerada a partir da foto-base copo-tampa-canudo~vermelho.",
@@ -15657,7 +15657,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
    "substitui": null,
    "observacao": "Variação de cor gerada a partir da foto-base copo-tampa-canudo~vermelho.",
@@ -15694,7 +15694,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
    "substitui": null,
    "observacao": "Variação de cor gerada a partir da foto-base copo-tampa-canudo~vermelho.",
@@ -15731,7 +15731,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
    "substitui": null,
    "observacao": "Variação de cor gerada a partir da foto-base copo-tampa-canudo~vermelho.",
@@ -15768,7 +15768,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
    "substitui": null,
    "observacao": "Variação de cor gerada a partir da foto-base copo-tampa-canudo~vermelho.",
@@ -15805,7 +15805,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
    "substitui": null,
    "observacao": "Variação de cor gerada a partir da foto-base copo-tampa-canudo~vermelho.",
@@ -15842,7 +15842,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Imagem gerada com IA (OpenAI gpt-image-1.5) em 18/10/2026, a partir da identidade TaMa e de referências de formato enviadas pela TaMa (sem marcas de terceiros). Ilustrativa: não é foto do produto final.",
    "substitui": null,
    "observacao": "Foto-base do fim de ano.",
@@ -16271,7 +16271,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-18",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Azul-marinho",
     "hex": "#1E2A4A"
@@ -16345,7 +16345,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Preto",
     "hex": "#1E1E1E"
@@ -16382,7 +16382,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-18",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Verde",
     "hex": "#1F6B45"
@@ -16419,7 +16419,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Vermelho",
     "hex": "#C8202F"
@@ -16457,7 +16457,7 @@
    "altura": 1254,
    "atualizado_em": "2026-10-17",
    "largura": 1254,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Azul royal",
     "hex": "#1F4FB8"
@@ -16494,7 +16494,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-18",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Branco",
     "hex": "#F7F5F0"
@@ -16531,7 +16531,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Preto",
     "hex": "#1E1E1E"
@@ -16568,7 +16568,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Verde",
     "hex": "#1F6B45"
@@ -16642,7 +16642,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Vermelho",
     "hex": "#C8202F"
@@ -17049,7 +17049,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Âmbar",
     "hex": "#B8742A"
@@ -17086,7 +17086,7 @@
    "altura": 1254,
    "atualizado_em": "2026-10-17",
    "largura": 1254,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Natural",
     "hex": "#D9C9A8"
@@ -17124,7 +17124,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Azul-marinho",
     "hex": "#1E2A4A"
@@ -17177,7 +17177,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -17213,7 +17213,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -17235,7 +17235,7 @@
    "altura": 1254,
    "atualizado_em": "2026-10-17",
    "largura": 1254,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Branco",
     "hex": "#F7F5F0"
@@ -17288,7 +17288,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -17309,7 +17309,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Jeans",
     "hex": "#2F4470"
@@ -17362,7 +17362,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -17398,7 +17398,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -17419,7 +17419,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Preto",
     "hex": "#1E1E1E"
@@ -17472,7 +17472,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -17508,7 +17508,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -17529,7 +17529,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Rosa",
     "hex": "#E07A9B"
@@ -17582,7 +17582,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -17618,7 +17618,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -17676,7 +17676,7 @@
    "altura": 1254,
    "atualizado_em": "2026-10-17",
    "largura": 1254,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Cru",
     "hex": "#EDE3D0"
@@ -17751,7 +17751,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Preto",
     "hex": "#1E1E1E"
@@ -17826,7 +17826,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Verde",
     "hex": "#1F6B45"
@@ -17864,7 +17864,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Vermelho",
     "hex": "#C8202F"
@@ -17975,7 +17975,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Azul-marinho",
     "hex": "#1E2A4A"
@@ -18012,7 +18012,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Café",
     "hex": "#4A2E22"
@@ -18049,7 +18049,7 @@
    "altura": 1254,
    "atualizado_em": "2026-10-17",
    "largura": 1254,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Caramelo",
     "hex": "#A0623A"
@@ -18086,7 +18086,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Preto",
     "hex": "#1E1E1E"
@@ -18138,7 +18138,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Imagem gerada com IA (OpenAI gpt-image-1.5, produto novo no padrão do banco) em 18/10/2026. Ilustrativa: não é foto do produto final.",
    "substitui": null,
    "observacao": "Foto-base da linha de tecnologia (docs/PLANO-TECNOLOGIA.md).",
@@ -18175,7 +18175,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
    "substitui": null,
    "observacao": "Variação de cor gerada a partir da foto-base estojo-tecnologia~azul-marinho.",
@@ -18212,7 +18212,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
    "substitui": null,
    "observacao": "Variação de cor gerada a partir da foto-base estojo-tecnologia~azul-marinho.",
@@ -18249,7 +18249,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
    "substitui": null,
    "observacao": "Variação de cor gerada a partir da foto-base estojo-tecnologia~azul-marinho.",
@@ -18360,7 +18360,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Imagem gerada com IA (OpenAI gpt-image-1.5) em 18/10/2026, a partir da identidade TaMa e de referências de formato enviadas pela TaMa (sem marcas de terceiros). Ilustrativa: não é foto do produto final.",
    "substitui": null,
    "observacao": "Foto-base do fim de ano.",
@@ -18471,7 +18471,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
    "substitui": null,
    "observacao": "Variação de cor gerada a partir da foto-base fone-sem-fio~branco.",
@@ -18508,7 +18508,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Imagem gerada com IA (OpenAI gpt-image-1.5, produto novo no padrão do banco) em 18/10/2026. Ilustrativa: não é foto do produto final.",
    "substitui": null,
    "observacao": "Foto-base da linha de tecnologia (docs/PLANO-TECNOLOGIA.md).",
@@ -18545,7 +18545,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
    "substitui": null,
    "observacao": "Variação de cor gerada a partir da foto-base fone-sem-fio~branco.",
@@ -18582,7 +18582,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
    "substitui": null,
    "observacao": "Variação de cor gerada a partir da foto-base fone-sem-fio~branco.",
@@ -19530,7 +19530,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Azul royal",
     "hex": "#1F4FB8"
@@ -19568,7 +19568,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-18",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Branco",
     "hex": "#F7F5F0"
@@ -19680,7 +19680,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Preto",
     "hex": "#1E1E1E"
@@ -19755,7 +19755,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Verde",
     "hex": "#1F6B45"
@@ -19795,7 +19795,7 @@
    "altura": 1254,
    "atualizado_em": "2026-10-17",
    "largura": 1254,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Vermelho",
     "hex": "#C8202F"
@@ -19906,7 +19906,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Azul-marinho",
     "hex": "#1E2A4A"
@@ -19943,7 +19943,7 @@
    "altura": 1254,
    "atualizado_em": "2026-10-17",
    "largura": 1254,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Preto",
     "hex": "#1E1E1E"
@@ -19980,7 +19980,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Verde",
     "hex": "#1F6B45"
@@ -20017,7 +20017,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Vermelho",
     "hex": "#C8202F"
@@ -20069,7 +20069,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
    "substitui": null,
    "observacao": "Variação de cor gerada a partir da foto-base headphone~preto.",
@@ -20106,7 +20106,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
    "substitui": null,
    "observacao": "Variação de cor gerada a partir da foto-base headphone~preto.",
@@ -20143,7 +20143,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
    "substitui": null,
    "observacao": "Variação de cor gerada a partir da foto-base headphone~preto.",
@@ -20180,7 +20180,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Imagem gerada com IA (OpenAI gpt-image-1.5, produto novo no padrão do banco) em 18/10/2026. Ilustrativa: não é foto do produto final.",
    "substitui": null,
    "observacao": "Foto-base da linha de tecnologia (docs/PLANO-TECNOLOGIA.md).",
@@ -20202,7 +20202,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Azul-marinho",
     "hex": "#1E2A4A"
@@ -20239,7 +20239,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Preto",
     "hex": "#1E1E1E"
@@ -20276,7 +20276,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Verde-escuro",
     "hex": "#1F4A35"
@@ -20313,7 +20313,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Vermelho",
     "hex": "#C8202F"
@@ -20350,7 +20350,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Azul-marinho",
     "hex": "#1E2A4A"
@@ -20387,7 +20387,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Bordô",
     "hex": "#6B1E33"
@@ -20424,7 +20424,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Caramelo",
     "hex": "#A0623A"
@@ -20461,7 +20461,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Preto",
     "hex": "#1E1E1E"
@@ -20498,7 +20498,7 @@
    "altura": 1254,
    "atualizado_em": "2026-10-17",
    "largura": 1254,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Taupe",
     "hex": "#8A7F74"
@@ -20535,7 +20535,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Verde-escuro",
     "hex": "#1F4A35"
@@ -20572,7 +20572,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Azul-marinho",
     "hex": "#1E2A4A"
@@ -20609,7 +20609,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Bordô",
     "hex": "#6B1E33"
@@ -20646,7 +20646,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Caramelo",
     "hex": "#A0623A"
@@ -20683,7 +20683,7 @@
    "altura": 1254,
    "atualizado_em": "2026-10-17",
    "largura": 1254,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Havana",
     "hex": "#7A4A2E"
@@ -20720,7 +20720,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Preto",
     "hex": "#1E1E1E"
@@ -20757,7 +20757,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Verde-escuro",
     "hex": "#1F4A35"
@@ -20980,7 +20980,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Dourado",
     "hex": "#C9A15F"
@@ -22091,7 +22091,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-18",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Azul-marinho",
     "hex": "#1E2A4A"
@@ -22144,7 +22144,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -22180,7 +22180,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -22201,7 +22201,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-18",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Azul royal",
     "hex": "#1F4FB8"
@@ -22254,7 +22254,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -22290,7 +22290,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -22311,7 +22311,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Branco",
     "hex": "#F7F5F0"
@@ -22364,7 +22364,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -22385,7 +22385,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-18",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Cinza",
     "hex": "#9A9A98"
@@ -22438,7 +22438,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -22474,7 +22474,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -22496,7 +22496,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-18",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Preto",
     "hex": "#1E1E1E"
@@ -22549,7 +22549,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -22585,7 +22585,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -22606,7 +22606,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-18",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Rosa",
     "hex": "#E07A9B"
@@ -22659,7 +22659,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -22695,7 +22695,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -22716,7 +22716,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-18",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Verde",
     "hex": "#1F6B45"
@@ -22769,7 +22769,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -22805,7 +22805,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -22826,7 +22826,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-18",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Vermelho",
     "hex": "#C8202F"
@@ -22879,7 +22879,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -22915,7 +22915,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -23231,7 +23231,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Azul-marinho",
     "hex": "#1E2A4A"
@@ -23268,7 +23268,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Caramelo",
     "hex": "#A0623A"
@@ -23305,7 +23305,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Preto",
     "hex": "#1E1E1E"
@@ -23344,7 +23344,7 @@
    "altura": 1254,
    "atualizado_em": "2026-10-17",
    "largura": 1254,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Terracota",
     "hex": "#B5603A"
@@ -23396,7 +23396,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Imagem gerada com IA (OpenAI gpt-image-1.5, produto novo no padrão do banco) em 18/10/2026. Ilustrativa: não é foto do produto final.",
    "substitui": null,
    "observacao": "Foto-base da linha de tecnologia (docs/PLANO-TECNOLOGIA.md).",
@@ -23433,7 +23433,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
    "substitui": null,
    "observacao": "Variação de cor gerada a partir da foto-base pen-drive-cartao~azul-royal.",
@@ -23470,7 +23470,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
    "substitui": null,
    "observacao": "Variação de cor gerada a partir da foto-base pen-drive-cartao~azul-royal.",
@@ -23507,7 +23507,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
    "substitui": null,
    "observacao": "Variação de cor gerada a partir da foto-base pen-drive-cartao~azul-royal.",
@@ -23544,7 +23544,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
    "substitui": null,
    "observacao": "Variação de cor gerada a partir da foto-base pen-drive-giratorio~preto.",
@@ -23581,7 +23581,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Imagem gerada com IA (OpenAI gpt-image-1.5, produto novo no padrão do banco) em 18/10/2026. Ilustrativa: não é foto do produto final.",
    "substitui": null,
    "observacao": "Foto-base da linha de tecnologia (docs/PLANO-TECNOLOGIA.md).",
@@ -23618,7 +23618,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
    "substitui": null,
    "observacao": "Variação de cor gerada a partir da foto-base pen-drive-giratorio~preto.",
@@ -23655,7 +23655,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
    "substitui": null,
    "observacao": "Variação de cor gerada a partir da foto-base pen-drive-giratorio~preto.",
@@ -23692,7 +23692,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
    "substitui": null,
    "observacao": "Variação de cor gerada a partir da foto-base pen-drive-natural~natural.",
@@ -23729,7 +23729,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
    "substitui": null,
    "observacao": "Variação de cor gerada a partir da foto-base pen-drive-natural~natural.",
@@ -23766,7 +23766,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Imagem gerada com IA (OpenAI gpt-image-1.5, produto novo no padrão do banco) em 18/10/2026. Ilustrativa: não é foto do produto final.",
    "substitui": null,
    "observacao": "Foto-base da linha de tecnologia (docs/PLANO-TECNOLOGIA.md).",
@@ -23863,7 +23863,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-18",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Azul-marinho",
     "hex": "#1E2A4A"
@@ -23916,7 +23916,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -23952,7 +23952,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -23974,7 +23974,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-18",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Azul royal",
     "hex": "#1F4FB8"
@@ -24027,7 +24027,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -24063,7 +24063,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -24084,7 +24084,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Branco",
     "hex": "#F7F5F0"
@@ -24137,7 +24137,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -24158,7 +24158,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-18",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Cinza",
     "hex": "#9A9A98"
@@ -24211,7 +24211,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -24247,7 +24247,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -24268,7 +24268,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-18",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Preto",
     "hex": "#1E1E1E"
@@ -24321,7 +24321,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -24357,7 +24357,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -24378,7 +24378,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-18",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Rosa",
     "hex": "#E07A9B"
@@ -24431,7 +24431,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -24467,7 +24467,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -24488,7 +24488,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-18",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Verde",
     "hex": "#1F6B45"
@@ -24541,7 +24541,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -24577,7 +24577,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -24598,7 +24598,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-18",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Vermelho",
     "hex": "#C8202F"
@@ -24651,7 +24651,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -24687,7 +24687,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -24708,7 +24708,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-18",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Azul-marinho",
     "hex": "#1E2A4A"
@@ -24761,7 +24761,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Variação de cor feita localmente (tools/recolorir.py) a partir de polo~vermelho-bordado, com a cor medida na foto de frente polo~azul-marinho, em 18/10/2026. Ilustrativa.",
    "substitui": null,
    "observacao": "",
@@ -24797,7 +24797,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Variação de cor feita localmente (tools/recolorir.py) a partir de polo~vermelho-verso, com a cor medida na foto de frente polo~azul-marinho, em 18/10/2026. Ilustrativa.",
    "substitui": null,
    "observacao": "",
@@ -24818,7 +24818,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-18",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Azul royal",
     "hex": "#1F4FB8"
@@ -24871,7 +24871,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Variação de cor feita localmente (tools/recolorir.py) a partir de polo~vermelho-bordado, com a cor medida na foto de frente polo~azul-royal, em 18/10/2026. Ilustrativa.",
    "substitui": null,
    "observacao": "",
@@ -24907,7 +24907,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Variação de cor feita localmente (tools/recolorir.py) a partir de polo~vermelho-verso, com a cor medida na foto de frente polo~azul-royal, em 18/10/2026. Ilustrativa.",
    "substitui": null,
    "observacao": "",
@@ -24928,7 +24928,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-18",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Branco",
     "hex": "#F7F5F0"
@@ -24981,7 +24981,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Variação de cor feita localmente (tools/recolorir.py) a partir de polo~vermelho-verso, com a cor medida na foto de frente polo~branco, em 18/10/2026. Ilustrativa.",
    "substitui": null,
    "observacao": "",
@@ -25002,7 +25002,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-18",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Cinza",
     "hex": "#9A9A98"
@@ -25055,7 +25055,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Variação de cor feita localmente (tools/recolorir.py) a partir de polo~vermelho-bordado, com a cor medida na foto de frente polo~cinza, em 18/10/2026. Ilustrativa.",
    "substitui": null,
    "observacao": "",
@@ -25091,7 +25091,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Variação de cor feita localmente (tools/recolorir.py) a partir de polo~vermelho-verso, com a cor medida na foto de frente polo~cinza, em 18/10/2026. Ilustrativa.",
    "substitui": null,
    "observacao": "",
@@ -25112,7 +25112,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-18",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Preto",
     "hex": "#1E1E1E"
@@ -25165,7 +25165,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Variação de cor feita localmente (tools/recolorir.py) a partir de polo~vermelho-bordado, com a cor medida na foto de frente polo~preto, em 18/10/2026. Ilustrativa.",
    "substitui": null,
    "observacao": "",
@@ -25201,7 +25201,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Variação de cor feita localmente (tools/recolorir.py) a partir de polo~vermelho-verso, com a cor medida na foto de frente polo~preto, em 18/10/2026. Ilustrativa.",
    "substitui": null,
    "observacao": "",
@@ -25222,7 +25222,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-18",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Rosa",
     "hex": "#E07A9B"
@@ -25275,7 +25275,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Variação de cor feita localmente (tools/recolorir.py) a partir de polo~vermelho-bordado, com a cor medida na foto de frente polo~rosa, em 18/10/2026. Ilustrativa.",
    "substitui": null,
    "observacao": "",
@@ -25311,7 +25311,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Variação de cor feita localmente (tools/recolorir.py) a partir de polo~vermelho-verso, com a cor medida na foto de frente polo~rosa, em 18/10/2026. Ilustrativa.",
    "substitui": null,
    "observacao": "",
@@ -25332,7 +25332,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-18",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Verde",
     "hex": "#1F6B45"
@@ -25385,7 +25385,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Variação de cor feita localmente (tools/recolorir.py) a partir de polo~vermelho-bordado, com a cor medida na foto de frente polo~verde, em 18/10/2026. Ilustrativa.",
    "substitui": null,
    "observacao": "",
@@ -25421,7 +25421,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Variação de cor feita localmente (tools/recolorir.py) a partir de polo~vermelho-verso, com a cor medida na foto de frente polo~verde, em 18/10/2026. Ilustrativa.",
    "substitui": null,
    "observacao": "",
@@ -25443,7 +25443,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-18",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Vermelho",
     "hex": "#C8202F"
@@ -25496,7 +25496,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto de frente) em 18/10/2026. Ilustrativa.",
    "substitui": null,
    "observacao": "Foto-base das variações de cor locais.",
@@ -25532,7 +25532,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto de frente) em 18/10/2026. Ilustrativa.",
    "substitui": null,
    "observacao": "Foto-base das variações de cor locais.",
@@ -25663,7 +25663,7 @@
    "altura": 1254,
    "atualizado_em": "2026-10-17",
    "largura": 1254,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Azul-marinho",
     "hex": "#1E2A4A"
@@ -25700,7 +25700,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Bordô",
     "hex": "#6B1E33"
@@ -25737,7 +25737,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Café",
     "hex": "#4A2E22"
@@ -25774,7 +25774,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Caramelo",
     "hex": "#A0623A"
@@ -25811,7 +25811,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Havana",
     "hex": "#7A4A2E"
@@ -25848,7 +25848,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Preto",
     "hex": "#1E1E1E"
@@ -25959,7 +25959,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Azul-marinho",
     "hex": "#1E2A4A"
@@ -25996,7 +25996,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Café",
     "hex": "#4A2E22"
@@ -26033,7 +26033,7 @@
    "altura": 1254,
    "atualizado_em": "2026-10-17",
    "largura": 1254,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Caramelo",
     "hex": "#A0623A"
@@ -26070,7 +26070,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Preto",
     "hex": "#1E1E1E"
@@ -26403,7 +26403,7 @@
    "altura": 1254,
    "atualizado_em": "2026-10-17",
    "largura": 1254,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Transparente",
     "hex": "#DDE3E8"
@@ -26455,7 +26455,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
    "substitui": null,
    "observacao": "Variação de cor gerada a partir da foto-base power-bank-slim~preto.",
@@ -26492,7 +26492,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
    "substitui": null,
    "observacao": "Variação de cor gerada a partir da foto-base power-bank-slim~preto.",
@@ -26529,7 +26529,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
    "substitui": null,
    "observacao": "Variação de cor gerada a partir da foto-base power-bank-slim~preto.",
@@ -26566,7 +26566,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Imagem gerada com IA (OpenAI gpt-image-1.5, produto novo no padrão do banco) em 18/10/2026. Ilustrativa: não é foto do produto final.",
    "substitui": null,
    "observacao": "Foto-base da linha de tecnologia (docs/PLANO-TECNOLOGIA.md).",
@@ -26603,7 +26603,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Imagem gerada com IA (OpenAI gpt-image-1.5, produto novo no padrão do banco) em 18/10/2026. Ilustrativa: não é foto do produto final.",
    "substitui": null,
    "observacao": "Foto-base da linha de tecnologia (docs/PLANO-TECNOLOGIA.md).",
@@ -26640,7 +26640,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
    "substitui": null,
    "observacao": "Variação de cor gerada a partir da foto-base power-bank-ventosa~azul-royal.",
@@ -26677,7 +26677,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
    "substitui": null,
    "observacao": "Variação de cor gerada a partir da foto-base power-bank-ventosa~azul-royal.",
@@ -26714,7 +26714,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
    "substitui": null,
    "observacao": "Variação de cor gerada a partir da foto-base power-bank-ventosa~azul-royal.",
@@ -27255,7 +27255,7 @@
    "altura": 1254,
    "atualizado_em": "2026-10-17",
    "largura": 1254,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Azul royal",
     "hex": "#1F4FB8"
@@ -27292,7 +27292,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-18",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Cru",
     "hex": "#EDE3D0"
@@ -27329,7 +27329,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Preto",
     "hex": "#1E1E1E"
@@ -27366,7 +27366,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Vermelho",
     "hex": "#C8202F"
@@ -27959,7 +27959,7 @@
    "altura": 1254,
    "atualizado_em": "2026-10-17",
    "largura": 1254,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Azul royal",
     "hex": "#1F4FB8"
@@ -27996,7 +27996,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-18",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Branco",
     "hex": "#F7F5F0"
@@ -28033,7 +28033,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Preto",
     "hex": "#1E1E1E"
@@ -28070,7 +28070,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Verde",
     "hex": "#1F6B45"
@@ -28107,7 +28107,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Vermelho",
     "hex": "#C8202F"
@@ -28736,7 +28736,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Azul royal",
     "hex": "#1F4FB8"
@@ -28773,7 +28773,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Branco",
     "hex": "#F7F5F0"
@@ -28810,7 +28810,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Preto",
     "hex": "#1E1E1E"
@@ -28862,7 +28862,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
    "substitui": null,
    "observacao": "Variação de cor gerada a partir da foto-base taca-champagne-acrilico~vermelho.",
@@ -28899,7 +28899,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
    "substitui": null,
    "observacao": "Variação de cor gerada a partir da foto-base taca-champagne-acrilico~vermelho.",
@@ -28921,7 +28921,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Vermelho",
     "hex": "#C8202F"
@@ -29084,7 +29084,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
    "substitui": null,
    "observacao": "Variação de cor gerada a partir da foto-base taca-coupe~transparente.",
@@ -29121,7 +29121,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
    "substitui": null,
    "observacao": "Variação de cor gerada a partir da foto-base taca-coupe~transparente.",
@@ -29158,7 +29158,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Imagem gerada com IA (OpenAI gpt-image-1.5) em 18/10/2026, a partir da identidade TaMa e de referências de formato enviadas pela TaMa (sem marcas de terceiros). Ilustrativa: não é foto do produto final.",
    "substitui": null,
    "observacao": "Foto-base do fim de ano.",
@@ -29217,7 +29217,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Azul royal",
     "hex": "#1F4FB8"
@@ -29254,7 +29254,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-18",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Branco",
     "hex": "#F7F5F0"
@@ -29291,7 +29291,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Preto",
     "hex": "#1E1E1E"
@@ -29343,7 +29343,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
    "substitui": null,
    "observacao": "Variação de cor gerada a partir da foto-base taca-gin-acrilico~vermelho.",
@@ -29439,7 +29439,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Vermelho",
     "hex": "#C8202F"
@@ -29491,7 +29491,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
    "substitui": null,
    "observacao": "Variação de cor gerada a partir da foto-base taca-gin-borda-dourada~preto.",
@@ -29528,7 +29528,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Imagem gerada com IA (OpenAI gpt-image-1.5) em 18/10/2026, a partir da identidade TaMa e de referências de formato enviadas pela TaMa (sem marcas de terceiros). Ilustrativa: não é foto do produto final.",
    "substitui": null,
    "observacao": "Foto-base do fim de ano.",
@@ -29565,7 +29565,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
    "substitui": null,
    "observacao": "Variação de cor gerada a partir da foto-base taca-gin-degrade~rosa-e-azul.",
@@ -29602,7 +29602,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Imagem gerada com IA (OpenAI gpt-image-1.5) em 18/10/2026, a partir da identidade TaMa e de referências de formato enviadas pela TaMa (sem marcas de terceiros). Ilustrativa: não é foto do produto final.",
    "substitui": null,
    "observacao": "Foto-base do fim de ano.",
@@ -29639,7 +29639,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
    "substitui": null,
    "observacao": "Variação de cor gerada a partir da foto-base taca-gin-pe-colorido~vermelho.",
@@ -29676,7 +29676,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
    "substitui": null,
    "observacao": "Variação de cor gerada a partir da foto-base taca-gin-pe-colorido~vermelho.",
@@ -29713,7 +29713,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
    "substitui": null,
    "observacao": "Variação de cor gerada a partir da foto-base taca-gin-pe-colorido~vermelho.",
@@ -29750,7 +29750,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
    "substitui": null,
    "observacao": "Variação de cor gerada a partir da foto-base taca-gin-pe-colorido~vermelho.",
@@ -29787,7 +29787,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Imagem gerada com IA (OpenAI gpt-image-1.5) em 18/10/2026, a partir da identidade TaMa e de referências de formato enviadas pela TaMa (sem marcas de terceiros). Ilustrativa: não é foto do produto final.",
    "substitui": null,
    "observacao": "Foto-base do fim de ano.",
@@ -29824,7 +29824,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
    "substitui": null,
    "observacao": "Variação de cor gerada a partir da foto-base taca-gin-pe-colorido~vermelho.",
@@ -29861,7 +29861,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Imagem gerada com IA (OpenAI gpt-image-1.5) em 18/10/2026, a partir da identidade TaMa e de referências de formato enviadas pela TaMa (sem marcas de terceiros). Ilustrativa: não é foto do produto final.",
    "substitui": null,
    "observacao": "Foto-base do fim de ano.",
@@ -29898,7 +29898,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Imagem gerada com IA (OpenAI gpt-image-1.5) em 18/10/2026, a partir da identidade TaMa e de referências de formato enviadas pela TaMa (sem marcas de terceiros). Ilustrativa: não é foto do produto final.",
    "substitui": null,
    "observacao": "Foto-base do fim de ano.",
@@ -29935,7 +29935,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Imagem gerada com IA (OpenAI gpt-image-1.5) em 18/10/2026, a partir da identidade TaMa e de referências de formato enviadas pela TaMa (sem marcas de terceiros). Ilustrativa: não é foto do produto final.",
    "substitui": null,
    "observacao": "Foto-base do fim de ano.",
@@ -29957,7 +29957,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Azul royal",
     "hex": "#1F4FB8"
@@ -29994,7 +29994,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-18",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Bordô",
     "hex": "#6B1E33"
@@ -30031,7 +30031,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-18",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Branco",
     "hex": "#F7F5F0"
@@ -30068,7 +30068,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-18",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Preto",
     "hex": "#1E1E1E"
@@ -30290,7 +30290,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Café",
     "hex": "#4A2E22"
@@ -30329,7 +30329,7 @@
    "altura": 1254,
    "atualizado_em": "2026-10-17",
    "largura": 1254,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Caramelo",
     "hex": "#A0623A"
@@ -30403,7 +30403,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "cor": {
     "nome": "Preto",
     "hex": "#1E1E1E"
@@ -30455,7 +30455,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "aprovada",
    "origem": "Variação de cor gerada com IA (OpenAI gpt-image-1.5, edição a partir da foto-base) em 18/10/2026. Ilustrativa: não é foto do produto final.",
    "substitui": null,
    "observacao": "Variação de cor gerada a partir da foto-base vela~couro.",

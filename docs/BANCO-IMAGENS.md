@@ -15,6 +15,10 @@ páginas de frente e os artigos do blog leem os mesmos modelos daqui. Está prep
 | `tools/produtos.py` | Importar, verificar e gerar o índice. |
 
 ## Editor do catálogo (/admin/)
+> **Para o dia a dia, use o Inventário** (`/admin/inventario/`, ver `docs/INVENTARIO.md`): produtos e kits por modelo,
+> o que entra e o que sai, aprovação, envio de fotos, produto e kit novos, com validação antes de publicar. O editor
+> abaixo continua valendo para ajustes pontuais.
+
 Endereço: **https://tamacreative.com.br/admin/** (ou `/adm`), login com o GitHub, como no blog (ver `docs/BLOG.md`).
 Em **Catálogo de produtos** fica o próprio `src/data/produtos.json`, uma entrada por foto:
 

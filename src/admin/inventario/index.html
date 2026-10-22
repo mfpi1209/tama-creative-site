@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Inventário | TaMa Creative</title>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/admin/inventario/inventario.css">
+</head>
+<body>
+<!-- Inventário de produtos e kits: o que está no site, o que é novo, o que entra e o que sai, com envio de fotos.
+     Esta página não traz dados: produtos.json, modelos.json, selecoes.json e kits.json são lidos do repositório com o
+     login do editor (/admin/) e cada publicação vira um commit revisável (pull request). Ver docs/INVENTARIO.md. -->
+<header class="top">
+  <a class="brand" href="/admin/"><img src="/admin/logo.svg" alt="TaMa Creative" width="132" height="32"></a>
+  <p class="top-title">Inventário de produtos e kits</p>
+  <nav class="top-links" aria-label="Atalhos">
+    <a href="/admin/">Editor</a>
+    <a href="/admin/painel/">Painel de SEO</a>
+    <a href="/" target="_blank" rel="noopener">Ver o site</a>
+    <span id="fonte" class="fonte small muted"></span>
+  </nav>
+</header>
+<div class="barra" id="barra" hidden>
+  <p id="barra-texto" role="status"></p>
+  <button type="button" class="btn btn-line" data-ir="alteracoes">Ver alterações</button>
+  <button type="button" class="btn" id="barra-publicar">Publicar</button>
+</div>
+<nav class="tabs" role="tablist" aria-label="Seções do inventário">
+  <button role="tab" id="tab-resumo" aria-controls="sec-resumo" data-tab="resumo">Resumo</button>
+  <button role="tab" id="tab-produtos" aria-controls="sec-produtos" data-tab="produtos">Produtos</button>
+  <button role="tab" id="tab-kits" aria-controls="sec-kits" data-tab="kits">Kits</button>
+  <button role="tab" id="tab-alteracoes" aria-controls="sec-alteracoes" data-tab="alteracoes">Alterações <span class="count" id="n-alt" hidden>0</span></button>
+</nav>
+<main id="main">
+  <p id="status" class="status" role="status">Carregando o inventário…</p>
+  <section role="tabpanel" id="sec-resumo" aria-labelledby="tab-resumo" hidden></section>
+  <section role="tabpanel" id="sec-produtos" aria-labelledby="tab-produtos" hidden></section>
+  <section role="tabpanel" id="sec-kits" aria-labelledby="tab-kits" hidden></section>
+  <section role="tabpanel" id="sec-alteracoes" aria-labelledby="tab-alteracoes" hidden></section>
+</main>
+<div class="veu" id="veu" hidden></div>
+<aside class="gaveta" id="gaveta" role="dialog" aria-modal="true" aria-labelledby="gaveta-titulo" hidden>
+  <header class="gaveta-top">
+    <h2 id="gaveta-titulo"></h2>
+    <button type="button" class="fechar" id="gaveta-fechar" aria-label="Fechar">×</button>
+  </header>
+  <div class="gaveta-corpo" id="gaveta-corpo"></div>
+</aside>
+<script src="/admin/inventario/inventario.js"></script>
+</body>
+</html>

@@ -51,6 +51,27 @@
     for (i = 0; i < u.length; i += 0x8000) s += String.fromCharCode.apply(null, u.subarray(i, i + 0x8000));
     return btoa(s);
   }
+  /* Confirmações e avisos numa caixa da própria página (#modal). As janelas do navegador (confirm/alert) podem estar
+     bloqueadas sem aviso (Safari, navegadores embutidos, "impedir caixas de diálogo") e aí o botão parece não fazer nada. */
+  var modalAcao = null, modalVolta = null;
+  function abrirModal(texto, rotulo, comCancelar, acao) {
+    var m = $('modal');
+    modalAcao = acao; modalVolta = document.activeElement;
+    $('modal-texto').textContent = texto;
+    $('conf-ok').textContent = rotulo || 'OK';
+    $('conf-nao').hidden = !comCancelar;
+    m.hidden = false;
+    $('conf-ok').focus();
+  }
+  function fecharModal(confirmou) {
+    var acao = modalAcao;
+    $('modal').hidden = true; modalAcao = null;
+    if (modalVolta && modalVolta.focus && document.contains(modalVolta)) modalVolta.focus();
+    if (confirmou && acao) acao();
+  }
+  function confirmar(texto, acao, rotulo) { abrirModal(texto, rotulo || 'Confirmar', true, acao); }
+  function avisar(texto) { abrirModal(texto, 'OK', false, null); }
+
   function aviso(texto, tipo) { statusEl.className = 'status' + (tipo ? ' ' + tipo : ''); statusEl.innerHTML = texto; statusEl.hidden = !texto; }
 
   // ------------------------------------------------------------------ fontes (GitHub ou servidor local)
@@ -496,11 +517,12 @@
     });
     var at = $('aprovar-todos');
     if (at) at.onclick = function () {
-      if (!confirm('Aprovar as ' + fotosNovas + ' fotos novas? Elas continuam no site, agora como aprovadas.')) return;
-      S.atual.produtos.imagens.forEach(function (i) {
-        if (i.aprovacao === 'revisao') registrar({ chave: 'foto:' + i.id, alvo: 'modelo:' + i.produto, t: 'foto', id: i.id, campos: { aprovacao: 'aprovada' } }, true);
-      });
-      recalcular();
+      confirmar('Aprovar as ' + fotosNovas + ' fotos novas? Elas continuam no site, agora como aprovadas.', function () {
+        S.atual.produtos.imagens.forEach(function (i) {
+          if (i.aprovacao === 'revisao') registrar({ chave: 'foto:' + i.id, alvo: 'modelo:' + i.produto, t: 'foto', id: i.id, campos: { aprovacao: 'aprovada' } }, true);
+        });
+        recalcular();
+      }, 'Aprovar todos');
     };
   }
 
@@ -564,7 +586,10 @@
     document.body.style.overflow = 'hidden';
     S.aberto = desenho;
     desenho();
-    setTimeout(function () { var f = $('gaveta').querySelector('input, select, textarea, button:not(.fechar)'); if (f) f.focus(); }, 30);
+    setTimeout(function () {   // foco no primeiro campo, sem tirar o foco de uma confirmação já aberta nem de algo já escolhido
+      if (!$('modal').hidden || $('gaveta').contains(document.activeElement)) return;
+      var f = $('gaveta').querySelector('input, select, textarea, button:not(.fechar)'); if (f) f.focus();
+    }, 30);
   }
   function fecharGaveta() {
     $('gaveta').hidden = true; $('veu').hidden = true; document.body.style.overflow = '';
@@ -623,7 +648,9 @@
         recalcular();
       }
       if ($('m-tirar')) $('m-tirar').onclick = function () {
-        if (confirm('Tirar "' + m.nome + '" do site? Todas as cores saem; textos e fotos ficam guardados.')) todas('retirada', function (f) { return VISIVEL[f.aprovacao]; });
+        confirmar('Tirar "' + m.nome + '" do site? Todas as cores saem; textos e fotos ficam guardados para quando ele voltar.', function () {
+          todas('retirada', function (f) { return VISIVEL[f.aprovacao]; });
+        }, 'Tirar do site');
       };
       if ($('m-voltar')) $('m-voltar').onclick = function () { todas('aprovada', function (f) { return f.aprovacao === 'retirada'; }); };
       if ($('m-aprovar')) $('m-aprovar').onclick = function () { todas('aprovada', function (f) { return f.aprovacao === 'revisao'; }); };
@@ -678,12 +705,14 @@
     $(id + '-arq').onchange = function () {
       var file = this.files[0]; if (!file) return;
       prepararFoto(file, 1254, true).then(function (foto) {
-        if (foto.avisos.length && !confirm(foto.avisos.join('\n') + '\n\nUsar mesmo assim?')) return;
-        var path = 'img/produtos/' + f.id + '.' + foto.ext;
-        guardarArquivo(path, foto, f.id);
-        op({ arquivo: '/' + path, largura: foto.largura, altura: foto.altura, bytes: foto.bytes, sha256: foto.sha256, mestre: null, atualizado_em: hoje(),
-          origem: 'Foto enviada pelo Inventário (/admin/inventario/) em ' + hojeBR() + '.', aprovacao: f.aprovacao === 'substituir' ? 'aprovada' : f.aprovacao });
-      }).catch(function (e) { alert('Não consegui usar essa foto: ' + e.message); });
+        var usar = function () {
+          var path = 'img/produtos/' + f.id + '.' + foto.ext;
+          guardarArquivo(path, foto, f.id);
+          op({ arquivo: '/' + path, largura: foto.largura, altura: foto.altura, bytes: foto.bytes, sha256: foto.sha256, mestre: null, atualizado_em: hoje(),
+            origem: 'Foto enviada pelo Inventário (/admin/inventario/) em ' + hojeBR() + '.', aprovacao: f.aprovacao === 'substituir' ? 'aprovada' : f.aprovacao });
+        };
+        if (foto.avisos.length) confirmar(foto.avisos.join('\n') + '\n\nUsar mesmo assim?', usar, 'Usar a foto'); else usar();
+      }).catch(function (e) { avisar('Não consegui usar essa foto: ' + e.message); });
     };
   }
 
@@ -706,7 +735,7 @@
         var img = document.createElement('img'); img.src = f.url; img.alt = ''; solta.insertBefore(img, solta.firstChild);
         var av = $(p + '-avisos'); av.hidden = !f.avisos.length; av.innerHTML = f.avisos.map(function (a) { return '<li>' + esc(a) + '</li>'; }).join('');
         $(p + '-ok').disabled = false;
-      }).catch(function (e) { alert('Não consegui usar essa foto: ' + e.message); });
+      }).catch(function (e) { avisar('Não consegui usar essa foto: ' + e.message); });
     }
     $(p + '-arq').onchange = function () { if (this.files[0]) usar(this.files[0]); };
     solta.ondragover = function (e) { e.preventDefault(); solta.classList.add('sobre'); };
@@ -714,14 +743,14 @@
     solta.ondrop = function (e) { e.preventDefault(); solta.classList.remove('sobre'); if (e.dataTransfer.files[0]) usar(e.dataTransfer.files[0]); };
     $(p + '-ok').onclick = function () {
       var cor = $(p + '-cor').value.trim();
-      if (!cor) { alert('Escreva o nome da cor.'); $(p + '-cor').focus(); return; }
-      if (!foto) { alert('Escolha a foto.'); return; }
+      if (!cor) { avisar('Escreva o nome da cor.'); return; }
+      if (!foto) { avisar('Escolha a foto.'); return; }
       var ent = aoCriar ? aoCriar(cor) : null;
       var mm = ent ? ent.modelo : m;
       if (!mm) return;
       // mesmo prefixo das fotos que o produto já tem (ex.: agenda-diaria~verde), para o banco continuar agrupado por nome de arquivo
       var id = (mm.base && mm.base.id ? mm.base.id.split('~')[0] : slug(mm.produto)) + '~' + slug(cor);
-      if (S.atual.produtos.imagens.some(function (i) { return i.id === id; })) { alert('Esse produto já tem a cor "' + cor + '". Use outro nome ou troque a foto da cor existente.'); return; }
+      if (S.atual.produtos.imagens.some(function (i) { return i.id === id; })) { avisar('Esse produto já tem a cor "' + cor + '". Use outro nome ou troque a foto da cor existente.'); return; }
       var path = 'img/produtos/' + id + '.' + foto.ext;
       guardarArquivo(path, foto, id);
       var alt = $(p + '-alt').value.trim() || (mm.nome + ' ' + cor.toLowerCase() + ', com a marca TaMa.');
@@ -752,10 +781,10 @@
       $('np-ok').textContent = 'Criar produto';
       ligarFormCor('np', null, null, function () {
         var nome = $('np-nome').value.trim(), s = slug(nome);
-        if (!nome) { alert('Escreva o nome do produto.'); $('np-nome').focus(); return null; }
-        if (modelosDe(S.atual).some(function (x) { return x.slug === s; })) { alert('Já existe um produto com esse nome. Abra-o e adicione a cor por lá.'); return null; }
+        if (!nome) { avisar('Escreva o nome do produto.'); return null; }
+        if (modelosDe(S.atual).some(function (x) { return x.slug === s; })) { avisar('Já existe um produto com esse nome. Abra-o e adicione a cor por lá.'); return null; }
         var spec = new RegExp(S.op.spec_re, 'i'), achou = spec.exec(nome + ' ' + $('np-desc').value);
-        if (achou && !confirm('"' + achou[0] + '" é material ou capacidade e o site não aceita enquanto o material não for confirmado. Continuar mesmo assim (vai aparecer como erro)?')) return null;
+        if (achou) { avisar('"' + achou[0] + '" é material ou capacidade, e o site não aceita no nome nem na descrição enquanto o material não for confirmado. Tire a palavra (ex.: "tom natural", "transparente") e tente de novo.'); return null; }
         var modelo = { produto: nome, nome: nome, categoria: $('np-cat').value, descricao: $('np-desc').value.trim() };
         return { modelo: modelo, depois: function (id) {
           var alvo = 'modelo:' + nome;
@@ -838,7 +867,7 @@
       corpo.scrollTop = scroll;
       function op(campos) { registrar({ chave: 'kit:' + s, alvo: alvo, t: 'kit', slug: s, campos: campos }); }
       function lista(nome, dentro, ancora) { registrar({ chave: 'kitl:' + s + ':' + nome + ':' + (ancora || ''), alvo: alvo, t: 'kit_lista', slug: s, lista: nome, ancora: ancora, dentro: dentro }); }
-      if ($('k-tirar')) $('k-tirar').onclick = function () { if (confirm('Tirar "' + k.nome + '" do site?')) op({ situacao: 'fora' }); };
+      if ($('k-tirar')) $('k-tirar').onclick = function () { confirmar('Tirar "' + k.nome + '" do site? Os dados ficam guardados para quando ele voltar.', function () { op({ situacao: 'fora' }); }, 'Tirar do site'); };
       if ($('k-voltar')) $('k-voltar').onclick = function () { op({ situacao: 'no_site' }); };
       if ($('k-aprovar')) $('k-aprovar').onclick = function () { op({ novo: null }); };
       if ($('k-desfazer')) $('k-desfazer').onclick = function () { desfazer(alvo); };
@@ -852,11 +881,13 @@
       $('k-arq').onchange = function () {
         var file = this.files[0]; if (!file) return;
         prepararFoto(file, 1920, false).then(function (foto) {
-          if (foto.avisos.length && !confirm(foto.avisos.join('\n') + '\n\nUsar mesmo assim?')) return;
-          var nome = 'kit-' + s + '-' + new Date().toISOString().replace(/[-:T]/g, '').slice(0, 12);
-          guardarArquivo('img/v2/' + nome + '.' + foto.ext, foto, nome);
-          op({ foto: nome, foto_anterior: k.foto || null });
-        }).catch(function (e) { alert('Não consegui usar essa foto: ' + e.message); });
+          var usar = function () {
+            var nome = 'kit-' + s + '-' + new Date().toISOString().replace(/[-:T]/g, '').slice(0, 12);
+            guardarArquivo('img/v2/' + nome + '.' + foto.ext, foto, nome);
+            op({ foto: nome, foto_anterior: k.foto || null });
+          };
+          if (foto.avisos.length) confirmar(foto.avisos.join('\n') + '\n\nUsar mesmo assim?', usar, 'Usar a foto'); else usar();
+        }).catch(function (e) { avisar('Não consegui usar essa foto: ' + e.message); });
       };
     });
   }
@@ -879,14 +910,14 @@
         prepararFoto(file, 1920, false).then(function (f) {
           foto = f; var solta = $('nk-solta'), im = solta.querySelector('img') || solta.insertBefore(document.createElement('img'), solta.firstChild);
           im.src = f.url; im.alt = ''; $('nk-ok').disabled = false;
-        }).catch(function (e) { alert('Não consegui usar essa foto: ' + e.message); });
+        }).catch(function (e) { avisar('Não consegui usar essa foto: ' + e.message); });
       };
       $('nk-ok').onclick = function () {
         var nome = $('nk-nome').value.trim(), desc = $('nk-desc').value.trim(), s = slug(nome);
         var tiposMarcados = Array.prototype.filter.call(document.querySelectorAll('[data-nktipo]'), function (c) { return c.checked; }).map(function (c) { return c.dataset.nktipo; });
-        if (!nome || !desc) { alert('Preencha o nome e a descrição.'); return; }
-        if (!tiposMarcados.length && !$('nk-home').checked && !$('nk-fim').checked) { alert('Marque onde o kit aparece: um tipo de kit, a home ou a página de fim de ano.'); return; }
-        if ((S.atual.kits.kits || []).some(function (k) { return k.slug === s; })) { alert('Já existe um kit com esse nome.'); return; }
+        if (!nome || !desc) { avisar('Preencha o nome e a descrição.'); return; }
+        if (!tiposMarcados.length && !$('nk-home').checked && !$('nk-fim').checked) { avisar('Marque onde o kit aparece: um tipo de kit, a home ou a página de fim de ano.'); return; }
+        if ((S.atual.kits.kits || []).some(function (k) { return k.slug === s; })) { avisar('Já existe um kit com esse nome.'); return; }
         var arq = 'kit-' + s + '-' + new Date().toISOString().replace(/[-:T]/g, '').slice(0, 12);
         guardarArquivo('img/v2/' + arq + '.' + foto.ext, foto, arq);
         registrar({ chave: 'kitnovo:' + s, alvo: 'kit:' + s, t: 'kit_novo', kit: { slug: s, nome: nome, descricao: desc, foto: arq,
@@ -943,8 +974,7 @@
     if ($('pub-ok')) $('pub-ok').onclick = function () { publicar(true); };
     if ($('pub-rasc')) $('pub-rasc').onclick = function () { publicar(false); };
     if ($('pub-descartar')) $('pub-descartar').onclick = function () {
-      if (!confirm('Descartar todas as alterações não publicadas?')) return;
-      S.ops = []; S.arquivos = {}; recalcular();
+      confirmar('Descartar todas as alterações não publicadas?', function () { S.ops = []; S.arquivos = {}; recalcular(); }, 'Descartar tudo');
     };
     listarRascunhos();
   }
@@ -959,13 +989,15 @@
           '<span><button type="button" class="btn btn-sm" data-rpub="' + i + '">Publicar</button> <button type="button" class="btn btn-line btn-sm" data-rdel="' + i + '">Descartar</button></span></li>';
       }).join('') + '</ul>';
       box.querySelectorAll('[data-rpub]').forEach(function (b) { b.onclick = function () {
-        if (!confirm('Publicar o rascunho "' + l[+b.dataset.rpub].titulo + '"?')) return;
-        S.fonte.publicarRascunho(l[+b.dataset.rpub]).then(function () { aviso('Rascunho publicado. O site é atualizado em alguns minutos.', 'ok'); return carregar(); })
-          .catch(function (e) { aviso('Não consegui publicar o rascunho: ' + esc(e.message), 'erro'); });
+        confirmar('Publicar o rascunho "' + l[+b.dataset.rpub].titulo + '"?', function () {
+          S.fonte.publicarRascunho(l[+b.dataset.rpub]).then(function () { aviso('Rascunho publicado. O site é atualizado em alguns minutos.', 'ok'); return carregar(); })
+            .catch(function (e) { aviso('Não consegui publicar o rascunho: ' + esc(e.message), 'erro'); });
+        }, 'Publicar');
       }; });
       box.querySelectorAll('[data-rdel]').forEach(function (b) { b.onclick = function () {
-        if (!confirm('Descartar o rascunho "' + l[+b.dataset.rdel].titulo + '"?')) return;
-        S.fonte.descartarRascunho(l[+b.dataset.rdel]).then(listarRascunhos).catch(function (e) { aviso('Não consegui descartar: ' + esc(e.message), 'erro'); });
+        confirmar('Descartar o rascunho "' + l[+b.dataset.rdel].titulo + '"?', function () {
+          S.fonte.descartarRascunho(l[+b.dataset.rdel]).then(listarRascunhos).catch(function (e) { aviso('Não consegui descartar: ' + esc(e.message), 'erro'); });
+        }, 'Descartar');
       }; });
     }).catch(function () { /* sem acesso aos pull requests: a lista fica escondida */ });
   }
@@ -1023,7 +1055,16 @@
       var cat = e.target.closest('[data-cat]'); if (cat) { S.filtro = { q: '', cat: cat.dataset.cat, sit: '' }; mostrarTab('produtos'); }
     });
     $('gaveta-fechar').onclick = fecharGaveta; $('veu').onclick = fecharGaveta;
-    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !$('gaveta').hidden) fecharGaveta(); });
+    $('conf-ok').onclick = function () { fecharModal(true); };
+    $('conf-nao').onclick = function () { fecharModal(false); };
+    document.addEventListener('keydown', function (e) {
+      if (e.key !== 'Escape') return;
+      if (!$('modal').hidden) { fecharModal(false); return; }
+      if (!$('gaveta').hidden) fecharGaveta();
+    });
+    // erro de programa vira aviso na tela (antes, o botão simplesmente "não fazia nada")
+    window.addEventListener('error', function (e) { aviso('Algo deu errado nesta tela: ' + esc((e && e.message) || 'erro desconhecido') + '. Recarregue a página; as alterações ficam guardadas.', 'erro'); });
+    window.addEventListener('unhandledrejection', function (e) { aviso('Algo deu errado nesta tela: ' + esc((e && e.reason && e.reason.message) || 'erro desconhecido') + '.', 'erro'); });
     $('barra-publicar').onclick = function () { fecharGaveta(); mostrarTab('alteracoes'); };
     window.addEventListener('beforeunload', function (e) { if (S.ops.length && Object.keys(S.arquivos).length) { e.preventDefault(); e.returnValue = ''; } });
 
@@ -1055,8 +1096,8 @@
     $('fonte').innerHTML = esc(S.fonte.nome + (u && u.login && !S.fonte.servidor ? ' · ' + u.login : '')) +
       (S.fonte.servidor ? ' · <button type="button" class="link-btn" id="sair">Sair</button>' : '');
     if ($('sair')) $('sair').onclick = function () {
-      if (S.ops.length && !confirm('Você tem alterações não publicadas. Elas ficam guardadas neste navegador. Sair mesmo assim?')) return;
-      chamarApi('POST', '/sair', {}).catch(function () {}).then(function () { location.reload(); });
+      var sair = function () { chamarApi('POST', '/sair', {}).catch(function () {}).then(function () { location.reload(); }); };
+      if (S.ops.length) confirmar('Você tem alterações não publicadas. Elas ficam guardadas neste navegador. Sair mesmo assim?', sair, 'Sair'); else sair();
     };
     lerRascunho();
     var tab = (location.hash || '').replace('#', '');

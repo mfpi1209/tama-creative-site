@@ -797,7 +797,7 @@ try {
   const ip = await browser.newPage();
   await ip.setViewport({ width: 1366, height: 900 });
   await ip.setRequestInterception(true);
-  let gravado = null, chamadas = [];
+  let gravado = null, chamadas = [], janelasDoNavegador = 0;
   ip.on('request', req => {
     if (/:8081\/api\/v1/.test(req.url())) {
       if (req.method() === 'OPTIONS') return req.respond({ status: 204, headers: { 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Headers': 'Content-Type', 'Access-Control-Allow-Methods': 'POST' } });
@@ -840,8 +840,11 @@ try {
   await ip.type('#busca-p', 'Caneca');
   await ip.click('[data-produto="Caneca"]');
   await ip.waitForSelector('#m-tirar');
-  ip.on('dialog', d => d.accept());
+  ip.on('dialog', d => { janelasDoNavegador++; d.dismiss(); });   // a tela não pode depender de confirm/alert do navegador
   await ip.click('#m-tirar'); await sleep(150);
+  const caixa = await ip.$eval('#modal', m => !m.hidden && /Tirar "Caneca" do site\?/.test(m.textContent) && document.activeElement.id === 'conf-ok');
+  await ip.click('#conf-ok'); await sleep(150);
+  ok(caixa && await ip.$eval('#modal', m => m.hidden) && await ip.$('#m-voltar'), '"Tirar do site" confirma numa caixa da própria página (não depende de janela do navegador) e tira o modelo');
   await ip.$eval('#m-resumo', t => { t.value = 'Resumo de teste.'; t.dispatchEvent(new Event('change')); }); await sleep(150);
   await ip.evaluate(async () => {
     const c = document.createElement('canvas'); c.width = c.height = 1100; const x = c.getContext('2d'); x.fillStyle = '#F6F2EC'; x.fillRect(0, 0, 1100, 1100); x.fillStyle = '#2E8B57'; x.fillRect(300, 250, 500, 620);
@@ -875,6 +878,7 @@ try {
   await ip.click('[data-kit="kit-gin"]');
   await ip.waitForSelector('#k-tirar');
   await ip.click('#k-tirar'); await sleep(150);
+  await ip.click('#conf-ok'); await sleep(150);
   await ip.click('#gaveta-fechar');
   await ip.click('[data-tab="alteracoes"]');
   ok(await ip.$$eval('.mudancas li p', l => l.some(x => /Kit sai do site: Kit Gin/.test(x.textContent))) && !(await ip.$('.erros')), 'kits: "Kit sai do site" na lista, sem erros');
@@ -891,13 +895,15 @@ try {
   });
   await ip.waitForFunction(() => !document.getElementById('nk-ok').disabled);
   await ip.click('#nk-ok'); await sleep(200);
+  const avisoLugar = await ip.$eval('#modal', m => !m.hidden && /Marque onde o kit aparece/.test(m.textContent));
+  await ip.click('#conf-ok'); await sleep(100);
   const semLugar = await ip.evaluate(() => window.TAMA_INVENTARIO.estado().ops.some(o => o.t === 'kit_novo'));
   await ip.click('[data-nktipo="kits-escritorio"]');
   await ip.click('#nk-ok'); await sleep(300);
   const kitOps = await ip.evaluate(() => window.TAMA_INVENTARIO.estado().ops.filter(o => /^kit_(novo|lista)$/.test(o.t) && o.slug !== 'kit-gin').map(o => o.t + ':' + (o.ancora || o.lista || '')));
   // slug do kit criado (vem do nome digitado; não depende de como o navegador digita acentos)
   const slugKitNovo = await ip.evaluate(() => (window.TAMA_INVENTARIO.estado().ops.find(o => o.t === 'kit_novo') || {}).kit?.slug || '');
-  ok(!semLugar && kitOps.join() === 'kit_novo:,kit_lista:kits-escritorio' && await ip.$('#k-nome'), `kit novo: sem marcar onde aparece não é criado; com o tipo marcado, entra no Kit escritório (${kitOps.join()})`);
+  ok(avisoLugar && !semLugar && kitOps.join() === 'kit_novo:,kit_lista:kits-escritorio' && await ip.$('#k-nome'), `kit novo: sem marcar onde aparece não é criado; com o tipo marcado, entra no Kit escritório (${kitOps.join()})`);
   await ip.click('#gaveta-fechar');
   await ip.click('[data-tab="alteracoes"]');
   // publicar (local): os JSON gravados mantêm o formato do repositório e só mudam o necessário
@@ -922,6 +928,7 @@ try {
   ok(novoP.length > origP.length && novoP.length - origP.length < 40 && arqs['src/data/produtos.json'].endsWith('}\n') && origP.slice(0, 20).join('\n') === novoP.slice(0, 20).join('\n'),
      'publicar: produtos.json no mesmo formato (indentação 1, quebra no fim), só com as linhas da cor nova e das situações');
   ok(await ip.$eval('#barra', b => b.hidden) && await ip.evaluate(() => !localStorage.getItem('tama-inventario-rascunho')), 'depois de publicar: barra de pendências some e o rascunho do navegador é apagado');
+  ok(janelasDoNavegador === 0, `nenhuma janela do navegador (confirm/alert) no fluxo do inventário (${janelasDoNavegador})`);
   await ip.close();
 
   // login com usuário e senha (serviço admin-api, simulado): sem sessão aparece o formulário; senha errada avisa; certa abre o inventário

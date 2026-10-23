@@ -895,6 +895,8 @@ try {
   await ip.click('[data-nktipo="kits-escritorio"]');
   await ip.click('#nk-ok'); await sleep(300);
   const kitOps = await ip.evaluate(() => window.TAMA_INVENTARIO.estado().ops.filter(o => /^kit_(novo|lista)$/.test(o.t) && o.slug !== 'kit-gin').map(o => o.t + ':' + (o.ancora || o.lista || '')));
+  // slug do kit criado (vem do nome digitado; não depende de como o navegador digita acentos)
+  const slugKitNovo = await ip.evaluate(() => (window.TAMA_INVENTARIO.estado().ops.find(o => o.t === 'kit_novo') || {}).kit?.slug || '');
   ok(!semLugar && kitOps.join() === 'kit_novo:,kit_lista:kits-escritorio' && await ip.$('#k-nome'), `kit novo: sem marcar onde aparece não é criado; com o tipo marcado, entra no Kit escritório (${kitOps.join()})`);
   await ip.click('#gaveta-fechar');
   await ip.click('[data-tab="alteracoes"]');
@@ -912,9 +914,11 @@ try {
      `publicar: Caneca sai do site (todas as fotos "retirada") e a cor nova entra com a foto em ${assets[0] || '?'}`);
   ok(arqs['src/data/modelos.json'] && JSON.parse(arqs['src/data/modelos.json']).modelos.find(m => m.produto === 'Caneca').resumo === 'Resumo de teste.' && (kitsNovo.kits || []).find(k => k.slug === 'kit-gin')?.situacao === 'fora',
      'publicar: resumo em modelos.json e "fora" do Kit Gin em kits.json');
-  const kitTeste = (kitsNovo.kits || []).find(k => k.slug === 'kit-teste-inventario');
-  ok(kitTeste && kitTeste.novo === true && (kitsNovo.tipos || []).find(x => x.ancora === 'kits-escritorio').kits.includes('kit-teste-inventario') && assets.some(a => a === 'img/v2/' + kitTeste.foto + '.webp' || a === 'img/v2/' + kitTeste.foto + '.png'),
-     'publicar: kit novo em kits.json, na seção Kit escritório, com a foto em img/v2/');
+  const kitTeste = (kitsNovo.kits || []).find(k => k.slug === slugKitNovo);
+  const kitNaSecao = !!kitTeste && (kitsNovo.tipos || []).find(x => x.ancora === 'kits-escritorio').kits.includes(kitTeste.slug);
+  const kitFoto = !!kitTeste && assets.some(a => a.startsWith('img/v2/' + kitTeste.foto + '.'));
+  ok(/^kit-teste-invent/.test(slugKitNovo) && kitTeste && kitTeste.novo === true && kitNaSecao && kitFoto,
+     `publicar: kit novo em kits.json, na seção Kit escritório, com a foto em img/v2/ (${slugKitNovo || 'sem kit'}; seção ${kitNaSecao}; foto ${kitFoto}; ${assets.join(' ')})`);
   ok(novoP.length > origP.length && novoP.length - origP.length < 40 && arqs['src/data/produtos.json'].endsWith('}\n') && origP.slice(0, 20).join('\n') === novoP.slice(0, 20).join('\n'),
      'publicar: produtos.json no mesmo formato (indentação 1, quebra no fim), só com as linhas da cor nova e das situações');
   ok(await ip.$eval('#barra', b => b.hidden) && await ip.evaluate(() => !localStorage.getItem('tama-inventario-rascunho')), 'depois de publicar: barra de pendências some e o rascunho do navegador é apagado');

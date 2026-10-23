@@ -4696,7 +4696,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "retirada",
    "origem": "Imagem gerada com IA (OpenAI gpt-image-1.5, variação de cor) em 20/10/2026, referências da apresentação de 20/10. Ilustrativa: não é foto do produto final.",
    "substitui": null,
    "observacao": "Variação de cor gerada a partir da foto-base caderno-capa-bambu~natural (apresentação de 20/10).",
@@ -4733,7 +4733,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "retirada",
    "origem": "Imagem gerada com IA (OpenAI gpt-image-1.5, produto novo) em 20/10/2026, referências da apresentação de 20/10. Ilustrativa: não é foto do produto final.",
    "substitui": null,
    "observacao": "Foto-base (apresentação de 20/10, slides 8, 52, 53).",
@@ -17975,7 +17975,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "aprovada",
+   "aprovacao": "retirada",
    "cor": {
     "nome": "Azul-marinho",
     "hex": "#1E2A4A"
@@ -18012,7 +18012,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "aprovada",
+   "aprovacao": "retirada",
    "cor": {
     "nome": "Café",
     "hex": "#4A2E22"
@@ -18049,7 +18049,7 @@
    "altura": 1254,
    "atualizado_em": "2026-10-17",
    "largura": 1254,
-   "aprovacao": "aprovada",
+   "aprovacao": "retirada",
    "cor": {
     "nome": "Caramelo",
     "hex": "#A0623A"
@@ -18086,7 +18086,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "aprovada",
+   "aprovacao": "retirada",
    "cor": {
     "nome": "Preto",
     "hex": "#1E1E1E"
@@ -25567,7 +25567,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "retirada",
    "origem": "Imagem gerada com IA (OpenAI gpt-image-1.5, variação de cor) em 20/10/2026, referências da apresentação de 20/10. Ilustrativa: não é foto do produto final.",
    "substitui": null,
    "observacao": "Variação de cor gerada a partir da foto-base porta-cartao~prata (apresentação de 20/10).",
@@ -25604,7 +25604,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "retirada",
    "origem": "Imagem gerada com IA (OpenAI gpt-image-1.5, produto novo) em 20/10/2026, referências da apresentação de 20/10. Ilustrativa: não é foto do produto final.",
    "substitui": null,
    "observacao": "Foto-base (apresentação de 20/10).",
@@ -25641,7 +25641,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "retirada",
    "origem": "Imagem gerada com IA (OpenAI gpt-image-1.5, variação de cor) em 20/10/2026, referências da apresentação de 20/10. Ilustrativa: não é foto do produto final.",
    "substitui": null,
    "observacao": "Variação de cor gerada a partir da foto-base porta-cartao~prata (apresentação de 20/10).",
@@ -26825,7 +26825,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "revisao",
+   "aprovacao": "retirada",
    "origem": "Imagem gerada com IA (OpenAI gpt-image-1.5, produto novo) em 20/10/2026, referências da apresentação de 20/10. Ilustrativa: não é foto do produto final.",
    "substitui": null,
    "observacao": "Foto-base (apresentação de 20/10, slides 45). refeita 1x: na 1ª a folha da logo saiu solta embaixo do texto",

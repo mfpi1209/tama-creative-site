@@ -20,7 +20,7 @@
    "foto": "kitp-mesa-de-descobertas-v3",
    "marca_ficticia": "Elo",
    "cor_caixa": "caixa em tom natural com lousa",
-   "situacao": "no_site",
+   "situacao": "fora",
    "foto_anterior": "kitp-mesa-de-descobertas-v2",
    "marca_anterior": "Elo",
    "cor_caixa_anterior": "caixa grafite"
@@ -77,7 +77,7 @@
    "foto": "kitp-kit-conectado",
    "marca_ficticia": "",
    "cor_caixa": "",
-   "situacao": "no_site"
+   "situacao": "fora"
   },
   {
    "slug": "kit-executivo-verde",
@@ -119,23 +119,25 @@
   },
   {
    "slug": "kit-agradecimento",
-   "nome": "Kit de Agradecimento",
-   "descricao": "Cartão \"Obrigado\", vela em copo, caneca e caderno pequeno, para agradecer clientes, parceiros e equipes.",
-   "foto": "kitp-kit-agradecimento",
+   "nome": "Kit Vela de Agradecimento",
+   "descricao": "1 vela aromática 60g + 1 home spray 50ml), totalmente personalizadas e prontas para encantar seus clientes, pacientes ou colaboradores.",
+   "foto": "kit-kit-agradecimento-202610231506",
    "marca_ficticia": "Aura",
    "cor_caixa": "caixa azul-acinzentada com berço",
    "situacao": "no_site",
-   "novo": true
+   "novo": true,
+   "foto_anterior": "kitp-kit-agradecimento"
   },
   {
    "slug": "kit-caipirinha",
    "nome": "Kit Caipirinha",
-   "descricao": "Coqueteleira, socador, tábua pequena, faca e dois copos baixos. Sem bebida: acessórios para preparar.",
-   "foto": "kitp-kit-caipirinha",
+   "descricao": "Kit personalizado para Bar/Caipirinha - 5 Pçs",
+   "foto": "kit-kit-caipirinha-202610231437",
    "marca_ficticia": "Vila",
    "cor_caixa": "caixa em tom natural com tampa",
    "situacao": "no_site",
-   "novo": true
+   "novo": true,
+   "foto_anterior": "kitp-kit-caipirinha"
   },
   {
    "slug": "kit-gin",
@@ -144,18 +146,18 @@
    "foto": "kitp-kit-gin",
    "marca_ficticia": "Noa",
    "cor_caixa": "caixa preta com berço",
-   "situacao": "no_site",
+   "situacao": "fora",
    "novo": true
   },
   {
    "slug": "kit-vinho",
-   "nome": "Kit Vinho",
-   "descricao": "Duas taças de vinho, saca-rolhas e tampa para a garrafa. Sem bebida: acessórios para servir.",
-   "foto": "kitp-kit-vinho",
+   "nome": "Kit Gin",
+   "descricao": "✔️ Conjunto completo para preparar, misturar e servir diferentes tipos de drinks\n✔️ Coqueteleira em aço inox com capacidade aproximada de 500 ml, ideal para combinar bebidas e ingredientes\n✔️ Acompanha taça para gin de 600 ml, além de canudo reutilizável e limpador\n✔️ Caixa rígida com interior moldado, ideal para organizar, proteger e valorizar a apresentação das peças",
+   "foto": "kit-kit-vinho-202610231418",
    "marca_ficticia": "Terra",
    "cor_caixa": "caixa café com berço",
    "situacao": "no_site",
-   "novo": true
+   "foto_anterior": "kit-kit-vinho-202610231413"
   },
   {
    "slug": "kit-brinde",
@@ -173,7 +175,7 @@
    "foto": "kitp-kit-coquetel",
    "marca_ficticia": "",
    "cor_caixa": "",
-   "situacao": "no_site"
+   "situacao": "fora"
   }
  ],
  "home": [
@@ -181,7 +183,8 @@
   "mesa-de-descobertas",
   "kit-pratico",
   "em-movimento",
-  "pausa-e-inspiracao"
+  "pausa-e-inspiracao",
+  "kit-agradecimento"
  ],
  "fim_de_ano": [
   "kit-brinde",
@@ -190,7 +193,8 @@
   "kit-gin",
   "kit-vinho",
   "kit-cafe",
-  "kit-petiscos"
+  "kit-petiscos",
+  "kit-agradecimento"
  ],
  "tipos": [
   {
@@ -245,9 +249,7 @@
    "ancora": "kits-agradecimento",
    "titulo": "Kit de agradecimento",
    "linha": "Para agradecer clientes, parceiros e equipes, com a mensagem da sua empresa no cartão.",
-   "kits": [
-    "kit-agradecimento"
-   ]
+   "kits": []
   },
   {
    "ancora": "kits-fim-de-ano",
@@ -258,7 +260,8 @@
     "kit-coquetel",
     "kit-caipirinha",
     "kit-gin",
-    "kit-vinho"
+    "kit-vinho",
+    "kit-agradecimento"
    ]
   }
  ]

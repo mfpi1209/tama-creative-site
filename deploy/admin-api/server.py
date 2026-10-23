@@ -17,7 +17,9 @@ Rotas (JSON):
   POST /rascunhos/publicar {n} | /rascunhos/descartar {n}
 
 Variáveis de ambiente (no Easypanel, nunca no repositório):
-  ADMIN_USUARIOS   obrigatório: "usuario:hash;outro:hash" (gere cada linha com: python tools/admin_senha.py <usuario>)
+  ADMIN_USUARIOS   obrigatório: "usuario:hash;outro:hash" (gere cada linha com: python3 tools/admin_senha.py <usuario>).
+                   Hash sem "$" (pbkdf2-sha256.<iterações>.<sal>.<hash>, base64url), para o painel não interpretar
+                   "$" como variável; o formato antigo com "$" continua aceito
   ADMIN_SEGREDO    obrigatório: texto aleatório longo que assina as sessões (python tools/admin_senha.py --segredo)
   GITHUB_TOKEN     obrigatório: token "fine-grained" do GitHub só para o repositório, com Contents e Pull requests
                    em leitura e escrita
@@ -64,7 +66,8 @@ TENTATIVAS, JANELA = 5, 15 * 60     # 5 senhas erradas por IP em 15 minutos
 
 
 def usuarios():
-    """ADMIN_USUARIOS -> {usuario: hash}. Hash: pbkdf2_sha256$<iterações>$<sal base64>$<hash base64>."""
+    """ADMIN_USUARIOS -> {usuario: hash}. Hash: pbkdf2-sha256.<iterações>.<sal>.<hash> (base64url) ou o formato antigo
+    pbkdf2_sha256$<iterações>$<sal base64>$<hash base64>."""
     out = {}
     for parte in os.environ.get('ADMIN_USUARIOS', '').replace('\n', ';').split(';'):
         if ':' in parte:
@@ -74,18 +77,32 @@ def usuarios():
     return out
 
 
-def confere_senha(senha, guardado):
+def _partes(guardado):
+    """(iterações, sal, hash) de um hash válido nos dois formatos; None se estiver incompleto ou corrompido."""
     try:
-        alg, it, sal, h = guardado.split('$')
-        if alg != 'pbkdf2_sha256':
-            return False
-        calc = hashlib.pbkdf2_hmac('sha256', senha.encode(), base64.b64decode(sal), int(it))
-        return hmac.compare_digest(calc, base64.b64decode(h))
+        if guardado.startswith('pbkdf2-sha256.'):
+            _, it, sal, h = guardado.split('.')
+            dec = lambda x: base64.urlsafe_b64decode(x + '=' * (-len(x) % 4))
+        else:
+            alg, it, sal, h = guardado.split('$')
+            if alg != 'pbkdf2_sha256':
+                return None
+            dec = base64.b64decode
+        sal, h = dec(sal), dec(h)
+        return (int(it), sal, h) if int(it) >= 100000 and len(sal) >= 16 and len(h) == 32 else None
     except (ValueError, TypeError):
+        return None
+
+
+def confere_senha(senha, guardado):
+    p = _partes(guardado)
+    if not p:
         return False
+    calc = hashlib.pbkdf2_hmac('sha256', senha.encode(), p[1], p[0])
+    return hmac.compare_digest(calc, p[2])
 
 
-_FALSO = 'pbkdf2_sha256$310000$' + base64.b64encode(b'x' * 16).decode() + '$' + base64.b64encode(b'y' * 32).decode()
+_FALSO = 'pbkdf2-sha256.310000.' + base64.urlsafe_b64encode(b'x' * 16).decode().rstrip('=') + '.' + base64.urlsafe_b64encode(b'y' * 32).decode().rstrip('=')
 
 
 def assinar(dados):
@@ -223,7 +240,12 @@ class Handler(BaseHTTPRequestHandler):
 
     def do_GET(self):
         if self.path == '/health':
-            self.send_response(200); self.send_header('Content-Type', 'text/plain'); self.end_headers(); self.wfile.write(b'ok')
+            # sem segredos: só quantos usuários estão configurados e quantos têm o hash completo (um "$" interpretado
+            # pelo painel, por exemplo, corta o hash e nenhuma senha confere)
+            us = usuarios()
+            validos = sum(1 for h in us.values() if _partes(h))
+            corpo = f'ok · {len(us)} usuário(s), {validos} com senha em formato válido'.encode()
+            self.send_response(200); self.send_header('Content-Type', 'text/plain; charset=utf-8'); self.end_headers(); self.wfile.write(corpo)
             return
         s = self._sessao()
         if not s:
@@ -302,7 +324,11 @@ def main():
     faltam = [n for n, v in (('ADMIN_SEGREDO', len(SEGREDO) >= 32), ('ADMIN_USUARIOS', bool(usuarios())), ('GITHUB_TOKEN', bool(TOKEN))) if not v]
     if faltam:
         sys.exit('faltam variáveis de ambiente: ' + ', '.join(faltam) + ' (ADMIN_SEGREDO com 32 caracteres ou mais)')
+    invalidos = [u for u, h in usuarios().items() if not _partes(h)]
     print(f'admin-api: {len(usuarios())} usuário(s), repositório {REPO}@{BRANCH}, origem {ORIGIN}, porta {PORT}', flush=True)
+    if invalidos:   # aviso no log do Easypanel: o login desses usuários não vai funcionar até a linha ser corrigida
+        print('AVISO: senha com formato inválido (linha cortada ou incompleta) para: ' + ', '.join(invalidos) +
+              '. Gere de novo com tools/admin_senha.py e cole a linha inteira em ADMIN_USUARIOS.', flush=True)
     ThreadingHTTPServer(('0.0.0.0', PORT), Handler).serve_forever()
 
 

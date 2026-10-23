@@ -17,9 +17,9 @@ hash (PBKDF2-SHA256).
 1. **Token do GitHub**: em github.com › Settings › Developer settings › Personal access tokens › Fine-grained tokens ›
    Generate new token. Repository access: só `mfpi1209/tama-creative-site`. Permissions › Repository: **Contents:
    Read and write** e **Pull requests: Read and write**. Validade: 1 ano (anote a data para renovar).
-2. **Usuário e senha**: no computador, na pasta do site, `python tools/admin_senha.py tama` (digite a senha duas vezes;
-   mínimo 10 caracteres). Sai uma linha `tama:pbkdf2_sha256$…`. Para mais pessoas, repita com outro nome.
-3. **Segredo das sessões**: `python tools/admin_senha.py --segredo`.
+2. **Usuário e senha**: no computador, na pasta do site, `python3 tools/admin_senha.py tama` (digite a senha duas vezes;
+   mínimo 10 caracteres). Sai uma linha `tama:pbkdf2-sha256.310000.…` (sem "$", para o Easypanel não interpretar como variável). Para mais pessoas, repita com outro nome.
+3. **Segredo das sessões**: `python3 tools/admin_senha.py --segredo`.
 4. No Easypanel, no mesmo projeto do site: **+ Service › App**, nome **`admin-api`**. Source: GitHub
    `mfpi1209/tama-creative-site`, branch `main`, Build path **`deploy/admin-api`**, Dockerfile. Sem domínio.
 5. Environment do app:

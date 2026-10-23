@@ -68,7 +68,7 @@
    "foto": "kitp-kit-cafe",
    "marca_ficticia": "",
    "cor_caixa": "",
-   "situacao": "no_site"
+   "situacao": "fora"
   },
   {
    "slug": "kit-conectado",
@@ -83,29 +83,32 @@
    "slug": "kit-executivo-verde",
    "nome": "Kit Executivo",
    "descricao": "Caderno com capa de fecho, caneta e garrafa térmica, na caixa verde-escura com berço.",
-   "foto": "kitp-kit-executivo-verde",
+   "foto": "kit-kit-executivo-verde-202610232227",
    "marca_ficticia": "",
    "cor_caixa": "",
-   "situacao": "no_site"
+   "situacao": "fora",
+   "foto_anterior": "kitp-kit-executivo-verde"
   },
   {
    "slug": "kit-petiscos",
    "nome": "Kit Petiscos",
    "descricao": "Petisqueira redonda com quatro divisórias, na caixa clara com palha decorativa.",
-   "foto": "kitp-kit-petiscos",
+   "foto": "kit-kit-petiscos-202610232229",
    "marca_ficticia": "",
    "cor_caixa": "",
-   "situacao": "no_site"
+   "situacao": "no_site",
+   "foto_anterior": "kitp-kit-petiscos"
   },
   {
    "slug": "kit-boas-vindas-tech",
-   "nome": "Kit Boas-vindas Conectado",
-   "descricao": "Para receber quem chega: caderneta, caneta, copo com tampa, fone de ouvido sem fio com estojo, power bank e caixa de som.",
-   "foto": "kits-header-v3",
+   "nome": "Kit Executivo",
+   "descricao": "Garrafa térmica de 650 ml premium, caderno pautado com fechamento magnético e caneta com detalhes em metal.",
+   "foto": "kit-kit-boas-vindas-tech-202610232225",
    "marca_ficticia": "Lume",
    "cor_caixa": "caixa grafite com berço claro",
    "situacao": "no_site",
-   "novo": true
+   "novo": true,
+   "foto_anterior": "kits-header-v3"
   },
   {
    "slug": "kit-cozinha",
@@ -120,13 +123,13 @@
   {
    "slug": "kit-agradecimento",
    "nome": "Kit Vela de Agradecimento",
-   "descricao": "1 vela aromática 60g + 1 home spray 50ml), totalmente personalizadas e prontas para encantar seus clientes, pacientes ou colaboradores.",
-   "foto": "kit-kit-agradecimento-202610231506",
+   "descricao": "1 vela aromática 60g + 1 home spray 50ml), totalmente personalizadas e prontas para encantar seus clientes.",
+   "foto": "kit-kit-agradecimento-202610232235",
    "marca_ficticia": "Aura",
    "cor_caixa": "caixa azul-acinzentada com berço",
    "situacao": "no_site",
    "novo": true,
-   "foto_anterior": "kitp-kit-agradecimento"
+   "foto_anterior": "kit-kit-agradecimento-202610231506"
   },
   {
    "slug": "kit-caipirinha",
@@ -203,7 +206,8 @@
    "linha": "Peças de mesa e de uso diário para a rotina de trabalho, com a marca da sua empresa.",
    "kits": [
     "kit-escritorio",
-    "kit-pratico"
+    "kit-pratico",
+    "kit-boas-vindas-tech"
    ]
   },
   {

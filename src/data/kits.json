@@ -102,13 +102,13 @@
   {
    "slug": "kit-boas-vindas-tech",
    "nome": "Kit Executivo",
-   "descricao": "Garrafa térmica de 650 ml premium, caderno pautado com fechamento magnético e caneta com detalhes em metal.",
-   "foto": "kit-kit-boas-vindas-tech-202610232225",
+   "descricao": "Kit Executivo composto por caderno revestido\nem material sustentável, com fecho magnético\nna capa. Acompanha caneta esferográfica na\nmesma cor.",
+   "foto": "kit-kit-boas-vindas-tech-202610232311",
    "marca_ficticia": "Lume",
    "cor_caixa": "caixa grafite com berço claro",
    "situacao": "no_site",
    "novo": true,
-   "foto_anterior": "kits-header-v3"
+   "foto_anterior": "kit-kit-boas-vindas-tech-202610232225"
   },
   {
    "slug": "kit-cozinha",
@@ -117,30 +117,30 @@
    "foto": "kitp-kit-cozinha",
    "marca_ficticia": "Brasa",
    "cor_caixa": "caixa verde-oliva com berço",
-   "situacao": "no_site",
+   "situacao": "fora",
    "novo": true
   },
   {
    "slug": "kit-agradecimento",
-   "nome": "Kit Vela de Agradecimento",
+   "nome": "Kit Vela com spray de ambiente",
    "descricao": "1 vela aromática 60g + 1 home spray 50ml), totalmente personalizadas e prontas para encantar seus clientes.",
-   "foto": "kit-kit-agradecimento-202610232235",
+   "foto": "kit-kit-agradecimento-202610232242",
    "marca_ficticia": "Aura",
    "cor_caixa": "caixa azul-acinzentada com berço",
    "situacao": "no_site",
    "novo": true,
-   "foto_anterior": "kit-kit-agradecimento-202610231506"
+   "foto_anterior": "kit-kit-agradecimento-202610232242"
   },
   {
    "slug": "kit-caipirinha",
    "nome": "Kit Caipirinha",
    "descricao": "Kit personalizado para Bar/Caipirinha - 5 Pçs",
-   "foto": "kit-kit-caipirinha-202610231437",
+   "foto": "kit-kit-caipirinha-202610232309",
    "marca_ficticia": "Vila",
    "cor_caixa": "caixa em tom natural com tampa",
    "situacao": "no_site",
    "novo": true,
-   "foto_anterior": "kitp-kit-caipirinha"
+   "foto_anterior": "kit-kit-caipirinha-202610231437"
   },
   {
    "slug": "kit-gin",
@@ -159,7 +159,7 @@
    "foto": "kit-kit-vinho-202610231418",
    "marca_ficticia": "Terra",
    "cor_caixa": "caixa café com berço",
-   "situacao": "no_site",
+   "situacao": "fora",
    "foto_anterior": "kit-kit-vinho-202610231413"
   },
   {
@@ -196,8 +196,7 @@
   "kit-gin",
   "kit-vinho",
   "kit-cafe",
-  "kit-petiscos",
-  "kit-agradecimento"
+  "kit-petiscos"
  ],
  "tipos": [
   {
@@ -253,7 +252,9 @@
    "ancora": "kits-agradecimento",
    "titulo": "Kit de agradecimento",
    "linha": "Para agradecer clientes, parceiros e equipes, com a mensagem da sua empresa no cartão.",
-   "kits": []
+   "kits": [
+    "kit-agradecimento"
+   ]
   },
   {
    "ancora": "kits-fim-de-ano",
@@ -264,8 +265,7 @@
     "kit-coquetel",
     "kit-caipirinha",
     "kit-gin",
-    "kit-vinho",
-    "kit-agradecimento"
+    "kit-vinho"
    ]
   }
  ]

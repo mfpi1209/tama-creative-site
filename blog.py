@@ -229,7 +229,8 @@ def load(b):
     if not os.path.isdir(BLOG_SRC):
         return
     today = date.today()
-    known_items = set(b.CATALOGO_BY) | set(b.ALIASES)   # ids do catálogo (src/data/produtos.json) ou slugs antigos
+    # ids do catálogo (src/data/produtos.json), slugs antigos e modelos tirados do site pelo inventário (o artigo segue sem a peça)
+    known_items = set(b.CATALOGO_BY) | set(b.ALIASES) | b.FORA_DO_SITE
     seen = {}
     for fname in sorted(os.listdir(BLOG_SRC)):
         if not fname.endswith('.md') or fname.startswith(('_', '.')):

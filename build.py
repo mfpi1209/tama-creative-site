@@ -119,11 +119,15 @@ def pict(name, cls='pict'):
     return f'<svg class="{cls}" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#i-{name}"/></svg>'
 
 # Seleções editoriais (home, ordem, foto-base, ocasiões, slugs antigos) sobre a base única src/data/produtos.json.
-SEL = json.load(open(os.path.join(SRC, 'data', 'selecoes.json'), encoding='utf-8'))
+# Dados do catálogo (produtos, modelos, seleções e kits): src/data/, editados no /admin/inventario/. Os testes de fluxo
+# (tests/e2e.mjs) rodam sobre uma cópia fixa em tests/fixtures/dados (TAMA_DADOS=tests/fixtures/dados), para a edição
+# de conteúdo pelo cliente não travar a publicação; o site que vai ao ar sempre usa src/data/.
+DADOS = os.path.join(ROOT, os.environ['TAMA_DADOS']) if os.environ.get('TAMA_DADOS') else os.path.join(SRC, 'data')
+SEL = json.load(open(os.path.join(DADOS, 'selecoes.json'), encoding='utf-8'))
 OCCS = SEL['ocasioes']
 ALIASES = SEL['aliases']
 # banco de imagens de produto (docs/BANCO-IMAGENS.md): uma entrada por imagem; o catálogo agrupa por produto
-PRODUTOS = json.load(open(os.path.join(SRC, 'data', 'produtos.json'), encoding='utf-8'))['imagens']
+PRODUTOS = json.load(open(os.path.join(DADOS, 'produtos.json'), encoding='utf-8'))['imagens']
 CAT_PROD = {'vestuario': 'Vestuário', 'canetas-escritorio': 'Canetas e escritório', 'tecnologia': 'Tecnologia', 'bolsas-embalagens': 'Bolsas e embalagens', 'garrafas-copos': 'Garrafas e copos',
             'cozinha-bar': 'Cozinha e bar', 'acessorios': 'Acessórios', 'casa-bem-estar': 'Casa e bem-estar', 'hotelaria-gastronomia': 'Hotelaria e gastronomia'}
 # Tipos de peça (menu Brindes e Confecções, filtro ?tipo= do catálogo): o 1º padrão que casa com o id do modelo (o nome do
@@ -442,7 +446,7 @@ FORA_DO_SITE = {color_slug(i['produto']) for i in PRODUTOS} - {c['slug'] for c i
 FORA_NOMES = {i['produto'] for i in PRODUTOS if color_slug(i['produto']) in FORA_DO_SITE}
 # Cadastro por modelo (src/data/modelos.json, editado em /admin/ › Catálogo › Modelos): resumo, usos, medidas, gênero,
 # título e descrição para o Google. Ligado ao catálogo pelo nome do produto; o build barra dado inválido.
-_MODELOS_JSON = os.path.join(SRC, 'data', 'modelos.json')
+_MODELOS_JSON = os.path.join(DADOS, 'modelos.json')
 MODELOS = (json.load(open(_MODELOS_JSON, encoding='utf-8')).get('modelos') or []) if os.path.exists(_MODELOS_JSON) else []
 
 
@@ -972,7 +976,7 @@ def ocasioes_faixa(title='Brindes por ocasião'):
 # Cada kit: slug, nome, descrição, foto (nome em img/v2/, sem extensão), marca fictícia e cor da caixa da foto (vazias =
 # marca TaMa), foto_anterior (vale enquanto a nova não existe) e situacao ("fora" tira o kit de todas as páginas).
 # home, fim_de_ano e tipos (seções de /kits-corporativos/, âncoras do menu) são listas de slugs.
-KITS_DADOS = json.load(open(os.path.join(SRC, 'data', 'kits.json'), encoding='utf-8'))
+KITS_DADOS = json.load(open(os.path.join(DADOS, 'kits.json'), encoding='utf-8'))
 
 
 def preparar_kits():
@@ -1087,7 +1091,10 @@ def kits_tipos_html():
 
 def kits_block(compacto=False):
     """compacto (home enxuta): só os dois kits em destaque e o link para os cinco em /kits-corporativos/; as ocasiões
-    ficam na faixa de chips logo abaixo (ocasioes_faixa), então o bloco não repete os atalhos .kit-occ."""
+    ficam na faixa de chips logo abaixo (ocasioes_faixa), então o bloco não repete os atalhos .kit-occ.
+    Sem kit da home com foto no site (todos tirados no inventário), o bloco sai da página."""
+    if not [k for k in HOME_KITS if kit_foto(k[0])]:
+        return ''
     if compacto:
         cards = ''.join(kit_card(i, slug, name, desc, True) for i, (slug, name, desc) in enumerate(HOME_KITS[:2]))
         foot = (f'<a class="link" href="/kits-corporativos/">Ver todos os kits {ARROW}</a>'
@@ -2195,6 +2202,15 @@ def page_fim_de_ano():
     com_foto = [k for k in FIM_DE_ANO_KITS if kit_foto(k[0])]
     g = kits_grandes(len(com_foto))
     kits = ''.join(kit_card(i, slug, name, desc, i < g) for i, (slug, name, desc) in enumerate(com_foto))
+    # sem kit de fim de ano no site (todos tirados no inventário): a seção e o atalho para ela saem da página
+    kits_sec = f'''<section class="section kits-home" id="kits-fim-de-ano" aria-labelledby="kits-t">
+  <div class="wrap">
+    <div class="section-head"><p class="eyebrow">Kits de fim de ano</p><h2 id="kits-t" class="section-title">Prontos para presentear</h2><p class="muted">Composições com caixa e cartão na identidade da sua empresa; a quantidade e as peças são ajustadas na proposta.</p></div>
+    <div class="kit-grid">{kits}</div>
+    <p class="note">{nota_kits(com_foto)}</p>
+  </div>
+</section>''' if com_foto else ''
+    fim_atalhos = [a for a in FIM_ATALHOS if com_foto or a[1] != '#kits-fim-de-ano']
     return {
         'path': '/brindes-de-fim-de-ano/', 'og': 'kitp-kit-brinde', 'title': 'Brindes de fim de ano e Natal para empresas | TaMa',
         'description': 'Brindes de fim de ano e presentes de Natal com a marca da sua empresa: taças, copos e kits para clientes e equipes. Peça uma proposta.',
@@ -2212,17 +2228,11 @@ def page_fim_de_ano():
                           cta_link(tipo='kits', track_label='fim-de-ano-head')
                           + '<a class="btn btn-line" href="#brindar">Explorar os presentes</a>',
                           NOTA_FICTICIA, pos_m='78% center') + '\n' + atalhos(
-            'Escolha como brindar.', FIM_ATALHOS, 'fim-atalhos-t', linha=False, eyebrow='Para brindar', lado=True) + f"""
+            'Escolha como brindar.', fim_atalhos, 'fim-atalhos-t', linha=False, eyebrow='Para brindar', lado=True) + f"""
 {studio_block(['flute-com-borda-dourada', 'taca-coupe-canelada', 'taca-de-gin-com-pe-colorido', 'taca-de-gin-degrade', 'copo-long-drink', 'taca-de-champanhe', 'taca-martini', 'taca-de-gin'],
               'Taças e copos com a sua marca', 'Taças e copos', 'Escolha as cores de referência e adicione à seleção: as peças seguem com o pedido de proposta.', 'brindar-t',
               more=('/catalogo/?ocasiao=fim-de-ano', 'Ver todos de fim de ano no catálogo'), sid='brindar', cls='ivory')}
-<section class="section kits-home" id="kits-fim-de-ano" aria-labelledby="kits-t">
-  <div class="wrap">
-    <div class="section-head"><p class="eyebrow">Kits de fim de ano</p><h2 id="kits-t" class="section-title">Prontos para presentear</h2><p class="muted">Composições com caixa e cartão na identidade da sua empresa; a quantidade e as peças são ajustadas na proposta.</p></div>
-    <div class="kit-grid">{kits}</div>
-    <p class="note">{nota_kits(FIM_DE_ANO_KITS)}</p>
-  </div>
-</section>
+{kits_sec}
 {studio_block(['agenda', 'caneta-executiva-com-estojo', 'vela', 'caixa-para-presente'],
               'Peças que acompanham o próximo ano', 'Para presentear', 'Agenda, caneta, vela e caixa para completar o presente; cartão e lacre fecham a embalagem.', 'presentear-t',
               more=('/catalogo/', 'Ver o catálogo'), sid='presentear')}

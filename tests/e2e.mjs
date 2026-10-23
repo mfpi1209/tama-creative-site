@@ -1,5 +1,8 @@
 // Testes de fluxos críticos do site TaMa Creative.
 // Uso: node tests/e2e.mjs [baseURL]   (padrão http://127.0.0.1:8099, servindo dist/)
+// O site testado é gerado com os dados de teste: TAMA_DADOS=tests/fixtures/dados python build.py (cópia fixa do
+// catálogo e dos kits). Assim a edição de conteúdo pelo cliente (/admin/inventario/) não quebra os testes de fluxo;
+// o site publicado é gerado depois com src/data/ (ver .github/workflows/deploy.yml).
 // Requer puppeteer-core e um Edge/Chrome local (EDGE_PATH). Não envia nada para produção:
 // o POST do formulário é interceptado e respondido localmente.
 import puppeteer from 'puppeteer-core';
@@ -9,6 +12,8 @@ import os from 'node:os';
 import path from 'node:path';
 
 const BASE = process.argv[2] || 'http://127.0.0.1:8099';
+const RAIZ = path.dirname(path.dirname(new URL(import.meta.url).pathname));
+const DADOS = path.join(RAIZ, process.env.TAMA_DADOS || 'tests/fixtures/dados');   // os mesmos dados do build testado
 const EDGE = process.env.EDGE_PATH || 'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe';
 const PORT = +process.env.E2E_PORT || 9335;
 let pass = 0, fail = 0;
@@ -227,6 +232,7 @@ try {
   const catVisible = () => page.$$eval('#catalogo-grid .product', g => g.filter(x => !x.hidden && getComputedStyle(x).display !== 'none').length);   // conta o que está mesmo na tela
   const catMatch = () => page.$$eval('#catalogo-grid .product', g => g.filter(x => !x.hidden).length);   // modelos que passam no filtro (com ou sem "Ver mais")
   const nModelos = +(await page.$eval('h1', h => (h.textContent.match(/(\d+) modelos/) || [])[1]));
+  if (nModelos !== 190) console.log('  ! o site testado parece gerado com os dados reais: gere com TAMA_DADOS=tests/fixtures/dados python build.py');
   ok(await page.$$eval('h1', h => h.length === 1) && nModelos === 190, `página do catálogo tem H1 com o total de 190 modelos (${nModelos})`);
   // abertura da mesma família dos cabeçalhos com foto, sem foto: eyebrow, "78 modelos" + "para a sua marca." em itálico vinho, apoio e a busca logo abaixo
   ok(await page.evaluate(() => { const h = document.querySelector('.text-head.text-head-xl'); const q = document.getElementById('cat-q'); return !!h && h.querySelector('.eyebrow')?.textContent === 'Catálogo' && h.querySelector('h1 em')?.textContent === 'para a sua marca.' && !!h.querySelector('.lead') && !h.querySelector('img') && !!q && q.getBoundingClientRect().top >= h.getBoundingClientRect().bottom - 1 && q.getBoundingClientRect().top - h.getBoundingClientRect().bottom < 260; }), 'catálogo: abertura sem foto com "para a sua marca." em destaque e a busca logo abaixo');
@@ -788,7 +794,6 @@ try {
   console.log('Inventário (/admin/inventario/)');
   // A página lê e grava pelo servidor local (tools/admin_local.py, porta 8081). Aqui ele é simulado: getEntry devolve os
   // arquivos do repositório e persistEntry só guarda o que seria gravado (nada é escrito em disco).
-  const RAIZ = path.dirname(path.dirname(new URL(import.meta.url).pathname));
   const ip = await browser.newPage();
   await ip.setViewport({ width: 1366, height: 900 });
   await ip.setRequestInterception(true);
@@ -800,7 +805,7 @@ try {
       chamadas.push(action);
       const cors = { 'Access-Control-Allow-Origin': '*' };
       if (action === 'getEntry') {
-        const f = path.join(RAIZ, params.path);
+        const f = params.path.startsWith('src/data/') ? path.join(DADOS, path.basename(params.path)) : path.join(RAIZ, params.path);
         return fs.existsSync(f) ? req.respond({ status: 200, contentType: 'application/json', headers: cors, body: JSON.stringify({ file: { path: params.path }, data: fs.readFileSync(f, 'utf8') }) })
           : req.respond({ status: 404, contentType: 'application/json', headers: cors, body: '{}' });
       }
@@ -817,7 +822,7 @@ try {
   await ip.reload({ waitUntil: 'networkidle0' });
   await ip.waitForSelector('#sec-resumo .kpi');
   // contagens da tela = contagem pelos dados: produto novo (todas as fotos a aprovar), existente com cores novas, fora do site
-  const dadosP = JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/produtos.json'), 'utf8')).imagens;
+  const dadosP = JSON.parse(fs.readFileSync(path.join(DADOS, 'produtos.json'), 'utf8')).imagens;
   const grupos = {}; dadosP.forEach(i => (grupos[i.produto] = grupos[i.produto] || []).push(i));
   const vis = i => ['aprovada', 'revisao'].includes(i.aprovacao);
   const esperado = { novos: 0, cores: 0, fora: 0 };
@@ -902,7 +907,7 @@ try {
   const caneca = prodNovo.filter(i => i.produto === 'Caneca');
   const nova = prodNovo.find(i => i.id === 'caneca~verde-teste');
   const kitsNovo = arqs['src/data/kits.json'] ? JSON.parse(arqs['src/data/kits.json']) : {};
-  const origP = fs.readFileSync(path.join(RAIZ, 'src/data/produtos.json'), 'utf8').split('\n'), novoP = (arqs['src/data/produtos.json'] || '').split('\n');
+  const origP = fs.readFileSync(path.join(DADOS, 'produtos.json'), 'utf8').split('\n'), novoP = (arqs['src/data/produtos.json'] || '').split('\n');
   ok(caneca.length > 1 && caneca.filter(i => i.id !== 'caneca~verde-teste').every(i => i.aprovacao === 'retirada') && nova && nova.arquivo === '/' + assets[0] && /^img\/produtos\/caneca~verde-teste\.(webp|png)$/.test(assets[0]) && nova.cor.hex && nova.alt,
      `publicar: Caneca sai do site (todas as fotos "retirada") e a cor nova entra com a foto em ${assets[0] || '?'}`);
   ok(arqs['src/data/modelos.json'] && JSON.parse(arqs['src/data/modelos.json']).modelos.find(m => m.produto === 'Caneca').resumo === 'Resumo de teste.' && (kitsNovo.kits || []).find(k => k.slug === 'kit-gin')?.situacao === 'fora',
@@ -928,7 +933,7 @@ try {
     if (rota === '/eu') return sessao ? j(200, { usuario: 'tama' }) : j(401, { erro: 'login' });
     if (rota === '/login') { tentativas++; const d = JSON.parse(req.postData() || '{}'); if (d.senha === 'certa') { sessao = true; return j(200, { usuario: 'tama' }); } return j(401, { erro: 'Usuário ou senha incorretos.' }); }
     if (!sessao) return j(401, { erro: 'login' });
-    if (rota === '/ler') { const f = path.join(RAIZ, JSON.parse(req.postData()).path); return j(200, { texto: fs.readFileSync(f, 'utf8') }); }
+    if (rota === '/ler') { const f = path.join(DADOS, path.basename(JSON.parse(req.postData()).path)); return j(200, { texto: fs.readFileSync(f, 'utf8') }); }
     if (rota === '/rascunhos') return j(200, []);
     return j(404, {});
   });

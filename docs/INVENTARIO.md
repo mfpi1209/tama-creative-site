@@ -86,7 +86,9 @@ material e as miniaturas); produtos e kits são lidos do repositório com o logi
    no meio-tempo não se perde), valida de novo e cria **um commit** numa branch `inventario/<data-hora>` com um pull
    request, que é juntado na `main` na hora. **Salvar como rascunho** deixa o pull request aberto para revisão; ele
    aparece em Alterações › Rascunhos salvos, com Publicar e Descartar.
-3. O push na `main` dispara o GitHub Actions (build + testes); com erro, nada vai ao ar e o motivo fica na aba Actions.
+3. O push na `main` dispara o GitHub Actions: testes de fluxo sobre os dados de teste (`tests/fixtures/dados/`, que
+   não mudam com as edições do cliente) e build com os dados reais, que barra dado inválido. Com erro, nada vai ao ar
+   e o motivo fica na aba Actions.
    O Easypanel publica no próximo **Deploy** (automático se o webhook estiver ligado; ver `docs/DEPLOY.md`).
 
 Arquivos que a tela grava: `src/data/produtos.json`, `modelos.json`, `selecoes.json`, `kits.json` (mesmo formato do

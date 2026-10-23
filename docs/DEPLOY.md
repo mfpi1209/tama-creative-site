@@ -36,13 +36,24 @@ Ligue o deploy automático (webhook) só depois de confirmar que o app usa a bra
 
 ```bash
 pip install -r requirements.txt
-python build.py                                   # gera dist/
+TAMA_DADOS=tests/fixtures/dados python build.py   # dist/ com os dados de teste (para rodar os testes)
 python -m http.server 8099 --directory dist        # em outro terminal
 npm i --no-save puppeteer-core@25.12.0             # uma vez
 EDGE_PATH="/caminho/do/Chrome" node tests/e2e.mjs http://127.0.0.1:8099
+python build.py                                   # dist/ com os dados reais (src/data/), o que vai ao ar
 ```
 
-O build falha se encontrar placeholders (`[WhatsApp]` etc.) no HTML ou dado inválido no catálogo.
+**Dados de teste × dados reais.** Produtos, modelos, seleções e kits são editados pelo cliente no
+`/admin/inventario/` (`src/data/`). Os testes de fluxo (`tests/e2e.mjs`) conferem o funcionamento do site sobre uma
+cópia fixa desses arquivos em `tests/fixtures/dados/`, para que tirar um kit ou um produto não trave a publicação.
+No GitHub Actions: build com os dados de teste → testes → build com os dados reais → imagem e checagens do Nginx.
+O build com os dados reais continua barrando dado inválido (nome, cor, texto alternativo, material sem confirmação,
+kits e listas). Ao mudar o código de uma página que depende de um produto ou kit novo, atualize a cópia de teste
+(`cp src/data/{produtos,modelos,selecoes,kits}.json tests/fixtures/dados/`) e os testes no mesmo commit.
+
+O build falha se encontrar placeholders (`[WhatsApp]` etc.) no HTML ou dado inválido no catálogo. Um modelo ou kit
+tirado do site pelo inventário não quebra o build: páginas, seleções e artigos do blog seguem sem ele, e seções que
+ficariam vazias (kits da home e do fim de ano) saem da página.
 
 ## Configuração (`site.config.json` ou variável de ambiente com o nome em maiúsculas)
 

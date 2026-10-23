@@ -1,0 +1,3053 @@
+{
+ "observacao": "Textos da página de cada modelo do catálogo (/catalogo/<nome>/), editados em /admin/ › Catálogo › Modelos. produto = o nome do produto no banco de imagens (src/data/produtos.json). Medidas só aparecem com status confirmado.",
+ "modelos": [
+  {
+   "produto": "Abridor de garrafa de mesa",
+   "genero": "m",
+   "resumo": "Plano e com cabo arredondado, o abridor de garrafa fica à mão na mesa, no bar ou na cozinha e aparece em cada brinde, com a marca à vista. É um brinde simples e útil para bares, restaurantes, confraternizações e ações promocionais. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Bares e restaurantes",
+    "Confraternizações",
+    "Ações promocionais"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Abridor de garrafa de mesa personalizado | TaMa Creative",
+   "descricao_seo": "Abridor de garrafa de mesa com a marca da sua empresa, plano e com cabo arredondado. Para bares, restaurantes e confraternizações."
+  },
+  {
+   "produto": "Abridor redondo com ímã",
+   "genero": "m",
+   "resumo": "Em formato de disco com borda recortada, o abridor tem ímãs para ficar preso na geladeira e sempre à mão em churrascos e confraternizações. É um brinde útil e duradouro para bares, restaurantes, ações promocionais e festas de fim de ano, com a marca aplicada no centro do disco e vista a cada uso. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Bares e restaurantes",
+    "Ações promocionais",
+    "Festas de fim de ano"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Abridor redondo com ímã personalizado | TaMa Creative",
+   "descricao_seo": "Abridor redondo com ímã com a marca da sua empresa, em disco de borda recortada que fica na geladeira. Para bares e confraternizações. Material sob consulta."
+  },
+  {
+   "produto": "Agenda",
+   "genero": "f",
+   "resumo": "A agenda organiza compromissos, reuniões e metas ao longo do ano e, por isso, fica na mesa de quem a recebe por muitos meses. A capa com fecho de pressão mantém tudo no lugar dentro da bolsa ou da mochila. É uma escolha frequente para presentes de fim de ano, kits de boas-vindas e lembranças para clientes.",
+   "usos": [
+    "Fim de ano",
+    "Kits de boas-vindas",
+    "Lembranças para clientes"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "",
+   "descricao_seo": ""
+  },
+  {
+   "produto": "Agenda bicolor com porta-caneta",
+   "genero": "f",
+   "resumo": "A faixa vertical em tom de contraste e a alça porta-caneta dão à agenda um visual elegante, com a caneta sempre à mão para reuniões e visitas. Combina com presentes de fim de ano, kits para executivos e agradecimentos a clientes que usam a agenda o ano inteiro. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Presentes de fim de ano",
+    "Kits executivos",
+    "Agradecimento a clientes"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Agenda bicolor com porta-caneta personalizada | TaMa",
+   "descricao_seo": "Agenda bicolor com porta-caneta com a marca da sua empresa e faixa de contraste na capa. Para executivos, clientes e fim de ano. Material sob consulta."
+  },
+  {
+   "produto": "Agenda de bolso vertical",
+   "genero": "f",
+   "resumo": "Estreita e alongada, a agenda de bolso vertical cabe no paletó ou na bolsa e acompanha compromissos e anotações rápidas ao longo do ano. A capa acolchoada com pesponto e o título em baixo-relevo valorizam a marca em presentes para executivos, agradecimentos a clientes e lembranças de fim de ano. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Presentes executivos",
+    "Lembranças para clientes",
+    "Fim de ano"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Agenda de bolso vertical personalizada | TaMa Creative",
+   "descricao_seo": "Agenda de bolso vertical com a marca da sua empresa, de capa acolchoada e pesponto. Para executivos, clientes e fim de ano. Material sob consulta."
+  },
+  {
+   "produto": "Agenda diária wire-o",
+   "genero": "f",
+   "resumo": "Com encadernação wire-o, a agenda diária abre por completo sobre a mesa e organiza compromissos, reuniões e metas dia a dia. É um presente que acompanha o ano inteiro de quem recebe, indicado para fim de ano, kits de boas-vindas e agradecimentos a clientes. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Fim de ano",
+    "Kits de boas-vindas",
+    "Agradecimento a clientes"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Agenda diária wire-o personalizada | TaMa Creative",
+   "descricao_seo": "Agenda diária wire-o com a marca da sua empresa, que abre por completo sobre a mesa. Para presentes de fim de ano, kits de boas-vindas e clientes."
+  },
+  {
+   "produto": "Avental",
+   "genero": "m",
+   "resumo": "Do balcão à cozinha, o avental veste a equipe com a identidade da empresa e deixa claro quem está ali para atender. Funciona em restaurantes, cafeterias, lojas, salões e eventos de degustação, e pode virar presente em kits para clientes que gostam de cozinhar. Cor, material e aplicação da marca são definidos na proposta.",
+   "usos": [
+    "Uniforme do dia a dia",
+    "Eventos de degustação",
+    "Kits para clientes"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "",
+   "descricao_seo": ""
+  },
+  {
+   "produto": "Avental com laço",
+   "genero": "m",
+   "resumo": "Pensado para quem atende, cozinha ou serve, o avental com laço compõe o uniforme de cafés, restaurantes, padarias e lojas com a marca sempre à vista do cliente. O bolso duplo ajuda a manter à mão o que se usa no dia a dia. Também funciona em workshops, oficinas e ações de marca.",
+   "usos": [
+    "Uniforme de atendimento",
+    "Cafés e restaurantes",
+    "Workshops e oficinas"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "",
+   "descricao_seo": ""
+  },
+  {
+   "produto": "Bloco capa dura com caneta na capa",
+   "genero": "m",
+   "resumo": "A caneta encaixada na própria capa rígida faz do bloco um conjunto completo, pronto para anotações em reuniões, cursos e eventos. Funciona bem em kits de boas-vindas, treinamentos e ações promocionais, com a marca estampada na capa colorida e a caneta sempre junto ao bloco, sem se perder na bolsa. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Reuniões e cursos",
+    "Kits de boas-vindas",
+    "Ações promocionais"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Bloco capa dura com caneta na capa personalizado | TaMa",
+   "descricao_seo": "Bloco capa dura com caneta na capa, com a marca da sua empresa e miolo pautado. Para reuniões, treinamentos e kits de boas-vindas. Material sob consulta."
+  },
+  {
+   "produto": "Bloco com autoadesivos e caneta",
+   "genero": "m",
+   "resumo": "Bloco de anotações, marcadores autoadesivos coloridos e caneta reunidos em um só conjunto, para organizar ideias em reuniões, treinamentos e congressos. É um brinde útil para eventos, kits de boas-vindas e campanhas internas. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Treinamentos e congressos",
+    "Kits de boas-vindas",
+    "Campanhas internas"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Bloco com autoadesivos e caneta personalizado | TaMa",
+   "descricao_seo": "Bloco com marcadores autoadesivos, caneta e a marca da sua empresa. Para treinamentos, congressos, kits de boas-vindas e campanhas."
+  },
+  {
+   "produto": "Bloco de mesa com argolas",
+   "genero": "m",
+   "resumo": "Com duas argolas no topo e base de apoio, o bloco de mesa fica de pé ao lado do computador e facilita anotações durante reuniões e ligações. É uma peça que permanece no escritório de quem recebe, boa para kits de boas-vindas, salas de reunião e presentes para clientes. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Escritório e reuniões",
+    "Kits de boas-vindas",
+    "Presentes para clientes"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Bloco de mesa com argolas personalizado | TaMa Creative",
+   "descricao_seo": "Bloco de mesa com argolas com a marca da sua empresa e base de apoio para ficar de pé. Para escritório, reuniões e clientes. Material sob consulta."
+  },
+  {
+   "produto": "Bloco espiral com capa translúcida e caneta",
+   "genero": "m",
+   "resumo": "Pequeno, com espiral lateral e capa translúcida colorida, o bloco já vem com a caneta presa na lateral e fica pronto para anotações em eventos e treinamentos. É uma opção leve para kits de boas-vindas, feiras, congressos e campanhas internas com grande distribuição, com a cor da capa escolhida para a identidade da empresa. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Eventos e feiras",
+    "Treinamentos",
+    "Kits de boas-vindas"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Bloco espiral com capa translúcida e caneta personalizado | TaMa",
+   "descricao_seo": "Bloco espiral com capa translúcida e caneta, com a marca da sua empresa. Para eventos, treinamentos e kits de boas-vindas. Material sob consulta."
+  },
+  {
+   "produto": "Bloco wire-o com espiral no topo",
+   "genero": "m",
+   "resumo": "Com espiral wire-o no lado curto superior, o bloco abre por completo e facilita anotações rápidas na mesa, na prancheta ou em pé durante visitas. A capa impressa em cores leva a identidade da empresa a eventos, treinamentos, visitas técnicas e campanhas internas, em que as anotações precisam ser feitas de forma rápida. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Eventos e treinamentos",
+    "Campanhas internas",
+    "Visitas técnicas"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Bloco wire-o com espiral no topo personalizado | TaMa",
+   "descricao_seo": "Bloco wire-o com espiral no topo, com a marca da sua empresa na capa impressa em cores. Para eventos, treinamentos e campanhas. Material sob consulta."
+  },
+  {
+   "produto": "Bolsa listrada com inicial",
+   "genero": "f",
+   "resumo": "Listras largas e uma letra grande aplicada na frente deixam a bolsa com cara de presente pensado para quem a recebe. A inicial pode ser a da pessoa, a da empresa ou a de uma campanha, e as cores das listras e das alças acompanham a paleta da marca. Funciona em kits de boas-vindas, eventos e ações de reconhecimento. Cores, material e forma de aplicação são definidos na proposta.",
+   "usos": [
+    "Kits de boas-vindas",
+    "Eventos",
+    "Presentes personalizados"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "",
+   "descricao_seo": ""
+  },
+  {
+   "produto": "Bolsa térmica",
+   "genero": "f",
+   "resumo": "Com tampa de zíper e alça de ombro, a bolsa térmica leva o almoço, o lanche ou as bebidas para o escritório, o piquenique e os eventos ao ar livre. É um presente útil para programas de bem-estar, kits para colaboradores e confraternizações. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Kits para colaboradores",
+    "Programas de bem-estar",
+    "Confraternizações"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Bolsa térmica personalizada | TaMa Creative",
+   "descricao_seo": "Bolsa térmica com zíper, alça de ombro e a marca da sua empresa. Para kits de colaboradores, bem-estar e confraternizações."
+  },
+  {
+   "produto": "Bolsa térmica para vinho",
+   "genero": "f",
+   "resumo": "Com alça curta e formato de garrafa, a bolsa térmica para vinho leva o vinho para o jantar, o piquenique ou a confraternização e continua em uso depois do presente. Combina com kits de vinho, presentes para clientes e ações de fim de ano. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Kits de vinho",
+    "Confraternizações",
+    "Presentes para clientes"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Bolsa térmica para vinho personalizada | TaMa Creative",
+   "descricao_seo": "Bolsa térmica para vinho com alça e a marca da sua empresa. Para kits de vinho, confraternizações e presentes para clientes."
+  },
+  {
+   "produto": "Boné",
+   "genero": "m",
+   "resumo": "Prático para ações ao ar livre, o boné personalizado leva a marca para feiras, eventos esportivos, campanhas e equipes de campo. Também entra bem em kits de boas-vindas e brindes de convenção, como uma peça que o colaborador usa também fora do trabalho. Cor e aplicação da marca são definidas na proposta.",
+   "usos": [
+    "Eventos e feiras",
+    "Equipes de campo",
+    "Kits de boas-vindas"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "",
+   "descricao_seo": ""
+  },
+  {
+   "produto": "Boné aba reta",
+   "genero": "m",
+   "resumo": "Estruturado e de aba reta, o boné tem visual urbano e dá destaque à marca na frente, em equipes de eventos, lojas e ativações. É uma peça que o colaborador usa também fora do trabalho, boa para campanhas, lançamentos e kits de boas-vindas. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Equipes de eventos",
+    "Lançamentos",
+    "Kits de boas-vindas"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Boné aba reta personalizado | TaMa Creative",
+   "descricao_seo": "Boné aba reta estruturado com a marca da sua empresa na frente. Para equipes de eventos, lançamentos, ativações e kits de boas-vindas."
+  },
+  {
+   "produto": "Boné trucker",
+   "genero": "m",
+   "resumo": "Frente lisa em cor sólida, parte de trás vazada e aba curva: o boné trucker dá à marca um ar descontraído em eventos ao ar livre, festivais e ações de campo. Combina com campanhas, equipes de eventos e kits de boas-vindas. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Eventos ao ar livre",
+    "Equipes de campo",
+    "Campanhas"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Boné trucker personalizado | TaMa Creative",
+   "descricao_seo": "Boné trucker com frente lisa, parte de trás vazada e a marca da sua empresa. Para eventos ao ar livre, equipes de campo e campanhas."
+  },
+  {
+   "produto": "Bule transparente com tampa natural",
+   "genero": "m",
+   "resumo": "Bojudo e transparente, com bico longo e tampa em tom natural, o bule deixa o chá à vista e dá charme a recepções, salas de reunião e cafés. Combina com kits de chá, presentes para clientes e lembranças de fim de ano, com a marca aplicada de forma discreta no corpo. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Kits de chá",
+    "Recepções e reuniões",
+    "Presentes de fim de ano"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Bule transparente com tampa natural personalizado | TaMa",
+   "descricao_seo": "Bule transparente com tampa natural, com a marca da sua empresa, bico longo e alça lateral. Para kits de chá, recepções e fim de ano. Material sob consulta."
+  },
+  {
+   "produto": "Cabo USB",
+   "genero": "m",
+   "resumo": "Curto e enrolado, o cabo USB cabe na bolsa ou na mochila e resolve a recarga do celular no escritório, em viagens e em eventos. É um brinde útil para kits de boas-vindas, feiras e ações com equipes externas, com a marca aplicada no cabo ou na embalagem. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Kits de boas-vindas",
+    "Feiras e eventos",
+    "Equipes externas"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Cabo USB personalizado | TaMa Creative",
+   "descricao_seo": "Cabo USB com a marca da sua empresa, curto e enrolado, para recarga do celular. Para kits de boas-vindas, feiras e equipes externas. Material sob consulta."
+  },
+  {
+   "produto": "Caderneta espiral parda com caneta",
+   "genero": "f",
+   "resumo": "Pequena, com espiral e caneta encaixada na lateral, a caderneta em tom pardo cabe em qualquer bolso e serve para anotações rápidas em eventos e visitas. É uma opção simples e de visual natural para feiras, congressos, kits de boas-vindas e ações de sustentabilidade, com a marca impressa na capa. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Feiras e congressos",
+    "Kits de boas-vindas",
+    "Ações de sustentabilidade"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Caderneta espiral parda com caneta personalizada | TaMa",
+   "descricao_seo": "Caderneta espiral parda com caneta, com a marca da sua empresa, em formato de bolso. Para feiras, congressos e kits de boas-vindas. Material sob consulta."
+  },
+  {
+   "produto": "Caderno A5 com elástico",
+   "genero": "m",
+   "resumo": "Com elástico para manter fechado e fita marcadora, o caderno acompanha reuniões, treinamentos e viagens sem perder a página. É um clássico para kits de boas-vindas, eventos e presentes para clientes, com a marca na capa. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Treinamentos e workshops",
+    "Kits de boas-vindas",
+    "Presentes para clientes"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Caderno A5 com elástico personalizado | TaMa Creative",
+   "descricao_seo": "Caderno A5 com elástico, fita marcadora e a marca da sua empresa. Para treinamentos, kits de boas-vindas e presentes para clientes."
+  },
+  {
+   "produto": "Caderno com aba de fechamento e bolso porta-cartão",
+   "genero": "m",
+   "resumo": "A capa envolve o miolo e fecha com uma aba frontal, enquanto o bolso porta-cartão e a alça para caneta mantêm o essencial junto às anotações. É um presente de uso diário para executivos, equipes comerciais e clientes, que combina com fim de ano e programas de reconhecimento. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Presentes executivos",
+    "Equipes comerciais",
+    "Fim de ano"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Caderno com aba e porta-cartão personalizado | TaMa",
+   "descricao_seo": "Caderno com aba de fechamento e bolso porta-cartão, com a marca da sua empresa e alça para caneta. Para executivos e clientes. Material sob consulta."
+  },
+  {
+   "produto": "Caderno com capa natural e caneta",
+   "genero": "m",
+   "resumo": "A capa rígida em tom natural, com elástico de fechamento e caneta no mesmo acabamento, dá ao caderno um visual sóbrio que conversa com marcas ligadas à sustentabilidade. É uma boa escolha para kits de boas-vindas, presentes para clientes e lembranças de fim de ano, com a marca aplicada na capa. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Kits de boas-vindas",
+    "Presentes para clientes",
+    "Fim de ano"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Caderno com capa natural e caneta personalizado | TaMa",
+   "descricao_seo": "Caderno com capa natural e caneta, com a marca da sua empresa, elástico e espiral lateral. Para kits, clientes e fim de ano. Material sob consulta."
+  },
+  {
+   "produto": "Caderno com faixa superior e plaquinha",
+   "genero": "m",
+   "resumo": "A faixa superior separada por um friso e a plaquinha no canto dão ao caderno um acabamento discreto, com espaço para nome, setor ou a marca da empresa. Funciona bem em kits de boas-vindas, programas de integração e presentes para equipes, com a plaquinha personalizada para cada pessoa ou área da empresa. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Kits de boas-vindas",
+    "Integração de equipes",
+    "Presentes para equipes"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Caderno com faixa superior e plaquinha personalizado | TaMa",
+   "descricao_seo": "Caderno com faixa superior e plaquinha, com a marca da sua empresa e espaço para identificação. Para kits de boas-vindas e equipes. Material sob consulta."
+  },
+  {
+   "produto": "Caderno com faixas elásticas porta-celular",
+   "genero": "m",
+   "resumo": "As faixas elásticas na capa prendem celular, caneta e pequenos acessórios, e o caderno vira um organizador para reuniões, viagens e o dia a dia no escritório. Combina com kits de boas-vindas, equipes comerciais e presentes para quem trabalha em movimento e precisa ter celular, caneta e anotações reunidos numa só peça. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Kits de boas-vindas",
+    "Equipes comerciais",
+    "Viagens de trabalho"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Caderno com faixas elásticas porta-celular personalizado | TaMa",
+   "descricao_seo": "Caderno com faixas elásticas porta-celular, com a marca da sua empresa e faixas que prendem celular e caneta. Para kits e equipes. Material sob consulta."
+  },
+  {
+   "produto": "Caderno de anotações",
+   "genero": "m",
+   "resumo": "Em reuniões, treinamentos e congressos, um caderno de anotações está sempre à mão, e é ali que a marca acompanha ideias e decisões do dia a dia. A capa dura com elástico e marcador deixa o caderno pronto para circular entre a mesa e a mochila. Cor, material e aplicação da marca são definidos na proposta.",
+   "usos": [
+    "Treinamentos e workshops",
+    "Congressos e feiras",
+    "Kits de boas-vindas"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "",
+   "descricao_seo": ""
+  },
+  {
+   "produto": "Caderno de capa bicolor",
+   "genero": "m",
+   "resumo": "A capa dura dividida em duas faixas de cor e acabamento diferentes, com elástico de fechamento, dá ao caderno um visual de papelaria fina para o dia a dia. É indicado para presentes de fim de ano, kits de boas-vindas e lembranças para clientes, com a marca aplicada em uma das faixas da capa. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Presentes de fim de ano",
+    "Kits de boas-vindas",
+    "Lembranças para clientes"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Caderno de capa bicolor personalizado | TaMa Creative",
+   "descricao_seo": "Caderno de capa bicolor com a marca da sua empresa, em duas faixas de acabamento e elástico. Para fim de ano, kits e clientes. Material sob consulta."
+  },
+  {
+   "produto": "Caixa de som",
+   "genero": "f",
+   "resumo": "Compacta e com alça, a caixa de som vai da mesa de trabalho para a viagem e o fim de semana, levando a marca para fora do escritório. É um presente de uso pessoal para o fim de ano, premiações de campanhas internas e reconhecimento de equipe. Potência, autonomia e aplicação da marca são confirmadas na proposta.",
+   "usos": [
+    "Fim de ano",
+    "Premiações internas",
+    "Reconhecimento de equipe"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Caixa de som personalizada | TaMa Creative",
+   "descricao_seo": "Caixa de som compacta, com alça e a marca da sua empresa, para presentes de fim de ano, premiações internas e reconhecimento de equipe."
+  },
+  {
+   "produto": "Caixa para presente",
+   "genero": "f",
+   "resumo": "Uma caixa com tampa que transforma a entrega do presente em parte da experiência. Funciona como base para kits de boas-vindas, presentes de fim de ano e mimos para clientes, reunindo os itens com organização e deixando a marca à vista desde o primeiro contato. Cor, material e aplicação da marca são definidos na proposta.",
+   "usos": [
+    "Kits de boas-vindas",
+    "Presentes corporativos",
+    "Mimos para clientes"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "",
+   "descricao_seo": ""
+  },
+  {
+   "produto": "Caixa para presente com tampa transparente",
+   "genero": "f",
+   "resumo": "Rígida, com moldura e tampa transparente, a caixa deixa o presente à vista e transforma a entrega em vitrine, com fundo forrado em textura. É indicada para kits executivos, presentes de fim de ano e lançamentos de produto, em que a apresentação da entrega conta tanto quanto o item escolhido para dentro dela. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Kits executivos",
+    "Presentes de fim de ano",
+    "Lançamentos"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Caixa para presente com tampa transparente personalizada | TaMa",
+   "descricao_seo": "Caixa para presente com tampa transparente, com a marca da sua empresa, moldura rígida e fundo forrado. Para kits e fim de ano. Material sob consulta."
+  },
+  {
+   "produto": "Camisa feminina",
+   "genero": "f",
+   "resumo": "De manga longa e botões, com modelagem acinturada, a camisa feminina personalizada é o uniforme de quem precisa de um visual formal no dia a dia. Funciona bem em recepção, atendimento, equipes executivas e eventos corporativos, com a marca aplicada de forma discreta no peito. Cor, tecido e aplicação da marca são definidos na proposta.",
+   "usos": [
+    "Recepção e atendimento",
+    "Equipes executivas",
+    "Eventos corporativos"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "",
+   "descricao_seo": ""
+  },
+  {
+   "produto": "Camisa masculina",
+   "genero": "f",
+   "resumo": "Com gola social, botões e manga longa, a camisa masculina personalizada dá um visual formal a equipes comerciais, consultores e times que representam a empresa diante de clientes. A marca entra no peito, de forma discreta e profissional. Cor, tecido e aplicação da marca são definidos na proposta.",
+   "usos": [
+    "Equipes comerciais",
+    "Reuniões com clientes",
+    "Eventos corporativos"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "",
+   "descricao_seo": ""
+  },
+  {
+   "produto": "Camiseta feminina",
+   "genero": "f",
+   "resumo": "Versátil, a camiseta feminina personalizada veste equipes em eventos, convenções, ações promocionais e no dia a dia de lojas e escritórios. A modelagem feminina pensa em quem vai usar a peça, e ela também funciona bem em kits de boas-vindas e campanhas internas.",
+   "usos": [
+    "Uniforme do dia a dia",
+    "Eventos e convenções",
+    "Kits de boas-vindas"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "",
+   "descricao_seo": ""
+  },
+  {
+   "produto": "Camiseta masculina",
+   "genero": "f",
+   "resumo": "Peça curinga em qualquer ação de marca, a camiseta masculina personalizada veste equipes em feiras, corridas, convenções e lançamentos. Também serve como uniforme do dia a dia e como item de kits de onboarding, ajudando o novo colaborador a se sentir parte do time desde o primeiro dia. Cor, material e aplicação da marca são definidos na proposta.",
+   "usos": [
+    "Eventos e feiras",
+    "Kits de onboarding",
+    "Campanhas internas"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "",
+   "descricao_seo": ""
+  },
+  {
+   "produto": "Caneca",
+   "genero": "f",
+   "resumo": "Presença constante na mesa de trabalho, a caneca acompanha o café no escritório e as pausas do dia a dia, mantendo a marca por perto em cada uso. É uma opção versátil para kits de boas-vindas, aniversários de empresa e presentes de fim de ano para equipes inteiras. Cor, material e aplicação da marca são definidos na proposta.",
+   "usos": [
+    "Café no escritório",
+    "Kits de boas-vindas",
+    "Fim de ano"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "",
+   "descricao_seo": ""
+  },
+  {
+   "produto": "Caneca com alça natural",
+   "genero": "f",
+   "resumo": "Cilíndrica e sem tampa, com alça em D em tom natural, a caneca tem um visual acolhedor que combina com marcas ligadas a café, design e bem-estar. Fica na mesa de quem recebe e funciona bem em kits de boas-vindas, agradecimentos a clientes e fim de ano. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Kits de boas-vindas",
+    "Agradecimento a clientes",
+    "Fim de ano"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Caneca com alça natural personalizada | TaMa Creative",
+   "descricao_seo": "Caneca com alça natural com a marca da sua empresa, de corpo cilíndrico e alça em D. Para kits de boas-vindas, clientes e fim de ano. Material sob consulta."
+  },
+  {
+   "produto": "Caneca com borda contrastante",
+   "genero": "f",
+   "resumo": "Corpo claro e borda em cor de contraste dão à caneca um ar de acampamento, que combina com marcas de estilo descontraído e com equipes criativas. É uma boa opção para kits de boas-vindas, campanhas internas e presentes de fim de ano, com a cor da borda escolhida para conversar com a identidade da empresa. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Kits de boas-vindas",
+    "Campanhas internas",
+    "Presentes de fim de ano"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Caneca com borda contrastante personalizada | TaMa Creative",
+   "descricao_seo": "Caneca com borda em cor de contraste e a marca da sua empresa, em estilo camping. Para kits de boas-vindas, campanhas internas e fim de ano."
+  },
+  {
+   "produto": "Caneca com faixa natural",
+   "genero": "f",
+   "resumo": "A faixa em tom natural na metade de baixo e na alça dá à caneca um visual acolhedor, que valoriza marcas ligadas a café, bem-estar e design. É um presente que fica na mesa de quem recebe, bom para kits de boas-vindas, agradecimentos a clientes e fim de ano. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Kits de boas-vindas",
+    "Agradecimento a clientes",
+    "Fim de ano"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Caneca com faixa natural personalizada | TaMa Creative",
+   "descricao_seo": "Caneca com faixa em tom natural na base e na alça, com a marca da sua empresa. Para kits de boas-vindas, clientes e fim de ano."
+  },
+  {
+   "produto": "Caneca de chope colorida",
+   "genero": "f",
+   "resumo": "Alta, translúcida e colorida, com alça grossa no mesmo tom, a caneca de chope deixa qualquer confraternização mais animada e leva a marca para a mesa. É uma opção divertida para festas de equipe, eventos de marca, ações promocionais e confraternizações de fim de ano, com a cor escolhida para combinar com a identidade da empresa. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Festas de equipe",
+    "Eventos de marca",
+    "Ações promocionais"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Caneca de chope colorida personalizada | TaMa Creative",
+   "descricao_seo": "Caneca de chope colorida com a marca da sua empresa, translúcida e com alça no mesmo tom. Para festas, eventos e ações promocionais. Material sob consulta."
+  },
+  {
+   "produto": "Caneca de chope transparente",
+   "genero": "f",
+   "resumo": "Transparente, cilíndrica e com alça lateral, a caneca de chope é clássica nas confraternizações e deixa a marca à vista em cada brinde. Funciona bem em festas de equipe, eventos de marca, confraternizações de fim de ano e kits de bar com acessórios, com a cor da aplicação escolhida para a identidade da empresa. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Festas de equipe",
+    "Eventos de marca",
+    "Kits de bar"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Caneca de chope transparente personalizada | TaMa Creative",
+   "descricao_seo": "Caneca de chope transparente com a marca da sua empresa, de corpo cilíndrico e alça lateral. Para festas, eventos e kits de bar. Material sob consulta."
+  },
+  {
+   "produto": "Caneca de parede dupla",
+   "genero": "f",
+   "resumo": "Com parede dupla e corpo reto, a caneca acompanha o café da mesa de trabalho às reuniões e deixa a marca à vista em cada pausa do dia. É uma escolha versátil para kits de boas-vindas, ações internas e presentes de fim de ano para equipes inteiras. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Kits de boas-vindas",
+    "Reuniões e escritório",
+    "Presentes de fim de ano"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Caneca de parede dupla personalizada | TaMa Creative",
+   "descricao_seo": "Caneca de parede dupla com a marca da sua empresa, de corpo reto e alça. Para kits de boas-vindas, escritório e fim de ano. Material sob consulta."
+  },
+  {
+   "produto": "Caneca de viagem com display de temperatura",
+   "genero": "f",
+   "resumo": "A tampa de rosca com visor digital mostra a temperatura da bebida, e a alça lateral facilita levar a caneca de viagem do carro para o escritório. É um presente com ar de tecnologia para executivos, equipes externas e lançamentos, com a marca aplicada no corpo e lembrada a cada café do dia. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Presentes executivos",
+    "Equipes externas",
+    "Lançamentos"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Caneca de viagem com display de temperatura personalizada | TaMa",
+   "descricao_seo": "Caneca de viagem com display de temperatura, com a marca da sua empresa, visor na tampa e alça lateral. Para executivos e lançamentos. Material sob consulta."
+  },
+  {
+   "produto": "Caneca térmica alta com tampa natural e canudo",
+   "genero": "f",
+   "resumo": "Alta e estreita, com alça em D, tampa em tom natural e canudo, a caneca térmica acompanha longas jornadas na mesa de trabalho ou no carro. Combina com kits de boas-vindas, programas de bem-estar e presentes para equipes, com a marca aplicada no corpo e a cor escolhida para a identidade da empresa. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Kits de boas-vindas",
+    "Programas de bem-estar",
+    "Presentes para equipes"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Caneca térmica alta com canudo personalizada | TaMa",
+   "descricao_seo": "Caneca térmica alta com tampa natural e canudo, com a marca da sua empresa e alça em D. Para kits, bem-estar e equipes. Material sob consulta."
+  },
+  {
+   "produto": "Caneca térmica com misturador automático",
+   "genero": "f",
+   "resumo": "Com um botão na tampa que aciona o misturador do fundo, a caneca térmica mexe o café ou o achocolatado sem colher e surpreende quem recebe. É um presente curioso e fácil de lembrar para kits de boas-vindas, lançamentos e lembranças de fim de ano, com a marca aplicada no corpo colorido. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Kits de boas-vindas",
+    "Lançamentos",
+    "Presentes de fim de ano"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Caneca térmica com misturador automático personalizada | TaMa",
+   "descricao_seo": "Caneca térmica com misturador automático, com a marca da sua empresa e botão na tampa. Para kits, lançamentos e fim de ano. Material sob consulta."
+  },
+  {
+   "produto": "Caneca térmica com tampa",
+   "genero": "f",
+   "resumo": "Com tampa e alça lateral, a caneca térmica vai do carro para a mesa de trabalho e acompanha quem passa o dia entre reuniões, visitas e home office. Funciona bem em kits de boas-vindas, programas de bem-estar e presentes para equipes externas, com a marca presente na rotina de quem recebe. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Kits de boas-vindas",
+    "Equipes externas",
+    "Home office"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Caneca térmica com tampa personalizada | TaMa Creative",
+   "descricao_seo": "Caneca térmica com tampa e alça lateral, com a marca da sua empresa. Para kits de boas-vindas, equipes externas e home office. Material sob consulta."
+  },
+  {
+   "produto": "Caneca térmica com tampa natural",
+   "genero": "f",
+   "resumo": "Com alça em D e tampa plana em tom natural, a caneca térmica acompanha o café da mesa de trabalho às reuniões e mantém o visual sóbrio da marca. É uma boa opção para kits de boas-vindas, home office e presentes de fim de ano, com a marca aplicada no corpo. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Kits de boas-vindas",
+    "Home office",
+    "Presentes de fim de ano"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Caneca térmica com tampa natural personalizada | TaMa",
+   "descricao_seo": "Caneca térmica com tampa natural, com a marca da sua empresa, alça em D e tampa plana. Para kits, home office e fim de ano. Material sob consulta."
+  },
+  {
+   "produto": "Caneca térmica tipo chope",
+   "genero": "f",
+   "resumo": "Larga, alta e com alça grande, a caneca térmica tipo chope tem cara de happy hour e combina com confraternizações, festas de equipe e eventos de marca. Também é um presente divertido para fim de ano e ações de relacionamento com clientes, com a marca em destaque no corpo colorido e lembrada a cada encontro. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Confraternizações",
+    "Eventos de marca",
+    "Presentes de fim de ano"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Caneca térmica tipo chope personalizada | TaMa Creative",
+   "descricao_seo": "Caneca térmica tipo chope com a marca da sua empresa, de corpo largo, borda de acabamento e alça grande. Para festas e eventos. Material sob consulta."
+  },
+  {
+   "produto": "Caneca transparente de parede dupla",
+   "genero": "f",
+   "resumo": "Transparente e de parede dupla, a caneca deixa a bebida à vista e dá leveza à mesa de café, às salas de reunião e aos presentes para clientes. Combina com kits de café, lançamentos e lembranças de fim de ano, com a marca aplicada de forma discreta. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Kits de café",
+    "Presentes para clientes",
+    "Lançamentos"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Caneca transparente de parede dupla personalizada | TaMa",
+   "descricao_seo": "Caneca transparente de parede dupla com a marca da sua empresa, com bojo interno aparente e alça. Para kits de café e clientes. Material sob consulta."
+  },
+  {
+   "produto": "Caneta básica",
+   "genero": "f",
+   "resumo": "Quando a ideia é levar a marca a muita gente, a caneta básica é a escolha mais direta para feiras, congressos, palestras, recepções e pontos de atendimento. De clique e corpo inteiriço, ela circula de mão em mão e mantém o nome da empresa à vista em cada anotação.",
+   "usos": [
+    "Feiras e congressos",
+    "Palestras e recepções",
+    "Pontos de atendimento"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "",
+   "descricao_seo": ""
+  },
+  {
+   "produto": "Caneta com acionamento por giro",
+   "genero": "f",
+   "resumo": "O acionamento por giro dá a esta caneta um gesto discreto, sem cliques durante as reuniões. Ela é indicada para presentes a clientes, kits para lideranças e eventos corporativos, e fica no bolso ou na mesa de quem a recebe, levando a marca para a rotina de trabalho. Material a confirmar na proposta.",
+   "usos": [
+    "Presentes para clientes",
+    "Kits para lideranças",
+    "Eventos corporativos"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "",
+   "descricao_seo": ""
+  },
+  {
+   "produto": "Caneta com grip",
+   "genero": "f",
+   "resumo": "Com grip na área de apoio dos dedos, esta caneta é pensada para quem escreve bastante, seja em treinamentos, cursos e provas, seja no dia a dia do escritório. Funciona bem em kits de integração e em eventos com muitos participantes, levando a marca para cada anotação.",
+   "usos": [
+    "Treinamentos e cursos",
+    "Kits de integração",
+    "Eventos com público"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "",
+   "descricao_seo": ""
+  },
+  {
+   "produto": "Caneta com marca-texto",
+   "genero": "f",
+   "resumo": "Com ponta esferográfica de um lado e marca-texto do outro, a caneta resolve anotações e destaques sem trocar de peça, na mesa ou na bolsa. É uma escolha prática para treinamentos, eventos, kits de boas-vindas e ações com estudantes, e também existe na versão slim, mais fina, para quem prefere uma peça leve. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Treinamentos",
+    "Eventos e feiras",
+    "Kits de boas-vindas"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Caneta com marca-texto personalizada | TaMa Creative",
+   "descricao_seo": "Caneta com marca-texto com a marca da sua empresa, com esferográfica e destaque na mesma peça. Para treinamentos, eventos e kits. Material sob consulta."
+  },
+  {
+   "produto": "Caneta com ponta touch",
+   "genero": "f",
+   "resumo": "Além de escrever, a ponta touch permite tocar a tela de celulares e tablets, o que torna esta caneta útil para equipes que alternam entre papel e tela ao longo do dia. Combina com eventos de tecnologia, kits de boas-vindas e presentes para equipes comerciais, mantendo a marca presente nas duas formas de trabalho.",
+   "usos": [
+    "Eventos de tecnologia",
+    "Kits de boas-vindas",
+    "Equipes comerciais"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "",
+   "descricao_seo": ""
+  },
+  {
+   "produto": "Caneta e lapiseira em estojo",
+   "genero": "m",
+   "resumo": "Caneta e lapiseira chegam juntas em um estojo de presente, prontas para entregar a lideranças, clientes e parceiros. É uma escolha clássica para homenagens, datas de relacionamento e presentes de fim de ano. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Presentes executivos",
+    "Homenagens e reconhecimento",
+    "Fim de ano"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Caneta e lapiseira em estojo personalizado | TaMa Creative",
+   "descricao_seo": "Caneta e lapiseira em estojo de presente, com a marca da sua empresa. Para presentes executivos, homenagens e fim de ano."
+  },
+  {
+   "produto": "Caneta executiva com estojo",
+   "genero": "f",
+   "resumo": "Pensada para presentear, esta caneta executiva vem acompanhada de estojo forrado e fica pronta para ser entregue com cuidado. É indicada para diretores, clientes estratégicos, parceiros e homenagens de fim de ano, quando o gesto precisa transmitir atenção e reconhecimento. Cor, material e aplicação da marca são definidos na proposta.",
+   "usos": [
+    "Presentes executivos",
+    "Clientes estratégicos",
+    "Homenagens e datas especiais"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "",
+   "descricao_seo": ""
+  },
+  {
+   "produto": "Caneta executiva esferográfica",
+   "genero": "f",
+   "resumo": "De linhas sóbrias, a caneta executiva esferográfica acompanha reuniões, assinaturas de contrato e o dia a dia de gestores. Funciona bem como presente para clientes e lideranças, em kits executivos ou em eventos corporativos, levando a marca para a mesa de quem toma decisões.",
+   "usos": [
+    "Presentes executivos",
+    "Kits para lideranças",
+    "Eventos corporativos"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "",
+   "descricao_seo": ""
+  },
+  {
+   "produto": "Caneta executiva roller",
+   "genero": "f",
+   "resumo": "Com tampa e clipe, a caneta executiva roller tem um ar mais clássico e combina com quem valoriza a escrita à mão em reuniões e anotações. É uma boa opção para presentes executivos, homenagens e kits de fim de ano destinados a clientes e parceiros. Cor, material e aplicação da marca são definidos na proposta.",
+   "usos": [
+    "Presentes executivos",
+    "Homenagens e reconhecimento",
+    "Kits para parceiros"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "",
+   "descricao_seo": ""
+  },
+  {
+   "produto": "Caneta natural",
+   "nome": "Caneta de corpo claro",
+   "genero": "f",
+   "resumo": "De corpo claro e detalhes prateados, esta caneta tem um visual leve, que foge do brinde comum. Funciona bem em congressos, feiras e kits de boas-vindas, e acompanha quem a recebe no escritório, levando a marca para cada anotação e cada reunião. Material a confirmar na proposta.",
+   "usos": [
+    "Congressos e feiras",
+    "Kits de boas-vindas",
+    "Uso no escritório"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "",
+   "descricao_seo": ""
+  },
+  {
+   "produto": "Caneta parda",
+   "nome": "Caneta de corpo pardo",
+   "genero": "f",
+   "resumo": "Simples e simpática, a caneta de corpo pardo é uma opção para distribuir em feiras, congressos, palestras e treinamentos, onde muitas pessoas passam pelo estande ou pela sala. O tom pardo com detalhes pretos se destaca na mesa e combina com kits de boas-vindas e materiais de eventos. Material a confirmar na proposta.",
+   "usos": [
+    "Feiras e congressos",
+    "Palestras e treinamentos",
+    "Kits de boas-vindas"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "",
+   "descricao_seo": ""
+  },
+  {
+   "produto": "Caneta slim",
+   "genero": "f",
+   "resumo": "Com acionamento por clique e anéis decorativos no corpo, a caneta slim é uma escolha versátil para o uso diário no escritório. Atende bem kits de boas-vindas, treinamentos e presentes de fim de ano, e acompanha quem a recebe em reuniões e anotações rápidas. Cor, material e aplicação da marca são definidos na proposta.",
+   "usos": [
+    "Uso no escritório",
+    "Kits de boas-vindas",
+    "Fim de ano"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "",
+   "descricao_seo": ""
+  },
+  {
+   "produto": "Canudo reutilizável com escova",
+   "genero": "m",
+   "resumo": "Reto ou curvo e acompanhado de escovinha de limpeza, o canudo reutilizável troca os descartáveis no dia a dia e reforça o compromisso da marca com menos resíduos. É uma opção leve para ações de sustentabilidade, eventos e kits de boas-vindas, com a marca aplicada no estojo ou na embalagem. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Ações de sustentabilidade",
+    "Eventos",
+    "Kits de boas-vindas"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Canudo reutilizável com escova personalizado | TaMa Creative",
+   "descricao_seo": "Canudo reutilizável com escova, com a marca da sua empresa, reto ou curvo. Para ações de sustentabilidade, eventos e kits de boas-vindas. Material sob consulta."
+  },
+  {
+   "produto": "Cardápio",
+   "genero": "m",
+   "resumo": "Para restaurantes, bares, cafés e hotéis, o cardápio é uma das primeiras peças que o cliente segura nas mãos. Com a capa personalizada, a identidade da casa acompanha cada pedido, do salão ao serviço de quarto. Cor, material e aplicação da marca são definidos na proposta.",
+   "usos": [
+    "Restaurantes e bares",
+    "Hotéis e pousadas",
+    "Cafés e bistrôs"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "",
+   "descricao_seo": ""
+  },
+  {
+   "produto": "Carregador sem fio de mesa",
+   "genero": "m",
+   "resumo": "O carregador sem fio de mesa mantém o celular apoiado e à vista durante o expediente, no escritório ou no home office, com a marca na frente da base. É um presente executivo de uso diário e combina com kits de fim de ano e de boas-vindas. Potência, compatibilidade e aplicação da marca são confirmadas na proposta.",
+   "usos": [
+    "Presentes executivos",
+    "Home office",
+    "Fim de ano"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Carregador sem fio de mesa personalizado | TaMa Creative",
+   "descricao_seo": "Carregador sem fio de mesa com a marca da sua empresa na base, para presentes executivos, home office e fim de ano. Peça uma proposta à TaMa."
+  },
+  {
+   "produto": "Carteira",
+   "genero": "f",
+   "resumo": "Uma carteira bifold acompanha quem a recebe todos os dias, no bolso ou na bolsa, e leva a marca para perto de cada rotina. Funciona bem como presente de fim de ano, reconhecimento por tempo de casa ou item de destaque em kits executivos. Cor, material e aplicação da marca são definidos na proposta.",
+   "usos": [
+    "Fim de ano",
+    "Reconhecimento de colaboradores",
+    "Kits executivos"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "",
+   "descricao_seo": ""
+  },
+  {
+   "produto": "Cartão com envelope",
+   "genero": "m",
+   "resumo": "Um cartão dobrado com envelope para acompanhar o presente com uma mensagem da empresa. Cabe em kits de boas-vindas, datas comemorativas e agradecimentos a clientes e parceiros, dando um tom pessoal à entrega e levando a identidade da marca até quem recebe.",
+   "usos": [
+    "Mensagens de boas-vindas",
+    "Agradecimento a clientes",
+    "Kits corporativos"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "",
+   "descricao_seo": ""
+  },
+  {
+   "produto": "Chaveiro abridor de garrafa",
+   "genero": "m",
+   "resumo": "Prático e descontraído, o chaveiro abridor de garrafa costuma ser lembrado nos momentos de lazer, no churrasco do fim de semana ou no happy hour da equipe. É uma boa escolha para eventos, ações promocionais e kits de confraternização, porque circula bastante e deixa a marca à vista a cada uso.",
+   "usos": [
+    "Ações promocionais",
+    "Confraternizações de equipe",
+    "Eventos e feiras"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "",
+   "descricao_seo": ""
+  },
+  {
+   "produto": "Chaveiro com tira",
+   "genero": "m",
+   "resumo": "Discreto e fácil de usar, o chaveiro com tira segura as chaves de casa, do carro ou do escritório e passa pelas mãos de quem o recebe várias vezes ao dia. Combina com kits de boas-vindas, brindes de fim de ano e presentes para clientes. Cor, material e aplicação da marca são definidos na proposta.",
+   "usos": [
+    "Kits de boas-vindas",
+    "Fim de ano",
+    "Presentes para clientes"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "",
+   "descricao_seo": ""
+  },
+  {
+   "produto": "Chaveiro em tom natural",
+   "genero": "m",
+   "resumo": "Com plaquinha em tom natural presa à argola, o chaveiro leva a marca gravada no dia a dia de quem recebe e tem visual simples e acolhedor. É uma opção acessível para eventos, ações de sustentabilidade e kits de boas-vindas, com a marca aplicada de um ou dos dois lados da plaquinha. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Eventos",
+    "Ações de sustentabilidade",
+    "Kits de boas-vindas"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Chaveiro em tom natural personalizado | TaMa Creative",
+   "descricao_seo": "Chaveiro em tom natural com a marca da sua empresa gravada na plaquinha. Para eventos, ações de sustentabilidade e kits de boas-vindas. Material sob consulta."
+  },
+  {
+   "produto": "Chaveiro redondo com detalhe natural",
+   "genero": "m",
+   "resumo": "A moldura redonda com disco interno em tom natural deixa a marca gravada em destaque e dá ao chaveiro um acabamento elegante para o dia a dia. É uma lembrança duradoura para clientes, eventos e programas de reconhecimento, que acompanha as chaves de quem recebe por muito tempo. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Lembranças para clientes",
+    "Eventos",
+    "Reconhecimento"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Chaveiro redondo com detalhe natural personalizado | TaMa",
+   "descricao_seo": "Chaveiro redondo com detalhe natural, com a marca da sua empresa gravada no disco central. Para clientes, eventos e reconhecimento. Material sob consulta."
+  },
+  {
+   "produto": "Colher bailarina",
+   "genero": "f",
+   "resumo": "De haste longa com disco achatado na ponta, a colher bailarina é o acessório dos drinques montados em camadas e dá um toque profissional ao kit de bar. Combina com eventos de marca, coquetéis de lançamento e presentes de fim de ano, ao lado de outros acessórios de bar da mesma linha. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Kits de bar",
+    "Coquetéis e lançamentos",
+    "Presentes de fim de ano"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Colher bailarina personalizada | TaMa Creative",
+   "descricao_seo": "Colher bailarina com a marca da sua empresa, de haste longa e disco na ponta. Para kits de bar, coquetéis de lançamento e fim de ano. Material sob consulta."
+  },
+  {
+   "produto": "Colher em tom natural",
+   "genero": "f",
+   "resumo": "Pequena e de cabo longo, a colher em tom natural ajuda a mexer drinques e servir petiscos e completa kits de bar com visual natural. É uma peça simples para kits de bar, confraternizações e presentes de fim de ano, com a marca aplicada no cabo e visível a cada uso. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Kits de bar",
+    "Confraternizações",
+    "Presentes de fim de ano"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Colher em tom natural personalizada | TaMa Creative",
+   "descricao_seo": "Colher em tom natural com a marca da sua empresa, pequena e de cabo longo. Para kits de bar, petiscos, confraternizações e fim de ano. Material sob consulta."
+  },
+  {
+   "produto": "Copo 360°",
+   "nome": "Copo com estampa 360°",
+   "genero": "m",
+   "resumo": "A estampa 360° ocupa toda a volta do copo e abre espaço para a marca aparecer com mais presença. É uma boa escolha para festas, confraternizações, feiras e eventos de grande público, em que o copo circula entre muitas pessoas e segue com elas depois. Cor, material e aplicação da marca são definidos na proposta.",
+   "usos": [
+    "Festas e confraternizações",
+    "Feiras e eventos",
+    "Ações de marca"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "",
+   "descricao_seo": ""
+  },
+  {
+   "produto": "Copo colorido texturizado",
+   "genero": "m",
+   "resumo": "Com textura torcida e cores vivas, este copo anima festas, eventos ao ar livre e ações promocionais. É uma opção para confraternizações de fim de ano e campanhas em que a marca circula de mão em mão. Cor, material e aplicação da marca são definidos na proposta.",
+   "usos": [
+    "Festas e confraternizações",
+    "Eventos ao ar livre",
+    "Ações promocionais"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "",
+   "descricao_seo": ""
+  },
+  {
+   "produto": "Copo baixo",
+   "genero": "m",
+   "resumo": "O copo baixo é o formato das caipirinhas, dos drinks e dos destilados, presente em happy hours, festas e eventos da empresa. Pode compor kits de coquetel e presentes de fim de ano, levando a marca para a mesa de quem recebe. Cor, material e aplicação da marca são definidos na proposta.",
+   "usos": [
+    "Happy hours",
+    "Festas da empresa",
+    "Kits de coquetel"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "",
+   "descricao_seo": ""
+  },
+  {
+   "produto": "Copo com cordão",
+   "genero": "m",
+   "resumo": "Com um cordão para levar no pescoço, o copo deixa as mãos livres em festas, shows, feiras e eventos de grande público. A marca circula com quem usa durante todo o evento e segue com a pessoa depois. Cor, material e aplicação da marca são definidos na proposta.",
+   "usos": [
+    "Festas e shows",
+    "Feiras e eventos",
+    "Confraternizações"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "",
+   "descricao_seo": ""
+  },
+  {
+   "produto": "Copo com estampa em toda a volta",
+   "genero": "m",
+   "resumo": "Com a estampa cobrindo toda a volta do corpo, o copo transforma a arte da campanha em peça de uso, ideal para festas, shows e eventos de marca. Funciona bem em ações promocionais, lançamentos e eventos com grande público, em que a arte da marca precisa aparecer por inteiro e chamar atenção de longe. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Festas e shows",
+    "Ações promocionais",
+    "Lançamentos"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Copo com estampa em toda a volta personalizado | TaMa",
+   "descricao_seo": "Copo com estampa em toda a volta, com a marca da sua empresa e arte cobrindo o corpo inteiro. Para festas, eventos e lançamentos. Material sob consulta."
+  },
+  {
+   "produto": "Copo com luva canelada",
+   "genero": "m",
+   "resumo": "Cônico, com tampa e luva canelada colorida na metade de baixo, o copo tem pegada confortável e um visual alegre para o café de todo dia. É uma opção simpática para ações de sustentabilidade, kits de boas-vindas e eventos, com a cor da luva escolhida para combinar com a identidade da empresa. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Ações de sustentabilidade",
+    "Kits de boas-vindas",
+    "Eventos"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Copo com luva canelada personalizado | TaMa Creative",
+   "descricao_seo": "Copo com luva canelada com a marca da sua empresa, de formato cônico, com tampa e luva colorida. Para kits, eventos e ações internas. Material sob consulta."
+  },
+  {
+   "produto": "Copo com tampa",
+   "genero": "m",
+   "resumo": "Um copo com tampa para levar a bebida da mesa de trabalho para reuniões, deslocamentos e eventos. Funciona bem em kits de integração, ações de endomarketing e presentes para clientes, colocando a marca em um objeto que circula pelo dia a dia de quem recebe. Material a confirmar na proposta.",
+   "usos": [
+    "Kits de integração",
+    "Ações de endomarketing",
+    "Presentes para clientes"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "",
+   "descricao_seo": ""
+  },
+  {
+   "produto": "Copo com tampa e canudo",
+   "genero": "m",
+   "resumo": "Com tampa de encaixe e canudo na mesma cor, o copo acompanha a bebida pela festa, pelo evento ou pela mesa de trabalho. Funciona em campanhas, kits para participantes e confraternizações de fim de ano, com a marca à vista a cada gole. Cor, material e aplicação da marca são definidos na proposta.",
+   "usos": [
+    "Eventos e festas",
+    "Campanhas",
+    "Kits para participantes"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "",
+   "descricao_seo": ""
+  },
+  {
+   "produto": "Copo de café",
+   "genero": "m",
+   "resumo": "Feito para o expresso de todo dia, este copo sem alça combina com a copa do escritório, salas de reunião e espaços de recepção. Também pode compor kits de café para colaboradores e clientes, levando a marca a um dos momentos mais comuns da rotina de trabalho.",
+   "usos": [
+    "Café no escritório",
+    "Kits de café",
+    "Salas de reunião"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "",
+   "descricao_seo": ""
+  },
+  {
+   "produto": "Copo de vinho com tampa",
+   "genero": "m",
+   "resumo": "Com tampa transparente, o copo de vinho com tampa acompanha momentos de descontração fora da mesa, como happy hours, encontros ao ar livre e viagens de equipe. Funciona bem em kits de fim de ano e presentes para clientes, com a marca presente em ocasiões mais leves. Cor, material e aplicação da marca são definidos na proposta.",
+   "usos": [
+    "Happy hours",
+    "Fim de ano",
+    "Presentes para clientes"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "",
+   "descricao_seo": ""
+  },
+  {
+   "produto": "Copo long drink",
+   "genero": "m",
+   "resumo": "Alto e reto, o copo long drink serve drinks, sucos e água em eventos, festas e ações de marca. Faz parte do Kit Coquetel e também funciona sozinho como brinde de fim de ano para equipes. Cor, material e aplicação da marca são definidos na proposta.",
+   "usos": [
+    "Eventos e festas",
+    "Kits de coquetel",
+    "Ações de marca"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "",
+   "descricao_seo": ""
+  },
+  {
+   "produto": "Copo para salada com garfo e molheira",
+   "genero": "m",
+   "resumo": "Com tampa, pote de molho encaixável e garfo dobrável, o copo para salada leva a refeição pronta para o escritório, a faculdade ou o passeio. É uma opção útil para programas de bem-estar, campanhas de alimentação saudável e kits de boas-vindas, com a marca aplicada no corpo e nas cores escolhidas para a ação. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Programas de bem-estar",
+    "Alimentação saudável",
+    "Kits de boas-vindas"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Copo para salada com garfo e molheira personalizado | TaMa",
+   "descricao_seo": "Copo para salada com garfo e molheira, com a marca da sua empresa, tampa e pote de molho encaixável. Para bem-estar e kits. Material sob consulta."
+  },
+  {
+   "produto": "Copo para viagem",
+   "genero": "m",
+   "resumo": "Para servir café e outras bebidas em eventos, recepções e no escritório, o copo para viagem leva a marca até a mão de cada convidado. Atende bem coffee breaks, feiras, treinamentos e ativações, em que a bebida acompanha as pessoas pelo espaço.",
+   "usos": [
+    "Coffee breaks",
+    "Feiras e ativações",
+    "Café no escritório"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "",
+   "descricao_seo": ""
+  },
+  {
+   "produto": "Copo retrátil",
+   "genero": "m",
+   "resumo": "Retrátil, o copo se recolhe depois do uso e vai na bolsa ou na mochila, pronto para o café da viagem, da trilha ou do intervalo do evento. É um brinde prático para feiras, campanhas e kits de participantes, que a equipe leva para todo lado. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Feiras e eventos",
+    "Viagens",
+    "Kits para participantes"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Copo retrátil personalizado | TaMa Creative",
+   "descricao_seo": "Copo retrátil com tampa e a marca da sua empresa, que se recolhe depois do uso. Para feiras, viagens, campanhas e kits de eventos."
+  },
+  {
+   "produto": "Copo reutilizável com tampa",
+   "genero": "m",
+   "resumo": "Pensado para o café para levar, o copo reutilizável tem tampa e faixa de pegada, e substitui o copo descartável no escritório, nas feiras e nos coffee breaks. É uma boa escolha para campanhas internas, kits de boas-vindas e eventos, com a marca acompanhando cada café. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Café no escritório",
+    "Campanhas internas",
+    "Coffee breaks"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Copo reutilizável com tampa personalizado | TaMa Creative",
+   "descricao_seo": "Copo reutilizável com tampa e a marca da sua empresa, para o café no escritório, coffee breaks, feiras e campanhas internas."
+  },
+  {
+   "produto": "Copo térmico antiqueda com tampa flip",
+   "genero": "m",
+   "resumo": "A base com ventosa ajuda o copo térmico a ficar firme na mesa, e a tampa flip facilita beber em movimento, do escritório ao carro. É uma escolha prática para home office, equipes externas e kits de boas-vindas, com a marca aplicada no corpo e a faixa de pegada na cor da ação. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Home office",
+    "Equipes externas",
+    "Kits de boas-vindas"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Copo térmico antiqueda com tampa flip personalizado | TaMa",
+   "descricao_seo": "Copo térmico antiqueda com tampa flip, com a marca da sua empresa, base de ventosa e faixa de pegada. Para home office e equipes. Material sob consulta."
+  },
+  {
+   "produto": "Copo térmico com alça",
+   "genero": "m",
+   "resumo": "Grande, com alça lateral, tampa e canudo, o copo térmico acompanha o dia de trabalho, da mesa à reunião e ao carro, e entra na rotina de quem recebe. Combina com kits para colaboradores, reconhecimento de equipe e fim de ano, em cores que conversam com a identidade da marca. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Kits para colaboradores",
+    "Reconhecimento de equipe",
+    "Fim de ano"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Copo térmico com alça personalizado | TaMa Creative",
+   "descricao_seo": "Copo térmico com alça, tampa, canudo e a marca da sua empresa. Para kits de colaboradores, reconhecimento de equipe e fim de ano."
+  },
+  {
+   "produto": "Copo térmico com faixa natural",
+   "genero": "m",
+   "resumo": "Liso em cima e com faixa em tom natural na metade de baixo, o copo térmico une um visual sóbrio a uma pegada confortável para o dia a dia. É uma opção elegante para kits de boas-vindas, presentes para clientes e fim de ano, com a marca aplicada na parte lisa. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Kits de boas-vindas",
+    "Presentes para clientes",
+    "Fim de ano"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Copo térmico com faixa natural personalizado | TaMa Creative",
+   "descricao_seo": "Copo térmico com faixa natural, com a marca da sua empresa, corpo cilíndrico e borda de acabamento. Para kits, clientes e fim de ano. Material sob consulta."
+  },
+  {
+   "produto": "Copo térmico com revestimento natural e alça",
+   "genero": "m",
+   "resumo": "Revestido em tom natural, com alça em C e tampa, o copo térmico tem cara de caneca e acompanha o café da mesa de trabalho às reuniões. É um presente acolhedor para clientes, programas de reconhecimento e lembranças de fim de ano, com a marca aplicada de forma discreta no corpo. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Presentes para clientes",
+    "Reconhecimento",
+    "Fim de ano"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Copo térmico com revestimento natural e alça personalizado | TaMa",
+   "descricao_seo": "Copo térmico com revestimento natural e alça, com a marca da sua empresa, alça em C e tampa. Para clientes e fim de ano. Material sob consulta."
+  },
+  {
+   "produto": "Copo térmico com tampa abridor",
+   "genero": "m",
+   "resumo": "De paredes retas e sem alça, o copo térmico traz um abridor de garrafa embutido na tampa, pronto para churrascos, confraternizações e eventos ao ar livre. É um brinde descontraído para festas de equipe, ações de verão e presentes de fim de ano, com a marca aplicada no corpo e lembrada em cada encontro. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Confraternizações",
+    "Eventos ao ar livre",
+    "Presentes de fim de ano"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Copo térmico com tampa abridor personalizado | TaMa Creative",
+   "descricao_seo": "Copo térmico com tampa abridor, com a marca da sua empresa, paredes retas e abridor embutido. Para confraternizações e eventos. Material sob consulta."
+  },
+  {
+   "produto": "Coqueteleira",
+   "genero": "f",
+   "resumo": "A coqueteleira leva a marca para o preparo de drinks em casa, em happy hours e em confraternizações da empresa. Combina com os kits de coquetel, as taças e os copos do catálogo, em presentes de fim de ano e lançamentos. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Kits de coquetel",
+    "Happy hours",
+    "Fim de ano"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Coqueteleira personalizada | TaMa Creative",
+   "descricao_seo": "Coqueteleira com a marca da sua empresa para drinks em casa e em happy hours. Combina com kits de coquetel, lançamentos e fim de ano."
+  },
+  {
+   "produto": "Cortador de pizza",
+   "genero": "m",
+   "resumo": "Com cabo colorido, o cortador de pizza é um brinde divertido e útil, que vai para a gaveta da cozinha e aparece a cada noite de pizza. Funciona bem em campanhas, ações promocionais de restaurantes e delivery, e em kits de confraternização. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Ações promocionais",
+    "Restaurantes e delivery",
+    "Kits de confraternização"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Cortador de pizza personalizado | TaMa Creative",
+   "descricao_seo": "Cortador de pizza com cabo colorido e a marca da sua empresa. Para ações promocionais, restaurantes, delivery e kits de confraternização."
+  },
+  {
+   "produto": "Difusor de aromas",
+   "genero": "m",
+   "resumo": "Um aroma agradável na recepção, na sala de reunião ou em casa faz a marca ser lembrada no dia a dia de quem recebe. O difusor de aromas funciona bem em kits de boas-vindas, presentes de fim de ano e ações de relacionamento com clientes. Cor, fragrância e aplicação da marca são definidas na proposta.",
+   "usos": [
+    "Kits de boas-vindas",
+    "Presentes de fim de ano",
+    "Relacionamento com clientes"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "",
+   "descricao_seo": ""
+  },
+  {
+   "produto": "Dólmã",
+   "genero": "f",
+   "resumo": "Uniforme tradicional da cozinha, a dólmã identifica chefs, cozinheiros e equipes de confeitaria com a marca da casa. É indicada para restaurantes, hotéis, buffets e escolas de gastronomia, e também para cozinhas abertas, onde o cliente acompanha o preparo. Os botões pretos dão um acabamento sóbrio à peça.",
+   "usos": [
+    "Cozinhas de restaurantes",
+    "Hotéis e buffets",
+    "Escolas de gastronomia"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "",
+   "descricao_seo": ""
+  },
+  {
+   "produto": "Ecobag",
+   "genero": "f",
+   "resumo": "Prática para o dia a dia, a ecobag acompanha quem a recebe no trabalho, nas compras e nos deslocamentos, levando a marca para fora do escritório. É uma escolha frequente para feiras, eventos e kits de integração, e também pode servir como embalagem para os outros itens do presente.",
+   "usos": [
+    "Feiras e eventos",
+    "Kits de integração",
+    "Embalagem de presentes"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "",
+   "descricao_seo": ""
+  },
+  {
+   "produto": "Estojo com acessórios de vinho",
+   "genero": "m",
+   "resumo": "O estojo com tampa articulada e espuma recortada reúne corta-gotas, rolha vedante, bico dosador e termômetro, um conjunto completo para servir vinho. É um presente sofisticado para clientes, executivos e programas de reconhecimento no fim de ano, com a marca aplicada na tampa do estojo e nos detalhes dos acessórios. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Presentes para clientes",
+    "Presentes executivos",
+    "Fim de ano"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Estojo com acessórios de vinho personalizado | TaMa Creative",
+   "descricao_seo": "Estojo com acessórios de vinho com a marca da sua empresa: corta-gotas, rolha, dosador e termômetro. Para clientes e fim de ano. Material sob consulta."
+  },
+  {
+   "produto": "Estojo de escritório",
+   "genero": "m",
+   "resumo": "Um estojo com zíper ajuda a manter canetas, carregadores e pequenos itens organizados na mochila ou na gaveta. É uma peça útil para kits de boas-vindas, presentes de fim de ano e kits de eventos, e pode levar outros brindes dentro, o que facilita a montagem do presente. Cor, material e aplicação da marca são definidos na proposta.",
+   "usos": [
+    "Kits de boas-vindas",
+    "Fim de ano",
+    "Kits de eventos"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "",
+   "descricao_seo": ""
+  },
+  {
+   "produto": "Estojo organizador de tecnologia",
+   "genero": "m",
+   "resumo": "O estojo organizador de tecnologia reúne cabos, carregador e power bank num só lugar, pronto para a mochila ou a mala. Com a marca na tampa, combina com kits de boas-vindas, kits de viagem e presentes para quem trabalha em trânsito. Material, divisórias internas e aplicação da marca são definidos na proposta.",
+   "usos": [
+    "Kits de boas-vindas",
+    "Viagens a trabalho",
+    "Kits corporativos"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Estojo organizador de tecnologia personalizado | TaMa",
+   "descricao_seo": "Estojo organizador para cabos, carregador e power bank, com a marca da sua empresa. Para kits de boas-vindas, viagens e presentes executivos."
+  },
+  {
+   "produto": "Estojo para vinho",
+   "genero": "m",
+   "resumo": "Com alça e espaço para a garrafa, o estojo para vinho transforma o vinho em presente pronto para entregar a clientes, parceiros e lideranças. É uma escolha elegante para fim de ano, datas de relacionamento e kits de vinho. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Kits de vinho",
+    "Presentes para clientes",
+    "Fim de ano"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Estojo para vinho personalizado | TaMa Creative",
+   "descricao_seo": "Estojo para vinho com alça e a marca da sua empresa, para presentear clientes, parceiros e lideranças no fim de ano. Peça uma proposta."
+  },
+  {
+   "produto": "Faca com cabo natural",
+   "genero": "f",
+   "resumo": "Pequena, de lâmina serrilhada e cabo em tom natural, a faca é útil para frutas, frios e petiscos e combina com tábuas e kits de bar. É uma boa peça para kits de churrasco, kits de petiscos, presentes de fim de ano e confraternizações, com a marca aplicada no cabo. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Kits de churrasco",
+    "Presentes de fim de ano",
+    "Confraternizações"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Faca com cabo natural personalizada | TaMa Creative",
+   "descricao_seo": "Faca com cabo natural com a marca da sua empresa, de lâmina serrilhada. Para kits de churrasco, petiscos, confraternizações e fim de ano. Material sob consulta."
+  },
+  {
+   "produto": "Flute com borda dourada",
+   "nome": "Taça flute com borda dourada",
+   "genero": "f",
+   "resumo": "Alta e esguia, a taça flute com filete dourado na borda acompanha o espumante nos brindes de fim de ano, nas inaugurações e nas comemorações de metas. Entra bem em kits para clientes e parceiros, com a marca presente no momento do brinde. Cor, material e aplicação da marca são definidos na proposta.",
+   "usos": [
+    "Brindes de fim de ano",
+    "Inaugurações",
+    "Kits para clientes"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "",
+   "descricao_seo": ""
+  },
+  {
+   "produto": "Fone de ouvido sem fio",
+   "genero": "m",
+   "resumo": "Com estojo de recarga, o fone de ouvido sem fio acompanha a rotina em chamadas, deslocamentos e treinos. A marca vai na tampa do estojo, a parte que fica sempre à vista, e o presente funciona bem para reconhecimento de equipe e fim de ano. Conexão, autonomia e aplicação da marca são confirmadas na proposta.",
+   "usos": [
+    "Presentes executivos",
+    "Reconhecimento de equipe",
+    "Fim de ano"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Fone de ouvido sem fio personalizado | TaMa Creative",
+   "descricao_seo": "Fone de ouvido sem fio com estojo de recarga e a marca da sua empresa na tampa. Para presentes executivos, reconhecimento e fim de ano."
+  },
+  {
+   "produto": "Fone intra-auricular com fio em estojo",
+   "genero": "m",
+   "resumo": "Guardado num estojo quadrado com tampa, o fone intra-auricular com fio chega organizado e fácil de levar para viagens, academias e o escritório. É uma opção prática para kits de boas-vindas, eventos e ações promocionais, com a marca aplicada na tampa do estojo e lembrada sempre que o fone sai da bolsa. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Kits de boas-vindas",
+    "Eventos",
+    "Ações promocionais"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Fone intra-auricular com fio em estojo personalizado | TaMa",
+   "descricao_seo": "Fone intra-auricular com fio em estojo, com a marca da sua empresa e caixinha com tampa. Para kits, eventos e ações promocionais. Material sob consulta."
+  },
+  {
+   "produto": "Frasco de álcool gel",
+   "genero": "m",
+   "resumo": "Pequeno e com tampa flip, o frasco de álcool gel cabe no bolso, na bolsa ou no porta-luvas e mantém a marca presente nos cuidados do dia a dia. É uma opção útil para campanhas de saúde, eventos e kits de boas-vindas, com a marca aplicada no corpo do frasco. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Campanhas de saúde",
+    "Eventos",
+    "Kits de boas-vindas"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Frasco de álcool gel personalizado | TaMa Creative",
+   "descricao_seo": "Frasco de álcool gel com a marca da sua empresa, pequeno e com tampa flip. Para campanhas de saúde, eventos e kits de boas-vindas. Material sob consulta."
+  },
+  {
+   "produto": "Garrafa com compartimento",
+   "genero": "f",
+   "resumo": "Esguia e com um pequeno compartimento rosqueado na base, a garrafa guarda pequenos itens junto com a bebida, para quem vai do escritório para a academia. É um presente útil para kits de boas-vindas, programas de bem-estar e equipes externas. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Kits de boas-vindas",
+    "Programas de bem-estar",
+    "Equipes externas"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Garrafa com compartimento personalizada | TaMa Creative",
+   "descricao_seo": "Garrafa com compartimento rosqueado na base e a marca da sua empresa. Para kits de boas-vindas, bem-estar e equipes externas."
+  },
+  {
+   "produto": "Garrafa esportiva grande",
+   "genero": "f",
+   "resumo": "Grande, com tampa de canudo e alça para carregar, a garrafa esportiva acompanha o dia inteiro de quem treina, viaja ou trabalha em eventos. Funciona bem em programas de bem-estar, semanas de saúde e kits para participantes, deixando a marca à vista. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Programas de bem-estar",
+    "Eventos esportivos",
+    "Kits para participantes"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Garrafa esportiva grande personalizada | TaMa Creative",
+   "descricao_seo": "Garrafa esportiva grande, com tampa de canudo e alça, e a marca da sua empresa. Para programas de bem-estar, eventos esportivos e kits."
+  },
+  {
+   "produto": "Garrafa shaker",
+   "genero": "f",
+   "resumo": "Translúcida, com tampa de rosca e bico flip, a garrafa shaker acompanha treinos, academias e a rotina de quem cuida da alimentação. É uma boa escolha para programas de bem-estar, corridas corporativas, academias parceiras e kits esportivos, com a marca aplicada no corpo e visível a cada treino. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Programas de bem-estar",
+    "Eventos esportivos",
+    "Kits esportivos"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Garrafa shaker personalizada | TaMa Creative",
+   "descricao_seo": "Garrafa shaker com a marca da sua empresa, translúcida, com tampa de rosca e bico flip. Para bem-estar, academias e eventos esportivos. Material sob consulta."
+  },
+  {
+   "produto": "Garrafa slim com alça na tampa",
+   "genero": "f",
+   "resumo": "De corpo liso e slim, com tampa de rosca e alça em laço, a garrafa é fácil de levar pendurada no dedo ou presa à mochila. Funciona bem em kits de boas-vindas, programas de bem-estar e eventos, com a marca em destaque no corpo e a cor escolhida para a identidade da empresa. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Kits de boas-vindas",
+    "Programas de bem-estar",
+    "Eventos"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Garrafa slim com alça na tampa personalizada | TaMa Creative",
+   "descricao_seo": "Garrafa slim com alça na tampa, com a marca da sua empresa, corpo liso e tampa de rosca. Para kits, bem-estar e eventos. Material sob consulta."
+  },
+  {
+   "produto": "Garrafa térmica",
+   "genero": "f",
+   "resumo": "De tampa rosqueada, a garrafa térmica vai da mesa de trabalho para a academia, as viagens e os passeios, levando a marca junto em cada saída. É um presente útil para colaboradores em kits de boas-vindas, programas de bem-estar e ações de fim de ano.",
+   "usos": [
+    "Kits de boas-vindas",
+    "Programas de bem-estar",
+    "Fim de ano"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "",
+   "descricao_seo": ""
+  },
+  {
+   "produto": "Garrafa térmica clássica grande",
+   "genero": "f",
+   "resumo": "Grande, com alça lateral e tampa que vira copo, a garrafa térmica clássica acompanha viagens, obras, acampamentos e longas jornadas de trabalho. É um presente robusto para equipes de campo, programas de reconhecimento e lembranças de fim de ano, com a marca aplicada no corpo e visível em cada pausa. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Equipes de campo",
+    "Viagens e acampamentos",
+    "Presentes de fim de ano"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Garrafa térmica clássica grande personalizada | TaMa",
+   "descricao_seo": "Garrafa térmica clássica grande com a marca da sua empresa, alça lateral e tampa que vira copo. Para equipes de campo e fim de ano. Material sob consulta."
+  },
+  {
+   "produto": "Garrafa térmica com base natural",
+   "genero": "f",
+   "resumo": "Reta e esguia, com a parte de baixo revestida em tom natural, a garrafa térmica tem um visual sóbrio que combina com marcas ligadas a design e sustentabilidade. É uma boa escolha para presentes executivos, kits de boas-vindas e fim de ano, com a marca aplicada no corpo. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Presentes executivos",
+    "Kits de boas-vindas",
+    "Fim de ano"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Garrafa térmica com base natural personalizada | TaMa",
+   "descricao_seo": "Garrafa térmica com base natural, com a marca da sua empresa, corpo esguio e tampa de rosca. Para executivos, kits e fim de ano. Material sob consulta."
+  },
+  {
+   "produto": "Garrafa térmica com display de temperatura na tampa",
+   "genero": "f",
+   "resumo": "A tampa mostra a temperatura num display digital ao toque e o infusor interno removível permite preparar chás, o que faz da garrafa um presente com ar de tecnologia. Combina com kits executivos, lançamentos de produto e presentes de fim de ano para clientes que valorizam peças diferentes no dia a dia. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Kits executivos",
+    "Lançamentos",
+    "Presentes de fim de ano"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Garrafa térmica com display personalizada | TaMa",
+   "descricao_seo": "Garrafa térmica com display de temperatura na tampa, com a marca da sua empresa e infusor removível. Para executivos e lançamentos. Material sob consulta."
+  },
+  {
+   "produto": "Garrafa térmica com revestimento natural",
+   "genero": "f",
+   "resumo": "Com o corpo inteiro revestido em tom natural, a garrafa térmica se destaca entre os brindes e valoriza marcas que comunicam sustentabilidade e bom gosto. Combina com presentes para clientes, programas de reconhecimento e lembranças de fim de ano, com a marca aplicada de forma discreta no revestimento. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Presentes para clientes",
+    "Reconhecimento",
+    "Fim de ano"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Garrafa térmica com revestimento natural personalizada | TaMa",
+   "descricao_seo": "Garrafa térmica com revestimento natural, com a marca da sua empresa e corpo reto todo revestido. Para clientes e fim de ano. Material sob consulta."
+  },
+  {
+   "produto": "Garrafa térmica slim com tampa de botão",
+   "genero": "f",
+   "resumo": "Estreita e com tampa que abre por botão e trava, a garrafa térmica slim cabe na bolsa e no porta-copos do carro e acompanha a rotina inteira. Combina com kits de boas-vindas, programas de bem-estar e presentes para equipes externas, com a marca aplicada no corpo e a cor escolhida para a identidade da empresa. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Kits de boas-vindas",
+    "Programas de bem-estar",
+    "Equipes externas"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Garrafa térmica slim com tampa de botão personalizada | TaMa",
+   "descricao_seo": "Garrafa térmica slim com tampa de botão, com a marca da sua empresa, corpo estreito e trava. Para kits, bem-estar e equipes. Material sob consulta."
+  },
+  {
+   "produto": "Garrafa transparente com capa e tampa natural",
+   "genero": "f",
+   "resumo": "Transparente, com capa protetora colorida na parte de baixo e tampa em tom natural, a garrafa deixa a bebida à vista e tem um visual leve para o dia a dia. Combina com programas de bem-estar, ações de sustentabilidade e kits de boas-vindas, com a cor da capa escolhida para conversar com a marca. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Programas de bem-estar",
+    "Ações de sustentabilidade",
+    "Kits de boas-vindas"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Garrafa transparente com capa personalizada | TaMa",
+   "descricao_seo": "Garrafa transparente com capa e tampa natural, com a marca da sua empresa e capa protetora colorida. Para bem-estar e kits. Material sob consulta."
+  },
+  {
+   "produto": "Guarda-chuva",
+   "genero": "m",
+   "resumo": "Em dia de chuva, poucos brindes são tão bem-vindos quanto um guarda-chuva, que acompanha a saída do escritório ou de um evento. Ele leva a marca para a rua, em lugares de grande circulação, e é indicado para presentes a clientes, convenções e ações de relacionamento.",
+   "usos": [
+    "Presentes para clientes",
+    "Convenções corporativas",
+    "Ações de relacionamento"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "",
+   "descricao_seo": ""
+  },
+  {
+   "produto": "Headphone",
+   "genero": "m",
+   "resumo": "Com arco acolchoado e conchas sobre as orelhas, o headphone acompanha as chamadas e os momentos de foco do dia a dia, no escritório ou em casa. A marca vai na face externa da concha. É um presente para reconhecer equipes e presentear executivos. Conexão, autonomia e aplicação da marca são confirmadas na proposta.",
+   "usos": [
+    "Presentes executivos",
+    "Reconhecimento de equipe",
+    "Home office"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Headphone personalizado | TaMa Creative",
+   "descricao_seo": "Headphone com a marca da sua empresa na concha, para chamadas e foco no trabalho. Presente executivo e de reconhecimento de equipe."
+  },
+  {
+   "produto": "Jogo americano impresso",
+   "genero": "m",
+   "resumo": "Na mesa do restaurante, do hotel ou de um evento corporativo, o jogo americano impresso mostra a marca durante toda a refeição. Pode levar o logotipo, as cores da casa, mensagens ou o próprio cardápio, ajudando a compor uma mesa organizada e com identidade em cada lugar posto.",
+   "usos": [
+    "Atendimento em restaurantes",
+    "Hotéis e pousadas",
+    "Eventos corporativos"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "",
+   "descricao_seo": ""
+  },
+  {
+   "produto": "Jogo americano oval",
+   "genero": "m",
+   "resumo": "O formato oval deixa a mesa mais leve e funciona bem em restaurantes, cafés, hotéis e almoços corporativos. Cada lugar posto exibe a marca de forma discreta, do serviço diário a jantares especiais e eventos. Também é uma opção de presente para clientes e parceiros do setor de gastronomia.",
+   "usos": [
+    "Atendimento em restaurantes",
+    "Almoços corporativos",
+    "Hotéis e pousadas"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "",
+   "descricao_seo": ""
+  },
+  {
+   "produto": "Jogo americano retangular",
+   "genero": "m",
+   "resumo": "Clássico e versátil, o jogo americano retangular organiza a mesa e mantém a identidade da casa à vista em cada refeição. Atende restaurantes, hotéis e refeitórios corporativos, além de eventos com serviço à mesa. Cor, material e aplicação da marca são definidos na proposta.",
+   "usos": [
+    "Restaurantes e bistrôs",
+    "Refeitórios corporativos",
+    "Eventos com jantar"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "",
+   "descricao_seo": ""
+  },
+  {
+   "produto": "Jogo de facas de queijo em estojo",
+   "genero": "m",
+   "resumo": "Com quatro utensílios para queijo acomodados em estojo com berço, o jogo chega pronto para presentear e acompanha mesas de frios e encontros em casa. É uma escolha elegante para presentes de fim de ano, clientes e programas de reconhecimento, com a marca aplicada na tampa do estojo e nos detalhes da apresentação. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Presentes de fim de ano",
+    "Presentes para clientes",
+    "Reconhecimento"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Jogo de facas de queijo em estojo personalizado | TaMa",
+   "descricao_seo": "Jogo de facas de queijo em estojo com a marca da sua empresa, com quatro utensílios em berço. Para clientes, reconhecimento e fim de ano. Material sob consulta."
+  },
+  {
+   "produto": "Kit churrasco em estojo",
+   "genero": "m",
+   "resumo": "Os utensílios de churrasco vêm organizados em um estojo com zíper, prontos para o fim de semana, a confraternização da equipe ou o encontro com clientes. É um presente para fim de ano, reconhecimento de equipe e ações de relacionamento. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Fim de ano",
+    "Confraternizações",
+    "Reconhecimento de equipe"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Kit churrasco em estojo personalizado | TaMa Creative",
+   "descricao_seo": "Kit churrasco em estojo com zíper e a marca da sua empresa. Para presentes de fim de ano, confraternizações e reconhecimento de equipe."
+  },
+  {
+   "produto": "Lacre",
+   "genero": "m",
+   "resumo": "O lacre com o símbolo da marca dá um acabamento cuidadoso a envelopes, cartões e embalagens. É um detalhe pequeno que valoriza kits de fim de ano, convites para eventos e presentes para clientes especiais, marcando a entrega com a identidade da empresa logo no primeiro olhar.",
+   "usos": [
+    "Convites para eventos",
+    "Kits corporativos",
+    "Embalagem de presentes"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "",
+   "descricao_seo": ""
+  },
+  {
+   "produto": "Lápis",
+   "genero": "m",
+   "resumo": "O lápis de corpo cilíndrico claro é um brinde de uso diário, que vai da sala de aula ao escritório e leva a marca a cada anotação ou rascunho. É uma opção acessível para kits escolares, eventos com grande público e conjuntos de papelaria com régua e caderno. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Kits escolares",
+    "Eventos",
+    "Kits de papelaria"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Lápis personalizado | TaMa Creative",
+   "descricao_seo": "Lápis com a marca da sua empresa, de corpo cilíndrico claro. Para kits escolares, eventos com grande público e conjuntos de papelaria. Material sob consulta."
+  },
+  {
+   "produto": "Mochila antifurto",
+   "genero": "f",
+   "resumo": "Com painel frontal liso, sem zíperes aparentes e abertura pelas costas, a mochila antifurto ajuda a proteger notebook e objetos no trajeto e ainda traz entrada USB lateral. É um presente valorizado por executivos, equipes comerciais e quem viaja a trabalho, com a marca aplicada no painel frontal. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Presentes executivos",
+    "Equipes comerciais",
+    "Viagens de trabalho"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Mochila antifurto personalizada | TaMa Creative",
+   "descricao_seo": "Mochila antifurto com a marca da sua empresa, com abertura pelas costas e entrada USB lateral. Para executivos, equipes e viagens. Material sob consulta."
+  },
+  {
+   "produto": "Mochila de ombro",
+   "genero": "f",
+   "resumo": "Compacta e de alça única, a mochila de ombro deixa celular, carteira e documentos à mão em viagens, eventos e no trajeto até o escritório. Funciona bem em kits de boas-vindas, viagens de incentivo e presentes para equipes. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Kits de boas-vindas",
+    "Viagens de incentivo",
+    "Eventos"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Mochila de ombro personalizada | TaMa Creative",
+   "descricao_seo": "Mochila de ombro compacta, de alça única, com a marca da sua empresa. Para kits de boas-vindas, viagens de incentivo e eventos."
+  },
+  {
+   "produto": "Mochila para notebook",
+   "genero": "f",
+   "resumo": "De visual discreto e com bolso frontal com zíper, a mochila para notebook acompanha o dia entre casa, escritório e viagens a trabalho. É um presente marcante para kits de boas-vindas, reconhecimento de equipe e lideranças. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Kits de boas-vindas",
+    "Viagens a trabalho",
+    "Reconhecimento de equipe"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Mochila para notebook personalizada | TaMa Creative",
+   "descricao_seo": "Mochila para notebook com bolso frontal e a marca da sua empresa. Para kits de boas-vindas, viagens a trabalho e reconhecimento."
+  },
+  {
+   "produto": "Mochila roll-top",
+   "genero": "f",
+   "resumo": "Com abertura superior que enrola e fecha por fivela, além de zíper frontal, a mochila roll-top ajusta o volume ao que se leva e tem visual urbano e esportivo. Combina com programas de reconhecimento, kits de boas-vindas e presentes para quem se desloca muito, com a marca aplicada na frente. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Reconhecimento",
+    "Kits de boas-vindas",
+    "Viagens e deslocamentos"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Mochila roll-top personalizada | TaMa Creative",
+   "descricao_seo": "Mochila roll-top com a marca da sua empresa, de abertura enrolável com fivela e zíper frontal. Para reconhecimento e kits de boas-vindas. Material sob consulta."
+  },
+  {
+   "produto": "Mochila saco",
+   "genero": "f",
+   "resumo": "Fechada por cordão, que também faz as vezes de alça, a mochila saco carrega o essencial em feiras, corridas, academias e eventos ao ar livre. É um brinde de grande alcance para campanhas, ativações e kits de participantes, com a marca em destaque nas costas de quem usa. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Feiras e eventos",
+    "Corridas e ativações",
+    "Kits para participantes"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Mochila saco personalizada | TaMa Creative",
+   "descricao_seo": "Mochila saco com cordão e a marca da sua empresa, para feiras, corridas, ativações e kits de participantes. Peça uma proposta à TaMa."
+  },
+  {
+   "produto": "Mochila saco bicolor com bolso frontal",
+   "genero": "f",
+   "resumo": "Com parte superior clara, base em tecido canelado colorido, bolso frontal com zíper e cordões grossos, a mochila saco tem um visual moderno para o dia a dia. É uma boa escolha para kits de boas-vindas, eventos e ações com público jovem, com a marca aplicada na parte clara. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Kits de boas-vindas",
+    "Eventos",
+    "Público jovem"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Mochila saco bicolor com bolso frontal personalizada | TaMa",
+   "descricao_seo": "Mochila saco bicolor com bolso frontal, com a marca da sua empresa, zíper e cordões grossos. Para kits, eventos e público jovem. Material sob consulta."
+  },
+  {
+   "produto": "Mochila saco transparente",
+   "genero": "f",
+   "resumo": "Transparente e com cordões coloridos que servem de alça, a mochila saco deixa o conteúdo à vista e facilita a entrada em estádios, shows e eventos. Funciona bem em kits de evento, ações promocionais e corridas corporativas, com a marca aplicada no corpo e a cor dos cordões escolhida para a ação. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Shows e estádios",
+    "Kits de evento",
+    "Corridas corporativas"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Mochila saco transparente personalizada | TaMa Creative",
+   "descricao_seo": "Mochila saco transparente com a marca da sua empresa e cordões coloridos que servem de alça. Para shows, kits de evento e corridas. Material sob consulta."
+  },
+  {
+   "produto": "Mochila simples com bolso frontal",
+   "genero": "f",
+   "resumo": "Leve e estreita, com alça de mão e bolso frontal com zíper em cor de contraste, a mochila acompanha o dia a dia de estudantes, equipes e participantes de eventos. É uma opção prática para kits de boas-vindas, treinamentos e congressos, com a marca aplicada no bolso ou no corpo. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Kits de boas-vindas",
+    "Treinamentos",
+    "Congressos"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Mochila simples com bolso frontal personalizada | TaMa",
+   "descricao_seo": "Mochila simples com bolso frontal, com a marca da sua empresa, zíper de contraste e alça de mão. Para kits, treinamentos e congressos. Material sob consulta."
+  },
+  {
+   "produto": "Moletom com capuz",
+   "genero": "m",
+   "resumo": "Para os meses mais frios, o moletom com capuz é um presente para o colaborador vestir dentro e fora da empresa, levando a marca junto. Com capuz e bolso canguru, entra bem em kits de boas-vindas, presentes de fim de ano, equipes de eventos e comunidades ligadas à marca.",
+   "usos": [
+    "Kits de boas-vindas",
+    "Presentes de fim de ano",
+    "Equipes de eventos"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "",
+   "descricao_seo": ""
+  },
+  {
+   "produto": "Mouse pad com apoio de punho",
+   "genero": "m",
+   "resumo": "Redondo e com apoio de punho acolchoado na borda, o mouse pad deixa o trabalho no computador mais confortável e mantém a marca na mesa todos os dias. Funciona bem em kits de boas-vindas, home office e programas de bem-estar, com a marca aplicada na superfície e vista em cada dia de trabalho. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Kits de boas-vindas",
+    "Home office",
+    "Programas de bem-estar"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Mouse pad com apoio de punho personalizado | TaMa Creative",
+   "descricao_seo": "Mouse pad com apoio de punho com a marca da sua empresa, redondo e com apoio acolchoado. Para kits de boas-vindas e home office. Material sob consulta."
+  },
+  {
+   "produto": "Nécessaire",
+   "genero": "f",
+   "resumo": "Com zíper e alça lateral, a nécessaire organiza objetos pessoais e acompanha quem viaja ou circula entre casa e escritório. É um presente útil para colaboradores, palestrantes e convidados de eventos, e também pode reunir os itens menores de um kit corporativo. Cor, material e aplicação da marca são definidos na proposta.",
+   "usos": [
+    "Kits para colaboradores",
+    "Presentes para palestrantes",
+    "Viagens corporativas"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "",
+   "descricao_seo": ""
+  },
+  {
+   "produto": "Nécessaire colorida",
+   "genero": "f",
+   "resumo": "Com zíper no alto e cor de destaque, a nécessaire colorida organiza itens pessoais na bolsa, na mala ou na gaveta do escritório. Funciona como presente sozinha ou como embalagem para os itens menores de um kit, em ações de boas-vindas, eventos e datas comemorativas. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Kits de boas-vindas",
+    "Viagens corporativas",
+    "Datas comemorativas"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Nécessaire colorida personalizada | TaMa Creative",
+   "descricao_seo": "Nécessaire colorida com zíper e a marca da sua empresa. Para kits de boas-vindas, viagens corporativas e datas comemorativas."
+  },
+  {
+   "produto": "Pen drive cartão",
+   "genero": "m",
+   "resumo": "No formato de um cartão, o pen drive cartão entrega apresentações, catálogos e materiais de evento já gravados, com uma área ampla para a marca ficar bem à vista. É uma opção prática para feiras, lançamentos e kits de imprensa. Capacidade, acabamento e aplicação da marca são definidos na proposta.",
+   "usos": [
+    "Eventos e feiras",
+    "Lançamentos",
+    "Kits de imprensa"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Pen drive cartão personalizado | TaMa Creative",
+   "descricao_seo": "Pen drive cartão com a marca da sua empresa, para entregar apresentações e catálogos em eventos e feiras. Capacidade definida na proposta."
+  },
+  {
+   "produto": "Pen drive giratório",
+   "genero": "m",
+   "resumo": "A tampa do pen drive giratório gira e protege o conector, sem peça solta para perder no caminho. É uma opção prática para entregar o conteúdo de treinamentos, feiras e campanhas já gravado, com a marca no corpo da peça. Capacidade, cor e aplicação da marca são definidas na proposta.",
+   "usos": [
+    "Treinamentos",
+    "Eventos e feiras",
+    "Campanhas"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Pen drive giratório personalizado | TaMa Creative",
+   "descricao_seo": "Pen drive giratório com a marca da sua empresa: a tampa protege o conector. Para treinamentos, feiras e campanhas. Capacidade definida na proposta."
+  },
+  {
+   "produto": "Pen drive natural",
+   "genero": "m",
+   "resumo": "Com corpo em tom natural e tampa, o pen drive natural tem um visual leve e discreto, que combina com lançamentos e eventos de identidade mais sóbria. Entrega apresentações e materiais já gravados, com a marca em destaque no corpo. Material, capacidade e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Lançamentos",
+    "Eventos e feiras",
+    "Materiais de apresentação"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Pen drive natural personalizado | TaMa Creative",
+   "descricao_seo": "Pen drive em tom natural, com tampa e a marca da sua empresa, para lançamentos e eventos. Material e capacidade são confirmados na proposta."
+  },
+  {
+   "produto": "Petisqueira com divisórias",
+   "genero": "f",
+   "resumo": "Retangular e com divisórias que formam compartimentos, a petisqueira organiza petiscos variados numa única peça e facilita servir em reuniões e encontros. Combina com kits de petiscos, presentes para clientes e confraternizações de fim de ano, com a marca aplicada na borda e vista sempre que a peça vai à mesa. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Kits de petiscos",
+    "Presentes para clientes",
+    "Confraternizações"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Petisqueira com divisórias personalizada | TaMa Creative",
+   "descricao_seo": "Petisqueira com divisórias com a marca da sua empresa, retangular e com compartimentos. Para kits de petiscos, clientes e fim de ano. Material sob consulta."
+  },
+  {
+   "produto": "Petisqueira quadrada",
+   "genero": "f",
+   "resumo": "Quadrada, rasa e com borda elevada, a petisqueira serve frios, castanhas e petiscos em reuniões, coquetéis e encontros em casa. É uma peça útil para kits de petiscos, coquetéis, presentes para clientes e fim de ano, com a marca aplicada na borda ou no fundo e à vista em cada serviço. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Kits de petiscos",
+    "Presentes para clientes",
+    "Fim de ano"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Petisqueira quadrada personalizada | TaMa Creative",
+   "descricao_seo": "Petisqueira quadrada com a marca da sua empresa, rasa e com borda elevada. Para kits de petiscos, coquetéis, clientes e fim de ano. Material sob consulta."
+  },
+  {
+   "produto": "Polo feminina",
+   "genero": "f",
+   "resumo": "A polo feminina personalizada une um visual mais arrumado à praticidade do uniforme, com modelagem feminina. É uma boa escolha para recepção, atendimento ao cliente, equipes comerciais e eventos corporativos, em que a marca precisa aparecer com sobriedade. Cor, material e aplicação da marca são definidos na proposta.",
+   "usos": [
+    "Uniforme de atendimento",
+    "Equipes comerciais",
+    "Eventos corporativos"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "",
+   "descricao_seo": ""
+  },
+  {
+   "produto": "Polo masculina",
+   "genero": "f",
+   "resumo": "Com gola e três botões, a polo masculina personalizada é um uniforme de visual alinhado para equipes que recebem clientes, visitam parceiros ou representam a empresa em feiras. Também funciona em convenções, treinamentos e times de campo, levando a marca de forma discreta e profissional.",
+   "usos": [
+    "Uniforme do dia a dia",
+    "Feiras e convenções",
+    "Equipes comerciais"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "",
+   "descricao_seo": ""
+  },
+  {
+   "produto": "Porta-canetas",
+   "genero": "m",
+   "resumo": "Na mesa de trabalho, o porta-canetas fica sempre à vista e organiza canetas, lápis e marcadores ao longo do dia. O formato quadrado com costura aparente combina com o escritório e com o home office, e faz dele um bom item para kits de boas-vindas, presentes de fim de ano e lembranças para clientes.",
+   "usos": [
+    "Organização da mesa",
+    "Kits de boas-vindas",
+    "Lembranças para clientes"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "",
+   "descricao_seo": ""
+  },
+  {
+   "produto": "Porta-cartão",
+   "genero": "m",
+   "resumo": "Fino e discreto, o porta-cartão protege os cartões de visita no bolso do paletó ou na bolsa e acompanha reuniões, feiras e encontros de negócio. É um presente elegante para lideranças, equipes comerciais e clientes, bom para fim de ano e reconhecimento. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Equipes comerciais",
+    "Presentes executivos",
+    "Feiras e reuniões"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Porta-cartão personalizado | TaMa Creative",
+   "descricao_seo": "Porta-cartão fino com a marca da sua empresa, para cartões de visita. Para equipes comerciais, presentes executivos e feiras."
+  },
+  {
+   "produto": "Porta-contas",
+   "genero": "m",
+   "resumo": "O fechamento da conta também faz parte da experiência. O porta-contas leva a marca do restaurante, bar ou hotel até o último momento do atendimento, entregando a conta com discrição e cuidado. Combina com o cardápio e o jogo americano na mesma linha de cores.",
+   "usos": [
+    "Restaurantes e bares",
+    "Hotéis e resorts",
+    "Cafeterias e bistrôs"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "",
+   "descricao_seo": ""
+  },
+  {
+   "produto": "Porta-copos redondo",
+   "genero": "m",
+   "resumo": "Redondo e fino, o porta-copos em tom natural protege a mesa e leva a marca gravada no centro para escritórios, bares e salas de reunião. Funciona bem em kits de bar e café, presentes de fim de ano e ações de relacionamento, inclusive em jogos com várias peças. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Kits de bar e café",
+    "Escritórios e reuniões",
+    "Presentes de fim de ano"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Porta-copos redondo personalizado | TaMa Creative",
+   "descricao_seo": "Porta-copos redondo com a marca da sua empresa gravada no centro, em tom natural. Para kits de bar e café, escritórios e fim de ano. Material sob consulta."
+  },
+  {
+   "produto": "Porta-lata térmico",
+   "genero": "m",
+   "resumo": "O porta-lata veste a lata e deixa a marca na mão de cada convidado em festas, churrascos, shows e eventos ao ar livre. É um brinde prático para campanhas, ativações e confraternizações de equipe. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Festas e confraternizações",
+    "Eventos ao ar livre",
+    "Ações promocionais"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Porta-lata térmico personalizado | TaMa Creative",
+   "descricao_seo": "Porta-lata térmico com a marca da sua empresa, para festas, churrascos, shows e eventos ao ar livre. Peça uma proposta à TaMa."
+  },
+  {
+   "produto": "Power bank com ventosas",
+   "genero": "m",
+   "resumo": "As ventosas no verso prendem o power bank ao celular, e a recarga segue enquanto o aparelho está em uso: em trânsito, na fila de um evento ou entre reuniões. A marca fica na face frontal, sempre à vista. Capacidade, cabo e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Eventos e ativações",
+    "Campanhas",
+    "Kits de boas-vindas"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Power bank com ventosas personalizado | TaMa Creative",
+   "descricao_seo": "Power bank com ventosas e a marca da sua empresa, que se prende ao celular durante a recarga. Para eventos, ativações e campanhas."
+  },
+  {
+   "produto": "Power bank slim",
+   "genero": "m",
+   "resumo": "Fino o bastante para ir na bolsa ou no bolso, o power bank slim recarrega o celular longe da tomada, em viagens, visitas a clientes e dias de evento. É um presente útil para equipes externas e kits de boas-vindas, com a marca na face maior. Capacidade, saídas e aplicação da marca são confirmadas na proposta.",
+   "usos": [
+    "Kits de boas-vindas",
+    "Equipes externas",
+    "Eventos"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Power bank slim personalizado | TaMa Creative",
+   "descricao_seo": "Power bank slim com a marca da sua empresa, fino para levar na bolsa ou no bolso. Para kits de boas-vindas e eventos. Capacidade sob consulta."
+  },
+  {
+   "produto": "Ramequim",
+   "genero": "m",
+   "resumo": "Redondo, baixo e de parede reta, o ramequim serve molhos, petiscos e porções individuais e completa tábuas e kits de mesa. É uma peça versátil para kits de petiscos, restaurantes parceiros e presentes de fim de ano, com a marca aplicada na lateral e vista a cada porção servida. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Kits de petiscos",
+    "Restaurantes parceiros",
+    "Presentes de fim de ano"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Ramequim personalizado | TaMa Creative",
+   "descricao_seo": "Ramequim com a marca da sua empresa, redondo e baixo, para molhos e petiscos. Para kits de petiscos, restaurantes e fim de ano. Material sob consulta."
+  },
+  {
+   "produto": "Régua",
+   "genero": "f",
+   "resumo": "Reta e com graduação gravada, a régua em tom natural é um item de mesa simples, que acompanha estudos, projetos e o dia a dia do escritório. Combina com kits escolares, ações com estudantes e conjuntos de papelaria ao lado de lápis e cadernos, com a marca aplicada ao longo do corpo. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Kits escolares",
+    "Ações com estudantes",
+    "Kits de papelaria"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Régua personalizada | TaMa Creative",
+   "descricao_seo": "Régua com a marca da sua empresa, em tom natural e com graduação gravada. Para kits escolares, ações com estudantes e escritório. Material sob consulta."
+  },
+  {
+   "produto": "Saca-rolhas tipo garçom",
+   "genero": "m",
+   "resumo": "Dobrável, com lâmina, espiral e alavanca de apoio, o saca-rolhas tipo garçom cabe no bolso e é o acessório clássico de quem aprecia vinho. É um presente certeiro para kits de vinho com acessórios, clientes e fim de ano, com a marca aplicada no corpo e lembrada a cada garrafa aberta. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Kits de vinho",
+    "Presentes para clientes",
+    "Fim de ano"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Saca-rolhas tipo garçom personalizado | TaMa Creative",
+   "descricao_seo": "Saca-rolhas tipo garçom com a marca da sua empresa, dobrável, com lâmina, espiral e alavanca. Para kits de vinho, clientes e fim de ano. Material sob consulta."
+  },
+  {
+   "produto": "Sacola de alça longa",
+   "genero": "f",
+   "resumo": "Com alças longas para levar no ombro, a sacola reúne compras, materiais de evento ou o kit de boas-vindas e continua em uso no dia a dia de quem recebe. É uma base versátil para feiras, congressos e campanhas, com espaço amplo para a marca. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Feiras e congressos",
+    "Kits de boas-vindas",
+    "Campanhas"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Sacola de alça longa personalizada | TaMa Creative",
+   "descricao_seo": "Sacola de alça longa com a marca da sua empresa, para levar no ombro em feiras, congressos, campanhas e kits de boas-vindas."
+  },
+  {
+   "produto": "Sacola metalizada com sanfona",
+   "genero": "f",
+   "resumo": "Com acabamento brilhante e fundo em sanfona, a sacola metalizada chama atenção na entrega de presentes e dá um ar festivo a qualquer kit. É ideal para embalar presentes de fim de ano, lançamentos e brindes de eventos, com a marca aplicada na frente e a cor escolhida para combinar com a ocasião. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Embalagem de presentes",
+    "Fim de ano",
+    "Lançamentos"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Sacola metalizada com sanfona personalizada | TaMa Creative",
+   "descricao_seo": "Sacola metalizada com sanfona, com a marca da sua empresa e acabamento brilhante. Para embalar presentes de fim de ano e lançamentos. Material sob consulta."
+  },
+  {
+   "produto": "Sacola para presente",
+   "genero": "f",
+   "resumo": "Pensada para entregar presentes, esta sacola com alça de cordão completa o kit e leva a marca por onde for carregada. Funciona bem em confraternizações, eventos com clientes, feiras e entregas de fim de ano, garantindo uma apresentação alinhada à identidade da empresa do começo ao fim.",
+   "usos": [
+    "Embalagem de presentes",
+    "Confraternizações",
+    "Feiras e eventos"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "",
+   "descricao_seo": ""
+  },
+  {
+   "produto": "Sacola transparente com almofada inflável",
+   "genero": "f",
+   "resumo": "Transparente e com alças, a sacola vem acompanhada de uma almofada inflável da mesma cor e forma um conjunto pronto para praia, piscina e eventos ao ar livre. Combina com ações de verão, festas de equipe e campanhas promocionais, com a marca aplicada na sacola e na almofada para aparecer em todas as fotos. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Ações de verão",
+    "Eventos ao ar livre",
+    "Campanhas promocionais"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Sacola transparente com almofada inflável personalizada | TaMa",
+   "descricao_seo": "Sacola transparente com almofada inflável, com a marca da sua empresa e alças. Para ações de verão, eventos ao ar livre e campanhas. Material sob consulta."
+  },
+  {
+   "produto": "Saquinho transparente",
+   "genero": "m",
+   "resumo": "Transparente e com zíper, o saquinho deixa o conteúdo à vista e mantém pequenos itens reunidos dentro de um kit. É útil para montar conjuntos de boas-vindas, brindes de eventos e lembranças de treinamentos, com a marca aplicada para identificar a origem do presente.",
+   "usos": [
+    "Kits de boas-vindas",
+    "Brindes de eventos",
+    "Organização de kits"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "",
+   "descricao_seo": ""
+  },
+  {
+   "produto": "Socador de caipirinha",
+   "genero": "m",
+   "resumo": "Cilíndrico e com ponta texturizada, o socador de caipirinha é o acessório essencial de bar e leva a marca para festas, churrascos e encontros de equipe. Combina com kits de bar com acessórios, eventos de marca e presentes de fim de ano, com a marca aplicada ao longo do corpo. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Kits de bar",
+    "Eventos de marca",
+    "Presentes de fim de ano"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Socador de caipirinha personalizado | TaMa Creative",
+   "descricao_seo": "Socador de caipirinha com a marca da sua empresa, de corpo cilíndrico e ponta texturizada. Para kits de bar, eventos e fim de ano. Material sob consulta."
+  },
+  {
+   "produto": "Squeeze",
+   "nome": "Garrafa squeeze",
+   "genero": "f",
+   "resumo": "Translúcida e com bico, a garrafa squeeze é companheira de treinos, corridas e eventos ao ar livre. Combina com ações de bem-estar, semanas de saúde, maratonas corporativas e kits para participantes de eventos esportivos, deixando a marca visível em momentos de movimento. Cor, material e aplicação da marca são definidos na proposta.",
+   "usos": [
+    "Eventos esportivos",
+    "Ações de bem-estar",
+    "Kits para participantes"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "",
+   "descricao_seo": ""
+  },
+  {
+   "produto": "Squeeze dobrável",
+   "genero": "m",
+   "resumo": "Vazio, o squeeze dobrável se recolhe e ocupa pouco espaço na mochila ou na mala, o que o torna prático para viagens, corridas e eventos. É um brinde útil para campanhas de bem-estar, feiras e kits de participantes, com a marca visível sempre que a garrafa está em uso. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Viagens a trabalho",
+    "Eventos esportivos",
+    "Campanhas de bem-estar"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Squeeze dobrável personalizado | TaMa Creative",
+   "descricao_seo": "Squeeze dobrável com a marca da sua empresa: vazio, ocupa pouco espaço na mochila. Para viagens, eventos esportivos e bem-estar."
+  },
+  {
+   "produto": "Squeeze com mosquetão",
+   "genero": "m",
+   "resumo": "Com tampa de rosca e mosquetão para prender na mochila, o squeeze acompanha treinos, trilhas e eventos ao ar livre e leva a marca para onde a equipe vai. É uma opção prática para ações de bem-estar, corridas corporativas e kits de boas-vindas. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Eventos esportivos",
+    "Ações de bem-estar",
+    "Kits de boas-vindas"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Squeeze com mosquetão personalizado | TaMa Creative",
+   "descricao_seo": "Squeeze com tampa de rosca, mosquetão e a marca da sua empresa. Para eventos esportivos, ações de bem-estar e kits de boas-vindas."
+  },
+  {
+   "produto": "Suporte com 5 facas de queijo",
+   "genero": "m",
+   "resumo": "Com cinco facas de queijo expostas lado a lado numa base baixa, o suporte decora a cozinha e deixa os utensílios prontos para a mesa de frios. É um presente sofisticado para clientes, executivos e lembranças de fim de ano, com a marca aplicada na base e sempre à vista na bancada. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Presentes para clientes",
+    "Presentes executivos",
+    "Fim de ano"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Suporte com 5 facas de queijo personalizado | TaMa Creative",
+   "descricao_seo": "Suporte com 5 facas de queijo, com a marca da sua empresa e utensílios expostos numa base baixa. Para clientes, executivos e fim de ano. Material sob consulta."
+  },
+  {
+   "produto": "Suporte de celular",
+   "genero": "m",
+   "resumo": "Na mesa de trabalho, o suporte de celular deixa a tela de pé e à vista para chamadas de vídeo, mensagens e alertas, e mantém a marca no campo de visão o dia inteiro. É um brinde útil para kits de boas-vindas, home office e eventos de tecnologia. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Home office",
+    "Kits de boas-vindas",
+    "Eventos de tecnologia"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Suporte de celular personalizado | TaMa Creative",
+   "descricao_seo": "Suporte de celular de mesa com a marca da sua empresa, útil em chamadas de vídeo e no home office. Para kits de boas-vindas e eventos."
+  },
+  {
+   "produto": "Suporte para canecas",
+   "genero": "m",
+   "resumo": "Base quadrada com rebaixo circular e bordas elevadas, o suporte acomoda a caneca ou o copo na mesa e protege a superfície no dia a dia. É um complemento elegante para kits de café, presentes para clientes e fim de ano, com a marca aplicada na lateral ou no fundo. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Kits de café",
+    "Presentes para clientes",
+    "Fim de ano"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Suporte para canecas personalizado | TaMa Creative",
+   "descricao_seo": "Suporte para canecas com a marca da sua empresa, de base quadrada com rebaixo circular. Para kits de café, clientes e fim de ano. Material sob consulta."
+  },
+  {
+   "produto": "Suporte para utensílios de drinque",
+   "genero": "m",
+   "resumo": "Vertical e em formato de cruz, o suporte organiza colheres, dosadores e pequenos utensílios de drinque no balcão, sempre à vista. É um complemento para kits de bar com acessórios, presentes para clientes e lembranças de fim de ano, com a marca aplicada na base e à vista no balcão de quem recebe. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Kits de bar",
+    "Presentes para clientes",
+    "Fim de ano"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Suporte para utensílios de drinque personalizado | TaMa",
+   "descricao_seo": "Suporte para utensílios de drinque com a marca da sua empresa, em formato de cruz para colheres e dosadores. Para kits de bar. Material sob consulta."
+  },
+  {
+   "produto": "Tábua com cabo e encaixe para copo",
+   "genero": "f",
+   "resumo": "Em formato de raquete e com rebaixo circular para apoiar o copo, a tábua reúne petisco e bebida numa só peça, ideal para degustações e happy hours. Combina com eventos de marca, confraternizações e presentes de fim de ano, com a marca aplicada na tábua e sempre à vista na mesa. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Degustações",
+    "Confraternizações",
+    "Presentes de fim de ano"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Tábua com cabo e encaixe para copo personalizada | TaMa",
+   "descricao_seo": "Tábua com cabo e encaixe para copo, com a marca da sua empresa e rebaixo para apoiar o copo. Para degustações e confraternizações. Material sob consulta."
+  },
+  {
+   "produto": "Tábua de petiscos com cabo",
+   "genero": "f",
+   "resumo": "Retangular e com cabo vazado em formato de raquete, a tábua serve petiscos, frios e pães direto na mesa e leva a marca gravada a cada encontro. É uma escolha útil para kits de churrasco, confraternizações e presentes de fim de ano, com a marca aplicada na tábua. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Kits de churrasco",
+    "Confraternizações",
+    "Presentes de fim de ano"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Tábua de petiscos com cabo personalizada | TaMa Creative",
+   "descricao_seo": "Tábua de petiscos com cabo, com a marca da sua empresa e cabo vazado. Para kits de churrasco, confraternizações e fim de ano. Material sob consulta."
+  },
+  {
+   "produto": "Tábua de queijos com facas",
+   "genero": "f",
+   "resumo": "Tábua e facas de queijo em um só presente, para servir petiscos em casa, em jantares e confraternizações, com a marca presente na mesa. É um presente caloroso para fim de ano, clientes e parceiros, e combina com kits de vinho. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Kits de vinho",
+    "Presentes para clientes",
+    "Fim de ano"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Tábua de queijos com facas personalizada | TaMa Creative",
+   "descricao_seo": "Tábua de queijos com facas e a marca da sua empresa, presente para clientes e parceiros no fim de ano. Combina com kits de vinho."
+  },
+  {
+   "produto": "Tábua de queijos com gaveta e utensílios",
+   "genero": "f",
+   "resumo": "A tábua de queijos guarda quatro utensílios numa gaveta deslizante na base, e o conjunto vai da cozinha para a mesa sem peças soltas. É um presente marcante para clientes, executivos e festas de fim de ano, com a marca aplicada na tábua e à vista sempre que o conjunto vai à mesa. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Presentes para clientes",
+    "Presentes executivos",
+    "Fim de ano"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Tábua de queijos com gaveta e utensílios personalizada | TaMa",
+   "descricao_seo": "Tábua de queijos com gaveta e utensílios, com a marca da sua empresa e quatro peças guardadas na base. Para clientes e fim de ano. Material sob consulta."
+  },
+  {
+   "produto": "Tábua no formato do mapa do Brasil",
+   "genero": "f",
+   "resumo": "Recortada no contorno do mapa do Brasil, a tábua é um presente com identidade nacional, que vai da cozinha para a mesa de petiscos. É uma lembrança marcante para clientes, visitantes estrangeiros, eventos e fim de ano, com a marca aplicada na superfície e um formato que puxa conversa. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Presentes para clientes",
+    "Visitantes estrangeiros",
+    "Fim de ano"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Tábua no formato do mapa do Brasil personalizada | TaMa",
+   "descricao_seo": "Tábua no formato do mapa do Brasil com a marca da sua empresa, recortada no contorno do país. Para clientes, visitantes e fim de ano. Material sob consulta."
+  },
+  {
+   "produto": "Taça coupe canelada",
+   "genero": "f",
+   "resumo": "Com bojo canelado e pé curto, a taça coupe traz um ar clássico ao brinde de fim de ano, à festa da empresa e aos jantares com clientes. Em dupla, é a base do Kit Brinde, com caixa e cartão na identidade da marca. Cor, material e aplicação da marca são definidos na proposta.",
+   "usos": [
+    "Brinde de fim de ano",
+    "Kits de espumante",
+    "Festas da empresa"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "",
+   "descricao_seo": ""
+  },
+  {
+   "produto": "Taça coupe lisa de haste longa",
+   "genero": "f",
+   "resumo": "De bojo largo e raso, haste longa e pé redondo, a taça coupe dá elegância a brindes, coquetéis de lançamento e celebrações de equipe. É uma escolha sofisticada para eventos de marca, presentes de fim de ano e kits de celebração com acessórios de bar. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Coquetéis e lançamentos",
+    "Eventos de marca",
+    "Presentes de fim de ano"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Taça coupe lisa de haste longa personalizada | TaMa Creative",
+   "descricao_seo": "Taça coupe lisa de haste longa com a marca da sua empresa, de bojo largo e pé redondo. Para coquetéis, lançamentos e fim de ano. Material sob consulta."
+  },
+  {
+   "produto": "Taça de champanhe",
+   "nome": "Taça flute",
+   "genero": "f",
+   "resumo": "Alta e esguia, a taça flute é a clássica dos brindes e acompanha inaugurações, lançamentos, festas de fim de ano e comemorações de metas. Pode compor kits de espumante para clientes e parceiros ou ser entregue aos convidados de um evento, levando a marca para o momento do brinde. Cor, material e aplicação da marca são definidos na proposta.",
+   "usos": [
+    "Brindes de lançamento",
+    "Festas da empresa",
+    "Kits de espumante"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "",
+   "descricao_seo": ""
+  },
+  {
+   "produto": "Taça de gin",
+   "nome": "Taça de gin colorida",
+   "genero": "f",
+   "resumo": "Inteira na mesma cor, do bojo ao pé, a taça de gin colorida traz clima de celebração para confraternizações, lançamentos e encontros com clientes. Também enriquece kits de drinks e presentes de fim de ano, levando a marca para momentos de brinde e para a casa de quem recebe. Cor, material e aplicação da marca são definidos na proposta.",
+   "usos": [
+    "Kits de drinks",
+    "Confraternizações",
+    "Fim de ano"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "",
+   "descricao_seo": ""
+  },
+  {
+   "produto": "Taça de gin com borda dourada",
+   "genero": "f",
+   "resumo": "O filete dourado na borda dá à taça de gin um acabamento de festa, pensado para o brinde de fim de ano e para presentes a clientes e parceiros. Também compõe kits de drinks com caixa e cartão na identidade da empresa. Cor, material e aplicação da marca são definidos na proposta.",
+   "usos": [
+    "Presentes para clientes",
+    "Brinde de fim de ano",
+    "Kits de drinks"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "",
+   "descricao_seo": ""
+  },
+  {
+   "produto": "Taça de gin com pé colorido",
+   "genero": "f",
+   "resumo": "O bojo transparente se apoia num pé colorido, escolhido entre as cores de referência. É uma escolha para festas de fim de ano, eventos e lançamentos em que a mesa de drinks também fala a língua visual da empresa. Cor, material e aplicação da marca são definidos na proposta.",
+   "usos": [
+    "Festas de fim de ano",
+    "Eventos",
+    "Lançamentos"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "",
+   "descricao_seo": ""
+  },
+  {
+   "produto": "Taça de gin degradê",
+   "genero": "f",
+   "resumo": "A cor corre em degradê do bojo ao pé e faz da taça uma peça de presença na mesa e nas fotos do evento. Combina com lançamentos, festas de fim de ano e kits de drinks para clientes e equipes. Cor, material e aplicação da marca são definidos na proposta.",
+   "usos": [
+    "Lançamentos",
+    "Festas de fim de ano",
+    "Kits de drinks"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "",
+   "descricao_seo": ""
+  },
+  {
+   "produto": "Taça de gin transparente",
+   "genero": "f",
+   "resumo": "Com bojo largo e transparente, esta taça de gin deixa espaço para a marca aparecer junto com as cores do drink. Acompanha confraternizações, lançamentos e kits de drinks para clientes, levando a marca para os momentos de celebração. Cor, material e aplicação da marca são definidos na proposta.",
+   "usos": [
+    "Kits de drinks",
+    "Confraternizações",
+    "Lançamentos"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "",
+   "descricao_seo": ""
+  },
+  {
+   "produto": "Taça de vinho",
+   "genero": "f",
+   "resumo": "Ideal para brindar conquistas, a taça de vinho marca jantares de fim de ano, eventos com clientes e celebrações de equipe. Combina com kits de vinho e presentes para parceiros e diretoria, deixando a marca associada a um momento de reconhecimento. Cor, material e aplicação da marca são definidos na proposta.",
+   "usos": [
+    "Kits de vinho",
+    "Jantares de confraternização",
+    "Presentes para parceiros"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "",
+   "descricao_seo": ""
+  },
+  {
+   "produto": "Taça margarita",
+   "genero": "f",
+   "resumo": "O bojo largo em dois níveis é o que identifica a taça margarita, que leva clima de festa a confraternizações, lançamentos e eventos com clientes. Também entra no Kit Coquetel, ao lado da taça martini, da taça de gin e do copo long drink. Cor, material e aplicação da marca são definidos na proposta.",
+   "usos": [
+    "Kits de coquetel",
+    "Confraternizações",
+    "Eventos com clientes"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "",
+   "descricao_seo": ""
+  },
+  {
+   "produto": "Taça martini",
+   "genero": "f",
+   "resumo": "Com bojo em cone e haste longa, a taça martini tem o desenho clássico da coquetelaria. Faz parte do Kit Coquetel e acompanha happy hours, confraternizações e lançamentos, com a marca presente no momento do drink. Cor, material e aplicação da marca são definidos na proposta.",
+   "usos": [
+    "Kits de coquetel",
+    "Happy hours",
+    "Confraternizações"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "",
+   "descricao_seo": ""
+  },
+  {
+   "produto": "Toalha de rosto",
+   "genero": "f",
+   "resumo": "Pequena e felpuda, a toalha de rosto tem área para personalização e acompanha academias, viagens e o dia a dia de quem recebe. Combina com programas de bem-estar, kits de hotelaria, eventos esportivos e presentes para equipes, com a marca aplicada na área de personalização. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Programas de bem-estar",
+    "Hotelaria",
+    "Eventos esportivos"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Toalha de rosto personalizada | TaMa Creative",
+   "descricao_seo": "Toalha de rosto com a marca da sua empresa, felpuda e com área para personalização. Para bem-estar, hotelaria e eventos esportivos. Material sob consulta."
+  },
+  {
+   "produto": "Troféu recortado com base",
+   "genero": "m",
+   "resumo": "A placa recortada no contorno da arte e fixada numa base escura transforma o desenho da campanha ou o mascote da empresa num troféu exclusivo. É ideal para premiações internas, programas de reconhecimento e encerramento de campanhas e eventos, com a arte desenvolvida junto com a equipe da empresa. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Premiações internas",
+    "Reconhecimento",
+    "Encerramento de campanhas"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Troféu recortado com base personalizado | TaMa Creative",
+   "descricao_seo": "Troféu recortado com base, com a marca da sua empresa e a arte recortada no contorno. Para premiações, reconhecimento e campanhas. Material sob consulta."
+  },
+  {
+   "produto": "Vela",
+   "nome": "Vela aromática em copo",
+   "genero": "f",
+   "resumo": "Presente que acolhe, a vela aromática em copo leva a marca para um momento de pausa de quem recebe, em casa ou no escritório. Combina com kits de fim de ano, ações de bem-estar para colaboradores e agradecimentos a clientes e parceiros. A cinta pode trazer o nome ou a marca da empresa. Fragrância, cor e materiais são definidos na proposta.",
+   "usos": [
+    "Presentes de fim de ano",
+    "Ações de bem-estar",
+    "Agradecimento a clientes"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "",
+   "descricao_seo": ""
+  },
+  {
+   "produto": "Xícara de café com pires",
+   "genero": "f",
+   "resumo": "Pequena e acompanhada do pires, a xícara de café serve o espresso em salas de reunião, recepções e cafés de hotel, levando a marca a cada pausa. Também compõe kits de café para clientes e presentes de fim de ano. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Salas de reunião",
+    "Kits de café",
+    "Hotéis e cafés"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Xícara de café com pires personalizada | TaMa Creative",
+   "descricao_seo": "Xícara de café com pires e a marca da sua empresa, para salas de reunião, recepções, hotéis e kits de café. Peça uma proposta à TaMa."
+  },
+  {
+   "produto": "Xícara de chá com pires",
+   "genero": "f",
+   "resumo": "De formato elegante e com pires, a xícara de chá cria um momento de pausa em recepções, hotéis e encontros com clientes, com a marca presente de forma delicada. Combina com kits de chá, presentes de fim de ano e ações de bem-estar para colaboradores. Material, medidas e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Kits de chá",
+    "Recepções e hotéis",
+    "Presentes de fim de ano"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Xícara de chá com pires personalizada | TaMa Creative",
+   "descricao_seo": "Xícara de chá com pires e a marca da sua empresa, de formato elegante. Para recepções, hotéis, kits de chá e presentes de fim de ano."
+  }
+ ]
+}

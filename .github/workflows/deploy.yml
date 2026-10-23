@@ -28,8 +28,10 @@ jobs:
           key: img-${{ hashFiles('img/**') }}
           restore-keys: img-
       - run: pip install -r requirements.txt
-      - name: Gerar o site
-        run: python build.py
+      # Testes de fluxo sobre os dados de teste (tests/fixtures/dados): a edição de produtos e kits pelo cliente no
+      # /admin/inventario/ não trava a publicação. O site que vai ao ar é gerado depois, com src/data/.
+      - name: Gerar o site com os dados de teste
+        run: TAMA_DADOS=tests/fixtures/dados python build.py
       # Checagens antes de publicar: se qualquer uma falhar, nem a branch deploy nem a imagem são atualizadas.
       - name: Testes de fluxo (tests/e2e.mjs, Chrome do runner, envio do formulário interceptado)
         run: |
@@ -37,6 +39,9 @@ jobs:
           python -m http.server 8099 --directory dist >/dev/null 2>&1 &
           sleep 2
           EDGE_PATH=/usr/bin/google-chrome node tests/e2e.mjs http://127.0.0.1:8099
+          kill %1 2>/dev/null || true
+      - name: Gerar o site com os dados reais (o que vai ao ar; o build valida produtos, modelos, seleções e kits)
+        run: python build.py
       - name: Montar contexto da imagem
         run: |
           mkdir -p ctx/deploy

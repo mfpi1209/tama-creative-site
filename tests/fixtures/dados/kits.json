@@ -1,0 +1,265 @@
+{
+ "observacao": "Kits do site (home, /kits-corporativos/ e /brindes-de-fim-de-ano/), editados em /admin/inventario/ › Kits. foto = nome da imagem em img/v2/ (sem extensão); marca_ficticia vazia = foto com a marca TaMa. situacao \"fora\" tira o kit de todas as páginas. novo: true = kit recém-criado, a aprovar no inventário.",
+ "kits": [
+  {
+   "slug": "gelato-experience",
+   "nome": "Gelato Experience",
+   "descricao": "Duas taças, duas colheres longas, colher de servir e três toppings. Caixa e cartão personalizados.",
+   "foto": "kitp-gelato-experience-v3",
+   "marca_ficticia": "Nexo",
+   "cor_caixa": "caixa redonda azul-petróleo",
+   "situacao": "no_site",
+   "foto_anterior": "kitp-gelato-experience-v2",
+   "marca_anterior": "Nexo",
+   "cor_caixa_anterior": "caixa azul-petróleo"
+  },
+  {
+   "slug": "mesa-de-descobertas",
+   "nome": "Mesa de Descobertas",
+   "descricao": "Bandeja, dois potinhos, espátula, faca, geleia e mel. Caixa e cartões de harmonização.",
+   "foto": "kitp-mesa-de-descobertas-v3",
+   "marca_ficticia": "Elo",
+   "cor_caixa": "caixa em tom natural com lousa",
+   "situacao": "no_site",
+   "foto_anterior": "kitp-mesa-de-descobertas-v2",
+   "marca_anterior": "Elo",
+   "cor_caixa_anterior": "caixa grafite"
+  },
+  {
+   "slug": "kit-pratico",
+   "nome": "Kit Prático",
+   "descricao": "Bloco de notas, kit mouse, porta-trecos, porta-lápis, estojo e embalagem personalizada.",
+   "foto": "kitp-kit-pratico-v2",
+   "marca_ficticia": "Pulso",
+   "cor_caixa": "peças azul-marinho e caixa creme",
+   "situacao": "no_site"
+  },
+  {
+   "slug": "em-movimento",
+   "nome": "Em Movimento",
+   "descricao": "Mochila, nécessaire, pasta executiva, tag de mala e porta-passaporte.",
+   "foto": "kitp-em-movimento-v2",
+   "marca_ficticia": "Flora",
+   "cor_caixa": "peças verde-oliva e mochila preta",
+   "situacao": "no_site"
+  },
+  {
+   "slug": "pausa-e-inspiracao",
+   "nome": "Pausa e Inspiração",
+   "descricao": "Caderno com amarração, vela em copo com cinta, caixa e cartão.",
+   "foto": "kitp-pausa-e-inspiracao-v2",
+   "marca_ficticia": "Orla",
+   "cor_caixa": "caixa creme e peças azul-acinzentadas",
+   "situacao": "no_site"
+  },
+  {
+   "slug": "kit-escritorio",
+   "nome": "Kit Escritório",
+   "descricao": "Caderno com elástico, caneta, caneca com alça clara e porta-copo, na caixa preta com berço.",
+   "foto": "kitp-kit-escritorio",
+   "marca_ficticia": "",
+   "cor_caixa": "",
+   "situacao": "no_site"
+  },
+  {
+   "slug": "kit-cafe",
+   "nome": "Kit Café",
+   "descricao": "Garrafa térmica e quatro xícaras com pires, na caixa terracota com berço.",
+   "foto": "kitp-kit-cafe",
+   "marca_ficticia": "",
+   "cor_caixa": "",
+   "situacao": "no_site"
+  },
+  {
+   "slug": "kit-conectado",
+   "nome": "Kit Conectado",
+   "descricao": "Fone de ouvido sem fio com estojo, garrafa com tampa clara e caneca, na caixa azul-marinho com berço.",
+   "foto": "kitp-kit-conectado",
+   "marca_ficticia": "",
+   "cor_caixa": "",
+   "situacao": "no_site"
+  },
+  {
+   "slug": "kit-executivo-verde",
+   "nome": "Kit Executivo",
+   "descricao": "Caderno com capa de fecho, caneta e garrafa térmica, na caixa verde-escura com berço.",
+   "foto": "kitp-kit-executivo-verde",
+   "marca_ficticia": "",
+   "cor_caixa": "",
+   "situacao": "no_site"
+  },
+  {
+   "slug": "kit-petiscos",
+   "nome": "Kit Petiscos",
+   "descricao": "Petisqueira redonda com quatro divisórias, na caixa clara com palha decorativa.",
+   "foto": "kitp-kit-petiscos",
+   "marca_ficticia": "",
+   "cor_caixa": "",
+   "situacao": "no_site"
+  },
+  {
+   "slug": "kit-boas-vindas-tech",
+   "nome": "Kit Boas-vindas Conectado",
+   "descricao": "Para receber quem chega: caderneta, caneta, copo com tampa, fone de ouvido sem fio com estojo, power bank e caixa de som.",
+   "foto": "kits-header-v3",
+   "marca_ficticia": "Lume",
+   "cor_caixa": "caixa grafite com berço claro",
+   "situacao": "no_site",
+   "novo": true
+  },
+  {
+   "slug": "kit-cozinha",
+   "nome": "Kit Cozinha",
+   "descricao": "Para quem gosta de cozinhar e receber: tábua com facas de queijo, potinhos e avental.",
+   "foto": "kitp-kit-cozinha",
+   "marca_ficticia": "Brasa",
+   "cor_caixa": "caixa verde-oliva com berço",
+   "situacao": "no_site",
+   "novo": true
+  },
+  {
+   "slug": "kit-agradecimento",
+   "nome": "Kit de Agradecimento",
+   "descricao": "Cartão \"Obrigado\", vela em copo, caneca e caderno pequeno, para agradecer clientes, parceiros e equipes.",
+   "foto": "kitp-kit-agradecimento",
+   "marca_ficticia": "Aura",
+   "cor_caixa": "caixa azul-acinzentada com berço",
+   "situacao": "no_site",
+   "novo": true
+  },
+  {
+   "slug": "kit-caipirinha",
+   "nome": "Kit Caipirinha",
+   "descricao": "Coqueteleira, socador, tábua pequena, faca e dois copos baixos. Sem bebida: acessórios para preparar.",
+   "foto": "kitp-kit-caipirinha",
+   "marca_ficticia": "Vila",
+   "cor_caixa": "caixa em tom natural com tampa",
+   "situacao": "no_site",
+   "novo": true
+  },
+  {
+   "slug": "kit-gin",
+   "nome": "Kit Gin",
+   "descricao": "Duas taças de gin, colher bailarina, dosador e potinhos para especiarias. Sem bebida: acessórios para preparar.",
+   "foto": "kitp-kit-gin",
+   "marca_ficticia": "Noa",
+   "cor_caixa": "caixa preta com berço",
+   "situacao": "no_site",
+   "novo": true
+  },
+  {
+   "slug": "kit-vinho",
+   "nome": "Kit Vinho",
+   "descricao": "Duas taças de vinho, saca-rolhas e tampa para a garrafa. Sem bebida: acessórios para servir.",
+   "foto": "kitp-kit-vinho",
+   "marca_ficticia": "Terra",
+   "cor_caixa": "caixa café com berço",
+   "situacao": "no_site",
+   "novo": true
+  },
+  {
+   "slug": "kit-brinde",
+   "nome": "Kit Brinde",
+   "descricao": "Duas taças coupe caneladas, caixa rígida com berço e cartão personalizado.",
+   "foto": "kitp-kit-brinde",
+   "marca_ficticia": "",
+   "cor_caixa": "",
+   "situacao": "no_site"
+  },
+  {
+   "slug": "kit-coquetel",
+   "nome": "Kit Coquetel",
+   "descricao": "Taça martini, taça margarita, taça de gin e copo long drink, com caixa e cartão.",
+   "foto": "kitp-kit-coquetel",
+   "marca_ficticia": "",
+   "cor_caixa": "",
+   "situacao": "no_site"
+  }
+ ],
+ "home": [
+  "gelato-experience",
+  "mesa-de-descobertas",
+  "kit-pratico",
+  "em-movimento",
+  "pausa-e-inspiracao"
+ ],
+ "fim_de_ano": [
+  "kit-brinde",
+  "kit-coquetel",
+  "kit-caipirinha",
+  "kit-gin",
+  "kit-vinho",
+  "kit-cafe",
+  "kit-petiscos"
+ ],
+ "tipos": [
+  {
+   "ancora": "kits-escritorio",
+   "titulo": "Kit escritório",
+   "linha": "Peças de mesa e de uso diário para a rotina de trabalho, com a marca da sua empresa.",
+   "kits": [
+    "kit-escritorio",
+    "kit-pratico"
+   ]
+  },
+  {
+   "ancora": "kits-cozinha",
+   "titulo": "Kit cozinha",
+   "linha": "Para receber à mesa: peças para servir, harmonizar e compartilhar.",
+   "kits": [
+    "kit-cozinha",
+    "mesa-de-descobertas",
+    "gelato-experience",
+    "kit-petiscos"
+   ]
+  },
+  {
+   "ancora": "kits-boas-vindas",
+   "titulo": "Kit boas-vindas",
+   "linha": "Peças úteis desde o primeiro dia, para quem chega se sentir parte da equipe.",
+   "kits": [
+    "kit-boas-vindas-tech",
+    "kit-conectado",
+    "kit-pratico"
+   ]
+  },
+  {
+   "ancora": "kits-executivo",
+   "titulo": "Kit executivo",
+   "linha": "Para lideranças, clientes especiais e quem viaja a trabalho.",
+   "kits": [
+    "kit-executivo-verde",
+    "em-movimento"
+   ]
+  },
+  {
+   "ancora": "kits-pausa",
+   "titulo": "Kit pausa",
+   "linha": "Para o café, a leitura e um momento de pausa no meio do dia.",
+   "kits": [
+    "pausa-e-inspiracao",
+    "kit-cafe"
+   ]
+  },
+  {
+   "ancora": "kits-agradecimento",
+   "titulo": "Kit de agradecimento",
+   "linha": "Para agradecer clientes, parceiros e equipes, com a mensagem da sua empresa no cartão.",
+   "kits": [
+    "kit-agradecimento"
+   ]
+  },
+  {
+   "ancora": "kits-fim-de-ano",
+   "titulo": "Kit fim de ano",
+   "linha": "Para brindar com clientes e equipes; os kits de drinque e de vinho trazem os acessórios, sem bebida.",
+   "kits": [
+    "kit-brinde",
+    "kit-coquetel",
+    "kit-caipirinha",
+    "kit-gin",
+    "kit-vinho"
+   ]
+  }
+ ]
+}

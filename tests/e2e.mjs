@@ -850,7 +850,7 @@ try {
   await ip.click('[data-tab="alteracoes"]');
   const mud = await ip.$$eval('.mudancas li', l => l.map(x => x.querySelector('.tag').textContent + ': ' + x.querySelector('p').textContent));
   // as cores antigas saem e a nova entra (como "Novo"): o modelo continua no site, então a linha é "Alterado" com o detalhe
-  ok(mud.length === 1 && /^Alterado: Caneca: 1 cor\/foto nova, \d+ cores saem do site, textos e destaques$/.test(mud[0]) && await ip.$eval('#barra-texto', b => b.textContent === '1 alteração não publicada'),
+  ok(mud.length === 1 && /^Alterado: Caneca: 1 cor\/foto nova, \d+ cores saem do site, textos e destaques$/.test(mud[0]) && await ip.$eval('#barra-texto', b => b.textContent.startsWith('1 alteração não publicada')),
      `alterações: uma linha para a Caneca com o que entra e o que sai, também na barra do topo (${mud.join(' | ')})`);
   // material no nome com material não confirmado: erro e publicação bloqueada (mesma regra do build)
   await ip.click('[data-tab="produtos"]');
@@ -873,6 +873,26 @@ try {
   await ip.click('#gaveta-fechar');
   await ip.click('[data-tab="alteracoes"]');
   ok(await ip.$$eval('.mudancas li p', l => l.some(x => /Kit sai do site: Kit Gin/.test(x.textContent))) && !(await ip.$('.erros')), 'kits: "Kit sai do site" na lista, sem erros');
+  // kit novo: precisa dizer onde aparece (tipo, home ou fim de ano); sem isso, não é criado
+  await ip.click('[data-tab="kits"]');
+  await ip.click('#novo-kit');
+  await ip.waitForSelector('#nk-nome');
+  await ip.type('#nk-nome', 'Kit Teste Inventário');
+  await ip.type('#nk-desc', 'Caneca, caderno e caneta na caixa com berço.');
+  await ip.evaluate(async () => {
+    const c = document.createElement('canvas'); c.width = 1500; c.height = 1000; const x = c.getContext('2d'); x.fillStyle = '#EEE'; x.fillRect(0, 0, 1500, 1000);
+    const dt = new DataTransfer(); dt.items.add(new File([await new Promise(r => c.toBlob(r, 'image/png'))], 'kit.png', { type: 'image/png' }));
+    const inp = document.getElementById('nk-arq'); inp.files = dt.files; inp.dispatchEvent(new Event('change'));
+  });
+  await ip.waitForFunction(() => !document.getElementById('nk-ok').disabled);
+  await ip.click('#nk-ok'); await sleep(200);
+  const semLugar = await ip.evaluate(() => window.TAMA_INVENTARIO.estado().ops.some(o => o.t === 'kit_novo'));
+  await ip.click('[data-nktipo="kits-escritorio"]');
+  await ip.click('#nk-ok'); await sleep(300);
+  const kitOps = await ip.evaluate(() => window.TAMA_INVENTARIO.estado().ops.filter(o => /^kit_(novo|lista)$/.test(o.t) && o.slug !== 'kit-gin').map(o => o.t + ':' + (o.ancora || o.lista || '')));
+  ok(!semLugar && kitOps.join() === 'kit_novo:,kit_lista:kits-escritorio' && await ip.$('#k-nome'), `kit novo: sem marcar onde aparece não é criado; com o tipo marcado, entra no Kit escritório (${kitOps.join()})`);
+  await ip.click('#gaveta-fechar');
+  await ip.click('[data-tab="alteracoes"]');
   // publicar (local): os JSON gravados mantêm o formato do repositório e só mudam o necessário
   await ip.click('#pub-ok');
   await ip.waitForFunction(() => document.getElementById('status').classList.contains('ok'), { timeout: 15000 });
@@ -887,6 +907,9 @@ try {
      `publicar: Caneca sai do site (todas as fotos "retirada") e a cor nova entra com a foto em ${assets[0] || '?'}`);
   ok(arqs['src/data/modelos.json'] && JSON.parse(arqs['src/data/modelos.json']).modelos.find(m => m.produto === 'Caneca').resumo === 'Resumo de teste.' && (kitsNovo.kits || []).find(k => k.slug === 'kit-gin')?.situacao === 'fora',
      'publicar: resumo em modelos.json e "fora" do Kit Gin em kits.json');
+  const kitTeste = (kitsNovo.kits || []).find(k => k.slug === 'kit-teste-inventario');
+  ok(kitTeste && kitTeste.novo === true && (kitsNovo.tipos || []).find(x => x.ancora === 'kits-escritorio').kits.includes('kit-teste-inventario') && assets.some(a => a === 'img/v2/' + kitTeste.foto + '.webp' || a === 'img/v2/' + kitTeste.foto + '.png'),
+     'publicar: kit novo em kits.json, na seção Kit escritório, com a foto em img/v2/');
   ok(novoP.length > origP.length && novoP.length - origP.length < 40 && arqs['src/data/produtos.json'].endsWith('}\n') && origP.slice(0, 20).join('\n') === novoP.slice(0, 20).join('\n'),
      'publicar: produtos.json no mesmo formato (indentação 1, quebra no fim), só com as linhas da cor nova e das situações');
   ok(await ip.$eval('#barra', b => b.hidden) && await ip.evaluate(() => !localStorage.getItem('tama-inventario-rascunho')), 'depois de publicar: barra de pendências some e o rascunho do navegador é apagado');

@@ -416,7 +416,7 @@
     salvarRascunho();
     var n = mudancas().length;
     $('barra').hidden = !n;
-    $('barra-texto').textContent = n ? plural(n, 'alteração não publicada', 'alterações não publicadas') : '';
+    $('barra-texto').textContent = n ? plural(n, 'alteração não publicada', 'alterações não publicadas') + ': nada muda no site até clicar em Publicar' : '';
     $('n-alt').hidden = !n; $('n-alt').textContent = n;
     desenhar();
   }
@@ -802,7 +802,8 @@
           (imagemKit(k) ? '<img src="' + esc(imagemKit(k)) + '" alt="" loading="lazy">' : '<span class="small muted">sem foto</span>') + '</span>' +
           '<span class="info"><span class="nome">' + esc(k.nome) + '</span><span class="meta">' + esc(x.tipos.map(function (t) { return t.titulo; }).join(' · ') || 'sem tipo') + '</span>' +
           '<span class="tags">' + etiqueta(!x.noSite ? { rotulo: 'Fora do site', cls: 'fora' } : x.novo ? { rotulo: 'Novo', cls: 'novo' } : { rotulo: 'No site', cls: 'site' }) +
-          (x.home ? etiqueta({ rotulo: 'Home', cls: '' }) : '') + (x.fim ? etiqueta({ rotulo: 'Fim de ano', cls: '' }) : '') + (pend ? etiqueta({ rotulo: 'Alterado', cls: 'alterado' }) : '') + '</span></span></button>';
+          (x.home ? etiqueta({ rotulo: 'Home', cls: '' }) : '') + (x.fim ? etiqueta({ rotulo: 'Fim de ano', cls: '' }) : '') +
+          (x.noSite && !x.home && !x.fim && !x.tipos.length ? etiqueta({ rotulo: 'Sem página', cls: 'trocar' }) : '') + (pend ? etiqueta({ rotulo: 'Alterado', cls: 'alterado' }) : '') + '</span></span></button>';
       }).join('') + '</div>' : '<p class="vazio">Nenhum kit com esse filtro.</p>');
     var busca = $('busca-k');
     busca.oninput = function () { S.kfiltro.q = busca.value; desenharKits(); };
@@ -867,6 +868,10 @@
         campo('nk-desc', 'Descrição', '<textarea id="nk-desc" placeholder="Peças e caixa, sem material."></textarea>') +
         '<div class="linha">' + campo('nk-marca', 'Marca na foto', texto('nk-marca', '', ' placeholder="vazio = marca TaMa"')) + campo('nk-caixa', 'Cor da caixa na foto', texto('nk-caixa', '')) + '</div>' +
         '<div class="solta" id="nk-solta"><p style="margin:0 0 8px">Foto do kit</p>' + upload('nk-arq', 'Escolher foto') + '<p class="dica">Horizontal (3:2), de preferência 1920 px.</p></div>' +
+        '<div class="campo" style="margin-top:14px"><label>Onde o kit aparece (marque pelo menos um)</label><div class="checks" style="margin-bottom:8px">' +
+        '<label><input type="checkbox" id="nk-home"> Home</label><label><input type="checkbox" id="nk-fim"> Página de fim de ano</label></div>' +
+        '<div class="checks">' + (S.atual.kits.tipos || []).map(function (t) { return '<label><input type="checkbox" data-nktipo="' + esc(t.ancora) + '"> ' + esc(t.titulo) + '</label>'; }).join('') + '</div>' +
+        '<p class="dica">Os tipos são as seções de /kits-corporativos/. Sem nenhuma marcação, o kit não aparece em página nenhuma.</p></div>' +
         '<p class="rodape-gaveta" style="margin-top:12px"><button type="button" class="btn" id="nk-ok" disabled>Criar kit</button></p></div>';
       var foto = null;
       $('nk-arq').onchange = function () {
@@ -878,12 +883,19 @@
       };
       $('nk-ok').onclick = function () {
         var nome = $('nk-nome').value.trim(), desc = $('nk-desc').value.trim(), s = slug(nome);
+        var tiposMarcados = Array.prototype.filter.call(document.querySelectorAll('[data-nktipo]'), function (c) { return c.checked; }).map(function (c) { return c.dataset.nktipo; });
         if (!nome || !desc) { alert('Preencha o nome e a descrição.'); return; }
+        if (!tiposMarcados.length && !$('nk-home').checked && !$('nk-fim').checked) { alert('Marque onde o kit aparece: um tipo de kit, a home ou a página de fim de ano.'); return; }
         if ((S.atual.kits.kits || []).some(function (k) { return k.slug === s; })) { alert('Já existe um kit com esse nome.'); return; }
         var arq = 'kit-' + s + '-' + new Date().toISOString().replace(/[-:T]/g, '').slice(0, 12);
         guardarArquivo('img/v2/' + arq + '.' + foto.ext, foto, arq);
         registrar({ chave: 'kitnovo:' + s, alvo: 'kit:' + s, t: 'kit_novo', kit: { slug: s, nome: nome, descricao: desc, foto: arq,
-          marca_ficticia: $('nk-marca').value.trim(), cor_caixa: $('nk-caixa').value.trim(), situacao: 'no_site', novo: true } });
+          marca_ficticia: $('nk-marca').value.trim(), cor_caixa: $('nk-caixa').value.trim(), situacao: 'no_site', novo: true } }, true);
+        var lista = function (nomeL, ancora) { registrar({ chave: 'kitl:' + s + ':' + nomeL + ':' + (ancora || ''), alvo: 'kit:' + s, t: 'kit_lista', slug: s, lista: nomeL, ancora: ancora, dentro: true }, true); };
+        if ($('nk-home').checked) lista('home');
+        if ($('nk-fim').checked) lista('fim_de_ano');
+        tiposMarcados.forEach(function (a) { lista('tipo', a); });
+        recalcular();
         abrirKit(s);
       };
     });
@@ -902,20 +914,28 @@
     recalcular();
   }
 
+  // kits "no site" que não estão em nenhuma lista: não aparecem em página nenhuma (aviso, não bloqueia)
+  function kitsSemPagina(D) {
+    return kitsDe(D).filter(function (x) { return x.noSite && !x.home && !x.fim && !x.tipos.length; }).map(function (x) { return x.kit.nome; });
+  }
+
   function desenharAlteracoes() {
-    var sec = $('sec-alteracoes'), mud = mudancas(), erros = validar(S.atual);
+    var sec = $('sec-alteracoes'), mud = mudancas(), erros = validar(S.atual), soltos = kitsSemPagina(S.atual);
     var icone = { entra: { rotulo: 'Entra', cls: 'entra' }, sai: { rotulo: 'Sai', cls: 'sai' }, alterado: { rotulo: 'Alterado', cls: 'alterado' } };
     sec.innerHTML = '<h2>Alterações</h2><p class="intro">O que muda no site quando você publicar. Cada item pode ser aberto ou desfeito. ' +
       'Ao publicar, o site é gerado e testado automaticamente; com algum erro, nada vai ao ar e o motivo aparece aqui ou no GitHub (aba Actions).</p>' +
       (mud.length ? '<div class="grid2"><div class="card"><ul class="mudancas">' + mud.map(function (m, i) {
         return '<li>' + etiqueta(icone[m.tipo]) + '<p><button type="button" class="link-btn" data-abrir="' + i + '">' + esc(m.texto) + '</button></p><button type="button" class="btn btn-line btn-sm" data-desfazer="' + i + '">Desfazer</button></li>';
       }).join('') + '</ul></div><div class="card publicar"><h3>Publicar</h3>' +
+        (soltos.length ? '<p class="status" style="background:var(--amber-soft);color:var(--amber-ink);padding:10px 14px;border-radius:6px">Não aparece em nenhuma página: ' +
+          esc(soltos.join(', ')) + '. Abra o kit e marque um tipo, a home ou o fim de ano.</p>' : '') +
         (erros.length ? '<ul class="erros">' + erros.slice(0, 30).map(function (e) { return '<li>' + esc(e) + '</li>'; }).join('') + (erros.length > 30 ? '<li>e mais ' + (erros.length - 30) + '</li>' : '') + '</ul>' : '') +
         campo('pub-msg', 'O que mudou (opcional)', '<textarea id="pub-msg" placeholder="ex.: entram as canecas novas; sai o boné aba reta"></textarea>') +
         '<div class="botoes"><button type="button" class="btn" id="pub-ok"' + (erros.length ? ' disabled' : '') + '>Publicar no site</button>' +
         (!S.fonte.local ? '<button type="button" class="btn btn-line" id="pub-rasc"' + (erros.length ? ' disabled' : '') + '>Salvar como rascunho</button>' : '') +
         '<button type="button" class="btn btn-sai" id="pub-descartar">Descartar tudo</button></div>' +
-        '<p class="small muted">Rascunho: fica guardado para revisão (pull request) e pode ser publicado depois, nesta tela ou no GitHub.</p></div></div>'
+        '<p class="small muted">Rascunho: fica guardado para revisão (pull request) e pode ser publicado depois, nesta tela ou no GitHub.</p>' +
+        '<p class="small muted"><b>Depois de publicar:</b> o site é gerado e testado em 5 a 10 minutos e vai ao ar no próximo <b>Deploy</b> do app do site no Easypanel (ou sozinho, se o deploy automático estiver ligado).</p></div></div>'
         : '<p class="vazio">Nenhuma alteração por enquanto. Edite produtos e kits nas outras abas; tudo aparece aqui antes de ir ao ar.</p>') +
       '<div class="card" id="rascunhos" style="margin-top:20px" hidden></div>';
     sec.querySelectorAll('[data-abrir]').forEach(function (b) { b.onclick = mud[+b.dataset.abrir].abrir; });

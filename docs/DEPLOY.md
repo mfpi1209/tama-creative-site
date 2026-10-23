@@ -16,7 +16,13 @@
    testa `nginx -t`, rotas, redirecionamentos e HSTS no container → **só então** atualiza a branch `deploy`
    (site pronto + Dockerfile) e a imagem `ghcr.io/mfpi1209/tama-creative-site`.
 2. O Easypanel publica quando alguém clica **Deploy** no app do site, ou automaticamente se o segredo
-   `EASYPANEL_DEPLOY_WEBHOOK` existir no GitHub.
+   `EASYPANEL_DEPLOY_WEBHOOK` existir no GitHub (ligado em 23/10/2026: URL de **Deployments › Deployment Trigger**
+   do app site; para trocar, **Refresh Deploy Token** e atualize o segredo).
+
+**Como o app "site" está configurado (23/10/2026):** Source **Docker Image** `ghcr.io/mfpi1209/tama-creative-site:latest`
+(pacote público). O servidor só baixa a imagem que o GitHub Actions já montou e testou; montar a imagem no próprio
+servidor (1 núcleo, 3,8 GB) derrubou a máquina num Deploy. Para voltar uma versão, troque `latest` pela tag do commit
+(ex.: `:9e557e6`) e faça Deploy.
 
 Há duas formas de o Easypanel montar o site, e é preciso confirmar no painel qual o app usa:
 - **Branch `deploy`** (recomendada: já passou pelas checagens) com o `Dockerfile` que vai nela; ou

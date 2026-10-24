@@ -8,7 +8,7 @@
    "foto": "kitp-gelato-experience-v3",
    "marca_ficticia": "Nexo",
    "cor_caixa": "caixa redonda azul-petróleo",
-   "situacao": "no_site",
+   "situacao": "fora",
    "foto_anterior": "kitp-gelato-experience-v2",
    "marca_anterior": "Nexo",
    "cor_caixa_anterior": "caixa azul-petróleo"
@@ -20,7 +20,7 @@
    "foto": "kitp-mesa-de-descobertas-v3",
    "marca_ficticia": "Elo",
    "cor_caixa": "caixa em tom natural com lousa",
-   "situacao": "no_site",
+   "situacao": "fora",
    "foto_anterior": "kitp-mesa-de-descobertas-v2",
    "marca_anterior": "Elo",
    "cor_caixa_anterior": "caixa grafite"
@@ -68,7 +68,7 @@
    "foto": "kitp-kit-cafe",
    "marca_ficticia": "",
    "cor_caixa": "",
-   "situacao": "no_site"
+   "situacao": "fora"
   },
   {
    "slug": "kit-conectado",
@@ -77,35 +77,38 @@
    "foto": "kitp-kit-conectado",
    "marca_ficticia": "",
    "cor_caixa": "",
-   "situacao": "no_site"
+   "situacao": "fora"
   },
   {
    "slug": "kit-executivo-verde",
    "nome": "Kit Executivo",
    "descricao": "Caderno com capa de fecho, caneta e garrafa térmica, na caixa verde-escura com berço.",
-   "foto": "kitp-kit-executivo-verde",
+   "foto": "kit-kit-executivo-verde-202610232227",
    "marca_ficticia": "",
    "cor_caixa": "",
-   "situacao": "no_site"
+   "situacao": "fora",
+   "foto_anterior": "kitp-kit-executivo-verde"
   },
   {
    "slug": "kit-petiscos",
    "nome": "Kit Petiscos",
-   "descricao": "Petisqueira redonda com quatro divisórias, na caixa clara com palha decorativa.",
-   "foto": "kitp-kit-petiscos",
+   "descricao": "Conjunto com espátula, faca e garfo, ideal para cortar e servir queijos, frios e petiscos\n✔️ Acompanha diferentes utensílios, proporcionando mais praticidade durante o uso\n✔️ Utensílios em aço inox com cabos em MDF, unindo resistência e um visual elegante\n✔️ Apresentação em caixa de madeira, ideal para manter as peças organizadas e valorizar o presente",
+   "foto": "kit-kit-petiscos-202610240103",
    "marca_ficticia": "",
    "cor_caixa": "",
-   "situacao": "no_site"
+   "situacao": "no_site",
+   "foto_anterior": "kit-kit-petiscos-202610240101"
   },
   {
    "slug": "kit-boas-vindas-tech",
-   "nome": "Kit Boas-vindas Conectado",
-   "descricao": "Para receber quem chega: caderneta, caneta, copo com tampa, fone de ouvido sem fio com estojo, power bank e caixa de som.",
-   "foto": "kits-header-v3",
+   "nome": "Kit Executivo",
+   "descricao": "Kit Executivo composto por caderno revestido\nem material sustentável, com fecho magnético\nna capa. Acompanha caneta esferográfica na\nmesma cor.",
+   "foto": "kit-kit-boas-vindas-tech-202610240046",
    "marca_ficticia": "Lume",
    "cor_caixa": "caixa grafite com berço claro",
    "situacao": "no_site",
-   "novo": true
+   "novo": true,
+   "foto_anterior": "kit-kit-boas-vindas-tech-202610232311"
   },
   {
    "slug": "kit-cozinha",
@@ -114,28 +117,30 @@
    "foto": "kitp-kit-cozinha",
    "marca_ficticia": "Brasa",
    "cor_caixa": "caixa verde-oliva com berço",
-   "situacao": "no_site",
+   "situacao": "fora",
    "novo": true
   },
   {
    "slug": "kit-agradecimento",
    "nome": "Kit de Agradecimento",
-   "descricao": "Cartão \"Obrigado\", vela em copo, caneca e caderno pequeno, para agradecer clientes, parceiros e equipes.",
-   "foto": "kitp-kit-agradecimento",
+   "descricao": "1 copos térmico, manta, meia, caneca e uma caneta personalizada.",
+   "foto": "kit-kit-agradecimento-202610240049",
    "marca_ficticia": "Aura",
    "cor_caixa": "caixa azul-acinzentada com berço",
    "situacao": "no_site",
-   "novo": true
+   "novo": true,
+   "foto_anterior": "kit-kit-agradecimento-202610240049"
   },
   {
    "slug": "kit-caipirinha",
    "nome": "Kit Caipirinha",
-   "descricao": "Coqueteleira, socador, tábua pequena, faca e dois copos baixos. Sem bebida: acessórios para preparar.",
-   "foto": "kitp-kit-caipirinha",
+   "descricao": "Kit caipirinha com tábua em Bambu, faca para frutas 4\" em Inox/Bambu, pilão, colher de 18cm e base para a tábua em Bambu e coqueteleira em Aço Inox. Acomodados em uma caixa para presente. Dimensões da tábua: 22x13x1,2cm Dimensões da base: 13x12x2cm. Personalização a laser.",
+   "foto": "kit-kit-caipirinha-202610240054",
    "marca_ficticia": "Vila",
    "cor_caixa": "caixa em tom natural com tampa",
    "situacao": "no_site",
-   "novo": true
+   "novo": true,
+   "foto_anterior": "kit-kit-caipirinha-202610232309"
   },
   {
    "slug": "kit-gin",
@@ -144,18 +149,18 @@
    "foto": "kitp-kit-gin",
    "marca_ficticia": "Noa",
    "cor_caixa": "caixa preta com berço",
-   "situacao": "no_site",
+   "situacao": "fora",
    "novo": true
   },
   {
    "slug": "kit-vinho",
-   "nome": "Kit Vinho",
-   "descricao": "Duas taças de vinho, saca-rolhas e tampa para a garrafa. Sem bebida: acessórios para servir.",
-   "foto": "kitp-kit-vinho",
+   "nome": "Kit Gin",
+   "descricao": "✔️ Conjunto completo para preparar, misturar e servir diferentes tipos de drinks\n✔️ Coqueteleira em aço inox com capacidade aproximada de 500 ml, ideal para combinar bebidas e ingredientes\n✔️ Acompanha taça para gin de 600 ml, além de canudo reutilizável e limpador\n✔️ Caixa rígida com interior moldado, ideal para organizar, proteger e valorizar a apresentação das peças",
+   "foto": "kit-kit-vinho-202610231418",
    "marca_ficticia": "Terra",
    "cor_caixa": "caixa café com berço",
-   "situacao": "no_site",
-   "novo": true
+   "situacao": "fora",
+   "foto_anterior": "kit-kit-vinho-202610231413"
   },
   {
    "slug": "kit-brinde",
@@ -173,7 +178,7 @@
    "foto": "kitp-kit-coquetel",
    "marca_ficticia": "",
    "cor_caixa": "",
-   "situacao": "no_site"
+   "situacao": "fora"
   }
  ],
  "home": [
@@ -199,7 +204,8 @@
    "linha": "Peças de mesa e de uso diário para a rotina de trabalho, com a marca da sua empresa.",
    "kits": [
     "kit-escritorio",
-    "kit-pratico"
+    "kit-pratico",
+    "kit-boas-vindas-tech"
    ]
   },
   {

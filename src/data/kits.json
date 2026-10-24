@@ -92,23 +92,23 @@
   {
    "slug": "kit-petiscos",
    "nome": "Kit Petiscos",
-   "descricao": "Petisqueira redonda com quatro divisórias, na caixa clara com palha decorativa.",
-   "foto": "kit-kit-petiscos-202610232229",
+   "descricao": "Conjunto com espátula, faca e garfo, ideal para cortar e servir queijos, frios e petiscos\n✔️ Acompanha diferentes utensílios, proporcionando mais praticidade durante o uso\n✔️ Utensílios em aço inox com cabos em MDF, unindo resistência e um visual elegante\n✔️ Apresentação em caixa de madeira, ideal para manter as peças organizadas e valorizar o presente",
+   "foto": "kit-kit-petiscos-202610240103",
    "marca_ficticia": "",
    "cor_caixa": "",
    "situacao": "no_site",
-   "foto_anterior": "kitp-kit-petiscos"
+   "foto_anterior": "kit-kit-petiscos-202610240101"
   },
   {
    "slug": "kit-boas-vindas-tech",
    "nome": "Kit Executivo",
    "descricao": "Kit Executivo composto por caderno revestido\nem material sustentável, com fecho magnético\nna capa. Acompanha caneta esferográfica na\nmesma cor.",
-   "foto": "kit-kit-boas-vindas-tech-202610232311",
+   "foto": "kit-kit-boas-vindas-tech-202610240046",
    "marca_ficticia": "Lume",
    "cor_caixa": "caixa grafite com berço claro",
    "situacao": "no_site",
    "novo": true,
-   "foto_anterior": "kit-kit-boas-vindas-tech-202610232225"
+   "foto_anterior": "kit-kit-boas-vindas-tech-202610232311"
   },
   {
    "slug": "kit-cozinha",
@@ -122,25 +122,25 @@
   },
   {
    "slug": "kit-agradecimento",
-   "nome": "Kit Vela com spray de ambiente",
-   "descricao": "1 vela aromática 60g + 1 home spray 50ml), totalmente personalizadas e prontas para encantar seus clientes.",
-   "foto": "kit-kit-agradecimento-202610232242",
+   "nome": "Kit de Agradecimento",
+   "descricao": "1 copos térmico, manta, meia, caneca e uma caneta personalizada.",
+   "foto": "kit-kit-agradecimento-202610240049",
    "marca_ficticia": "Aura",
    "cor_caixa": "caixa azul-acinzentada com berço",
    "situacao": "no_site",
    "novo": true,
-   "foto_anterior": "kit-kit-agradecimento-202610232242"
+   "foto_anterior": "kit-kit-agradecimento-202610240049"
   },
   {
    "slug": "kit-caipirinha",
    "nome": "Kit Caipirinha",
-   "descricao": "Kit personalizado para Bar/Caipirinha - 5 Pçs",
-   "foto": "kit-kit-caipirinha-202610232309",
+   "descricao": "Kit caipirinha com tábua em Bambu, faca para frutas 4\" em Inox/Bambu, pilão, colher de 18cm e base para a tábua em Bambu e coqueteleira em Aço Inox. Acomodados em uma caixa para presente. Dimensões da tábua: 22x13x1,2cm Dimensões da base: 13x12x2cm. Personalização a laser.",
+   "foto": "kit-kit-caipirinha-202610240054",
    "marca_ficticia": "Vila",
    "cor_caixa": "caixa em tom natural com tampa",
    "situacao": "no_site",
    "novo": true,
-   "foto_anterior": "kit-kit-caipirinha-202610231437"
+   "foto_anterior": "kit-kit-caipirinha-202610232309"
   },
   {
    "slug": "kit-gin",
@@ -186,8 +186,7 @@
   "mesa-de-descobertas",
   "kit-pratico",
   "em-movimento",
-  "pausa-e-inspiracao",
-  "kit-agradecimento"
+  "pausa-e-inspiracao"
  ],
  "fim_de_ano": [
   "kit-brinde",

@@ -363,5 +363,263 @@
    "aviso_titulo": "Fim de ano:",
    "aviso_texto": "presentes com a sua marca para agradecer clientes e equipes"
   }
+ },
+ "secoes": {
+  "home-frentes": {
+   "itens": [
+    {
+     "link": "/brindes-corporativos/",
+     "imagem": "home-frente-brindes-v2",
+     "posicao": "center",
+     "titulo": [
+      "Brindes",
+      "corporativos"
+     ],
+     "texto": [
+      "Presentes que aproximam,",
+      "encantam e ficam."
+     ],
+     "chamada": "Ver os brindes"
+    },
+    {
+     "link": "/confeccoes-personalizadas/",
+     "imagem": "home-frente-confeccoes-v2",
+     "posicao": "center",
+     "titulo": [
+      "Uniformes e",
+      "confecções"
+     ],
+     "texto": [
+      "Peças para equipes, ações",
+      "e eventos."
+     ],
+     "chamada": "Conhecer os uniformes"
+    },
+    {
+     "link": "/kits-corporativos/",
+     "imagem": "home-frente-kits-v2",
+     "posicao": "center",
+     "titulo": [
+      "Kits",
+      "corporativos"
+     ],
+     "texto": [
+      "Caixa, peças e cartão",
+      "com a sua marca."
+     ],
+     "chamada": "Conhecer os kits"
+    },
+    {
+     "link": "/ativacoes-promocionais/",
+     "imagem": "ativ-header",
+     "posicao": "74% center",
+     "titulo": [
+      "Ativações",
+      "promocionais"
+     ],
+     "texto": [
+      "Degustações, feiras e ações",
+      "no ponto de venda."
+     ],
+     "chamada": "Conhecer as ativações"
+    },
+    {
+     "link": "/hotelaria-e-gastronomia/",
+     "imagem": "hot-header",
+     "posicao": "70% center",
+     "titulo": [
+      "Hotelaria e",
+      "gastronomia"
+     ],
+     "texto": [
+      "Cardápios, porta-contas, jogos",
+      "americanos e uniformes."
+     ],
+     "chamada": "Conhecer as peças"
+    }
+   ]
+  },
+  "brindes-entrega": {
+   "imagem": "brindes-entrega",
+   "alt": "Caixa azul-petróleo da marca fictícia Nexo aberta sobre bandeja de pedra: presente envolto em papel de seda com padrão gravado, lacre redondo com o símbolo, cartão em relevo e fita de gorgorão azul.",
+   "legenda": "Imagem ilustrativa • Marca fictícia"
+  },
+  "ativacoes-formatos": {
+   "eyebrow": "Formatos",
+   "titulo": "Onde a ativação acontece",
+   "texto": "Cada formato pede peças, equipe e cronograma diferentes. O ponto de partida é o que a ação precisa provocar e em quem.",
+   "itens": [
+    {
+     "id": "fmt-degustacao",
+     "titulo": "Degustação no ponto de venda",
+     "texto": "O cliente prova o produto onde decide a compra: supermercados, empórios, lojas e farmácias.",
+     "pedido": false
+    },
+    {
+     "id": "fmt-feiras",
+     "titulo": "Feiras e eventos",
+     "texto": "Brindes, uniformes e materiais para o estande e para receber quem visita.",
+     "pedido": false
+    },
+    {
+     "id": "fmt-promocao",
+     "titulo": "Promoção e amostragem",
+     "texto": "Brindes, amostras e materiais para campanhas de venda, lançamentos e ações com distribuidores.",
+     "pedido": false
+    },
+    {
+     "id": "",
+     "titulo": "Ações internas",
+     "texto": "Convenções, lançamentos para a equipe e datas da empresa, com kits e peças na mesma linguagem.",
+     "pedido": false
+    },
+    {
+     "id": "fmt-buffet",
+     "titulo": "Buffet completo",
+     "texto": "Buffet para eventos corporativos, lançamentos e encontros da empresa, coordenado pela TaMa com parceiros especializados. O formato do serviço é definido com você na proposta.",
+     "pedido": true
+    },
+    {
+     "id": "fmt-decoracao",
+     "titulo": "Decoração",
+     "texto": "Ambientação do espaço do evento na identidade da sua marca, do painel às mesas, coordenada pela TaMa com parceiros especializados. O escopo é definido com você na proposta.",
+     "pedido": true
+    }
+   ]
+  },
+  "ativacoes-cenas": {
+   "itens": [
+    {
+     "imagem": "ativ-buffet",
+     "alt": "Buffet corporativo montado num evento: mesa com rechauds, travessas e pratos, equipe de avental servindo, toalha e placa com a marca fictícia Solar.",
+     "legenda": "Cena ilustrativa · marca fictícia"
+    },
+    {
+     "imagem": "ativ-decoracao",
+     "alt": "Salão de evento corporativo decorado: mesas redondas postas, arranjos de flores e painel ao fundo com a marca fictícia Oliva.",
+     "legenda": "Cena ilustrativa · marca fictícia"
+    }
+   ]
+  },
+  "sobre-cenas": {
+   "itens": [
+    {
+     "imagem": "sobre-caderno",
+     "alt": "Mãos escrevendo num caderno aberto pela manhã; ao lado, um caderno verde da marca fictícia Vera e uma xícara de café.",
+     "texto": "Um caderno aberto",
+     "destaque": "todos os dias."
+    },
+    {
+     "imagem": "sobre-uniforme",
+     "alt": "Barista de polo azul-marinho com a marca fictícia Elo bordada no peito, preparando café num balcão iluminado.",
+     "texto": "Um uniforme usado",
+     "destaque": "com orgulho."
+    },
+    {
+     "imagem": "sobre-caixa",
+     "alt": "Caixa azul-petróleo da marca fictícia Nexo guardada numa estante, entre livros, uma planta e porta-retratos.",
+     "texto": "Uma caixa guardada",
+     "destaque": "na estante."
+    }
+   ]
+  },
+  "ocasioes": {
+   "todas": {
+    "imagem": "brindes-header",
+    "alt": "Brindes com marcas fictícias sobre blocos de pedra: garrafa azul Nexo, ecobag Vera, copo Elo e caderno verde.",
+    "eyebrow": "Brindes por ocasião",
+    "linhas": [
+     "Cada ocasião"
+    ],
+    "destaque": [
+     "pede um presente."
+    ],
+    "texto": "Boas-vindas, eventos, fim de ano, reconhecimento: escolha a ocasião, veja as peças que a TaMa sugere e envie a seleção junto com o pedido de proposta."
+   },
+   "boas-vindas": {
+    "imagem": "ocasiao-boas-vindas",
+    "alt": "Kit de boas-vindas da marca fictícia Nexo numa caixa kraft: garrafa e caderno azul-petróleo, crachá e cartão, com uma caneca ao lado.",
+    "eyebrow": "Boas-vindas",
+    "linhas": [
+     "Um começo"
+    ],
+    "destaque": [
+     "com a cara da sua empresa."
+    ],
+    "texto": "Kits com caderno, garrafa, caneca e crachá na identidade da sua marca, para quem chega se sentir parte do time desde o primeiro dia."
+   },
+   "eventos": {
+    "imagem": "ocasiao-eventos",
+    "alt": "Brindes de evento da marca fictícia Solar: ecobags com alças amarelas, copos, boné e cordão sobre blocos de pedra.",
+    "eyebrow": "Eventos",
+    "linhas": [
+     "Sua marca"
+    ],
+    "destaque": [
+     "presente em cada encontro."
+    ],
+    "texto": "Ecobags, copos, bonés e cordões para estandes, feiras e convenções, nas cores da sua empresa."
+   },
+   "executivos": {
+    "imagem": "ocasiao-executivos",
+    "alt": "Presentes executivos da marca fictícia Orla: caneta em estojo, caderno preto, porta-cartões e garrafa metálica sobre pedra escura.",
+    "eyebrow": "Presentes executivos",
+    "linhas": [
+     "Gestos à altura"
+    ],
+    "destaque": [
+     "de relações importantes."
+    ],
+    "texto": "Canetas em estojo, cadernos, porta-cartões e garrafas com acabamento sóbrio para clientes, parceiros e diretoria."
+   },
+   "campanhas": {
+    "imagem": "ocasiao-campanhas",
+    "alt": "Kit de campanha da marca fictícia Vera: copos, squeeze, camiseta branca e uma bandeja de degustação sobre blocos de pedra.",
+    "eyebrow": "Campanhas e ativações",
+    "linhas": [
+     "Ações que"
+    ],
+    "destaque": [
+     "chegam ao ponto de venda."
+    ],
+    "texto": "Copos, squeezes, camisetas e materiais para degustações, promoções e ativações com a marca da sua empresa."
+   },
+   "lancamentos": {
+    "imagem": "ocasiao-lancamentos",
+    "alt": "Caixa de lançamento da marca fictícia Pulso aberta com papel de seda, produto embrulhado em azul, caderno e cartão.",
+    "eyebrow": "Lançamentos",
+    "linhas": [
+     "Um lançamento"
+    ],
+    "destaque": [
+     "que começa na caixa."
+    ],
+    "texto": "Caixas de envio, papel de seda, cartão e peças para apresentar um produto à imprensa, a parceiros e à equipe."
+   },
+   "fim-de-ano": {
+    "imagem": "fim-header",
+    "alt": "Caixa de presente terracota aberta com duas taças flute e cartão, com o símbolo de uma marca fictícia, e uma taça ao lado.",
+    "eyebrow": "Fim de ano",
+    "linhas": [
+     "Um brinde a quem"
+    ],
+    "destaque": [
+     "fez parte do seu ano."
+    ],
+    "texto": "Taças, copos e presentes personalizados para agradecer clientes, reconhecer equipes e celebrar parcerias."
+   },
+   "reconhecimento": {
+    "imagem": "ocasiao-reconhecimento",
+    "alt": "Presente de reconhecimento da marca fictícia Flora: garrafa e vela verdes e cartão numa caixa clara com laço verde.",
+    "eyebrow": "Reconhecimento",
+    "linhas": [
+     "Um obrigado"
+    ],
+    "destaque": [
+     "que fica na mesa."
+    ],
+    "texto": "Presentes para reconhecer metas, tempo de casa e projetos entregues: garrafa, vela, caixa e cartão com a sua marca."
+   }
+  }
  }
 }

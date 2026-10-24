@@ -189,3 +189,9 @@ td.num, th.num { text-align: right; white-space: nowrap; }
 .modelos-lista li { display: flex; gap: 8px; align-items: center; padding: 6px 8px; background: #fff; border: 1px solid var(--line); border-radius: 6px; }
 .modelos-lista img { width: 40px; height: 40px; object-fit: contain; background: var(--ivory); border-radius: 4px; flex: none; }
 .modelos-lista .txt { flex: 1; min-width: 0; font-size: 14px; }
+
+.item-sec { border: 1px solid var(--line); border-radius: 8px; background: #fff; padding: 0 12px; margin: 0 0 10px; }
+.item-sec[open] { padding-bottom: 12px; }
+.item-sec > summary { cursor: pointer; padding: 10px 0; font-weight: 600; }
+.item-sec > summary em { color: var(--wine-2); font-weight: 500; }
+.item-sec .solta { margin: 4px 0 12px; }

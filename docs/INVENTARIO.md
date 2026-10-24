@@ -43,7 +43,7 @@ aberta cai na hora. Trocar `ADMIN_SEGREDO` desconecta todo mundo. Cada publicaç
 | **Produtos** | Um card por modelo, com busca, categoria e filtros (Existentes, Produtos novos, Cores novas, Fora do site, Com alteração). Clique para abrir. |
 | **Kits** | Os kits da home, de `/kits-corporativos/` e da página de fim de ano. |
 | **Carrossel** | Os slides do topo da home: foto (envio), chamada, título (trecho entre `*asteriscos*` em itálico), texto, botões, cor de fundo, ordem (↑ ↓), ligar/desligar, remover, slide novo e qual abre o carrossel na temporada de fim de ano. |
-| **Páginas** | Para Brindes, Kits, Confecções, Ativações, Hotelaria, Fim de ano e Sobre: o cabeçalho (foto, chamada, título, destaque, texto, legenda e parte da foto no celular) e as vitrines de produtos (título, texto e modelos, com adicionar, tirar e ordem). Na Home, os destaques. |
+| **Páginas** | Para Brindes, Kits, Confecções, Ativações, Hotelaria, Fim de ano e Sobre: o cabeçalho (foto, chamada, título, destaque, texto, legenda e parte da foto no celular) e as vitrines de produtos (título, texto e modelos, com adicionar, tirar e ordem). Na Home, os destaques e os 5 cartões das áreas. Seções com foto: a foto da entrega (Brindes), os formatos e as cenas (Ativações), as cenas numeradas (Sobre) e, em **Brindes por ocasião**, a abertura de cada ocasião. |
 | **Contato e rodapé** | WhatsApp, e-mail, Instagram, LinkedIn, Facebook, YouTube, dados da empresa, frase da faixa do topo, os 3 compromissos e a temporada de fim de ano (ligada, início, fim e o aviso da faixa). |
 | **Alterações** | A lista do que muda, item por item (Entra, Sai, Alterado), com Desfazer, os erros que bloqueiam a publicação e os botões Publicar, Salvar como rascunho e Descartar tudo. Mostra também os rascunhos salvos. |
 
@@ -104,8 +104,11 @@ topo e temporada (`topo`); os destaques da home continuam em `selecoes.json › 
 e barra o que quebraria a página (`preparar_site`: campos obrigatórios, links, formato de WhatsApp, e-mail e datas,
 modelos que não existem; `conferir_imagens_site`: foto do carrossel ou do cabeçalho que não está em `img/v2/`).
 Fotos enviadas pelo inventário vão para `img/v2/slide-<slide>-<data>` e `img/v2/topo-<página>-<data>` e saem em
-qualidade alta (as fotos do carrossel e dos cabeçalhos entram em `FOTOS_HQ`). Ainda no código: os botões dos cabeçalhos,
-o miolo das páginas, as perguntas frequentes e os cabeçalhos por ocasião de `/brindes-por-ocasiao/`.
+qualidade alta (as fotos do carrossel e dos cabeçalhos entram em `FOTOS_HQ`). Seções com foto em `secoes` (`home-frentes`,
+`brindes-entrega`, `ativacoes-formatos`, `ativacoes-cenas`, `sobre-cenas`, `ocasioes`); fotos enviadas em
+`img/v2/secao-*` e `img/v2/topo-ocasiao-*`. Os ids dos formatos de Ativações (`fmt-buffet`, `fmt-decoracao`…) são as
+âncoras do menu e não mudam pela tela. Ainda no código: os botões dos cabeçalhos, o miolo das páginas (seções só de
+texto) e as perguntas frequentes.
 
 **Depois de mudar `deploy/admin-api/`** (o que o serviço aceita gravar), faça **Deploy** do app `admin-api` no
 Easypanel: o deploy automático publica só o app do site.

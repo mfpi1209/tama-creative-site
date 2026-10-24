@@ -59,7 +59,7 @@ COOKIE = 'tama_admin'
 LER = {'src/data/produtos.json', 'src/data/modelos.json', 'src/data/selecoes.json', 'src/data/kits.json', 'src/data/site.json'}
 GRAVAR_RE = re.compile(r'^(src/data/(produtos|modelos|selecoes|kits|site)\.json'
                        r'|img/produtos/[a-z0-9]+(-[a-z0-9]+)*~[a-z0-9]+(-[a-z0-9]+)*\.(webp|png|jpg)'
-                       r'|img/v2/(kit|slide|topo)-[a-z0-9]+(-[a-z0-9]+)*\.(webp|png|jpg))$')   # fotos de kits, do carrossel e dos cabeçalhos
+                       r'|img/v2/(kit|slide|topo|secao)-[a-z0-9]+(-[a-z0-9]+)*\.(webp|png|jpg))$')   # fotos de kits, do carrossel, dos cabeçalhos e das seções
 MAX_CORPO = 60 * 1024 * 1024        # pedido inteiro (fotos em base64)
 MAX_FOTO = 12 * 1024 * 1024         # cada foto, já decodificada
 TENTATIVAS, JANELA = 5, 15 * 60     # 5 senhas erradas por IP em 15 minutos

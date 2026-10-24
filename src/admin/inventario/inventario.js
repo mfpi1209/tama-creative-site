@@ -951,7 +951,8 @@
     { chave: 'ativacoes', nome: 'Ativações promocionais', url: '/ativacoes-promocionais/', vitrines: ['ativacoes'] },
     { chave: 'hotelaria', nome: 'Hotelaria e gastronomia', url: '/hotelaria-e-gastronomia/', vitrines: ['hotelaria'] },
     { chave: 'fim-de-ano', nome: 'Fim de ano', url: '/brindes-de-fim-de-ano/', vitrines: ['fim-brindar', 'fim-presentear'] },
-    { chave: 'sobre', nome: 'Sobre', url: '/sobre/', vitrines: [] }
+    { chave: 'sobre', nome: 'Sobre', url: '/sobre/', vitrines: [] },
+    { chave: 'ocasioes', nome: 'Brindes por ocasião', url: '/brindes-por-ocasiao/', vitrines: [] }
   ];
   var NOME_VITRINE = { brindes: 'Brindes', confeccoes: 'Confecções', ativacoes: 'Ativações', hotelaria: 'Hotelaria', 'fim-brindar': 'Fim de ano · taças e copos', 'fim-presentear': 'Fim de ano · para presentear' };
 
@@ -1032,7 +1033,8 @@
       if (!ig((A.cabecalhos || {})[pg.chave], (B.cabecalhos || {})[pg.chave])) mud.push('cabeçalho');
       pg.vitrines.forEach(function (v) { if (!ig((A.vitrines || {})[v], (B.vitrines || {})[v])) mud.push('vitrine'); });
       if (pg.home && !ig(S.base.selecoes.home, S.atual.selecoes.home)) mud.push('destaques');
-      if (mud.length) out.push({ alvo: alvo, tipo: 'alterado', texto: pg.nome + ': ' + mud.filter(function (x, i) { return mud.indexOf(x) === i; }).join(' e ') + ' alterados',
+      (SECOES_PAGINA[pg.chave] || []).forEach(function (k) { if (!ig((A.secoes || {})[k], (B.secoes || {})[k])) mud.push('seções'); });
+      if (mud.length) out.push({ alvo: alvo, tipo: 'alterado', texto: pg.nome + ': alterações em ' + mud.filter(function (x, i) { return mud.indexOf(x) === i; }).join(', '),
         img: imagemSite(((B.cabecalhos || {})[pg.chave] || {}).imagem), abrir: function () { abrirPagina(pg.chave); } });
     });
     if (tem('site:contato') && !(ig(A.contato, B.contato) && ig(A.topo, B.topo))) out.push({ alvo: 'site:contato', tipo: 'alterado', texto: 'Contato, topo e rodapé alterados', img: '', abrir: function () { mostrarTab('contato'); } });
@@ -1062,6 +1064,13 @@
       (v.modelos || []).forEach(function (m) { if (!modelos[m] && !(D.selecoes.aliases || {})[m]) e.push('Vitrine ' + (NOME_VITRINE[k] || k) + ': o modelo "' + m + '" não existe'); });
       if (!(v.titulo || '').trim()) e.push('Vitrine ' + (NOME_VITRINE[k] || k) + ': título é obrigatório');
     });
+    var sc = st.secoes || {}, req = function (nome, o, campos) { campos.forEach(function (c) { if (!String(o[c] || '').trim()) e.push(nome + ': preencha ' + c.replace('alt', 'a descrição da foto')); }); };
+    ((sc['home-frentes'] || {}).itens || []).forEach(function (f, i) { req('Home, cartão ' + (i + 1), f, ['imagem', 'chamada']); if ((f.titulo || []).filter(Boolean).length !== 2 || (f.texto || []).filter(Boolean).length !== 2) e.push('Home, cartão ' + (i + 1) + ': título e texto têm 2 linhas cada'); });
+    if (sc['brindes-entrega']) req('Brindes, foto da entrega', sc['brindes-entrega'], ['imagem', 'alt']);
+    ((sc['ativacoes-formatos'] || {}).itens || []).forEach(function (it, i) { req('Ativações, formato ' + (i + 1), it, ['titulo', 'texto']); });
+    ((sc['ativacoes-cenas'] || {}).itens || []).forEach(function (c, i) { req('Ativações, cena ' + (i + 1), c, ['imagem', 'alt']); });
+    ((sc['sobre-cenas'] || {}).itens || []).forEach(function (c, i) { req('Sobre, cena ' + (i + 1), c, ['imagem', 'alt', 'texto', 'destaque']); });
+    Object.keys(sc.ocasioes || {}).forEach(function (k) { var c = sc.ocasioes[k]; req('Ocasião ' + (NOME_OCASIAO[k] || k), c, ['imagem', 'alt', 'eyebrow', 'texto']); if (!(c.linhas || []).length || !(c.destaque || []).length) e.push('Ocasião ' + (NOME_OCASIAO[k] || k) + ': título e destaque precisam de pelo menos uma linha'); });
     var ct = st.contato || {};
     if (ct.whatsapp && !/^\d{12,13}$/.test(ct.whatsapp.replace(/\D/g, ''))) e.push('Contato: WhatsApp com DDI e DDD, só números (ex.: 5511999999999)');
     if (ct.email && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(ct.email)) e.push('Contato: e-mail inválido');
@@ -1211,9 +1220,11 @@
     if (!st.cabecalhos) return semSite(sec);
     sec.innerHTML = '<h2>Páginas</h2><p class="intro">O topo (foto, título e texto) de cada página e as vitrines de produtos. A home tem os destaques; o carrossel fica na aba Carrossel.</p>' +
       '<div class="grade kits">' + PAGINAS.map(function (pg) {
-        var c = (st.cabecalhos || {})[pg.chave], img = c ? imagemSite(c.imagem) : imagemSite(((st.carrossel || [])[0] || {}).imagem);
+        var c = (st.cabecalhos || {})[pg.chave], oc = ((st.secoes || {}).ocasioes || {}).todas;
+        var img = c ? imagemSite(c.imagem) : oc && pg.chave === 'ocasioes' ? imagemSite(oc.imagem) : imagemSite(((st.carrossel || [])[0] || {}).imagem);
         var pend = S.ops.some(function (o) { return o.alvo === 'site:pagina:' + pg.chave; });
-        var partes = (c ? ['cabeçalho'] : []).concat(pg.vitrines.length ? [pg.vitrines.length > 1 ? pg.vitrines.length + ' vitrines' : 'vitrine'] : []).concat(pg.home ? ['destaques'] : []);
+        var partes = (c ? ['cabeçalho'] : []).concat(pg.vitrines.length ? [pg.vitrines.length > 1 ? pg.vitrines.length + ' vitrines' : 'vitrine'] : []).concat(pg.home ? ['destaques'] : [])
+          .concat((SECOES_PAGINA[pg.chave] || []).length ? [pg.chave === 'ocasioes' ? 'aberturas das ocasiões' : 'seções com foto'] : []);
         return '<button type="button" class="item' + (pend ? ' pendente' : '') + '" data-pagina="' + pg.chave + '"><span class="foto">' + (img ? '<img src="' + esc(img) + '" alt="" loading="lazy">' : '') + '</span>' +
           '<span class="info"><span class="nome">' + esc(pg.nome) + '</span><span class="meta">' + esc(pg.url) + ' · ' + partes.join(', ') + '</span>' +
           (pend ? '<span class="tags">' + etiqueta({ rotulo: 'Alterado', cls: 'alterado' }) + '</span>' : '') + '</span></button>';
@@ -1277,8 +1288,10 @@
           campo('v' + n + '-texto', 'Texto', '<textarea id="v' + n + '-texto" style="min-height:60px">' + esc(vt.texto) + '</textarea>') +
           editorModelos('pv' + n, vt.modelos || []) + '</div>';
       });
+      html += blocosSecoes(chave);
       corpo.innerHTML = html;
       corpo.scrollTop = scroll;
+      ligarSecoes(corpo, alvo);
       if ($('p-desfazer')) $('p-desfazer').onclick = function () { desfazer(alvo); };
       if (c) {
         var cc = ['cabecalhos', chave], set = function (cam, v, extra) { opSite(cc.concat(cam), v, alvo, extra); };
@@ -1301,6 +1314,94 @@
         $('v' + n + '-texto').onchange = function () { setv(['texto'], this.value.trim()); };
         ligarModelos('pv' + n, vt.modelos || [], function (l) { setv(['modelos'], l); });
       });
+    });
+  }
+
+  // ---- Seções com foto (site.json › secoes): campos ligados pelo caminho no próprio elemento (data-caminho)
+  var SECOES_PAGINA = { home: ['home-frentes'], brindes: ['brindes-entrega'], ativacoes: ['ativacoes-formatos', 'ativacoes-cenas'], sobre: ['sobre-cenas'], ocasioes: ['ocasioes'] };
+  var NOME_OCASIAO = { todas: 'Todas as ocasiões (abertura padrão)', 'boas-vindas': 'Boas-vindas', eventos: 'Eventos', executivos: 'Presentes executivos', campanhas: 'Campanhas e ativações',
+    lancamentos: 'Lançamentos', 'fim-de-ano': 'Fim de ano', reconhecimento: 'Reconhecimento' };
+  var nSec = 0;
+  function cSec(caminho, rotulo, valor, tipo, dica) {   // tipo: texto | area | linhas
+    var id = 'sc' + (nSec++), cam = esc(JSON.stringify(caminho));
+    var html = tipo === 'area' ? '<textarea id="' + id + '" data-caminho="' + cam + '" style="min-height:64px">' + esc(valor || '') + '</textarea>'
+      : tipo === 'linhas' ? '<textarea id="' + id + '" data-caminho="' + cam + '" data-linhas="1" style="min-height:58px">' + esc((valor || []).join('\n')) + '</textarea>'
+      : '<input id="' + id + '" type="text" data-caminho="' + cam + '" value="' + esc(valor || '') + '">';
+    return campo(id, rotulo, html, dica);
+  }
+  function fSec(caminho, prefixo, imagem, dica) {
+    var id = 'sf' + (nSec++);
+    return '<div class="solta">' + (imagemSite(imagem) ? '<img src="' + esc(imagemSite(imagem)) + '" alt="">' : '<p class="small muted">Sem foto</p>') +
+      '<label class="upload" style="margin:0"><input id="' + id + '" type="file" accept="image/*" data-foto-caminho="' + esc(JSON.stringify(caminho)) + '" data-prefixo="' + esc(prefixo) + '"><span>Trocar foto</span></label>' +
+      (dica ? '<p class="dica">' + dica + '</p>' : '') + '</div>';
+  }
+  function blocosSecoes(chave) {
+    var sc = (S.atual.site || {}).secoes || {}, h = '';
+    nSec = 0;
+    if (chave === 'home' && sc['home-frentes']) {
+      h += '<div class="bloco"><h3>Cartões das áreas (abaixo do carrossel)</h3>' + sc['home-frentes'].itens.map(function (f, i) {
+        var b = ['secoes', 'home-frentes', 'itens', i];
+        return '<details class="item-sec"' + (i === 0 ? ' open' : '') + '><summary>' + esc(f.titulo.join(' ')) + ' <span class="small muted">' + esc(f.link) + '</span></summary>' +
+          fSec(b.concat(['imagem']), 'secao-frente-' + (i + 1), f.imagem, 'Proporção do cartão (paisagem); a TaMa ou uma marca fictícia.') +
+          '<div class="linha">' + cSec(b.concat(['titulo', 0]), 'Título, 1ª linha', f.titulo[0]) + cSec(b.concat(['titulo', 1]), 'Título, 2ª linha', f.titulo[1]) + '</div>' +
+          '<div class="linha">' + cSec(b.concat(['texto', 0]), 'Texto, 1ª linha', f.texto[0]) + cSec(b.concat(['texto', 1]), 'Texto, 2ª linha', f.texto[1]) + '</div>' +
+          '<div class="linha">' + cSec(b.concat(['chamada']), 'Chamada do link', f.chamada) + cSec(b.concat(['posicao']), 'Posição da foto', f.posicao, 'texto', 'Ex.: center, 70% center.') + '</div></details>';
+      }).join('') + '</div>';
+    }
+    if (chave === 'brindes' && sc['brindes-entrega']) {
+      var e = sc['brindes-entrega'], be = ['secoes', 'brindes-entrega'];
+      h += '<div class="bloco"><h3>Foto da seção "A entrega também comunica"</h3>' + fSec(be.concat(['imagem']), 'secao-brindes-entrega', e.imagem) +
+        cSec(be.concat(['alt']), 'Descrição da foto', e.alt) + cSec(be.concat(['legenda']), 'Legenda', e.legenda) + '</div>';
+    }
+    if (chave === 'ativacoes' && sc['ativacoes-formatos']) {
+      var fm = sc['ativacoes-formatos'], bf = ['secoes', 'ativacoes-formatos'];
+      h += '<div class="bloco"><h3>Formatos</h3><div class="linha">' + cSec(bf.concat(['eyebrow']), 'Chamada', fm.eyebrow) + cSec(bf.concat(['titulo']), 'Título', fm.titulo) + '</div>' +
+        cSec(bf.concat(['texto']), 'Texto', fm.texto, 'area') + fm.itens.map(function (it, i) {
+          return '<details class="item-sec"><summary>' + esc(it.titulo) + (it.pedido ? ' <span class="small muted">com link para o pedido</span>' : '') + '</summary>' +
+            cSec(bf.concat(['itens', i, 'titulo']), 'Título', it.titulo) + cSec(bf.concat(['itens', i, 'texto']), 'Texto', it.texto, 'area') + '</details>';
+        }).join('') + '</div>';
+    }
+    if (chave === 'ativacoes' && sc['ativacoes-cenas']) {
+      h += '<div class="bloco"><h3>Cenas (abaixo dos formatos)</h3>' + sc['ativacoes-cenas'].itens.map(function (c, i) {
+        var b = ['secoes', 'ativacoes-cenas', 'itens', i];
+        return '<details class="item-sec"' + (i === 0 ? ' open' : '') + '><summary>Cena ' + (i + 1) + '</summary>' + fSec(b.concat(['imagem']), 'secao-ativ-cena-' + (i + 1), c.imagem, 'Horizontal (3:2), com marca fictícia.') +
+          cSec(b.concat(['alt']), 'Descrição da foto', c.alt) + cSec(b.concat(['legenda']), 'Legenda', c.legenda) + '</details>';
+      }).join('') + '</div>';
+    }
+    if (chave === 'sobre' && sc['sobre-cenas']) {
+      h += '<div class="bloco"><h3>Cenas numeradas ("O que nos move")</h3>' + sc['sobre-cenas'].itens.map(function (c, i) {
+        var b = ['secoes', 'sobre-cenas', 'itens', i];
+        return '<details class="item-sec"' + (i === 0 ? ' open' : '') + '><summary>' + (i + 1) + '. ' + esc(c.texto) + ' <em>' + esc(c.destaque) + '</em></summary>' +
+          fSec(b.concat(['imagem']), 'secao-sobre-' + (i + 1), c.imagem, 'Vertical ou quadrada, com marca fictícia.') + cSec(b.concat(['alt']), 'Descrição da foto', c.alt) +
+          '<div class="linha">' + cSec(b.concat(['texto']), 'Frase', c.texto) + cSec(b.concat(['destaque']), 'Final em itálico', c.destaque) + '</div></details>';
+      }).join('') + '</div>';
+    }
+    if (chave === 'ocasioes' && sc.ocasioes) {
+      h += '<div class="bloco"><h3>Abertura de cada ocasião</h3><p class="small muted">A foto e o texto do topo trocam conforme a ocasião escolhida na página.</p>' + Object.keys(sc.ocasioes).map(function (k, i) {
+        var c = sc.ocasioes[k], b = ['secoes', 'ocasioes', k];
+        return '<details class="item-sec"' + (i === 0 ? ' open' : '') + '><summary>' + esc(NOME_OCASIAO[k] || k) + '</summary>' +
+          fSec(b.concat(['imagem']), 'topo-ocasiao-' + k, c.imagem, 'Horizontal (16:9), espaço claro à esquerda para o texto.') + cSec(b.concat(['alt']), 'Descrição da foto', c.alt) +
+          cSec(b.concat(['eyebrow']), 'Chamada', c.eyebrow) + '<div class="linha">' + cSec(b.concat(['linhas']), 'Título (uma linha por linha)', c.linhas, 'linhas') +
+          cSec(b.concat(['destaque']), 'Destaque em itálico', c.destaque, 'linhas') + '</div>' + cSec(b.concat(['texto']), 'Texto', c.texto, 'area') + '</details>';
+      }).join('') + '</div>';
+    }
+    return h;
+  }
+  function ligarSecoes(corpo, alvo) {
+    corpo.querySelectorAll('[data-caminho]').forEach(function (el) {
+      el.onchange = function () {
+        var v = el.dataset.linhas ? el.value.split('\n').map(function (l) { return l.trim(); }).filter(Boolean) : el.value.trim();
+        opSite(JSON.parse(el.dataset.caminho), v, alvo);
+      };
+    });
+    corpo.querySelectorAll('[data-foto-caminho]').forEach(function (el) {
+      enviarFotoSite(el.id, el.dataset.prefixo, function (nome, path) { opSite(JSON.parse(el.dataset.fotoCaminho), nome, alvo, { arquivo: path }); });
+    });
+    // mantém abertos os itens que a pessoa abriu (a gaveta é redesenhada a cada alteração)
+    corpo.querySelectorAll('details.item-sec').forEach(function (d, i) {
+      var k = alvo + ':' + i;
+      if (S.abertos && k in S.abertos) d.open = S.abertos[k];
+      d.ontoggle = function () { S.abertos = S.abertos || {}; S.abertos[k] = d.open; };
     });
   }
 

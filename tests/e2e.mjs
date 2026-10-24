@@ -965,7 +965,7 @@ try {
   await ip.click('[data-tab="contato"]'); await muda('#c-email', 'teste@example.com'); await sleep(150);
   await ip.click('[data-tab="alteracoes"]');
   const mudSite = await ip.$$eval('.mudancas li p', l => l.map(x => x.textContent));
-  ok(['Slide alterado: Kits corporativos', 'Slide desligado: Canetas e escritório', 'Nova ordem dos slides do carrossel', 'Home: destaques alterados', 'Brindes corporativos: cabeçalho e vitrine alterados', 'Contato, topo e rodapé alterados'].every(t => mudSite.includes(t)) && !(await ip.$('.erros')),
+  ok(['Slide alterado: Kits corporativos', 'Slide desligado: Canetas e escritório', 'Nova ordem dos slides do carrossel', 'Home: alterações em destaques', 'Brindes corporativos: alterações em cabeçalho, vitrine', 'Contato, topo e rodapé alterados'].every(t => mudSite.includes(t)) && !(await ip.$('.erros')),
      `alterações do site listadas, sem erros (${mudSite.join(' | ')})`);
   gravado = null;
   await ip.click('#pub-ok');
@@ -981,6 +981,23 @@ try {
   ok(site2.cabecalhos.brindes.eyebrow === 'Brindes para empresas' && site2.vitrines.brindes.modelos[0] === siteFix.vitrines.brindes.modelos[1] && site2.vitrines.brindes.modelos.length === siteFix.vitrines.brindes.modelos.length &&
      site2.contato.email === 'teste@example.com' && sel2.home && sel2.home[0] === selFix.home[1] && sel2.home[1] === selFix.home[0] && arqs2['src/data/site.json'].endsWith('}\n'),
      'publicar: cabeçalho e vitrine de Brindes, contato em site.json e destaques da home em selecoes.json');
+  // seções com foto: formatos de Ativações (texto) e abertura de uma ocasião
+  await ip.click('[data-tab="paginas"]'); await ip.click('[data-pagina="ativacoes"]'); await ip.waitForSelector('[data-caminho]');
+  const camBuffet = JSON.stringify(['secoes', 'ativacoes-formatos', 'itens', siteFix.secoes['ativacoes-formatos'].itens.findIndex(i => i.id === 'fmt-buffet'), 'texto']);
+  await ip.evaluate(c => { const e = [...document.querySelectorAll('[data-caminho]')].find(x => x.dataset.caminho === c); e.value = 'Buffet para eventos da empresa.'; e.dispatchEvent(new Event('change')); }, camBuffet); await sleep(150);
+  await ip.click('#gaveta-fechar');
+  await ip.click('[data-pagina="ocasioes"]'); await ip.waitForSelector('[data-caminho]');
+  await ip.evaluate(() => { const e = [...document.querySelectorAll('[data-caminho]')].find(x => x.dataset.caminho === JSON.stringify(['secoes', 'ocasioes', 'eventos', 'eyebrow'])); e.value = 'Eventos e feiras'; e.dispatchEvent(new Event('change')); }); await sleep(150);
+  await ip.click('#gaveta-fechar');
+  await ip.click('[data-tab="alteracoes"]');
+  const mudSec = await ip.$$eval('.mudancas li p', l => l.map(x => x.textContent));
+  gravado = null;
+  await ip.click('#pub-ok');
+  await ip.waitForFunction(() => document.getElementById('status').classList.contains('ok'), { timeout: 15000 });
+  const site3 = JSON.parse(((gravado?.entry?.dataFiles || []).find(f => f.path === 'src/data/site.json') || {}).raw || '{}');
+  ok(mudSec.includes('Ativações promocionais: alterações em seções') && mudSec.includes('Brindes por ocasião: alterações em seções') &&
+     (site3.secoes?.['ativacoes-formatos']?.itens || []).find(i => i.id === 'fmt-buffet')?.texto === 'Buffet para eventos da empresa.' && site3.secoes?.ocasioes?.eventos?.eyebrow === 'Eventos e feiras',
+     `seções com foto: formatos de Ativações e abertura de ocasião editados e publicados em site.json (${mudSec.join(' | ')})`);
   await ip.close();
 
   // login com usuário e senha (serviço admin-api, simulado): sem sessão aparece o formulário; senha errada avisa; certa abre o inventário

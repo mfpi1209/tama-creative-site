@@ -388,8 +388,7 @@
  "ocasioes_por_modelo": {
   "agenda": [
    "executivos",
-   "fim-de-ano",
-   "reconhecimento"
+   "fim-de-ano"
   ],
   "caderno-de-anotacoes": [
    "boas-vindas",
@@ -412,12 +411,16 @@
   ],
   "caneca": [
    "boas-vindas",
-   "campanhas"
+   "eventos",
+   "campanhas",
+   "fim-de-ano"
   ],
   "copo-de-vinho-com-tampa": [
+   "eventos",
    "executivos",
+   "campanhas",
    "fim-de-ano",
-   "eventos"
+   "reconhecimento"
   ],
   "taca-de-gin": [
    "eventos",
@@ -431,8 +434,12 @@
    "executivos"
   ],
   "difusor-de-aromas": [
-   "fim-de-ano",
-   "lancamentos"
+   "boas-vindas",
+   "eventos",
+   "executivos",
+   "campanhas",
+   "lancamentos",
+   "fim-de-ano"
   ],
   "moletom-com-capuz": [
    "boas-vindas",
@@ -445,12 +452,16 @@
   ],
   "bone": [
    "eventos",
-   "campanhas"
+   "campanhas",
+   "lancamentos",
+   "fim-de-ano"
   ],
   "ecobag": [
-   "eventos",
    "boas-vindas",
-   "campanhas"
+   "eventos",
+   "campanhas",
+   "lancamentos",
+   "fim-de-ano"
   ],
   "sacola-para-presente": [
    "fim-de-ano",
@@ -490,7 +501,11 @@
   ],
   "copo-com-tampa": [
    "boas-vindas",
-   "campanhas"
+   "eventos",
+   "executivos",
+   "campanhas",
+   "fim-de-ano",
+   "reconhecimento"
   ],
   "squeeze": [
    "eventos",
@@ -498,7 +513,9 @@
   ],
   "copo-360": [
    "eventos",
-   "campanhas"
+   "campanhas",
+   "lancamentos",
+   "fim-de-ano"
   ],
   "taca-de-champanhe": [
    "eventos",
@@ -510,8 +527,10 @@
    "fim-de-ano"
   ],
   "guarda-chuva": [
+   "eventos",
    "executivos",
-   "campanhas"
+   "campanhas",
+   "fim-de-ano"
   ],
   "estojo-de-escritorio": [
    "boas-vindas"
@@ -581,12 +600,16 @@
    "campanhas"
   ],
   "copo-com-cordao": [
-   "fim-de-ano",
-   "eventos"
+   "eventos",
+   "campanhas",
+   "lancamentos",
+   "fim-de-ano"
   ],
   "bolsa-listrada-com-inicial": [
    "boas-vindas",
    "eventos",
+   "campanhas",
+   "fim-de-ano",
    "reconhecimento"
   ],
   "pen-drive-cartao": [
@@ -620,18 +643,23 @@
   ],
   "fone-de-ouvido-sem-fio": [
    "executivos",
+   "campanhas",
    "fim-de-ano",
    "reconhecimento"
   ],
   "headphone": [
+   "boas-vindas",
+   "eventos",
    "executivos",
-   "reconhecimento",
-   "fim-de-ano"
+   "campanhas",
+   "fim-de-ano",
+   "reconhecimento"
   ],
   "caixa-de-som": [
+   "executivos",
+   "campanhas",
    "fim-de-ano",
-   "reconhecimento",
-   "executivos"
+   "reconhecimento"
   ],
   "estojo-organizador-de-tecnologia": [
    "boas-vindas",
@@ -640,21 +668,28 @@
   ],
   "caneca-de-parede-dupla": [
    "boas-vindas",
+   "eventos",
+   "executivos",
    "campanhas",
    "fim-de-ano"
   ],
   "caneca-termica-com-tampa": [
    "boas-vindas",
+   "eventos",
    "executivos",
+   "campanhas",
    "fim-de-ano"
   ],
   "caneca-com-borda-contrastante": [
    "boas-vindas",
+   "eventos",
    "campanhas",
    "fim-de-ano"
   ],
   "caneca-com-faixa-natural": [
    "boas-vindas",
+   "eventos",
+   "campanhas",
    "fim-de-ano",
    "reconhecimento"
   ],
@@ -673,9 +708,10 @@
    "boas-vindas"
   ],
   "garrafa-esportiva-grande": [
+   "boas-vindas",
    "eventos",
    "campanhas",
-   "boas-vindas"
+   "fim-de-ano"
   ],
   "squeeze-dobravel": [
    "eventos",
@@ -687,8 +723,10 @@
   ],
   "copo-termico-com-alca": [
    "boas-vindas",
-   "reconhecimento",
-   "fim-de-ano"
+   "eventos",
+   "campanhas",
+   "fim-de-ano",
+   "reconhecimento"
   ],
   "copo-reutilizavel-com-tampa": [
    "boas-vindas",
@@ -697,7 +735,9 @@
   ],
   "copo-retratil": [
    "eventos",
-   "campanhas"
+   "campanhas",
+   "lancamentos",
+   "fim-de-ano"
   ],
   "estojo-para-vinho": [
    "executivos",
@@ -736,6 +776,7 @@
   ],
   "bolsa-termica": [
    "boas-vindas",
+   "eventos",
    "campanhas",
    "fim-de-ano"
   ],
@@ -756,7 +797,8 @@
   "bloco-com-autoadesivos-e-caneta": [
    "boas-vindas",
    "eventos",
-   "campanhas"
+   "campanhas",
+   "fim-de-ano"
   ],
   "caderno-a5-com-elastico": [
    "boas-vindas",
@@ -789,13 +831,16 @@
    "executivos"
   ],
   "cortador-de-pizza": [
+   "eventos",
    "campanhas",
-   "eventos"
+   "lancamentos",
+   "fim-de-ano"
   ],
   "coqueteleira": [
-   "fim-de-ano",
    "eventos",
-   "lancamentos"
+   "campanhas",
+   "lancamentos",
+   "fim-de-ano"
   ],
   "abridor-de-garrafa-de-mesa": [
    "campanhas",
@@ -818,29 +863,38 @@
    "campanhas"
   ],
   "copo-para-salada-com-garfo-e-molheira": [
-   "campanhas",
    "boas-vindas",
-   "eventos"
+   "eventos",
+   "campanhas",
+   "fim-de-ano"
   ],
   "garrafa-termica-slim-com-tampa-de-botao": [
    "boas-vindas",
-   "campanhas",
-   "executivos"
+   "eventos",
+   "executivos",
+   "campanhas"
   ],
   "garrafa-termica-classica-grande": [
-   "reconhecimento",
+   "boas-vindas",
+   "eventos",
+   "executivos",
+   "campanhas",
    "fim-de-ano",
-   "executivos"
+   "reconhecimento"
   ],
   "garrafa-termica-com-display-de-temperatura-na-tampa": [
+   "eventos",
    "executivos",
+   "campanhas",
    "lancamentos",
    "fim-de-ano"
   ],
   "copo-termico-com-tampa-abridor": [
+   "boas-vindas",
    "eventos",
-   "fim-de-ano",
-   "campanhas"
+   "executivos",
+   "campanhas",
+   "fim-de-ano"
   ],
   "garrafa-slim-com-alca-na-tampa": [
    "boas-vindas",
@@ -849,6 +903,7 @@
   ],
   "garrafa-transparente-com-capa-e-tampa-natural": [
    "boas-vindas",
+   "eventos",
    "campanhas",
    "fim-de-ano"
   ],
@@ -858,6 +913,7 @@
    "fim-de-ano"
   ],
   "caneca-transparente-de-parede-dupla": [
+   "boas-vindas",
    "executivos",
    "lancamentos",
    "fim-de-ano"
@@ -869,11 +925,15 @@
   ],
   "caneca-termica-com-misturador-automatico": [
    "boas-vindas",
+   "eventos",
+   "campanhas",
    "lancamentos",
    "fim-de-ano"
   ],
   "caneca-com-alca-natural": [
    "boas-vindas",
+   "eventos",
+   "campanhas",
    "fim-de-ano",
    "reconhecimento"
   ],
@@ -884,28 +944,35 @@
   ],
   "caneca-termica-alta-com-tampa-natural-e-canudo": [
    "boas-vindas",
+   "eventos",
    "campanhas",
    "fim-de-ano"
   ],
   "caneca-de-viagem-com-display-de-temperatura": [
+   "boas-vindas",
+   "eventos",
    "executivos",
+   "campanhas",
    "lancamentos",
    "fim-de-ano"
   ],
   "copo-com-luva-canelada": [
    "boas-vindas",
+   "eventos",
    "campanhas",
-   "eventos"
+   "fim-de-ano"
   ],
   "copo-com-estampa-em-toda-a-volta": [
    "eventos",
    "campanhas",
-   "lancamentos"
+   "lancamentos",
+   "fim-de-ano"
   ],
   "copo-termico-antiqueda-com-tampa-flip": [
    "boas-vindas",
    "executivos",
-   "campanhas"
+   "campanhas",
+   "fim-de-ano"
   ],
   "garrafa-termica-com-base-natural": [
    "executivos",
@@ -913,19 +980,26 @@
    "fim-de-ano"
   ],
   "garrafa-termica-com-revestimento-natural": [
+   "eventos",
    "executivos",
-   "reconhecimento",
-   "fim-de-ano"
+   "campanhas",
+   "fim-de-ano",
+   "reconhecimento"
   ],
   "copo-termico-com-faixa-natural": [
    "boas-vindas",
+   "eventos",
    "executivos",
+   "campanhas",
    "fim-de-ano"
   ],
   "copo-termico-com-revestimento-natural-e-alca": [
+   "boas-vindas",
+   "eventos",
    "executivos",
-   "reconhecimento",
-   "fim-de-ano"
+   "campanhas",
+   "fim-de-ano",
+   "reconhecimento"
   ],
   "caneca-de-chope-transparente": [
    "eventos",
@@ -939,28 +1013,29 @@
   ],
   "agenda-de-bolso-vertical": [
    "executivos",
-   "fim-de-ano",
-   "reconhecimento"
+   "fim-de-ano"
   ],
   "agenda-bicolor-com-porta-caneta": [
    "executivos",
-   "fim-de-ano",
-   "reconhecimento"
+   "fim-de-ano"
   ],
   "bloco-espiral-com-capa-translucida-e-caneta": [
-   "eventos",
    "boas-vindas",
-   "campanhas"
+   "eventos",
+   "campanhas",
+   "fim-de-ano"
   ],
   "bloco-de-mesa-com-argolas": [
    "boas-vindas",
    "executivos",
+   "campanhas",
    "fim-de-ano"
   ],
   "bloco-capa-dura-com-caneta-na-capa": [
    "boas-vindas",
    "eventos",
-   "campanhas"
+   "campanhas",
+   "fim-de-ano"
   ],
   "caderno-com-capa-natural-e-caneta": [
    "boas-vindas",
@@ -978,6 +1053,7 @@
    "boas-vindas"
   ],
   "caderno-com-aba-de-fechamento-e-bolso-porta-cartao": [
+   "boas-vindas",
    "executivos",
    "fim-de-ano",
    "reconhecimento"
@@ -1020,7 +1096,8 @@
   "fone-intra-auricular-com-fio-em-estojo": [
    "boas-vindas",
    "eventos",
-   "campanhas"
+   "campanhas",
+   "fim-de-ano"
   ],
   "cabo-usb": [
    "boas-vindas",
@@ -1189,8 +1266,82 @@
   ],
   "estojo-com-acessorios-de-vinho": [
    "executivos",
+   "campanhas",
    "fim-de-ano",
    "reconhecimento"
+  ],
+  "avental": [
+   "eventos",
+   "campanhas"
+  ],
+  "avental-com-laco": [
+   "eventos",
+   "campanhas"
+  ],
+  "caneta-basica": [
+   "boas-vindas",
+   "eventos"
+  ],
+  "caneta-com-acionamento-por-giro": [
+   "boas-vindas",
+   "eventos",
+   "campanhas"
+  ],
+  "caneta-com-grip": [
+   "boas-vindas",
+   "eventos"
+  ],
+  "caneta-com-ponta-touch": [
+   "boas-vindas",
+   "eventos"
+  ],
+  "caneta-executiva-esferografica": [
+   "boas-vindas",
+   "eventos"
+  ],
+  "caneta-slim": [
+   "boas-vindas",
+   "eventos",
+   "campanhas"
+  ],
+  "cardapio": [
+   "eventos",
+   "campanhas"
+  ],
+  "carteira": [
+   "executivos"
+  ],
+  "chaveiro-abridor-de-garrafa": [
+   "eventos",
+   "campanhas",
+   "fim-de-ano"
+  ],
+  "chaveiro-com-tira": [
+   "executivos"
+  ],
+  "copo-de-cafe": [
+   "boas-vindas",
+   "eventos",
+   "executivos",
+   "campanhas",
+   "fim-de-ano"
+  ],
+  "copo-para-viagem": [
+   "eventos",
+   "campanhas"
+  ],
+  "dolma": [
+   "eventos",
+   "campanhas"
+  ],
+  "jogo-americano-impresso": [
+   "eventos"
+  ],
+  "jogo-americano-oval": [
+   "eventos"
+  ],
+  "jogo-americano-retangular": [
+   "eventos"
   ]
  },
  "aliases": {

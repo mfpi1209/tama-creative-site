@@ -99,7 +99,7 @@
   },
   {
    "produto": "Avental",
-   "genero": "m",
+   "genero": "",
    "resumo": "Do balcão à cozinha, o avental veste a equipe com a identidade da empresa e deixa claro quem está ali para atender. Funciona em restaurantes, cafeterias, lojas, salões e eventos de degustação, e pode virar presente em kits para clientes que gostam de cozinhar. Cor, material e aplicação da marca são definidos na proposta.",
    "usos": [
     "Uniforme do dia a dia",
@@ -109,9 +109,7 @@
    "medidas": {
     "valor": "",
     "status": "a_confirmar"
-   },
-   "titulo_seo": "",
-   "descricao_seo": ""
+   }
   },
   {
    "produto": "Avental com laço",
@@ -131,7 +129,7 @@
   },
   {
    "produto": "Bloco capa dura com caneta na capa",
-   "genero": "m",
+   "genero": "",
    "resumo": "A caneta encaixada na própria capa rígida faz do bloco um conjunto completo, pronto para anotações em reuniões, cursos e eventos. Funciona bem em kits de boas-vindas, treinamentos e ações promocionais, com a marca estampada na capa colorida e a caneta sempre junto ao bloco, sem se perder na bolsa. Material, medidas e aplicação da marca são confirmados na proposta.",
    "usos": [
     "Reuniões e cursos",
@@ -147,7 +145,7 @@
   },
   {
    "produto": "Bloco com autoadesivos e caneta",
-   "genero": "m",
+   "genero": "",
    "resumo": "Bloco de anotações, marcadores autoadesivos coloridos e caneta reunidos em um só conjunto, para organizar ideias em reuniões, treinamentos e congressos. É um brinde útil para eventos, kits de boas-vindas e campanhas internas. Material, medidas e aplicação da marca são confirmados na proposta.",
    "usos": [
     "Treinamentos e congressos",
@@ -163,7 +161,7 @@
   },
   {
    "produto": "Bloco de mesa com argolas",
-   "genero": "m",
+   "genero": "",
    "resumo": "Com duas argolas no topo e base de apoio, o bloco de mesa fica de pé ao lado do computador e facilita anotações durante reuniões e ligações. É uma peça que permanece no escritório de quem recebe, boa para kits de boas-vindas, salas de reunião e presentes para clientes. Material, medidas e aplicação da marca são confirmados na proposta.",
    "usos": [
     "Escritório e reuniões",

@@ -402,7 +402,8 @@
   ],
   "porta-canetas": [
    "boas-vindas",
-   "executivos"
+   "executivos",
+   "fim-de-ano"
   ],
   "garrafa-termica": [
    "boas-vindas",
@@ -429,9 +430,12 @@
    "fim-de-ano"
   ],
   "vela": [
+   "boas-vindas",
+   "eventos",
+   "executivos",
+   "campanhas",
    "fim-de-ano",
-   "reconhecimento",
-   "executivos"
+   "reconhecimento"
   ],
   "difusor-de-aromas": [
    "boas-vindas",
@@ -448,7 +452,8 @@
   ],
   "polo-masculina": [
    "boas-vindas",
-   "eventos"
+   "eventos",
+   "campanhas"
   ],
   "bone": [
    "eventos",
@@ -464,9 +469,10 @@
    "fim-de-ano"
   ],
   "sacola-para-presente": [
-   "fim-de-ano",
+   "eventos",
+   "campanhas",
    "lancamentos",
-   "eventos"
+   "fim-de-ano"
   ],
   "necessaire": [
    "executivos",
@@ -489,7 +495,9 @@
   ],
   "polo-feminina": [
    "boas-vindas",
-   "eventos"
+   "eventos",
+   "campanhas",
+   "fim-de-ano"
   ],
   "camiseta-masculina": [
    "eventos",
@@ -519,11 +527,14 @@
   ],
   "taca-de-champanhe": [
    "eventos",
+   "campanhas",
    "lancamentos",
    "fim-de-ano"
   ],
   "taca-de-vinho": [
    "eventos",
+   "campanhas",
+   "lancamentos",
    "fim-de-ano"
   ],
   "guarda-chuva": [
@@ -540,39 +551,46 @@
    "reconhecimento"
   ],
   "taca-coupe-canelada": [
-   "fim-de-ano",
    "eventos",
-   "lancamentos"
+   "campanhas",
+   "lancamentos",
+   "fim-de-ano"
   ],
   "flute-com-borda-dourada": [
-   "fim-de-ano",
    "eventos",
-   "lancamentos"
+   "campanhas",
+   "lancamentos",
+   "fim-de-ano"
   ],
   "taca-de-gin-transparente": [
-   "fim-de-ano",
    "eventos",
-   "lancamentos"
+   "campanhas",
+   "lancamentos",
+   "fim-de-ano"
   ],
   "taca-de-gin-com-pe-colorido": [
-   "fim-de-ano",
    "eventos",
-   "lancamentos"
+   "campanhas",
+   "lancamentos",
+   "fim-de-ano"
   ],
   "taca-de-gin-degrade": [
-   "fim-de-ano",
    "eventos",
-   "lancamentos"
+   "campanhas",
+   "lancamentos",
+   "fim-de-ano"
   ],
   "taca-de-gin-com-borda-dourada": [
-   "fim-de-ano",
    "eventos",
-   "lancamentos"
+   "campanhas",
+   "lancamentos",
+   "fim-de-ano"
   ],
   "taca-martini": [
-   "fim-de-ano",
    "eventos",
-   "lancamentos"
+   "campanhas",
+   "lancamentos",
+   "fim-de-ano"
   ],
   "taca-margarita": [
    "fim-de-ano",
@@ -628,12 +646,14 @@
   "power-bank-slim": [
    "boas-vindas",
    "eventos",
+   "executivos",
    "campanhas"
   ],
   "power-bank-com-ventosas": [
+   "boas-vindas",
    "eventos",
-   "campanhas",
-   "boas-vindas"
+   "executivos",
+   "campanhas"
   ],
   "carregador-sem-fio-de-mesa": [
    "executivos",
@@ -703,9 +723,10 @@
    "executivos"
   ],
   "squeeze-com-mosquetao": [
+   "boas-vindas",
    "eventos",
    "campanhas",
-   "boas-vindas"
+   "fim-de-ano"
   ],
   "garrafa-esportiva-grande": [
    "boas-vindas",
@@ -715,7 +736,9 @@
   ],
   "squeeze-dobravel": [
    "eventos",
-   "campanhas"
+   "campanhas",
+   "lancamentos",
+   "fim-de-ano"
   ],
   "garrafa-com-compartimento": [
    "boas-vindas",
@@ -765,13 +788,16 @@
    "reconhecimento"
   ],
   "sacola-de-alca-longa": [
-   "eventos",
    "boas-vindas",
-   "campanhas"
+   "eventos",
+   "campanhas",
+   "fim-de-ano"
   ],
   "necessaire-colorida": [
    "boas-vindas",
    "eventos",
+   "executivos",
+   "campanhas",
    "reconhecimento"
   ],
   "bolsa-termica": [
@@ -808,6 +834,7 @@
   "suporte-de-celular": [
    "boas-vindas",
    "eventos",
+   "executivos",
    "campanhas"
   ],
   "caneta-e-lapiseira-em-estojo": [
@@ -816,13 +843,16 @@
    "fim-de-ano"
   ],
   "porta-cartao": [
+   "boas-vindas",
    "executivos",
-   "reconhecimento",
-   "fim-de-ano"
+   "fim-de-ano",
+   "reconhecimento"
   ],
   "tabua-de-queijos-com-facas": [
-   "fim-de-ano",
+   "eventos",
    "executivos",
+   "campanhas",
+   "fim-de-ano",
    "reconhecimento"
   ],
   "kit-churrasco-em-estojo": [
@@ -908,8 +938,9 @@
    "fim-de-ano"
   ],
   "taca-coupe-lisa-de-haste-longa": [
-   "lancamentos",
    "eventos",
+   "campanhas",
+   "lancamentos",
    "fim-de-ano"
   ],
   "caneca-transparente-de-parede-dupla": [
@@ -1120,14 +1151,17 @@
    "boas-vindas"
   ],
   "toalha-de-rosto": [
-   "campanhas",
+   "boas-vindas",
    "eventos",
-   "boas-vindas"
+   "campanhas",
+   "lancamentos",
+   "fim-de-ano"
   ],
   "sacola-metalizada-com-sanfona": [
-   "fim-de-ano",
+   "eventos",
+   "campanhas",
    "lancamentos",
-   "eventos"
+   "fim-de-ano"
   ],
   "sacola-transparente-com-almofada-inflavel": [
    "eventos",
@@ -1180,13 +1214,17 @@
    "reconhecimento"
   ],
   "tabua-de-queijos-com-gaveta-e-utensilios": [
-   "fim-de-ano",
+   "eventos",
    "executivos",
+   "campanhas",
+   "fim-de-ano",
    "reconhecimento"
   ],
   "suporte-com-5-facas-de-queijo": [
-   "fim-de-ano",
+   "eventos",
    "executivos",
+   "campanhas",
+   "fim-de-ano",
    "reconhecimento"
   ],
   "porta-copos-redondo": [
@@ -1230,8 +1268,9 @@
    "eventos"
   ],
   "tabua-de-petiscos-com-cabo": [
-   "fim-de-ano",
    "eventos",
+   "campanhas",
+   "fim-de-ano",
    "reconhecimento"
   ],
   "tabua-com-cabo-e-encaixe-para-copo": [
@@ -1341,6 +1380,9 @@
    "eventos"
   ],
   "jogo-americano-retangular": [
+   "eventos"
+  ],
+  "porta-contas": [
    "eventos"
   ]
  },

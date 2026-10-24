@@ -1170,6 +1170,16 @@
    "descricao_seo": "Colher em tom natural com a marca da sua empresa, pequena e de cabo longo. Para kits de bar, petiscos, confraternizações e fim de ano. Material sob consulta."
   },
   {
+   "produto": "Combo Kit para Petiscos & Kit para Queijos Personalizados",
+   "genero": "f",
+   "resumo": "Kit para Petiscos Personalizado. Ideal para Presentear Amigos e Familiares, este conjunto oferece praticidade e estilo.",
+   "usos": [],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   }
+  },
+  {
    "produto": "Copo 360°",
    "nome": "Copo com estampa 360°",
    "genero": "m",
@@ -2004,6 +2014,16 @@
    "descricao_seo": "Kit churrasco em estojo com zíper e a marca da sua empresa. Para presentes de fim de ano, confraternizações e reconhecimento de equipe."
   },
   {
+   "produto": "Kit para Pizza Personalizado com Tábua + Cortador + Espátula",
+   "genero": "f",
+   "resumo": "Kit para Pizza Personalizado. Ideal para Presentear Amigos e Familiares, este conjunto oferece praticidade e estilo. Personalize com seu toque especial e surpreenda em qualquer ocasião.",
+   "usos": [],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   }
+  },
+  {
    "produto": "Lacre",
    "genero": "m",
    "resumo": "O lacre com o símbolo da marca dá um acabamento cuidadoso a envelopes, cartões e embalagens. É um detalhe pequeno que valoriza kits de fim de ano, convites para eventos e presentes para clientes especiais, marcando a entrega com a identidade da empresa logo no primeiro olhar.",
@@ -2034,6 +2054,16 @@
    },
    "titulo_seo": "Lápis personalizado | TaMa Creative",
    "descricao_seo": "Lápis com a marca da sua empresa, de corpo cilíndrico claro. Para kits escolares, eventos com grande público e conjuntos de papelaria. Material sob consulta."
+  },
+  {
+   "produto": "Mini Tábua 22x13 cm",
+   "genero": "f",
+   "resumo": "Mini Tábua 22x13 cm Personalizada com Logo Brinde Corporativo",
+   "usos": [],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   }
   },
   {
    "produto": "Mochila antifurto",

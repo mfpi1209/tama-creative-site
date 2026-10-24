@@ -948,7 +948,7 @@
     { chave: 'brindes', nome: 'Brindes corporativos', url: '/brindes-corporativos/', vitrines: ['brindes'] },
     { chave: 'kits', nome: 'Kits corporativos', url: '/kits-corporativos/', vitrines: [] },
     { chave: 'confeccoes', nome: 'Uniformes e confecções', url: '/confeccoes-personalizadas/', vitrines: ['confeccoes'] },
-    { chave: 'ativacoes', nome: 'Ativações promocionais', url: '/ativacoes-promocionais/', vitrines: ['ativacoes'] },
+    { chave: 'ativacoes', nome: 'Ativações promocionais para eventos corporativos', url: '/ativacoes-promocionais/', vitrines: ['ativacoes'] },
     { chave: 'hotelaria', nome: 'Hotelaria e gastronomia', url: '/hotelaria-e-gastronomia/', vitrines: ['hotelaria'] },
     { chave: 'fim-de-ano', nome: 'Fim de ano', url: '/brindes-de-fim-de-ano/', vitrines: ['fim-brindar', 'fim-presentear'] },
     { chave: 'sobre', nome: 'Sobre', url: '/sobre/', vitrines: [] },

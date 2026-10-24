@@ -476,7 +476,7 @@ try {
   }
   await page.setViewport({ width: 1280, height: 900 });
   ok(await page.$eval('.header-row .head-search', f => f.getAttribute('action') === '/catalogo/' && f.querySelector('input[name="q"]')), 'busca no catálogo na linha de cima do cabeçalho');
-  ok(await page.$$eval('.site-footer .footer-links', ls => ls[0] && [...ls[0].querySelectorAll('a')].map(x => x.textContent.trim()).join() === 'Brindes corporativos,Uniformes e confecções,Kits corporativos,Ativações promocionais,Hotelaria e gastronomia') && await page.$eval('.site-footer a[href="/blog/"]', a => a.textContent === 'Conteúdos'), 'rodapé repete as cinco áreas com os nomes do menu e chama o blog de "Conteúdos", como o menu');
+  ok(await page.$$eval('.site-footer .footer-links', ls => ls[0] && [...ls[0].querySelectorAll('a')].map(x => x.textContent.trim()).join() === 'Brindes corporativos,Uniformes e confecções,Kits corporativos,Ativações promocionais para eventos corporativos,Hotelaria e gastronomia') && await page.$eval('.site-footer a[href="/blog/"]', a => a.textContent === 'Conteúdos'), 'rodapé repete as cinco áreas com os nomes do menu e chama o blog de "Conteúdos", como o menu');
   ok(await page.$$eval('.foto-hero figcaption, .entrega-foto figcaption', f => f.length >= 1 && f.every(x => x.textContent === 'Imagem ilustrativa • Marca fictícia')) && await page.$$eval('.kits-page .note', n => n.length === 1 && /^Imagens? ilustrativas?: (a marca TaMa e marcas fictícias aparecem|a marca (TaMa aparece|é fictícia e aparece)) como exemplo; no seu projeto, entra a marca da sua empresa\./.test(n[0].textContent)), 'kits: legenda padrão da marca fictícia no cabeçalho e uma nota padrão (marca TaMa e marcas fictícias como exemplo) depois dos tipos de kit');
   ok(await page.$$eval('a[href^="/branding-identidade-visual/"], a[href^="/projetos/"]', a => a.length === 0), 'nenhum link para branding ou projetos');
   await page.goto(BASE + '/confeccoes-personalizadas/', { waitUntil: 'networkidle0' });
@@ -534,7 +534,7 @@ try {
   const selecao = await page.$eval('#f-selecao', i => i.value);
   ok(selecao.includes('Garrafa térmica (Azul royal)') && selecao.includes('Taça de gin'), 'campo enviado leva peças e cores');
   ok(await page.$$eval('input[name="tipo"]', l => l.map(i => i.value).join()) === 'brindes,kits,confeccoes,ativacoes,hotelaria,integrado', 'formulário com as frentes atuais (sem branding)');
-  ok(await page.$eval('input[name="tipo"][value="ativacoes"]', i => i.parentNode.textContent.trim() === 'Ativações promocionais, buffet ou decoração para evento'), 'tipo Ativações cita "buffet ou decoração para evento" (a chave continua ativacoes)');
+  ok(await page.$eval('input[name="tipo"][value="ativacoes"]', i => i.parentNode.textContent.trim() === 'Ativações promocionais para eventos corporativos: buffet, decoração e ações'), 'tipo Ativações cita "buffet ou decoração para evento" (a chave continua ativacoes)');
   ok(await page.$eval('#form-result', r => r.getBoundingClientRect().height === 0), 'nenhuma caixa vazia sob "Enviar pedido"');
   ok(/^[0-9a-f-]{36}$/.test(await page.$eval('#f-pedido-id', i => i.value)), 'pedido tem identificador para nova tentativa sem duplicar');
   await page.click('input[name="tipo"][value="kits"]');
@@ -995,7 +995,7 @@ try {
   await ip.click('#pub-ok');
   await ip.waitForFunction(() => document.getElementById('status').classList.contains('ok'), { timeout: 15000 });
   const site3 = JSON.parse(((gravado?.entry?.dataFiles || []).find(f => f.path === 'src/data/site.json') || {}).raw || '{}');
-  ok(mudSec.includes('Ativações promocionais: alterações em seções') && mudSec.includes('Brindes por ocasião: alterações em seções') &&
+  ok(mudSec.includes('Ativações promocionais para eventos corporativos: alterações em seções') && mudSec.includes('Brindes por ocasião: alterações em seções') &&
      (site3.secoes?.['ativacoes-formatos']?.itens || []).find(i => i.id === 'fmt-buffet')?.texto === 'Buffet para eventos da empresa.' && site3.secoes?.ocasioes?.eventos?.eyebrow === 'Eventos e feiras',
      `seções com foto: formatos de Ativações e abertura de ocasião editados e publicados em site.json (${mudSec.join(' | ')})`);
   await ip.close();

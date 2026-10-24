@@ -100,7 +100,7 @@ curador-tecnologia → OK do dono (linha e custo) → curador-catalogo-imagens +
 - **Nada inventado**: sem clientes, cases, números, preços, prazos ou estoque. Imagens sempre "ilustrativas". Material
   e técnica "a confirmar" até a TaMa confirmar. Sem marcas de terceiros nas imagens (Duracril, Brahma, Coca-Cola,
   Apple etc.); nas cenas, só a TaMa ou marcas fictícias (Casa Mirelo, Nexo, Vera, Elo, Solar, Oliva).
-- **Glossário**: Brindes corporativos, Uniformes e confecções, Kits corporativos, Ativações promocionais, Hotelaria e
+- **Glossário**: Brindes corporativos, Uniformes e confecções, Kits corporativos, Ativações promocionais para eventos corporativos, Hotelaria e
   gastronomia. Página de ocasiões: "Brindes por ocasião", em `/brindes-por-ocasiao/`. Temporada em
   `site.config.json › temporada` (fim de ano de 1/10 a 31/12); `TEMPORADA=off` desliga.
 - **Segredos**: a chave da OpenAI fica só em `~/.config/tama/openai.env`, nunca no chat nem no repositório.

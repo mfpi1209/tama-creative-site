@@ -1245,7 +1245,7 @@ NAV = [
     ('/brindes-corporativos/', 'Brindes corporativos'),
     ('/confeccoes-personalizadas/', 'Uniformes e confecções'),
     ('/kits-corporativos/', 'Kits corporativos'),
-    ('/ativacoes-promocionais/', 'Ativações promocionais'),
+    ('/ativacoes-promocionais/', 'Ativações promocionais para eventos corporativos'),
     ('/hotelaria-e-gastronomia/', 'Hotelaria e gastronomia'),
 ]
 BAG_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8h12l-1 12H7z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/></svg>'
@@ -2167,14 +2167,14 @@ def ativ_hero(trail):
 
 def page_ativacoes():
     return {
-        'path': '/ativacoes-promocionais/', 'og': 'conf-degustacao-v2', 'title': 'Ativações promocionais e degustações | TaMa Creative',
-        'description': 'Degustações, ações em feiras e eventos e promoções no ponto de venda, com uniformes, brindes e materiais na identidade da sua marca. Peça uma proposta.',
-        'trail': [('/', 'Início'), ('/ativacoes-promocionais/', 'Ativações promocionais')],
-        'service': {'key': 'ativacoes', 'name': 'Ativações promocionais e degustações', 'type': 'Ativação promocional'},
+        'path': '/ativacoes-promocionais/', 'og': 'conf-degustacao-v2', 'title': 'Ativações promocionais para eventos corporativos | TaMa Creative',
+        'description': 'Ativações promocionais para eventos corporativos: degustações, feiras, buffet e decoração, com uniformes e brindes da sua marca. Peça uma proposta.',
+        'trail': [('/', 'Início'), ('/ativacoes-promocionais/', 'Ativações promocionais para eventos corporativos')],
+        'service': {'key': 'ativacoes', 'name': 'Ativações promocionais para eventos corporativos', 'type': 'Ativação promocional'},
         'assunto': 'uma ativação promocional ou degustação',
         'preload': preload_image(cab('ativacoes')['imagem'], ATIV_HERO_SIZES),   # mesma imagem e sizes da foto do cabeçalho
         'crumbs_inline': True,
-        'body': ativ_hero([('/', 'Início'), ('/ativacoes-promocionais/', 'Ativações promocionais')]) + f'''
+        'body': ativ_hero([('/', 'Início'), ('/ativacoes-promocionais/', 'Ativações promocionais para eventos corporativos')]) + f'''
 <section class="section ivory" id="formatos" aria-labelledby="formatos-t">
   <div class="wrap">
 {ativ_formatos()}
@@ -2322,7 +2322,7 @@ def page_sobre():
       <div class="item">{arc()}<div><h3><a href="/brindes-corporativos/">Brindes corporativos</a></h3><p>Peças para clientes, equipes e eventos, escolhidas pelo uso.</p></div></div>
       <div class="item">{arc()}<div><h3><a href="/confeccoes-personalizadas/">Uniformes e confecções</a></h3><p>Polos, camisas, camisetas, moletons, dólmãs e aventais com a marca da sua empresa.</p></div></div>
       <div class="item">{arc()}<div><h3><a href="/kits-corporativos/">Kits corporativos</a></h3><p>Caixa, cartão e peças compostos para uma ocasião.</p></div></div>
-      <div class="item">{arc()}<div><h3><a href="/ativacoes-promocionais/">Ativações promocionais</a></h3><p>Ações em eventos, feiras e pontos de venda.</p></div></div>
+      <div class="item">{arc()}<div><h3><a href="/ativacoes-promocionais/">Ativações promocionais para eventos corporativos</a></h3><p>Ações em eventos, feiras e pontos de venda.</p></div></div>
       <div class="item">{arc()}<div><h3><a href="/hotelaria-e-gastronomia/">Hotelaria e gastronomia</a></h3><p>Cardápios, porta-contas, jogos americanos e uniformes.</p></div></div>
     </div>
   </div>
@@ -2381,7 +2381,7 @@ def page_sobre():
 
 def page_proposta():
     tipos = [('brindes', 'Brindes corporativos'), ('kits', 'Kits corporativos'), ('confeccoes', 'Uniformes e confecções'),
-             ('ativacoes', 'Ativações promocionais, buffet ou decoração para evento'), ('hotelaria', 'Hotelaria e gastronomia'), ('integrado', 'Mais de uma área ou ainda não sei')]
+             ('ativacoes', 'Ativações promocionais para eventos corporativos: buffet, decoração e ações'), ('hotelaria', 'Hotelaria e gastronomia'), ('integrado', 'Mais de uma área ou ainda não sei')]
     choices = ''.join(f'<label class="choice"><input type="radio" name="tipo" value="{v}" required> {t}</label>' for v, t in tipos)
     contacts = contact_lines()
     contact_block = f'<div class="stack" style="gap:10px"><p class="eyebrow">Fale direto</p><div class="contact-lines">{"".join(contacts)}</div></div>' if contacts else ''

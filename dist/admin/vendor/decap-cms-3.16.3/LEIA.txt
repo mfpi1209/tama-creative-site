@@ -1,0 +1,2 @@
+Decap CMS 3.16.3 (MIT), copiado de https://www.npmjs.com/package/decap-cms (pasta dist/, sem os .map).
+Atualizar: npm pack decap-cms@<versão>, copiar dist/*decap-cms.js para uma pasta nova e trocar o caminho em src/admin/index.html.

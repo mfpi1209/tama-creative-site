@@ -19,6 +19,17 @@ LOGOS_OFICIAIS = os.path.join(ROOT, '..', 'tama-creative-logos', 'svg')
 
 # ------------------------------------------------------------------ config
 CFG = json.load(open(os.path.join(ROOT, 'site.config.json'), encoding='utf-8'))
+# Dados do catálogo e do conteúdo (produtos, modelos, seleções, kits e site.json: carrossel, cabeçalhos, vitrines, contato,
+# topo e temporada): src/data/, editados no /admin/inventario/. Os testes de fluxo (tests/e2e.mjs) rodam sobre uma cópia
+# fixa em tests/fixtures/dados (TAMA_DADOS=tests/fixtures/dados), para a edição de conteúdo pelo cliente não travar a
+# publicação; o site que vai ao ar sempre usa src/data/.
+DADOS = os.path.join(ROOT, os.environ['TAMA_DADOS']) if os.environ.get('TAMA_DADOS') else os.path.join(SRC, 'data')
+_SITE_JSON = os.path.join(DADOS, 'site.json')
+SITE_DADOS = json.load(open(_SITE_JSON, encoding='utf-8')) if os.path.exists(_SITE_JSON) else {}
+# contato e dados da empresa: site.json › contato (editado no inventário) vale sobre site.config.json; variável de ambiente vale sobre os dois
+for key, val in (SITE_DADOS.get('contato') or {}).items():
+    if key in ('whatsapp', 'email', 'instagram', 'razao_social', 'cnpj', 'cidade', 'responsavel_comercial'):
+        CFG[key] = val
 for key in ('site_url', 'whatsapp', 'email', 'instagram', 'ga4_id', 'redirect_netlify_subdomain', 'form_endpoint'):
     env = os.environ.get(key.upper())
     if env:   # vazia = não definida (o Dockerfile passa ARG sem valor como variável vazia)
@@ -37,10 +48,14 @@ BUILD_DATE = date.today().isoformat()
 
 
 def _temporada():
-    """Chave da ocasião em destaque (ex.: 'fim-de-ano') quando a data do build está dentro de site.config.json › temporada."""
-    t, env = CFG.get('temporada') or {}, (os.environ.get('TEMPORADA') or '').strip().lower()
+    """Chave da ocasião em destaque (ex.: 'fim-de-ano') quando a data do build está dentro do período de site.json › topo ›
+    temporada (editado no inventário; sem ele, site.config.json › temporada). "ligada": false desliga; TEMPORADA=off|chave força."""
+    t = (SITE_DADOS.get('topo') or {}).get('temporada') or CFG.get('temporada') or {}
+    env = (os.environ.get('TEMPORADA') or '').strip().lower()
     if env:
         return None if env in ('off', '0', 'nao', 'não') else env
+    if t.get('ligada') is False:
+        return None
     ini, fim, md = t.get('inicio'), t.get('fim'), date.today().strftime('%m-%d')
     if not (t.get('chave') and ini and fim):
         return None
@@ -119,10 +134,6 @@ def pict(name, cls='pict'):
     return f'<svg class="{cls}" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#i-{name}"/></svg>'
 
 # Seleções editoriais (home, ordem, foto-base, ocasiões, slugs antigos) sobre a base única src/data/produtos.json.
-# Dados do catálogo (produtos, modelos, seleções e kits): src/data/, editados no /admin/inventario/. Os testes de fluxo
-# (tests/e2e.mjs) rodam sobre uma cópia fixa em tests/fixtures/dados (TAMA_DADOS=tests/fixtures/dados), para a edição
-# de conteúdo pelo cliente não travar a publicação; o site que vai ao ar sempre usa src/data/.
-DADOS = os.path.join(ROOT, os.environ['TAMA_DADOS']) if os.environ.get('TAMA_DADOS') else os.path.join(SRC, 'data')
 SEL = json.load(open(os.path.join(DADOS, 'selecoes.json'), encoding='utf-8'))
 OCCS = SEL['ocasioes']
 ALIASES = SEL['aliases']
@@ -245,9 +256,10 @@ def nota_marca(textos):
     tama, fict = 'TaMa' in t, 'fictícia' in t
     return NOTA_MISTA if tama and fict else NOTA_FICTICIA_LONGA if fict else NOTA_TAMA
 # Assinatura da agência (barra do topo, rodapé, blog): as cinco áreas de NAV, na mesma ordem.
-ASSINATURA = 'Brindes, uniformes, kits, ativações e hotelaria para empresas.'
+_TOPO = SITE_DADOS.get('topo') or {}
+ASSINATURA = _TOPO.get('assinatura') or 'Brindes, uniformes, kits, ativações e hotelaria para empresas.'
 # Três compromissos, iguais na barra do topo e na faixa abaixo do carrossel.
-GARANTIAS = ['Atendimento consultivo', 'Arte aprovada antes da produção', 'Coordenação do pedido à entrega']
+GARANTIAS = (_TOPO.get('garantias') or ['Atendimento consultivo', 'Arte aprovada antes da produção', 'Coordenação do pedido à entrega'])[:3]
 
 
 # ------------------------------------------------------------------ images
@@ -256,11 +268,11 @@ IMAGES = {}
 
 # largura real da foto do carrossel (fotos 3:2 na metade direita; no celular, um pouco maior que a tela por causa do corte)
 HERO_SIZES = '(max-width: 760px) 120vw, 95vw'
-CARROSSEL_HQ = {'hero-brindes-v2', 'fim-header', 'hero-v3-confeccoes-v2', 'hero-kits-v2', 'home-escritorio-v2', 'slide-ativacoes'}
+CARROSSEL_HQ = {s['imagem'] for s in SITE_DADOS.get('carrossel') or [] if s.get('imagem')}   # fotos do carrossel (site.json)
 # fotos do carrossel mais estreitas que 1,9:1 que também já trazem o vazio do texto à esquerda (fim-header: a parede
 # iluminada ocupa o primeiro terço; a taça solta começa em ~37% da largura)
-CARROSSEL_RESPIRO = {'fim-header'}
-FOTOS_HQ = CARROSSEL_HQ | {'home-frente-brindes-v2', 'home-frente-confeccoes-v2', 'home-frente-kits-v2', 'kits-header', 'kits-header-v3', 'conf-header', 'ativ-header', 'hot-header', 'brindes-header', 'brindes-entrega', 'fim-header', 'blog-header', 'sobre-header', 'ocasiao-boas-vindas', 'ocasiao-eventos', 'ocasiao-executivos', 'ocasiao-campanhas', 'ocasiao-lancamentos', 'ocasiao-reconhecimento', 'sobre-caderno', 'sobre-uniforme', 'sobre-caixa', 'slide-ativacoes'}   # fotos enviadas em alta pela TaMa (home e cabeçalhos de kits e confecções)
+CARROSSEL_RESPIRO = {s['imagem'] for s in SITE_DADOS.get('carrossel') or [] if s.get('respiro')}
+FOTOS_HQ = CARROSSEL_HQ | {'home-frente-brindes-v2', 'home-frente-confeccoes-v2', 'home-frente-kits-v2', 'kits-header', 'kits-header-v3', 'conf-header', 'ativ-header', 'hot-header', 'brindes-header', 'brindes-entrega', 'fim-header', 'blog-header', 'sobre-header', 'ocasiao-boas-vindas', 'ocasiao-eventos', 'ocasiao-executivos', 'ocasiao-campanhas', 'ocasiao-lancamentos', 'ocasiao-reconhecimento', 'sobre-caderno', 'sobre-uniforme', 'sobre-caixa', 'slide-ativacoes'} | {c['imagem'] for c in (SITE_DADOS.get('cabecalhos') or {}).values() if c.get('imagem')}   # fotos enviadas em alta pela TaMa e as dos cabeçalhos (site.json)
 
 
 def build_images():
@@ -485,6 +497,87 @@ def preparar_modelos():
 
 preparar_modelos()
 CATALOGO_BY = {c['slug']: c for c in CATALOGO}
+CABECALHOS_SITE = ('brindes', 'kits', 'confeccoes', 'ativacoes', 'hotelaria', 'fim-de-ano', 'sobre')
+VITRINES_SITE = ('brindes', 'confeccoes', 'ativacoes', 'hotelaria', 'fim-brindar', 'fim-presentear')
+TONS_CARROSSEL = ('tone-cream', 'tone-sage', 'tone-rose', 'tone-linen')
+TIPOS_PEDIDO = ('', 'brindes', 'confeccoes', 'kits', 'ativacoes', 'hotelaria')
+
+
+def preparar_site():
+    """site.json (inventário › Carrossel, Páginas, Contato e rodapé): o build barra o que quebraria a página. As fotos são
+    conferidas depois de carregar as imagens (conferir_imagens_site)."""
+    erros, d = [], SITE_DADOS
+    if not d:
+        return
+    estilo_ok = lambda v: re.fullmatch(r'[-a-z0-9:;%. ]*', v or '') is not None   # vai num atributo style
+    link_ok = lambda v: bool(re.fullmatch(r'(/[^\s"<>]*|https://[^\s"<>]+)', v or ''))
+    slides, ids = d.get('carrossel') or [], set()
+    if not any(sl.get('ativo', True) is not False for sl in slides):
+        erros.append('carrossel: deixe pelo menos um slide ativo')
+    for n, sl in enumerate(slides, 1):
+        nome = f"carrossel, slide {n} ({sl.get('eyebrow') or sl.get('id') or '?'})"
+        if not re.fullmatch(r'[a-z0-9]+(-[a-z0-9]+)*', sl.get('id') or '') or sl.get('id') in ids:
+            erros.append(f'{nome}: identificador inválido ou repetido')
+        ids.add(sl.get('id'))
+        for campo in ('imagem', 'alt', 'eyebrow', 'titulo', 'texto'):
+            if not (sl.get(campo) or '').strip():
+                erros.append(f'{nome}: {campo} é obrigatório')
+        if (sl.get('tom') or 'tone-cream') not in TONS_CARROSSEL:
+            erros.append(f'{nome}: tom de fundo inválido')
+        if not estilo_ok(sl.get('enquadramento')):
+            erros.append(f'{nome}: enquadramento inválido')
+        if ((sl.get('botao') or {}).get('tipo') or '') not in TIPOS_PEDIDO:
+            erros.append(f'{nome}: tipo de pedido do botão inválido')
+        b2 = sl.get('botao2') or {}
+        if b2.get('texto') and not link_ok(b2.get('link')):
+            erros.append(f'{nome}: o link do 2º botão tem de começar com / (página do site) ou https://')
+    for chave in CABECALHOS_SITE:
+        c = (d.get('cabecalhos') or {}).get(chave)
+        if not c:
+            erros.append(f'cabeçalho "{chave}" não existe'); continue
+        for campo in ('imagem', 'alt', 'eyebrow', 'texto'):
+            if not (c.get(campo) or '').strip():
+                erros.append(f'cabeçalho "{chave}": {campo} é obrigatório')
+        if not [x for x in c.get('linhas') or [] if x.strip()] or not [x for x in c.get('destaque') or [] if x.strip()]:
+            erros.append(f'cabeçalho "{chave}": título e destaque precisam de pelo menos uma linha')
+        if not estilo_ok(c.get('posicao_celular')):
+            erros.append(f'cabeçalho "{chave}": posição da foto no celular inválida')
+    conhecidos = set(CATALOGO_BY) | set(ALIASES) | FORA_DO_SITE
+    for chave in VITRINES_SITE:
+        v = (d.get('vitrines') or {}).get(chave)
+        if not v:
+            erros.append(f'vitrine "{chave}" não existe'); continue
+        for campo in ('eyebrow', 'titulo', 'texto'):
+            if not (v.get(campo) or '').strip():
+                erros.append(f'vitrine "{chave}": {campo} é obrigatório')
+        erros += [f'vitrine "{chave}": modelo "{m}" não existe no catálogo' for m in v.get('modelos') or [] if m not in conhecidos]
+    ct = d.get('contato') or {}
+    if ct.get('whatsapp') and not re.fullmatch(r'\d{12,13}', re.sub(r'\D', '', ct['whatsapp'])):
+        erros.append('contato: WhatsApp com DDI e DDD, só números (ex.: 5511999999999)')
+    if ct.get('email') and not re.fullmatch(r'[^@\s]+@[^@\s]+\.[^@\s]+', ct['email']):
+        erros.append('contato: e-mail inválido')
+    for rede in ('linkedin', 'facebook', 'youtube'):
+        if ct.get(rede) and not ct[rede].startswith('https://'):
+            erros.append(f'contato: o endereço do {rede} tem de começar com https://')
+    tp = d.get('topo') or {}
+    if len([g for g in tp.get('garantias') or [] if g.strip()]) != 3:
+        erros.append('topo: os compromissos são 3 frases')
+    t = tp.get('temporada') or {}
+    if t and not all(re.fullmatch(r'(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])', t.get(k) or '') for k in ('inicio', 'fim')):
+        erros.append('temporada: início e fim no formato MM-DD (ex.: 10-01)')
+    if erros:
+        raise SystemExit('Conteúdo do site (src/data/site.json) com erro:\n  ' + '\n  '.join(erros))
+
+
+def conferir_imagens_site():
+    """Depois de build_images(): toda foto citada no carrossel e nos cabeçalhos existe em img/ (img/v2/ para as enviadas)."""
+    falta = [f"carrossel ({sl.get('eyebrow')}): {sl['imagem']}" for sl in SITE_DADOS.get('carrossel') or [] if sl.get('ativo', True) is not False and sl['imagem'] not in IMAGES]
+    falta += [f"cabeçalho {k}: {c['imagem']}" for k, c in (SITE_DADOS.get('cabecalhos') or {}).items() if c['imagem'] not in IMAGES and k != 'kits']
+    if falta:
+        raise SystemExit('Conteúdo do site (src/data/site.json): foto não encontrada em img/v2/:\n  ' + '\n  '.join(falta))
+
+
+preparar_site()
 _falta = [m for m in SEL.get('home', []) + SEL.get('prioridade', []) + list(SEL.get('foto_base', {})) + list(SEL.get('ocasioes_por_modelo', {})) + list(ALIASES.values()) if m not in CATALOGO_BY and m not in FORA_DO_SITE]
 if _falta:
     raise SystemExit(f'selecoes.json aponta para modelos que não existem em produtos.json: {sorted(set(_falta))}')
@@ -1137,8 +1230,9 @@ def cta_link(label='Solicitar proposta', tipo=None, cls='btn btn-wine', arrow=Tr
     return f'<a class="{cls}" href="{href}" data-track="cta_solicitar_proposta"{tl}>{label}{" " + ARROW if arrow else ""}</a>'
 
 
+_T = (_TOPO.get('temporada') or {})
 ANNOUNCE_SEASON = ('<p class="announce-season"><a href="/brindes-de-fim-de-ano/" data-track="season_click" data-track-label="barra-topo">'
-                   '<strong>Fim de ano:</strong> presentes com a sua marca para agradecer clientes e equipes '
+                   f'<strong>{esc(_T.get("aviso_titulo") or "Fim de ano:")}</strong> {esc(_T.get("aviso_texto") or "presentes com a sua marca para agradecer clientes e equipes")} '
                    '<span aria-hidden="true">→</span></a></p>')
 
 
@@ -1216,9 +1310,9 @@ def nav_menu(path):
 # (o Instagram usa site.config.json › instagram quando preenchido).
 REDES = [
     ('Instagram', f'https://www.instagram.com/{IG}/' if IG else '#', '<rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r=".9" fill="currentColor" stroke="none"/>'),
-    ('LinkedIn', '#', '<rect x="3.5" y="3.5" width="17" height="17" rx="3"/><path d="M8 10.5V16M8 7.8v.1M11.5 16v-3.2c0-1.4.9-2.3 2.1-2.3s1.9.9 1.9 2.3V16M11.5 10.5V16"/>'),
-    ('Facebook', '#', '<rect x="3.5" y="3.5" width="17" height="17" rx="5"/><path d="M13.2 20.5v-6.7h2.3l.4-2.6h-2.7V9.6c0-.8.3-1.3 1.4-1.3h1.4V6c-.3 0-1.1-.1-2.1-.1-2.1 0-3.4 1.2-3.4 3.5v1.8H8.2v2.6h2.3v6.7"/>'),
-    ('YouTube', '#', '<rect x="2.8" y="5.8" width="18.4" height="12.4" rx="3.6"/><path d="M10.4 9.6v4.8l4.2-2.4z" fill="currentColor" stroke="none"/>'),
+    ('LinkedIn', (SITE_DADOS.get('contato') or {}).get('linkedin') or '#', '<rect x="3.5" y="3.5" width="17" height="17" rx="3"/><path d="M8 10.5V16M8 7.8v.1M11.5 16v-3.2c0-1.4.9-2.3 2.1-2.3s1.9.9 1.9 2.3V16M11.5 10.5V16"/>'),
+    ('Facebook', (SITE_DADOS.get('contato') or {}).get('facebook') or '#', '<rect x="3.5" y="3.5" width="17" height="17" rx="5"/><path d="M13.2 20.5v-6.7h2.3l.4-2.6h-2.7V9.6c0-.8.3-1.3 1.4-1.3h1.4V6c-.3 0-1.1-.1-2.1-.1-2.1 0-3.4 1.2-3.4 3.5v1.8H8.2v2.6h2.3v6.7"/>'),
+    ('YouTube', (SITE_DADOS.get('contato') or {}).get('youtube') or '#', '<rect x="2.8" y="5.8" width="18.4" height="12.4" rx="3.6"/><path d="M10.4 9.6v4.8l4.2-2.4z" fill="currentColor" stroke="none"/>'),
 ]
 
 
@@ -1226,7 +1320,7 @@ def redes_html():
     lis = ''
     for nome, href, svg in REDES:
         extra = ' data-placeholder' if href == '#' else ' rel="noopener"'
-        lis += (f'<li><a href="{href}" aria-label="TaMa Creative no {nome}"{extra}>'
+        lis += (f'<li><a href="{esc(href)}" aria-label="TaMa Creative no {nome}"{extra}>'
                 f'<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">{svg}</svg></a></li>')
     return f'<ul class="footer-social" aria-label="Redes sociais">{lis}</ul>'
 
@@ -1636,42 +1730,43 @@ def frentes_section():
 </section>'''
 
 
+def titulo_destaque(t):
+    """Texto do site.json com o trecho entre *asteriscos* em itálico vinho (<em>)."""
+    return re.sub(r'\*([^*]+)\*', r'<em>\1</em>', esc(t))
+
+
+def slides_do_site():
+    """Slides do carrossel da home (site.json › carrossel, editado no inventário), só os ativos, na ordem:
+    (tom, imagem, enquadramento, alt, eyebrow, título, texto, botões, temporada)."""
+    out = []
+    for sl in SITE_DADOS.get('carrossel') or []:
+        if sl.get('ativo', True) is False:
+            continue
+        b, b2 = sl.get('botao') or {}, sl.get('botao2') or {}
+        acoes = cta_link(esc(b.get('texto') or 'Solicitar proposta'), tipo=b.get('tipo') or None, track_label=b.get('medicao') or 'hero-' + sl['id'])
+        if b2.get('texto') and b2.get('link'):
+            acoes += f'<a class="btn btn-line" href="{esc(b2["link"])}">{esc(b2["texto"])} ' + ARROW + '</a>'
+        out.append((sl.get('tom') or 'tone-cream', sl['imagem'], sl.get('enquadramento') or '--fx:100%;--fx-m:80%', sl['alt'],
+                    esc(sl['eyebrow']), titulo_destaque(sl['titulo']), esc(sl['texto']), acoes, sl.get('temporada')))
+    return out
+
+
 def hero_carousel(slides=None, label='Destaques da TaMa Creative', assurances=True):
     # Fotos claras de estúdio (pacote tama-home-v2). No computador a foto ocupa a metade direita e se funde ao tom do
     # slide (creme, sálvia, rosé, linho); o texto fica numa coluna própria, sem encostar nos produtos. No celular o texto
     # vem acima da foto. frame: enquadramento da foto (--fx no computador, --fx-m no celular) e largura (--pw).
     home_default = slides is None
-    slides = slides or [
-        ('tone-cream', 'hero-brindes-v2', '--fx:100%;--fx-m:96%', 'Bolsa cru com alças verdes, caderno creme com caneta verde, taça e garrafa verde-escuras e copo creme, com a marca fictícia Vera aplicada como exemplo.', 'Para empresas', 'Sua marca em brindes, uniformes, kits, ativações e <em>hotelaria</em>.',
-         'A TaMa seleciona as peças, aplica a sua marca e coordena tudo até a entrega.',
-         cta_link('Solicitar proposta', track_label='hero-1') + '<a class="btn btn-line" href="/catalogo/">Ver o catálogo ' + ARROW + '</a>'),
-        # fim de ano: 2º slide fora da temporada; dentro dela (site.config.json › temporada) passa a abrir o carrossel
-        # --cw:460px: os botões quebram em duas linhas em 1440 px e o texto termina antes da taça solta
-        ('tone-cream', 'fim-header', '--fx:100%;--fx-m:100%;--cw:460px', 'Caixa de presente terracota aberta com duas taças flute e o cartão "Obrigado por fazer parte da nossa história", com o símbolo de uma marca fictícia; ao lado, uma taça sobre mesa iluminada pelo sol.', 'Fim de ano', 'Um brinde a quem <em>fez parte do seu ano.</em>',
-         'Taças, copos e kits com a sua marca para agradecer clientes e equipes.',
-         cta_link('Solicitar proposta', tipo='kits', track_label='hero-fim-de-ano') + '<a class="btn btn-line" href="/brindes-de-fim-de-ano/">Ver presentes de fim de ano ' + ARROW + '</a>'),
-        ('tone-sage', 'hero-v3-confeccoes-v2', '--fx:72%;--fx-m:72%', 'Polo amarela, moletom azul royal e camiseta branca bordados com a marca fictícia Pulso.', 'Uniformes e confecções', 'Sua marca no <em>uniforme</em> da equipe.',
-         'Polos, camisetas, moletons, dólmãs e aventais nas cores definidas no projeto.',
-         cta_link('Solicitar proposta', tipo='confeccoes', track_label='hero-2') + '<a class="btn btn-line" href="/confeccoes-personalizadas/">Conhecer os uniformes ' + ARROW + '</a>'),
-        ('tone-rose', 'hero-kits-v2', '--fx:100%;--fx-m:80%', 'Caixa azul-petróleo aberta com tábua, potinhos, geleias, facas de queijo e cartão com a marca fictícia Nexo.', 'Kits corporativos', 'Kits pensados de <em>ponta a ponta</em>.',
-         'Caixa, peças e cartão com a sua marca, compostos para surpreender, agradecer e aproximar.',
-         cta_link('Solicitar proposta', tipo='kits', track_label='hero-3') + '<a class="btn btn-line" href="/kits-corporativos/">Conhecer os kits ' + ARROW + '</a>'),
-        ('tone-linen', 'home-escritorio-v2', '--fx:100%;--fx-m:68%', 'Caderno azul-marinho, canetas, porta-canetas e estojo pretos e bandeja creme, com a marca fictícia Casa Mirelo.', 'Canetas e escritório', 'Boas ideias merecem <em>boa companhia</em>.',
-         'Blocos, cadernos, canetas e acessórios para a rotina profissional.',
-         cta_link('Solicitar proposta', track_label='hero-4') + '<a class="btn btn-line" href="/catalogo/?categoria=canetas-escritorio#catalogo">Ver canetas e escritório ' + ARROW + '</a>'),
-        ('tone-cream', 'slide-ativacoes', '--fx:100%;--fx-m:70%', 'Kit de ativação da marca fictícia Solar: avental preto, camiseta branca, boné amarelo, copinhos de degustação numa bandeja e display de balcão.', 'Ativações promocionais', 'Sua marca perto de quem <em>compra</em>.',
-         'Degustações, ações em feiras e eventos e promoções no ponto de venda, com uniformes, materiais e brindes na identidade da sua marca.',
-         cta_link('Solicitar proposta', tipo='ativacoes', track_label='hero-5') + '<a class="btn btn-line" href="/ativacoes-promocionais/">Conhecer as ativações ' + ARROW + '</a>'),
-    ]
+    slides = slides or slides_do_site()
     h1 = ''
-    if home_default and SEASON == 'fim-de-ano':
-        slides.insert(0, slides.pop(1))   # temporada: o slide de fim de ano abre o carrossel
-        h1 = f'<h1 class="visually-hidden">{ASSINATURA.rstrip(".")}</h1>'
+    da_temporada = next((i for i, sl in enumerate(slides) if len(sl) > 8 and SEASON and sl[8] == SEASON), None) if home_default else None
+    if da_temporada is not None:
+        slides.insert(0, slides.pop(da_temporada))   # temporada: o slide marcado com ela abre o carrossel
+        h1 = f'<h1 class="visually-hidden">{esc(ASSINATURA.rstrip("."))}</h1>'
     n = len(slides)
     # legenda curta (cabe ao lado dos controles em qualquer largura), conforme a marca que aparece nas fotos
     nota = {NOTA_FICTICIA_LONGA: NOTA_FICTICIA, NOTA_TAMA: NOTA_TAMA_CURTA}.get(nota_marca(s[3] for s in slides), 'Imagens ilustrativas • Marcas fictícias e TaMa como exemplo')
     out = []
-    for i, (tone, img, frame, alt, eyebrow, title, desc, actions) in enumerate(slides):
+    for i, (tone, img, frame, alt, eyebrow, title, desc, actions) in enumerate(sl[:8] for sl in slides):
         cls = ''
         if img in CARROSSEL_HQ and img in IMAGES:   # fotos do carrossel: no computador a área da foto segue a imagem (inteira, sem corte)
             w, h = IMAGES[img]['w'], IMAGES[img]['h']
@@ -1705,11 +1800,11 @@ def hero_carousel(slides=None, label='Destaques da TaMa Creative', assurances=Tr
 
 def page_home():
     return {
-        'path': '/', 'title': 'Brindes corporativos, uniformes e kits | TaMa Creative', 'og': 'hero-brindes-v2',
+        'path': '/', 'title': 'Brindes corporativos, uniformes e kits | TaMa Creative', 'og': slides_do_site()[0][1],
         'og_title': 'TaMa Creative · ' + ASSINATURA.rstrip('.'),
         'description': 'Brindes, uniformes, kits, ativações e peças de hotelaria com a marca da sua empresa. A TaMa seleciona, personaliza e coordena da escolha das peças à entrega.',
         'assunto': 'um projeto para a minha empresa',
-        'preload': preload_image('hero-brindes-v2', HERO_SIZES),
+        'preload': preload_image(slides_do_site()[0][1], HERO_SIZES),
         'body': hero_carousel() + f'''
 {frentes_section()}
 {process_strip()}
@@ -1729,24 +1824,17 @@ BRINDES_ATALHOS = [(CAT_PROD['garrafas-copos'], '/catalogo/?categoria=garrafas-c
 
 
 def brindes_hero(trail):
-    return foto_hero(trail, 'brindes-header',
-                     'Brindes com marcas fictícias sobre blocos de pedra: garrafa azul Nexo, ecobag cru com alças verdes Vera, copo térmico '
-                     'terracota Elo, caderno verde Vera com caneta prata e nécessaire grafite Elo, em estúdio com luz natural.',
-                     'Brindes corporativos', ['Sua marca presente.'], 'Muito além da entrega.',
-                     'Brindes personalizados para fazer parte da rotina de clientes e equipes. Explore opções para eventos, campanhas e '
-                     'relacionamento, com as cores e a identidade da sua empresa.',
-                     cta_link(tipo='brindes', track_label='brindes-head')
-                     + '<a class="btn btn-line" href="#estudio-b-t">Explorar as peças</a>',
-                     NOTA_FICTICIA, pos_m='88% center') + '\n' + atalhos('Encontre o brinde para a sua próxima ideia.', BRINDES_ATALHOS, 'brindes-atalhos-t', linha=False, traco=True)
+    return cab_hero(trail, 'brindes', cta_link(tipo='brindes', track_label='brindes-head')
+                     + '<a class="btn btn-line" href="#estudio-b-t">Explorar as peças</a>') + '\n' + atalhos('Encontre o brinde para a sua próxima ideia.', BRINDES_ATALHOS, 'brindes-atalhos-t', linha=False, traco=True)
 
 
 def page_brindes():
     return {
-        'path': '/brindes-corporativos/', 'og': 'brindes-header', 'assunto': 'brindes corporativos', 'title': 'Brindes corporativos personalizados | TaMa Creative',
+        'path': '/brindes-corporativos/', 'og': cab('brindes')['imagem'], 'assunto': 'brindes corporativos', 'title': 'Brindes corporativos personalizados | TaMa Creative',
         'description': 'Brindes personalizados para empresas, com peças e acabamento escolhidos para o seu público: clientes, equipes e eventos. Peça uma proposta.',
         'trail': [('/', 'Início'), ('/brindes-corporativos/', 'Brindes corporativos')],
         'service': {'key': 'brindes', 'name': 'Brindes corporativos personalizados', 'type': 'Brindes corporativos'},
-        'preload': preload_image('brindes-header', FOTO_HERO_SIZES),   # mesma imagem e sizes da foto do cabeçalho
+        'preload': preload_image(cab('brindes')['imagem'], FOTO_HERO_SIZES),   # mesma imagem e sizes da foto do cabeçalho
         'crumbs_inline': True,
         'body': brindes_hero([('/', 'Início'), ('/brindes-corporativos/', 'Brindes corporativos')]) + season_callout('brindes') + f'''
 <section class="section ivory" aria-labelledby="escolha-t">
@@ -1759,9 +1847,7 @@ def page_brindes():
     </div>
   </div>
 </section>
-{studio_block(['caderno-de-anotacoes', 'agenda', 'caneta-executiva-com-estojo', 'garrafa-termica', 'caneca', 'copo-com-tampa', 'ecobag', 'necessaire', 'caixa-para-presente', 'guarda-chuva', 'vela', 'difusor-de-aromas'],
-              'Peças para a sua marca', 'Brindes', 'Uma amostra do catálogo: do brinde de evento ao presente executivo. Toque na cor para ver a foto e adicione à sua seleção.', 'estudio-b-t',
-              more=('/catalogo/', f'Ver os {len(CATALOGO)} modelos do catálogo'))}
+{vitrine('brindes', 'estudio-b-t', more=('/catalogo/', f'Ver os {len(CATALOGO)} modelos do catálogo'))}
 <section class="section ivory" aria-labelledby="tec-t">
   <div class="wrap split" style="align-items:start">
     <div class="stack" style="gap:12px"><p class="eyebrow">Personalização</p><h2 id="tec-t" class="section-title">A técnica certa para cada material</h2><p class="muted">A técnica é escolhida conforme a peça e confirmada na proposta, junto com a arte para aprovação.</p></div>
@@ -1804,6 +1890,25 @@ ATIV_HERO_SIZES = '(max-width: 760px) 165vw, (max-width: 1100px) 110vw, 95vw'   
 FOTO_HERO_SIZES = '(max-width: 760px) 135vw, (max-width: 1100px) 100vw, (min-width: 1573px) 1210px, 77vw'   # foto 16:9 dos cabeçalhos de kits e confecções: altura × 16:9 no computador; no celular, cortada em 4:3
 
 
+def cab(chave):
+    """Cabeçalho de uma página (site.json › cabecalhos, editado no inventário › Páginas)."""
+    return SITE_DADOS['cabecalhos'][chave]
+
+
+def cab_hero(trail, chave, acoes, sizes=None):
+    """foto_hero com a foto, o texto alternativo, os títulos e o texto do site.json; os botões continuam no código."""
+    c = cab(chave)
+    return foto_hero(trail, c['imagem'], c['alt'], esc(c['eyebrow']), [esc(x) for x in c['linhas']], [esc(x) for x in c['destaque']],
+                     esc(c['texto']), acoes, esc(c.get('legenda') or NOTA_FICTICIA), pos_m=c.get('posicao_celular') or 'right',
+                     desloc=c.get('desloc', 0), sizes=sizes)
+
+
+def vitrine(chave, aria, more=None, sid=None, cls=''):
+    """Vitrine de modelos de uma página (site.json › vitrines, editado no inventário › Páginas)."""
+    v = SITE_DADOS['vitrines'][chave]
+    return studio_block(v['modelos'], esc(v['titulo']), esc(v['eyebrow']), esc(v['texto']), aria, more=more, sid=sid, cls=cls)
+
+
 def foto_hero(trail, img, alt, eyebrow, linhas, destaque, desc, actions, legenda, pos_m='right', desloc=0, sizes=None):
     # Cabeçalho dos mockups da TaMa (kits, confecções): a foto 16:9 ocupa a largura toda e o texto fica na parte clara à
     # esquerda, sem passar por cima do assunto (a altura acompanha a largura, então ele começa sempre depois da coluna de
@@ -1825,26 +1930,13 @@ def foto_hero(trail, img, alt, eyebrow, linhas, destaque, desc, actions, legenda
 </section>'''
 
 
-# Topo de /kits-corporativos/: kit de boas-vindas da marca fictícia Lume (img/v2/kits-header-v3.webp). Enquanto a foto não
-# existir, fica a anterior (kits-header), com o texto alternativo dela.
-KITS_TOPO = ('kits-header-v3', 'Kit de boas-vindas aberto da marca fictícia Lume, numa caixa grafite com berço claro: caderneta, '
-             'caneta, copo com tampa, fone de ouvido sem fio com estojo, power bank e caixa de som.')
-
-
 def kits_topo():
-    return KITS_TOPO[0] if KITS_TOPO[0] in IMAGES else 'kits-header'
+    """Foto do topo de /kits-corporativos/ (site.json › cabecalhos › kits); sem o arquivo, a foto anterior (kits-header)."""
+    return cab('kits')['imagem'] if cab('kits')['imagem'] in IMAGES else 'kits-header'
 
 
 def kits_hero(trail):
-    topo = kits_topo()
-    return foto_hero(trail, topo,
-                     KITS_TOPO[1] if topo == KITS_TOPO[0] else
-                     'Três kits corporativos abertos com marcas fictícias (Pulso, Nexo e Flora): caixas com garrafa, caderno, caneta, '
-                     'caneca e cartão, mostrando como cada kit segue a identidade da empresa.',
-                     'Kits corporativos', ['A identidade', 'da sua empresa.'], 'Em cada detalhe.',
-                     'Cores, peças e embalagens que traduzem a sua marca. Kits personalizados para receber, reconhecer e criar conexões.',
-                     cta_link(tipo='kits', track_label='kits-head') + '<a class="btn btn-line" href="#kits">Conhecer os kits</a>',
-                     NOTA_FICTICIA, pos_m='72% center' if topo == KITS_TOPO[0] else '96% center')
+    return cab_hero(trail, 'kits', cta_link(tipo='kits', track_label='kits-head') + '<a class="btn btn-line" href="#kits">Conhecer os kits</a>')
 
 
 def page_kits():
@@ -1997,14 +2089,8 @@ CONF_PECAS = [('Polos e camisetas', '/catalogo/?categoria=vestuario'), ('Camisas
 
 
 def conf_hero(trail):
-    return foto_hero(trail, 'conf-header',
-                     'Equipe de três pessoas sorrindo num escritório, com camisa social azul-marinho, polo cinza e camiseta terracota '
-                     'bordadas com a marca fictícia Elo, mostrando um uniforme na identidade da empresa.',
-                     'Uniformes e confecções', ['A identidade', 'da sua marca'], 'também se veste.',
-                     'Polos, camisetas, camisas, moletons, dólmãs e aventais personalizados para equipes, eventos e atendimento.',
-                     cta_link(tipo='confeccoes', track_label='conf-head')
-                     + '<a class="btn btn-line" href="#estudio-c-t">Explorar as peças</a>',
-                     NOTA_FICTICIA, pos_m='right center') + '\n' + atalhos('Encontre as peças para a sua equipe.', CONF_PECAS, 'conf-pecas-t')
+    return cab_hero(trail, 'confeccoes', cta_link(tipo='confeccoes', track_label='conf-head')
+                    + '<a class="btn btn-line" href="#estudio-c-t">Explorar as peças</a>') + '\n' + atalhos('Encontre as peças para a sua equipe.', CONF_PECAS, 'conf-pecas-t')
 
 
 def page_confeccoes():
@@ -2013,7 +2099,7 @@ def page_confeccoes():
         'description': 'Uniformes corporativos, polos, camisas, moletons e bonés para equipes e eventos, alinhados à identidade visual da sua empresa e pensados para quem veste.',
         'trail': [('/', 'Início'), ('/confeccoes-personalizadas/', 'Uniformes e confecções')],
         'service': {'key': 'confeccoes', 'name': 'Uniformes e confecções personalizadas para empresas', 'type': 'Uniformes corporativos personalizados'},
-        'preload': preload_image('conf-header', FOTO_HERO_SIZES),   # mesma imagem e sizes da foto do cabeçalho
+        'preload': preload_image(cab('confeccoes')['imagem'], FOTO_HERO_SIZES),   # mesma imagem e sizes da foto do cabeçalho
         'crumbs_inline': True,   # o caminho fica sobre a área clara da foto, logo abaixo do cabeçalho do site
         'body': conf_hero([('/', 'Início'), ('/confeccoes-personalizadas/', 'Uniformes e confecções')]) + f'''
 <section class="section ivory" aria-labelledby="uso-t">
@@ -2026,9 +2112,7 @@ def page_confeccoes():
     </div>
   </div>
 </section>
-{studio_block(['polo-masculina', 'polo-feminina', 'camisa-masculina', 'camisa-feminina', 'camiseta-masculina', 'camiseta-feminina', 'moletom-com-capuz', 'bone', 'dolma', 'avental'],
-              'Peças de vestuário para a sua marca', 'Catálogo', 'Polo, camisa, camiseta, moletom, dólmã e avental. Toque na cor de referência e adicione à seleção: as peças seguem com o pedido de proposta.', 'estudio-c-t',
-              more=('/catalogo/?categoria=vestuario', 'Ver vestuário no catálogo'))}
+{vitrine('confeccoes', 'estudio-c-t', more=('/catalogo/?categoria=vestuario', 'Ver vestuário no catálogo'))}
 <section class="section ivory" aria-labelledby="tec-c-t">
   <div class="wrap split" style="align-items:start">
     <div class="stack" style="gap:12px"><p class="eyebrow">Acabamentos</p><h2 id="tec-c-t" class="section-title">Bordado, silk ou etiqueta?</h2><p class="muted">A técnica depende da peça, do tecido e do uso. A proposta indica a mais adequada para cada item.</p></div>
@@ -2075,14 +2159,8 @@ def ativ_evento_link(label):
 
 
 def ativ_hero(trail):
-    return foto_hero(trail, 'ativ-header',
-                     'Degustação de suco de laranja num estande ao ar livre: promotora e promotor de polo e avental azul-marinho com a '
-                     'marca fictícia Solar servem um copo a uma cliente, com garrafas, laranjas e o balcão laranja com a marca.',
-                     'Ativações promocionais', ['Sua marca,'], ['mais perto de', 'quem compra.'],
-                     'Crie oportunidades para o público conhecer, experimentar e se conectar com o seu produto. Ações em lojas, feiras e '
-                     'eventos, planejadas conforme o objetivo da sua marca.',
-                     cta_link(tipo='ativacoes', track_label='ativacoes-head') + '<a class="btn btn-line" href="#formatos">Conhecer os formatos</a>',
-                     NOTA_FICTICIA, pos_m='88% center', desloc=.07, sizes=ATIV_HERO_SIZES) + '\n' + atalhos('Uma ação para cada encontro.', ATIV_FORMATOS, 'ativ-atalhos-t', linha=False)
+    return cab_hero(trail, 'ativacoes', cta_link(tipo='ativacoes', track_label='ativacoes-head') + '<a class="btn btn-line" href="#formatos">Conhecer os formatos</a>',
+                    sizes=ATIV_HERO_SIZES) + '\n' + atalhos('Uma ação para cada encontro.', ATIV_FORMATOS, 'ativ-atalhos-t', linha=False)
 
 
 def page_ativacoes():
@@ -2092,7 +2170,7 @@ def page_ativacoes():
         'trail': [('/', 'Início'), ('/ativacoes-promocionais/', 'Ativações promocionais')],
         'service': {'key': 'ativacoes', 'name': 'Ativações promocionais e degustações', 'type': 'Ativação promocional'},
         'assunto': 'uma ativação promocional ou degustação',
-        'preload': preload_image('ativ-header', ATIV_HERO_SIZES),   # mesma imagem e sizes da foto do cabeçalho
+        'preload': preload_image(cab('ativacoes')['imagem'], ATIV_HERO_SIZES),   # mesma imagem e sizes da foto do cabeçalho
         'crumbs_inline': True,
         'body': ativ_hero([('/', 'Início'), ('/ativacoes-promocionais/', 'Ativações promocionais')]) + f'''
 <section class="section ivory" id="formatos" aria-labelledby="formatos-t">
@@ -2119,9 +2197,7 @@ def page_ativacoes():
     </dl>
   </div>
 </section>
-{studio_block(['avental', 'ecobag', 'camiseta-masculina', 'camiseta-feminina', 'bone', 'copo-360', 'squeeze', 'taca-de-champanhe'],
-              'Peças que costumam entrar em ativações', 'Catálogo', 'Escolha as cores de referência e adicione à seleção: as peças seguem com o pedido.', 'ativ-pecas-t',
-              more=('/catalogo/', 'Ver o catálogo completo'))}
+{vitrine('ativacoes', 'ativ-pecas-t', more=('/catalogo/', 'Ver o catálogo completo'))}
 {process_section('Como planejamos', 'Da ideia ao dia da ação', 'O objetivo da ação, o formato (local, duração e público esperado) e os materiais entram já no briefing. O cronograma e a entrega dos materiais são combinados na proposta, com a arte aprovada por você antes da produção.', 'ativ-como-t')}
 ''' + faq([
             ('Que tipo de ativação vocês fazem?', 'Degustações e promoções no ponto de venda, ações em feiras e eventos, ativações internas e, com parceiros especializados, buffet completo e decoração para eventos. Conte o objetivo, o público e o local: a proposta indica o formato e o que entra nele.'),
@@ -2136,14 +2212,7 @@ HOT_ATALHOS = [('Mesa e salão', '#amb-salao', 'talheres'), ('Cozinha e atendime
 
 
 def hot_hero(trail):
-    return foto_hero(trail, 'hot-header',
-                     'Garçonete de camisa branca e avental verde-oliva com a marca fictícia Oliva arruma o guardanapo bordado num prato; '
-                     'na mesa, cardápio e porta-contas caramelo com a marca gravada, taças e jogo americano, num restaurante iluminado.',
-                     'Hotelaria e gastronomia', ['Sua identidade,'], ['em cada detalhe', 'de receber.'],
-                     'Cardápios, porta-contas, jogos americanos e uniformes personalizados para restaurantes, bares e hotéis. Peças que '
-                     'levam a identidade da sua casa à mesa e à equipe.',
-                     cta_link(tipo='hotelaria', track_label='hotelaria-head') + '<a class="btn btn-line" href="#hot-pecas-t">Explorar as peças</a>',
-                     NOTA_FICTICIA, pos_m='92% center') + '\n' + atalhos('Personalização que acompanha o seu atendimento.', HOT_ATALHOS, 'hot-atalhos-t', linha=False, centro=True)
+    return cab_hero(trail, 'hotelaria', cta_link(tipo='hotelaria', track_label='hotelaria-head') + '<a class="btn btn-line" href="#hot-pecas-t">Explorar as peças</a>') + '\n' + atalhos('Personalização que acompanha o seu atendimento.', HOT_ATALHOS, 'hot-atalhos-t', linha=False, centro=True)
 
 
 def page_hotelaria():
@@ -2153,7 +2222,7 @@ def page_hotelaria():
         'trail': [('/', 'Início'), ('/hotelaria-e-gastronomia/', 'Hotelaria e gastronomia')],
         'service': {'key': 'hotelaria', 'name': 'Produtos personalizados para hotelaria e gastronomia', 'type': 'Produtos personalizados para restaurantes e hotéis'},
         'assunto': 'produtos para hotelaria e gastronomia',
-        'preload': preload_image('hot-header', FOTO_HERO_SIZES),   # mesma imagem e sizes da foto do cabeçalho
+        'preload': preload_image(cab('hotelaria')['imagem'], FOTO_HERO_SIZES),   # mesma imagem e sizes da foto do cabeçalho
         'crumbs_inline': True,
         'body': hot_hero([('/', 'Início'), ('/hotelaria-e-gastronomia/', 'Hotelaria e gastronomia')]) + f'''
 <section class="section ivory" aria-labelledby="ambientes-t">
@@ -2167,9 +2236,7 @@ def page_hotelaria():
     </div>
   </div>
 </section>
-{studio_block(['cardapio', 'porta-contas', 'jogo-americano-retangular', 'jogo-americano-oval', 'jogo-americano-impresso', 'dolma', 'avental', 'taca-de-vinho'],
-              'Peças para salão, cozinha e equipe', 'Catálogo', 'Toque na cor para ver a foto e adicione à seleção: as peças seguem com o pedido de proposta.', 'hot-pecas-t',
-              more=('/catalogo/?categoria=hotelaria-gastronomia', 'Ver hotelaria no catálogo'))}
+{vitrine('hotelaria', 'hot-pecas-t', more=('/catalogo/?categoria=hotelaria-gastronomia', 'Ver hotelaria no catálogo'))}
 <section class="section ivory" aria-labelledby="hot-considerar-t">
   <div class="wrap split" style="align-items:start">
     <div class="stack" style="gap:12px"><p class="eyebrow">Antes de pedir</p><h2 id="hot-considerar-t" class="section-title">O que vale definir</h2><p class="muted">Três informações que ajudam a proposta a chegar certa na primeira versão.</p></div>
@@ -2217,25 +2284,15 @@ def page_fim_de_ano():
         'trail': [('/', 'Início'), ('/brindes-por-ocasiao/', 'Brindes por ocasião'), ('/brindes-de-fim-de-ano/', 'Fim de ano')],
         'service': {'key': 'fim-de-ano', 'name': 'Brindes de fim de ano para clientes e equipes', 'type': 'Brindes corporativos'},
         'assunto': 'brindes de fim de ano',
-        'preload': preload_image('fim-header', FOTO_HERO_SIZES),   # mesma imagem e sizes da foto do cabeçalho
+        'preload': preload_image(cab('fim-de-ano')['imagem'], FOTO_HERO_SIZES),   # mesma imagem e sizes da foto do cabeçalho
         'crumbs_inline': True,
-        'body': foto_hero([('/', 'Início'), ('/brindes-de-fim-de-ano/', 'Fim de ano')], 'fim-header',
-                          'Caixa de presente terracota aberta com duas taças flute num berço creme e o cartão "Obrigado por fazer parte da '
-                          'nossa história", com o símbolo de uma marca fictícia; ao lado, uma taça sobre mesa de pedra iluminada pelo sol.',
-                          'Presentes de fim de ano', ['Um brinde a quem'], 'fez parte do seu ano.',
-                          'Taças, copos e presentes personalizados para agradecer clientes, reconhecer equipes e celebrar parcerias. '
-                          'Escolha as peças e combine a apresentação com a identidade da sua empresa.',
-                          cta_link(tipo='kits', track_label='fim-de-ano-head')
-                          + '<a class="btn btn-line" href="#brindar">Explorar os presentes</a>',
-                          NOTA_FICTICIA, pos_m='78% center') + '\n' + atalhos(
+        'body': cab_hero([('/', 'Início'), ('/brindes-de-fim-de-ano/', 'Fim de ano')], 'fim-de-ano',
+                         cta_link(tipo='kits', track_label='fim-de-ano-head')
+                         + '<a class="btn btn-line" href="#brindar">Explorar os presentes</a>') + '\n' + atalhos(
             'Escolha como brindar.', fim_atalhos, 'fim-atalhos-t', linha=False, eyebrow='Para brindar', lado=True) + f"""
-{studio_block(['flute-com-borda-dourada', 'taca-coupe-canelada', 'taca-de-gin-com-pe-colorido', 'taca-de-gin-degrade', 'copo-long-drink', 'taca-de-champanhe', 'taca-martini', 'taca-de-gin'],
-              'Taças e copos com a sua marca', 'Taças e copos', 'Escolha as cores de referência e adicione à seleção: as peças seguem com o pedido de proposta.', 'brindar-t',
-              more=('/catalogo/?ocasiao=fim-de-ano', 'Ver todos de fim de ano no catálogo'), sid='brindar', cls='ivory')}
+{vitrine('fim-brindar', 'brindar-t', more=('/catalogo/?ocasiao=fim-de-ano', 'Ver todos de fim de ano no catálogo'), sid='brindar', cls='ivory')}
 {kits_sec}
-{studio_block(['agenda', 'caneta-executiva-com-estojo', 'vela', 'caixa-para-presente'],
-              'Peças que acompanham o próximo ano', 'Para presentear', 'Agenda, caneta, vela e caixa para completar o presente; cartão e lacre fecham a embalagem.', 'presentear-t',
-              more=('/catalogo/', 'Ver o catálogo'), sid='presentear')}
+{vitrine('fim-presentear', 'presentear-t', more=('/catalogo/', 'Ver o catálogo'), sid='presentear')}
 {process_section('Como planejamos', 'Do briefing à entrega antes do recesso', 'Para quem são os presentes, as peças, a embalagem e a mensagem do cartão entram no briefing e na proposta; a arte é aprovada por você antes da produção e a entrega segue os endereços e a data combinados.', 'fda-como-t', sid='personalizacao')}
 """ + faq([
             ('Com quanto tempo de antecedência devo pedir?', 'Quanto antes, mais opções de peças, cores e embalagens. Informe a data de entrega no pedido e o prazo é confirmado na proposta.'),
@@ -2253,18 +2310,9 @@ def page_sobre():
         'path': '/sobre/', 'title': 'Sobre a TaMa Creative | Brindes, uniformes, kits e ativações',
         'description': 'A TaMa Creative seleciona, personaliza e coordena brindes, uniformes, kits, ativações e peças de hotelaria com a marca da sua empresa.',
         'trail': trail, 'wp_type': 'AboutPage', 'assunto': 'um projeto para a minha empresa',
-        'preload': preload_image('sobre-header', FOTO_HERO_SIZES),   # mesma imagem e sizes da foto do cabeçalho
+        'preload': preload_image(cab('sobre')['imagem'], FOTO_HERO_SIZES),   # mesma imagem e sizes da foto do cabeçalho
         'crumbs_inline': True,
-        'body': foto_hero(trail, 'sobre-header',
-                          'Bastidor de um projeto: as mãos de uma pessoa colocam um caderno verde da marca fictícia Vera numa caixa kraft com '
-                          'papel de seda; ao lado, garrafa azul Nexo, polo terracota dobrada, ecobags Vera, amostras de tecido e papel, '
-                          'barbante e tesoura, em estúdio com luz natural. Pessoa ilustrativa, sem rosto.',
-                          'Sobre a TaMa', ['A marca do cliente'], 'em cada escolha.',
-                          'A TaMa Creative é uma prestadora de serviços que seleciona as peças, personaliza com a identidade da sua empresa e '
-                          'coordena a produção até a entrega. Brindes, uniformes, kits e ativações pensados para quem recebe: o público e a '
-                          'ocasião vêm antes da peça.',
-                          cta_link(track_label='sobre-head') + '<a class="btn btn-line" href="#como-t">Como trabalhamos</a>',
-                          'Imagem ilustrativa • Marcas fictícias', pos_m='70% center') + f'''
+        'body': cab_hero(trail, 'sobre', cta_link(track_label='sobre-head') + '<a class="btn btn-line" href="#como-t">Como trabalhamos</a>') + f'''
 <section class="section ivory" aria-labelledby="faz-t">
   <div class="wrap">
     <div class="section-head"><p class="eyebrow">O que fazemos</p><h2 id="faz-t" class="section-title">Cinco áreas, um mesmo cuidado com a marca</h2><p class="muted">Em todas, a peça leva a marca da sua empresa: a TaMa seleciona, personaliza, coordena os fornecedores e entrega.</p></div>
@@ -2535,6 +2583,7 @@ def main():
         if dif:
             print(f'AVISO: brand/logos/ difere de tama-creative-logos/svg em {len(dif)} arquivo(s). Copie os SVGs oficiais para brand/logos/ e faça commit.')
     build_images()
+    conferir_imagens_site()
     fonts_css = open(os.path.join(SRC, 'fonts', 'fonts.css'), encoding='utf-8').read()
     masks = f':root{{--arc-mask:url("{ARC_MASK}");--pattern-mask:url("{pattern_uri()}")}}'
     CSS = minify_css(fonts_css + masks + open(os.path.join(SRC, 'styles.css'), encoding='utf-8').read())

@@ -967,7 +967,8 @@ def inventario_dados(b):
         # só fotos que o site já usa (produtos no catálogo e a foto atual de cada kit): o build apaga do dist as imagens
         # que nenhuma página cita, e esta lista não pode segurar as que saíram
         'imagens': {n: b.img_url(n, 'webp', 420) for n in sorted(b.IMAGES)
-                    if n in b.PRODUTOS_BY or n in {k.get('foto') for k in b.KITS_TODOS} or n in {'kitp-' + k['slug'] for k in b.KITS_TODOS}},
+                    if n in b.PRODUTOS_BY or n in {k.get('foto') for k in b.KITS_TODOS} or n in {'kitp-' + k['slug'] for k in b.KITS_TODOS}
+                    or n in b.CARROSSEL_HQ or n in {c.get('imagem') for c in (b.SITE_DADOS.get('cabecalhos') or {}).values()}},
     }
 
 

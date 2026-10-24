@@ -929,6 +929,58 @@ try {
      'publicar: produtos.json no mesmo formato (indentação 1, quebra no fim), só com as linhas da cor nova e das situações');
   ok(await ip.$eval('#barra', b => b.hidden) && await ip.evaluate(() => !localStorage.getItem('tama-inventario-rascunho')), 'depois de publicar: barra de pendências some e o rascunho do navegador é apagado');
   ok(janelasDoNavegador === 0, `nenhuma janela do navegador (confirm/alert) no fluxo do inventário (${janelasDoNavegador})`);
+  // conteúdo do site (site.json): carrossel, páginas (cabeçalho e vitrine), destaques da home e contato
+  const siteFix = JSON.parse(fs.readFileSync(path.join(DADOS, 'site.json'), 'utf8'));
+  const selFix = JSON.parse(fs.readFileSync(path.join(DADOS, 'selecoes.json'), 'utf8'));
+  const muda = (sel, v) => ip.$eval(sel, (e, v) => { e.value = v; e.dispatchEvent(new Event('change')); }, v);
+  await ip.click('[data-tab="carrossel"]');
+  ok(await ip.$$eval('#sec-carrossel .slide-item', l => l.length) === siteFix.carrossel.length && await ip.$eval('#sec-carrossel .slide-item .meta', m => m.textContent) === siteFix.carrossel[0].eyebrow,
+     `carrossel: os ${siteFix.carrossel.length} slides do site.json, na ordem`);
+  await ip.click('[data-slide="kits"]'); await ip.waitForSelector('#s-titulo');
+  await muda('#s-titulo', ''); await sleep(150);
+  await ip.click('#gaveta-fechar'); await ip.click('[data-tab="alteracoes"]');
+  ok(await ip.$$eval('.erros li', l => l.some(x => /slide 4 \(Kits corporativos\): título é obrigatório/.test(x.textContent))) && await ip.$eval('#pub-ok', b => b.disabled), 'carrossel: slide sem título vira erro e bloqueia a publicação');
+  await ip.click('[data-tab="carrossel"]'); await ip.click('[data-slide="kits"]'); await ip.waitForSelector('#s-titulo');
+  await muda('#s-titulo', 'Kits feitos de *ponta a ponta*.'); await sleep(150);
+  await ip.click('#gaveta-fechar');
+  await ip.click('[data-desce="0"]'); await sleep(150);
+  await ip.click('[data-slide="escritorio"]'); await ip.waitForSelector('#s-desligar'); await ip.click('#s-desligar'); await sleep(150);
+  await ip.click('#gaveta-fechar');
+  await ip.click('[data-slide="confeccoes"]'); await ip.waitForSelector('#s-arq');
+  await ip.evaluate(async () => {
+    const c = document.createElement('canvas'); c.width = 2000; c.height = 1300; const x = c.getContext('2d'); x.fillStyle = '#E8E2D8'; x.fillRect(0, 0, 2000, 1300);
+    const dt = new DataTransfer(); dt.items.add(new File([await new Promise(r => c.toBlob(r, 'image/png'))], 'slide.png', { type: 'image/png' }));
+    const inp = document.getElementById('s-arq'); inp.files = dt.files; inp.dispatchEvent(new Event('change'));
+  });
+  await ip.waitForFunction(() => Object.keys(window.TAMA_INVENTARIO.estado().arquivos).some(p => p.startsWith('img/v2/slide-confeccoes-')), { timeout: 10000 });
+  await ip.click('#gaveta-fechar');
+  await ip.click('[data-tab="paginas"]'); await ip.click('[data-pagina="brindes"]'); await ip.waitForSelector('#p-eyebrow');
+  await muda('#p-eyebrow', 'Brindes para empresas'); await sleep(150);
+  const nomeNovo = await ip.evaluate(() => { const o = [...document.querySelectorAll('#pv0-opcoes option')][0]; return o ? o.value : ''; });
+  await ip.$eval('#pv0-add', (e, v) => { e.value = v; }, nomeNovo); await ip.click('#pv0-ok'); await sleep(150);
+  await ip.click('[data-pv0-tira="0"]'); await sleep(150);
+  await ip.click('#gaveta-fechar');
+  await ip.click('[data-pagina="home"]'); await ip.waitForSelector('[data-ph-desce="0"]'); await ip.click('[data-ph-desce="0"]'); await sleep(150);
+  await ip.click('#gaveta-fechar');
+  await ip.click('[data-tab="contato"]'); await muda('#c-email', 'teste@example.com'); await sleep(150);
+  await ip.click('[data-tab="alteracoes"]');
+  const mudSite = await ip.$$eval('.mudancas li p', l => l.map(x => x.textContent));
+  ok(['Slide alterado: Kits corporativos', 'Slide desligado: Canetas e escritório', 'Nova ordem dos slides do carrossel', 'Home: destaques alterados', 'Brindes corporativos: cabeçalho e vitrine alterados', 'Contato, topo e rodapé alterados'].every(t => mudSite.includes(t)) && !(await ip.$('.erros')),
+     `alterações do site listadas, sem erros (${mudSite.join(' | ')})`);
+  gravado = null;
+  await ip.click('#pub-ok');
+  await ip.waitForFunction(() => document.getElementById('status').classList.contains('ok'), { timeout: 15000 });
+  const arqs2 = Object.fromEntries((gravado?.entry?.dataFiles || []).map(f => [f.path, f.raw]));
+  const assets2 = (gravado?.entry?.assets || []).map(a => a.path);
+  const site2 = arqs2['src/data/site.json'] ? JSON.parse(arqs2['src/data/site.json']) : {};
+  const sel2 = arqs2['src/data/selecoes.json'] ? JSON.parse(arqs2['src/data/selecoes.json']) : {};
+  const sl = id => (site2.carrossel || []).find(x => x.id === id) || {};
+  ok(site2.carrossel && site2.carrossel[1].id === siteFix.carrossel[0].id && sl('kits').titulo === 'Kits feitos de *ponta a ponta*.' && sl('escritorio').ativo === false &&
+     /^slide-confeccoes-\d+$/.test(sl('confeccoes').imagem) && assets2.some(a => a.startsWith('img/v2/' + sl('confeccoes').imagem + '.')),
+     `publicar: carrossel com a ordem, o título, o slide desligado e a foto nova em img/v2/ (${assets2.join(' ')})`);
+  ok(site2.cabecalhos.brindes.eyebrow === 'Brindes para empresas' && site2.vitrines.brindes.modelos[0] === siteFix.vitrines.brindes.modelos[1] && site2.vitrines.brindes.modelos.length === siteFix.vitrines.brindes.modelos.length &&
+     site2.contato.email === 'teste@example.com' && sel2.home && sel2.home[0] === selFix.home[1] && sel2.home[1] === selFix.home[0] && arqs2['src/data/site.json'].endsWith('}\n'),
+     'publicar: cabeçalho e vitrine de Brindes, contato em site.json e destaques da home em selecoes.json');
   await ip.close();
 
   // login com usuário e senha (serviço admin-api, simulado): sem sessão aparece o formulário; senha errada avisa; certa abre o inventário

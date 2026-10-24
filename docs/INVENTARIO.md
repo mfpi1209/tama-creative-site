@@ -42,6 +42,9 @@ aberta cai na hora. Trocar `ADMIN_SEGREDO` desconecta todo mundo. Cada publicaç
 | **Resumo** | Modelos no site, produtos novos, existentes com cores novas e fora do site; tabela por categoria; o que **entra** e o que **sai** com as alterações ainda não publicadas; botão "Aprovar todos os novos". |
 | **Produtos** | Um card por modelo, com busca, categoria e filtros (Existentes, Produtos novos, Cores novas, Fora do site, Com alteração). Clique para abrir. |
 | **Kits** | Os kits da home, de `/kits-corporativos/` e da página de fim de ano. |
+| **Carrossel** | Os slides do topo da home: foto (envio), chamada, título (trecho entre `*asteriscos*` em itálico), texto, botões, cor de fundo, ordem (↑ ↓), ligar/desligar, remover, slide novo e qual abre o carrossel na temporada de fim de ano. |
+| **Páginas** | Para Brindes, Kits, Confecções, Ativações, Hotelaria, Fim de ano e Sobre: o cabeçalho (foto, chamada, título, destaque, texto, legenda e parte da foto no celular) e as vitrines de produtos (título, texto e modelos, com adicionar, tirar e ordem). Na Home, os destaques. |
+| **Contato e rodapé** | WhatsApp, e-mail, Instagram, LinkedIn, Facebook, YouTube, dados da empresa, frase da faixa do topo, os 3 compromissos e a temporada de fim de ano (ligada, início, fim e o aviso da faixa). |
 | **Alterações** | A lista do que muda, item por item (Entra, Sai, Alterado), com Desfazer, os erros que bloqueiam a publicação e os botões Publicar, Salvar como rascunho e Descartar tudo. Mostra também os rascunhos salvos. |
 
 ## Situação de cada foto (campo `aprovacao` em `src/data/produtos.json`)
@@ -93,6 +96,19 @@ material e as miniaturas); produtos e kits são lidos do repositório com o logi
 
 Arquivos que a tela grava: `src/data/produtos.json`, `modelos.json`, `selecoes.json`, `kits.json` (mesmo formato do
 `tools/produtos.py`: JSON com recuo 1 e quebra de linha no fim) e as fotos enviadas.
+
+## Conteúdo do site (`src/data/site.json`)
+Carrossel (`carrossel`), cabeçalhos das páginas (`cabecalhos`), vitrines (`vitrines`), contato e redes (`contato`) e
+topo e temporada (`topo`); os destaques da home continuam em `selecoes.json › home`. O build lê daqui
+(`slides_do_site`, `cab_hero`, `vitrine`; contato vale sobre `site.config.json`, e a variável de ambiente sobre os dois)
+e barra o que quebraria a página (`preparar_site`: campos obrigatórios, links, formato de WhatsApp, e-mail e datas,
+modelos que não existem; `conferir_imagens_site`: foto do carrossel ou do cabeçalho que não está em `img/v2/`).
+Fotos enviadas pelo inventário vão para `img/v2/slide-<slide>-<data>` e `img/v2/topo-<página>-<data>` e saem em
+qualidade alta (as fotos do carrossel e dos cabeçalhos entram em `FOTOS_HQ`). Ainda no código: os botões dos cabeçalhos,
+o miolo das páginas, as perguntas frequentes e os cabeçalhos por ocasião de `/brindes-por-ocasiao/`.
+
+**Depois de mudar `deploy/admin-api/`** (o que o serviço aceita gravar), faça **Deploy** do app `admin-api` no
+Easypanel: o deploy automático publica só o app do site.
 
 ## Kits (`src/data/kits.json`)
 Fonte única dos kits (antes eram listas no `build.py`): `kits` (slug, nome, descrição, foto, marca_ficticia, cor_caixa,

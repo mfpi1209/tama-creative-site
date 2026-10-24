@@ -1,0 +1,367 @@
+{
+ "observacao": "Conteúdo do site editado em /admin/inventario/ (abas Carrossel, Páginas e Contato e rodapé). Imagens: nome em img/v2/ (sem extensão). Títulos do carrossel: o trecho entre *asteriscos* sai em itálico vinho. Vazio em contato = não aparece no site.",
+ "carrossel": [
+  {
+   "id": "brindes",
+   "ativo": true,
+   "tom": "tone-cream",
+   "imagem": "hero-brindes-v2",
+   "enquadramento": "--fx:100%;--fx-m:96%",
+   "alt": "Bolsa cru com alças verdes, caderno creme com caneta verde, taça e garrafa verde-escuras e copo creme, com a marca fictícia Vera aplicada como exemplo.",
+   "eyebrow": "Para empresas",
+   "titulo": "Sua marca em brindes, uniformes, kits, ativações e *hotelaria*.",
+   "texto": "A TaMa seleciona as peças, aplica a sua marca e coordena tudo até a entrega.",
+   "botao": {
+    "texto": "Solicitar proposta",
+    "tipo": "",
+    "medicao": "hero-1"
+   },
+   "botao2": {
+    "texto": "Ver o catálogo",
+    "link": "/catalogo/"
+   }
+  },
+  {
+   "id": "fim-de-ano",
+   "ativo": true,
+   "tom": "tone-cream",
+   "imagem": "fim-header",
+   "enquadramento": "--fx:100%;--fx-m:100%;--cw:460px",
+   "respiro": true,
+   "temporada": "fim-de-ano",
+   "alt": "Caixa de presente terracota aberta com duas taças flute e o cartão \"Obrigado por fazer parte da nossa história\", com o símbolo de uma marca fictícia; ao lado, uma taça sobre mesa iluminada pelo sol.",
+   "eyebrow": "Fim de ano",
+   "titulo": "Um brinde a quem *fez parte do seu ano.*",
+   "texto": "Taças, copos e kits com a sua marca para agradecer clientes e equipes.",
+   "botao": {
+    "texto": "Solicitar proposta",
+    "tipo": "kits",
+    "medicao": "hero-fim-de-ano"
+   },
+   "botao2": {
+    "texto": "Ver presentes de fim de ano",
+    "link": "/brindes-de-fim-de-ano/"
+   }
+  },
+  {
+   "id": "confeccoes",
+   "ativo": true,
+   "tom": "tone-sage",
+   "imagem": "hero-v3-confeccoes-v2",
+   "enquadramento": "--fx:72%;--fx-m:72%",
+   "alt": "Polo amarela, moletom azul royal e camiseta branca bordados com a marca fictícia Pulso.",
+   "eyebrow": "Uniformes e confecções",
+   "titulo": "Sua marca no *uniforme* da equipe.",
+   "texto": "Polos, camisetas, moletons, dólmãs e aventais nas cores definidas no projeto.",
+   "botao": {
+    "texto": "Solicitar proposta",
+    "tipo": "confeccoes",
+    "medicao": "hero-2"
+   },
+   "botao2": {
+    "texto": "Conhecer os uniformes",
+    "link": "/confeccoes-personalizadas/"
+   }
+  },
+  {
+   "id": "kits",
+   "ativo": true,
+   "tom": "tone-rose",
+   "imagem": "hero-kits-v2",
+   "enquadramento": "--fx:100%;--fx-m:80%",
+   "alt": "Caixa azul-petróleo aberta com tábua, potinhos, geleias, facas de queijo e cartão com a marca fictícia Nexo.",
+   "eyebrow": "Kits corporativos",
+   "titulo": "Kits pensados de *ponta a ponta*.",
+   "texto": "Caixa, peças e cartão com a sua marca, compostos para surpreender, agradecer e aproximar.",
+   "botao": {
+    "texto": "Solicitar proposta",
+    "tipo": "kits",
+    "medicao": "hero-3"
+   },
+   "botao2": {
+    "texto": "Conhecer os kits",
+    "link": "/kits-corporativos/"
+   }
+  },
+  {
+   "id": "escritorio",
+   "ativo": true,
+   "tom": "tone-linen",
+   "imagem": "home-escritorio-v2",
+   "enquadramento": "--fx:100%;--fx-m:68%",
+   "alt": "Caderno azul-marinho, canetas, porta-canetas e estojo pretos e bandeja creme, com a marca fictícia Casa Mirelo.",
+   "eyebrow": "Canetas e escritório",
+   "titulo": "Boas ideias merecem *boa companhia*.",
+   "texto": "Blocos, cadernos, canetas e acessórios para a rotina profissional.",
+   "botao": {
+    "texto": "Solicitar proposta",
+    "tipo": "",
+    "medicao": "hero-4"
+   },
+   "botao2": {
+    "texto": "Ver canetas e escritório",
+    "link": "/catalogo/?categoria=canetas-escritorio#catalogo"
+   }
+  },
+  {
+   "id": "ativacoes",
+   "ativo": true,
+   "tom": "tone-cream",
+   "imagem": "slide-ativacoes",
+   "enquadramento": "--fx:100%;--fx-m:70%",
+   "alt": "Kit de ativação da marca fictícia Solar: avental preto, camiseta branca, boné amarelo, copinhos de degustação numa bandeja e display de balcão.",
+   "eyebrow": "Ativações promocionais",
+   "titulo": "Sua marca perto de quem *compra*.",
+   "texto": "Degustações, ações em feiras e eventos e promoções no ponto de venda, com uniformes, materiais e brindes na identidade da sua marca.",
+   "botao": {
+    "texto": "Solicitar proposta",
+    "tipo": "ativacoes",
+    "medicao": "hero-5"
+   },
+   "botao2": {
+    "texto": "Conhecer as ativações",
+    "link": "/ativacoes-promocionais/"
+   }
+  }
+ ],
+ "cabecalhos": {
+  "brindes": {
+   "pagina": "/brindes-corporativos/",
+   "imagem": "brindes-header",
+   "alt": "Brindes com marcas fictícias sobre blocos de pedra: garrafa azul Nexo, ecobag cru com alças verdes Vera, copo térmico terracota Elo, caderno verde Vera com caneta prata e nécessaire grafite Elo, em estúdio com luz natural.",
+   "eyebrow": "Brindes corporativos",
+   "linhas": [
+    "Sua marca presente."
+   ],
+   "destaque": [
+    "Muito além da entrega."
+   ],
+   "texto": "Brindes personalizados para fazer parte da rotina de clientes e equipes. Explore opções para eventos, campanhas e relacionamento, com as cores e a identidade da sua empresa.",
+   "legenda": "Imagem ilustrativa • Marca fictícia",
+   "posicao_celular": "88% center"
+  },
+  "kits": {
+   "pagina": "/kits-corporativos/",
+   "imagem": "kits-header-v3",
+   "alt": "Kit de boas-vindas aberto da marca fictícia Lume, numa caixa grafite com berço claro: caderneta, caneta, copo com tampa, fone de ouvido sem fio com estojo, power bank e caixa de som.",
+   "eyebrow": "Kits corporativos",
+   "linhas": [
+    "A identidade",
+    "da sua empresa."
+   ],
+   "destaque": [
+    "Em cada detalhe."
+   ],
+   "texto": "Cores, peças e embalagens que traduzem a sua marca. Kits personalizados para receber, reconhecer e criar conexões.",
+   "legenda": "Imagem ilustrativa • Marca fictícia",
+   "posicao_celular": "72% center"
+  },
+  "confeccoes": {
+   "pagina": "/confeccoes-personalizadas/",
+   "imagem": "conf-header",
+   "alt": "Equipe de três pessoas sorrindo num escritório, com camisa social azul-marinho, polo cinza e camiseta terracota bordadas com a marca fictícia Elo, mostrando um uniforme na identidade da empresa.",
+   "eyebrow": "Uniformes e confecções",
+   "linhas": [
+    "A identidade",
+    "da sua marca"
+   ],
+   "destaque": [
+    "também se veste."
+   ],
+   "texto": "Polos, camisetas, camisas, moletons, dólmãs e aventais personalizados para equipes, eventos e atendimento.",
+   "legenda": "Imagem ilustrativa • Marca fictícia",
+   "posicao_celular": "right center"
+  },
+  "ativacoes": {
+   "pagina": "/ativacoes-promocionais/",
+   "imagem": "ativ-header",
+   "alt": "Degustação de suco de laranja num estande ao ar livre: promotora e promotor de polo e avental azul-marinho com a marca fictícia Solar servem um copo a uma cliente, com garrafas, laranjas e o balcão laranja com a marca.",
+   "eyebrow": "Ativações promocionais",
+   "linhas": [
+    "Sua marca,"
+   ],
+   "destaque": [
+    "mais perto de",
+    "quem compra."
+   ],
+   "texto": "Crie oportunidades para o público conhecer, experimentar e se conectar com o seu produto. Ações em lojas, feiras e eventos, planejadas conforme o objetivo da sua marca.",
+   "legenda": "Imagem ilustrativa • Marca fictícia",
+   "posicao_celular": "88% center",
+   "desloc": 0.07
+  },
+  "hotelaria": {
+   "pagina": "/hotelaria-e-gastronomia/",
+   "imagem": "hot-header",
+   "alt": "Garçonete de camisa branca e avental verde-oliva com a marca fictícia Oliva arruma o guardanapo bordado num prato; na mesa, cardápio e porta-contas caramelo com a marca gravada, taças e jogo americano, num restaurante iluminado.",
+   "eyebrow": "Hotelaria e gastronomia",
+   "linhas": [
+    "Sua identidade,"
+   ],
+   "destaque": [
+    "em cada detalhe",
+    "de receber."
+   ],
+   "texto": "Cardápios, porta-contas, jogos americanos e uniformes personalizados para restaurantes, bares e hotéis. Peças que levam a identidade da sua casa à mesa e à equipe.",
+   "legenda": "Imagem ilustrativa • Marca fictícia",
+   "posicao_celular": "92% center"
+  },
+  "fim-de-ano": {
+   "pagina": "/brindes-de-fim-de-ano/",
+   "imagem": "fim-header",
+   "alt": "Caixa de presente terracota aberta com duas taças flute num berço creme e o cartão \"Obrigado por fazer parte da nossa história\", com o símbolo de uma marca fictícia; ao lado, uma taça sobre mesa de pedra iluminada pelo sol.",
+   "eyebrow": "Presentes de fim de ano",
+   "linhas": [
+    "Um brinde a quem"
+   ],
+   "destaque": [
+    "fez parte do seu ano."
+   ],
+   "texto": "Taças, copos e presentes personalizados para agradecer clientes, reconhecer equipes e celebrar parcerias. Escolha as peças e combine a apresentação com a identidade da sua empresa.",
+   "legenda": "Imagem ilustrativa • Marca fictícia",
+   "posicao_celular": "78% center"
+  },
+  "sobre": {
+   "pagina": "/sobre/",
+   "imagem": "sobre-header",
+   "alt": "Bastidor de um projeto: as mãos de uma pessoa colocam um caderno verde da marca fictícia Vera numa caixa kraft com papel de seda; ao lado, garrafa azul Nexo, polo terracota dobrada, ecobags Vera, amostras de tecido e papel, barbante e tesoura, em estúdio com luz natural. Pessoa ilustrativa, sem rosto.",
+   "eyebrow": "Sobre a TaMa",
+   "linhas": [
+    "A marca do cliente"
+   ],
+   "destaque": [
+    "em cada escolha."
+   ],
+   "texto": "A TaMa Creative é uma prestadora de serviços que seleciona as peças, personaliza com a identidade da sua empresa e coordena a produção até a entrega. Brindes, uniformes, kits e ativações pensados para quem recebe: o público e a ocasião vêm antes da peça.",
+   "legenda": "Imagem ilustrativa • Marcas fictícias",
+   "posicao_celular": "70% center"
+  }
+ },
+ "vitrines": {
+  "brindes": {
+   "pagina": "/brindes-corporativos/",
+   "eyebrow": "Brindes",
+   "titulo": "Peças para a sua marca",
+   "texto": "Uma amostra do catálogo: do brinde de evento ao presente executivo. Toque na cor para ver a foto e adicione à sua seleção.",
+   "modelos": [
+    "caderno-de-anotacoes",
+    "agenda",
+    "caneta-executiva-com-estojo",
+    "garrafa-termica",
+    "caneca",
+    "copo-com-tampa",
+    "ecobag",
+    "necessaire",
+    "caixa-para-presente",
+    "guarda-chuva",
+    "vela",
+    "difusor-de-aromas"
+   ]
+  },
+  "confeccoes": {
+   "pagina": "/confeccoes-personalizadas/",
+   "eyebrow": "Catálogo",
+   "titulo": "Peças de vestuário para a sua marca",
+   "texto": "Polo, camisa, camiseta, moletom, dólmã e avental. Toque na cor de referência e adicione à seleção: as peças seguem com o pedido de proposta.",
+   "modelos": [
+    "polo-masculina",
+    "polo-feminina",
+    "camisa-masculina",
+    "camisa-feminina",
+    "camiseta-masculina",
+    "camiseta-feminina",
+    "moletom-com-capuz",
+    "bone",
+    "dolma",
+    "avental"
+   ]
+  },
+  "ativacoes": {
+   "pagina": "/ativacoes-promocionais/",
+   "eyebrow": "Catálogo",
+   "titulo": "Peças que costumam entrar em ativações",
+   "texto": "Escolha as cores de referência e adicione à seleção: as peças seguem com o pedido.",
+   "modelos": [
+    "avental",
+    "ecobag",
+    "camiseta-masculina",
+    "camiseta-feminina",
+    "bone",
+    "copo-360",
+    "squeeze",
+    "taca-de-champanhe"
+   ]
+  },
+  "hotelaria": {
+   "pagina": "/hotelaria-e-gastronomia/",
+   "eyebrow": "Catálogo",
+   "titulo": "Peças para salão, cozinha e equipe",
+   "texto": "Toque na cor para ver a foto e adicione à seleção: as peças seguem com o pedido de proposta.",
+   "modelos": [
+    "cardapio",
+    "porta-contas",
+    "jogo-americano-retangular",
+    "jogo-americano-oval",
+    "jogo-americano-impresso",
+    "dolma",
+    "avental",
+    "taca-de-vinho"
+   ]
+  },
+  "fim-brindar": {
+   "pagina": "/brindes-de-fim-de-ano/",
+   "eyebrow": "Taças e copos",
+   "titulo": "Taças e copos com a sua marca",
+   "texto": "Escolha as cores de referência e adicione à seleção: as peças seguem com o pedido de proposta.",
+   "modelos": [
+    "flute-com-borda-dourada",
+    "taca-coupe-canelada",
+    "taca-de-gin-com-pe-colorido",
+    "taca-de-gin-degrade",
+    "copo-long-drink",
+    "taca-de-champanhe",
+    "taca-martini",
+    "taca-de-gin"
+   ]
+  },
+  "fim-presentear": {
+   "pagina": "/brindes-de-fim-de-ano/",
+   "eyebrow": "Para presentear",
+   "titulo": "Peças que acompanham o próximo ano",
+   "texto": "Agenda, caneta, vela e caixa para completar o presente; cartão e lacre fecham a embalagem.",
+   "modelos": [
+    "agenda",
+    "caneta-executiva-com-estojo",
+    "vela",
+    "caixa-para-presente"
+   ]
+  }
+ },
+ "contato": {
+  "whatsapp": "5511932279301",
+  "email": "",
+  "instagram": "",
+  "linkedin": "",
+  "facebook": "",
+  "youtube": "",
+  "razao_social": "",
+  "cnpj": "",
+  "cidade": "",
+  "responsavel_comercial": ""
+ },
+ "topo": {
+  "assinatura": "Brindes, uniformes, kits, ativações e hotelaria para empresas.",
+  "garantias": [
+   "Atendimento consultivo",
+   "Arte aprovada antes da produção",
+   "Coordenação do pedido à entrega"
+  ],
+  "temporada": {
+   "chave": "fim-de-ano",
+   "ligada": true,
+   "inicio": "10-01",
+   "fim": "12-31",
+   "aviso_titulo": "Fim de ano:",
+   "aviso_texto": "presentes com a sua marca para agradecer clientes e equipes"
+  }
+ }
+}

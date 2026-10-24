@@ -12,7 +12,7 @@
 (function () {
   'use strict';
 
-  var ARQ = { produtos: 'src/data/produtos.json', modelos: 'src/data/modelos.json', selecoes: 'src/data/selecoes.json', kits: 'src/data/kits.json' };
+  var ARQ = { produtos: 'src/data/produtos.json', modelos: 'src/data/modelos.json', selecoes: 'src/data/selecoes.json', kits: 'src/data/kits.json', site: 'src/data/site.json' };
   var VISIVEL = { aprovada: 1, revisao: 1 };
   var SIT = {   // situação de cada foto (campo aprovacao), com o rótulo que a TaMa vê
     aprovada: { rotulo: 'No site', cls: 'site', ajuda: 'Aparece no site.' },
@@ -183,10 +183,10 @@
   // ------------------------------------------------------------------ dados: leitura e operações
   function lerTudo() {
     var f = S.fonte;
-    return Promise.all([f.ler(ARQ.produtos), f.ler(ARQ.modelos), f.ler(ARQ.selecoes), f.ler(ARQ.kits)]).then(function (t) {
+    return Promise.all([f.ler(ARQ.produtos), f.ler(ARQ.modelos), f.ler(ARQ.selecoes), f.ler(ARQ.kits), f.ler(ARQ.site).catch(function () { return null; })]).then(function (t) {
       if (!t[0]) throw new Error('não encontrei ' + ARQ.produtos + ' no repositório');
       return { produtos: JSON.parse(t[0]), modelos: t[1] ? JSON.parse(t[1]) : { modelos: [] }, selecoes: t[2] ? JSON.parse(t[2]) : {},
-        kits: t[3] ? JSON.parse(t[3]) : { kits: [], home: [], fim_de_ano: [], tipos: [] } };
+        kits: t[3] ? JSON.parse(t[3]) : { kits: [], home: [], fim_de_ano: [], tipos: [] }, site: t[4] ? JSON.parse(t[4]) : {} };
     });
   }
 
@@ -244,6 +244,8 @@
         if (!o.dentro && pos >= 0) lista.splice(pos, 1);
       }
     });
+    D.site = D.site || {};
+    ops.forEach(function (o) { aplicarSite(D, o, conflitos); });
     imgs.sort(function (a, b) { return a.id < b.id ? -1 : a.id > b.id ? 1 : 0; });
     D.conflitos = conflitos;
     return D;
@@ -333,7 +335,7 @@
       else { tipo = 'alterado'; texto = 'Kit alterado: ' + k.nome; }
       out.push({ alvo: alvo, tipo: tipo, texto: texto, img: imagemKit(k), abrir: function () { abrirKit(k.slug); } });
     });
-    return out;
+    return out.concat(mudancasSite());
   }
 
   // ------------------------------------------------------------------ validação (mesmas regras do build)
@@ -360,6 +362,7 @@
       if (d && (d.length < 70 || d.length > 160)) erros.push(m.produto + ': descrição no Google precisa ter de 70 a 160 caracteres (tem ' + d.length + ')');
       if ((m.resumo || '').length > 700) erros.push(m.produto + ': resumo com mais de 700 caracteres');
     });
+    erros = erros.concat(validarSite(D));
     var kv = {};
     (D.kits.kits || []).forEach(function (k) {
       if (!/^[a-z0-9]+(-[a-z0-9]+)*$/.test(k.slug || '')) erros.push('Kit ' + (k.nome || '?') + ': identificador inválido');
@@ -445,14 +448,15 @@
   function mostrarTab(tab) {
     S.tab = tab;
     document.querySelectorAll('.tabs [role="tab"]').forEach(function (b) { b.setAttribute('aria-selected', String(b.dataset.tab === tab)); });
-    ['resumo', 'produtos', 'kits', 'alteracoes'].forEach(function (t) { $('sec-' + t).hidden = t !== tab; });
+    ['resumo', 'produtos', 'kits', 'carrossel', 'paginas', 'contato', 'alteracoes'].forEach(function (t) { $('sec-' + t).hidden = t !== tab; });
     try { history.replaceState(null, '', '#' + tab); } catch (e) { /* sem histórico */ }
     desenhar();
   }
 
   function desenhar() {
     if (!S.atual) return;
-    ({ resumo: desenharResumo, produtos: desenharProdutos, kits: desenharKits, alteracoes: desenharAlteracoes })[S.tab]();
+    ({ resumo: desenharResumo, produtos: desenharProdutos, kits: desenharKits, carrossel: desenharCarrossel, paginas: desenharPaginas, contato: desenharContato,
+       alteracoes: desenharAlteracoes })[S.tab]();
     if (S.aberto) redesenharGaveta();
   }
 
@@ -932,13 +936,419 @@
     });
   }
 
+  // ------------------------------------------------------------------ conteúdo do site (site.json): carrossel, páginas, contato
+  /* Operações sobre site.json:
+     - site: { caminho: ['carrossel', 'id:<slide>', 'titulo'], valor } (null apaga o campo);
+     - site_ordem: { ids } (ordem do carrossel); site_slide_novo: { slide }; site_slide_del: { id };
+     - sel_home: { valor } (destaques da home, selecoes.json › home). */
+  var TONS = { 'tone-cream': 'Creme', 'tone-sage': 'Sálvia', 'tone-rose': 'Rosé', 'tone-linen': 'Linho' };
+  var TIPOS_PEDIDO = { '': 'Geral', brindes: 'Brindes', confeccoes: 'Confecções', kits: 'Kits', ativacoes: 'Ativações', hotelaria: 'Hotelaria' };
+  var PAGINAS = [
+    { chave: 'home', nome: 'Home', url: '/', vitrines: [], home: true },
+    { chave: 'brindes', nome: 'Brindes corporativos', url: '/brindes-corporativos/', vitrines: ['brindes'] },
+    { chave: 'kits', nome: 'Kits corporativos', url: '/kits-corporativos/', vitrines: [] },
+    { chave: 'confeccoes', nome: 'Uniformes e confecções', url: '/confeccoes-personalizadas/', vitrines: ['confeccoes'] },
+    { chave: 'ativacoes', nome: 'Ativações promocionais', url: '/ativacoes-promocionais/', vitrines: ['ativacoes'] },
+    { chave: 'hotelaria', nome: 'Hotelaria e gastronomia', url: '/hotelaria-e-gastronomia/', vitrines: ['hotelaria'] },
+    { chave: 'fim-de-ano', nome: 'Fim de ano', url: '/brindes-de-fim-de-ano/', vitrines: ['fim-brindar', 'fim-presentear'] },
+    { chave: 'sobre', nome: 'Sobre', url: '/sobre/', vitrines: [] }
+  ];
+  var NOME_VITRINE = { brindes: 'Brindes', confeccoes: 'Confecções', ativacoes: 'Ativações', hotelaria: 'Hotelaria', 'fim-brindar': 'Fim de ano · taças e copos', 'fim-presentear': 'Fim de ano · para presentear' };
+
+  function noCaminho(raiz, caminho, criar) {
+    var o = raiz;
+    for (var i = 0; i < caminho.length - 1; i++) {
+      var k = caminho[i];
+      if (o == null) return null;
+      if (/^id:/.test(k)) o = (o || []).find(function (x) { return x && x.id === k.slice(3); });
+      else { if (o[k] == null && criar) o[k] = {}; o = o[k]; }
+    }
+    return o;
+  }
+
+  function aplicarSite(D, o, conflitos) {
+    var st = D.site;
+    if (o.t === 'site') {
+      var pai = noCaminho(st, o.caminho, true), ult = o.caminho[o.caminho.length - 1];
+      if (!pai) { conflitos.push('item do site não existe mais (' + o.caminho.join(' › ') + ')'); return; }
+      if (o.valor == null) delete pai[ult]; else pai[ult] = clone(o.valor);
+    } else if (o.t === 'site_slide_novo') {
+      st.carrossel = st.carrossel || [];
+      if (st.carrossel.some(function (x) { return x.id === o.slide.id; })) conflitos.push('já existe um slide ' + o.slide.id);
+      else st.carrossel.push(clone(o.slide));
+    } else if (o.t === 'site_slide_del') {
+      st.carrossel = (st.carrossel || []).filter(function (x) { return x.id !== o.id; });
+    } else if (o.t === 'site_ordem') {
+      var por = {}; (st.carrossel || []).forEach(function (x) { por[x.id] = x; });
+      var nova = o.ids.filter(function (id) { return por[id]; }).map(function (id) { return por[id]; });
+      (st.carrossel || []).forEach(function (x) { if (nova.indexOf(x) < 0) nova.push(x); });
+      st.carrossel = nova;
+    } else if (o.t === 'sel_home') {
+      D.selecoes.home = o.valor.slice();
+    }
+  }
+
+  function opSite(caminho, valor, alvo, extra) {
+    var op = { chave: 'site:' + caminho.join('/'), alvo: alvo, t: 'site', caminho: caminho, valor: valor };
+    var antiga = S.ops.find(function (o) { return o.chave === op.chave && o.arquivo; });   // foto trocada de novo: a anterior não vai junto
+    if (antiga && (!extra || antiga.arquivo !== extra.arquivo)) delete S.arquivos[antiga.arquivo];
+    if (extra) Object.keys(extra).forEach(function (k) { op[k] = extra[k]; });
+    registrar(op);
+  }
+
+  function imagemSite(nome) {
+    var arq = Object.keys(S.arquivos).find(function (p) { return S.arquivos[p].nome === nome; });
+    if (arq) return S.arquivos[arq].url;
+    return (S.op.imagens || {})[nome] || '';
+  }
+  function imagemConhecida(nome) { return !!imagemSite(nome); }
+
+  function tituloHtml(t) { return esc(t || '').replace(/\*([^*]+)\*/g, '<em>$1</em>'); }
+
+  function mudancasSite() {
+    var out = [], A = S.base.site || {}, B = S.atual.site || {}, ig = function (a, b) { return JSON.stringify(a) === JSON.stringify(b); };
+    var tem = function (alvo) { return S.ops.some(function (o) { return o.alvo === alvo; }); };
+    var sa = {}; (A.carrossel || []).forEach(function (x) { sa[x.id] = x; });
+    var sb = {}; (B.carrossel || []).forEach(function (x) { sb[x.id] = x; });
+    Object.keys(sb).forEach(function (id) {
+      var a = sa[id], b = sb[id], alvo = 'site:slide:' + id;
+      if (!tem(alvo) || ig(a, b)) return;
+      var tipo = 'alterado', texto = 'Slide alterado: ' + b.eyebrow;
+      if (!a) { tipo = 'entra'; texto = 'Slide novo no carrossel: ' + b.eyebrow; }
+      else if (a.ativo !== false && b.ativo === false) { tipo = 'sai'; texto = 'Slide desligado: ' + b.eyebrow; }
+      else if (a.ativo === false && b.ativo !== false) { tipo = 'entra'; texto = 'Slide religado: ' + b.eyebrow; }
+      out.push({ alvo: alvo, tipo: tipo, texto: texto, img: imagemSite(b.imagem), abrir: function () { abrirSlide(id); } });
+    });
+    Object.keys(sa).forEach(function (id) {
+      if (!sb[id] && tem('site:slide:' + id)) out.push({ alvo: 'site:slide:' + id, tipo: 'sai', texto: 'Slide removido do carrossel: ' + sa[id].eyebrow, img: imagemSite(sa[id].imagem), abrir: function () { mostrarTab('carrossel'); } });
+    });
+    var ordA = (A.carrossel || []).map(function (x) { return x.id; }).filter(function (id) { return sb[id]; }),
+      ordB = (B.carrossel || []).map(function (x) { return x.id; }).filter(function (id) { return sa[id]; });
+    if (tem('site:ordem') && !ig(ordA, ordB)) out.push({ alvo: 'site:ordem', tipo: 'alterado', texto: 'Nova ordem dos slides do carrossel', img: '', abrir: function () { mostrarTab('carrossel'); } });
+    PAGINAS.forEach(function (pg) {
+      var alvo = 'site:pagina:' + pg.chave;
+      if (!tem(alvo)) return;
+      var mud = [];
+      if (!ig((A.cabecalhos || {})[pg.chave], (B.cabecalhos || {})[pg.chave])) mud.push('cabeçalho');
+      pg.vitrines.forEach(function (v) { if (!ig((A.vitrines || {})[v], (B.vitrines || {})[v])) mud.push('vitrine'); });
+      if (pg.home && !ig(S.base.selecoes.home, S.atual.selecoes.home)) mud.push('destaques');
+      if (mud.length) out.push({ alvo: alvo, tipo: 'alterado', texto: pg.nome + ': ' + mud.filter(function (x, i) { return mud.indexOf(x) === i; }).join(' e ') + ' alterados',
+        img: imagemSite(((B.cabecalhos || {})[pg.chave] || {}).imagem), abrir: function () { abrirPagina(pg.chave); } });
+    });
+    if (tem('site:contato') && !(ig(A.contato, B.contato) && ig(A.topo, B.topo))) out.push({ alvo: 'site:contato', tipo: 'alterado', texto: 'Contato, topo e rodapé alterados', img: '', abrir: function () { mostrarTab('contato'); } });
+    return out;
+  }
+
+  function validarSite(D) {
+    var e = [], st = D.site || {};
+    if (!st.carrossel) return e;
+    var modelos = {}; modelosDe(D).forEach(function (m) { modelos[m.slug] = 1; });
+    var ativos = (st.carrossel || []).filter(function (x) { return x.ativo !== false; });
+    if (!ativos.length) e.push('Carrossel: deixe pelo menos um slide ligado');
+    (st.carrossel || []).forEach(function (x, i) {
+      var n = 'Carrossel, slide ' + (i + 1) + ' (' + (x.eyebrow || 'sem chamada') + ')';
+      ['imagem', 'alt', 'eyebrow', 'titulo', 'texto'].forEach(function (c) { if (!(x[c] || '').trim()) e.push(n + ': ' + ({ imagem: 'foto', alt: 'descrição da foto', eyebrow: 'chamada', titulo: 'título', texto: 'texto' })[c] + ' é obrigatório'); });
+      if (x.imagem && x.ativo !== false && !imagemConhecida(x.imagem)) e.push(n + ': envie a foto');
+      var b2 = x.botao2 || {};
+      if (b2.texto && !/^(\/|https:\/\/)\S*$/.test(b2.link || '')) e.push(n + ': o link do 2º botão começa com / (página do site) ou https://');
+    });
+    Object.keys(st.cabecalhos || {}).forEach(function (k) {
+      var c = st.cabecalhos[k], n = 'Cabeçalho de ' + ((PAGINAS.find(function (p) { return p.chave === k; }) || {}).nome || k);
+      ['imagem', 'alt', 'eyebrow', 'texto'].forEach(function (f) { if (!(c[f] || '').trim()) e.push(n + ': ' + ({ imagem: 'foto', alt: 'descrição da foto', eyebrow: 'chamada', texto: 'texto' })[f] + ' é obrigatório'); });
+      if (!(c.linhas || []).some(function (l) { return l.trim(); }) || !(c.destaque || []).some(function (l) { return l.trim(); })) e.push(n + ': título e destaque precisam de pelo menos uma linha');
+    });
+    Object.keys(st.vitrines || {}).forEach(function (k) {
+      var v = st.vitrines[k];
+      (v.modelos || []).forEach(function (m) { if (!modelos[m] && !(D.selecoes.aliases || {})[m]) e.push('Vitrine ' + (NOME_VITRINE[k] || k) + ': o modelo "' + m + '" não existe'); });
+      if (!(v.titulo || '').trim()) e.push('Vitrine ' + (NOME_VITRINE[k] || k) + ': título é obrigatório');
+    });
+    var ct = st.contato || {};
+    if (ct.whatsapp && !/^\d{12,13}$/.test(ct.whatsapp.replace(/\D/g, ''))) e.push('Contato: WhatsApp com DDI e DDD, só números (ex.: 5511999999999)');
+    if (ct.email && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(ct.email)) e.push('Contato: e-mail inválido');
+    ['linkedin', 'facebook', 'youtube'].forEach(function (r) { if (ct[r] && !/^https:\/\//.test(ct[r])) e.push('Contato: o endereço do ' + r + ' começa com https://'); });
+    var tp = st.topo || {};
+    if (tp.garantias && tp.garantias.filter(function (g) { return (g || '').trim(); }).length !== 3) e.push('Topo: os compromissos são 3 frases');
+    var t = tp.temporada || {};
+    if (t.inicio && !/^(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/.test(t.inicio) || t.fim && !/^(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/.test(t.fim)) e.push('Temporada: início e fim no formato MM-DD (ex.: 10-01)');
+    return e;
+  }
+
+  function semSite(sec) {
+    sec.innerHTML = '<p class="vazio">O conteúdo do site (src/data/site.json) ainda não está neste repositório.</p>';
+  }
+
+  // ---- Carrossel
+  function desenharCarrossel() {
+    var sec = $('sec-carrossel'), lista = (S.atual.site || {}).carrossel;
+    if (!lista) return semSite(sec);
+    sec.innerHTML = '<h2>Carrossel da home</h2><p class="intro">Os slides do topo da home, na ordem em que aparecem. Desligue um slide para tirá-lo do site sem perder o conteúdo. ' +
+      'O slide marcado com a temporada abre o carrossel durante o período de fim de ano (aba Contato e rodapé).</p>' +
+      '<div class="acoes-topo" style="margin:0 0 16px"><button type="button" class="btn" id="novo-slide">+ Novo slide</button></div>' +
+      '<ol class="slides">' + lista.map(function (x, i) {
+        var pend = S.ops.some(function (o) { return o.alvo === 'site:slide:' + x.id; });
+        return '<li class="slide-item' + (x.ativo === false ? ' fora' : '') + (pend ? ' pendente' : '') + '">' +
+          '<span class="slide-n">' + (i + 1) + '</span>' +
+          '<img src="' + esc(imagemSite(x.imagem)) + '" alt="" loading="lazy">' +
+          '<span class="txt"><span class="meta">' + esc(x.eyebrow) + '</span><b>' + tituloHtml(x.titulo) + '</b>' +
+          '<span class="tags">' + etiqueta(x.ativo === false ? { rotulo: 'Desligado', cls: 'fora' } : { rotulo: 'No site', cls: 'site' }) +
+          (x.temporada ? etiqueta({ rotulo: 'Abre na temporada', cls: 'novo' }) : '') + (pend ? etiqueta({ rotulo: 'Alterado', cls: 'alterado' }) : '') + '</span></span>' +
+          '<span class="slide-acoes"><button type="button" class="btn btn-line btn-sm" data-sub="' + i + '" aria-label="Subir"' + (i === 0 ? ' disabled' : '') + '>↑</button>' +
+          '<button type="button" class="btn btn-line btn-sm" data-desce="' + i + '" aria-label="Descer"' + (i === lista.length - 1 ? ' disabled' : '') + '>↓</button>' +
+          '<button type="button" class="btn btn-sm" data-slide="' + esc(x.id) + '">Editar</button></span></li>';
+      }).join('') + '</ol>';
+    function mover(i, d) {
+      var ids = lista.map(function (x) { return x.id; }), j = i + d, t = ids[i]; ids[i] = ids[j]; ids[j] = t;
+      registrar({ chave: 'site:ordem', alvo: 'site:ordem', t: 'site_ordem', ids: ids });
+    }
+    sec.querySelectorAll('[data-sub]').forEach(function (b) { b.onclick = function () { mover(+b.dataset.sub, -1); }; });
+    sec.querySelectorAll('[data-desce]').forEach(function (b) { b.onclick = function () { mover(+b.dataset.desce, 1); }; });
+    sec.querySelectorAll('[data-slide]').forEach(function (b) { b.onclick = function () { abrirSlide(b.dataset.slide); }; });
+    $('novo-slide').onclick = novoSlide;
+  }
+
+  function enviarFotoSite(inputId, prefixo, aoEnviar) {
+    $(inputId).onchange = function () {
+      var file = this.files[0]; if (!file) return;
+      prepararFoto(file, 2400, false).then(function (foto) {
+        if (foto.largura < 1600) foto.avisos.push('Foto estreita (' + foto.largura + ' px): no computador ela ocupa metade da tela ou mais; use 1920 px de largura ou mais.');
+        var usar = function () {
+          var nome = prefixo + '-' + new Date().toISOString().replace(/[-:T]/g, '').slice(0, 12);
+          var path = 'img/v2/' + nome + '.' + foto.ext;
+          guardarArquivo(path, foto, nome);
+          aoEnviar(nome, path);
+        };
+        if (foto.avisos.length) confirmar(foto.avisos.join('\n') + '\n\nUsar mesmo assim?', usar, 'Usar a foto'); else usar();
+      }).catch(function (e) { avisar('Não consegui usar essa foto: ' + e.message); });
+    };
+  }
+
+  function abrirSlide(id) {
+    abrirGaveta('Slide', function () {
+      var lista = (S.atual.site || {}).carrossel || [], x = lista.find(function (y) { return y.id === id; }), corpo = $('gaveta-corpo');
+      if (!x) { corpo.innerHTML = '<p class="vazio">Este slide não existe mais.</p>'; return; }
+      var alvo = 'site:slide:' + id, scroll = corpo.scrollTop, b = x.botao || {}, b2 = x.botao2 || {}, c = ['carrossel', 'id:' + id];
+      $('gaveta-titulo').textContent = 'Slide: ' + x.eyebrow;
+      corpo.innerHTML = '<div class="bloco"><div class="situacao"><p>' + etiqueta(x.ativo === false ? { rotulo: 'Desligado', cls: 'fora' } : { rotulo: 'No site', cls: 'site' }) +
+        (x.ativo === false ? ' Não aparece na home.' : ' Aparece no carrossel da home.') + '</p>' +
+        (x.ativo === false ? '<button type="button" class="btn btn-ok btn-sm" id="s-ligar">Ligar</button>' : '<button type="button" class="btn btn-sai btn-sm" id="s-desligar">Desligar</button>') +
+        '<button type="button" class="btn btn-sai btn-sm" id="s-remover">Remover slide</button>' +
+        (S.ops.some(function (o) { return o.alvo === alvo; }) ? '<button type="button" class="link-btn small" id="s-desfazer">Desfazer alterações deste slide</button>' : '') + '</div></div>' +
+        '<div class="bloco"><h3>Foto</h3><div class="solta">' + (imagemSite(x.imagem) ? '<img src="' + esc(imagemSite(x.imagem)) + '" alt="">' : '<p class="small muted">Sem foto</p>') +
+        upload('s-arq', 'Trocar foto') + '<p class="dica">Horizontal, com espaço livre à esquerda para o texto (no computador a foto ocupa a metade direita). De preferência 2400 × 1600 px. Use a marca TaMa ou uma marca fictícia.</p></div>' +
+        campo('s-alt', 'Descrição da foto (texto alternativo)', texto('s-alt', x.alt), 'O que a foto mostra, para quem não enxerga a imagem.') + '</div>' +
+        '<div class="bloco"><h3>Textos</h3>' + campo('s-eyebrow', 'Chamada (texto pequeno acima do título)', texto('s-eyebrow', x.eyebrow)) +
+        campo('s-titulo', 'Título', texto('s-titulo', x.titulo), 'O trecho entre *asteriscos* sai em itálico vinho. Ex.: Sua marca no *uniforme* da equipe.') +
+        campo('s-texto', 'Texto', '<textarea id="s-texto">' + esc(x.texto) + '</textarea>') + '</div>' +
+        '<div class="bloco"><h3>Botões</h3><div class="linha">' + campo('s-b1', 'Botão principal', texto('s-b1', b.texto || 'Solicitar proposta')) +
+        campo('s-b1t', 'Abre o pedido de proposta de', '<select id="s-b1t">' + Object.keys(TIPOS_PEDIDO).map(function (k) { return '<option value="' + k + '"' + ((b.tipo || '') === k ? ' selected' : '') + '>' + TIPOS_PEDIDO[k] + '</option>'; }).join('') + '</select>') + '</div>' +
+        '<div class="linha">' + campo('s-b2', '2º botão (vazio = sem 2º botão)', texto('s-b2', b2.texto || '')) +
+        campo('s-b2l', 'Link do 2º botão', texto('s-b2l', b2.link || '', ' placeholder="/catalogo/" list="paginas-site"'), 'Página do site (/catalogo/, /kits-corporativos/…) ou endereço https://.') + '</div>' +
+        '<datalist id="paginas-site">' + ['/catalogo/', '/brindes-corporativos/', '/kits-corporativos/', '/confeccoes-personalizadas/', '/ativacoes-promocionais/', '/hotelaria-e-gastronomia/', '/brindes-de-fim-de-ano/', '/brindes-por-ocasiao/', '/sobre/', '/blog/', '/solicitar-proposta/'].map(function (u) { return '<option value="' + u + '">'; }).join('') + '</datalist></div>' +
+        '<div class="bloco"><h3>Aparência</h3><div class="linha">' + campo('s-tom', 'Cor de fundo', '<select id="s-tom">' + Object.keys(TONS).map(function (k) { return '<option value="' + k + '"' + ((x.tom || 'tone-cream') === k ? ' selected' : '') + '>' + TONS[k] + '</option>'; }).join('') + '</select>') +
+        '<div class="campo"><label>&nbsp;</label><label style="font-weight:500;color:var(--ink)"><input type="checkbox" id="s-temp"' + (x.temporada ? ' checked' : '') + '> Abrir o carrossel durante a temporada de fim de ano</label></div></div>' +
+        '<details><summary class="small">Avançado: enquadramento da foto</summary><div style="margin-top:10px">' + campo('s-enq', 'Enquadramento', texto('s-enq', x.enquadramento || ''), 'Ex.: --fx:100%;--fx-m:80% (posição horizontal da foto no computador e no celular).') + '</div></details></div>';
+      corpo.scrollTop = scroll;
+      var set = function (cam, v) { opSite(c.concat(cam), v, alvo); };
+      if ($('s-ligar')) $('s-ligar').onclick = function () { set(['ativo'], null); };
+      if ($('s-desligar')) $('s-desligar').onclick = function () { set(['ativo'], false); };
+      if ($('s-desfazer')) $('s-desfazer').onclick = function () { desfazer(alvo); };
+      $('s-remover').onclick = function () {
+        confirmar('Remover o slide "' + x.eyebrow + '" do carrossel? Para só esconder, use Desligar.', function () {
+          registrar({ chave: 'site:del:' + id, alvo: alvo, t: 'site_slide_del', id: id }); fecharGaveta();
+        }, 'Remover');
+      };
+      enviarFotoSite('s-arq', 'slide-' + id, function (nome, path) { opSite(c.concat(['imagem']), nome, alvo, { arquivo: path }); });
+      $('s-alt').onchange = function () { set(['alt'], this.value.trim()); };
+      $('s-eyebrow').onchange = function () { set(['eyebrow'], this.value.trim()); };
+      $('s-titulo').onchange = function () { set(['titulo'], this.value.trim()); };
+      $('s-texto').onchange = function () { set(['texto'], this.value.trim()); };
+      $('s-b1').onchange = function () { set(['botao', 'texto'], this.value.trim() || 'Solicitar proposta'); };
+      $('s-b1t').onchange = function () { set(['botao', 'tipo'], this.value); };
+      $('s-b2').onchange = function () { set(['botao2', 'texto'], this.value.trim()); };
+      $('s-b2l').onchange = function () { set(['botao2', 'link'], this.value.trim()); };
+      $('s-tom').onchange = function () { set(['tom'], this.value); };
+      $('s-temp').onchange = function () { set(['temporada'], this.checked ? 'fim-de-ano' : null); };
+      $('s-enq').onchange = function () { set(['enquadramento'], this.value.trim().replace(/[^-a-z0-9:;%. ]/gi, '')); };
+    });
+  }
+
+  function novoSlide() {
+    abrirGaveta('Novo slide', function () {
+      if ($('ns-eyebrow')) return;
+      $('gaveta-corpo').innerHTML = '<div class="bloco">' + campo('ns-eyebrow', 'Chamada (texto pequeno acima do título)', texto('ns-eyebrow', '', ' placeholder="ex.: Kits corporativos"')) +
+        campo('ns-titulo', 'Título', texto('ns-titulo', '', ' placeholder="Kits pensados de *ponta a ponta*."'), 'O trecho entre *asteriscos* sai em itálico vinho.') +
+        campo('ns-texto', 'Texto', '<textarea id="ns-texto"></textarea>') +
+        '<div class="linha">' + campo('ns-b2', '2º botão (opcional)', texto('ns-b2', '', ' placeholder="Conhecer os kits"')) + campo('ns-b2l', 'Link do 2º botão', texto('ns-b2l', '', ' placeholder="/kits-corporativos/"')) + '</div>' +
+        '<div class="solta" id="ns-solta"><p style="margin:0 0 8px">Foto do slide</p>' + upload('ns-arq', 'Escolher foto') + '<p class="dica">Horizontal, espaço livre à esquerda para o texto, de preferência 2400 × 1600 px.</p></div>' +
+        campo('ns-alt', 'Descrição da foto', texto('ns-alt', '')) +
+        '<p class="rodape-gaveta" style="margin-top:12px"><button type="button" class="btn" id="ns-ok" disabled>Criar slide</button></p></div>';
+      var foto = null;
+      enviarFotoSite('ns-arq', 'slide-novo', function (nome, path) {
+        foto = { nome: nome, path: path };
+        var sol = $('ns-solta'), im = sol.querySelector('img') || sol.insertBefore(document.createElement('img'), sol.firstChild);
+        im.src = imagemSite(nome); im.alt = ''; $('ns-ok').disabled = false;
+      });
+      $('ns-ok').onclick = function () {
+        var ey = $('ns-eyebrow').value.trim(), ti = $('ns-titulo').value.trim(), tx = $('ns-texto').value.trim(), alt = $('ns-alt').value.trim();
+        if (!ey || !ti || !tx || !alt) { avisar('Preencha a chamada, o título, o texto e a descrição da foto.'); return; }
+        var id = slug(ey) || 'slide', lista = (S.atual.site || {}).carrossel || [];
+        while (lista.some(function (x) { return x.id === id; })) id += '-2';
+        var b2 = $('ns-b2').value.trim(), b2l = $('ns-b2l').value.trim();
+        registrar({ chave: 'site:novo:' + id, alvo: 'site:slide:' + id, t: 'site_slide_novo', arquivo: foto.path, slide: { id: id, ativo: true, tom: 'tone-cream', imagem: foto.nome, enquadramento: '--fx:100%;--fx-m:80%',
+          alt: alt, eyebrow: ey, titulo: ti, texto: tx, botao: { texto: 'Solicitar proposta', tipo: '', medicao: 'hero-' + id }, botao2: b2 ? { texto: b2, link: b2l } : {} } });
+        abrirSlide(id);
+      };
+    });
+  }
+
+  // ---- Páginas: cabeçalho e vitrines
+  function desenharPaginas() {
+    var sec = $('sec-paginas'), st = S.atual.site || {};
+    if (!st.cabecalhos) return semSite(sec);
+    sec.innerHTML = '<h2>Páginas</h2><p class="intro">O topo (foto, título e texto) de cada página e as vitrines de produtos. A home tem os destaques; o carrossel fica na aba Carrossel.</p>' +
+      '<div class="grade kits">' + PAGINAS.map(function (pg) {
+        var c = (st.cabecalhos || {})[pg.chave], img = c ? imagemSite(c.imagem) : imagemSite(((st.carrossel || [])[0] || {}).imagem);
+        var pend = S.ops.some(function (o) { return o.alvo === 'site:pagina:' + pg.chave; });
+        var partes = (c ? ['cabeçalho'] : []).concat(pg.vitrines.length ? [pg.vitrines.length > 1 ? pg.vitrines.length + ' vitrines' : 'vitrine'] : []).concat(pg.home ? ['destaques'] : []);
+        return '<button type="button" class="item' + (pend ? ' pendente' : '') + '" data-pagina="' + pg.chave + '"><span class="foto">' + (img ? '<img src="' + esc(img) + '" alt="" loading="lazy">' : '') + '</span>' +
+          '<span class="info"><span class="nome">' + esc(pg.nome) + '</span><span class="meta">' + esc(pg.url) + ' · ' + partes.join(', ') + '</span>' +
+          (pend ? '<span class="tags">' + etiqueta({ rotulo: 'Alterado', cls: 'alterado' }) + '</span>' : '') + '</span></button>';
+      }).join('') + '</div>';
+    sec.querySelectorAll('[data-pagina]').forEach(function (b) { b.onclick = function () { abrirPagina(b.dataset.pagina); }; });
+  }
+
+  function editorModelos(id, lista) {
+    var ms = {}; modelosDe(S.atual).forEach(function (m) { ms[m.slug] = m; });
+    return '<ol class="modelos-lista">' + lista.map(function (s, i) {
+      var m = ms[s];
+      return '<li><img src="' + esc(m ? imagemProduto(m.base) : '') + '" alt="" loading="lazy"><span class="txt">' + esc(m ? m.nome : s) +
+        (m ? (m.noSite ? '' : ' ' + etiqueta({ rotulo: 'Fora do site', cls: 'fora' })) : ' ' + etiqueta({ rotulo: 'Não existe', cls: 'erro' })) + '</span>' +
+        '<button type="button" class="btn btn-line btn-sm" data-' + id + '-sub="' + i + '"' + (i === 0 ? ' disabled' : '') + ' aria-label="Subir">↑</button>' +
+        '<button type="button" class="btn btn-line btn-sm" data-' + id + '-desce="' + i + '"' + (i === lista.length - 1 ? ' disabled' : '') + ' aria-label="Descer">↓</button>' +
+        '<button type="button" class="btn btn-sai btn-sm" data-' + id + '-tira="' + i + '">Tirar</button></li>';
+    }).join('') + '</ol><div class="linha-cor" style="margin-top:8px"><div class="campo" style="margin:0"><label for="' + id + '-add">Adicionar produto</label>' +
+      '<input id="' + id + '-add" type="text" list="' + id + '-opcoes" placeholder="Digite o nome do produto"><datalist id="' + id + '-opcoes">' +
+      Object.keys(ms).filter(function (k) { return ms[k].noSite && lista.indexOf(k) < 0; }).map(function (k) { return '<option value="' + esc(ms[k].nome) + '">'; }).join('') +
+      '</datalist></div><button type="button" class="btn btn-sm" id="' + id + '-ok" style="margin-bottom:0">Adicionar</button></div>';
+  }
+
+  function ligarModelos(id, lista, salvar) {
+    var ms = modelosDe(S.atual);
+    var troca = function (i, j) { var l = lista.slice(), t = l[i]; l[i] = l[j]; l[j] = t; salvar(l); };
+    document.querySelectorAll('[data-' + id + '-sub]').forEach(function (b) { b.onclick = function () { troca(+b.getAttribute('data-' + id + '-sub'), +b.getAttribute('data-' + id + '-sub') - 1); }; });
+    document.querySelectorAll('[data-' + id + '-desce]').forEach(function (b) { b.onclick = function () { troca(+b.getAttribute('data-' + id + '-desce'), +b.getAttribute('data-' + id + '-desce') + 1); }; });
+    document.querySelectorAll('[data-' + id + '-tira]').forEach(function (b) { b.onclick = function () { var l = lista.slice(); l.splice(+b.getAttribute('data-' + id + '-tira'), 1); salvar(l); }; });
+    $(id + '-ok').onclick = function () {
+      var v = norm($(id + '-add').value), m = ms.find(function (x) { return norm(x.nome) === v || x.slug === v; });
+      if (!m) { avisar('Produto não encontrado. Escolha um nome da lista.'); return; }
+      if (lista.indexOf(m.slug) >= 0) { avisar('Esse produto já está na vitrine.'); return; }
+      salvar(lista.concat([m.slug]));
+    };
+  }
+
+  function abrirPagina(chave) {
+    var pg = PAGINAS.find(function (p) { return p.chave === chave; });
+    abrirGaveta(pg.nome, function () {
+      var st = S.atual.site || {}, c = (st.cabecalhos || {})[chave], corpo = $('gaveta-corpo'), scroll = corpo.scrollTop, alvo = 'site:pagina:' + chave;
+      var html = '<div class="bloco"><div class="situacao"><p>Página: <a href="' + pg.url + '" target="_blank" rel="noopener">' + pg.url + '</a></p>' +
+        (S.ops.some(function (o) { return o.alvo === alvo; }) ? '<button type="button" class="link-btn small" id="p-desfazer">Desfazer alterações desta página</button>' : '') + '</div></div>';
+      if (c) {
+        html += '<div class="bloco"><h3>Cabeçalho</h3><div class="solta">' + (imagemSite(c.imagem) ? '<img src="' + esc(imagemSite(c.imagem)) + '" alt="">' : '') +
+          upload('p-arq', 'Trocar foto') + '<p class="dica">Horizontal (16:9), com espaço claro à esquerda para o texto. De preferência 2400 px de largura.</p></div>' +
+          campo('p-alt', 'Descrição da foto (texto alternativo)', texto('p-alt', c.alt)) +
+          campo('p-eyebrow', 'Chamada (texto pequeno acima do título)', texto('p-eyebrow', c.eyebrow)) +
+          '<div class="linha">' + campo('p-linhas', 'Título (uma linha por linha)', '<textarea id="p-linhas" style="min-height:64px">' + esc((c.linhas || []).join('\n')) + '</textarea>') +
+          campo('p-destaque', 'Destaque em itálico (uma linha por linha)', '<textarea id="p-destaque" style="min-height:64px">' + esc((c.destaque || []).join('\n')) + '</textarea>') + '</div>' +
+          campo('p-texto', 'Texto', '<textarea id="p-texto">' + esc(c.texto) + '</textarea>') +
+          '<div class="linha">' + campo('p-legenda', 'Legenda da foto', texto('p-legenda', c.legenda || '')) +
+          campo('p-pos', 'Foto no celular', '<select id="p-pos">' + [['left center', 'Mostrar a esquerda da foto'], ['center', 'Mostrar o centro'], ['70% center', 'Centro-direita'], ['right center', 'Mostrar a direita']]
+            .concat([[c.posicao_celular, 'Atual: ' + c.posicao_celular]]).filter(function (o, i, a) { return o[0] && a.findIndex(function (x) { return x[0] === o[0]; }) === i; })
+            .map(function (o) { return '<option value="' + esc(o[0]) + '"' + (o[0] === c.posicao_celular ? ' selected' : '') + '>' + esc(o[1]) + '</option>'; }).join('') + '</select>', 'Parte da foto que aparece no celular, onde ela é cortada.') + '</div></div>';
+      }
+      if (pg.home) html += '<div class="bloco"><h3>Destaques da home</h3><p class="small muted">Os produtos da seção de destaques, na ordem.</p>' + editorModelos('ph', S.atual.selecoes.home || []) + '</div>';
+      pg.vitrines.forEach(function (v, n) {
+        var vt = (st.vitrines || {})[v]; if (!vt) return;
+        html += '<div class="bloco"><h3>Vitrine' + (pg.vitrines.length > 1 ? ' ' + (n + 1) + ': ' + esc(NOME_VITRINE[v]) : '') + '</h3>' +
+          '<div class="linha">' + campo('v' + n + '-eyebrow', 'Chamada', texto('v' + n + '-eyebrow', vt.eyebrow)) + campo('v' + n + '-titulo', 'Título', texto('v' + n + '-titulo', vt.titulo)) + '</div>' +
+          campo('v' + n + '-texto', 'Texto', '<textarea id="v' + n + '-texto" style="min-height:60px">' + esc(vt.texto) + '</textarea>') +
+          editorModelos('pv' + n, vt.modelos || []) + '</div>';
+      });
+      corpo.innerHTML = html;
+      corpo.scrollTop = scroll;
+      if ($('p-desfazer')) $('p-desfazer').onclick = function () { desfazer(alvo); };
+      if (c) {
+        var cc = ['cabecalhos', chave], set = function (cam, v, extra) { opSite(cc.concat(cam), v, alvo, extra); };
+        var linhas = function (t) { return t.split('\n').map(function (l) { return l.trim(); }).filter(Boolean); };
+        enviarFotoSite('p-arq', 'topo-' + chave, function (nome, path) { set(['imagem'], nome, { arquivo: path }); });
+        $('p-alt').onchange = function () { set(['alt'], this.value.trim()); };
+        $('p-eyebrow').onchange = function () { set(['eyebrow'], this.value.trim()); };
+        $('p-linhas').onchange = function () { set(['linhas'], linhas(this.value)); };
+        $('p-destaque').onchange = function () { set(['destaque'], linhas(this.value)); };
+        $('p-texto').onchange = function () { set(['texto'], this.value.trim()); };
+        $('p-legenda').onchange = function () { set(['legenda'], this.value.trim()); };
+        $('p-pos').onchange = function () { set(['posicao_celular'], this.value); };
+      }
+      if (pg.home) ligarModelos('ph', S.atual.selecoes.home || [], function (l) { registrar({ chave: 'sel:home', alvo: alvo, t: 'sel_home', valor: l }); });
+      pg.vitrines.forEach(function (v, n) {
+        var vt = (st.vitrines || {})[v]; if (!vt) return;
+        var cv = ['vitrines', v], setv = function (cam, val) { opSite(cv.concat(cam), val, alvo); };
+        $('v' + n + '-eyebrow').onchange = function () { setv(['eyebrow'], this.value.trim()); };
+        $('v' + n + '-titulo').onchange = function () { setv(['titulo'], this.value.trim()); };
+        $('v' + n + '-texto').onchange = function () { setv(['texto'], this.value.trim()); };
+        ligarModelos('pv' + n, vt.modelos || [], function (l) { setv(['modelos'], l); });
+      });
+    });
+  }
+
+  // ---- Contato, topo e rodapé
+  function desenharContato() {
+    var sec = $('sec-contato'), st = S.atual.site || {};
+    if (!st.contato) return semSite(sec);
+    var ct = st.contato || {}, tp = st.topo || {}, t = tp.temporada || {}, g = tp.garantias || ['', '', ''];
+    var foco = document.activeElement && document.activeElement.id;
+    sec.innerHTML = '<h2>Contato, topo e rodapé</h2><p class="intro">Campo vazio não aparece no site. Os dados da empresa só devem ser preenchidos com informação confirmada.</p>' +
+      '<div class="grid2"><div><div class="bloco"><h3>Contato</h3>' +
+      campo('c-whatsapp', 'WhatsApp', texto('c-whatsapp', ct.whatsapp || '', ' inputmode="numeric" placeholder="5511999999999"'), 'Com DDI e DDD, só números. Usado no botão flutuante e no cabeçalho.') +
+      campo('c-email', 'E-mail', texto('c-email', ct.email || '', ' inputmode="email"')) +
+      campo('c-instagram', 'Instagram', texto('c-instagram', ct.instagram || '', ' placeholder="tamacreative (sem @)"')) +
+      campo('c-linkedin', 'LinkedIn', texto('c-linkedin', ct.linkedin || '', ' placeholder="https://www.linkedin.com/company/…"')) +
+      campo('c-facebook', 'Facebook', texto('c-facebook', ct.facebook || '', ' placeholder="https://www.facebook.com/…"')) +
+      campo('c-youtube', 'YouTube', texto('c-youtube', ct.youtube || '', ' placeholder="https://www.youtube.com/@…"')) + '</div>' +
+      '<div class="bloco"><h3>Dados da empresa (página Sobre e rodapé)</h3>' +
+      campo('c-razao', 'Razão social', texto('c-razao', ct.razao_social || '')) + campo('c-cnpj', 'CNPJ', texto('c-cnpj', ct.cnpj || '')) +
+      campo('c-cidade', 'Cidade', texto('c-cidade', ct.cidade || '')) + campo('c-resp', 'Atendimento comercial', texto('c-resp', ct.responsavel_comercial || '')) + '</div></div>' +
+      '<div><div class="bloco"><h3>Faixa do topo e compromissos</h3>' +
+      campo('c-assinatura', 'Frase da faixa do topo (fora da temporada)', texto('c-assinatura', tp.assinatura || '')) +
+      campo('c-g0', 'Compromisso 1', texto('c-g0', g[0] || '')) + campo('c-g1', 'Compromisso 2', texto('c-g1', g[1] || '')) + campo('c-g2', 'Compromisso 3', texto('c-g2', g[2] || '')) + '</div>' +
+      '<div class="bloco"><h3>Temporada de fim de ano</h3><p class="small muted">Dentro do período, a faixa do topo, o menu, o carrossel (slide marcado) e avisos em Brindes, Kits e Catálogo apontam para a página de fim de ano.</p>' +
+      '<label style="font-weight:500;color:var(--ink);margin-bottom:12px"><input type="checkbox" id="c-tligada"' + (t.ligada !== false ? ' checked' : '') + '> Temporada ligada</label>' +
+      '<div class="linha">' + campo('c-tini', 'Começa em (mês-dia)', texto('c-tini', t.inicio || '', ' placeholder="10-01"')) + campo('c-tfim', 'Termina em (mês-dia)', texto('c-tfim', t.fim || '', ' placeholder="12-31"')) + '</div>' +
+      '<div class="linha">' + campo('c-tav1', 'Aviso da faixa: destaque', texto('c-tav1', t.aviso_titulo || '')) + campo('c-tav2', 'Aviso da faixa: texto', texto('c-tav2', t.aviso_texto || '')) + '</div>' +
+      '<p class="small muted">A data vale na hora em que o site é gerado: depois de mudar o período, publique para o site se atualizar.</p></div></div></div>';
+    if (foco && $(foco)) $(foco).focus();
+    var setc = function (k, v) { opSite(['contato', k], v, 'site:contato'); };
+    var sett = function (cam, v) { opSite(['topo'].concat(cam), v, 'site:contato'); };
+    [['c-whatsapp', 'whatsapp'], ['c-email', 'email'], ['c-instagram', 'instagram'], ['c-linkedin', 'linkedin'], ['c-facebook', 'facebook'], ['c-youtube', 'youtube'],
+     ['c-razao', 'razao_social'], ['c-cnpj', 'cnpj'], ['c-cidade', 'cidade'], ['c-resp', 'responsavel_comercial']].forEach(function (p) {
+      $(p[0]).onchange = function () { setc(p[1], p[1] === 'instagram' ? this.value.trim().replace(/^@/, '') : this.value.trim()); };
+    });
+    $('c-assinatura').onchange = function () { sett(['assinatura'], this.value.trim()); };
+    [0, 1, 2].forEach(function (i) { $('c-g' + i).onchange = function () { var l = (tp.garantias || ['', '', '']).slice(); l[i] = this.value.trim(); sett(['garantias'], l); }; });
+    $('c-tligada').onchange = function () { sett(['temporada', 'ligada'], this.checked); };
+    $('c-tini').onchange = function () { sett(['temporada', 'inicio'], this.value.trim()); };
+    $('c-tfim').onchange = function () { sett(['temporada', 'fim'], this.value.trim()); };
+    $('c-tav1').onchange = function () { sett(['temporada', 'aviso_titulo'], this.value.trim()); };
+    $('c-tav2').onchange = function () { sett(['temporada', 'aviso_texto'], this.value.trim()); };
+  }
+
   // ------------------------------------------------------------------ alterações e publicação
   function desfazer(alvo) {
     S.ops = S.ops.filter(function (o) {
       if (o.alvo !== alvo) return true;
       Object.keys(S.arquivos).forEach(function (p) {
         if ((o.t === 'foto_nova' && o.entrada.arquivo === '/' + p) || (o.t === 'foto' && o.campos.arquivo === '/' + p) ||
-            (o.t === 'kit' && o.campos.foto && S.arquivos[p].nome === o.campos.foto) || (o.t === 'kit_novo' && S.arquivos[p].nome === o.kit.foto)) delete S.arquivos[p];
+            (o.t === 'kit' && o.campos.foto && S.arquivos[p].nome === o.campos.foto) || (o.t === 'kit_novo' && S.arquivos[p].nome === o.kit.foto) ||
+            (o.arquivo && o.arquivo === p)) delete S.arquivos[p];
       });
       return false;
     });
@@ -1018,7 +1428,8 @@
       var arquivos = [];
       if (tipos.foto || tipos.foto_nova || tipos.prod) arquivos.push({ path: ARQ.produtos, texto: json(D.produtos) });
       if (tipos.modelo) arquivos.push({ path: ARQ.modelos, texto: json(D.modelos) });
-      if (tipos.sel || tipos.prioridade) arquivos.push({ path: ARQ.selecoes, texto: json(D.selecoes) });
+      if (tipos.sel || tipos.prioridade || tipos.sel_home) arquivos.push({ path: ARQ.selecoes, texto: json(D.selecoes) });
+      if (tipos.site || tipos.site_ordem || tipos.site_slide_novo || tipos.site_slide_del) arquivos.push({ path: ARQ.site, texto: json(D.site) });
       if (tipos.kit || tipos.kit_novo || tipos.kit_lista) arquivos.push({ path: ARQ.kits, texto: json(D.kits) });
       Object.keys(S.arquivos).forEach(function (p) { arquivos.push({ path: p, b64: S.arquivos[p].b64 }); });
       aviso('Enviando ' + plural(arquivos.length, 'arquivo', 'arquivos') + '…');
@@ -1101,7 +1512,7 @@
     };
     lerRascunho();
     var tab = (location.hash || '').replace('#', '');
-    S.tab = { resumo: 1, produtos: 1, kits: 1, alteracoes: 1 }[tab] ? tab : 'resumo';
+    S.tab = { resumo: 1, produtos: 1, kits: 1, carrossel: 1, paginas: 1, contato: 1, alteracoes: 1 }[tab] ? tab : 'resumo';
     return carregar().then(function () {
       mostrarTab(S.tab);
       if (S.ops.length) aviso('Você tem ' + plural(mudancas().length, 'alteração guardada', 'alterações guardadas') + ' neste navegador, ainda não publicadas.', '');

@@ -186,16 +186,16 @@
   "mesa-de-descobertas",
   "kit-pratico",
   "em-movimento",
-  "pausa-e-inspiracao"
+  "pausa-e-inspiracao",
+  "kit-boas-vindas-tech"
  ],
  "fim_de_ano": [
   "kit-brinde",
   "kit-coquetel",
-  "kit-caipirinha",
   "kit-gin",
   "kit-vinho",
   "kit-cafe",
-  "kit-petiscos"
+  "kit-agradecimento"
  ],
  "tipos": [
   {
@@ -264,7 +264,10 @@
     "kit-coquetel",
     "kit-caipirinha",
     "kit-gin",
-    "kit-vinho"
+    "kit-vinho",
+    "kit-petiscos",
+    "kit-agradecimento",
+    "kit-escritorio"
    ]
   }
  ]

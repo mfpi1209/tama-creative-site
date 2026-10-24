@@ -183,7 +183,7 @@
   // ------------------------------------------------------------------ dados: leitura e operações
   function lerTudo() {
     var f = S.fonte;
-    return Promise.all([f.ler(ARQ.produtos), f.ler(ARQ.modelos), f.ler(ARQ.selecoes), f.ler(ARQ.kits), f.ler(ARQ.site).catch(function () { return null; })]).then(function (t) {
+    return Promise.all([f.ler(ARQ.produtos), f.ler(ARQ.modelos), f.ler(ARQ.selecoes), f.ler(ARQ.kits), f.ler(ARQ.site).catch(function (e) { S.erroSite = e.message; return null; })]).then(function (t) {
       if (!t[0]) throw new Error('não encontrei ' + ARQ.produtos + ' no repositório');
       return { produtos: JSON.parse(t[0]), modelos: t[1] ? JSON.parse(t[1]) : { modelos: [] }, selecoes: t[2] ? JSON.parse(t[2]) : {},
         kits: t[3] ? JSON.parse(t[3]) : { kits: [], home: [], fim_de_ano: [], tipos: [] }, site: t[4] ? JSON.parse(t[4]) : {} };
@@ -1074,7 +1074,11 @@
   }
 
   function semSite(sec) {
-    sec.innerHTML = '<p class="vazio">O conteúdo do site (src/data/site.json) ainda não está neste repositório.</p>';
+    // serviço de login antigo (antes de aceitar site.json) responde "arquivo não permitido"
+    sec.innerHTML = S.erroSite && /permitid|403/.test(S.erroSite)
+      ? '<div class="card login"><h2>Falta atualizar o serviço de login</h2><p>Para editar o carrossel, as páginas e o contato, o serviço de login do inventário precisa da versão nova.</p>' +
+        '<p class="small muted">Quem administra o site: no Easypanel, abra o app <b>admin-api</b> e clique em <b>Deploy</b>. Depois, recarregue esta página. Produtos e kits continuam funcionando normalmente.</p></div>'
+      : '<p class="vazio">Não consegui ler o conteúdo do site (src/data/site.json)' + (S.erroSite ? ': ' + esc(S.erroSite) : '') + '. Recarregue a página; se continuar, avise quem administra o site.</p>';
   }
 
   // ---- Carrossel

@@ -13487,6 +13487,43 @@
    "atualizado_em": "2026-10-20"
   },
   {
+   "id": "combo-kit-para-petiscos-kit-para-queijos-personalizados~mandeira",
+   "produto": "Combo Kit para Petiscos & Kit para Queijos Personalizados",
+   "categoria": "cozinha-bar",
+   "modelo": "1 Petisqueira 21x21 cm 2 Ramequins 9,5x9,5 2 Espátulas 14 xm Kit para Queijos Personali",
+   "cor": {
+    "nome": "Mandeira",
+    "hex": "#1F4FB8"
+   },
+   "material": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Combo Kit para Petiscos & Kit para Queijos Personalizados mandeira, com a marca TaMa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "aprovada",
+   "origem": "Foto enviada pelo Inventário (/admin/inventario/) em 24/10/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/combo-kit-para-petiscos-kit-para-queijos-personalizados~mandeira.webp",
+   "mestre": null,
+   "largura": 1254,
+   "altura": 1254,
+   "sha256": "4f43e4ed638e99153d38fa17b4053c6e7a01128eb129bc311cb3804afdde006d",
+   "bytes": 508458,
+   "atualizado_em": "2026-10-24"
+  },
+  {
    "fornecedor": null,
    "bytes": 1139158,
    "sku": null,
@@ -20970,6 +21007,43 @@
    "atualizado_em": "2026-10-20"
   },
   {
+   "id": "kit-para-pizza-personalizado-com-tabua-cortador-espatula~tom-natural",
+   "produto": "Kit para Pizza Personalizado com Tábua + Cortador + Espátula",
+   "categoria": "cozinha-bar",
+   "modelo": "1 Tábua 35x35x1,6 cm 1 Espátula 25x06x3,0 cm 1 Cortador 21x10x1,6 cm",
+   "cor": {
+    "nome": "Tom Natural",
+    "hex": "#1F4FB8"
+   },
+   "material": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Kit para Pizza Personalizado com Tábua + Cortador + Espátula tom natural, com a marca TaMa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "aprovada",
+   "origem": "Foto enviada pelo Inventário (/admin/inventario/) em 24/10/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/kit-para-pizza-personalizado-com-tabua-cortador-espatula~tom-natural.webp",
+   "mestre": null,
+   "largura": 1254,
+   "altura": 1254,
+   "sha256": "7dcead692118ff2780603e8680cc27a1eebe7026e802a913d3bd9601336375ae",
+   "bytes": 269856,
+   "atualizado_em": "2026-10-24"
+  },
+  {
    "fornecedor": null,
    "bytes": 1372925,
    "sku": null,
@@ -21080,6 +21154,43 @@
    "sha256": "fb63d724ebcc1cc37201fc716566ae02f9e91d16058dcc33616cfe2475205d5a",
    "bytes": 1174515,
    "atualizado_em": "2026-10-20"
+  },
+  {
+   "id": "mini-tabua-22x13-cm~tom-natural",
+   "produto": "Mini Tábua 22x13 cm",
+   "categoria": "cozinha-bar",
+   "modelo": "1 Tábua 22 x 13 x 1,2 cm",
+   "cor": {
+    "nome": "Tom natural",
+    "hex": "#1F4FB8"
+   },
+   "material": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Mini Tábua 22x13 cm tom natural, com a marca TaMa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "aprovada",
+   "origem": "Foto enviada pelo Inventário (/admin/inventario/) em 24/10/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/mini-tabua-22x13-cm~tom-natural.webp",
+   "mestre": null,
+   "largura": 1254,
+   "altura": 1254,
+   "sha256": "db3a879146c89914e72415cbd8cda36442c37f3b22e5026f17491da76eee82c6",
+   "bytes": 358930,
+   "atualizado_em": "2026-10-24"
   },
   {
    "id": "mochila-antifurto~cinza-mesclado",

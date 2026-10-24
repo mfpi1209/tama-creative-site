@@ -182,7 +182,10 @@
   "petisqueira-com-divisorias",
   "ramequim",
   "saca-rolhas-tipo-garcom",
-  "estojo-com-acessorios-de-vinho"
+  "estojo-com-acessorios-de-vinho",
+  "combo-kit-para-petiscos-kit-para-queijos-personalizados",
+  "kit-para-pizza-personalizado-com-tabua-cortador-espatula",
+  "mini-tabua-22x13-cm"
  ],
  "foto_base": {
   "abridor-de-garrafa-de-mesa": "abridor-mesa~preto",
@@ -258,6 +261,7 @@
   "chaveiro-redondo-com-detalhe-natural": "chaveiro-bambu~prata",
   "colher-bailarina": "colher-bailarina~prata",
   "colher-em-tom-natural": "colher-madeira~natural",
+  "combo-kit-para-petiscos-kit-para-queijos-personalizados": "combo-kit-para-petiscos-kit-para-queijos-personalizados~mandeira",
   "copo-360": "copo-acrilico-360~azul-marinho",
   "copo-baixo": "copo-baixo~transparente",
   "copo-colorido-texturizado": "copo-acrilico-colorido~laranja",
@@ -310,8 +314,10 @@
   "jogo-americano-retangular": "jogo-americano-retangular~verde-escuro",
   "jogo-de-facas-de-queijo-em-estojo": "facas-queijo-estojo~preto",
   "kit-churrasco-em-estojo": "kit-churrasco~preto",
+  "kit-para-pizza-personalizado-com-tabua-cortador-espatula": "kit-para-pizza-personalizado-com-tabua-cortador-espatula~tom-natural",
   "lacre": "lacre~dourado",
   "lapis": "lapis~natural",
+  "mini-tabua-22x13-cm": "mini-tabua-22x13-cm~tom-natural",
   "mochila-antifurto": "mochila-antifurto~cinza-mesclado",
   "mochila-de-ombro": "mochila-ombro~preto",
   "mochila-para-notebook": "mochila-notebook~preto",
@@ -1384,6 +1390,18 @@
   ],
   "porta-contas": [
    "eventos"
+  ],
+  "combo-kit-para-petiscos-kit-para-queijos-personalizados": [
+   "campanhas",
+   "fim-de-ano"
+  ],
+  "kit-para-pizza-personalizado-com-tabua-cortador-espatula": [
+   "campanhas",
+   "fim-de-ano"
+  ],
+  "mini-tabua-22x13-cm": [
+   "campanhas",
+   "fim-de-ano"
   ]
  },
  "aliases": {

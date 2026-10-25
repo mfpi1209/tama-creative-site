@@ -1699,7 +1699,7 @@
    "modelo": "Destinado aos barbeiros, Chefs, Cozinheiros e atendentes que amam estar com muito estilo.",
    "cor": {
     "nome": "Colorido",
-    "hex": "#1F4FB8"
+    "hex": "#B79E1F"
    },
    "material": {
     "valor": "",
@@ -1717,7 +1717,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "aprovada",
+   "aprovacao": "retirada",
    "origem": "Foto enviada pelo Inventário (/admin/inventario/) em 24/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -1736,7 +1736,7 @@
    "modelo": "Destinado aos barbeiros, Chefs, Cozinheiros e atendentes que amam estar com muito estilo.",
    "cor": {
     "nome": "JEANS",
-    "hex": "#1F4FB8"
+    "hex": "#1F38B7"
    },
    "material": {
     "valor": "",
@@ -1754,7 +1754,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "aprovada",
+   "aprovacao": "retirada",
    "origem": "Foto enviada pelo Inventário (/admin/inventario/) em 24/10/2026.",
    "substitui": null,
    "observacao": "",

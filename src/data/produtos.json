@@ -892,6 +892,43 @@
    "atualizado_em": "2026-10-20"
   },
   {
+   "id": "avental-cintura-meia-saia~preto",
+   "produto": "Avental Cintura Meia Saia",
+   "categoria": "vestuario",
+   "modelo": "Avental Simplismente lindo!  Destinado aos Chefs, Cozinheiras e atendentes que amam estar com muito estilo.",
+   "cor": {
+    "nome": "Preto",
+    "hex": "#1F4FB8"
+   },
+   "material": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Avental Cintura Meia Saia preto, com a marca TaMa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "aprovada",
+   "origem": "Foto enviada pelo Inventário (/admin/inventario/) em 24/10/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/avental-cintura-meia-saia~preto.webp",
+   "mestre": null,
+   "largura": 1077,
+   "altura": 1254,
+   "sha256": "19fbb4f235744b96d6b3550a3c7506e86c612ed96a912c9bbda1cd00a220e685",
+   "bytes": 114190,
+   "atualizado_em": "2026-10-24"
+  },
+  {
    "fornecedor": null,
    "bytes": 1254114,
    "sku": null,
@@ -1617,6 +1654,80 @@
    "largura": 1024,
    "altura": 1024,
    "atualizado_em": "2026-10-18"
+  },
+  {
+   "id": "avental-roma~preto",
+   "produto": "Avental Roma",
+   "categoria": "vestuario",
+   "modelo": "estinado aos Chefs, Cozinheiros e atendentes que amam estar com muito estilo.",
+   "cor": {
+    "nome": "Preto",
+    "hex": "#1F4FB8"
+   },
+   "material": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Avental Roma preto, com a marca TaMa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "aprovada",
+   "origem": "Foto enviada pelo Inventário (/admin/inventario/) em 24/10/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/avental-roma~preto.webp",
+   "mestre": null,
+   "largura": 1223,
+   "altura": 1254,
+   "sha256": "21b655c0dd2c9ce3ba36e7bcfcf5ed9bc65c42d339f2a9e546159ce3c3f53d23",
+   "bytes": 54238,
+   "atualizado_em": "2026-10-24"
+  },
+  {
+   "id": "avental-vintage-jeans~colorido",
+   "produto": "Avental Vintage Jeans",
+   "categoria": "vestuario",
+   "modelo": "Destinado aos barbeiros, Chefs, Cozinheiros e atendentes que amam estar com muito estilo.",
+   "cor": {
+    "nome": "Colorido",
+    "hex": "#1F4FB8"
+   },
+   "material": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Avental Minimalista Lisboa colorido, com a marca TaMa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "aprovada",
+   "origem": "Foto enviada pelo Inventário (/admin/inventario/) em 24/10/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/avental-vintage-jeans~colorido.webp",
+   "mestre": null,
+   "largura": 836,
+   "altura": 1254,
+   "sha256": "551a0531ffd389cfc3b852e0bdefee240b9cf21f2cde6cee8950eece4456f936",
+   "bytes": 77452,
+   "atualizado_em": "2026-10-24"
   },
   {
    "id": "avental-vintage-jeans~jeans",

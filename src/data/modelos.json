@@ -112,6 +112,16 @@
    }
   },
   {
+   "produto": "Avental Cintura Meia Saia",
+   "genero": "f",
+   "resumo": "Alças Reguláveis\nCom Bolso\nCor- Preta\nMedidas : Altura 66 x largura 78cm.\nMedidas das tiras 65 cm.\nSua alças são reguláveis facilitando o uso por pessoas que usam P ao EG\nTecido Gabardine Italiana ( Tecido de excelentíssima qualidade )\nTecido praticamente não amassa e não Desbota.\nEste Avental é indicado para restaurantes, docerias,cafeterias, cozinhas e atendimento em geral.",
+   "usos": [],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   }
+  },
+  {
    "produto": "Avental com laço",
    "genero": "m",
    "resumo": "Pensado para quem atende, cozinha ou serve, o avental com laço compõe o uniforme de cafés, restaurantes, padarias e lojas com a marca sempre à vista do cliente. O bolso duplo ajuda a manter à mão o que se usa no dia a dia. Também funciona em workshops, oficinas e ações de marca.",
@@ -128,14 +138,25 @@
    "descricao_seo": ""
   },
   {
-   "produto": "Avental Vintage Jeans",
+   "produto": "Avental Roma",
    "genero": "f",
-   "resumo": "Avental Unisex\nAvental confeccionado em Jeans\nAlças Reguláveis, cruzadas nas costas.\nDetalhes em Corino.\nCom 3 bolsos.\nBolso Porta Acessórios ( Facas, Escovas, Navalhas, Tesouras etc... )\nAlça para Pendurar Pano de Louça.\nSua alças são reguláveis facilitando o uso por pessoas que usam P ao EG.\nMedidas: 86x66 ( A x L ) *As medidas podem variar 2cm para mais ou para menos.",
+   "resumo": "Avental leve e Prático\nCor- Preta\nAlças Reguláveis\nBotões em Madeira Rustica.\nCom 2 bolsos.\nAlça para Pendurar Pano de Louça.\nSua alças são reguláveis.\nTecido Excelente, praticamente não amassa, fácil cuidado e muito prático.\nTecido Gabardine Italiano.\nMedidas: 84x64 ( A x L ) *As medidas podem variar 2cm para mais ou para menos.\nEste produto é indicado para restaurantes, docerias, cafeterias ou qualquer tipo de recepção e atendimento ao publico.",
    "usos": [],
    "medidas": {
     "valor": "",
     "status": "a_confirmar"
    }
+  },
+  {
+   "produto": "Avental Vintage Jeans",
+   "genero": "f",
+   "resumo": "Avental leve e prático.\nAvental Minimalista.\nTiras de Ajustes.\nModelo Unissex.\nCor- Terra.\nCom bolso.\nTecido Sarja Profissional.\nDetalhe no bolso.\nBotões em Madeira\nTiras e detalhes em Cadarço Marinho.\nFácil cuidado e muito prático.\nMedidas: 74x65 ( Altura x Largura )",
+   "usos": [],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "nome": "Avental Minimalista Lisboa"
   },
   {
    "produto": "Bloco capa dura com caneta na capa",

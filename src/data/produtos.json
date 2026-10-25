@@ -901,7 +901,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-18",
    "largura": 1024,
-   "aprovacao": "aprovada",
+   "aprovacao": "retirada",
    "cor": {
     "nome": "Azul-marinho",
     "hex": "#1E2A4A"
@@ -954,7 +954,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "aprovada",
+   "aprovacao": "retirada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -990,7 +990,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "aprovada",
+   "aprovacao": "retirada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -1010,7 +1010,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-18",
    "largura": 1024,
-   "aprovacao": "aprovada",
+   "aprovacao": "retirada",
    "cor": {
     "nome": "Caramelo",
     "hex": "#A0623A"
@@ -1063,7 +1063,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "aprovada",
+   "aprovacao": "retirada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -1099,7 +1099,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "aprovada",
+   "aprovacao": "retirada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -1119,7 +1119,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-17",
    "largura": 1024,
-   "aprovacao": "aprovada",
+   "aprovacao": "retirada",
    "cor": {
     "nome": "Cru",
     "hex": "#EDE3D0"
@@ -1172,7 +1172,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "aprovada",
+   "aprovacao": "retirada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -1192,7 +1192,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-18",
    "largura": 1024,
-   "aprovacao": "aprovada",
+   "aprovacao": "retirada",
    "cor": {
     "nome": "Preto",
     "hex": "#1E1E1E"
@@ -1245,7 +1245,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "aprovada",
+   "aprovacao": "retirada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -1281,7 +1281,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "aprovada",
+   "aprovacao": "retirada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -1301,7 +1301,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-18",
    "largura": 1024,
-   "aprovacao": "aprovada",
+   "aprovacao": "retirada",
    "cor": {
     "nome": "Rosa",
     "hex": "#E07A9B"
@@ -1354,7 +1354,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "aprovada",
+   "aprovacao": "retirada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -1390,7 +1390,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "aprovada",
+   "aprovacao": "retirada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -1410,7 +1410,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-18",
    "largura": 1024,
-   "aprovacao": "aprovada",
+   "aprovacao": "retirada",
    "cor": {
     "nome": "Verde-escuro",
     "hex": "#1F4A35"
@@ -1463,7 +1463,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "aprovada",
+   "aprovacao": "retirada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -1499,7 +1499,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "aprovada",
+   "aprovacao": "retirada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -1519,7 +1519,7 @@
    "altura": 1024,
    "atualizado_em": "2026-10-18",
    "largura": 1024,
-   "aprovacao": "aprovada",
+   "aprovacao": "retirada",
    "cor": {
     "nome": "Vermelho",
     "hex": "#C8202F"
@@ -1572,7 +1572,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "aprovada",
+   "aprovacao": "retirada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -1608,7 +1608,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "aprovada",
+   "aprovacao": "retirada",
    "origem": "Ilustrativa: base gerada com IA (OpenAI gpt-image-1.5) e variações de cor feitas localmente (tools/recolorir.py) em 18/10/2026.",
    "substitui": null,
    "observacao": "",
@@ -1617,6 +1617,43 @@
    "largura": 1024,
    "altura": 1024,
    "atualizado_em": "2026-10-18"
+  },
+  {
+   "id": "avental-vintage-jeans~jeans",
+   "produto": "Avental Vintage Jeans",
+   "categoria": "vestuario",
+   "modelo": "Destinado aos barbeiros, Chefs, Cozinheiros e atendentes que amam estar com muito estilo.",
+   "cor": {
+    "nome": "JEANS",
+    "hex": "#1F4FB8"
+   },
+   "material": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Avental Vintage Jeans jeans, com a marca TaMa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "aprovada",
+   "origem": "Foto enviada pelo Inventário (/admin/inventario/) em 24/10/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/avental-vintage-jeans~jeans.webp",
+   "mestre": null,
+   "largura": 1088,
+   "altura": 1254,
+   "sha256": "6139cc67c7127958158173f5459e71d042c240f8e744db2f1c50134fd205df10",
+   "bytes": 174838,
+   "atualizado_em": "2026-10-24"
   },
   {
    "fornecedor": null,
@@ -17149,6 +17186,43 @@
    "produto": "Difusor de aromas",
    "alt": "Difusor de aromas em frasco com varetas, na cor natural, com a marca TaMa no rótulo.",
    "substitui": null
+  },
+  {
+   "id": "dolman-elegance~branco",
+   "produto": "Dolmãn Elegance",
+   "categoria": "vestuario",
+   "modelo": "Tecido Sarja e botões de Pressão",
+   "cor": {
+    "nome": "Branco",
+    "hex": "#1F4FB8"
+   },
+   "material": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Dolmãn Elegance branco, com a marca TaMa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "retirada",
+   "origem": "Foto enviada pelo Inventário (/admin/inventario/) em 24/10/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/dolman-elegance~branco.webp",
+   "mestre": null,
+   "largura": 1254,
+   "altura": 1123,
+   "sha256": "edb892d636c28ef7493d4f24a7dec6fb0f0832b6a09b4b277501f89245508086",
+   "bytes": 57312,
+   "atualizado_em": "2026-10-24"
   },
   {
    "fornecedor": null,

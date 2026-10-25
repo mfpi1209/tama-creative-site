@@ -174,7 +174,7 @@
   },
   "ativacoes": {
    "pagina": "/eventos-corporativos/",
-   "imagem": "topo-ativacoes-202610242127",
+   "imagem": "topo-ativacoes-202610250056",
    "alt": "Buffet para eventos corporativos, lançamentos e encontros da empresa, coordenado pela TaMa com parceiros especializados. O formato do serviço é definido com você na proposta. S",
    "eyebrow": "Eventos Corporativos",
    "linhas": [
@@ -488,13 +488,13 @@
   "ativacoes-cenas": {
    "itens": [
     {
-     "imagem": "ativ-buffet",
-     "alt": "Buffet corporativo montado num evento: mesa com rechauds, travessas e pratos, equipe de avental servindo, toalha e placa com a marca fictícia Solar.",
+     "imagem": "secao-ativ-cena-1-202610250054",
+     "alt": "Buffet corporativo montado com uma mesa de antepassos e queijos selecionados.",
      "legenda": "Cena ilustrativa · marca fictícia"
     },
     {
-     "imagem": "ativ-decoracao",
-     "alt": "Salão de evento corporativo decorado: mesas redondas postas, arranjos de flores e painel ao fundo com a marca fictícia Oliva.",
+     "imagem": "secao-ativ-cena-2-202610250056",
+     "alt": "Seja um casamento, formatura, aniversários ou eventos corporativos, a mesa de antepastos transforma a recepção.",
      "legenda": "Cena ilustrativa · marca fictícia"
     }
    ]

@@ -8,7 +8,7 @@ palavra_chave: materiais para degustação no pdv
 date: 2026-10-18
 destaque: false
 tema: eventos-e-ativacoes
-servico: /ativacoes-promocionais-eventos-corporativos/
+servico: /eventos-corporativos/
 proposta: ativacoes
 capa_arquivo: /img/blog/capa-degustacao-pdv-materiais.jpg
 capa_alt: Promotora SOLAR oferecendo uma amostra de bebida em uma ação ilustrativa.

@@ -13,7 +13,7 @@ ajustar um title no código, o código vale; atualize esta tabela.
 | `/kits-corporativos/` | Kits corporativos personalizados: boas-vindas e eventos \| TaMa (62) | Kits onboarding, kits para eventos e presentes para clientes, montados com curadoria, embalagem própria e a identidade da sua empresa. Solicite uma proposta. (157) | index | Kits corporativos personalizados para cada momento |
 | `/brindes-por-ocasiao/` | Brindes e presentes corporativos por ocasião \| TaMa Creative (60) | Ideias de brindes e presentes corporativos para boas-vindas, eventos, fim de ano, reconhecimento e lançamentos, com a marca da sua empresa. Monte a seleção. (156) | index | Brindes e presentes corporativos por ocasião |
 | `/confeccoes-personalizadas/` | Uniformes corporativos e confecções personalizadas \| TaMa Creative (66) | Uniformes corporativos, polos bordadas, moletons e bonés para equipes e eventos, alinhados à identidade visual da sua empresa e pensados para quem veste. (153) | index | Uniformes corporativos e confecções personalizadas (1º slide) |
-| `/ativacoes-promocionais-eventos-corporativos/` | Ativações promocionais para eventos corporativos \| TaMa Creative (64) | Ativações promocionais para eventos corporativos: degustações, feiras, buffet e decoração, com uniformes e brindes da sua marca. Peça uma proposta. (147) | index | Ativações promocionais e degustações para a sua marca |
+| `/eventos-corporativos/` | Ativações promocionais para eventos corporativos \| TaMa Creative (64) | Ativações promocionais para eventos corporativos: degustações, feiras, buffet e decoração, com uniformes e brindes da sua marca. Peça uma proposta. (147) | index | Ativações promocionais e degustações para a sua marca |
 | `/hotelaria-e-gastronomia/` | Cardápios, porta-contas e uniformes para restaurantes \| TaMa (60) | Cardápios, porta-contas, jogos americanos, dólmãs e aventais com a marca do seu restaurante, bar, café ou hotel. Monte a seleção e peça uma proposta. (149) | index | Produtos personalizados para restaurantes, bares e hotéis |
 | `/sobre/` | Sobre a TaMa Creative \| Brindes, confecções, kits e ativações (61) | A TaMa Creative desenvolve e coordena brindes, confecções, kits personalizados e ativações promocionais para empresas, com visão de Trade Marketing. (148) | index | Quem é a TaMa Creative |
 | `/solicitar-proposta/` | Solicitar proposta de brindes, kits e confecções \| TaMa (55) | Peça uma proposta de brindes corporativos, kits ou uniformes. Conte a ocasião e a TaMa Creative propõe as possibilidades. (121) | index | Vamos dar forma à sua ideia? |
@@ -48,7 +48,7 @@ depois de alguns meses no ar, nas consultas reais do Search Console.
 | Kits corporativos e presentes premium | kit corporativo personalizado; kit de boas-vindas para colaboradores; presente corporativo premium | `/kits-corporativos/` | `/brindes-por-ocasiao/` (ideias por ocasião); artigos de boas-vindas e Natal |
 | Confecções e uniformes | uniformes corporativos personalizados; camisa polo bordada para empresa | `/confeccoes-personalizadas/` | `/catalogo/` (vestuário) |
 | Restaurantes e hotéis | cardápio personalizado para restaurante; porta-contas personalizado; dólmã com logo | `/hotelaria-e-gastronomia/` | `/catalogo/` (hotelaria e gastronomia) |
-| Ativações e degustações | ativação promocional; degustação em supermercado; ação promocional no ponto de venda | `/ativacoes-promocionais-eventos-corporativos/` | `/confeccoes-personalizadas/` (uniformes da equipe) |
+| Ativações e degustações | ativação promocional; degustação em supermercado; ação promocional no ponto de venda | `/eventos-corporativos/` | `/confeccoes-personalizadas/` (uniformes da equipe) |
 | Marca | TaMa Creative | `/` | `/sobre/` |
 | Pedido | orçamento de brindes corporativos; orçamento de kit corporativo | `/solicitar-proposta/` | — |
 
@@ -111,7 +111,7 @@ acompanhar consultas e CTR por artigo.
       DNS do domínio). Pendente: depende de acesso da TaMa.
 - [ ] Enviar `https://tamacreative.com.br/sitemap.xml`.
 - [ ] Inspecionar e pedir indexação de `/`, `/catalogo/`, `/brindes-corporativos/`, `/kits-corporativos/`,
-      `/ativacoes-promocionais-eventos-corporativos/` e `/hotelaria-e-gastronomia/`.
+      `/eventos-corporativos/` e `/hotelaria-e-gastronomia/`.
 - [ ] Em Indexação › Páginas, conferir que `/obrigado/` e `/404.html` aparecem como "excluídas por noindex" e que
       `/branding-identidade-visual/` e `/projetos/` aparecem como "página com redirecionamento" (esperado).
 - [ ] Testar uma página no Teste de Pesquisa Aprimorada (dados estruturados: Organization, BreadcrumbList).

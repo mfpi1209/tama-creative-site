@@ -1245,7 +1245,7 @@ NAV = [
     ('/brindes-corporativos/', 'Brindes corporativos'),
     ('/confeccoes-personalizadas/', 'Uniformes e confecções'),
     ('/kits-corporativos/', 'Kits corporativos'),
-    ('/ativacoes-promocionais-eventos-corporativos/', 'Ativações promocionais para eventos corporativos'),
+    ('/eventos-corporativos/', 'Ativações promocionais para eventos corporativos'),
     ('/hotelaria-e-gastronomia/', 'Hotelaria e gastronomia'),
 ]
 BAG_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8h12l-1 12H7z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/></svg>'
@@ -1284,7 +1284,7 @@ MENU_CONFECCOES = [('polos', 'Camiseta polo'), ('camisetas', 'Camiseta'), ('mole
 MENU_KITS = [('Kit escritório', '#kits-escritorio'), ('Kit cozinha', '#kits-cozinha'), ('Kit boas-vindas', '#kits-boas-vindas'),
              ('Kit executivo', '#kits-executivo'), ('Kit pausa', '#kits-pausa'), ('Kit de agradecimento', '#kits-agradecimento'),
              ('Kit fim de ano', '#kits-fim-de-ano')]   # âncoras de /kits-corporativos/
-MENU_ATIVACOES = [('Buffet completo', '#fmt-buffet'), ('Decoração', '#fmt-decoracao')]   # âncoras de /ativacoes-promocionais-eventos-corporativos/
+MENU_ATIVACOES = [('Buffet completo', '#fmt-buffet'), ('Decoração', '#fmt-decoracao')]   # âncoras de /eventos-corporativos/
 
 
 def nav_menu(path):
@@ -1323,12 +1323,12 @@ def nav_menu(path):
     conf = ''.join(f'<li><a href="/catalogo/?tipo={k}#catalogo">{t}</a></li>' for k, t in MENU_CONFECCOES if por_tipo.get(k))
     p_conf = (f'<ul class="nav-list">{conf}</ul>'
               f'<a class="nav-sub-all" href="/confeccoes-personalizadas/"{cur("/confeccoes-personalizadas/")}>Uniformes e confecções {ARROW}</a>')
-    ativ = ''.join(f'<li><a href="/ativacoes-promocionais-eventos-corporativos/{a}">{t}</a></li>' for t, a in MENU_ATIVACOES)
-    p_ativ = f'<ul class="nav-list">{ativ}</ul><a class="nav-sub-all" href="/ativacoes-promocionais-eventos-corporativos/"{cur("/ativacoes-promocionais-eventos-corporativos/")}>Conhecer ativações {ARROW}</a>'
+    ativ = ''.join(f'<li><a href="/eventos-corporativos/{a}">{t}</a></li>' for t, a in MENU_ATIVACOES)
+    p_ativ = f'<ul class="nav-list">{ativ}</ul><a class="nav-sub-all" href="/eventos-corporativos/"{cur("/eventos-corporativos/")}>Conhecer ativações {ARROW}</a>'
     return (grupo('brindes', 'Brindes', p_brindes, brindes_atual, ' nav-main nav-drop')
             + grupo('kits', 'Kits', p_kits, path.startswith('/kits-corporativos/'), ' nav-drop')
             + grupo('confeccoes', 'Confecções', p_conf, conf_atual, ' nav-drop')
-            + grupo('ativacoes', 'Ativações', p_ativ, path.startswith('/ativacoes-promocionais-eventos-corporativos/'), ' nav-drop')
+            + grupo('ativacoes', 'Ativações', p_ativ, path.startswith('/eventos-corporativos/'), ' nav-drop')
             + f'<a class="nav-link nav-sep" href="/sobre/"{cur("/sobre/")}>Sobre</a>'
             + f'<a class="nav-link" href="/blog/"{cur("/blog/")}>Blog</a>')
 
@@ -2142,7 +2142,7 @@ def ativ_cenas():
 
 
 def ativ_formatos():
-    """Cabeçalho e itens da seção Formatos de /ativacoes-promocionais-eventos-corporativos/ (site.json › secoes › ativacoes-formatos). Itens com
+    """Cabeçalho e itens da seção Formatos de /eventos-corporativos/ (site.json › secoes › ativacoes-formatos). Itens com
     "pedido" ganham o link para o pedido de buffet ou decoração; o id é a âncora do menu (Ativações ▾)."""
     f = SECOES.get('ativacoes-formatos') or {}
     linhas = []
@@ -2167,14 +2167,14 @@ def ativ_hero(trail):
 
 def page_ativacoes():
     return {
-        'path': '/ativacoes-promocionais-eventos-corporativos/', 'og': 'conf-degustacao-v2', 'title': 'Ativações promocionais para eventos corporativos | TaMa Creative',
+        'path': '/eventos-corporativos/', 'og': 'conf-degustacao-v2', 'title': 'Ativações promocionais para eventos corporativos | TaMa Creative',
         'description': 'Ativações promocionais para eventos corporativos: degustações, feiras, buffet e decoração, com uniformes e brindes da sua marca. Peça uma proposta.',
-        'trail': [('/', 'Início'), ('/ativacoes-promocionais-eventos-corporativos/', 'Ativações promocionais para eventos corporativos')],
+        'trail': [('/', 'Início'), ('/eventos-corporativos/', 'Ativações promocionais para eventos corporativos')],
         'service': {'key': 'ativacoes', 'name': 'Ativações promocionais para eventos corporativos', 'type': 'Ativação promocional'},
         'assunto': 'uma ativação promocional ou degustação',
         'preload': preload_image(cab('ativacoes')['imagem'], ATIV_HERO_SIZES),   # mesma imagem e sizes da foto do cabeçalho
         'crumbs_inline': True,
-        'body': ativ_hero([('/', 'Início'), ('/ativacoes-promocionais-eventos-corporativos/', 'Ativações promocionais para eventos corporativos')]) + f'''
+        'body': ativ_hero([('/', 'Início'), ('/eventos-corporativos/', 'Ativações promocionais para eventos corporativos')]) + f'''
 <section class="section ivory" id="formatos" aria-labelledby="formatos-t">
   <div class="wrap">
 {ativ_formatos()}
@@ -2322,7 +2322,7 @@ def page_sobre():
       <div class="item">{arc()}<div><h3><a href="/brindes-corporativos/">Brindes corporativos</a></h3><p>Peças para clientes, equipes e eventos, escolhidas pelo uso.</p></div></div>
       <div class="item">{arc()}<div><h3><a href="/confeccoes-personalizadas/">Uniformes e confecções</a></h3><p>Polos, camisas, camisetas, moletons, dólmãs e aventais com a marca da sua empresa.</p></div></div>
       <div class="item">{arc()}<div><h3><a href="/kits-corporativos/">Kits corporativos</a></h3><p>Caixa, cartão e peças compostos para uma ocasião.</p></div></div>
-      <div class="item">{arc()}<div><h3><a href="/ativacoes-promocionais-eventos-corporativos/">Ativações promocionais para eventos corporativos</a></h3><p>Ações em eventos, feiras e pontos de venda.</p></div></div>
+      <div class="item">{arc()}<div><h3><a href="/eventos-corporativos/">Ativações promocionais para eventos corporativos</a></h3><p>Ações em eventos, feiras e pontos de venda.</p></div></div>
       <div class="item">{arc()}<div><h3><a href="/hotelaria-e-gastronomia/">Hotelaria e gastronomia</a></h3><p>Cardápios, porta-contas, jogos americanos e uniformes.</p></div></div>
     </div>
   </div>
@@ -2528,9 +2528,10 @@ def build_static():
         '/marcas             /catalogo/                      301',   # igual ao nginx e ao #marcas do site.js
         '/branding           /                               301',
         '/branding-identidade-visual/*  /                    301',
-        '/ativacoes          /ativacoes-promocionais-eventos-corporativos/        301',
-        '/degustacao         /ativacoes-promocionais-eventos-corporativos/        301',
-        '/ativacoes-promocionais/  /ativacoes-promocionais-eventos-corporativos/  301',   # endereço antigo da página (até 24/10/2026)
+        '/ativacoes          /eventos-corporativos/        301',
+        '/degustacao         /eventos-corporativos/        301',
+        '/ativacoes-promocionais/  /eventos-corporativos/  301',   # endereços antigos da página (até 24/10/2026)
+        '/ativacoes-promocionais-eventos-corporativos/  /eventos-corporativos/  301',
         '/hotelaria          /hotelaria-e-gastronomia/       301',
         '/gastronomia        /hotelaria-e-gastronomia/       301',
         '/fim-de-ano         /brindes-de-fim-de-ano/         301',

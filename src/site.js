@@ -798,7 +798,7 @@
   if (interesse) { var note = document.getElementById('interest-note'); note.textContent = 'Interesse: ' + interesse; note.hidden = false; }
   var origemPagina = paginaAnterior || '';
   // vindo de uma página de frente (ex.: "Montar pedido com a seleção" na Hotelaria), o tipo já vem marcado
-  var tipoPorPagina = { '/brindes-corporativos/': 'brindes', '/brindes-por-ocasiao/': 'brindes', '/kits-corporativos/': 'kits', '/confeccoes-personalizadas/': 'confeccoes', '/ativacoes-promocionais-eventos-corporativos/': 'ativacoes', '/hotelaria-e-gastronomia/': 'hotelaria', '/brindes-de-fim-de-ano/': 'kits' };
+  var tipoPorPagina = { '/brindes-corporativos/': 'brindes', '/brindes-por-ocasiao/': 'brindes', '/kits-corporativos/': 'kits', '/confeccoes-personalizadas/': 'confeccoes', '/eventos-corporativos/': 'ativacoes', '/hotelaria-e-gastronomia/': 'hotelaria', '/brindes-de-fim-de-ano/': 'kits' };
   if (!form.querySelector('input[name="tipo"]:checked') && tipoPorPagina[origemPagina]) {
     var rt = form.querySelector('input[name="tipo"][value="' + tipoPorPagina[origemPagina] + '"]'); if (rt) { rt.checked = true; syncType(); }
   }

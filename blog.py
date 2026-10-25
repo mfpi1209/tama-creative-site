@@ -78,7 +78,7 @@ CONSULTAS_PAGINAS = {
     '/confeccoes-personalizadas/': ('uniformes corporativos personalizados', ['confecção personalizada para empresas', 'camisa polo bordada para empresa']),
     '/sobre/': ('TaMa Creative', ['estúdio criativo trade marketing']),
     '/solicitar-proposta/': ('orçamento de brindes corporativos', ['orçamento de kit corporativo']),
-    '/ativacoes-promocionais-eventos-corporativos/': ('ativação promocional para marcas', ['degustação em ponto de venda', 'ação promocional em evento']),
+    '/eventos-corporativos/': ('ativação promocional para marcas', ['degustação em ponto de venda', 'ação promocional em evento']),
     '/hotelaria-e-gastronomia/': ('cardápio personalizado para restaurante', ['porta-contas personalizado', 'uniforme para restaurante']),
     '/brindes-de-fim-de-ano/': ('brindes de fim de ano para clientes', ['presente de fim de ano para funcionários', 'kit de fim de ano empresa']),
     '/catalogo/': ('catálogo de brindes personalizados', ['taça personalizada para empresa', 'copo personalizado para evento']),
@@ -519,7 +519,7 @@ SERVICOS = {
     '/brindes-por-ocasiao/': 'Ver brindes por ocasião',
     '/brindes-de-fim-de-ano/': 'Ver brindes de fim de ano',
     '/catalogo/': 'Ver o catálogo',
-    '/ativacoes-promocionais-eventos-corporativos/': 'Ver ativações promocionais',
+    '/eventos-corporativos/': 'Ver ativações promocionais',
     '/hotelaria-e-gastronomia/': 'Ver hotelaria e gastronomia',
     '/confeccoes-personalizadas/': 'Ver uniformes e confecções',
 }

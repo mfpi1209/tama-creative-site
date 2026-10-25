@@ -120,7 +120,7 @@
    },
    "botao2": {
     "texto": "Conhecer as ativações",
-    "link": "/ativacoes-promocionais-eventos-corporativos/"
+    "link": "/eventos-corporativos/"
    }
   }
  ],
@@ -173,7 +173,7 @@
    "posicao_celular": "right center"
   },
   "ativacoes": {
-   "pagina": "/ativacoes-promocionais-eventos-corporativos/",
+   "pagina": "/eventos-corporativos/",
    "imagem": "topo-ativacoes-202610242127",
    "alt": "Buffet para eventos corporativos, lançamentos e encontros da empresa, coordenado pela TaMa com parceiros especializados. O formato do serviço é definido com você na proposta. S",
    "eyebrow": "Eventos Corporativos",
@@ -275,7 +275,7 @@
    ]
   },
   "ativacoes": {
-   "pagina": "/ativacoes-promocionais-eventos-corporativos/",
+   "pagina": "/eventos-corporativos/",
    "eyebrow": "Catálogo",
    "titulo": "Peças que costumam entrar em ativações",
    "texto": "Escolha as cores de referência e adicione à seleção: as peças seguem com o pedido.",
@@ -408,7 +408,7 @@
      "chamada": "Conhecer os kits"
     },
     {
-     "link": "/ativacoes-promocionais-eventos-corporativos/",
+     "link": "/eventos-corporativos/",
      "imagem": "ativ-header",
      "posicao": "74% center",
      "titulo": [

@@ -39,7 +39,7 @@ Hoje as perguntas frequentes respondem "definido na proposta". Nenhum número fo
 | Prazos médios por tipo (brindes, confecções, kits, ativações) | Idem; orientação de antecedência para fim de ano |
 | Regiões atendidas (entrega e ativações) | Dizer onde a TaMa entrega e onde faz ações presenciais |
 | Emissão de nota fiscal | Responder a uma dúvida comum de compradores de empresas |
-| Escopo de ativações: equipe (promotores), logística, autorizações do local | Texto definitivo de `/ativacoes-promocionais/` (hoje: "a proposta detalha o que a TaMa coordena") |
+| Escopo de ativações: equipe (promotores), logística, autorizações do local | Texto definitivo de `/ativacoes-promocionais-eventos-corporativos/` (hoje: "a proposta detalha o que a TaMa coordena") |
 | Escopo de hotelaria e gastronomia: quais peças a TaMa fornece de fato, para que tipo de cliente | Texto definitivo de `/hotelaria-e-gastronomia/` |
 
 ## (d) Confirmações de produto

@@ -33,7 +33,7 @@ Ligue o deploy automático (webhook) só depois de confirmar que o app usa a bra
 ### Checagem depois de publicar
 
 - `curl -sI https://tamacreative.com.br/ | grep -i last-modified` com a data do último commit.
-- `/catalogo/`, `/ativacoes-promocionais/`, `/hotelaria-e-gastronomia/` → 200.
+- `/catalogo/`, `/ativacoes-promocionais-eventos-corporativos/`, `/hotelaria-e-gastronomia/` → 200.
 - `/brindes/`, `/branding-identidade-visual/`, `/projetos/` → 301.
 - `robots.txt` sem `/brindes/sitemap.xml`; `sitemap.xml` sem branding e projetos.
 - Um pedido de teste combinado (ver `docs/PROPOSTAS.md`).

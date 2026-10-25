@@ -8,7 +8,7 @@ palavra_chave: balcão promocional personalizado
 date: 2026-10-18
 destaque: false
 tema: eventos-e-ativacoes
-servico: /ativacoes-promocionais/
+servico: /ativacoes-promocionais-eventos-corporativos/
 proposta: ativacoes
 capa_arquivo: /img/blog/capa-balcao-promocional-identidade.jpg
 capa_alt: Balcão promocional verde NEXO com produtos e materiais de apoio.

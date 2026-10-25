@@ -948,7 +948,7 @@
     { chave: 'brindes', nome: 'Brindes corporativos', url: '/brindes-corporativos/', vitrines: ['brindes'] },
     { chave: 'kits', nome: 'Kits corporativos', url: '/kits-corporativos/', vitrines: [] },
     { chave: 'confeccoes', nome: 'Uniformes e confecções', url: '/confeccoes-personalizadas/', vitrines: ['confeccoes'] },
-    { chave: 'ativacoes', nome: 'Ativações promocionais para eventos corporativos', url: '/ativacoes-promocionais/', vitrines: ['ativacoes'] },
+    { chave: 'ativacoes', nome: 'Ativações promocionais para eventos corporativos', url: '/ativacoes-promocionais-eventos-corporativos/', vitrines: ['ativacoes'] },
     { chave: 'hotelaria', nome: 'Hotelaria e gastronomia', url: '/hotelaria-e-gastronomia/', vitrines: ['hotelaria'] },
     { chave: 'fim-de-ano', nome: 'Fim de ano', url: '/brindes-de-fim-de-ano/', vitrines: ['fim-brindar', 'fim-presentear'] },
     { chave: 'sobre', nome: 'Sobre', url: '/sobre/', vitrines: [] },
@@ -1156,7 +1156,7 @@
         campo('s-b1t', 'Abre o pedido de proposta de', '<select id="s-b1t">' + Object.keys(TIPOS_PEDIDO).map(function (k) { return '<option value="' + k + '"' + ((b.tipo || '') === k ? ' selected' : '') + '>' + TIPOS_PEDIDO[k] + '</option>'; }).join('') + '</select>') + '</div>' +
         '<div class="linha">' + campo('s-b2', '2º botão (vazio = sem 2º botão)', texto('s-b2', b2.texto || '')) +
         campo('s-b2l', 'Link do 2º botão', texto('s-b2l', b2.link || '', ' placeholder="/catalogo/" list="paginas-site"'), 'Página do site (/catalogo/, /kits-corporativos/…) ou endereço https://.') + '</div>' +
-        '<datalist id="paginas-site">' + ['/catalogo/', '/brindes-corporativos/', '/kits-corporativos/', '/confeccoes-personalizadas/', '/ativacoes-promocionais/', '/hotelaria-e-gastronomia/', '/brindes-de-fim-de-ano/', '/brindes-por-ocasiao/', '/sobre/', '/blog/', '/solicitar-proposta/'].map(function (u) { return '<option value="' + u + '">'; }).join('') + '</datalist></div>' +
+        '<datalist id="paginas-site">' + ['/catalogo/', '/brindes-corporativos/', '/kits-corporativos/', '/confeccoes-personalizadas/', '/ativacoes-promocionais-eventos-corporativos/', '/hotelaria-e-gastronomia/', '/brindes-de-fim-de-ano/', '/brindes-por-ocasiao/', '/sobre/', '/blog/', '/solicitar-proposta/'].map(function (u) { return '<option value="' + u + '">'; }).join('') + '</datalist></div>' +
         '<div class="bloco"><h3>Aparência</h3><div class="linha">' + campo('s-tom', 'Cor de fundo', '<select id="s-tom">' + Object.keys(TONS).map(function (k) { return '<option value="' + k + '"' + ((x.tom || 'tone-cream') === k ? ' selected' : '') + '>' + TONS[k] + '</option>'; }).join('') + '</select>') +
         '<div class="campo"><label>&nbsp;</label><label style="font-weight:500;color:var(--ink)"><input type="checkbox" id="s-temp"' + (x.temporada ? ' checked' : '') + '> Abrir o carrossel durante a temporada de fim de ano</label></div></div>' +
         '<details><summary class="small">Avançado: enquadramento da foto</summary><div style="margin-top:10px">' + campo('s-enq', 'Enquadramento', texto('s-enq', x.enquadramento || ''), 'Ex.: --fx:100%;--fx-m:80% (posição horizontal da foto no computador e no celular).') + '</div></details></div>';

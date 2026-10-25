@@ -91,7 +91,7 @@ try {
   await page.setViewport({ width: 1280, height: 900 });
   await page.goto(BASE + '/', { waitUntil: 'networkidle0' });
   ok(await page.$$eval('h1', h => h.length) === 1 && await page.$$eval('#hero .slide', s => s.length) === 6 && await page.$eval('[data-hero-count]', c => c.parentElement.textContent.replace(/\s+/g, ' ').trim() === '01 / 06') && await page.$$eval('#hero .dot', d => d.length === 6), 'home tem um único H1 com 6 slides (contador 01 / 06 e 6 pontos)');
-  const slideHrefs = ['/catalogo/', '/brindes-de-fim-de-ano/', '/confeccoes-personalizadas/', '/kits-corporativos/', '/catalogo/?categoria=canetas-escritorio#catalogo', '/ativacoes-promocionais/'];
+  const slideHrefs = ['/catalogo/', '/brindes-de-fim-de-ano/', '/confeccoes-personalizadas/', '/kits-corporativos/', '/catalogo/?categoria=canetas-escritorio#catalogo', '/ativacoes-promocionais-eventos-corporativos/'];
   if (FIM === 1) slideHrefs.unshift(slideHrefs.splice(1, 1)[0]);
   ok(await page.$$eval('#hero .slide .btn-line', a => a.map(x => x.getAttribute('href')).join()) === slideHrefs.join(), 'slides levam a rotas reais do site (catálogo, fim de ano, confecções, kits, escritório, ativações)');
   ok(await page.$eval(`#slide-${FIM}`, s => s.querySelector('.eyebrow').textContent === 'Fim de ano' && s.querySelector('p.slide-title').textContent.replace(/\s+/g, ' ') === 'Um brinde a quem fez parte do seu ano.' && s.querySelector('.btn-line').getAttribute('href') === '/brindes-de-fim-de-ano/' && s.querySelector('[data-track-label="hero-fim-de-ano"]').getAttribute('href') === '/solicitar-proposta/?tipo=kits' && /fictícia/.test(s.querySelector('img').alt)), `slide ${FIM} é o de fim de ano: leva a /brindes-de-fim-de-ano/ e ao pedido de kits, sem H1 e com a marca fictícia no texto alternativo`);
@@ -448,15 +448,15 @@ try {
   ok(menuP.kits.length === 7 && menuP.kits.join() === ['escritorio', 'cozinha', 'boas-vindas', 'executivo', 'pausa', 'agradecimento', 'fim-de-ano'].map(k => '/kits-corporativos/#kits-' + k).join() && menuP.kitsAll.join() === '/kits-corporativos/',
      'menuP Kits: 7 links de tipo de kit (âncoras de /kits-corporativos/) e "Ver todos os kits"');
   ok(menuP.conf.length >= 7 && menuP.conf.every(tipoHref) && menuP.confAll.join() === '/confeccoes-personalizadas/', `menuP Confecções: ${menuP.conf.length} tipos de peça no catálogo filtrado e "Uniformes e confecções"`);
-  ok(menuP.ativ.join() === '/ativacoes-promocionais/#fmt-buffet,/ativacoes-promocionais/#fmt-decoracao' && menuP.ativAll.join() === '/ativacoes-promocionais/', 'menuP Ativações: Buffet completo, Decoração e "Conhecer ativações"');
+  ok(menuP.ativ.join() === '/ativacoes-promocionais-eventos-corporativos/#fmt-buffet,/ativacoes-promocionais-eventos-corporativos/#fmt-decoracao' && menuP.ativAll.join() === '/ativacoes-promocionais-eventos-corporativos/', 'menuP Ativações: Buffet completo, Decoração e "Conhecer ativações"');
   const semAncora = [];
-  for (const [u, hs] of [['/kits-corporativos/', menuP.kits], ['/ativacoes-promocionais/', menuP.ativ]]) { const html = await (await fetch(BASE + u)).text(); hs.forEach(h => { if (!html.includes(`id="${h.split('#')[1]}"`)) semAncora.push(h); }); }
+  for (const [u, hs] of [['/kits-corporativos/', menuP.kits], ['/ativacoes-promocionais-eventos-corporativos/', menuP.ativ]]) { const html = await (await fetch(BASE + u)).text(); hs.forEach(h => { if (!html.includes(`id="${h.split('#')[1]}"`)) semAncora.push(h); }); }
   ok(semAncora.length === 0, `os links dos painéis Kits e Ativações caem em âncoras que existem${semAncora.length ? ' — faltam: ' + semAncora.join(', ') : ''}`);
   // página certa marcada: o botão do grupo com aria-current="true" e o link da página com aria-current="page"
   const navAtual = u => page.evaluate(async u => { const d = new DOMParser().parseFromString(await (await fetch(u)).text(), 'text/html'); return [...d.querySelectorAll('#site-nav [aria-current]')].map(x => x.getAttribute('aria-controls') || x.getAttribute('href')).join(); }, BASE + u);
   const atuais = { '/kits-corporativos/': 'sub-kits,/kits-corporativos/', '/confeccoes-personalizadas/': 'sub-confeccoes,/confeccoes-personalizadas/', '/catalogo/polo-masculina/': 'sub-confeccoes',
     '/catalogo/caneca/': 'sub-brindes', '/catalogo/': 'sub-brindes,/catalogo/', '/brindes-corporativos/': 'sub-brindes,/brindes-corporativos/', '/hotelaria-e-gastronomia/': 'sub-brindes,/hotelaria-e-gastronomia/',
-    '/brindes-de-fim-de-ano/': SEASON === 'fim-de-ano' ? 'sub-brindes,/brindes-de-fim-de-ano/' : 'sub-brindes', '/ativacoes-promocionais/': 'sub-ativacoes,/ativacoes-promocionais/', '/sobre/': '/sobre/', '/': '' };
+    '/brindes-de-fim-de-ano/': SEASON === 'fim-de-ano' ? 'sub-brindes,/brindes-de-fim-de-ano/' : 'sub-brindes', '/ativacoes-promocionais-eventos-corporativos/': 'sub-ativacoes,/ativacoes-promocionais-eventos-corporativos/', '/sobre/': '/sobre/', '/': '' };
   const marcaErrada = [];
   for (const [u, esperado] of Object.entries(atuais)) { const r = await navAtual(u); if (r !== esperado) marcaErrada.push(`${u} → ${r || 'nada'}`); }
   ok(marcaErrada.length === 0, `o menu marca (aria-current) o grupo e o link da página certa${marcaErrada.length ? ' — ' + marcaErrada.join('; ') : ''}`);
@@ -510,7 +510,7 @@ try {
   // Seção padrão (process_section): as mesmas 6 etapas, com os mesmos nomes e na mesma ordem, em todas as páginas de frente,
   // no fim de ano e em /sobre/; nada do formato antigo (ol.steps com 4 etapas) pode sobrar.
   const ETAPAS = 'Briefing,Curadoria,Proposta,Aprovação,Produção,Entrega';
-  for (const path of ['/brindes-corporativos/', '/kits-corporativos/', '/confeccoes-personalizadas/', '/ativacoes-promocionais/', '/hotelaria-e-gastronomia/', '/brindes-de-fim-de-ano/', '/sobre/']) {
+  for (const path of ['/brindes-corporativos/', '/kits-corporativos/', '/confeccoes-personalizadas/', '/ativacoes-promocionais-eventos-corporativos/', '/hotelaria-e-gastronomia/', '/brindes-de-fim-de-ano/', '/sobre/']) {
     await page.goto(BASE + path, { waitUntil: 'networkidle0' });
     const p = await page.evaluate(() => ({
       secoes: document.querySelectorAll('section.process-section').length,
@@ -592,14 +592,14 @@ try {
   console.log('Frentes novas, seleção antiga e selo');
   const fp = await browser.newPage();
   await fp.setViewport({ width: 1280, height: 900 });
-  for (const [path, tipo] of [['/ativacoes-promocionais/', 'ativacoes'], ['/hotelaria-e-gastronomia/', 'hotelaria']]) {
+  for (const [path, tipo] of [['/ativacoes-promocionais-eventos-corporativos/', 'ativacoes'], ['/hotelaria-e-gastronomia/', 'hotelaria']]) {
     await fp.goto(BASE + path, { waitUntil: 'networkidle0' });
     ok(await fp.$$eval('h1', h => h.length === 1) && await fp.$$eval(`a[href="/solicitar-proposta/?tipo=${tipo}"]`, a => a.length >= 2) && await fp.$$eval('.studio-grid .product.studio', c => c.length >= 6),
        `${path}: um H1, CTA com o tipo ${tipo} e peças do catálogo`);
   }
   ok(await fp.$$eval('.studio-grid .product', c => ['cardapio', 'porta-contas', 'dolma', 'avental'].every(s => c.some(x => x.dataset.slug === s))), 'hotelaria reúne cardápio, porta-contas, dólmã e avental da mesma base');
   // ativações: Buffet completo e Decoração entre os formatos, nos atalhos e nas perguntas; as cenas só entram com foto
-  await fp.goto(BASE + '/ativacoes-promocionais/', { waitUntil: 'networkidle0' });
+  await fp.goto(BASE + '/ativacoes-promocionais-eventos-corporativos/', { waitUntil: 'networkidle0' });
   const ativ = await fp.evaluate(() => ({
     fmts: ['fmt-degustacao', 'fmt-feiras', 'fmt-promocao', 'fmt-buffet', 'fmt-decoracao'].every(id => document.getElementById(id)?.closest('#formatos')),
     atalhos: [...document.querySelectorAll('.atalhos .atalhos-list a')].map(a => a.getAttribute('href')),
@@ -614,7 +614,7 @@ try {
   ok(ativ.cenas.length <= 2 && ativ.cenas.every(([alt, leg]) => /marca fictícia (Solar|Oliva)/.test(alt) && leg === 'Cena ilustrativa · marca fictícia'), `ativações: faixa com as cenas de buffet e decoração (${ativ.cenas.length} de 2 com foto), legenda "Cena ilustrativa · marca fictícia"`);
   const ATIV_EVENTO = '/solicitar-proposta/?tipo=ativacoes&interesse=' + encodeURIComponent('Buffet ou decoração para evento');
   ok(ativ.links.every(h => h === ATIV_EVENTO), 'ativações: buffet e decoração levam ao pedido com tipo=ativacoes e o interesse "Buffet ou decoração para evento"');
-  for (const [p, w] of [['/ativacoes-promocionais/', 320], ['/kits-corporativos/', 320], ['/kits-corporativos/', 1024]]) {
+  for (const [p, w] of [['/ativacoes-promocionais-eventos-corporativos/', 320], ['/kits-corporativos/', 320], ['/kits-corporativos/', 1024]]) {
     await fp.setViewport({ width: w, height: 800 }); await fp.goto(BASE + p, { waitUntil: 'networkidle0' });
     ok(await fp.evaluate(() => document.documentElement.scrollWidth <= innerWidth), `${p}: sem rolagem horizontal em ${w} px`);
   }
@@ -636,7 +636,7 @@ try {
   ok(await fp.$eval('.occ-faixa a[href="/brindes-de-fim-de-ano/"]', a => a.textContent.trim() === 'Fim de ano'), 'na home, o chip Fim de ano leva à página própria');
   ok(await fp.$eval('.site-footer a[href="/brindes-de-fim-de-ano/"]', a => a.textContent === 'Brindes de fim de ano'), 'rodapé lista "Brindes de fim de ano" nas soluções');
   await fp.goto(BASE + '/', { waitUntil: 'networkidle0' });
-  ok(await fp.$$eval('.frentes-grid .frente-card', a => a.map(x => x.getAttribute('href')).join() === '/brindes-corporativos/,/confeccoes-personalizadas/,/kits-corporativos/,/ativacoes-promocionais/,/hotelaria-e-gastronomia/'), 'home apresenta as cinco áreas da TaMa');
+  ok(await fp.$$eval('.frentes-grid .frente-card', a => a.map(x => x.getAttribute('href')).join() === '/brindes-corporativos/,/confeccoes-personalizadas/,/kits-corporativos/,/ativacoes-promocionais-eventos-corporativos/,/hotelaria-e-gastronomia/'), 'home apresenta as cinco áreas da TaMa');
   ok(await fp.$eval('h1', h => /brindes, uniformes, kits, ativações e hotelaria/i.test(h.textContent)), 'H1 da home diz o que a TaMa oferece (as cinco áreas, como na assinatura)');
   ok(await fp.$eval('.site-footer .footer-brand p', p => /^Brindes, uniformes, kits, ativações e hotelaria para empresas\./.test(p.textContent)) && await fp.$$eval('.announce li', l => l.map(x => x.textContent).join() === 'Atendimento consultivo,Arte aprovada antes da produção,Coordenação do pedido à entrega'), 'assinatura do rodapé com as cinco áreas e barra do topo com os três compromissos');
   ok(await fp.$$eval('.kit-card a[href*="tipo=kits"]', a => a.length === 2 && a.every(x => x.href.includes('interesse=') && /^Solicitar proposta deste kit/.test(x.textContent.trim()))), 'cada kit da home tem "Solicitar proposta deste kit" com o interesse no pedido');

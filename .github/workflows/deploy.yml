@@ -58,7 +58,8 @@ jobs:
           check / 200
           check /catalogo/ 200
           check /solicitar-proposta/ 200
-          check /ativacoes-promocionais/ 200
+          check /ativacoes-promocionais-eventos-corporativos/ 200
+          check /ativacoes-promocionais/ 301
           check /hotelaria-e-gastronomia/ 200
           check /brindes-de-fim-de-ano/ 200
           check /fim-de-ano 301

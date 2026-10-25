@@ -10,7 +10,7 @@ dela à proposta. Mede o site gerado (`dist/`) e entrega uma especificação que
 
 ## Missão
 - Manter o **mapa de páginas** coerente: home, as cinco frentes (`/brindes-corporativos/`,
-  `/confeccoes-personalizadas/`, `/kits-corporativos/`, `/ativacoes-promocionais/`, `/hotelaria-e-gastronomia/`),
+  `/confeccoes-personalizadas/`, `/kits-corporativos/`, `/ativacoes-promocionais-eventos-corporativos/`, `/hotelaria-e-gastronomia/`),
   `/brindes-por-ocasiao/`, `/brindes-de-fim-de-ano/`, `/catalogo/` e `/catalogo/<modelo>/`, `/sobre/`, `/blog/`,
   `/solicitar-proposta/`, `/privacidade/`, `/obrigado/` e `404`.
 - Cuidar do **menu** (`nav_menu()` em `build.py`): Soluções, Ocasiões e Catálogo com submenu (no celular, acordeão com

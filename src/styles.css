@@ -1476,7 +1476,7 @@ body:has(.pdp-wrap) .crumbs.wrap { max-width: 1440px; padding-inline: clamp(16px
   .kits-tipo.um .kit-grid { grid-template-columns: minmax(0, 1fr); }
   .kits-tipo.um .kit-card { grid-column: auto; }
 }
-/* /ativacoes-promocionais/: cenas de buffet e decoração logo abaixo dos formatos (build.py: ativ_cenas); com uma cena só,
+/* /ativacoes-promocionais-eventos-corporativos/: cenas de buffet e decoração logo abaixo dos formatos (build.py: ativ_cenas); com uma cena só,
    ela não estica até a largura toda */
 .ativ-cenas { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(14px, 2vw, 24px); margin-top: clamp(32px, 4vw, 48px); }
 .ativ-cenas:has(> figure:only-child) { grid-template-columns: minmax(0, 1fr); max-width: 720px; }

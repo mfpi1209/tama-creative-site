@@ -257,7 +257,7 @@ def nota_marca(textos):
     return NOTA_MISTA if tama and fict else NOTA_FICTICIA_LONGA if fict else NOTA_TAMA
 # Assinatura da agência (barra do topo, rodapé, blog): as cinco áreas de NAV, na mesma ordem.
 _TOPO = SITE_DADOS.get('topo') or {}
-ASSINATURA = _TOPO.get('assinatura') or 'Brindes, uniformes, kits, ativações e hotelaria para empresas.'
+ASSINATURA = _TOPO.get('assinatura') or 'Brindes, uniformes, kits, eventos corporativos e hotelaria para empresas.'
 # Três compromissos, iguais na barra do topo e na faixa abaixo do carrossel.
 GARANTIAS = (_TOPO.get('garantias') or ['Atendimento consultivo', 'Arte aprovada antes da produção', 'Coordenação do pedido à entrega'])[:3]
 
@@ -571,9 +571,9 @@ def preparar_site():
         erros += obrig('brindes, foto da entrega', sc['brindes-entrega'], ('imagem', 'alt'))
     fm = sc.get('ativacoes-formatos') or {}
     for n, i in enumerate(fm.get('itens') or [], 1):
-        erros += obrig(f'ativações, formato {n}', i, ('titulo', 'texto'))
+        erros += obrig(f'eventos corporativos, formato {n}', i, ('titulo', 'texto'))
     for n, c in enumerate((sc.get('ativacoes-cenas') or {}).get('itens') or [], 1):
-        erros += obrig(f'ativações, cena {n}', c, ('imagem', 'alt'))
+        erros += obrig(f'eventos corporativos, cena {n}', c, ('imagem', 'alt'))
     for n, c in enumerate((sc.get('sobre-cenas') or {}).get('itens') or [], 1):
         erros += obrig(f'sobre, cena {n}', c, ('imagem', 'alt', 'texto', 'destaque'))
     for k, c in (sc.get('ocasioes') or {}).items():
@@ -1009,17 +1009,17 @@ def brand_note():
 # Bloco de prova (onda 3): só o que o site já afirma, sem clientes, números, prazos ou cases.
 # A chave muda apenas a frase de introdução; título, demonstração e as três provas são os mesmos em todas as páginas.
 PROVA_INTRO = {
-    'home': 'Brindes, uniformes, kits e ativações seguem o mesmo caminho: a TaMa entende o objetivo, propõe as peças e coordena com os fornecedores a aplicação da sua marca até a entrega.',
+    'home': 'Brindes, uniformes, kits e eventos corporativos seguem o mesmo caminho: a TaMa entende o objetivo, propõe as peças e coordena com os fornecedores a aplicação da sua marca até a entrega.',
     'brindes': 'Em brindes corporativos, a peça certa depende de quem recebe e da ocasião. É assim que a TaMa conduz cada seleção.',
     'kits': 'Em um kit, caixa, cartão e peças precisam falar a mesma língua. É assim que a TaMa conduz cada composição.',
     'confeccoes': 'Em uniformes e confecções, a marca precisa funcionar na rotina de quem veste. É assim que a TaMa conduz cada projeto.',
-    'ativacoes': 'Em uma ativação, uniformes, brindes e materiais precisam estar prontos para o dia da ação. É assim que a TaMa conduz cada projeto.',
+    'ativacoes': 'Em um evento corporativo, uniformes, brindes e materiais precisam estar prontos para o dia do evento. É assim que a TaMa conduz cada projeto.',
     'hotelaria': 'Em restaurantes, bares e hotéis, a marca aparece da mesa à equipe. É assim que a TaMa conduz cada projeto.',
 }
 PROVAS = [   # textos do /sobre/ ("Como trabalhamos") e da faixa de destaques
     ('O público vem antes da peça', 'Quem recebe, a ocasião e o uso vêm antes da escolha de qualquer peça.'),
     ('Arte aprovada por você antes da produção', 'Arte e especificações aprovadas antes da produção e materiais conferidos antes da entrega.'),
-    ('Tudo em um pedido', 'Brindes, kits, uniformes e materiais de ativação no mesmo pedido, com uma única linguagem.'),
+    ('Tudo em um pedido', 'Brindes, kits, uniformes e materiais para eventos no mesmo pedido, com uma única linguagem.'),
 ]
 
 
@@ -1051,7 +1051,7 @@ COLLECTIONS = [
     ('boas-vindas', 'Boas-vindas', 'Receba novas pessoas com identidade e cuidado.', 'kitp-kit-pratico'),
     ('eventos', 'Eventos', 'Presença de marca em cada encontro.', 'conf-evento-camisetas'),
     ('executivos', 'Presentes executivos', 'Gestos refinados para relações importantes.', 'kitp-kit-executivo'),
-    ('campanhas', 'Campanhas e ativações', 'Degustações, promoções e ações no ponto de venda.', 'conf-degustacao'),
+    ('campanhas', 'Campanhas e promoções', 'Degustações, promoções e ações no ponto de venda.', 'conf-degustacao'),
     ('lancamentos', 'Lançamentos', 'Peças para apresentar um produto ou uma novidade.', 'papelaria-cores'),
     ('fim-de-ano', 'Fim de ano', 'Presentes para encerrar o ano perto de quem importa.', 'kitp-kit-brinde'),
 ]
@@ -1245,7 +1245,7 @@ NAV = [
     ('/brindes-corporativos/', 'Brindes corporativos'),
     ('/confeccoes-personalizadas/', 'Uniformes e confecções'),
     ('/kits-corporativos/', 'Kits corporativos'),
-    ('/eventos-corporativos/', 'Ativações promocionais para eventos corporativos'),
+    ('/eventos-corporativos/', 'Eventos corporativos'),
     ('/hotelaria-e-gastronomia/', 'Hotelaria e gastronomia'),
 ]
 BAG_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8h12l-1 12H7z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/></svg>'
@@ -1273,7 +1273,7 @@ def season_callout(where):
             f'</div></aside>')
 
 
-# Menu da apresentação de 20/10: Brindes ▾ (tipos de peça), Kits ▾, Confecções ▾, Ativações ▾, Sobre e Blog.
+# Menu da apresentação de 20/10: Brindes ▾ (tipos de peça), Kits ▾, Confecções ▾, Eventos corporativos ▾, Sobre e Blog.
 # Tipos de brinde e de confecção levam ao catálogo filtrado (/catalogo/?tipo=<chave>#catalogo, rótulos em TIPO_ROTULO).
 MENU_BRINDES = ['agendas', 'canetas', 'canecas', 'copos', 'xicaras', 'tacas', 'squeezes', 'porta-vinho', 'mochilas', 'tecnologia']
 # Tipo sem modelo no catálogo fica fora do menu (sem link vazio). Exceção, enquanto True: os 9 tipos de brinde aparecem
@@ -1289,7 +1289,7 @@ MENU_ATIVACOES = [('Buffet completo', '#fmt-buffet'), ('Decoração', '#fmt-deco
 
 def nav_menu(path):
     """Menu principal (2ª linha do cabeçalho): Brindes ▾ (lista dos tipos de peça e, abaixo, as páginas de brindes),
-    Kits ▾, Confecções ▾, Ativações ▾, Sobre e Blog; os quatro painéis são listas no mesmo formato. Os painéis são botões com aria-expanded; no celular viram
+    Kits ▾, Confecções ▾, Eventos corporativos ▾, Sobre e Blog; os quatro painéis são listas no mesmo formato. Os painéis são botões com aria-expanded; no celular viram
     acordeão. O grupo da página atual ganha aria-current="true" no botão, e o link da página, aria-current="page"."""
     def cur(p, exato=False):
         return ' aria-current="page"' if (path == p if exato else path.startswith(p)) else ''
@@ -1324,11 +1324,11 @@ def nav_menu(path):
     p_conf = (f'<ul class="nav-list">{conf}</ul>'
               f'<a class="nav-sub-all" href="/confeccoes-personalizadas/"{cur("/confeccoes-personalizadas/")}>Uniformes e confecções {ARROW}</a>')
     ativ = ''.join(f'<li><a href="/eventos-corporativos/{a}">{t}</a></li>' for t, a in MENU_ATIVACOES)
-    p_ativ = f'<ul class="nav-list">{ativ}</ul><a class="nav-sub-all" href="/eventos-corporativos/"{cur("/eventos-corporativos/")}>Conhecer ativações {ARROW}</a>'
+    p_ativ = f'<ul class="nav-list">{ativ}</ul><a class="nav-sub-all" href="/eventos-corporativos/"{cur("/eventos-corporativos/")}>Conhecer eventos corporativos {ARROW}</a>'
     return (grupo('brindes', 'Brindes', p_brindes, brindes_atual, ' nav-main nav-drop')
             + grupo('kits', 'Kits', p_kits, path.startswith('/kits-corporativos/'), ' nav-drop')
             + grupo('confeccoes', 'Confecções', p_conf, conf_atual, ' nav-drop')
-            + grupo('ativacoes', 'Ativações', p_ativ, path.startswith('/eventos-corporativos/'), ' nav-drop')
+            + grupo('ativacoes', 'Eventos corporativos', p_ativ, path.startswith('/eventos-corporativos/'), ' nav-drop')
             + f'<a class="nav-link nav-sep" href="/sobre/"{cur("/sobre/")}>Sobre</a>'
             + f'<a class="nav-link" href="/blog/"{cur("/blog/")}>Blog</a>')
 
@@ -1566,7 +1566,7 @@ ORG_ID = SITE + '/#org'
 def org():
     o = {'@type': 'Organization', '@id': ORG_ID, 'name': 'TaMa Creative', 'url': SITE + '/', 'logo': SITE + '/logo-512.png',
          'slogan': 'Sua marca ganha forma.',
-         'description': 'Brindes corporativos, uniformes e confecções, kits corporativos, ativações promocionais e hotelaria e gastronomia para empresas.'}
+         'description': 'Brindes corporativos, uniformes e confecções, kits corporativos, eventos corporativos e hotelaria e gastronomia para empresas.'}
     if IG:
         o['sameAs'] = [f'https://www.instagram.com/{IG}/']
     if RAZAO:
@@ -1705,7 +1705,7 @@ def shell(page, body):
 
 # ------------------------------------------------------------------ pages
 HOME_FAQ = [
-    ('O que a TaMa faz?', 'A TaMa seleciona, personaliza e entrega brindes, uniformes, kits, materiais de ativação e peças de hotelaria com a marca da sua empresa. Ela não fabrica: entende o objetivo, propõe as peças, coordena a aplicação da marca com os fornecedores e acompanha tudo até a entrega.'),
+    ('O que a TaMa faz?', 'A TaMa seleciona, personaliza e entrega brindes, uniformes, kits, materiais para eventos e peças de hotelaria com a marca da sua empresa. Ela não fabrica: entende o objetivo, propõe as peças, coordena a aplicação da marca com os fornecedores e acompanha tudo até a entrega.'),
     ('Posso personalizar as peças nas cores da minha marca?', 'Sim. A escolha de cores e acabamentos faz parte da proposta de cada projeto. As cores mostradas no site são referências visuais, não estoque; a disponibilidade é confirmada na proposta.'),
     ('Vocês montam kits completos?', 'Sim. A proposta combina seleção de peças, embalagem, cartão e personalização num conjunto com a mesma linguagem visual.'),
     ('Existe quantidade mínima?', 'Depende da peça e da técnica de personalização. Informe a quantidade aproximada no pedido: se não for viável para a peça escolhida, a proposta indica alternativas.'),
@@ -1818,7 +1818,7 @@ def page_home():
     return {
         'path': '/', 'title': 'Brindes corporativos, uniformes e kits | TaMa Creative', 'og': slides_do_site()[0][1],
         'og_title': 'TaMa Creative · ' + ASSINATURA.rstrip('.'),
-        'description': 'Brindes, uniformes, kits, ativações e peças de hotelaria com a marca da sua empresa. A TaMa seleciona, personaliza e coordena da escolha das peças à entrega.',
+        'description': 'Brindes, uniformes, kits, eventos corporativos e peças de hotelaria com a marca da sua empresa. A TaMa seleciona, personaliza e coordena da escolha das peças à entrega.',
         'assunto': 'um projeto para a minha empresa',
         'preload': preload_image(slides_do_site()[0][1], HERO_SIZES),
         'body': hero_carousel() + f'''
@@ -2143,7 +2143,7 @@ def ativ_cenas():
 
 def ativ_formatos():
     """Cabeçalho e itens da seção Formatos de /eventos-corporativos/ (site.json › secoes › ativacoes-formatos). Itens com
-    "pedido" ganham o link para o pedido de buffet ou decoração; o id é a âncora do menu (Ativações ▾)."""
+    "pedido" ganham o link para o pedido de buffet ou decoração; o id é a âncora do menu (Eventos corporativos ▾)."""
     f = SECOES.get('ativacoes-formatos') or {}
     linhas = []
     for i in f.get('itens') or []:
@@ -2167,14 +2167,14 @@ def ativ_hero(trail):
 
 def page_ativacoes():
     return {
-        'path': '/eventos-corporativos/', 'og': 'conf-degustacao-v2', 'title': 'Ativações promocionais para eventos corporativos | TaMa Creative',
-        'description': 'Ativações promocionais para eventos corporativos: degustações, feiras, buffet e decoração, com uniformes e brindes da sua marca. Peça uma proposta.',
-        'trail': [('/', 'Início'), ('/eventos-corporativos/', 'Ativações promocionais para eventos corporativos')],
-        'service': {'key': 'ativacoes', 'name': 'Ativações promocionais para eventos corporativos', 'type': 'Ativação promocional'},
-        'assunto': 'uma ativação promocional ou degustação',
+        'path': '/eventos-corporativos/', 'og': 'conf-degustacao-v2', 'title': 'Eventos corporativos com a sua marca | TaMa Creative',
+        'description': 'Eventos corporativos com a sua marca: degustações, feiras, buffet e decoração, com uniformes e brindes na identidade da empresa. Peça uma proposta.',
+        'trail': [('/', 'Início'), ('/eventos-corporativos/', 'Eventos corporativos')],
+        'service': {'key': 'ativacoes', 'name': 'Eventos corporativos', 'type': 'Evento corporativo'},
+        'assunto': 'um evento corporativo',
         'preload': preload_image(cab('ativacoes')['imagem'], ATIV_HERO_SIZES),   # mesma imagem e sizes da foto do cabeçalho
         'crumbs_inline': True,
-        'body': ativ_hero([('/', 'Início'), ('/eventos-corporativos/', 'Ativações promocionais para eventos corporativos')]) + f'''
+        'body': ativ_hero([('/', 'Início'), ('/eventos-corporativos/', 'Eventos corporativos')]) + f'''
 <section class="section ivory" id="formatos" aria-labelledby="formatos-t">
   <div class="wrap">
 {ativ_formatos()}
@@ -2183,7 +2183,7 @@ def page_ativacoes():
 </section>
 <section class="section" aria-labelledby="ativ-inclui-t">
   <div class="wrap split" style="align-items:start">
-    <div class="stack" style="gap:12px"><p class="eyebrow">O que pode fazer parte</p><h2 id="ativ-inclui-t" class="section-title">Tudo o que a ação precisa, com a sua marca</h2><p class="muted">O escopo de cada ativação (materiais, equipe, logística e regras do local ou do organizador) é definido com você e confirmado na proposta.</p></div>
+    <div class="stack" style="gap:12px"><p class="eyebrow">O que pode fazer parte</p><h2 id="ativ-inclui-t" class="section-title">Tudo o que a ação precisa, com a sua marca</h2><p class="muted">O escopo de cada evento (materiais, equipe, logística e regras do local ou do organizador) é definido com você e confirmado na proposta.</p></div>
     <dl class="pack">
       <div><dt>Uniformes da equipe</dt><dd>Camisetas, polos, aventais e bonés. <a class="link" href="/confeccoes-personalizadas/">Ver uniformes e confecções</a></dd></div>
       <div><dt>Brindes e amostras</dt><dd>Peças para entregar ao público, do copo à ecobag. <a class="link" href="/catalogo/">Ver o catálogo</a></dd></div>
@@ -2195,11 +2195,11 @@ def page_ativacoes():
 {vitrine('ativacoes', 'ativ-pecas-t', more=('/catalogo/', 'Ver o catálogo completo'))}
 {process_section('Como planejamos', 'Da ideia ao dia da ação', 'O objetivo da ação, o formato (local, duração e público esperado) e os materiais entram já no briefing. O cronograma e a entrega dos materiais são combinados na proposta, com a arte aprovada por você antes da produção.', 'ativ-como-t')}
 ''' + faq([
-            ('Que tipo de ativação vocês fazem?', 'Degustações e promoções no ponto de venda, ações em feiras e eventos, ativações internas e, com parceiros especializados, buffet completo e decoração para eventos. Conte o objetivo, o público e o local: a proposta indica o formato e o que entra nele.'),
+            ('Que tipo de evento vocês atendem?', 'Degustações e promoções no ponto de venda, ações em feiras e eventos, eventos internos da empresa e, com parceiros especializados, buffet completo e decoração para eventos. Conte o objetivo, o público e o local: a proposta indica o formato e o que entra nele.'),
             ('Quem cuida da equipe e da logística?', 'Diga no pedido se a ação precisa de equipe, transporte ou montagem. A proposta separa o que a TaMa coordena e o que fica com a sua empresa, com o local ou com o organizador.'),
             ('Com quanto tempo de antecedência devo pedir?', 'Quanto antes, mais opções de materiais e de datas. Informe a data da ação no pedido e o prazo é confirmado na proposta.'),
             ('Precisa de autorização do local?', 'Lojas, supermercados e eventos costumam ter regras próprias para ações. Envie o local e as regras do organizador, se já tiver: a proposta indica quem cuida de cada autorização.'),
-        ], title='Perguntas sobre ativações') + end_cta('Vamos planejar a sua ativação?', 'Conte o produto, o público, o local e a data: a TaMa propõe o formato e os materiais com a sua marca.', tipo='ativacoes'),
+        ], title='Perguntas sobre eventos corporativos') + end_cta('Vamos planejar o seu evento?', 'Conte o produto, o público, o local e a data: a TaMa propõe o formato e os materiais com a sua marca.', tipo='ativacoes'),
     }
 
 
@@ -2309,8 +2309,8 @@ def page_sobre():
     dados = ''.join(f'<div><dt>{t}</dt><dd>{esc(v)}</dd></div>' for t, v in (('Razão social', RAZAO), ('CNPJ', CNPJ), ('Cidade', CIDADE), ('Atendimento comercial', RESPONSAVEL), ('E-mail', EMAIL)) if v)
     dados_html = f'<section class="section" aria-labelledby="dados-t"><div class="wrap split" style="align-items:start"><div class="stack" style="gap:12px"><p class="eyebrow">Dados da empresa</p><h2 id="dados-t" class="section-title">TaMa Creative</h2></div><dl class="pack">{dados}</dl></div></section>' if dados else ''
     return {
-        'path': '/sobre/', 'title': 'Sobre a TaMa Creative | Brindes, uniformes, kits e ativações',
-        'description': 'A TaMa Creative seleciona, personaliza e coordena brindes, uniformes, kits, ativações e peças de hotelaria com a marca da sua empresa.',
+        'path': '/sobre/', 'title': 'Sobre a TaMa Creative | Brindes, uniformes, kits e eventos corporativos',
+        'description': 'A TaMa Creative seleciona, personaliza e coordena brindes, uniformes, kits, eventos corporativos e peças de hotelaria com a marca da sua empresa.',
         'trail': trail, 'wp_type': 'AboutPage', 'assunto': 'um projeto para a minha empresa',
         'preload': preload_image(cab('sobre')['imagem'], FOTO_HERO_SIZES),   # mesma imagem e sizes da foto do cabeçalho
         'crumbs_inline': True,
@@ -2322,7 +2322,7 @@ def page_sobre():
       <div class="item">{arc()}<div><h3><a href="/brindes-corporativos/">Brindes corporativos</a></h3><p>Peças para clientes, equipes e eventos, escolhidas pelo uso.</p></div></div>
       <div class="item">{arc()}<div><h3><a href="/confeccoes-personalizadas/">Uniformes e confecções</a></h3><p>Polos, camisas, camisetas, moletons, dólmãs e aventais com a marca da sua empresa.</p></div></div>
       <div class="item">{arc()}<div><h3><a href="/kits-corporativos/">Kits corporativos</a></h3><p>Caixa, cartão e peças compostos para uma ocasião.</p></div></div>
-      <div class="item">{arc()}<div><h3><a href="/eventos-corporativos/">Ativações promocionais para eventos corporativos</a></h3><p>Ações em eventos, feiras e pontos de venda.</p></div></div>
+      <div class="item">{arc()}<div><h3><a href="/eventos-corporativos/">Eventos corporativos</a></h3><p>Ações em eventos, feiras e pontos de venda.</p></div></div>
       <div class="item">{arc()}<div><h3><a href="/hotelaria-e-gastronomia/">Hotelaria e gastronomia</a></h3><p>Cardápios, porta-contas, jogos americanos e uniformes.</p></div></div>
     </div>
   </div>
@@ -2334,7 +2334,7 @@ def page_sobre():
     <div class="cols-3">
       <div class="col">{arc('c1')}<h3>O público vem antes da peça</h3><p>Público, ocasião de uso e execução vêm antes da escolha de qualquer peça.</p></div>
       <div class="col">{arc('c2')}<h3>Seleção sob medida</h3><p>Peças alinhadas ao público, à ocasião e ao investimento, escolhidas para cada projeto.</p></div>
-      <div class="col">{arc('c3')}<h3>Tudo em um pedido</h3><p>Brindes, kits, uniformes e materiais de ativação no mesmo pedido, com uma única linguagem.</p></div>
+      <div class="col">{arc('c3')}<h3>Tudo em um pedido</h3><p>Brindes, kits, uniformes e materiais para eventos no mesmo pedido, com uma única linguagem.</p></div>
     </div>
   </div>
 </section>
@@ -2381,7 +2381,7 @@ def page_sobre():
 
 def page_proposta():
     tipos = [('brindes', 'Brindes corporativos'), ('kits', 'Kits corporativos'), ('confeccoes', 'Uniformes e confecções'),
-             ('ativacoes', 'Ativações promocionais para eventos corporativos: buffet, decoração e ações'), ('hotelaria', 'Hotelaria e gastronomia'), ('integrado', 'Mais de uma área ou ainda não sei')]
+             ('ativacoes', 'Eventos corporativos: buffet, decoração e ações'), ('hotelaria', 'Hotelaria e gastronomia'), ('integrado', 'Mais de uma área ou ainda não sei')]
     choices = ''.join(f'<label class="choice"><input type="radio" name="tipo" value="{v}" required> {t}</label>' for v, t in tipos)
     contacts = contact_lines()
     contact_block = f'<div class="stack" style="gap:10px"><p class="eyebrow">Fale direto</p><div class="contact-lines">{"".join(contacts)}</div></div>' if contacts else ''

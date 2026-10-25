@@ -46,7 +46,7 @@ TEMAS = {
     'kits-e-boas-vindas': ('Kits e boas-vindas', 'Composição, apresentação e entrega de kits para quem chega e para equipes.'),
     'confeccoes-e-personalizacao': ('Confecções e personalização', 'Uniformes, vestuário e técnicas para aplicar a sua marca.'),
     'embalagem-e-acabamento': ('Embalagem e acabamento', 'Caixas, papéis, lacres e cartões que completam a apresentação do presente.'),
-    'eventos-e-ativacoes': ('Eventos e ativações', 'Peças e kits que acompanham eventos, feiras e ações de marca.'),
+    'eventos-e-ativacoes': ('Eventos corporativos', 'Peças e kits que acompanham eventos, feiras e ações de marca.'),
     'hotelaria-e-gastronomia': ('Hotelaria e gastronomia', 'Materiais com a identidade da marca para mesa, salão e equipe.'),
     'planejamento-de-compras': ('Planejamento de compras', 'Briefing, orçamento, prazos, aprovações e regras para comprar brindes.'),
 }
@@ -78,7 +78,7 @@ CONSULTAS_PAGINAS = {
     '/confeccoes-personalizadas/': ('uniformes corporativos personalizados', ['confecção personalizada para empresas', 'camisa polo bordada para empresa']),
     '/sobre/': ('TaMa Creative', ['estúdio criativo trade marketing']),
     '/solicitar-proposta/': ('orçamento de brindes corporativos', ['orçamento de kit corporativo']),
-    '/eventos-corporativos/': ('ativação promocional para marcas', ['degustação em ponto de venda', 'ação promocional em evento']),
+    '/eventos-corporativos/': ('eventos corporativos', ['buffet para evento corporativo', 'degustação em ponto de venda']),
     '/hotelaria-e-gastronomia/': ('cardápio personalizado para restaurante', ['porta-contas personalizado', 'uniforme para restaurante']),
     '/brindes-de-fim-de-ano/': ('brindes de fim de ano para clientes', ['presente de fim de ano para funcionários', 'kit de fim de ano empresa']),
     '/catalogo/': ('catálogo de brindes personalizados', ['taça personalizada para empresa', 'copo personalizado para evento']),
@@ -519,7 +519,7 @@ SERVICOS = {
     '/brindes-por-ocasiao/': 'Ver brindes por ocasião',
     '/brindes-de-fim-de-ano/': 'Ver brindes de fim de ano',
     '/catalogo/': 'Ver o catálogo',
-    '/eventos-corporativos/': 'Ver ativações promocionais',
+    '/eventos-corporativos/': 'Ver eventos corporativos',
     '/hotelaria-e-gastronomia/': 'Ver hotelaria e gastronomia',
     '/confeccoes-personalizadas/': 'Ver uniformes e confecções',
 }
@@ -727,7 +727,7 @@ def cms_config(b):
     capas = sorted(k for k in b.IMAGES if not k.startswith('blog-'))
     pecas = [_opt(f'{c["nome"]} ({b.CAT_PROD[c["categoria"]]})', c['slug']) for c in b.CATALOGO]
     tipos = {'brindes': 'Brindes corporativos', 'kits': 'Kits premium', 'confeccoes': 'Confecções e uniformes',
-             'ativacoes': 'Ativação ou degustação', 'hotelaria': 'Hotelaria e gastronomia', 'integrado': 'Mais de uma frente'}
+             'ativacoes': 'Evento corporativo', 'hotelaria': 'Hotelaria e gastronomia', 'integrado': 'Mais de uma frente'}
     fields = [
         {'label': 'Título do artigo (H1)', 'name': 'title', 'widget': 'string',
          'hint': 'Responde à busca principal com naturalidade. Até 110 caracteres.',

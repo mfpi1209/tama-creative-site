@@ -431,8 +431,8 @@ try {
   ok(fotosV3.length === 2 && fotosV3.every(k => /kitp-(gelato-experience|mesa-de-descobertas)-v[23]\./.test(k.img) && /Marca fictícia (Nexo|Elo)/.test(k.alt)), `kits: Gelato Experience (Nexo) e Mesa de Descobertas (Elo) com a foto nova, ou a v2 enquanto ela não existe (${fotosV3.map(k => k.img.match(/-v\d/)?.[0]).join(' ')})`);
   ok(!(await page.$('#tipos-t')) && !(await page.evaluate(() => document.body.textContent.includes('Um kit para cada relação'))), 'kits: sem a seção repetida "Um kit para cada relação" (os tipos de kit já estão nas seções do menu)');
   ok(!(await page.$('#rail-kits')) && await page.$eval('#comp-t', h => { const next = h.closest('section').nextElementSibling; return next && !!next.querySelector('#kit-m-t'); }), 'kits: depois de "Três camadas" vem direto "Como montamos o seu kit" (sem o bloco de peças)');
-  // menu da apresentação de 20/10 (build.py: nav_menu): Brindes ▾ (tipos), Kits ▾, Confecções ▾, Ativações ▾, Sobre e Blog
-  ok(await page.$$eval('#site-nav > .nav-link, #site-nav > .nav-group > .nav-toggle', a => a.map(x => x.textContent.trim()).join()) === 'Brindes,Kits,Confecções,Ativações,Sobre,Blog', 'menu com Brindes, Kits, Confecções, Ativações, Sobre e Blog');
+  // menu da apresentação de 20/10 (build.py: nav_menu): Brindes ▾ (tipos), Kits ▾, Confecções ▾, Eventos corporativos ▾, Sobre e Blog
+  ok(await page.$$eval('#site-nav > .nav-link, #site-nav > .nav-group > .nav-toggle', a => a.map(x => x.textContent.trim()).join()) === 'Brindes,Kits,Confecções,Eventos corporativos,Sobre,Blog', 'menu com Brindes, Kits, Confecções, Ativações, Sobre e Blog');
   const menuP = await page.evaluate(() => {
     const hrefs = sel => [...document.querySelectorAll(sel)].map(a => a.getAttribute('href'));
     return { tipos: hrefs('#sub-brindes .nav-list:not(.nav-list-pe) a'), fotos: document.querySelectorAll('#sub-brindes img').length, pe: hrefs('#sub-brindes .nav-list-pe a, #sub-brindes .nav-sub-all'),
@@ -476,7 +476,7 @@ try {
   }
   await page.setViewport({ width: 1280, height: 900 });
   ok(await page.$eval('.header-row .head-search', f => f.getAttribute('action') === '/catalogo/' && f.querySelector('input[name="q"]')), 'busca no catálogo na linha de cima do cabeçalho');
-  ok(await page.$$eval('.site-footer .footer-links', ls => ls[0] && [...ls[0].querySelectorAll('a')].map(x => x.textContent.trim()).join() === 'Brindes corporativos,Uniformes e confecções,Kits corporativos,Ativações promocionais para eventos corporativos,Hotelaria e gastronomia') && await page.$eval('.site-footer a[href="/blog/"]', a => a.textContent === 'Conteúdos'), 'rodapé repete as cinco áreas com os nomes do menu e chama o blog de "Conteúdos", como o menu');
+  ok(await page.$$eval('.site-footer .footer-links', ls => ls[0] && [...ls[0].querySelectorAll('a')].map(x => x.textContent.trim()).join() === 'Brindes corporativos,Uniformes e confecções,Kits corporativos,Eventos corporativos,Hotelaria e gastronomia') && await page.$eval('.site-footer a[href="/blog/"]', a => a.textContent === 'Conteúdos'), 'rodapé repete as cinco áreas com os nomes do menu e chama o blog de "Conteúdos", como o menu');
   ok(await page.$$eval('.foto-hero figcaption, .entrega-foto figcaption', f => f.length >= 1 && f.every(x => x.textContent === 'Imagem ilustrativa • Marca fictícia')) && await page.$$eval('.kits-page .note', n => n.length === 1 && /^Imagens? ilustrativas?: (a marca TaMa e marcas fictícias aparecem|a marca (TaMa aparece|é fictícia e aparece)) como exemplo; no seu projeto, entra a marca da sua empresa\./.test(n[0].textContent)), 'kits: legenda padrão da marca fictícia no cabeçalho e uma nota padrão (marca TaMa e marcas fictícias como exemplo) depois dos tipos de kit');
   ok(await page.$$eval('a[href^="/branding-identidade-visual/"], a[href^="/projetos/"]', a => a.length === 0), 'nenhum link para branding ou projetos');
   await page.goto(BASE + '/confeccoes-personalizadas/', { waitUntil: 'networkidle0' });
@@ -534,7 +534,7 @@ try {
   const selecao = await page.$eval('#f-selecao', i => i.value);
   ok(selecao.includes('Garrafa térmica (Azul royal)') && selecao.includes('Taça de gin'), 'campo enviado leva peças e cores');
   ok(await page.$$eval('input[name="tipo"]', l => l.map(i => i.value).join()) === 'brindes,kits,confeccoes,ativacoes,hotelaria,integrado', 'formulário com as frentes atuais (sem branding)');
-  ok(await page.$eval('input[name="tipo"][value="ativacoes"]', i => i.parentNode.textContent.trim() === 'Ativações promocionais para eventos corporativos: buffet, decoração e ações'), 'tipo Ativações cita "buffet ou decoração para evento" (a chave continua ativacoes)');
+  ok(await page.$eval('input[name="tipo"][value="ativacoes"]', i => i.parentNode.textContent.trim() === 'Eventos corporativos: buffet, decoração e ações'), 'tipo Ativações cita "buffet ou decoração para evento" (a chave continua ativacoes)');
   ok(await page.$eval('#form-result', r => r.getBoundingClientRect().height === 0), 'nenhuma caixa vazia sob "Enviar pedido"');
   ok(/^[0-9a-f-]{36}$/.test(await page.$eval('#f-pedido-id', i => i.value)), 'pedido tem identificador para nova tentativa sem duplicar');
   await page.click('input[name="tipo"][value="kits"]');
@@ -637,8 +637,8 @@ try {
   ok(await fp.$eval('.site-footer a[href="/brindes-de-fim-de-ano/"]', a => a.textContent === 'Brindes de fim de ano'), 'rodapé lista "Brindes de fim de ano" nas soluções');
   await fp.goto(BASE + '/', { waitUntil: 'networkidle0' });
   ok(await fp.$$eval('.frentes-grid .frente-card', a => a.map(x => x.getAttribute('href')).join() === '/brindes-corporativos/,/confeccoes-personalizadas/,/kits-corporativos/,/eventos-corporativos/,/hotelaria-e-gastronomia/'), 'home apresenta as cinco áreas da TaMa');
-  ok(await fp.$eval('h1', h => /brindes, uniformes, kits, ativações e hotelaria/i.test(h.textContent)), 'H1 da home diz o que a TaMa oferece (as cinco áreas, como na assinatura)');
-  ok(await fp.$eval('.site-footer .footer-brand p', p => /^Brindes, uniformes, kits, ativações e hotelaria para empresas\./.test(p.textContent)) && await fp.$$eval('.announce li', l => l.map(x => x.textContent).join() === 'Atendimento consultivo,Arte aprovada antes da produção,Coordenação do pedido à entrega'), 'assinatura do rodapé com as cinco áreas e barra do topo com os três compromissos');
+  ok(await fp.$eval('h1', h => /brindes, uniformes, kits, eventos corporativos e hotelaria/i.test(h.textContent)), 'H1 da home diz o que a TaMa oferece (as cinco áreas, como na assinatura)');
+  ok(await fp.$eval('.site-footer .footer-brand p', p => /^Brindes, uniformes, kits, eventos corporativos e hotelaria para empresas\./.test(p.textContent)) && await fp.$$eval('.announce li', l => l.map(x => x.textContent).join() === 'Atendimento consultivo,Arte aprovada antes da produção,Coordenação do pedido à entrega'), 'assinatura do rodapé com as cinco áreas e barra do topo com os três compromissos');
   ok(await fp.$$eval('.kit-card a[href*="tipo=kits"]', a => a.length === 2 && a.every(x => x.href.includes('interesse=') && /^Solicitar proposta deste kit/.test(x.textContent.trim()))), 'cada kit da home tem "Solicitar proposta deste kit" com o interesse no pedido');
   ok(await fp.$$eval('.end-cta', s => s.length === 1 && s[0].querySelector('.eyebrow').textContent === 'Próximo passo' && /\?$/.test(s[0].querySelector('h2').textContent) && s[0].querySelectorAll('.actions a').length === 2 && /^Solicitar proposta/.test(s[0].querySelector('.actions a').textContent.trim())), 'fechamento padrão: eyebrow, título em pergunta e dois botões (Solicitar proposta + WhatsApp)');
   await fp.evaluate(() => localStorage.setItem('tama-selecao', JSON.stringify([{ s: 'linha-polo', c: 'Preto' }, { s: 'caneca-de-ceramica', c: null }, { s: 'baralho-exclusivo', c: null }])));
@@ -995,7 +995,7 @@ try {
   await ip.click('#pub-ok');
   await ip.waitForFunction(() => document.getElementById('status').classList.contains('ok'), { timeout: 15000 });
   const site3 = JSON.parse(((gravado?.entry?.dataFiles || []).find(f => f.path === 'src/data/site.json') || {}).raw || '{}');
-  ok(mudSec.includes('Ativações promocionais para eventos corporativos: alterações em seções') && mudSec.includes('Brindes por ocasião: alterações em seções') &&
+  ok(mudSec.includes('Eventos corporativos: alterações em seções') && mudSec.includes('Brindes por ocasião: alterações em seções') &&
      (site3.secoes?.['ativacoes-formatos']?.itens || []).find(i => i.id === 'fmt-buffet')?.texto === 'Buffet para eventos da empresa.' && site3.secoes?.ocasioes?.eventos?.eyebrow === 'Eventos e feiras',
      `seções com foto: formatos de Ativações e abertura de ocasião editados e publicados em site.json (${mudSec.join(' | ')})`);
   await ip.close();

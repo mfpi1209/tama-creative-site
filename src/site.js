@@ -121,7 +121,7 @@
   if (nav) nav.addEventListener('focusout', function (e) {
     if (nav.classList.contains('is-open') && e.relatedTarget && !nav.contains(e.relatedTarget) && e.relatedTarget !== menuBtn) setMenu(false);
   });
-  /* painéis (Brindes, Kits, Confecções, Ativações): botão com aria-expanded; um aberto por vez */
+  /* painéis (Brindes, Kits, Confecções, Eventos corporativos): botão com aria-expanded; um aberto por vez */
   var desk = window.matchMedia ? window.matchMedia('(min-width: 1240px)') : { matches: true };
   var toggles = [].slice.call(document.querySelectorAll('[data-nav-toggle]'));
   function setSub(btn, open) { btn.setAttribute('aria-expanded', String(open)); btn.parentElement.classList.toggle('is-open', open); }

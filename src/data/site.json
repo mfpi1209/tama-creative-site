@@ -9,7 +9,7 @@
    "enquadramento": "--fx:100%;--fx-m:96%",
    "alt": "Bolsa cru com alças verdes, caderno creme com caneta verde, taça e garrafa verde-escuras e copo creme, com a marca fictícia Vera aplicada como exemplo.",
    "eyebrow": "Para empresas",
-   "titulo": "Sua marca em brindes, uniformes, kits, ativações e *hotelaria*.",
+   "titulo": "Sua marca em brindes, uniformes, kits, eventos corporativos e *hotelaria*.",
    "texto": "A TaMa seleciona as peças, aplica a sua marca e coordena tudo até a entrega.",
    "botao": {
     "texto": "Solicitar proposta",
@@ -109,8 +109,8 @@
    "tom": "tone-cream",
    "imagem": "slide-ativacoes",
    "enquadramento": "--fx:100%;--fx-m:70%",
-   "alt": "Kit de ativação da marca fictícia Solar: avental preto, camiseta branca, boné amarelo, copinhos de degustação numa bandeja e display de balcão.",
-   "eyebrow": "Ativações promocionais",
+   "alt": "Kit para evento da marca fictícia Solar: avental preto, camiseta branca, boné amarelo, copinhos de degustação numa bandeja e display de balcão.",
+   "eyebrow": "Eventos corporativos",
    "titulo": "Sua marca perto de quem *compra*.",
    "texto": "Degustações, ações em feiras e eventos e promoções no ponto de venda, com uniformes, materiais e brindes na identidade da sua marca.",
    "botao": {
@@ -119,7 +119,7 @@
     "medicao": "hero-5"
    },
    "botao2": {
-    "texto": "Conhecer as ativações",
+    "texto": "Conhecer os eventos corporativos",
     "link": "/eventos-corporativos/"
    }
   }
@@ -230,7 +230,7 @@
    "destaque": [
     "em cada escolha."
    ],
-   "texto": "A TaMa Creative é uma prestadora de serviços que seleciona as peças, personaliza com a identidade da sua empresa e coordena a produção até a entrega. Brindes, uniformes, kits e ativações pensados para quem recebe: o público e a ocasião vêm antes da peça.",
+   "texto": "A TaMa Creative é uma prestadora de serviços que seleciona as peças, personaliza com a identidade da sua empresa e coordena a produção até a entrega. Brindes, uniformes, kits e eventos corporativos pensados para quem recebe: o público e a ocasião vêm antes da peça.",
    "legenda": "Imagem ilustrativa • Marcas fictícias",
    "posicao_celular": "70% center"
   }
@@ -277,7 +277,7 @@
   "ativacoes": {
    "pagina": "/eventos-corporativos/",
    "eyebrow": "Catálogo",
-   "titulo": "Peças que costumam entrar em ativações",
+   "titulo": "Peças que costumam entrar em eventos corporativos",
    "texto": "Escolha as cores de referência e adicione à seleção: as peças seguem com o pedido.",
    "modelos": [
     "avental",
@@ -347,7 +347,7 @@
   "responsavel_comercial": ""
  },
  "topo": {
-  "assinatura": "Brindes, uniformes, kits, ativações e hotelaria para empresas.",
+  "assinatura": "Brindes, uniformes, kits, eventos corporativos e hotelaria para empresas.",
   "garantias": [
    "Atendimento consultivo",
    "Arte aprovada antes da produção",
@@ -412,14 +412,14 @@
      "imagem": "ativ-header",
      "posicao": "74% center",
      "titulo": [
-      "Ativações",
-      "promocionais"
+      "Eventos",
+      "corporativos"
      ],
      "texto": [
       "Degustações, feiras e ações",
       "no ponto de venda."
      ],
-     "chamada": "Conhecer as ativações"
+     "chamada": "Conhecer os eventos corporativos"
     },
     {
      "link": "/hotelaria-e-gastronomia/",
@@ -444,7 +444,7 @@
   },
   "ativacoes-formatos": {
    "eyebrow": "Formatos",
-   "titulo": "Onde a ativação acontece",
+   "titulo": "Onde o evento acontece",
    "texto": "Cada formato pede peças, equipe e cronograma diferentes. O ponto de partida é o que a ação precisa provocar e em quem.",
    "itens": [
     {
@@ -573,14 +573,14 @@
    "campanhas": {
     "imagem": "ocasiao-campanhas",
     "alt": "Kit de campanha da marca fictícia Vera: copos, squeeze, camiseta branca e uma bandeja de degustação sobre blocos de pedra.",
-    "eyebrow": "Campanhas e ativações",
+    "eyebrow": "Campanhas e promoções",
     "linhas": [
      "Ações que"
     ],
     "destaque": [
      "chegam ao ponto de venda."
     ],
-    "texto": "Copos, squeezes, camisetas e materiais para degustações, promoções e ativações com a marca da sua empresa."
+    "texto": "Copos, squeezes, camisetas e materiais para degustações, promoções e eventos com a marca da sua empresa."
    },
    "lancamentos": {
     "imagem": "ocasiao-lancamentos",

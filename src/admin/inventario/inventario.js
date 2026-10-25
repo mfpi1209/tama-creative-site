@@ -942,19 +942,19 @@
      - site_ordem: { ids } (ordem do carrossel); site_slide_novo: { slide }; site_slide_del: { id };
      - sel_home: { valor } (destaques da home, selecoes.json › home). */
   var TONS = { 'tone-cream': 'Creme', 'tone-sage': 'Sálvia', 'tone-rose': 'Rosé', 'tone-linen': 'Linho' };
-  var TIPOS_PEDIDO = { '': 'Geral', brindes: 'Brindes', confeccoes: 'Confecções', kits: 'Kits', ativacoes: 'Ativações', hotelaria: 'Hotelaria' };
+  var TIPOS_PEDIDO = { '': 'Geral', brindes: 'Brindes', confeccoes: 'Confecções', kits: 'Kits', ativacoes: 'Eventos corporativos', hotelaria: 'Hotelaria' };
   var PAGINAS = [
     { chave: 'home', nome: 'Home', url: '/', vitrines: [], home: true },
     { chave: 'brindes', nome: 'Brindes corporativos', url: '/brindes-corporativos/', vitrines: ['brindes'] },
     { chave: 'kits', nome: 'Kits corporativos', url: '/kits-corporativos/', vitrines: [] },
     { chave: 'confeccoes', nome: 'Uniformes e confecções', url: '/confeccoes-personalizadas/', vitrines: ['confeccoes'] },
-    { chave: 'ativacoes', nome: 'Ativações promocionais para eventos corporativos', url: '/eventos-corporativos/', vitrines: ['ativacoes'] },
+    { chave: 'ativacoes', nome: 'Eventos corporativos', url: '/eventos-corporativos/', vitrines: ['ativacoes'] },
     { chave: 'hotelaria', nome: 'Hotelaria e gastronomia', url: '/hotelaria-e-gastronomia/', vitrines: ['hotelaria'] },
     { chave: 'fim-de-ano', nome: 'Fim de ano', url: '/brindes-de-fim-de-ano/', vitrines: ['fim-brindar', 'fim-presentear'] },
     { chave: 'sobre', nome: 'Sobre', url: '/sobre/', vitrines: [] },
     { chave: 'ocasioes', nome: 'Brindes por ocasião', url: '/brindes-por-ocasiao/', vitrines: [] }
   ];
-  var NOME_VITRINE = { brindes: 'Brindes', confeccoes: 'Confecções', ativacoes: 'Ativações', hotelaria: 'Hotelaria', 'fim-brindar': 'Fim de ano · taças e copos', 'fim-presentear': 'Fim de ano · para presentear' };
+  var NOME_VITRINE = { brindes: 'Brindes', confeccoes: 'Confecções', ativacoes: 'Eventos corporativos', hotelaria: 'Hotelaria', 'fim-brindar': 'Fim de ano · taças e copos', 'fim-presentear': 'Fim de ano · para presentear' };
 
   function noCaminho(raiz, caminho, criar) {
     var o = raiz;
@@ -1067,8 +1067,8 @@
     var sc = st.secoes || {}, req = function (nome, o, campos) { campos.forEach(function (c) { if (!String(o[c] || '').trim()) e.push(nome + ': preencha ' + c.replace('alt', 'a descrição da foto')); }); };
     ((sc['home-frentes'] || {}).itens || []).forEach(function (f, i) { req('Home, cartão ' + (i + 1), f, ['imagem', 'chamada']); if ((f.titulo || []).filter(Boolean).length !== 2 || (f.texto || []).filter(Boolean).length !== 2) e.push('Home, cartão ' + (i + 1) + ': título e texto têm 2 linhas cada'); });
     if (sc['brindes-entrega']) req('Brindes, foto da entrega', sc['brindes-entrega'], ['imagem', 'alt']);
-    ((sc['ativacoes-formatos'] || {}).itens || []).forEach(function (it, i) { req('Ativações, formato ' + (i + 1), it, ['titulo', 'texto']); });
-    ((sc['ativacoes-cenas'] || {}).itens || []).forEach(function (c, i) { req('Ativações, cena ' + (i + 1), c, ['imagem', 'alt']); });
+    ((sc['ativacoes-formatos'] || {}).itens || []).forEach(function (it, i) { req('Eventos corporativos, formato ' + (i + 1), it, ['titulo', 'texto']); });
+    ((sc['ativacoes-cenas'] || {}).itens || []).forEach(function (c, i) { req('Eventos corporativos, cena ' + (i + 1), c, ['imagem', 'alt']); });
     ((sc['sobre-cenas'] || {}).itens || []).forEach(function (c, i) { req('Sobre, cena ' + (i + 1), c, ['imagem', 'alt', 'texto', 'destaque']); });
     Object.keys(sc.ocasioes || {}).forEach(function (k) { var c = sc.ocasioes[k]; req('Ocasião ' + (NOME_OCASIAO[k] || k), c, ['imagem', 'alt', 'eyebrow', 'texto']); if (!(c.linhas || []).length || !(c.destaque || []).length) e.push('Ocasião ' + (NOME_OCASIAO[k] || k) + ': título e destaque precisam de pelo menos uma linha'); });
     var ct = st.contato || {};
@@ -1319,7 +1319,7 @@
 
   // ---- Seções com foto (site.json › secoes): campos ligados pelo caminho no próprio elemento (data-caminho)
   var SECOES_PAGINA = { home: ['home-frentes'], brindes: ['brindes-entrega'], ativacoes: ['ativacoes-formatos', 'ativacoes-cenas'], sobre: ['sobre-cenas'], ocasioes: ['ocasioes'] };
-  var NOME_OCASIAO = { todas: 'Todas as ocasiões (abertura padrão)', 'boas-vindas': 'Boas-vindas', eventos: 'Eventos', executivos: 'Presentes executivos', campanhas: 'Campanhas e ativações',
+  var NOME_OCASIAO = { todas: 'Todas as ocasiões (abertura padrão)', 'boas-vindas': 'Boas-vindas', eventos: 'Eventos', executivos: 'Presentes executivos', campanhas: 'Campanhas e promoções',
     lancamentos: 'Lançamentos', 'fim-de-ano': 'Fim de ano', reconhecimento: 'Reconhecimento' };
   var nSec = 0;
   function cSec(caminho, rotulo, valor, tipo, dica) {   // tipo: texto | area | linhas

@@ -1699,10 +1699,10 @@
    "modelo": "Destinado aos barbeiros, Chefs, Cozinheiros e atendentes que amam estar com muito estilo.",
    "cor": {
     "nome": "Colorido",
-    "hex": "#B79E1F"
+    "hex": "#B51FB7"
    },
    "material": {
-    "valor": "",
+    "valor": "Rosa",
     "status": "a_confirmar"
    },
    "tecnica": {
@@ -8833,7 +8833,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "aprovada",
+   "aprovacao": "retirada",
    "origem": "Imagem gerada com IA (OpenAI gpt-image-1.5, produto novo) em 20/10/2026, referências da apresentação de 20/10. Ilustrativa: não é foto do produto final.",
    "substitui": null,
    "observacao": "Foto-base (apresentação de 20/10, slides 33).",
@@ -8870,7 +8870,7 @@
     "catalogo"
    ],
    "ilustrativa": true,
-   "aprovacao": "aprovada",
+   "aprovacao": "retirada",
    "origem": "Imagem gerada com IA (OpenAI gpt-image-1.5, variação de cor) em 20/10/2026, referências da apresentação de 20/10. Ilustrativa: não é foto do produto final.",
    "substitui": null,
    "observacao": "Variação de cor gerada a partir da foto-base caneca-alca-madeira~branco (apresentação de 20/10).",
@@ -10341,7 +10341,7 @@
     "nome": "Azul royal",
     "hex": "#1F4FB8"
    },
-   "categoria": "garrafas-copos",
+   "categoria": "cozinha-bar",
    "mestre": "midia/produtos/mestre/caneca~azul-royal.png",
    "id": "caneca~azul-royal",
    "tecnica": {
@@ -10381,7 +10381,7 @@
     "nome": "Branco",
     "hex": "#F7F5F0"
    },
-   "categoria": "garrafas-copos",
+   "categoria": "cozinha-bar",
    "mestre": "midia/produtos/mestre/caneca~branco.png",
    "id": "caneca~branco",
    "tecnica": {
@@ -10406,7 +10406,7 @@
   {
    "id": "caneca~laranja",
    "produto": "Caneca",
-   "categoria": "garrafas-copos",
+   "categoria": "cozinha-bar",
    "modelo": "Clássica, com alça",
    "cor": {
     "nome": "Laranja",
@@ -10456,7 +10456,7 @@
     "nome": "Preto",
     "hex": "#1E1E1E"
    },
-   "categoria": "garrafas-copos",
+   "categoria": "cozinha-bar",
    "mestre": "midia/produtos/mestre/caneca~preto.png",
    "id": "caneca~preto",
    "tecnica": {
@@ -10494,7 +10494,7 @@
     "nome": "Verde",
     "hex": "#1F6B45"
    },
-   "categoria": "garrafas-copos",
+   "categoria": "cozinha-bar",
    "mestre": "midia/produtos/mestre/caneca~verde.png",
    "id": "caneca~verde",
    "tecnica": {
@@ -10532,7 +10532,7 @@
     "nome": "Vermelho",
     "hex": "#C8202F"
    },
-   "categoria": "garrafas-copos",
+   "categoria": "cozinha-bar",
    "mestre": "midia/produtos/mestre/caneca~vermelho.png",
    "id": "caneca~vermelho",
    "tecnica": {

@@ -609,7 +609,7 @@
   {
    "produto": "Caneca",
    "genero": "f",
-   "resumo": "Presença constante na mesa de trabalho, a caneca acompanha o café no escritório e as pausas do dia a dia, mantendo a marca por perto em cada uso. É uma opção versátil para kits de boas-vindas, aniversários de empresa e presentes de fim de ano para equipes inteiras. Cor, material e aplicação da marca são definidos na proposta.",
+   "resumo": "",
    "usos": [
     "Café no escritório",
     "Kits de boas-vindas",
@@ -618,9 +618,7 @@
    "medidas": {
     "valor": "",
     "status": "a_confirmar"
-   },
-   "titulo_seo": "",
-   "descricao_seo": ""
+   }
   },
   {
    "produto": "Caneca com alça natural",

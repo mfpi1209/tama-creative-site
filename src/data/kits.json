@@ -216,7 +216,9 @@
     "kit-cozinha",
     "mesa-de-descobertas",
     "gelato-experience",
-    "kit-petiscos"
+    "kit-petiscos",
+    "kit-vinho",
+    "kit-caipirinha"
    ]
   },
   {
@@ -267,7 +269,8 @@
     "kit-vinho",
     "kit-petiscos",
     "kit-agradecimento",
-    "kit-escritorio"
+    "kit-escritorio",
+    "pausa-e-inspiracao"
    ]
   }
  ]

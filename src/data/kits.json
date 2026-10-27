@@ -77,7 +77,7 @@
    "foto": "kitp-kit-conectado",
    "marca_ficticia": "",
    "cor_caixa": "",
-   "situacao": "fora"
+   "situacao": "no_site"
   },
   {
    "slug": "kit-executivo-verde",
@@ -86,7 +86,7 @@
    "foto": "kit-kit-executivo-verde-202610232227",
    "marca_ficticia": "",
    "cor_caixa": "",
-   "situacao": "fora",
+   "situacao": "no_site",
    "foto_anterior": "kitp-kit-executivo-verde"
   },
   {
@@ -159,7 +159,7 @@
    "foto": "kit-kit-vinho-202610231418",
    "marca_ficticia": "Terra",
    "cor_caixa": "caixa café com berço",
-   "situacao": "fora",
+   "situacao": "no_site",
    "foto_anterior": "kit-kit-vinho-202610231413"
   },
   {

@@ -1767,6 +1767,43 @@
    "atualizado_em": "2026-10-24"
   },
   {
+   "id": "avental-vintage~jeans",
+   "produto": "Avental Vintage",
+   "categoria": "vestuario",
+   "modelo": "Avental Vintage Jeans",
+   "cor": {
+    "nome": "JEANS",
+    "hex": "#1F4FB8"
+   },
+   "material": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Avental Vintage jeans, com a marca TaMa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "aprovada",
+   "origem": "Foto enviada pelo Inventário (/admin/inventario/) em 27/10/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/avental-vintage~jeans.webp",
+   "mestre": null,
+   "largura": 1254,
+   "altura": 1254,
+   "sha256": "52d95c860ad183a45a002462f319e6c580a5daafaca2cd3dbe4287ea59cb9691",
+   "bytes": 150772,
+   "atualizado_em": "2026-10-27"
+  },
+  {
    "fornecedor": null,
    "bytes": 1489375,
    "sku": null,

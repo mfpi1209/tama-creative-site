@@ -1,0 +1,2199 @@
+# Gerado por blog.py a cada build (não editar à mão): opções vindas de TEMAS, do catálogo (produtos.json) e das imagens do site.
+backend:
+  name: github
+  repo: mfpi1209/tama-creative-site
+  branch: main
+  base_url: https://tamacreative.com.br
+  auth_endpoint: api/cms-auth/auth
+  squash_merges: true
+  commit_messages:
+    create: 'Editor ({{collection}}): cria {{slug}}'
+    update: 'Editor ({{collection}}): atualiza {{slug}}'
+    delete: 'Editor ({{collection}}): remove {{slug}}'
+    uploadMedia: 'Editor: envia imagem {{path}}'
+    deleteMedia: 'Editor: remove imagem {{path}}'
+    openAuthoring: 'Editor: {{message}}'
+local_backend:
+  url: http://localhost:8081/api/v1
+publish_mode: editorial_workflow
+locale: pt
+site_url: https://tamacreative.com.br
+display_url: https://tamacreative.com.br
+logo_url: /admin/logo.svg
+media_folder: img/blog
+public_folder: /img/blog
+slug:
+  encoding: ascii
+  clean_accents: true
+  sanitize_replacement: '-'
+collections:
+- name: blog
+  label: Artigos do blog
+  label_singular: artigo
+  description: Guias do blog. Cada artigo publicado vai para tamacreative.com.br/blog/ depois do build (alguns minutos).
+  folder: src/blog
+  create: true
+  extension: md
+  format: frontmatter
+  identifier_field: breadcrumb
+  slug: '{{slug}}'
+  preview_path: blog/{{slug}}/
+  summary: '{{title}} · {{date}}'
+  sortable_fields:
+  - date
+  - title
+  view_groups:
+  - label: Tema
+    field: tema
+  fields:
+  - label: Título do artigo (H1)
+    name: title
+    widget: string
+    hint: Responde à busca principal com naturalidade. Até 110 caracteres.
+    pattern:
+    - ^.{10,110}$
+    - Use de 10 a 110 caracteres
+  - label: Título curto
+    name: breadcrumb
+    widget: string
+    hint: 'Aparece no caminho (Início / Blog / …) e forma o endereço do artigo. Ex.: Kit de boas-vindas'
+    pattern:
+    - ^.{3,60}$
+    - Use de 3 a 60 caracteres
+  - label: Título no Google (SEO)
+    name: seo_title
+    widget: string
+    hint: O que aparece no resultado de busca. Comece pela palavra-chave e termine com " | TaMa". Ideal até 65 caracteres.
+    pattern:
+    - ^.{20,70}$
+    - Use de 20 a 70 caracteres (ideal até 65)
+  - label: Descrição (SEO)
+    name: description
+    widget: text
+    hint: Resumo que aparece no Google, nos cards do blog e abaixo do título. De 70 a 160 caracteres.
+    pattern:
+    - ^[\s\S]{70,160}$
+    - Use de 70 a 160 caracteres
+  - label: Resumo do card
+    name: resumo
+    widget: string
+    required: false
+    hint: Uma frase curta para o card da listagem e a linha abaixo do título. Até 160 caracteres. Vazio usa a descrição.
+    pattern:
+    - ^.{0,160}$
+    - Use até 160 caracteres
+  - label: Palavra-chave principal
+    name: palavra_chave
+    widget: string
+    hint: A busca que o artigo responde, como as pessoas digitam. Use-a no título, na descrição e no primeiro parágrafo.
+  - widget: datetime
+    format: YYYY-MM-DD
+    date_format: DD/MM/YYYY
+    time_format: false
+    picker_utc: true
+    label: Data de publicação
+    name: date
+    hint: Data futura = o artigo só aparece a partir desse dia (no próximo build).
+  - widget: datetime
+    format: YYYY-MM-DD
+    date_format: DD/MM/YYYY
+    time_format: false
+    picker_utc: true
+    label: Atualizado em
+    name: updated
+    required: false
+    default: ''
+    hint: Preencha só quando revisar o conteúdo de verdade (o Google mostra a data de atualização).
+  - widget: datetime
+    format: YYYY-MM-DD
+    date_format: DD/MM/YYYY
+    time_format: false
+    picker_utc: true
+    label: Próxima revisão
+    name: revisar_em
+    required: false
+    default: ''
+    hint: Opcional. Quando conferir o artigo de novo (lei, valor ou dado que pode mudar). Aparece no Painel de SEO.
+  - label: O que revisar
+    name: revisar_motivo
+    widget: string
+    required: false
+    hint: 'Ex.: conferir o valor do limite de brindes (1% do subsídio do STF).'
+  - label: Destaque no blog
+    name: destaque
+    widget: boolean
+    default: false
+    required: false
+    hint: Coloca o artigo em destaque entre os publicados no mesmo dia.
+  - label: Categoria
+    name: tema
+    widget: select
+    options:
+    - label: Brindes e presentes
+      value: brindes-e-presentes
+    - label: Kits e boas-vindas
+      value: kits-e-boas-vindas
+    - label: Confecções e personalização
+      value: confeccoes-e-personalizacao
+    - label: Embalagem e acabamento
+      value: embalagem-e-acabamento
+    - label: Eventos corporativos
+      value: eventos-e-ativacoes
+    - label: Hotelaria e gastronomia
+      value: hotelaria-e-gastronomia
+    - label: Planejamento de compras
+      value: planejamento-de-compras
+    hint: Vira filtro na listagem do blog. A página da categoria aparece com 3 artigos publicados.
+  - label: Ocasião da curadoria
+    name: ocasiao
+    widget: select
+    required: false
+    options:
+    - label: Boas-vindas
+      value: boas-vindas
+    - label: Eventos
+      value: eventos
+    - label: Presentes executivos
+      value: executivos
+    - label: Campanhas e promoções
+      value: campanhas
+    - label: Lançamentos
+      value: lancamentos
+    - label: Fim de ano
+      value: fim-de-ano
+    - label: Reconhecimento
+      value: reconhecimento
+    hint: Liga o artigo à curadoria filtrada (/brindes-por-ocasiao/?ocasiao=…).
+  - label: Página de serviço
+    name: servico
+    widget: select
+    required: false
+    options:
+    - label: Brindes corporativos
+      value: /brindes-corporativos/
+    - label: Kits corporativos
+      value: /kits-corporativos/
+    - label: Brindes por ocasião
+      value: /brindes-por-ocasiao/
+    - label: Brindes de fim de ano
+      value: /brindes-de-fim-de-ano/
+    - label: O catálogo
+      value: /catalogo/
+    - label: Eventos corporativos
+      value: /eventos-corporativos/
+    - label: Hotelaria e gastronomia
+      value: /hotelaria-e-gastronomia/
+    - label: Uniformes e confecções
+      value: /confeccoes-personalizadas/
+    hint: Botão para o serviço no fim do artigo. Sem serviço nem tipo de proposta, o artigo fica só editorial (sem vitrine nem chamadas comerciais), como o de compliance.
+  - label: Tipo de proposta
+    name: proposta
+    widget: select
+    required: false
+    options:
+    - label: Brindes corporativos
+      value: brindes
+    - label: Kits premium
+      value: kits
+    - label: Confecções e uniformes
+      value: confeccoes
+    - label: Evento corporativo
+      value: ativacoes
+    - label: Hotelaria e gastronomia
+      value: hotelaria
+    - label: Mais de uma frente
+      value: integrado
+    hint: Já vem marcado no formulário quando o leitor clica em Solicitar proposta.
+  - label: 'Capa: imagem da biblioteca do site'
+    name: capa
+    widget: select
+    required: false
+    options:
+    - agenda-bicolor-porta-caneta~cafe
+    - agenda-bicolor-porta-caneta~caramelo
+    - agenda-bicolor-porta-caneta~preto
+    - agenda-bolso-vertical~prata
+    - agenda-bolso-vertical~preto
+    - agenda-couro~azul-marinho
+    - agenda-couro~cafe
+    - agenda-couro~caramelo
+    - agenda-couro~preto
+    - agenda-diaria~azul
+    - agenda-diaria~azul-marinho
+    - agenda-diaria~branco
+    - agenda-diaria~cinza-escuro
+    - agenda-diaria~preto
+    - agenda-diaria~verde
+    - agenda-diaria~vermelho
+    - ativ-buffet
+    - ativ-decoracao
+    - ativ-header
+    - avental-cintura-meia-saia~preto
+    - avental-roma~preto
+    - avental-vintage~jeans
+    - avental~azul-marinho
+    - avental~azul-marinho-bordado
+    - avental~cru
+    - avental~jeans
+    - avental~preto
+    - avental~preto-bordado
+    - avental~rosa
+    - avental~rosa-bordado
+    - avental~verde
+    - avental~verde-bordado
+    - avental~vermelho
+    - avental~vermelho-bordado
+    - bandeja-couro
+    - bandeja-couro~azul-marinho
+    - bandeja-couro~cafe
+    - bandeja-couro~oliva
+    - bloco-autoadesivos~kraft
+    - bloco-autoadesivos~laranja
+    - bloco-autoadesivos~preto
+    - bloco-autoadesivos~verde
+    - bloco-autoadesivos~vermelho
+    - bloco-caneta-capa~kraft
+    - bloco-caneta-capa~preto
+    - bloco-caneta-capa~verde
+    - bloco-capa-translucida~azul-royal
+    - bloco-capa-translucida~preto
+    - bloco-capa-translucida~vermelho
+    - bloco-mesa-argolas~azul-marinho
+    - bloco-mesa-argolas~preto
+    - bloco-wireo-topo~amarelo
+    - bloco-wireo-topo~azul-marinho
+    - bolsa-listrada~amarelo-e-rosa
+    - bolsa-listrada~azul-e-branco
+    - bolsa-listrada~laranja-e-azul
+    - bolsa-listrada~rosa-e-verde
+    - bolsa-listrada~vermelho-e-rosa
+    - bolsa-termica~azul-marinho
+    - bolsa-termica~cinza
+    - bolsa-termica~preto
+    - bolsa-terracota
+    - bolsa-terracota~azul
+    - bolsa-terracota~natural
+    - bolsa-terracota~verde
+    - bone-aba-reta~azul-marinho
+    - bone-aba-reta~cinza
+    - bone-aba-reta~preto
+    - bone-aba-reta~vermelho
+    - bone-trucker~azul-marinho
+    - bone-trucker~branco-e-azul-marinho
+    - bone-trucker~preto
+    - bone-trucker~verde
+    - bone-trucker~vermelho
+    - bone-verde
+    - bone-verde~azul
+    - bone-verde~bege
+    - bone-verde~vinho
+    - bone~azul-marinho
+    - bone~azul-marinho-bordado
+    - bone~azul-marinho-verso
+    - bone~azul-petroleo
+    - bone~azul-royal
+    - bone~azul-royal-bordado
+    - bone~azul-royal-verso
+    - bone~branco
+    - bone~branco-verso
+    - bone~cinza
+    - bone~cinza-bordado
+    - bone~cinza-verso
+    - bone~preto
+    - bone~preto-bordado
+    - bone~preto-verso
+    - bone~rosa
+    - bone~rosa-bordado
+    - bone~rosa-verso
+    - bone~verde
+    - bone~verde-bordado
+    - bone~verde-verso
+    - bone~vermelho
+    - bone~vermelho-bordado
+    - bone~vermelho-verso
+    - brindes
+    - brindes-entrega
+    - brindes-header
+    - caderneta-kraft-caneta~kraft
+    - caderno-a5~azul-marinho
+    - caderno-a5~cinza
+    - caderno-a5~lilas
+    - caderno-a5~preto
+    - caderno-a5~verde
+    - caderno-a5~vermelho
+    - caderno-aba-bolso~cafe
+    - caderno-aba-bolso~grafite
+    - caderno-aba-bolso~preto
+    - caderno-azul
+    - caderno-azul--casa-mirelo
+    - caderno-azul~cafe
+    - caderno-azul~preto
+    - caderno-azul~verde
+    - caderno-capa-bicolor~azul-marinho
+    - caderno-capa-bicolor~cru
+    - caderno-capa-bicolor~preto
+    - caderno-faixa-plaquinha~cinza
+    - caderno-faixa-plaquinha~preto
+    - caderno-porta-celular~azul-royal
+    - caderno-porta-celular~cinza
+    - caderno-porta-celular~vermelho
+    - caderno-premium
+    - caderno-premium~preto
+    - caderno-premium~terracota
+    - caderno-premium~verde
+    - caderno~azul-marinho
+    - caderno~azul-royal
+    - caderno~bege
+    - caderno~pardo
+    - caderno~preto
+    - caderno~verde
+    - caderno~vermelho
+    - caixa-de-som~azul-marinho
+    - caixa-de-som~branco
+    - caixa-de-som~cinza
+    - caixa-de-som~natural
+    - caixa-de-som~preto
+    - caixa-de-som~vermelho
+    - caixa-personalizada~azul-marinho
+    - caixa-personalizada~bordo
+    - caixa-personalizada~cinza-grafite
+    - caixa-personalizada~cobre
+    - caixa-personalizada~cru
+    - caixa-personalizada~pardo
+    - caixa-personalizada~preto
+    - caixa-tampa-transparente~bronze
+    - caixa-tampa-transparente~verde
+    - caixa-terracota
+    - caixa-terracota~azul
+    - caixa-terracota~bordo
+    - caixa-terracota~verde
+    - camisa-feminina~azul-claro
+    - camisa-feminina~azul-claro-verso
+    - camisa-feminina~azul-marinho
+    - camisa-feminina~azul-marinho-bordado
+    - camisa-feminina~azul-marinho-verso
+    - camisa-feminina~branco
+    - camisa-feminina~branco-verso
+    - camisa-feminina~cinza
+    - camisa-feminina~cinza-bordado
+    - camisa-feminina~cinza-verso
+    - camisa-feminina~preto
+    - camisa-feminina~preto-bordado
+    - camisa-feminina~preto-verso
+    - camisa-feminina~rosa-claro
+    - camisa-feminina~rosa-claro-verso
+    - camisa-masculina~azul-claro
+    - camisa-masculina~azul-claro-verso
+    - camisa-masculina~azul-marinho
+    - camisa-masculina~azul-marinho-bordado
+    - camisa-masculina~azul-marinho-verso
+    - camisa-masculina~branco
+    - camisa-masculina~branco-verso
+    - camisa-masculina~cinza
+    - camisa-masculina~cinza-bordado
+    - camisa-masculina~cinza-verso
+    - camisa-masculina~preto
+    - camisa-masculina~preto-bordado
+    - camisa-masculina~preto-verso
+    - camisa-masculina~rosa-claro
+    - camisa-masculina~rosa-claro-verso
+    - camiseta-feminina~azul-marinho
+    - camiseta-feminina~azul-marinho-bordado
+    - camiseta-feminina~azul-marinho-verso
+    - camiseta-feminina~azul-royal
+    - camiseta-feminina~azul-royal-bordado
+    - camiseta-feminina~azul-royal-verso
+    - camiseta-feminina~branco
+    - camiseta-feminina~branco-verso
+    - camiseta-feminina~cinza
+    - camiseta-feminina~cinza-bordado
+    - camiseta-feminina~cinza-verso
+    - camiseta-feminina~preto
+    - camiseta-feminina~preto-bordado
+    - camiseta-feminina~preto-verso
+    - camiseta-feminina~rosa
+    - camiseta-feminina~rosa-bordado
+    - camiseta-feminina~rosa-verso
+    - camiseta-feminina~verde
+    - camiseta-feminina~verde-bordado
+    - camiseta-feminina~verde-verso
+    - camiseta-feminina~vermelho
+    - camiseta-feminina~vermelho-bordado
+    - camiseta-feminina~vermelho-verso
+    - camiseta~azul-marinho
+    - camiseta~azul-marinho-bordado
+    - camiseta~azul-marinho-verso
+    - camiseta~azul-royal
+    - camiseta~azul-royal-bordado
+    - camiseta~azul-royal-verso
+    - camiseta~branco
+    - camiseta~branco-verso
+    - camiseta~cinza
+    - camiseta~cinza-bordado
+    - camiseta~cinza-verso
+    - camiseta~preto
+    - camiseta~preto-bordado
+    - camiseta~preto-verso
+    - camiseta~rosa
+    - camiseta~rosa-bordado
+    - camiseta~rosa-verso
+    - camiseta~verde
+    - camiseta~verde-bordado
+    - camiseta~verde-verso
+    - camiseta~vermelho
+    - camiseta~vermelho-bordado
+    - camiseta~vermelho-verso
+    - caneca-alta-canudo-bambu~branco
+    - caneca-alta-canudo-bambu~laranja
+    - caneca-alta-canudo-bambu~verde-escuro
+    - caneca-borda~azul-marinho
+    - caneca-borda~branco
+    - caneca-borda~vermelho
+    - caneca-ceramica
+    - caneca-ceramica~azul
+    - caneca-ceramica~creme
+    - caneca-ceramica~verde
+    - caneca-chope-colorida~azul-royal
+    - caneca-chope-colorida~laranja
+    - caneca-chope-colorida~pink
+    - caneca-chope-transparente~transparente
+    - caneca-chopp-termica~azul-royal
+    - caneca-chopp-termica~prata
+    - caneca-chopp-termica~preto
+    - caneca-faixa-natural~azul-royal
+    - caneca-faixa-natural~branco
+    - caneca-faixa-natural~preto
+    - caneca-misturador~branco
+    - caneca-misturador~preto
+    - caneca-misturador~vermelho
+    - caneca-parede-dupla~azul-marinho
+    - caneca-parede-dupla~azul-royal
+    - caneca-parede-dupla~branco
+    - caneca-parede-dupla~laranja
+    - caneca-parede-dupla~preto
+    - caneca-parede-dupla~verde
+    - caneca-parede-dupla~vermelho
+    - caneca-tampa-bambu~cinza
+    - caneca-tampa-bambu~off-white
+    - caneca-tampa-bambu~preto
+    - caneca-termica-com-abridor~azul
+    - caneca-termica-tampa~azul-royal
+    - caneca-termica-tampa~branco
+    - caneca-termica-tampa~cinza
+    - caneca-termica-tampa~preto
+    - caneca-termica-tampa~rosa
+    - caneca-termica-tampa~verde-escuro
+    - caneca-transparente-parede-dupla~ambar
+    - caneca-transparente-parede-dupla~transparente
+    - caneca-transparente-parede-dupla~verde
+    - caneca-viagem-display~preto
+    - caneca~azul-royal
+    - caneca~branco
+    - caneca~laranja
+    - caneca~preto
+    - caneca~verde
+    - caneca~vermelho
+    - caneta-bambu~natural
+    - caneta-executiva
+    - caneta-executiva-estojo~azul-marinho
+    - caneta-executiva-estojo~bordo
+    - caneta-executiva-estojo~preto
+    - caneta-executiva~azul-marinho
+    - caneta-executiva~bordo
+    - caneta-executiva~branco
+    - caneta-executiva~cobre
+    - caneta-executiva~marinho
+    - caneta-executiva~prata
+    - caneta-executiva~preto
+    - caneta-executiva~verde
+    - caneta-giro~azul-royal
+    - caneta-giro~dourado
+    - caneta-giro~laranja
+    - caneta-giro~prata
+    - caneta-giro~preto
+    - caneta-giro~roxo
+    - caneta-giro~vermelho
+    - caneta-grip~amarelo
+    - caneta-grip~azul
+    - caneta-grip~branco
+    - caneta-grip~laranja
+    - caneta-grip~preto
+    - caneta-grip~verde-escuro
+    - caneta-grip~vermelho
+    - caneta-kraft~natural
+    - caneta-marca-texto~azul
+    - caneta-marca-texto~prata
+    - caneta-marca-texto~preto
+    - caneta-metalica~azul
+    - caneta-metalica~bordo
+    - caneta-metalica~dourado
+    - caneta-metalica~prata
+    - caneta-metalica~preto
+    - caneta-metalica~verde
+    - caneta-metalica~vermelho
+    - caneta-plastica~azul-royal
+    - caneta-plastica~branco
+    - caneta-plastica~dourado
+    - caneta-plastica~magenta
+    - caneta-plastica~preto
+    - caneta-plastica~roxo
+    - caneta-plastica~vermelho
+    - caneta-roller~azul-marinho
+    - caneta-roller~bordo
+    - caneta-roller~prata
+    - caneta-roller~preto
+    - caneta-touch~azul-claro
+    - caneta-touch~azul-royal
+    - caneta-touch~branco
+    - caneta-touch~prata
+    - caneta-touch~preto
+    - caneta-touch~rosa-claro
+    - caneta-touch~vermelho
+    - cardapio~azul-marinho
+    - cardapio~bordo
+    - cardapio~cafe
+    - cardapio~caramelo
+    - cardapio~preto
+    - cardapio~verde-escuro
+    - carregador-sem-fio-mesa~azul-marinho
+    - carregador-sem-fio-mesa~branco
+    - carregador-sem-fio-mesa~natural
+    - carregador-sem-fio-mesa~preto
+    - carteira~cafe
+    - carteira~caramelo
+    - carteira~preto
+    - cartoes-colors
+    - cartoes-colors~azul
+    - cartoes-colors~bordo
+    - cartoes-colors~oliva
+    - chaveiro-abridor~azul-royal
+    - chaveiro-abridor~bordo
+    - chaveiro-abridor~laranja
+    - chaveiro-abridor~pink
+    - chaveiro-abridor~prata
+    - chaveiro-abridor~preto
+    - chaveiro-abridor~vermelho
+    - chaveiro-couro~cafe
+    - chaveiro-couro~caramelo
+    - chaveiro-couro~preto
+    - combo-kit-para-petiscos-kit-para-queijos-personalizados~mandeira
+    - conf-chef-dolma
+    - conf-degustacao
+    - conf-degustacao-v2
+    - conf-equipe-kits
+    - conf-escritorio
+    - conf-estande-evento
+    - conf-evento-camisetas
+    - conf-evento-polos
+    - conf-header
+    - confeccoes
+    - copo-acrilico-360~azul-marinho
+    - copo-acrilico-360~bordo
+    - copo-acrilico-360~terracota
+    - copo-acrilico-360~verde-escuro
+    - copo-acrilico-colorido~amarelo
+    - copo-acrilico-colorido~azul
+    - copo-acrilico-colorido~laranja
+    - copo-acrilico-colorido~rosa
+    - copo-acrilico-colorido~transparente
+    - copo-acrilico-colorido~verde-limao
+    - copo-acrilico-colorido~vermelho
+    - copo-antiqueda~branco
+    - copo-antiqueda~preto
+    - copo-antiqueda~turquesa
+    - copo-baixo~transparente
+    - copo-bambu-alca~natural
+    - copo-cafe-inox~azul-royal
+    - copo-cafe-inox~bordo
+    - copo-cafe-inox~branco
+    - copo-cafe-inox~creme
+    - copo-cafe-inox~inox
+    - copo-cafe-inox~preto
+    - copo-cordao~azul
+    - copo-cordao~branco
+    - copo-cordao~preto
+    - copo-cordao~verde
+    - copo-cordao~verde-agua
+    - copo-estampa-total~laranja
+    - copo-faixa-bambu~preto
+    - copo-long-drink~azul-claro
+    - copo-long-drink~branco
+    - copo-long-drink~dourado
+    - copo-long-drink~rosa
+    - copo-long-drink~transparente
+    - copo-luva-canelada~amarelo
+    - copo-luva-canelada~cru-salpicado
+    - copo-luva-canelada~terracota
+    - copo-papel~branco
+    - copo-papel~kraft
+    - copo-papel~preto
+    - copo-retratil~azul-royal
+    - copo-retratil~preto
+    - copo-retratil~rosa
+    - copo-retratil~verde
+    - copo-retratil~verde-limao
+    - copo-retratil~vermelho
+    - copo-salada~azul-royal
+    - copo-salada~laranja
+    - copo-salada~verde
+    - copo-tampa-canudo~amarelo
+    - copo-tampa-canudo~azul
+    - copo-tampa-canudo~laranja
+    - copo-tampa-canudo~preto
+    - copo-tampa-canudo~rosa
+    - copo-tampa-canudo~roxo
+    - copo-tampa-canudo~transparente
+    - copo-tampa-canudo~verde
+    - copo-tampa-canudo~vermelho
+    - copo-termico-alca~azul-marinho
+    - copo-termico-alca~azul-royal
+    - copo-termico-alca~branco
+    - copo-termico-alca~cru
+    - copo-termico-alca~preto
+    - copo-termico-alca~rosa
+    - copo-termico-alca~verde
+    - copo-termico-alca~vermelho
+    - copo-termico-tampa-abridor~bordo
+    - copo-termico-tampa-abridor~preto
+    - copo-termico-tampa-abridor~verde-escuro
+    - copo-termico-vinho~azul-marinho
+    - copo-termico-vinho~branco
+    - copo-termico-vinho~preto
+    - copo-termico-vinho~verde
+    - copo-termico-vinho~vermelho
+    - copo-termico~azul-royal
+    - copo-termico~branco
+    - copo-termico~preto
+    - copo-termico~verde
+    - copo-termico~verde-oliva
+    - copo-termico~vermelho
+    - coqueteleira~prata
+    - coqueteleira~preto
+    - coqueteleira~transparente
+    - coqueteleira~verde-translucido
+    - cortador-pizza~amarelo
+    - cortador-pizza~azul-royal
+    - cortador-pizza~branco
+    - cortador-pizza~preto
+    - cortador-pizza~verde
+    - cortador-pizza~vermelho
+    - couro-verde
+    - couro-verde~cafe
+    - couro-verde~marinho
+    - couro-verde~terracota
+    - detalhe-caderno
+    - detalhe-garrafa
+    - detalhe-polo
+    - difusor~ambar
+    - difusor~natural
+    - dolma~azul-marinho
+    - dolma~azul-marinho-bordado
+    - dolma~azul-marinho-verso
+    - dolma~branco
+    - dolma~branco-verso
+    - dolma~jeans
+    - dolma~jeans-bordado
+    - dolma~jeans-verso
+    - dolma~preto
+    - dolma~preto-bordado
+    - dolma~preto-verso
+    - dolma~rosa
+    - dolma~rosa-bordado
+    - dolma~rosa-verso
+    - ecobag~cinza
+    - ecobag~cru
+    - ecobag~laranja
+    - ecobag~preto
+    - ecobag~rosa
+    - ecobag~verde
+    - ecobag~vermelho
+    - editorial-kit-cores
+    - embalagem-presente
+    - embalagem-presente~bordo
+    - embalagem-presente~creme
+    - embalagem-presente~verde
+    - estojo-acessorios-vinho~natural
+    - estojo-acessorios-vinho~preto
+    - fim-header
+    - flute-borda-dourada~transparente
+    - fone-fio-estojo~branco
+    - fone-fio-estojo~vermelho
+    - fone-sem-fio~azul-marinho
+    - fone-sem-fio~branco
+    - fone-sem-fio~preto
+    - fone-sem-fio~rosa
+    - garrafa-bambu~natural
+    - garrafa-base-natural~preto
+    - garrafa-display~azul-royal
+    - garrafa-display~prata
+    - garrafa-display~preto
+    - garrafa-esportiva~azul-claro
+    - garrafa-esportiva~azul-royal
+    - garrafa-esportiva~coral
+    - garrafa-esportiva~preto
+    - garrafa-esportiva~rosa
+    - garrafa-esportiva~transparente
+    - garrafa-esportiva~verde
+    - garrafa-shaker~azul-royal
+    - garrafa-shaker~transparente
+    - garrafa-slim-alca~branco
+    - garrafa-slim-alca~preto
+    - garrafa-termica
+    - garrafa-termica-classica~azul-marinho
+    - garrafa-termica-classica~preto
+    - garrafa-termica-classica~verde
+    - garrafa-termica-slim-botao~bordo
+    - garrafa-termica-slim-botao~branco
+    - garrafa-termica-slim-botao~turquesa
+    - garrafa-termica~areia
+    - garrafa-termica~azul
+    - garrafa-termica~azul-royal
+    - garrafa-termica~branco
+    - garrafa-termica~laranja
+    - garrafa-termica~ocre
+    - garrafa-termica~prata
+    - garrafa-termica~preto
+    - garrafa-termica~rosa
+    - garrafa-termica~verde
+    - garrafa-termica~vermelho
+    - garrafa-vidro-capa~transparente
+    - garrafa-vidro-capa~turquesa
+    - guarda-chuva~azul-marinho
+    - guarda-chuva~preto
+    - guarda-chuva~verde
+    - guarda-chuva~vermelho
+    - headphone~azul-marinho
+    - headphone~branco
+    - headphone~cinza
+    - headphone~preto
+    - hero-brand
+    - hero-brindes
+    - hero-brindes-v2
+    - hero-gift
+    - hero-kits
+    - hero-kits-v2
+    - hero-v3-brindes
+    - hero-v3-confeccoes
+    - hero-v3-confeccoes-v2
+    - hero-v3-escritorio
+    - hero-wear
+    - home-brindes
+    - home-card-brindes
+    - home-confeccoes
+    - home-escritorio
+    - home-escritorio-v2
+    - home-frente-brindes
+    - home-frente-brindes-v2
+    - home-frente-confeccoes
+    - home-frente-confeccoes-v2
+    - home-frente-kits
+    - home-frente-kits-v2
+    - home-kits
+    - hoodie-azul
+    - hoodie-azul~preto
+    - hoodie-azul~verde
+    - hoodie-azul~vinho
+    - hot-header
+    - jogo-americano-impresso~azul-marinho
+    - jogo-americano-impresso~preto
+    - jogo-americano-impresso~verde-escuro
+    - jogo-americano-impresso~vermelho
+    - jogo-americano-oval~azul-marinho
+    - jogo-americano-oval~bordo
+    - jogo-americano-oval~caramelo
+    - jogo-americano-oval~preto
+    - jogo-americano-oval~taupe
+    - jogo-americano-oval~verde-escuro
+    - jogo-americano-retangular~azul-marinho
+    - jogo-americano-retangular~bordo
+    - jogo-americano-retangular~caramelo
+    - jogo-americano-retangular~havana
+    - jogo-americano-retangular~preto
+    - jogo-americano-retangular~verde-escuro
+    - kit-caneta-lapiseira~azul-marinho
+    - kit-caneta-lapiseira~natural
+    - kit-caneta-lapiseira~preto
+    - kit-churrasco~cafe
+    - kit-churrasco~preto
+    - kit-dolma-chef-touca-profissional~branco
+    - kit-kit-agradecimento-202610231506
+    - kit-kit-agradecimento-202610232235
+    - kit-kit-agradecimento-202610232241
+    - kit-kit-agradecimento-202610232242
+    - kit-kit-agradecimento-202610240049
+    - kit-kit-boas-vindas-tech-202610232225
+    - kit-kit-boas-vindas-tech-202610232311
+    - kit-kit-boas-vindas-tech-202610240046
+    - kit-kit-caipirinha-202610231437
+    - kit-kit-caipirinha-202610232309
+    - kit-kit-caipirinha-202610240054
+    - kit-kit-caipirinha-202610250105
+    - kit-kit-executivo-verde-202610232227
+    - kit-kit-petiscos-202610232229
+    - kit-kit-petiscos-202610240058
+    - kit-kit-petiscos-202610240101
+    - kit-kit-petiscos-202610240103
+    - kit-kit-petiscos-202610271954
+    - kit-kit-petiscos-202610271959
+    - kit-kit-vinho-202610231413
+    - kit-kit-vinho-202610231418
+    - kit-papelaria
+    - kit-papelaria~areia
+    - kit-papelaria~azul-marinho
+    - kit-papelaria~mostarda
+    - kit-para-pizza-personalizado-com-tabua-cortador-espatula~tom-natural
+    - kit-presente
+    - kit-presente~areia
+    - kit-presente~marinho
+    - kit-presente~verde
+    - kitp-em-movimento
+    - kitp-em-movimento-v2
+    - kitp-gelato-experience
+    - kitp-gelato-experience-v2
+    - kitp-gelato-experience-v3
+    - kitp-kit-agradecimento
+    - kitp-kit-brinde
+    - kitp-kit-cafe
+    - kitp-kit-caipirinha
+    - kitp-kit-completo
+    - kitp-kit-conectado
+    - kitp-kit-coquetel
+    - kitp-kit-cozinha
+    - kitp-kit-escritorio
+    - kitp-kit-executivo
+    - kitp-kit-executivo-verde
+    - kitp-kit-gin
+    - kitp-kit-petiscos
+    - kitp-kit-pratico
+    - kitp-kit-pratico-v2
+    - kitp-kit-vinho
+    - kitp-mesa-de-descobertas
+    - kitp-mesa-de-descobertas-v2
+    - kitp-mesa-de-descobertas-v3
+    - kitp-pausa-e-inspiracao
+    - kitp-pausa-e-inspiracao-v2
+    - kits-header
+    - kits-header-v3
+    - look-corporativo
+    - look-corporativo~off-white
+    - look-corporativo~terracota
+    - look-corporativo~verde
+    - manta-textil
+    - manta-textil~areia
+    - manta-textil~lilas
+    - manta-textil~terracota
+    - marcas
+    - mini-tabua-22x13-cm~tom-natural
+    - mochila-antifurto~cinza-mesclado
+    - mochila-antifurto~preto
+    - mochila-bolso-frontal~azul-royal
+    - mochila-bolso-frontal~preto
+    - mochila-bolso-frontal~vermelho
+    - mochila-notebook~azul-marinho
+    - mochila-notebook~cinza
+    - mochila-notebook~natural
+    - mochila-notebook~preto
+    - mochila-ombro~azul-marinho
+    - mochila-ombro~cinza
+    - mochila-ombro~preto
+    - mochila-roll-top~azul-marinho
+    - mochila-roll-top~preto
+    - mochila-saco-bicolor~azul-acinzentado
+    - mochila-saco-bicolor~cinza
+    - mochila-saco-bicolor~preto
+    - mochila-saco-transparente~laranja
+    - mochila-saco-transparente~transparente-com-cordao-preto
+    - mochila-saco-transparente~verde
+    - mochila-saco~amarelo
+    - mochila-saco~azul-royal
+    - mochila-saco~laranja
+    - mochila-saco~pink
+    - mochila-saco~preto
+    - mochila-saco~verde
+    - mochila-saco~vermelho
+    - moletom~azul-marinho
+    - moletom~azul-marinho-bordado
+    - moletom~azul-marinho-verso
+    - moletom~azul-royal
+    - moletom~azul-royal-bordado
+    - moletom~azul-royal-verso
+    - moletom~branco
+    - moletom~branco-verso
+    - moletom~cinza
+    - moletom~cinza-bordado
+    - moletom~cinza-verso
+    - moletom~preto
+    - moletom~preto-bordado
+    - moletom~preto-verso
+    - moletom~rosa
+    - moletom~rosa-bordado
+    - moletom~rosa-verso
+    - moletom~verde
+    - moletom~verde-bordado
+    - moletom~verde-verso
+    - moletom~vermelho
+    - moletom~vermelho-bordado
+    - moletom~vermelho-verso
+    - mouse-pad-punho~preto
+    - necessaire-colorida~azul-royal
+    - necessaire-colorida~pink
+    - necessaire-colorida~preto
+    - necessaire-colorida~rosa
+    - necessaire-colorida~roxo
+    - necessaire-colorida~verde
+    - necessaire-colorida~vermelho
+    - necessaire~azul-marinho
+    - necessaire~caramelo
+    - necessaire~preto
+    - necessaire~terracota
+    - ocasiao-boas-vindas
+    - ocasiao-campanhas
+    - ocasiao-eventos
+    - ocasiao-executivos
+    - ocasiao-lancamentos
+    - ocasiao-reconhecimento
+    - papelaria-cores
+    - papelaria-cores~azul
+    - papelaria-cores~bordo
+    - papelaria-cores~verde
+    - petisqueira-quadrada~natural
+    - polo-feminina~azul-marinho
+    - polo-feminina~azul-marinho-bordado
+    - polo-feminina~azul-marinho-verso
+    - polo-feminina~azul-royal
+    - polo-feminina~azul-royal-bordado
+    - polo-feminina~azul-royal-verso
+    - polo-feminina~branco
+    - polo-feminina~branco-verso
+    - polo-feminina~cinza
+    - polo-feminina~cinza-bordado
+    - polo-feminina~cinza-verso
+    - polo-feminina~preto
+    - polo-feminina~preto-bordado
+    - polo-feminina~preto-verso
+    - polo-feminina~rosa
+    - polo-feminina~rosa-bordado
+    - polo-feminina~rosa-verso
+    - polo-feminina~verde
+    - polo-feminina~verde-bordado
+    - polo-feminina~verde-verso
+    - polo-feminina~vermelho
+    - polo-feminina~vermelho-bordado
+    - polo-feminina~vermelho-verso
+    - polo-offwhite
+    - polo-offwhite~marinho
+    - polo-offwhite~preto
+    - polo-offwhite~verde
+    - polo~azul-marinho
+    - polo~azul-marinho-bordado
+    - polo~azul-marinho-verso
+    - polo~azul-royal
+    - polo~azul-royal-bordado
+    - polo~azul-royal-verso
+    - polo~branco
+    - polo~branco-verso
+    - polo~cinza
+    - polo~cinza-bordado
+    - polo~cinza-verso
+    - polo~preto
+    - polo~preto-bordado
+    - polo~preto-verso
+    - polo~rosa
+    - polo~rosa-bordado
+    - polo~rosa-verso
+    - polo~verde
+    - polo~verde-bordado
+    - polo~verde-verso
+    - polo~vermelho
+    - polo~vermelho-bordado
+    - polo~vermelho-verso
+    - porta-contas~azul-marinho
+    - porta-contas~bordo
+    - porta-contas~cafe
+    - porta-contas~caramelo
+    - porta-contas~havana
+    - porta-contas~preto
+    - porta-copos~cafe
+    - porta-copos~natural
+    - porta-lapis~azul-marinho
+    - porta-lapis~cafe
+    - porta-lapis~caramelo
+    - porta-lapis~preto
+    - porta-lata~azul-marinho
+    - porta-lata~branco
+    - porta-lata~preto
+    - porta-lata~verde
+    - porta-lata~vermelho
+    - power-bank-slim~azul-marinho
+    - power-bank-slim~branco
+    - power-bank-slim~prata
+    - power-bank-slim~preto
+    - power-bank-ventosa~azul-royal
+    - power-bank-ventosa~branco
+    - power-bank-ventosa~preto
+    - power-bank-ventosa~rosa
+    - ramequim~branco
+    - ramequim~cinza
+    - saca-rolhas-garcom~prata
+    - saca-rolhas-garcom~preto
+    - sacola-alca-longa~azul-marinho
+    - sacola-alca-longa~cru
+    - sacola-alca-longa~laranja
+    - sacola-alca-longa~verde-escuro
+    - sacola-alca-longa~vermelho
+    - sacola-metalizada~dourado
+    - sacola-metalizada~prata
+    - sacola-metalizada~vermelho
+    - sacola-presente~azul-royal
+    - sacola-presente~cru
+    - sacola-presente~preto
+    - sacola-presente~vermelho
+    - sacola-verde
+    - sacola-verde~azul
+    - sacola-verde~creme
+    - sacola-verde~terracota
+    - secao-ativ-cena-1-202610250054
+    - secao-ativ-cena-1-202610271957
+    - secao-ativ-cena-1-202610272021
+    - secao-ativ-cena-2-202610250056
+    - secao-ativ-cena-2-202610272025
+    - slide-ativacoes
+    - slide-brindes-202610242029
+    - slide-brindes-202610242104
+    - slide-brindes-202610242129
+    - slide-brindes-202610242311
+    - slide-brindes-202610250016
+    - slide-brindes-202610250031
+    - slide-fim-de-ano-202610261719
+    - slide-kits-202610261705
+    - slide-kits-202610261722
+    - sobre-caderno
+    - sobre-caixa
+    - sobre-header
+    - sobre-uniforme
+    - socador~natural
+    - squeeze-dobravel~azul-royal
+    - squeeze-dobravel~branco
+    - squeeze-dobravel~preto
+    - squeeze-dobravel~verde
+    - squeeze-dobravel~vermelho
+    - squeeze-metalico~azul-royal
+    - squeeze-metalico~dourado
+    - squeeze-metalico~grafite
+    - squeeze-metalico~prata
+    - squeeze-metalico~preto
+    - squeeze-metalico~verde
+    - squeeze-metalico~verde-limao
+    - squeeze-metalico~vermelho
+    - squeeze~azul-claro-translucido
+    - squeeze~azul-royal
+    - squeeze~branco
+    - squeeze~preto
+    - squeeze~verde
+    - squeeze~vermelho
+    - suporte-celular~azul-royal
+    - suporte-celular~branco
+    - suporte-celular~cinza-grafite
+    - suporte-celular~preto
+    - suporte-celular~verde
+    - suporte-celular~vermelho
+    - suporte-facas-queijo~natural
+    - tabua-gaveta~natural
+    - tabua-queijos~caramelo
+    - tabua-queijos~natural
+    - tabua-raquete~natural
+    - taca-champagne-acrilico~amarelo
+    - taca-champagne-acrilico~azul-royal
+    - taca-champagne-acrilico~branco
+    - taca-champagne-acrilico~preto
+    - taca-champagne-acrilico~transparente
+    - taca-champagne-acrilico~turquesa
+    - taca-champagne-acrilico~vermelho
+    - taca-coupe-lisa~azul-cobalto
+    - taca-coupe-lisa~transparente
+    - taca-coupe-lisa~vermelho
+    - taca-coupe~fume
+    - taca-coupe~rose
+    - taca-coupe~transparente
+    - taca-gin-acrilico~azul-claro
+    - taca-gin-acrilico~azul-royal
+    - taca-gin-acrilico~branco
+    - taca-gin-acrilico~preto
+    - taca-gin-acrilico~rosa
+    - taca-gin-acrilico~transparente
+    - taca-gin-acrilico~verde
+    - taca-gin-acrilico~vermelho
+    - taca-gin-borda-dourada~branco
+    - taca-gin-borda-dourada~preto
+    - taca-gin-degrade~branco-e-turquesa
+    - taca-gin-degrade~rosa-e-azul
+    - taca-gin-pe-colorido~amarelo
+    - taca-gin-pe-colorido~azul
+    - taca-gin-pe-colorido~pink
+    - taca-gin-pe-colorido~verde
+    - taca-gin-pe-colorido~vermelho
+    - taca-gin-pe-colorido~vinho
+    - taca-gin-transparente~transparente
+    - taca-margarita~transparente
+    - taca-martini~transparente
+    - taca-vinho-acrilico~azul-royal
+    - taca-vinho-acrilico~bordo
+    - taca-vinho-acrilico~branco
+    - taca-vinho-acrilico~preto
+    - taca-vinho-acrilico~transparente
+    - taca-vinho-acrilico~turquesa
+    - taca-vinho-acrilico~vermelho
+    - toalha-rosto~branco
+    - topo-ativacoes-202610242024
+    - topo-ativacoes-202610242048
+    - topo-ativacoes-202610242102
+    - topo-ativacoes-202610242127
+    - topo-ativacoes-202610250056
+    - topo-fim-de-ano-202610261745
+    - totebag
+    - totebag--ondora
+    - trofeu-recortado~preto
+    - uniforme-verde
+    - uniforme-verde~azul
+    - uniforme-verde~creme
+    - uniforme-verde~preto
+    - vela~cafe
+    - vela~couro
+    - vela~creme
+    - vela~preto
+    - vela~verde
+    hint: Fotografias conceituais e mockups já usados no site. Ou envie uma imagem nova no campo abaixo.
+  - label: 'Capa: enviar imagem nova'
+    name: capa_arquivo
+    widget: image
+    required: false
+    choose_url: false
+    hint: Só fotos próprias ou com licença de uso. Mínimo de 1600 px de largura. Se preenchida, substitui a da biblioteca.
+  - label: Descrição da capa (texto alternativo)
+    name: capa_alt
+    widget: string
+    hint: 'O que aparece na foto, para leitores de tela e para o Google. Ex.: caixa terracota com caderno e garrafa verde.'
+  - label: A capa é uma fotografia conceitual
+    name: capa_conceitual
+    widget: boolean
+    default: true
+    required: false
+    hint: Desmarque só para fotos reais de trabalhos entregues. Conceituais aparecem identificadas no site.
+  - label: Legenda da capa
+    name: capa_legenda
+    widget: string
+    required: false
+    hint: 'Ex.: Imagem ilustrativa · Marcas fictícias. Vazio: "Fotografia conceitual" quando a capa for conceitual.'
+  - label: Enquadramento da capa
+    name: capa_posicao
+    widget: string
+    required: false
+    hint: 'Opcional. Ex.: 50% 40% (horizontal e vertical) para mostrar outra parte da foto.'
+  - label: Peças do catálogo
+    name: pecas
+    widget: select
+    multiple: true
+    required: false
+    max: 9
+    options:
+    - label: Polo masculina (Vestuário)
+      value: polo-masculina
+    - label: Polo feminina (Vestuário)
+      value: polo-feminina
+    - label: Camisa masculina (Vestuário)
+      value: camisa-masculina
+    - label: Camisa feminina (Vestuário)
+      value: camisa-feminina
+    - label: Camiseta masculina (Vestuário)
+      value: camiseta-masculina
+    - label: Camiseta feminina (Vestuário)
+      value: camiseta-feminina
+    - label: Moletom com capuz (Vestuário)
+      value: moletom-com-capuz
+    - label: Boné (Vestuário)
+      value: bone
+    - label: Dólmã (Vestuário)
+      value: dolma
+    - label: Avental (Vestuário)
+      value: avental
+    - label: Boné trucker (Vestuário)
+      value: bone-trucker
+    - label: Boné aba reta (Vestuário)
+      value: bone-aba-reta
+    - label: Avental Cintura Meia Saia (Vestuário)
+      value: avental-cintura-meia-saia
+    - label: Avental Roma (Vestuário)
+      value: avental-roma
+    - label: Avental Vintage (Vestuário)
+      value: avental-vintage
+    - label: Kit Dolma Chef + Touca Profissional (Vestuário)
+      value: kit-dolma-chef-touca-profissional
+    - label: Caderno de anotações (Canetas e escritório)
+      value: caderno-de-anotacoes
+    - label: Agenda (Canetas e escritório)
+      value: agenda
+    - label: Caneta executiva com estojo (Canetas e escritório)
+      value: caneta-executiva-com-estojo
+    - label: Caneta executiva esferográfica (Canetas e escritório)
+      value: caneta-executiva-esferografica
+    - label: Caneta executiva roller (Canetas e escritório)
+      value: caneta-executiva-roller
+    - label: Agenda diária wire-o (Canetas e escritório)
+      value: agenda-diaria-wire-o
+    - label: Bloco com autoadesivos e caneta (Canetas e escritório)
+      value: bloco-com-autoadesivos-e-caneta
+    - label: Caderno A5 com elástico (Canetas e escritório)
+      value: caderno-a5-com-elastico
+    - label: Suporte de celular (Canetas e escritório)
+      value: suporte-de-celular
+    - label: Caneta e lapiseira em estojo (Canetas e escritório)
+      value: caneta-e-lapiseira-em-estojo
+    - label: Caneta com marca-texto (Canetas e escritório)
+      value: caneta-com-marca-texto
+    - label: Agenda de bolso vertical (Canetas e escritório)
+      value: agenda-de-bolso-vertical
+    - label: Agenda bicolor com porta-caneta (Canetas e escritório)
+      value: agenda-bicolor-com-porta-caneta
+    - label: Bloco espiral com capa translúcida e caneta (Canetas e escritório)
+      value: bloco-espiral-com-capa-translucida-e-caneta
+    - label: Bloco de mesa com argolas (Canetas e escritório)
+      value: bloco-de-mesa-com-argolas
+    - label: Bloco capa dura com caneta na capa (Canetas e escritório)
+      value: bloco-capa-dura-com-caneta-na-capa
+    - label: Caderno com faixas elásticas porta-celular (Canetas e escritório)
+      value: caderno-com-faixas-elasticas-porta-celular
+    - label: Bloco wire-o com espiral no topo (Canetas e escritório)
+      value: bloco-wire-o-com-espiral-no-topo
+    - label: Caderno com aba de fechamento e bolso porta-cartão (Canetas e escritório)
+      value: caderno-com-aba-de-fechamento-e-bolso-porta-cartao
+    - label: Caderno de capa bicolor (Canetas e escritório)
+      value: caderno-de-capa-bicolor
+    - label: Caderneta espiral parda com caneta (Canetas e escritório)
+      value: caderneta-espiral-parda-com-caneta
+    - label: Caderno com faixa superior e plaquinha (Canetas e escritório)
+      value: caderno-com-faixa-superior-e-plaquinha
+    - label: Caneta básica (Canetas e escritório)
+      value: caneta-basica
+    - label: Caneta com acionamento por giro (Canetas e escritório)
+      value: caneta-com-acionamento-por-giro
+    - label: Caneta com grip (Canetas e escritório)
+      value: caneta-com-grip
+    - label: Caneta com ponta touch (Canetas e escritório)
+      value: caneta-com-ponta-touch
+    - label: Caneta de corpo claro (Canetas e escritório)
+      value: caneta-natural
+    - label: Caneta de corpo pardo (Canetas e escritório)
+      value: caneta-parda
+    - label: Caneta slim (Canetas e escritório)
+      value: caneta-slim
+    - label: Porta-canetas (Canetas e escritório)
+      value: porta-canetas
+    - label: Power bank slim (Tecnologia)
+      value: power-bank-slim
+    - label: Fone de ouvido sem fio (Tecnologia)
+      value: fone-de-ouvido-sem-fio
+    - label: Carregador sem fio de mesa (Tecnologia)
+      value: carregador-sem-fio-de-mesa
+    - label: Headphone (Tecnologia)
+      value: headphone
+    - label: Caixa de som (Tecnologia)
+      value: caixa-de-som
+    - label: Power bank com ventosas (Tecnologia)
+      value: power-bank-com-ventosas
+    - label: Mouse pad com apoio de punho (Tecnologia)
+      value: mouse-pad-com-apoio-de-punho
+    - label: Fone intra-auricular com fio em estojo (Tecnologia)
+      value: fone-intra-auricular-com-fio-em-estojo
+    - label: Ecobag (Bolsas e embalagens)
+      value: ecobag
+    - label: Bolsa listrada com inicial (Bolsas e embalagens)
+      value: bolsa-listrada-com-inicial
+    - label: Caixa para presente (Bolsas e embalagens)
+      value: caixa-para-presente
+    - label: Sacola para presente (Bolsas e embalagens)
+      value: sacola-para-presente
+    - label: Nécessaire (Bolsas e embalagens)
+      value: necessaire
+    - label: Mochila para notebook (Bolsas e embalagens)
+      value: mochila-para-notebook
+    - label: Mochila saco (Bolsas e embalagens)
+      value: mochila-saco
+    - label: Mochila de ombro (Bolsas e embalagens)
+      value: mochila-de-ombro
+    - label: Sacola de alça longa (Bolsas e embalagens)
+      value: sacola-de-alca-longa
+    - label: Nécessaire colorida (Bolsas e embalagens)
+      value: necessaire-colorida
+    - label: Bolsa térmica (Bolsas e embalagens)
+      value: bolsa-termica
+    - label: Sacola metalizada com sanfona (Bolsas e embalagens)
+      value: sacola-metalizada-com-sanfona
+    - label: Mochila saco bicolor com bolso frontal (Bolsas e embalagens)
+      value: mochila-saco-bicolor-com-bolso-frontal
+    - label: Mochila saco transparente (Bolsas e embalagens)
+      value: mochila-saco-transparente
+    - label: Mochila simples com bolso frontal (Bolsas e embalagens)
+      value: mochila-simples-com-bolso-frontal
+    - label: Mochila antifurto (Bolsas e embalagens)
+      value: mochila-antifurto
+    - label: Mochila roll-top (Bolsas e embalagens)
+      value: mochila-roll-top
+    - label: Caixa para presente com tampa transparente (Bolsas e embalagens)
+      value: caixa-para-presente-com-tampa-transparente
+    - label: Garrafa térmica (Garrafas e copos)
+      value: garrafa-termica
+    - label: Copo com tampa (Garrafas e copos)
+      value: copo-com-tampa
+    - label: Garrafa squeeze (Garrafas e copos)
+      value: squeeze
+    - label: Taça flute (Garrafas e copos)
+      value: taca-de-champanhe
+    - label: Taça de gin colorida (Garrafas e copos)
+      value: taca-de-gin
+    - label: Taça de vinho (Garrafas e copos)
+      value: taca-de-vinho
+    - label: Taça coupe canelada (Garrafas e copos)
+      value: taca-coupe-canelada
+    - label: Taça flute com borda dourada (Garrafas e copos)
+      value: flute-com-borda-dourada
+    - label: Taça de gin com pé colorido (Garrafas e copos)
+      value: taca-de-gin-com-pe-colorido
+    - label: Taça de gin transparente (Garrafas e copos)
+      value: taca-de-gin-transparente
+    - label: Taça de gin degradê (Garrafas e copos)
+      value: taca-de-gin-degrade
+    - label: Copo colorido texturizado (Garrafas e copos)
+      value: copo-colorido-texturizado
+    - label: Copo com tampa e canudo (Garrafas e copos)
+      value: copo-com-tampa-e-canudo
+    - label: Taça martini (Garrafas e copos)
+      value: taca-martini
+    - label: Taça de gin com borda dourada (Garrafas e copos)
+      value: taca-de-gin-com-borda-dourada
+    - label: Taça margarita (Garrafas e copos)
+      value: taca-margarita
+    - label: Copo com estampa 360° (Garrafas e copos)
+      value: copo-360
+    - label: Copo com cordão (Garrafas e copos)
+      value: copo-com-cordao
+    - label: Copo long drink (Garrafas e copos)
+      value: copo-long-drink
+    - label: Copo baixo (Garrafas e copos)
+      value: copo-baixo
+    - label: Copo de vinho com tampa (Garrafas e copos)
+      value: copo-de-vinho-com-tampa
+    - label: Copo de café (Garrafas e copos)
+      value: copo-de-cafe
+    - label: Copo para viagem (Garrafas e copos)
+      value: copo-para-viagem
+    - label: Caneca de parede dupla (Garrafas e copos)
+      value: caneca-de-parede-dupla
+    - label: Caneca térmica com tampa (Garrafas e copos)
+      value: caneca-termica-com-tampa
+    - label: Caneca com borda contrastante (Garrafas e copos)
+      value: caneca-com-borda-contrastante
+    - label: Caneca com faixa natural (Garrafas e copos)
+      value: caneca-com-faixa-natural
+    - label: Squeeze com mosquetão (Garrafas e copos)
+      value: squeeze-com-mosquetao
+    - label: Garrafa esportiva grande (Garrafas e copos)
+      value: garrafa-esportiva-grande
+    - label: Squeeze dobrável (Garrafas e copos)
+      value: squeeze-dobravel
+    - label: Copo térmico com alça (Garrafas e copos)
+      value: copo-termico-com-alca
+    - label: Copo retrátil (Garrafas e copos)
+      value: copo-retratil
+    - label: Garrafa shaker (Garrafas e copos)
+      value: garrafa-shaker
+    - label: Caneca térmica tipo chope (Garrafas e copos)
+      value: caneca-termica-tipo-chope
+    - label: Copo para salada com garfo e molheira (Garrafas e copos)
+      value: copo-para-salada-com-garfo-e-molheira
+    - label: Garrafa térmica slim com tampa de botão (Garrafas e copos)
+      value: garrafa-termica-slim-com-tampa-de-botao
+    - label: Garrafa térmica clássica grande (Garrafas e copos)
+      value: garrafa-termica-classica-grande
+    - label: Garrafa térmica com display de temperatura na tampa (Garrafas e copos)
+      value: garrafa-termica-com-display-de-temperatura-na-tampa
+    - label: Copo térmico com tampa abridor (Garrafas e copos)
+      value: copo-termico-com-tampa-abridor
+    - label: Garrafa slim com alça na tampa (Garrafas e copos)
+      value: garrafa-slim-com-alca-na-tampa
+    - label: Garrafa transparente com capa e tampa natural (Garrafas e copos)
+      value: garrafa-transparente-com-capa-e-tampa-natural
+    - label: Taça coupe lisa de haste longa (Garrafas e copos)
+      value: taca-coupe-lisa-de-haste-longa
+    - label: Caneca transparente de parede dupla (Garrafas e copos)
+      value: caneca-transparente-de-parede-dupla
+    - label: Caneca de chope colorida (Garrafas e copos)
+      value: caneca-de-chope-colorida
+    - label: Caneca térmica com misturador automático (Garrafas e copos)
+      value: caneca-termica-com-misturador-automatico
+    - label: Caneca térmica com tampa natural (Garrafas e copos)
+      value: caneca-termica-com-tampa-natural
+    - label: Caneca térmica alta com tampa natural e canudo (Garrafas e copos)
+      value: caneca-termica-alta-com-tampa-natural-e-canudo
+    - label: Caneca de viagem com display de temperatura (Garrafas e copos)
+      value: caneca-de-viagem-com-display-de-temperatura
+    - label: Copo com luva canelada (Garrafas e copos)
+      value: copo-com-luva-canelada
+    - label: Copo com estampa em toda a volta (Garrafas e copos)
+      value: copo-com-estampa-em-toda-a-volta
+    - label: Copo térmico antiqueda com tampa flip (Garrafas e copos)
+      value: copo-termico-antiqueda-com-tampa-flip
+    - label: Garrafa térmica com base natural (Garrafas e copos)
+      value: garrafa-termica-com-base-natural
+    - label: Garrafa térmica com revestimento natural (Garrafas e copos)
+      value: garrafa-termica-com-revestimento-natural
+    - label: Copo térmico com faixa natural (Garrafas e copos)
+      value: copo-termico-com-faixa-natural
+    - label: Copo térmico com revestimento natural e alça (Garrafas e copos)
+      value: copo-termico-com-revestimento-natural-e-alca
+    - label: Caneca de chope transparente (Garrafas e copos)
+      value: caneca-de-chope-transparente
+    - label: Caneca Térmica com Abridor (Garrafas e copos)
+      value: caneca-termica-com-abridor
+    - label: Caneca (Cozinha e bar)
+      value: caneca
+    - label: Tábua de queijos com facas (Cozinha e bar)
+      value: tabua-de-queijos-com-facas
+    - label: Kit churrasco em estojo (Cozinha e bar)
+      value: kit-churrasco-em-estojo
+    - label: Cortador de pizza (Cozinha e bar)
+      value: cortador-de-pizza
+    - label: Coqueteleira (Cozinha e bar)
+      value: coqueteleira
+    - label: Porta-lata térmico (Cozinha e bar)
+      value: porta-lata-termico
+    - label: Tábua de queijos com gaveta e utensílios (Cozinha e bar)
+      value: tabua-de-queijos-com-gaveta-e-utensilios
+    - label: Suporte com 5 facas de queijo (Cozinha e bar)
+      value: suporte-com-5-facas-de-queijo
+    - label: Porta-copos redondo (Cozinha e bar)
+      value: porta-copos-redondo
+    - label: Socador de caipirinha (Cozinha e bar)
+      value: socador-de-caipirinha
+    - label: Tábua de petiscos com cabo (Cozinha e bar)
+      value: tabua-de-petiscos-com-cabo
+    - label: Petisqueira quadrada (Cozinha e bar)
+      value: petisqueira-quadrada
+    - label: Ramequim (Cozinha e bar)
+      value: ramequim
+    - label: Saca-rolhas tipo garçom (Cozinha e bar)
+      value: saca-rolhas-tipo-garcom
+    - label: Estojo com acessórios de vinho (Cozinha e bar)
+      value: estojo-com-acessorios-de-vinho
+    - label: Combo Kit para Petiscos & Kit para Queijos Personalizados (Cozinha e bar)
+      value: combo-kit-para-petiscos-kit-para-queijos-personalizados
+    - label: Kit para Pizza Personalizado com Tábua + Cortador + Espátula (Cozinha e bar)
+      value: kit-para-pizza-personalizado-com-tabua-cortador-espatula
+    - label: Mini Tábua 22x13 cm (Cozinha e bar)
+      value: mini-tabua-22x13-cm
+    - label: Troféu recortado com base (Acessórios)
+      value: trofeu-recortado-com-base
+    - label: Carteira (Acessórios)
+      value: carteira
+    - label: Chaveiro abridor de garrafa (Acessórios)
+      value: chaveiro-abridor-de-garrafa
+    - label: Chaveiro com tira (Acessórios)
+      value: chaveiro-com-tira
+    - label: Guarda-chuva (Acessórios)
+      value: guarda-chuva
+    - label: Toalha de rosto (Casa e bem-estar)
+      value: toalha-de-rosto
+    - label: Difusor de aromas (Casa e bem-estar)
+      value: difusor-de-aromas
+    - label: Vela aromática em copo (Casa e bem-estar)
+      value: vela
+    - label: Cardápio (Hotelaria e gastronomia)
+      value: cardapio
+    - label: Porta-contas (Hotelaria e gastronomia)
+      value: porta-contas
+    - label: Jogo americano retangular (Hotelaria e gastronomia)
+      value: jogo-americano-retangular
+    - label: Jogo americano oval (Hotelaria e gastronomia)
+      value: jogo-americano-oval
+    - label: Jogo americano impresso (Hotelaria e gastronomia)
+      value: jogo-americano-impresso
+    hint: Aparecem no fim do artigo com o botão "+ Selecionar" (levam o leitor à proposta). Até 9.
+  - label: Outros guias (relacionados)
+    name: relacionados
+    widget: relation
+    collection: blog
+    search_fields:
+    - title
+    value_field: '{{slug}}'
+    display_fields:
+    - title
+    multiple: true
+    required: false
+    max: 2
+    hint: Até 2. Sem escolha, o site mostra os da mesma categoria e os mais recentes.
+  - label: Rascunho (não publicar)
+    name: draft
+    widget: boolean
+    default: false
+    required: false
+    hint: Marcado, o artigo não vai ao ar mesmo se for publicado no editor.
+  - label: Texto
+    name: body
+    widget: markdown
+    modes:
+    - rich_text
+    - raw
+    buttons:
+    - bold
+    - italic
+    - link
+    - heading-two
+    - heading-three
+    - quote
+    - bulleted-list
+    - numbered-list
+    editor_components:
+    - image
+    - cta
+    hint: 'Use "Título 2" para as seções (entram no sumário) e "Título 3" para subseções. Fato externo sempre com fonte: no modo Markdown, escreva texto[^id] e, no fim, [^id]: Fonte. [Link](https://…). Use o bloco "Chamada para proposta" uma vez no meio do texto.'
+- name: pautas
+  label: Pautas
+  label_singular: pauta
+  description: 'Planejamento editorial: uma pauta por consulta de busca. Não aparece no site; o Painel de SEO (/admin/painel/) organiza o calendário e aponta conflitos.'
+  folder: src/pautas
+  create: true
+  extension: md
+  format: frontmatter
+  identifier_field: titulo
+  slug: '{{slug}}'
+  summary: '{{titulo}} · {{status}}'
+  sortable_fields:
+  - titulo
+  - prazo
+  - status
+  view_groups:
+  - label: Status
+    field: status
+  fields:
+  - label: Título provisório
+    name: titulo
+    widget: string
+  - label: Consulta-alvo (palavra-chave)
+    name: palavra_chave
+    widget: string
+    hint: Uma consulta por artigo, como as pessoas digitam. O painel avisa se outra página ou pauta já disputa a mesma busca.
+  - label: Consultas secundárias
+    name: secundarias
+    widget: list
+    required: false
+    hint: Variações que o mesmo artigo pode responder. Uma por linha.
+  - label: Status
+    name: status
+    widget: select
+    default: ideia
+    options:
+    - label: Ideia
+      value: ideia
+    - label: Aprovada
+      value: aprovada
+    - label: Escrevendo
+      value: escrevendo
+    - label: Em revisão
+      value: revisao
+    - label: Publicada
+      value: publicada
+    - label: Em espera
+      value: espera
+    - label: Descartada
+      value: descartada
+  - label: Prioridade
+    name: prioridade
+    widget: select
+    required: false
+    options:
+    - label: Alta
+      value: alta
+    - label: Média
+      value: media
+    - label: Baixa
+      value: baixa
+  - label: Intenção de busca
+    name: intencao
+    widget: select
+    required: false
+    options:
+    - label: Informacional
+      value: informacional
+    - label: Comercial
+      value: comercial
+    - label: Transacional
+      value: transacional
+    hint: Informacional = quer aprender; comercial = compara opções; transacional = quer comprar ou orçar.
+  - label: Categoria
+    name: tema
+    widget: select
+    required: false
+    options:
+    - label: Brindes e presentes
+      value: brindes-e-presentes
+    - label: Kits e boas-vindas
+      value: kits-e-boas-vindas
+    - label: Confecções e personalização
+      value: confeccoes-e-personalizacao
+    - label: Embalagem e acabamento
+      value: embalagem-e-acabamento
+    - label: Eventos corporativos
+      value: eventos-e-ativacoes
+    - label: Hotelaria e gastronomia
+      value: hotelaria-e-gastronomia
+    - label: Planejamento de compras
+      value: planejamento-de-compras
+  - label: Página de destino do link
+    name: destino
+    widget: select
+    required: false
+    options:
+    - label: Brindes corporativos
+      value: /brindes-corporativos/
+    - label: Kits corporativos
+      value: /kits-corporativos/
+    - label: Brindes por ocasião
+      value: /brindes-por-ocasiao/
+    - label: Brindes de fim de ano
+      value: /brindes-de-fim-de-ano/
+    - label: O catálogo
+      value: /catalogo/
+    - label: Eventos corporativos
+      value: /eventos-corporativos/
+    - label: Hotelaria e gastronomia
+      value: /hotelaria-e-gastronomia/
+    - label: Uniformes e confecções
+      value: /confeccoes-personalizadas/
+  - widget: datetime
+    format: YYYY-MM-DD
+    date_format: DD/MM/YYYY
+    time_format: false
+    picker_utc: true
+    label: Publicar até
+    name: prazo
+    required: false
+    default: ''
+    hint: Para pautas sazonais, publique semanas antes do pico de busca.
+  - label: Meses de pico de busca
+    name: pico
+    widget: select
+    multiple: true
+    required: false
+    options:
+    - janeiro
+    - fevereiro
+    - março
+    - abril
+    - maio
+    - junho
+    - julho
+    - agosto
+    - setembro
+    - outubro
+    - novembro
+    - dezembro
+    hint: Só com base em dado (Search Console, Keyword Planner ou Google Trends).
+  - label: Precisa de fontes externas
+    name: precisa_fontes
+    widget: boolean
+    default: false
+    required: false
+    hint: 'Lei, número ou estudo citado: cada fato com fonte oficial em nota.'
+  - label: Responsável
+    name: responsavel
+    widget: string
+    required: false
+  - label: Artigo
+    name: artigo
+    widget: relation
+    collection: blog
+    required: false
+    search_fields:
+    - title
+    value_field: '{{slug}}'
+    display_fields:
+    - title
+    hint: Ligue a pauta ao artigo quando ele for criado.
+  - label: Motivo da espera ou observação
+    name: observacao
+    widget: string
+    required: false
+  - label: Briefing e esboço
+    name: body
+    widget: markdown
+    required: false
+    modes:
+    - raw
+    - rich_text
+    default: "## Para quem\n\n\n\n## Perguntas que o artigo responde\n\n- \n\n## Esboço (Título 2)\n\n1. \n\n## Links internos\n\n- \n\n## Fontes a confirmar\n\n- \n"
+    hint: Público, perguntas da busca, seções, links internos e fontes. Serve de roteiro para quem escreve.
+- name: catalogo
+  label: Catálogo de produtos
+  label_singular: catálogo
+  description: Fotos, cores, material e técnica das peças do /catalogo/ e dos destaques. Cada alteração passa pelo fluxo de revisão e vai ao ar depois do build.
+  editor:
+    preview: false
+  delete: false
+  files:
+  - name: produtos
+    label: 'Catálogo: fotos, cores, material e técnica'
+    file: src/data/produtos.json
+    fields:
+    - label: Observação
+      name: observacao
+      widget: hidden
+      required: false
+    - label: Fotos do catálogo
+      name: imagens
+      label_singular: foto
+      widget: list
+      collapsed: true
+      add_to_top: true
+      summary: '{{fields.produto}} · {{fields.cor.nome}} · {{fields.aprovacao}}'
+      fields:
+      - label: Foto
+        name: arquivo
+        widget: image
+        choose_url: false
+        media_folder: /img/produtos
+        public_folder: /img/produtos
+        hint: Fundo claro, peça centralizada, quadrada, de preferência 1254 × 1254 px (mínimo 1000 px). Só fotos próprias ou com licença.
+      - label: Produto
+        name: produto
+        widget: string
+        hint: 'Nome no site. Fotos com o mesmo nome formam um único card, com uma bolinha por cor. Ex.: Caneca'
+      - label: Categoria
+        name: categoria
+        widget: select
+        options:
+        - label: Vestuário
+          value: vestuario
+        - label: Canetas e escritório
+          value: canetas-escritorio
+        - label: Tecnologia
+          value: tecnologia
+        - label: Bolsas e embalagens
+          value: bolsas-embalagens
+        - label: Garrafas e copos
+          value: garrafas-copos
+        - label: Cozinha e bar
+          value: cozinha-bar
+        - label: Acessórios
+          value: acessorios
+        - label: Casa e bem-estar
+          value: casa-bem-estar
+        - label: Hotelaria e gastronomia
+          value: hotelaria-gastronomia
+      - label: Descrição do modelo
+        name: modelo
+        widget: string
+        required: false
+        hint: Uma linha abaixo do nome. Não afirme material ou técnica que ainda não foram confirmados.
+      - label: Cor
+        name: cor
+        widget: object
+        collapsed: false
+        fields:
+        - label: Nome da cor
+          name: nome
+          widget: string
+          hint: 'Ex.: Azul-marinho'
+        - label: Cor (bolinha no site)
+          name: hex
+          widget: color
+          allowInput: true
+          pattern:
+          - ^#[0-9A-Fa-f]{6}$
+          - 'Use o formato #RRGGBB'
+      - label: Material
+        name: material
+        widget: object
+        collapsed: false
+        fields:
+        - label: Valor
+          name: valor
+          widget: string
+          required: false
+          hint: 'Ex.: Cerâmica, aço inox, algodão. Só aparece no site quando marcado como confirmado.'
+        - label: Situação
+          name: status
+          widget: select
+          options: &id001
+          - label: A confirmar (o site mostra "sob consulta")
+            value: a_confirmar
+          - label: Confirmado (aparece no site)
+            value: confirmado
+          default: a_confirmar
+      - label: Técnica de personalização
+        name: tecnica
+        widget: object
+        collapsed: false
+        fields:
+        - label: Valor
+          name: valor
+          widget: string
+          required: false
+          hint: 'Ex.: Bordado, silk, gravação a laser. Só aparece no site quando marcada como confirmada.'
+        - label: Situação
+          name: status
+          widget: select
+          options: *id001
+          default: a_confirmar
+      - label: Texto alternativo da foto
+        name: alt
+        widget: string
+        hint: 'O que aparece na foto, para leitores de tela e para o Google. Ex.: Caneca branca de cerâmica com a marca TaMa.'
+      - label: Foto ilustrativa (gerada ou mockup)
+        name: ilustrativa
+        widget: boolean
+        default: true
+        required: false
+        hint: Desmarque só para fotografias reais do produto.
+      - label: Situação da foto
+        name: aprovacao
+        widget: select
+        default: revisao
+        options:
+        - label: Em revisão (aparece no site)
+          value: revisao
+        - label: Aprovada
+          value: aprovada
+        - label: Substituir (sai do site)
+          value: substituir
+        - label: Retirada (sai do site)
+          value: retirada
+      - label: Onde é usada
+        name: uso
+        widget: select
+        multiple: true
+        required: false
+        default:
+        - catalogo
+        options:
+        - label: Catálogo
+          value: catalogo
+        - label: Home
+          value: home
+        - label: Brindes
+          value: brindes
+        - label: Kits
+          value: kits
+        - label: Confecções
+          value: confeccoes
+      - label: Vista
+        name: vista
+        widget: select
+        default: frente
+        required: false
+        options:
+        - label: Frente, numa cor (bolinha de cor no site)
+          value: frente
+        - label: 'Grupo: todas as cores juntas (abre o card)'
+          value: grupo
+        - label: Verso (aparece ao passar o mouse e na galeria)
+          value: verso
+        - label: Detalhe (só na galeria)
+          value: detalhe
+        hint: 'Grupo: use "Todas as cores" como nome da cor. Verso: use o nome da cor da frente correspondente.'
+      - label: Identificador
+        name: id
+        widget: string
+        required: false
+        hint: 'Deixe vazio em itens novos: o site gera (produto~cor). Não mude o de itens existentes: a home e as seleções usam esse nome.'
+      - label: Origem da foto
+        name: origem
+        widget: string
+        required: false
+        hint: 'Ex.: Fotografia própria em 20/10/2026.'
+      - label: Observação interna
+        name: observacao
+        widget: text
+        required: false
+      - label: fornecedor
+        name: fornecedor
+        widget: hidden
+        required: false
+      - label: sku
+        name: sku
+        widget: hidden
+        required: false
+      - label: estoque
+        name: estoque
+        widget: hidden
+        required: false
+      - label: substitui
+        name: substitui
+        widget: hidden
+        required: false
+      - label: mestre
+        name: mestre
+        widget: hidden
+        required: false
+      - label: largura
+        name: largura
+        widget: hidden
+        required: false
+      - label: altura
+        name: altura
+        widget: hidden
+        required: false
+      - label: sha256
+        name: sha256
+        widget: hidden
+        required: false
+      - label: bytes
+        name: bytes
+        widget: hidden
+        required: false
+      - label: atualizado_em
+        name: atualizado_em
+        widget: hidden
+        required: false
+  - name: modelos
+    label: 'Modelos: textos da página de cada produto'
+    file: src/data/modelos.json
+    fields:
+    - label: Observação
+      name: observacao
+      widget: hidden
+      required: false
+    - label: Modelos
+      name: modelos
+      label_singular: modelo
+      widget: list
+      collapsed: true
+      summary: '{{fields.produto}}'
+      fields:
+      - label: Produto
+        name: produto
+        widget: select
+        options:
+        - Agenda
+        - Agenda bicolor com porta-caneta
+        - Agenda de bolso vertical
+        - Agenda diária wire-o
+        - Avental
+        - Avental Cintura Meia Saia
+        - Avental Roma
+        - Avental Vintage
+        - Bloco capa dura com caneta na capa
+        - Bloco com autoadesivos e caneta
+        - Bloco de mesa com argolas
+        - Bloco espiral com capa translúcida e caneta
+        - Bloco wire-o com espiral no topo
+        - Bolsa listrada com inicial
+        - Bolsa térmica
+        - Boné
+        - Boné aba reta
+        - Boné trucker
+        - Caderneta espiral parda com caneta
+        - Caderno A5 com elástico
+        - Caderno com aba de fechamento e bolso porta-cartão
+        - Caderno com faixa superior e plaquinha
+        - Caderno com faixas elásticas porta-celular
+        - Caderno de anotações
+        - Caderno de capa bicolor
+        - Caixa de som
+        - Caixa para presente
+        - Caixa para presente com tampa transparente
+        - Camisa feminina
+        - Camisa masculina
+        - Camiseta feminina
+        - Camiseta masculina
+        - Caneca
+        - Caneca Térmica com Abridor
+        - Caneca com borda contrastante
+        - Caneca com faixa natural
+        - Caneca de chope colorida
+        - Caneca de chope transparente
+        - Caneca de parede dupla
+        - Caneca de viagem com display de temperatura
+        - Caneca transparente de parede dupla
+        - Caneca térmica alta com tampa natural e canudo
+        - Caneca térmica com misturador automático
+        - Caneca térmica com tampa
+        - Caneca térmica com tampa natural
+        - Caneca térmica tipo chope
+        - Caneta básica
+        - Caneta com acionamento por giro
+        - Caneta com grip
+        - Caneta com marca-texto
+        - Caneta com ponta touch
+        - Caneta de corpo claro
+        - Caneta de corpo pardo
+        - Caneta e lapiseira em estojo
+        - Caneta executiva com estojo
+        - Caneta executiva esferográfica
+        - Caneta executiva roller
+        - Caneta slim
+        - Cardápio
+        - Carregador sem fio de mesa
+        - Carteira
+        - Chaveiro abridor de garrafa
+        - Chaveiro com tira
+        - Combo Kit para Petiscos & Kit para Queijos Personalizados
+        - Copo baixo
+        - Copo colorido texturizado
+        - Copo com cordão
+        - Copo com estampa 360°
+        - Copo com estampa em toda a volta
+        - Copo com luva canelada
+        - Copo com tampa
+        - Copo com tampa e canudo
+        - Copo de café
+        - Copo de vinho com tampa
+        - Copo long drink
+        - Copo para salada com garfo e molheira
+        - Copo para viagem
+        - Copo retrátil
+        - Copo térmico antiqueda com tampa flip
+        - Copo térmico com alça
+        - Copo térmico com faixa natural
+        - Copo térmico com revestimento natural e alça
+        - Copo térmico com tampa abridor
+        - Coqueteleira
+        - Cortador de pizza
+        - Difusor de aromas
+        - Dólmã
+        - Ecobag
+        - Estojo com acessórios de vinho
+        - Fone de ouvido sem fio
+        - Fone intra-auricular com fio em estojo
+        - Garrafa esportiva grande
+        - Garrafa shaker
+        - Garrafa slim com alça na tampa
+        - Garrafa squeeze
+        - Garrafa transparente com capa e tampa natural
+        - Garrafa térmica
+        - Garrafa térmica clássica grande
+        - Garrafa térmica com base natural
+        - Garrafa térmica com display de temperatura na tampa
+        - Garrafa térmica com revestimento natural
+        - Garrafa térmica slim com tampa de botão
+        - Guarda-chuva
+        - Headphone
+        - Jogo americano impresso
+        - Jogo americano oval
+        - Jogo americano retangular
+        - Kit Dolma Chef + Touca Profissional
+        - Kit churrasco em estojo
+        - Kit para Pizza Personalizado com Tábua + Cortador + Espátula
+        - Mini Tábua 22x13 cm
+        - Mochila antifurto
+        - Mochila de ombro
+        - Mochila para notebook
+        - Mochila roll-top
+        - Mochila saco
+        - Mochila saco bicolor com bolso frontal
+        - Mochila saco transparente
+        - Mochila simples com bolso frontal
+        - Moletom com capuz
+        - Mouse pad com apoio de punho
+        - Nécessaire
+        - Nécessaire colorida
+        - Petisqueira quadrada
+        - Polo feminina
+        - Polo masculina
+        - Porta-canetas
+        - Porta-contas
+        - Porta-copos redondo
+        - Porta-lata térmico
+        - Power bank com ventosas
+        - Power bank slim
+        - Ramequim
+        - Saca-rolhas tipo garçom
+        - Sacola de alça longa
+        - Sacola metalizada com sanfona
+        - Sacola para presente
+        - Socador de caipirinha
+        - Squeeze com mosquetão
+        - Squeeze dobrável
+        - Suporte com 5 facas de queijo
+        - Suporte de celular
+        - Taça coupe canelada
+        - Taça coupe lisa de haste longa
+        - Taça de gin colorida
+        - Taça de gin com borda dourada
+        - Taça de gin com pé colorido
+        - Taça de gin degradê
+        - Taça de gin transparente
+        - Taça de vinho
+        - Taça flute
+        - Taça flute com borda dourada
+        - Taça margarita
+        - Taça martini
+        - Toalha de rosto
+        - Troféu recortado com base
+        - Tábua de petiscos com cabo
+        - Tábua de queijos com facas
+        - Tábua de queijos com gaveta e utensílios
+        - Vela aromática em copo
+        hint: O mesmo nome do produto nas fotos do catálogo. Se renomear o produto lá, ajuste aqui também.
+      - label: Gênero do nome
+        name: genero
+        widget: select
+        required: false
+        options:
+        - label: Feminino (personalizada)
+          value: f
+        - label: Masculino (personalizado)
+          value: m
+        hint: 'Usado no título do Google: "Caneca personalizada", "Boné personalizado".'
+      - label: Resumo
+        name: resumo
+        widget: text
+        required: false
+        pattern:
+        - ^[\s\S]{0,700}$
+        - Até 700 caracteres
+        hint: 2 ou 3 frases (40 a 70 palavras) sobre para quem e para quais ocasiões. Aparece abaixo do nome. Não afirme material, técnica ou capacidade sem confirmação.
+      - label: Ideal para
+        name: usos
+        widget: list
+        required: false
+        max: 4
+        field:
+          label: Uso
+          name: uso
+          widget: string
+        hint: 'Até 4 ocasiões curtas. Ex.: Kits de boas-vindas, Eventos e feiras.'
+      - label: Medidas
+        name: medidas
+        widget: object
+        collapsed: false
+        required: false
+        fields:
+        - label: Valor
+          name: valor
+          widget: string
+          required: false
+          hint: 'Ex.: 14 × 21 cm; 350 ml. Só aparece no site quando confirmado.'
+        - label: Situação
+          name: status
+          widget: select
+          options:
+          - label: A confirmar (não aparece no site)
+            value: a_confirmar
+          - label: Confirmado (aparece no site)
+            value: confirmado
+          default: a_confirmar
+      - label: Título no Google
+        name: titulo_seo
+        widget: string
+        required: false
+        pattern:
+        - ^.{0,60}$
+        - Até 60 caracteres
+        hint: 'Vazio: o site usa "<produto> personalizada | TaMa Creative".'
+      - label: Descrição no Google
+        name: descricao_seo
+        widget: text
+        required: false
+        pattern:
+        - ^([\s\S]{70,160})?$
+        - De 70 a 160 caracteres
+        hint: 'Vazio: o site gera a partir da categoria e das cores.'

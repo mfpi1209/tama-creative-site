@@ -21229,6 +21229,43 @@
    "atualizado_em": "2026-10-20"
   },
   {
+   "id": "kit-dolma-chef-touca-profissional~branco",
+   "produto": "Kit Dolma Chef + Touca Profissional",
+   "categoria": "vestuario",
+   "modelo": "",
+   "cor": {
+    "nome": "Branco",
+    "hex": "#1F4FB8"
+   },
+   "material": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Conteúdo do kit • 1 Dolma de chef • 1 Touca de cozinha  Características da dolma • Modelo profissional tradicional • Fechamento transpassado com botões • Gola padre • Mangas 3/4 • Bom caimento e conforto durante o uso • Desenvolvida para uso diário em cozinha profissional  Características da touca • Modelo profissional • Auxilia na higiene e organização no ambiente de trabalho • Confortável para uso prolongado",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "aprovada",
+   "origem": "Foto enviada pelo Inventário (/admin/inventario/) em 27/10/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/kit-dolma-chef-touca-profissional~branco.webp",
+   "mestre": null,
+   "largura": 1254,
+   "altura": 1002,
+   "sha256": "29a872c8916509add78536b88b8d10bd87d750683fbfc42b01f56de984723ee0",
+   "bytes": 33790,
+   "atualizado_em": "2026-10-27"
+  },
+  {
    "id": "kit-para-pizza-personalizado-com-tabua-cortador-espatula~tom-natural",
    "produto": "Kit para Pizza Personalizado com Tábua + Cortador + Espátula",
    "categoria": "cozinha-bar",

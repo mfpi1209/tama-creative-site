@@ -191,7 +191,8 @@
   "avental-cintura-meia-saia",
   "avental-roma",
   "avental-vintage",
-  "kit-dolma-chef-touca-profissional"
+  "kit-dolma-chef-touca-profissional",
+  "caneca-termica-com-abridor"
  ],
  "foto_base": {
   "abridor-de-garrafa-de-mesa": "abridor-mesa~preto",
@@ -243,6 +244,7 @@
   "caneca-de-parede-dupla": "caneca-parede-dupla~preto",
   "caneca-de-viagem-com-display-de-temperatura": "caneca-viagem-display~preto",
   "caneca-termica-alta-com-tampa-natural-e-canudo": "caneca-alta-canudo-bambu~verde-escuro",
+  "caneca-termica-com-abridor": "caneca-termica-com-abridor~azul",
   "caneca-termica-com-misturador-automatico": "caneca-misturador~preto",
   "caneca-termica-com-tampa": "caneca-termica-tampa~verde-escuro",
   "caneca-termica-com-tampa-natural": "caneca-tampa-bambu~preto",
@@ -1436,6 +1438,13 @@
   "kit-dolma-chef-touca-profissional": [
    "eventos",
    "campanhas"
+  ],
+  "caneca-termica-com-abridor": [
+   "boas-vindas",
+   "eventos",
+   "executivos",
+   "campanhas",
+   "fim-de-ano"
   ]
  },
  "aliases": {

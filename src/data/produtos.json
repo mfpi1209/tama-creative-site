@@ -9993,6 +9993,43 @@
    "atualizado_em": "2026-10-20"
   },
   {
+   "id": "caneca-termica-com-abridor~azul",
+   "produto": "Caneca Térmica com Abridor",
+   "categoria": "garrafas-copos",
+   "modelo": "Caneca térmica com um abridor de garrafas.",
+   "cor": {
+    "nome": "Azul",
+    "hex": "#1F4FB8"
+   },
+   "material": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Caneca Térmica com Abridor azul, com a marca TaMa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "aprovada",
+   "origem": "Foto enviada pelo Inventário (/admin/inventario/) em 28/10/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/caneca-termica-com-abridor~azul.webp",
+   "mestre": null,
+   "largura": 1000,
+   "altura": 1000,
+   "sha256": "caf9b74857b710ee5757c4e260d6baa825fc5f2100af12e806b8b3de49fa6541",
+   "bytes": 52316,
+   "atualizado_em": "2026-10-28"
+  },
+  {
    "id": "caneca-termica-tampa~azul-royal",
    "produto": "Caneca térmica com tampa",
    "categoria": "garrafas-copos",

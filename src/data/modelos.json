@@ -2115,6 +2115,16 @@
    }
   },
   {
+   "produto": "Kit para Anotações com Caneta",
+   "genero": "f",
+   "resumo": "Altura Altura : 17,8 cm\nLargura Largura : 10 cm\nEspessura Espessura : 1,8cm\nMedidas gravação Medidas gravação : Caixa: 8 cm x 16 cm/ Caneta: 4 cm x 0,3 cm/ Caderneta: 2 cm x 15 cm\nTamanho total Tamanho total : Caneta: 13,4 cm x 1,3 cmo",
+   "usos": [],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   }
+  },
+  {
    "produto": "Kit para Pizza Personalizado com Tábua + Cortador + Espátula",
    "genero": "f",
    "resumo": "Kit para Pizza Personalizado. Ideal para Presentear Amigos e Familiares, este conjunto oferece praticidade e estilo. Personalize com seu toque especial e surpreenda em qualquer ocasião.",
@@ -3106,6 +3116,16 @@
    },
    "titulo_seo": "",
    "descricao_seo": ""
+  },
+  {
+   "produto": "Taça Térmica Desmontável em Personalizada",
+   "genero": "f",
+   "resumo": "Taça térmica de 350 ml em inox de parede dupla, com haste em plástico e base emborrachada antiderrapante, desmontável para uso como copo e gravação a laser em seis core",
+   "usos": [],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   }
   },
   {
    "produto": "Toalha de rosto",

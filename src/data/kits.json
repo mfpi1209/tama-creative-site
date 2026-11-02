@@ -250,17 +250,9 @@
    ]
   },
   {
-   "ancora": "kits-agradecimento",
-   "titulo": "Kit de agradecimento",
-   "linha": "Para agradecer clientes, parceiros e equipes, com a mensagem da sua empresa no cartão.",
-   "kits": [
-    "kit-agradecimento"
-   ]
-  },
-  {
    "ancora": "kits-fim-de-ano",
    "titulo": "Kit fim de ano",
-   "linha": "Para brindar com clientes e equipes; os kits de drinque e de vinho trazem os acessórios, sem bebida.",
+   "linha": "Para brindar e agradecer clientes, parceiros e equipes; os kits de drinque e de vinho trazem os acessórios, sem bebida.",
    "kits": [
     "kit-brinde",
     "kit-coquetel",

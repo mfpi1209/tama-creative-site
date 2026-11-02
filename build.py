@@ -1181,6 +1181,9 @@ def nota_kits(kits):
 # estas âncoras. Um kit pode entrar em dois tipos (o Kit Prático serve ao escritório e às boas-vindas) e mantém o mesmo
 # número nos dois.
 KITS_TIPOS = [(t['ancora'], t['titulo'], t.get('linha') or '', t.get('kits') or []) for t in KITS_DADOS.get('tipos', [])]
+# Âncoras de tipos que saíram do menu e continuam valendo em links antigos: a antiga -> a seção que a recebe.
+# O Kit de agradecimento passou para o Kit fim de ano (pedido do cliente, 02/11/2026).
+KITS_ANCORAS_ANTIGAS = {'kits-agradecimento': 'kits-fim-de-ano'}
 
 
 def kits_grandes(n):
@@ -1199,11 +1202,13 @@ def kits_tipos_html():
         corpo = (f'<div class="kit-grid">{cards}</div>' if kits else
                  '<p class="kit-vazio">Conte a ocasião e o público no pedido: a TaMa propõe a composição, a caixa e o cartão com a sua marca. '
                  f'<a class="link" href="/solicitar-proposta/?tipo=kits&amp;interesse={urllib.parse.quote(titulo)}" data-track="cta_solicitar_proposta" data-track-label="{sid}" data-interesse="{titulo}">Solicitar proposta {ARROW}</a></p>')
+        ids = {t[0] for t in tipos}
+        apelidos = ''.join(f'<span id="{a}"></span>' for a, d in KITS_ANCORAS_ANTIGAS.items() if d == sid and a not in ids)
         fim = ''
         if j == len(tipos) - 1:   # depois do último tipo: outra composição e a nota das fotos de todos os kits da página
             fim = (f'\n    <div class="kit-foot"><p class="muted">Prefere outra composição? Conte a ocasião e o público no pedido.</p>{cta_link(tipo="kits", track_label="kits-lista")}</div>'
                    f'\n    <p class="note" style="margin-top:18px">{nota_kits([k for t in tipos for k in t[3]])}</p>')
-        html.append(f'''<section class="section kits-page kits-tipo{' ivory' if j % 2 else ''}{' um' if len(kits) == 1 else ''}" id="{sid}" aria-labelledby="{sid}-t">
+        html.append(f'''<section class="section kits-page kits-tipo{' ivory' if j % 2 else ''}{' um' if len(kits) == 1 else ''}" id="{sid}" aria-labelledby="{sid}-t">{apelidos}
   <div class="wrap">
     <div class="kits-tipo-in"><div class="section-head"><h2 id="{sid}-t" class="section-title">{titulo}</h2><p class="muted">{linha}</p></div>
     {corpo}</div>{fim}
@@ -1287,8 +1292,8 @@ MENU_TIPOS_VAZIOS = True
 MENU_CONFECCOES = [('polos', 'Camiseta polo'), ('camisetas', 'Camiseta'), ('moletons', 'Blusa de moletom'), ('camisas', 'Camisa'),
                    ('dolmas', 'Dólmã'), ('aventais', 'Avental'), ('bones', 'Bonés')]
 MENU_KITS = [('Kit escritório', '#kits-escritorio'), ('Kit cozinha', '#kits-cozinha'), ('Kit boas-vindas', '#kits-boas-vindas'),
-             ('Kit executivo', '#kits-executivo'), ('Kit pausa', '#kits-pausa'), ('Kit de agradecimento', '#kits-agradecimento'),
-             ('Kit fim de ano', '#kits-fim-de-ano')]   # âncoras de /kits-corporativos/
+             ('Kit executivo', '#kits-executivo'), ('Kit pausa', '#kits-pausa'),
+             ('Kit fim de ano', '#kits-fim-de-ano')]   # âncoras de /kits-corporativos/ (o Kit de agradecimento entra no Kit fim de ano)
 MENU_ATIVACOES = [('Buffet completo', '#fmt-buffet'), ('Decoração', '#fmt-decoracao')]   # âncoras de /eventos-corporativos/
 
 

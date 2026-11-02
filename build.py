@@ -1675,6 +1675,7 @@ def shell(page, body):
         msg = urllib.parse.quote('Olá, TaMa! Gostaria de conversar sobre um projeto.')
         wa_float = f'<aside aria-label="Atendimento por WhatsApp"><a class="wa-float" href="https://wa.me/{WA}?text={msg}" target="_blank" data-track="whatsapp_click" data-track-label="flutuante" rel="noopener" aria-label="Conversar com a TaMa no WhatsApp (abre em nova aba)" title="Conversar no WhatsApp">{CHAT}</a></aside>'
     service_attr = (f' data-service="{page["service"]["key"]}"' if page.get('service') else '') + (f' data-assunto="{esc(page["assunto"])}"' if page.get('assunto') else '')
+    service_attr += f' class="{page["body_class"]}"' if page.get('body_class') else ''   # ex.: /v2/ com medidas próprias
     canonical = '' if page['path'].endswith('.html') else f'<link rel="canonical" href="{url}">'
     return f'''<!doctype html>
 <html lang="pt-BR"{HTML_SEASON}>
@@ -1873,7 +1874,7 @@ def page_home_v2():
     """Proposta de home minimalista em /v2/, para a cliente aprovar online antes de substituir a home (fora do Google e
     do sitemap). Se aprovada, este corpo passa para page_home e a página sai."""
     return {
-        'path': '/v2/', 'title': 'Home minimalista (proposta) | TaMa Creative', 'index': False, 'og': slides_do_site()[0][1],
+        'path': '/v2/', 'title': 'Home minimalista (proposta) | TaMa Creative', 'index': False, 'body_class': 'v2', 'og': slides_do_site()[0][1],
         'description': 'Proposta de home minimalista da TaMa Creative, para aprovação.',
         'assunto': 'um projeto para a minha empresa',
         'preload': preload_image(slides_do_site()[0][1], HERO_SIZES),

@@ -1468,3 +1468,25 @@ section.section.home-min-prods .section-head { margin-bottom: clamp(20px, 2.4vw,
 @media (hover: hover) { .frente-min:hover img { transform: scale(1.03); } .frente-min:hover .i-arrow { transform: translateX(3px); } }
 .home-min-prods .product.studio .swatch-row, .home-min-prods .product.studio .prod-desc, .home-min-prods .product.studio .prod-meta { display: none; }
 @media (max-width: 760px) { .frentes-min-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+/* /v2/ (body.v2): padrão de medidas proposto em 02/11/2026. Conteúdo até 1200 px, seções a 80/48 px,
+   títulos 48/32 (banner), 32/24 (seção), 40/28 (chamada final); banner em ~55% da tela no computador. */
+body.v2 main .wrap { max-width: calc(1200px + 2 * var(--gutter)); }
+body.v2 .header-row { min-height: 56px; }
+body.v2 .head-search { height: 40px; }
+body.v2 .hero.light .slide-title { font-size: clamp(1.875rem, 1.2rem + 1.9vw, 3rem); margin: 10px 0 12px; }
+body.v2 .hero.light .slide-desc { font-size: 1rem; margin-bottom: 20px; }
+body.v2 section.section.frentes-min-sec, body.v2 section.section.home-min-prods { padding-block: clamp(48px, 5.6vw, 80px); }
+body.v2 .min-title { font-size: clamp(1.5rem, 1.15rem + 1vw, 2rem); }
+body.v2 .frente-min picture { aspect-ratio: 1; }
+body.v2 .frente-min-nome { font-size: clamp(1.125rem, 1rem + .35vw, 1.25rem); }
+body.v2 .end-cta { padding-block: clamp(48px, 5.6vw, 80px); }
+body.v2 .end-cta h2 { font-size: clamp(1.75rem, 1.2rem + 1.4vw, 2.5rem); }
+@media (min-width: 761px) {
+  body.v2 .site-nav, body.v2 .site-nav > .nav-link, body.v2 .nav-group > .nav-toggle { min-height: 40px; }
+  body.v2 .hero.light .slide { min-height: 0; height: clamp(400px, 34vw, 500px); }
+}
+@media (max-width: 760px) {
+  body.v2 .hero.light .slide-copy { padding-block: 20px 14px; }
+  body.v2 .hero.light .slide-photo { aspect-ratio: 16 / 10; }
+}

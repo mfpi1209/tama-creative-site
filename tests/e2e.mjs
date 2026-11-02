@@ -90,11 +90,11 @@ try {
   // /v2/: proposta de home minimalista para a cliente aprovar online (fora do Google e do sitemap)
   {
     const v2 = await (await fetch(BASE + '/v2/')).text(), mapa = await (await fetch(BASE + '/sitemap.xml')).text();
-    const ordem = ['class="t-hero', 'class="t-sol', 'class="t-cat', 'class="t-proc-sec', 'class="t-faq', 'class="t-guias', 'class="end-cta'].map(k => v2.indexOf(k));
+    const ordem = ['class="t-hero', 'class="frentes"', 'class="t-cat', 'class="t-proc-sec', 'class="t-faq', 'class="t-guias', 'class="end-cta'].map(k => v2.indexOf(k));
     ok(/<meta name="robots" content="noindex/.test(v2) && !mapa.includes('/v2/') && ordem.every((p, i) => p > 0 && (i === 0 || p > ordem[i - 1]))
       && !v2.includes('aria-roledescription="carrossel"') && (v2.match(/<li class="t-card-item"/g) || []).length === 6 && (v2.match(/class="t-pill"/g) || []).length === 4
-      && (v2.match(/<details class="t-faq-item"/g) || []).length === 6 && (v2.match(/class="t-num"/g) || []).length === 6 && !v2.includes('Soluções compactas</p>'),
-      '/v2/ (proposta 01): hero fixo, soluções, catálogo 3×2 com 4 filtros, processo em 6 passos, 6 perguntas, guias e chamada final; fora do Google e do sitemap');
+      && (v2.match(/class="frente-card"/g) || []).length === 5 && (v2.match(/<details class="t-faq-item"/g) || []).length === 6 && (v2.match(/class="t-num"/g) || []).length === 6 && !v2.includes('Soluções compactas</p>'),
+      '/v2/ (proposta 01): hero fixo, os 5 cartões de O que a TaMa faz, catálogo 3×2 com 4 filtros, processo em 6 passos, 6 perguntas, guias e chamada final; fora do Google e do sitemap');
     await page.goto(BASE + '/v2/', { waitUntil: 'networkidle0' });
     const filtrados = {};
     for (const f of ['kits', 'dia-a-dia', 'vestuario', 'todos']) { await page.click(`[data-filtro="${f}"]`); filtrados[f] = await page.$$eval('.t-card-item', l => l.filter(i => !i.hidden).length); }

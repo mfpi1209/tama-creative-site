@@ -1743,26 +1743,19 @@ FRENTES = [(f['link'], f['imagem'], f.get('posicao') or 'center', tuple(f['titul
 
 # /v2/: home da proposta 01 ("Soluções compactas"), referência docs/proposta-01/home-aprovada.png e medidas em
 # docs/proposta-01/VISUAL.md. Estilos só em body.v2 (src/styles.css, bloco "proposta 01"); a home atual não muda.
-# Ícones de interface do pacote (linha 1.5, currentColor), decorativos ao lado do texto.
+# Ícones de interface do pacote (linha 1.5, currentColor), decorativos. "O que a TaMa faz" usa os cartões da home
+# atual (frentes_section), a pedido de 02/11, no lugar da faixa compacta de ícones da referência.
 V2_ICONES = {
-    'brindes': '<rect x="5" y="10" width="22" height="17" rx="1"/><path d="M3 10h26v6H3zM16 10v17M16 10H9a4 4 0 1 1 4-4l3 4Zm0 0h7a4 4 0 1 0-4-4l-3 4Z"/>',
-    'uniformes': '<path d="m11 4-8 5 4 7 4-2v14h10V14l4 2 4-7-8-5a5 5 0 0 1-10 0Z"/>',
-    'kits': '<path d="m4 10 12-6 12 6v15l-12 5-12-5V10Zm0 0 12 6 12-6M16 16v14M10 7l12 6"/>',
-    'eventos': '<rect x="5" y="6" width="22" height="23" rx="2"/><path d="M10 3v6M22 3v6M5 12h22m-11 3 2 4 4 .6-3 3 .7 4.4-3.7-2-3.7 2 .7-4.4-3-3 4-.6 2-4Z"/>',
-    'hotelaria': '<path d="M3 25h26M5 22a11 11 0 0 1 22 0H5Zm11-11V7m-2 0h4M2 28h28"/>',
     'chevron': '<path d="m12 7 9 9-9 9"/>',
     'mais': '<path d="M6 16h20M16 6v20"/>',
 }
 
 
-def v2_icone(nome, cls='t-ico'):
+def v2_icone(nome, cls):
     return (f'<svg class="{cls}" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" '
             f'stroke-linejoin="round" aria-hidden="true" focusable="false">{V2_ICONES[nome]}</svg>')
 
 
-V2_SOLUCOES = [('/brindes-corporativos/', 'brindes', 'Brindes corporativos'), ('/confeccoes-personalizadas/', 'uniformes', 'Uniformes e confecções'),
-               ('/kits-corporativos/', 'kits', 'Kits corporativos'), ('/eventos-corporativos/', 'eventos', 'Eventos corporativos'),
-               ('/hotelaria-e-gastronomia/', 'hotelaria', 'Hotelaria e gastronomia')]
 # (foto, nome, destino real, filtro, texto alternativo): ordem e filtros da especificação (kits / dia a dia / vestuário)
 V2_CATEGORIAS = [
     ('kits', 'Kits corporativos', '/kits-corporativos/', 'kits', 'Caixa bordô com caderno preto, garrafa e copo, com a marca fictícia Sua Marca.'),
@@ -1790,13 +1783,6 @@ def v2_hero():
     <div class="actions">{cta_link('Solicitar proposta', track_label='v2-hero')}</div>
   </div>
   <figure class="t-hero-foto">{picture('hero', 'Caixa de presente bordô, taça e estojo de vinho com a marca fictícia Sua Marca, entre enfeites de Natal.', '(max-width: 767px) 100vw, 52vw', eager=True)}<figcaption>Imagem ilustrativa • Marca fictícia</figcaption></figure>
-</section>'''
-
-
-def v2_solucoes():
-    itens = ''.join(f'<li><a href="{h}">{v2_icone(i)}<span>{esc(n)}</span></a></li>' for h, i, n in V2_SOLUCOES)
-    return f'''<section class="t-sol" aria-labelledby="t-sol-t">
-  <div class="wrap t-sol-in"><h2 id="t-sol-t" class="t-sol-title">O que a TaMa faz</h2><ul class="t-sol-list">{itens}</ul></div>
 </section>'''
 
 
@@ -1859,7 +1845,7 @@ def v2_guias():
 </section>'''
 
 
-def frentes_section():
+def frentes_section(titulo_visivel=False):
     # O cartão inteiro é um único <a> (como antes): título, texto e chamada formam o nome acessível do link.
     # Fotos decorativas (alt vazio): o título já diz o destino. O espaço antes de cada <br> mantém
     # "Brindes corporativos" com espaço no texto do link.
@@ -1870,7 +1856,7 @@ def frentes_section():
         f'<span class="frente-link">{esc(cta)} {ARROW}</span></div></a>'
         for href, img, pos, t, d, cta in FRENTES)
     return f'''<section class="frentes" aria-labelledby="frentes-t">
-  <h2 id="frentes-t" class="visually-hidden">O que a TaMa faz</h2>
+  {'<div class="wrap"><h2 id="frentes-t" class="t-h2 t-frentes-title">O que a TaMa faz</h2></div>' if titulo_visivel else '<h2 id="frentes-t" class="visually-hidden">O que a TaMa faz</h2>'}
   <div class="wrap frentes-grid">
 {cards}
   </div>
@@ -1965,7 +1951,7 @@ def page_home_v2():
         'assunto': 'um projeto para a minha empresa',
         'preload': preload_image('hero', '(max-width: 767px) 100vw, 52vw'),
         'body': v2_hero() + f'''
-{v2_solucoes()}
+{frentes_section(titulo_visivel=True)}
 {v2_catalogo()}
 {v2_processo()}
 {v2_faq()}

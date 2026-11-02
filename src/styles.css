@@ -1483,15 +1483,12 @@ body.v2 :focus-visible { outline: 2px solid var(--t-brand); outline-offset: 4px;
 .t-hero-foto picture, .t-hero-foto img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 66% center; }
 .t-hero-foto img { -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 14%); mask-image: linear-gradient(90deg, transparent 0, #000 14%); }
 .t-hero-foto figcaption { position: absolute; right: 12px; bottom: 12px; padding: 4px 9px; border-radius: 4px; background: rgba(252, 249, 245, .82); font-size: 11px; color: var(--t-muted); }
-/* soluções compactas: título com divisor e cinco itens com ícone, sem fotos */
-.t-sol { padding-block: 40px; background: var(--t-surface); border-bottom: 1px solid var(--t-line); }
-.t-sol-in { display: flex; align-items: center; }
-.t-sol-title { flex: 0 0 285px; margin: 0; padding: 14px 32px 14px 0; border-right: 1px solid var(--t-line); font: 500 36px/40px var(--f-serif); letter-spacing: -.02em; }
-.t-sol-list { flex: 1; display: flex; margin: 0; padding: 0 0 0 24px; list-style: none; }
-.t-sol-list li { flex: 1; }
-.t-sol-list a { display: grid; justify-items: center; gap: 12px; padding: 8px; text-align: center; font-size: 15px; line-height: 19px; font-weight: 600; color: var(--t-text); text-decoration: none; }
-.t-sol-list a:hover { color: var(--t-brand); }
-.t-ico { width: 44px; height: 44px; color: var(--t-brand); }
+/* O que a TaMa faz: os cinco cartões da home atual (frentes_section), com título visível (pedido de 02/11) */
+body.v2 .frentes { padding-block: 56px 8px; }
+.t-frentes-title { margin-bottom: 28px; }
+body.v2 .frentes-grid { width: min(1340px, calc(100% - 100px)); max-width: none; padding-inline: 0; margin-inline: auto; }
+@media (max-width: 1199px) { body.v2 .frentes-grid { width: calc(100% - 48px); } }
+@media (max-width: 767px) { body.v2 .frentes-grid { width: calc(100% - 40px); } body.v2 .frentes { padding-top: 40px; } }
 /* catálogo 3×2 com filtros: card inteiro é o link, sem texto sobre a foto, sem sombra */
 .t-cat { padding-block: 56px; }
 .t-filtros { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
@@ -1551,10 +1548,6 @@ body.v2 .site-footer { background: var(--t-footer); }
   .t-h1 { font-size: clamp(46px, 4.7vw, 68px); line-height: 1; }
   .t-lead { font-size: 19px; line-height: 29px; max-width: 520px; }
   .t-hero .btn { min-height: 52px; padding-inline: 30px; font-size: 16px; }
-  .t-sol-title { flex: 0 0 auto; padding-right: 44px; font-size: clamp(32px, 2.9vw, 42px); line-height: 1.1; }
-  .t-sol-list { padding-left: 32px; }
-  .t-sol-list a { font-size: 17px; line-height: 21px; max-width: 150px; margin-inline: auto; }
-  .t-ico { width: 48px; height: 48px; }
   .t-h2 { font-size: clamp(40px, 4vw, 58px); line-height: 1.07; }
   .t-sub { font-size: 18px; line-height: 28px; }
   .t-pill { height: 40px; padding-inline: 24px; font-size: 15px; }
@@ -1576,14 +1569,10 @@ body.v2 .site-footer { background: var(--t-footer); }
   body.v2 .wrap, body.v2 .site-header .wrap, body.v2 .announce .wrap { width: calc(100% - 48px); }
   .t-hero-txt { padding-left: 24px; }
   .t-cat-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .t-sol-title { flex-basis: 220px; }
 }
 @media (max-width: 1023px) {
   .t-proc { flex-direction: column; align-items: stretch; }
   .t-proc-title { flex: none; padding: 0; border: 0; }
-  .t-sol-in { flex-direction: column; align-items: stretch; gap: 20px; }
-  .t-sol-title { flex: none; padding: 0; border: 0; }
-  .t-sol-list { padding: 0; }
 }
 @media (max-width: 767px) {
   body.v2 .wrap, body.v2 .site-header .wrap, body.v2 .announce .wrap { width: calc(100% - 40px); }
@@ -1595,8 +1584,6 @@ body.v2 .site-footer { background: var(--t-footer); }
   .t-h2, body.v2 .end-cta h2 { font-size: 34px; line-height: 38px; }
   .t-h2-sm { font-size: 30px; line-height: 34px; }
   .t-card-nome { font-size: 26px; line-height: 30px; }
-  .t-sol-title { font-size: 30px; line-height: 34px; }
-  .t-sol-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
   .t-cat-grid { gap: 16px; }
   .t-card-copy { padding: 16px; }
   .t-proc-list { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px 8px; }

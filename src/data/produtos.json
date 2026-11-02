@@ -1662,7 +1662,7 @@
    "modelo": "estinado aos Chefs, Cozinheiros e atendentes que amam estar com muito estilo.",
    "cor": {
     "nome": "Preto",
-    "hex": "#1F4FB8"
+    "hex": "#181616"
    },
    "material": {
     "valor": "",
@@ -1773,7 +1773,7 @@
    "modelo": "Avental Vintage Jeans",
    "cor": {
     "nome": "JEANS",
-    "hex": "#1F4FB8"
+    "hex": "#19387B"
    },
    "material": {
     "valor": "",
@@ -13781,6 +13781,43 @@
    "sha256": "4f43e4ed638e99153d38fa17b4053c6e7a01128eb129bc311cb3804afdde006d",
    "bytes": 508458,
    "atualizado_em": "2026-10-24"
+  },
+  {
+   "id": "conj-de-xicaras-express-c-pires-2-pcs~xicaras",
+   "produto": "CONJ. DE XÍCARAS EXPRESS C/ PIRES - 2 PÇS",
+   "categoria": "canetas-escritorio",
+   "modelo": "Conjunto de duas xícaras americano com pires.",
+   "cor": {
+    "nome": "Xícaras",
+    "hex": "#FFFFFF"
+   },
+   "material": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "CONJ. DE XÍCARAS EXPRESS C/ PIRES - 2 PÇS",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Foto enviada pelo Inventário (/admin/inventario/) em 02/11/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/conj-de-xicaras-express-c-pires-2-pcs~xicaras.webp",
+   "mestre": null,
+   "largura": 1254,
+   "altura": 1254,
+   "sha256": "3cac3d6878a6b82c41a803c97d063b2f6e7dfaebcb4126ee529564c240102e3f",
+   "bytes": 265114,
+   "atualizado_em": "2026-11-02"
   },
   {
    "fornecedor": null,

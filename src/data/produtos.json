@@ -1656,6 +1656,43 @@
    "atualizado_em": "2026-10-18"
   },
   {
+   "id": "avental-pvc-mescla~preto",
+   "produto": "Avental PVC Mescla",
+   "categoria": "vestuario",
+   "modelo": "Avental PVC",
+   "cor": {
+    "nome": "Preto",
+    "hex": "#0C0C0E"
+   },
+   "material": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Avental PVC Mescla preto, com a marca TaMa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Foto enviada pelo Inventário (/admin/inventario/) em 02/11/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/avental-pvc-mescla~preto.webp",
+   "mestre": null,
+   "largura": 1254,
+   "altura": 1254,
+   "sha256": "0fc33974b97c4c69ef7482cefe720deb3b32da79d63ffb907c16f1f6436150e7",
+   "bytes": 277060,
+   "atualizado_em": "2026-11-02"
+  },
+  {
    "id": "avental-roma~preto",
    "produto": "Avental Roma",
    "categoria": "vestuario",

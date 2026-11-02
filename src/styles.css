@@ -1453,22 +1453,6 @@ body:has(.pdp-wrap) .crumbs.wrap { max-width: 1440px; padding-inline: clamp(16px
   .atalhos[aria-labelledby="ativ-atalhos-t"] .atalhos-list li:nth-child(3n + 1) { border-left: 0; padding-left: 0; }
 }
 
-/* Home minimalista (proposta): 4 frentes só com nome e seta, 4 peças sem bolinhas de cor, mais respiro entre blocos */
-section.section.frentes-min-sec { padding-block: clamp(56px, 7vw, 112px); }
-section.section.home-min-prods { padding-block: clamp(64px, 8vw, 128px); }
-section.section.home-min-prods .section-head { margin-bottom: clamp(20px, 2.4vw, 32px); align-items: end; }
-.min-title { font-size: clamp(1.75rem, 1.2rem + 1.6vw, 2.5rem); }
-.frentes-min-sec .min-title { margin-bottom: clamp(20px, 2.4vw, 32px); }
-.frentes-min-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(10px, 1.2vw, 18px); }
-.frente-min { display: grid; gap: 14px; color: var(--ink); text-decoration: none; }
-.frente-min picture { display: block; aspect-ratio: 4 / 5; overflow: hidden; border-radius: 4px; background: var(--sand); }
-.frente-min img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s ease; }
-.frente-min-nome { display: inline-flex; align-items: center; gap: 10px; font: 500 clamp(1.15rem, .9rem + .7vw, 1.5rem)/1.15 var(--f-serif); color: var(--wine); }
-.frente-min-nome .i-arrow { width: .9em; height: .9em; transition: transform .2s ease; }
-@media (hover: hover) { .frente-min:hover img { transform: scale(1.03); } .frente-min:hover .i-arrow { transform: translateX(3px); } }
-.home-min-prods .product.studio .swatch-row, .home-min-prods .product.studio .prod-desc, .home-min-prods .product.studio .prod-meta { display: none; }
-@media (max-width: 760px) { .frentes-min-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-
 /* /v2/ (body.v2): padrão de medidas proposto em 02/11/2026. Conteúdo até 1200 px, seções a 80/48 px,
    títulos 48/32 (banner), 32/24 (seção), 40/28 (chamada final); banner em ~55% da tela no computador. */
 body.v2 main .wrap { max-width: calc(1200px + 2 * var(--gutter)); }
@@ -1476,11 +1460,21 @@ body.v2 .header-row { min-height: 56px; }
 body.v2 .head-search { height: 40px; }
 body.v2 .hero.light .slide-title { font-size: clamp(1.875rem, 1.2rem + 1.9vw, 3rem); margin: 10px 0 12px; }
 body.v2 .hero.light .slide-desc { font-size: 1rem; margin-bottom: 20px; }
-body.v2 section.section.frentes-min-sec, body.v2 section.section.home-min-prods { padding-block: clamp(48px, 5.6vw, 80px); }
-body.v2 .min-title { font-size: clamp(1.5rem, 1.15rem + 1vw, 2rem); }
-body.v2 .frente-min picture { aspect-ratio: 1; }
-body.v2 .frente-min-nome { font-size: clamp(1.125rem, 1rem + .35vw, 1.25rem); }
 body.v2 .end-cta { padding-block: clamp(48px, 5.6vw, 80px); }
+body.v2 main > .section { padding-block: clamp(48px, 5.6vw, 80px); }
+body.v2 .section-title { font-size: clamp(1.5rem, 1.15rem + 1vw, 2rem); }
+body.v2 .frentes { padding-block: clamp(40px, 4.4vw, 64px); }
+body.v2 .frentes-titulo { margin-bottom: clamp(20px, 2.4vw, 32px); }
+/* /v2/: produtos por tipo (blocos com foto, nome e quantidade), 7 por linha no computador, 3 no celular */
+.cat-grid { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: clamp(10px, 1.2vw, 16px); }
+.cat-tile { display: grid; gap: 2px; color: var(--ink); text-decoration: none; }
+.cat-tile picture { display: block; aspect-ratio: 1; overflow: hidden; border-radius: 4px; background: #fff; border: 1px solid var(--line); margin-bottom: 8px; }
+.cat-tile img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
+.cat-nome { font-weight: 600; font-size: .9375rem; }
+.cat-qtd { font-size: .8125rem; color: var(--muted); }
+@media (hover: hover) { .cat-tile:hover img { transform: scale(1.04); } .cat-tile:hover .cat-nome { color: var(--wine); } }
+@media (max-width: 1080px) { .cat-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); } }
+@media (max-width: 760px) { .cat-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 body.v2 .end-cta h2 { font-size: clamp(1.75rem, 1.2rem + 1.4vw, 2.5rem); }
 @media (min-width: 761px) {
   body.v2 .site-nav, body.v2 .site-nav > .nav-link, body.v2 .nav-group > .nav-toggle { min-height: 40px; }

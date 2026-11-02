@@ -968,19 +968,6 @@ def studio_block(slugs, title, eyebrow, intro, aria, more=None, sid=None, cls=''
 </section>'''
 
 
-def home_products_min_block():
-    cards = ''.join(home_product_card(CATALOGO_BY[s]) for s in [s for s in SEL['home'] if s in CATALOGO_BY][:4])
-    return f'''<section class="section ivory home-prods home-min-prods" aria-labelledby="prods-t">
-  <div class="wrap">
-    <div class="section-head row">
-      <h2 id="prods-t" class="section-title min-title">Peças em destaque</h2>
-      <a class="link" href="/catalogo/">Ver o catálogo {ARROW}</a>
-    </div>
-    <div class="studio-grid">{cards}</div>
-  </div>
-</section>'''
-
-
 def home_products_block():
     cards = ''.join(home_product_card(CATALOGO_BY[s]) for s in SEL['home'] if s in CATALOGO_BY)
     return f'''<section class="section home-prods" aria-labelledby="prods-t">
@@ -1752,26 +1739,35 @@ SECOES = SITE_DADOS.get('secoes') or {}
 FRENTES = [(f['link'], f['imagem'], f.get('posicao') or 'center', tuple(f['titulo']), tuple(f['texto']), f['chamada'])
            for f in (SECOES.get('home-frentes') or {}).get('itens') or []]   # site.json › secoes › home-frentes (inventário › Páginas › Home)
 
-def frentes_min_section():
-    """Home minimalista: 4 frentes em cartões de foto, só com o nome e a seta."""
-    ordem = ['/brindes-corporativos/', '/kits-corporativos/', '/confeccoes-personalizadas/', '/eventos-corporativos/']
-    por = {f[0]: f for f in FRENTES}
-    sizes = '(max-width: 760px) calc(50vw - 24px), (max-width: 1340px) 23vw, 320px'
-    cards = '\n'.join(
-        f'    <a class="frente-min" href="{href}">{picture(img, "", sizes, style=f"object-position:{pos}")}'
-        f'<span class="frente-min-nome">{esc(" ".join(x.strip() for x in t))} {ARROW}</span></a>'
-        for href, img, pos, t, d, cta in (por[u] for u in ordem if u in por))
-    return f'''<section class="section frentes-min-sec" aria-labelledby="frentes-t">
+def categorias_section():
+    """/v2/: produtos por tipo de peça (como no menu Brindes), mais Uniformes e Kits; cada bloco leva ao catálogo
+    filtrado. Tipo sem modelo no catálogo não aparece."""
+    por_tipo = {}
+    for c in CATALOGO:
+        por_tipo.setdefault(c['tipo'], []).append(c)
+    sizes = '(max-width: 760px) 30vw, (max-width: 1340px) 14vw, 170px'
+    def bloco(href, img, nome, qtd):
+        return (f'<a class="cat-tile" href="{href}">{picture(img, "", sizes)}'
+                f'<span class="cat-nome">{esc(nome)}</span><span class="cat-qtd">{qtd}</span></a>')
+    itens = [bloco(f'/catalogo/?tipo={k}#catalogo', por_tipo[k][0]['img'], TIPO_ROTULO[k], f'{len(por_tipo[k])} modelo{"s" if len(por_tipo[k]) > 1 else ""}')
+             for k in MENU_BRINDES if por_tipo.get(k) and por_tipo[k][0]['img'] in IMAGES]
+    vest = [c for c in CATALOGO if c['categoria'] == 'vestuario' and c['img'] in IMAGES]
+    if vest:
+        itens.append(bloco('/confeccoes-personalizadas/', vest[0]['img'], 'Uniformes', f'{len(vest)} modelos'))
+    if cab('kits').get('imagem') in IMAGES:
+        itens.append(bloco('/kits-corporativos/', cab('kits')['imagem'], 'Kits', 'Composições prontas'))
+    return f'''<section class="section ivory categorias" aria-labelledby="cat-t">
   <div class="wrap">
-    <h2 id="frentes-t" class="section-title min-title">O que a TaMa faz</h2>
-    <div class="frentes-min-grid">
-{cards}
+    <div class="section-head row">
+      <h2 id="cat-t" class="section-title">Produtos</h2>
+      <a class="link" href="/catalogo/">Ver o catálogo completo {ARROW}</a>
     </div>
+    <div class="cat-grid">{''.join(itens)}</div>
   </div>
 </section>'''
 
 
-def frentes_section():
+def frentes_section(titulo_visivel=False):
     # O cartão inteiro é um único <a> (como antes): título, texto e chamada formam o nome acessível do link.
     # Fotos decorativas (alt vazio): o título já diz o destino. O espaço antes de cada <br> mantém
     # "Brindes corporativos" com espaço no texto do link.
@@ -1782,7 +1778,7 @@ def frentes_section():
         f'<span class="frente-link">{esc(cta)} {ARROW}</span></div></a>'
         for href, img, pos, t, d, cta in FRENTES)
     return f'''<section class="frentes" aria-labelledby="frentes-t">
-  <h2 id="frentes-t" class="visually-hidden">O que a TaMa faz</h2>
+  {'<div class="wrap"><h2 id="frentes-t" class="section-title frentes-titulo">O que a TaMa faz</h2></div>' if titulo_visivel else '<h2 id="frentes-t" class="visually-hidden">O que a TaMa faz</h2>'}
   <div class="wrap frentes-grid">
 {cards}
   </div>
@@ -1879,8 +1875,11 @@ def page_home_v2():
         'assunto': 'um projeto para a minha empresa',
         'preload': preload_image(slides_do_site()[0][1], HERO_SIZES),
         'body': hero_carousel(limite=4) + f'''
-{frentes_min_section()}
-{home_products_min_block()}
+{process_strip()}
+{frentes_section(titulo_visivel=True)}
+{categorias_section()}
+{faq(HOME_FAQ, title='Perguntas sobre a TaMa')}
+{guias_block('home')}
 {end_cta()}''',
     }
 

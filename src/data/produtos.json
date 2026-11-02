@@ -21414,6 +21414,43 @@
    "atualizado_em": "2026-11-02"
   },
   {
+   "id": "kit-para-anotacoes-com-caneta~vermelho",
+   "produto": "Kit para Anotações com Caneta",
+   "categoria": "canetas-escritorio",
+   "modelo": "it para Anotações com Caneta",
+   "cor": {
+    "nome": "Vermelho",
+    "hex": "#ED0C0C"
+   },
+   "material": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Kit para Anotações com Caneta vermelho, com a marca TaMa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Foto enviada pelo Inventário (/admin/inventario/) em 02/11/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/kit-para-anotacoes-com-caneta~vermelho.webp",
+   "mestre": null,
+   "largura": 1000,
+   "altura": 1000,
+   "sha256": "9e14bcae0a68af58109de3e96fa598b78417094aa94ecab956cfabc331271797",
+   "bytes": 41850,
+   "atualizado_em": "2026-11-02"
+  },
+  {
    "id": "kit-para-pizza-personalizado-com-tabua-cortador-espatula~tom-natural",
    "produto": "Kit para Pizza Personalizado com Tábua + Cortador + Espátula",
    "categoria": "cozinha-bar",
@@ -30501,6 +30538,43 @@
    "sha256": "76b3ba22dbfe72f6aef09636a7cd16443581ea13e5699fb7efdc1eaafa00f423",
    "bytes": 1204539,
    "atualizado_em": "2026-10-18"
+  },
+  {
+   "id": "taca-termica-desmontavel-em-personalizada~rosa",
+   "produto": "Taça Térmica Desmontável em Personalizada",
+   "categoria": "garrafas-copos",
+   "modelo": "Taça Térmica Desmontável",
+   "cor": {
+    "nome": "Rosa",
+    "hex": "#B71F7F"
+   },
+   "material": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Taça Térmica Desmontável em Personalizada rosa, com a marca TaMa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "aprovada",
+   "origem": "Foto enviada pelo Inventário (/admin/inventario/) em 02/11/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/taca-termica-desmontavel-em-personalizada~rosa.webp",
+   "mestre": null,
+   "largura": 1254,
+   "altura": 1254,
+   "sha256": "3ca8ecbf018b224120df3ac53581a525750d5a7ecc6e38fe732f9e8493429924",
+   "bytes": 158530,
+   "atualizado_em": "2026-11-02"
   },
   {
    "fornecedor": null,

@@ -60,7 +60,7 @@ try {
   await page.click('#menu-btn');
   ok(await page.$eval('#site-nav', n => n.classList.contains('is-open')), 'menu mobile abre');
   await page.click('[aria-controls="sub-brindes"]');
-  ok(await page.$eval('[aria-controls="sub-brindes"]', b => b.getAttribute('aria-expanded') === 'true') && await page.$eval('#sub-brindes', d => getComputedStyle(d).display !== 'none' && d.querySelectorAll('.nav-list:not(.nav-list-pe) a').length >= 9), 'no celular, Brindes abre em acordeão com a lista dos tipos de peça');
+  ok(await page.$eval('[aria-controls="sub-brindes"]', b => b.getAttribute('aria-expanded') === 'true') && await page.$eval('#sub-brindes', d => getComputedStyle(d).display !== 'none' && d.querySelectorAll('.nav-list:not(.nav-list-pe) a').length >= 12), 'no celular, Brindes abre em acordeão com a lista dos tipos de peça');
   ok(await page.$$eval('#sub-brindes a', as => as.every(a => a.getBoundingClientRect().height >= 44 && a.getBoundingClientRect().right <= innerWidth && a.scrollWidth <= a.clientWidth + 1)) && await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), 'celular: lista de Brindes com toque de 44px, texto sem vazar e sem rolagem lateral');
   await page.click('[aria-controls="sub-kits"]');
   ok(await page.$eval('[aria-controls="sub-brindes"]', b => b.getAttribute('aria-expanded') === 'false') && await page.$eval('#sub-kits', d => getComputedStyle(d).display !== 'none'), 'abrir outro grupo (Kits) fecha o anterior');
@@ -325,7 +325,13 @@ try {
   await page.goto(BASE + '/catalogo/?categoria=tecnologia', { waitUntil: 'networkidle0' });
   ok(await catVisible() === 12 && await catMatch() === 13 && await page.$eval('input[name="categoria"][value="tecnologia"]', i => i.checked && i.parentNode.querySelector('small').textContent === '13'), '?categoria=tecnologia abre o catálogo já filtrado (13 modelos de tecnologia, 12 na 1ª página, contador 13)');
   // tipo de peça pela URL (links dos painéis Brindes e Confecções): data-tipo dos cards, radio, etiqueta, contador e URL
-  const TIPOS_BRINDE = ['agendas', 'canetas', 'canecas', 'copos', 'xicaras', 'tacas', 'squeezes', 'porta-vinho', 'mochilas'];
+  const TIPOS_BRINDE = ['agendas', 'cadernos', 'canetas', 'canecas', 'copos', 'xicaras', 'tacas', 'squeezes', 'garrafas', 'porta-vinho', 'mochilas', 'ecobags'];
+  // tipos desdobrados no menu (pedido de 02/11): cada um filtra só o seu tipo de peça (data-tipo do card = chave do link)
+  for (const [k, rx] of [['agendas', /^agendas?\b/], ['cadernos', /^(caderno|caderneta|bloco)s?\b/], ['squeezes', /^squeezes?\b/], ['garrafas', /^garrafas?\b/], ['mochilas', /^mochilas?\b/], ['ecobags', /^(ecobags?|sacola-de-alca-longa)\b/]]) {
+    await page.goto(BASE + `/catalogo/?tipo=${k}`, { waitUntil: 'networkidle0' });
+    const t = await page.$$eval('#catalogo-grid .product', (g, k) => ({ n: g.filter(x => !x.hidden).length, e: g.filter(x => x.dataset.tipo === k).length, fora: g.filter(x => !x.hidden && x.dataset.tipo !== k).length, nomes: g.filter(x => x.dataset.tipo === k).map(x => x.dataset.slug) }), k);
+    ok(t.n >= 1 && t.n === t.e && t.fora === 0 && t.nomes.every(n => rx.test(n)) && await page.$eval(`#cat-filtros input[name="tipo"][value="${k}"]`, i => i.checked), `?tipo=${k} mostra só ${k} (${t.e}: ${t.nomes.slice(0, 3).join(', ')}…)`);
+  }
   await page.goto(BASE + '/catalogo/?tipo=canecas', { waitUntil: 'networkidle0' });
   const tCan = await page.$$eval('#catalogo-grid .product', g => ({ n: g.filter(x => !x.hidden).length, e: g.filter(x => x.dataset.tipo === 'canecas').length, fora: g.filter(x => !x.hidden && x.dataset.tipo !== 'canecas').length, sem: g.filter(x => !x.hasAttribute('data-tipo')).length }));
   ok(tCan.n >= 1 && tCan.n === tCan.e && tCan.fora === 0 && tCan.sem === 0, `?tipo=canecas mostra só as canecas (${tCan.n}); todo card do catálogo tem data-tipo`);
@@ -344,7 +350,7 @@ try {
   ok(await page.$eval('[data-cat-tipo]', b => b.hidden) && !/tipo=/.test(await page.evaluate(() => location.search)) && /categoria=garrafas-copos/.test(await page.evaluate(() => location.search)) && await page.$eval('#cat-filtros input[name="tipo"][value=""]', i => i.checked) && await catMatch() === await page.$$eval('#catalogo-grid .product[data-cat="garrafas-copos"]', g => g.length), 'remover a etiqueta tira só o tipo (a categoria fica) e o radio volta para Todos');
   await page.goto(BASE + '/catalogo/?tipo=nao-existe', { waitUntil: 'networkidle0' });
   ok(await catMatch() === nModelos && await page.$eval('[data-cat-tipo]', b => b.hidden) && await page.$eval('#cat-filtros input[name="tipo"][value=""]', i => i.checked) && await page.$eval('[data-cat-badge]', b => b.hidden), 'tipo desconhecido na URL abre o catálogo sem filtro (radio em Todos)');
-  // os tipos do menu têm modelo no catálogo; sem modelo, só os 9 tipos de brinde que esperam as fotos dos modelos novos
+  // os tipos do menu têm modelo no catálogo; sem modelo, só os 12 tipos de brinde que esperam as fotos dos modelos novos
   const menuTipos = await page.$$eval('#sub-brindes .nav-list:not(.nav-list-pe) a, #sub-confeccoes .nav-list a', a => a.map(x => new URL(x.href).searchParams.get('tipo')));
   const tiposComModelo = await page.$$eval('#cat-filtros input[name="tipo"]', r => r.map(i => i.value).filter(Boolean));
   const tiposVazios = menuTipos.filter(t => !tiposComModelo.includes(t));
@@ -435,16 +441,20 @@ try {
   ok(await page.$$eval('#site-nav > .nav-link, #site-nav > .nav-group > .nav-toggle', a => a.map(x => x.textContent.trim()).join()) === 'Brindes,Kits,Confecções,Eventos corporativos,Sobre,Blog', 'menu com Brindes, Kits, Confecções, Ativações, Sobre e Blog');
   const menuP = await page.evaluate(() => {
     const hrefs = sel => [...document.querySelectorAll(sel)].map(a => a.getAttribute('href'));
-    return { tipos: hrefs('#sub-brindes .nav-list:not(.nav-list-pe) a'), fotos: document.querySelectorAll('#sub-brindes img').length, pe: hrefs('#sub-brindes .nav-list-pe a, #sub-brindes .nav-sub-all'),
+    return { tipos: hrefs('#sub-brindes .nav-list:not(.nav-list-pe) a'), rotulos: [...document.querySelectorAll('#sub-brindes .nav-list a')].map(a => a.textContent.replace(/\s+/g, ' ').trim()), fotos: document.querySelectorAll('#sub-brindes img').length, pe: hrefs('#sub-brindes .nav-list-pe a, #sub-brindes .nav-sub-all'),
       fim: document.querySelector('#sub-brindes .nav-list-pe a[href="/brindes-de-fim-de-ano/"]')?.textContent.replace(/\s+/g, ' ').trim() || '',
       kits: hrefs('#sub-kits .nav-list a'), kitsAll: hrefs('#sub-kits .nav-sub-all'), conf: hrefs('#sub-confeccoes .nav-list a'), confAll: hrefs('#sub-confeccoes .nav-sub-all'),
       ativ: hrefs('#sub-ativacoes .nav-list a'), ativAll: hrefs('#sub-ativacoes .nav-sub-all') };
   });
   const tipoHref = h => /^\/catalogo\/\?tipo=[a-z-]+#catalogo$/.test(h);
-  ok(menuP.tipos.length >= 9 && menuP.tipos.every(tipoHref) && TIPOS_BRINDE.concat('tecnologia').every(k => menuP.tipos.includes(`/catalogo/?tipo=${k}#catalogo`)) && menuP.fotos === 0,
-     `menuP Brindes: lista (sem fotos, como os outros menus) com os 9 tipos de brinde e Tecnologia levando ao catálogo filtrado (${menuP.tipos.length} tipos)`);
+  ok(menuP.tipos.length >= 12 && menuP.tipos.every(tipoHref) && TIPOS_BRINDE.concat('tecnologia').every(k => menuP.tipos.includes(`/catalogo/?tipo=${k}#catalogo`)) && menuP.fotos === 0,
+     `menuP Brindes: lista (sem fotos, como os outros menus) com os 12 tipos de brinde e Tecnologia levando ao catálogo filtrado (${menuP.tipos.length} tipos)`);
+  ok(menuP.rotulos.join() === ['Agendas', 'Cadernos', 'Canetas', 'Canecas', 'Copos', 'Xícaras', 'Taças', 'Squeezes', 'Garrafas', 'Porta-vinho', 'Mochilas', 'Ecobags', 'Tecnologia',
+    'Brindes corporativos', 'Hotelaria', 'Por ocasião'].concat(SEASON === 'fim-de-ano' ? ['Fim de ano temporada'] : []).join()
+     && menuP.tipos.slice(0, 12).join() === TIPOS_BRINDE.map(k => `/catalogo/?tipo=${k}#catalogo`).join(),
+     `menuP Brindes: itens na ordem pedida (Agendas, Cadernos, …, Squeezes, Garrafas, Porta-vinho, Mochilas, Ecobags, Tecnologia) e "Hotelaria" no pé (${menuP.rotulos.join(', ')})`);
   ok(['/brindes-corporativos/', '/hotelaria-e-gastronomia/', '/brindes-por-ocasiao/'].every(h => menuP.pe.includes(h)) && menuP.pe.at(-1) === '/catalogo/' && (SEASON === 'fim-de-ano' ? menuP.fim === 'Fim de ano temporada' : !menuP.fim),
-     `menuP Brindes: pé com Brindes corporativos, Hotelaria e gastronomia, Por ocasião${SEASON === 'fim-de-ano' ? ', Fim de ano em destaque' : ''} e Catálogo completo`);
+     `menuP Brindes: pé com Brindes corporativos, Hotelaria, Por ocasião${SEASON === 'fim-de-ano' ? ', Fim de ano em destaque' : ''} e Catálogo completo`);
   ok(menuP.kits.length === 7 && menuP.kits.join() === ['escritorio', 'cozinha', 'boas-vindas', 'executivo', 'pausa', 'agradecimento', 'fim-de-ano'].map(k => '/kits-corporativos/#kits-' + k).join() && menuP.kitsAll.join() === '/kits-corporativos/',
      'menuP Kits: 7 links de tipo de kit (âncoras de /kits-corporativos/) e "Ver todos os kits"');
   ok(menuP.conf.length >= 7 && menuP.conf.every(tipoHref) && menuP.confAll.join() === '/confeccoes-personalizadas/', `menuP Confecções: ${menuP.conf.length} tipos de peça no catálogo filtrado e "Uniformes e confecções"`);
@@ -460,7 +470,7 @@ try {
   const marcaErrada = [];
   for (const [u, esperado] of Object.entries(atuais)) { const r = await navAtual(u); if (r !== esperado) marcaErrada.push(`${u} → ${r || 'nada'}`); }
   ok(marcaErrada.length === 0, `o menu marca (aria-current) o grupo e o link da página certa${marcaErrada.length ? ' — ' + marcaErrada.join('; ') : ''}`);
-  // computador: os quatro painéis abrem inteiros na tela e legíveis de 1240 a 1440 px; Brindes em 5 colunas
+  // computador: os quatro painéis abrem inteiros na tela e legíveis de 1240 a 1440 px; os tipos de Brindes em 2 colunas
   for (const [w, h] of [[1240, 768], [1440, 900]]) {
     await page.setViewport({ width: w, height: h }); await page.evaluate(() => scrollTo(0, 0)); await sleep(100);
     const fora = [];
@@ -476,7 +486,7 @@ try {
   }
   await page.setViewport({ width: 1280, height: 900 });
   ok(await page.$eval('.header-row .head-search', f => f.getAttribute('action') === '/catalogo/' && f.querySelector('input[name="q"]')), 'busca no catálogo na linha de cima do cabeçalho');
-  ok(await page.$$eval('.site-footer .footer-links', ls => ls[0] && [...ls[0].querySelectorAll('a')].map(x => x.textContent.trim()).join() === 'Brindes corporativos,Uniformes e confecções,Kits corporativos,Eventos corporativos,Hotelaria e gastronomia') && await page.$eval('.site-footer a[href="/blog/"]', a => a.textContent === 'Conteúdos'), 'rodapé repete as cinco áreas com os nomes do menu e chama o blog de "Conteúdos", como o menu');
+  ok(await page.$$eval('.site-footer .footer-links', ls => ls[0] && [...ls[0].querySelectorAll('a')].map(x => x.textContent.trim()).join() === 'Brindes corporativos,Uniformes e confecções,Kits corporativos,Eventos corporativos,Hotelaria') && await page.$eval('.site-footer a[href="/blog/"]', a => a.textContent === 'Conteúdos'), 'rodapé repete as cinco áreas com os nomes do menu e chama o blog de "Conteúdos", como o menu');
   ok(await page.$$eval('.foto-hero figcaption, .entrega-foto figcaption', f => f.length >= 1 && f.every(x => x.textContent === 'Imagem ilustrativa • Marca fictícia')) && await page.$$eval('.kits-page .note', n => n.length === 1 && /^Imagens? ilustrativas?: (a marca TaMa e marcas fictícias aparecem|a marca (TaMa aparece|é fictícia e aparece)) como exemplo; no seu projeto, entra a marca da sua empresa\./.test(n[0].textContent)), 'kits: legenda padrão da marca fictícia no cabeçalho e uma nota padrão (marca TaMa e marcas fictícias como exemplo) depois dos tipos de kit');
   ok(await page.$$eval('a[href^="/branding-identidade-visual/"], a[href^="/projetos/"]', a => a.length === 0), 'nenhum link para branding ou projetos');
   await page.goto(BASE + '/confeccoes-personalizadas/', { waitUntil: 'networkidle0' });

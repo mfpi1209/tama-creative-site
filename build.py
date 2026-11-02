@@ -151,10 +151,13 @@ TIPOS = [
     ('porta-vinho', 'Porta-vinho', r'^porta-vinhos?\b|-para-vinho\b'),  # "Estojo para vinho", "Bolsa térmica para vinho"
     ('canecas', 'Canecas', r'^canecas?\b'),
     ('xicaras', 'Xícaras', r'^xicaras?\b'),
-    ('squeezes', 'Squeezes e garrafas', r'^(squeeze|garrafa)s?\b'),    # âncora no início: "Chaveiro abridor de garrafa" fica de fora
-    ('agendas', 'Agendas e cadernos', r'^(agenda|caderno|caderneta|bloco)s?\b'),
+    ('squeezes', 'Squeezes', r'^squeezes?\b'),
+    ('garrafas', 'Garrafas', r'^garrafas?\b'),                         # âncora no início: "Chaveiro abridor de garrafa" fica de fora
+    ('agendas', 'Agendas', r'^agendas?\b'),
+    ('cadernos', 'Cadernos', r'^(caderno|caderneta|bloco)s?\b'),          # cadernos, cadernetas e blocos de anotação
     ('canetas', 'Canetas', r'^canetas?\b'),
-    ('mochilas', 'Mochilas e ecobags', r'^(mochila|ecobag)s?\b|^sacola-de-alca-longa\b'),
+    ('mochilas', 'Mochilas', r'^mochilas?\b'),
+    ('ecobags', 'Ecobags', r'^ecobags?\b|^sacola-de-alca-longa\b'),
     ('polos', 'Camisetas polo', r'^polos?\b|^camiseta-polo\b'),         # antes de camisetas
     ('camisetas', 'Camisetas', r'^camisetas?\b'),
     ('moletons', 'Blusas de moletom', r'^(blusa-de-)?moletom\b|^moletons\b'),
@@ -1240,13 +1243,14 @@ def kits_block(compacto=False):
 
 
 # ------------------------------------------------------------------ navigation and shared blocks
-# Áreas da TaMa (submenu "Soluções" e rodapé): nome oficial do glossário
+# Áreas da TaMa (submenu "Soluções" e rodapé): nome oficial do glossário; Hotelaria e gastronomia aparece só como "Hotelaria"
+# na navegação (pedido do cliente, 02/11), e o endereço continua /hotelaria-e-gastronomia/
 NAV = [
     ('/brindes-corporativos/', 'Brindes corporativos'),
     ('/confeccoes-personalizadas/', 'Uniformes e confecções'),
     ('/kits-corporativos/', 'Kits corporativos'),
     ('/eventos-corporativos/', 'Eventos corporativos'),
-    ('/hotelaria-e-gastronomia/', 'Hotelaria e gastronomia'),
+    ('/hotelaria-e-gastronomia/', 'Hotelaria'),
 ]
 BAG_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8h12l-1 12H7z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/></svg>'
 
@@ -1275,8 +1279,9 @@ def season_callout(where):
 
 # Menu da apresentação de 20/10: Brindes ▾ (tipos de peça), Kits ▾, Confecções ▾, Eventos corporativos ▾, Sobre e Blog.
 # Tipos de brinde e de confecção levam ao catálogo filtrado (/catalogo/?tipo=<chave>#catalogo, rótulos em TIPO_ROTULO).
-MENU_BRINDES = ['agendas', 'canetas', 'canecas', 'copos', 'xicaras', 'tacas', 'squeezes', 'porta-vinho', 'mochilas', 'tecnologia']
-# Tipo sem modelo no catálogo fica fora do menu (sem link vazio). Exceção, enquanto True: os 9 tipos de brinde aparecem
+MENU_BRINDES = ['agendas', 'cadernos', 'canetas', 'canecas', 'copos', 'xicaras', 'tacas', 'squeezes', 'garrafas', 'porta-vinho', 'mochilas', 'ecobags',
+                'tecnologia']
+# Tipo sem modelo no catálogo fica fora do menu (sem link vazio). Exceção, enquanto True: os 12 tipos de brinde aparecem
 # mesmo vazios, porque os modelos novos da lista de 20/10 entram no banco depois (o integrador importa as fotos).
 MENU_TIPOS_VAZIOS = True
 MENU_CONFECCOES = [('polos', 'Camiseta polo'), ('camisetas', 'Camiseta'), ('moletons', 'Blusa de moletom'), ('camisas', 'Camisa'),
@@ -1315,7 +1320,7 @@ def nav_menu(path):
            if SEASON == 'fim-de-ano' else '')
     p_brindes = (f'<ul class="nav-list">{tipos_b}</ul>'
                  f'<ul class="nav-list nav-list-pe"><li><a href="/brindes-corporativos/"{cur("/brindes-corporativos/")}>Brindes corporativos</a></li>'
-                 f'<li><a href="/hotelaria-e-gastronomia/"{cur("/hotelaria-e-gastronomia/")}>Hotelaria e gastronomia</a></li>'
+                 f'<li><a href="/hotelaria-e-gastronomia/"{cur("/hotelaria-e-gastronomia/")}>Hotelaria</a></li>'
                  f'<li><a href="/brindes-por-ocasiao/"{cur("/brindes-por-ocasiao/")}>Por ocasião</a></li>{fim}</ul>'
                  f'<a class="nav-sub-all" href="/catalogo/"{cur("/catalogo/", True)}>Catálogo completo {ARROW}</a>')
     kits = ''.join(f'<li><a href="/kits-corporativos/{a}">{t}</a></li>' for t, a in MENU_KITS)

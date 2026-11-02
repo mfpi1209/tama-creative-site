@@ -105,14 +105,13 @@
   },
   {
    "id": "ativacoes",
-   "ativo": false,
    "tom": "tone-cream",
-   "imagem": "slide-ativacoes",
+   "imagem": "slide-ativacoes-202611022143",
    "enquadramento": "--fx:100%;--fx-m:70%",
-   "alt": "Kit para evento da marca fictícia Solar: avental preto, camiseta branca, boné amarelo, copinhos de degustação numa bandeja e display de balcão.",
+   "alt": "Seu evento, uma experiência completa.  Buffet completo e decoração personalizada para receber, encantar e conectar pessoas. A TaMa cuida de cada detalhe, com sabores e ambientes pensados para a sua marca e a ocasião.  Vamos planejar seu evento?",
    "eyebrow": "Eventos corporativos",
-   "titulo": "Sua marca perto de quem *compra*.",
-   "texto": "Degustações, ações em feiras e eventos e promoções no ponto de venda, com uniformes, materiais e brindes na identidade da sua marca.",
+   "titulo": "Seu evento, uma experiência completa.",
+   "texto": "O que entregamos para o seu evento:\nBuffet completo: cardápio personalizado para coffee breaks, coquetéis, almoços, jantares e confraternizações.\nDecoração personalizada: ambientação, arranjos e mesas alinhados à identidade da sua marca e à ocasião.\nMontagem e apresentação: organização do buffet com louças, utensílios e peças de exposição.\nEquipe de atendimento: profissionais para servir e acompanhar o evento.\nCoordenação da execução: cuidado com os detalhes, da montagem à desmontagem.",
    "botao": {
     "texto": "Solicitar proposta",
     "tipo": "ativacoes",
@@ -174,7 +173,7 @@
   },
   "ativacoes": {
    "pagina": "/eventos-corporativos/",
-   "imagem": "topo-ativacoes-202610250056",
+   "imagem": "topo-ativacoes-202611022131",
    "alt": "Buffet para eventos corporativos, lançamentos e encontros da empresa, coordenado pela TaMa com parceiros especializados. O formato do serviço é definido com você na proposta. S",
    "eyebrow": "Eventos Corporativos",
    "linhas": [
@@ -409,15 +408,15 @@
     },
     {
      "link": "/eventos-corporativos/",
-     "imagem": "ativ-header",
+     "imagem": "secao-frente-4-202611022025",
      "posicao": "74% center",
      "titulo": [
       "Eventos",
       "corporativos"
      ],
      "texto": [
-      "Degustações, feiras e ações",
-      "no ponto de venda."
+      "Buffet Completo",
+      "Serviço Completo"
      ],
      "chamada": "Conhecer os eventos corporativos"
     },
@@ -426,8 +425,8 @@
      "imagem": "hot-header",
      "posicao": "70% center",
      "titulo": [
-      "Hotelaria e",
-      "gastronomia"
+      "Hotelaria",
+      "Jogo americano"
      ],
      "texto": [
       "Cardápios, porta-contas, jogos",
@@ -443,14 +442,14 @@
    "legenda": "Imagem ilustrativa • Marca fictícia"
   },
   "ativacoes-formatos": {
-   "eyebrow": "Formatos",
-   "titulo": "Onde o evento acontece",
-   "texto": "Cada formato pede peças, equipe e cronograma diferentes. O ponto de partida é o que a ação precisa provocar e em quem.",
+   "eyebrow": "",
+   "titulo": "",
+   "texto": "",
    "itens": [
     {
      "id": "fmt-degustacao",
-     "titulo": "Degustação no ponto de venda",
-     "texto": "O cliente prova o produto onde decide a compra: supermercados, empórios, lojas e farmácias.",
+     "titulo": "Eventos",
+     "texto": "Transforme seu evento corporativo em uma experiência marcante com buffet completo, cardápio personalizado e atendimento profissional. Cuidamos de cada detalhe, da preparação à montagem e desmontagem, para você receber seus convidados com sabor e tranquilidade.",
      "pedido": false
     },
     {
@@ -461,7 +460,7 @@
     },
     {
      "id": "fmt-promocao",
-     "titulo": "Promoção e amostragem",
+     "titulo": "Eventos Corporativos",
      "texto": "Brindes, amostras e materiais para campanhas de venda, lançamentos e ações com distribuidores.",
      "pedido": false
     },

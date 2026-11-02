@@ -20896,6 +20896,43 @@
    "substitui": null
   },
   {
+   "id": "jogo-americano-personalizado~preto",
+   "produto": "Jogo Americano Personalizado",
+   "categoria": "hotelaria-gastronomia",
+   "modelo": "Sintético (Alta Durabilidade)",
+   "cor": {
+    "nome": "Preto",
+    "hex": "#1F4FB8"
+   },
+   "material": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Jogo Americano Personalizado",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "retirada",
+   "origem": "Foto enviada pelo Inventário (/admin/inventario/) em 02/11/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/jogo-americano-personalizado~preto.webp",
+   "mestre": null,
+   "largura": 1254,
+   "altura": 836,
+   "sha256": "65025d725a9f59633a8a40e46def87d4a0024e35cd46e801027b762cf4e48947",
+   "bytes": 268910,
+   "atualizado_em": "2026-11-02"
+  },
+  {
    "fornecedor": null,
    "bytes": 1660318,
    "sku": null,
@@ -21340,6 +21377,43 @@
    "atualizado_em": "2026-10-27"
   },
   {
+   "id": "kit-gift-executivo~preto",
+   "produto": "Kit Gift Executivo",
+   "categoria": "vestuario",
+   "modelo": "O Kit Smart Office com Caderno com folhas pautadas, Caneta e Copo é ideal para brindes de impacto em reuniões, eventos e ativações corporativas. O caderno A5 possui capa com textura moderna e placa para personalização.",
+   "cor": {
+    "nome": "Preto",
+    "hex": "#31343A"
+   },
+   "material": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Kit Gift Executivo",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Foto enviada pelo Inventário (/admin/inventario/) em 02/11/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/kit-gift-executivo~preto.webp",
+   "mestre": null,
+   "largura": 1254,
+   "altura": 1254,
+   "sha256": "fd0bd1bb709128c71a823d1e9e1634a467fe7df15fb40f6fb4d9266026ad504a",
+   "bytes": 152738,
+   "atualizado_em": "2026-11-02"
+  },
+  {
    "id": "kit-para-pizza-personalizado-com-tabua-cortador-espatula~tom-natural",
    "produto": "Kit para Pizza Personalizado com Tábua + Cortador + Espátula",
    "categoria": "cozinha-bar",
@@ -21375,6 +21449,43 @@
    "sha256": "7dcead692118ff2780603e8680cc27a1eebe7026e802a913d3bd9601336375ae",
    "bytes": 269856,
    "atualizado_em": "2026-10-24"
+  },
+  {
+   "id": "kit-premium-onboarding-presente-personalizado~preto",
+   "produto": "Kit Premium Onboarding Presente Personalizado",
+   "categoria": "canetas-escritorio",
+   "modelo": "Kit Premium",
+   "cor": {
+    "nome": "Preto",
+    "hex": "#18191B"
+   },
+   "material": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Kit Premium",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Foto enviada pelo Inventário (/admin/inventario/) em 02/11/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/kit-premium-onboarding-presente-personalizado~preto.webp",
+   "mestre": null,
+   "largura": 255,
+   "altura": 279,
+   "sha256": "9d4b31600e20db4940dfe174e0c209bbdb3ccb4fae5015a8b9d48ce1ac95b082",
+   "bytes": 7294,
+   "atualizado_em": "2026-11-02"
   },
   {
    "fornecedor": null,

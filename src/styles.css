@@ -1409,6 +1409,10 @@ body:has(.pdp-wrap) .crumbs.wrap { max-width: 1440px; padding-inline: clamp(16px
   /* Brindes tem a lista mais longa (até 15 linhas): linhas um pouco mais baixas para caber inteira em 1240×768 com a faixa da temporada */
   .nav-main.nav-drop .nav-list a { min-height: 36px; }
   .nav-main.nav-drop .nav-list-pe a { min-height: 32px; }
+  /* tipos de peça de Brindes (13 desde 02/11) em duas colunas, lidas de cima para baixo: o painel cabe em 1240×768 */
+  .nav-group.nav-main.nav-drop > .nav-sub { min-width: 300px; }
+  .nav-main.nav-drop .nav-list:not(.nav-list-pe) { columns: 2; column-gap: 4px; }
+  .nav-main.nav-drop .nav-list:not(.nav-list-pe) li { break-inside: avoid; }
   .nav-drop .nav-sub-all { display: flex !important; min-height: 40px; margin: 8px 14px 0; padding-top: 8px; border-top: 1px solid var(--line); }
   /* clicou num link do painel (âncora na mesma página): o painel não reabre pelo mouse até o ponteiro sair do grupo */
   .nav-group.is-fechado:not(.is-open) > .nav-sub { display: none; }

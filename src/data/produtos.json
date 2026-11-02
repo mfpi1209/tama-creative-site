@@ -2799,6 +2799,43 @@
    "atualizado_em": "2026-10-20"
   },
   {
+   "id": "bolsa-dobravel-termica~vermelho",
+   "produto": "Bolsa dobrável térmica",
+   "categoria": "vestuario",
+   "modelo": "Bolsa dobrável térmica",
+   "cor": {
+    "nome": "Vermelho",
+    "hex": "#1F4FB8"
+   },
+   "material": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Bolsa térmica dobrável em material TNT 80 g/m². Fecha com velcro. Fornecida desdobrada",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "aprovada",
+   "origem": "Foto enviada pelo Inventário (/admin/inventario/) em 28/10/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/bolsa-dobravel-termica~vermelho.webp",
+   "mestre": null,
+   "largura": 1254,
+   "altura": 1254,
+   "sha256": "8feee563ac7331fd7d47212ba153a21e55216caec45ebe5d695a90b1550eb2e6",
+   "bytes": 273268,
+   "atualizado_em": "2026-10-28"
+  },
+  {
    "id": "bolsa-listrada~amarelo-e-rosa",
    "produto": "Bolsa listrada com inicial",
    "categoria": "bolsas-embalagens",

@@ -605,13 +605,11 @@
   /* ---------- Carrossel da abertura ---------- */
   var hero = document.getElementById('hero');
   if (hero) {
-    var slides = hero.querySelectorAll('.slide'), dots = hero.querySelectorAll('.dot');
-    var pauseBtn = hero.querySelector('[data-hero-pause]'), count = hero.querySelector('[data-hero-count]');
-    // A troca automática conta o tempo que falta: ao pausar (hover, foco, aba oculta ou botão) o progresso do ponto
-    // ativo congela e, ao voltar, continua de onde parou.
-    var DUR = 7000, idx = 0, timer = null, userPaused = !!reduceMotion, hover = false, focused = false, hidden = false;
+    var slides = hero.querySelectorAll('.slide');
+    // Troca automática, sem botões: pausa enquanto o mouse ou o foco estão no carrossel e com a aba oculta, e
+    // continua de onde parou. Com movimento reduzido não troca sozinho (o arrastar e as setas do teclado seguem).
+    var DUR = 7000, idx = 0, timer = null, auto = !reduceMotion, hover = false, focused = false, hidden = false;
     var left = DUR, startedAt = 0;
-    hero.style.setProperty('--hero-dur', DUR / 1000 + 's');
     var go = function (n) {
       idx = (n + slides.length) % slides.length;
       hero.classList.add('is-live');
@@ -620,31 +618,18 @@
         s.classList.toggle('is-active', on);
         if (on) { s.removeAttribute('aria-hidden'); s.removeAttribute('inert'); } else { s.setAttribute('aria-hidden', 'true'); s.setAttribute('inert', ''); }
       });
-      dots.forEach(function (d) { d.removeAttribute('aria-current'); });
-      void hero.offsetWidth;   // reinicia a barra de progresso mesmo quando o ponto ativo é o mesmo
-      dots[idx].setAttribute('aria-current', 'true');
-      count.textContent = (idx < 9 ? '0' : '') + (idx + 1);
       left = DUR; startedAt = 0;
     };
     var schedule = function () {
       clearTimeout(timer);
       if (startedAt) { left = Math.max(0, left - (Date.now() - startedAt)); startedAt = 0; }
       var held = hover || focused || hidden;
-      hero.classList.toggle('is-stopped', userPaused);
       hero.classList.toggle('is-held', held);
-      if (userPaused || held) return;
+      if (!auto || held || slides.length < 2) return;
       startedAt = Date.now();
       timer = setTimeout(function () { go(idx + 1); schedule(); }, left);
     };
-    var syncPause = function () {
-      pauseBtn.setAttribute('aria-pressed', String(userPaused));
-      pauseBtn.setAttribute('aria-label', userPaused ? 'Retomar troca automática' : 'Pausar troca automática');
-    };
     var step = function (n) { go(n); schedule(); };
-    hero.querySelector('[data-hero-prev]').addEventListener('click', function () { step(idx - 1); });
-    hero.querySelector('[data-hero-next]').addEventListener('click', function () { step(idx + 1); });
-    dots.forEach(function (d) { d.addEventListener('click', function () { step(+d.getAttribute('data-slide')); }); });
-    pauseBtn.addEventListener('click', function () { userPaused = !userPaused; syncPause(); schedule(); });
     hero.addEventListener('mouseenter', function () { hover = true; schedule(); });
     hero.addEventListener('mouseleave', function () { hover = false; schedule(); });
     hero.addEventListener('focusin', function () { focused = true; schedule(); });
@@ -662,7 +647,6 @@
       tx = null;
     });
     document.addEventListener('visibilitychange', function () { hidden = document.hidden; schedule(); });
-    syncPause();
     schedule();
   }
 

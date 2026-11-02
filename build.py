@@ -1798,17 +1798,9 @@ def hero_carousel(slides=None, label='Destaques da TaMa Creative', assurances=Tr
   </div></div>
   <div class="slide-photo">{picture(img, alt, HERO_SIZES, eager=(i == 0), low=(i > 0))}</div>
 </div>''')
-    dots = ''.join(f'<button class="dot" type="button" data-slide="{i}" aria-label="Mostrar slide {i + 1} de {n}" aria-controls="slide-{i + 1}"{" aria-current=\"true\"" if i == 0 else ""}></button>' for i in range(n))
     strip = ASSURANCES if assurances else ''
     return f'''<section class="hero light" aria-roledescription="carrossel" aria-label="{label}" id="hero">
   {h1}{''.join(out)}
-  <div class="hero-bar"><div class="wrap hero-controls">
-    <p class="hero-count" aria-hidden="true"><span data-hero-count>01</span> / {n:02d}</p>
-    <div class="hero-dots">{dots}</div>
-    <button class="hero-arrow prev" type="button" data-hero-prev aria-label="Slide anterior"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></button>
-    <button class="hero-arrow next" type="button" data-hero-next aria-label="Próximo slide"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button>
-    <button class="hero-pause" type="button" data-hero-pause aria-pressed="false" aria-label="Pausar troca automática"><svg class="i-pause" viewBox="0 0 24 24"><path d="M9 6v12M15 6v12"/></svg><svg class="i-play" viewBox="0 0 24 24"><path d="M8 5l11 7-11 7z"/></svg></button>
-  </div></div>
   <p class="hero-caption">{nota}</p>
 </section>
 {strip}'''

@@ -90,7 +90,7 @@ try {
   console.log('Carrossel da abertura');
   await page.setViewport({ width: 1280, height: 900 });
   await page.goto(BASE + '/', { waitUntil: 'networkidle0' });
-  ok(await page.$$eval('h1', h => h.length) === 1 && await page.$$eval('#hero .slide', s => s.length) === 6 && await page.$eval('[data-hero-count]', c => c.parentElement.textContent.replace(/\s+/g, ' ').trim() === '01 / 06') && await page.$$eval('#hero .dot', d => d.length === 6), 'home tem um único H1 com 6 slides (contador 01 / 06 e 6 pontos)');
+  ok(await page.$$eval('h1', h => h.length) === 1 && await page.$$eval('#hero .slide', s => s.length) === 6 && await page.$$eval('#hero button, #hero [data-hero-count], #hero .dot', b => b.length === 0), 'home tem um único H1 com 6 slides e o carrossel não tem botões (sem tocar/pausar, contador, pontos ou setas)');
   const slideHrefs = ['/catalogo/', '/brindes-de-fim-de-ano/', '/confeccoes-personalizadas/', '/kits-corporativos/', '/catalogo/?categoria=canetas-escritorio#catalogo', '/eventos-corporativos/'];
   if (FIM === 1) slideHrefs.unshift(slideHrefs.splice(1, 1)[0]);
   ok(await page.$$eval('#hero .slide .btn-line', a => a.map(x => x.getAttribute('href')).join()) === slideHrefs.join(), 'slides levam a rotas reais do site (catálogo, fim de ano, confecções, kits, escritório, ativações)');
@@ -127,23 +127,21 @@ try {
   ok(await page.$eval('#f-selecao', i => i.value.includes('Polo masculina (Preto)')), 'destaque selecionado chega ao pedido de proposta com a cor');
   await page.evaluate(() => { localStorage.clear(); localStorage.setItem('tama-consent', 'denied'); });
   await page.goto(BASE + '/', { waitUntil: 'networkidle0' });
-  await page.click('[data-hero-next]');
-  ok(await page.$eval('#slide-2', s => s.classList.contains('is-active') && !s.hasAttribute('aria-hidden')), 'seta avança para o slide 2');
+  const tecla = k => page.$eval('#hero', (h, k) => h.dispatchEvent(new KeyboardEvent('keydown', { key: k, bubbles: true })), k);
+  await tecla('ArrowRight');
+  ok(await page.$eval('#slide-2', s => s.classList.contains('is-active') && !s.hasAttribute('aria-hidden')), 'seta do teclado avança para o slide 2');
   ok(await page.$eval('#slide-1', s => s.hasAttribute('inert')), 'slide inativo fica inerte (fora do foco)');
-  ok(await page.$eval('[data-hero-pause]', b => b.getAttribute('aria-pressed') === 'true'), 'com movimento reduzido, a troca automática começa pausada');
-  ok(await page.$eval('[data-hero-count]', c => c.textContent === '02'), 'contador acompanha o slide (02 / 06)');
-  if (FIM === 1) await page.click('[data-hero-prev]');
+  if (FIM === 1) await tecla('ArrowLeft');
   await Promise.all([page.waitForNavigation({ waitUntil: 'networkidle0' }), page.click(`#slide-${FIM} .btn-line`)]);
   ok(new URL(page.url()).pathname === '/brindes-de-fim-de-ano/' && /Um brinde a quem\s*fez parte do seu ano\./.test(await page.$eval('h1', h => h.textContent.replace(/\s+/g, ' '))), 'o slide de fim de ano leva a /brindes-de-fim-de-ano/');
   await page.goto(BASE + '/', { waitUntil: 'networkidle0' });
-  await page.click('[data-hero-next]');
+  await tecla('ArrowRight');
   ok(await page.$$eval('#hero .slide', s => new Set(s.map(x => getComputedStyle(x).backgroundColor)).size === 4), 'cada slide tem o seu tom de fundo');
   ok(await page.$$eval('#hero .slide img', i => i[0].loading === 'eager' && i[0].getAttribute('fetchpriority') === 'high' && i.slice(1).every(x => x.loading === 'lazy')), 'só a primeira foto do carrossel é prioritária');
   ok(await page.$$eval('#hero .slide', s => s.every(x => { if (x.classList.contains('respiro')) return true; const c = x.querySelector('.slide-copy').getBoundingClientRect(), p = x.querySelector('.slide-photo').getBoundingClientRect(); return c.right <= p.left + p.width * 0.18; })), 'no computador o texto não invade a área nítida da foto');
-  await page.click('[data-hero-pause]');
-  ok(await page.$eval('#hero', h => !h.classList.contains('is-stopped') && h.classList.contains('is-held')), 'retomar a troca com o foco no carrossel mantém a pausa enquanto o foco estiver nele');
-  await page.click('[data-hero-pause]');
-  ok(await page.$eval('[data-hero-pause]', b => b.getAttribute('aria-pressed') === 'true' && b.getAttribute('aria-label') === 'Retomar troca automática'), 'botão de pausa alterna e atualiza o rótulo');
+  await page.hover('#hero .slide.is-active .slide-photo');
+  ok(await page.$eval('#hero', h => h.classList.contains('is-held')), 'com o mouse sobre o carrossel a troca automática espera');
+  await page.mouse.move(5, 5);
   // slide de fim de ano (fim-header): a taça solta começa em ~36% da largura da foto e a caixa termina em ~98%.
   // Mede onde essas faixas caem na tela (object-fit: cover + object-position) e onde termina o texto de fato.
   const fimFrame = () => page.$eval(`#slide-${FIM}`, s => {

@@ -90,11 +90,11 @@ try {
   // /v2/: proposta de home minimalista para a cliente aprovar online (fora do Google e do sitemap)
   {
     const v2 = await (await fetch(BASE + '/v2/')).text(), mapa = await (await fetch(BASE + '/sitemap.xml')).text(), v1 = await (await fetch(BASE + '/')).text();
-    const ordem = ['class="hero', 'process-strip', 'class="frentes"', 'categorias', 'Perguntas sobre a TaMa', 'section guias', 'class="end-cta'].map(k => v2.indexOf(k));
+    const ordem = ['class="hero', 'class="frentes"', 'process-strip', 'section destaques', 'Perguntas sobre a TaMa', 'section guias', 'class="end-cta'].map(k => v2.indexOf(k));
     ok(/<meta name="robots" content="noindex/.test(v2) && !mapa.includes('/v2/') && ordem.every((p, i) => p > 0 && (i === 0 || p > ordem[i - 1]))
       && (v2.match(/class="frente-card"/g) || []).length === (v1.match(/class="frente-card"/g) || []).length
-      && (v2.match(/class="cat-tile"/g) || []).length >= 3 && !v2.includes('<article class="product studio"') && (v2.match(/class="slide /g) || []).length <= 4,
-      '/v2/: carrossel, do briefing à entrega, as frentes da home, produtos por tipo (sem cards de catálogo), perguntas, guias e chamada final; fora do Google e do sitemap');
+      && (v2.match(/class="dest-tile/g) || []).length >= 3 && !v2.includes('<article class="product studio"') && (v2.match(/class="slide /g) || []).length <= 4,
+      '/v2/: carrossel, as frentes da home, do briefing à entrega, produtos em destaque (fotos ambientadas, sem cards de catálogo), perguntas, guias e chamada final; fora do Google e do sitemap');
   }
   console.log('Carrossel da abertura');
   await page.setViewport({ width: 1280, height: 900 });

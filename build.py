@@ -1739,30 +1739,42 @@ SECOES = SITE_DADOS.get('secoes') or {}
 FRENTES = [(f['link'], f['imagem'], f.get('posicao') or 'center', tuple(f['titulo']), tuple(f['texto']), f['chamada'])
            for f in (SECOES.get('home-frentes') or {}).get('itens') or []]   # site.json › secoes › home-frentes (inventário › Páginas › Home)
 
+# /v2/: destaques de produto com fotos ambientadas do banco (img/v2, sem marca), não fotos de catálogo em fundo claro
+# (destino, foto, nome, chamada). O primeiro ocupa o bloco grande.
+DESTAQUES_V2 = [('/kits-corporativos/', 'kit-presente', 'Kits corporativos', 'Ver os kits'),
+                ('/catalogo/?tipo=cadernos#catalogo', 'caderno-premium', 'Cadernos', 'Ver modelos'),
+                ('/catalogo/?tipo=canetas#catalogo', 'caneta-executiva', 'Canetas', 'Ver modelos'),
+                ('/catalogo/?tipo=canecas#catalogo', 'caneca-ceramica', 'Canecas', 'Ver modelos'),
+                ('/catalogo/?tipo=garrafas#catalogo', 'garrafa-termica', 'Garrafas', 'Ver modelos'),
+                ('/catalogo/?tipo=ecobags#catalogo', 'totebag', 'Ecobags', 'Ver modelos'),
+                ('/confeccoes-personalizadas/', 'polo-offwhite', 'Uniformes', 'Ver confecções'),
+                ('/catalogo/?tipo=moletons#catalogo', 'hoodie-azul', 'Moletons', 'Ver modelos'),
+                ('/catalogo/?tipo=bones#catalogo', 'bone-verde', 'Bonés', 'Ver modelos')]
+
+
 def categorias_section():
-    """/v2/: produtos por tipo de peça (como no menu Brindes), mais Uniformes e Kits; cada bloco leva ao catálogo
-    filtrado. Tipo sem modelo no catálogo não aparece."""
+    """/v2/: produtos em destaque (fotos ambientadas, um bloco grande e oito menores) e, abaixo, todos os tipos de
+    peça com modelo no catálogo, em links curtos."""
     por_tipo = {}
     for c in CATALOGO:
         por_tipo.setdefault(c['tipo'], []).append(c)
-    sizes = '(max-width: 760px) 30vw, (max-width: 1340px) 14vw, 170px'
-    def bloco(href, img, nome, qtd):
-        return (f'<a class="cat-tile" href="{href}">{picture(img, "", sizes)}'
-                f'<span class="cat-nome">{esc(nome)}</span><span class="cat-qtd">{qtd}</span></a>')
-    itens = [bloco(f'/catalogo/?tipo={k}#catalogo', por_tipo[k][0]['img'], TIPO_ROTULO[k], f'{len(por_tipo[k])} modelo{"s" if len(por_tipo[k]) > 1 else ""}')
-             for k in MENU_BRINDES if por_tipo.get(k) and por_tipo[k][0]['img'] in IMAGES]
-    vest = [c for c in CATALOGO if c['categoria'] == 'vestuario' and c['img'] in IMAGES]
-    if vest:
-        itens.append(bloco('/confeccoes-personalizadas/', vest[0]['img'], 'Uniformes', f'{len(vest)} modelos'))
-    if cab('kits').get('imagem') in IMAGES:
-        itens.append(bloco('/kits-corporativos/', cab('kits')['imagem'], 'Kits', 'Composições prontas'))
-    return f'''<section class="section ivory categorias" aria-labelledby="cat-t">
+    itens = [(h, img, n, cta) for h, img, n, cta in DESTAQUES_V2 if img in IMAGES]
+    blocos = ''.join(
+        f'<a class="dest-tile{" dest-grande" if i == 0 else ""}" href="{h}">'
+        f'{picture(img, "", "(max-width: 760px) 92vw, 780px" if i == 0 else "(max-width: 760px) 46vw, 390px", style="object-position:center")}'
+        f'<span class="dest-info"><span class="dest-nome">{esc(n)}</span><span class="dest-cta">{cta} {ARROW}</span></span></a>'
+        for i, (h, img, n, cta) in enumerate(itens))
+    tipos = ''.join(f'<li><a href="/catalogo/?tipo={k}#catalogo">{TIPO_ROTULO[k]}</a></li>' for k in MENU_BRINDES if por_tipo.get(k))
+    tipos += '<li><a href="/confeccoes-personalizadas/">Uniformes</a></li><li><a href="/kits-corporativos/">Kits</a></li>'
+    return f'''<section class="section destaques" aria-labelledby="dest-t">
   <div class="wrap">
     <div class="section-head row">
-      <h2 id="cat-t" class="section-title">Produtos</h2>
+      <h2 id="dest-t" class="section-title">Produtos em destaque</h2>
       <a class="link" href="/catalogo/">Ver o catálogo completo {ARROW}</a>
     </div>
-    <div class="cat-grid">{''.join(itens)}</div>
+    <div class="dest-grid">{blocos}</div>
+    <ul class="dest-tipos" aria-label="Todos os tipos de peça">{tipos}</ul>
+    <p class="note">Imagens ilustrativas.</p>
   </div>
 </section>'''
 
@@ -1875,8 +1887,8 @@ def page_home_v2():
         'assunto': 'um projeto para a minha empresa',
         'preload': preload_image(slides_do_site()[0][1], HERO_SIZES),
         'body': hero_carousel(limite=4) + f'''
-{process_strip()}
 {frentes_section(titulo_visivel=True)}
+{process_strip()}
 {categorias_section()}
 {faq(HOME_FAQ, title='Perguntas sobre a TaMa')}
 {guias_block('home')}

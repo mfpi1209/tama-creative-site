@@ -267,6 +267,8 @@ GARANTIAS = (_TOPO.get('garantias') or ['Atendimento consultivo', 'Arte aprovada
 
 # ------------------------------------------------------------------ images
 IMAGES = {}
+# /v2/ (proposta 01, pacote TAMA-kit-visual de 02/11/2026): fotos em img/v2/ com os nomes do pacote
+V2_FOTOS = {'hero', 'kits', 'garrafas', 'canecas', 'cadernos', 'ecobags', 'vestuario', 'guia-fim-de-ano', 'guia-boas-vindas', 'guia-compliance'}
 
 
 # largura real da foto do carrossel (fotos 3:2 na metade direita; no celular, um pouco maior que a tela por causa do corte)
@@ -275,7 +277,7 @@ CARROSSEL_HQ = {s['imagem'] for s in SITE_DADOS.get('carrossel') or [] if s.get(
 # fotos do carrossel mais estreitas que 1,9:1 que também já trazem o vazio do texto à esquerda (fim-header: a parede
 # iluminada ocupa o primeiro terço; a taça solta começa em ~37% da largura)
 CARROSSEL_RESPIRO = {s['imagem'] for s in SITE_DADOS.get('carrossel') or [] if s.get('respiro')}
-FOTOS_HQ = CARROSSEL_HQ | {'home-frente-brindes-v2', 'home-frente-confeccoes-v2', 'home-frente-kits-v2', 'kits-header', 'kits-header-v3', 'conf-header', 'ativ-header', 'hot-header', 'brindes-header', 'brindes-entrega', 'fim-header', 'blog-header', 'sobre-header', 'ocasiao-boas-vindas', 'ocasiao-eventos', 'ocasiao-executivos', 'ocasiao-campanhas', 'ocasiao-lancamentos', 'ocasiao-reconhecimento', 'sobre-caderno', 'sobre-uniforme', 'sobre-caixa', 'slide-ativacoes'} | {c['imagem'] for c in (SITE_DADOS.get('cabecalhos') or {}).values() if c.get('imagem')} | {n for n in re.findall(r'"((?:topo|secao)-[a-z0-9-]+)"', json.dumps(SITE_DADOS.get('secoes') or {}))}   # fotos enviadas em alta pela TaMa, as dos cabeçalhos e as enviadas pelo inventário (site.json)
+FOTOS_HQ = CARROSSEL_HQ | V2_FOTOS | {'home-frente-brindes-v2', 'home-frente-confeccoes-v2', 'home-frente-kits-v2', 'kits-header', 'kits-header-v3', 'conf-header', 'ativ-header', 'hot-header', 'brindes-header', 'brindes-entrega', 'fim-header', 'blog-header', 'sobre-header', 'ocasiao-boas-vindas', 'ocasiao-eventos', 'ocasiao-executivos', 'ocasiao-campanhas', 'ocasiao-lancamentos', 'ocasiao-reconhecimento', 'sobre-caderno', 'sobre-uniforme', 'sobre-caixa', 'slide-ativacoes'} | {c['imagem'] for c in (SITE_DADOS.get('cabecalhos') or {}).values() if c.get('imagem')} | {n for n in re.findall(r'"((?:topo|secao)-[a-z0-9-]+)"', json.dumps(SITE_DADOS.get('secoes') or {}))}   # fotos enviadas em alta pela TaMa, as dos cabeçalhos e as enviadas pelo inventário (site.json)
 
 
 def build_images():
@@ -1739,47 +1741,125 @@ SECOES = SITE_DADOS.get('secoes') or {}
 FRENTES = [(f['link'], f['imagem'], f.get('posicao') or 'center', tuple(f['titulo']), tuple(f['texto']), f['chamada'])
            for f in (SECOES.get('home-frentes') or {}).get('itens') or []]   # site.json › secoes › home-frentes (inventário › Páginas › Home)
 
-# /v2/: destaques de produto com fotos ambientadas do banco (img/v2, sem marca), não fotos de catálogo em fundo claro
-# (destino, foto, nome, chamada). O primeiro ocupa o bloco grande.
-DESTAQUES_V2 = [('/kits-corporativos/', 'kit-presente', 'Kits corporativos', 'Ver os kits'),
-                ('/catalogo/?tipo=cadernos#catalogo', 'caderno-premium', 'Cadernos', 'Ver modelos'),
-                ('/catalogo/?tipo=canetas#catalogo', 'caneta-executiva', 'Canetas', 'Ver modelos'),
-                ('/catalogo/?tipo=canecas#catalogo', 'caneca-ceramica', 'Canecas', 'Ver modelos'),
-                ('/catalogo/?tipo=garrafas#catalogo', 'garrafa-termica', 'Garrafas', 'Ver modelos'),
-                ('/catalogo/?tipo=ecobags#catalogo', 'totebag', 'Ecobags', 'Ver modelos'),
-                ('/confeccoes-personalizadas/', 'polo-offwhite', 'Uniformes', 'Ver confecções'),
-                ('/catalogo/?tipo=moletons#catalogo', 'hoodie-azul', 'Moletons', 'Ver modelos'),
-                ('/catalogo/?tipo=bones#catalogo', 'bone-verde', 'Bonés', 'Ver modelos')]
+# /v2/: home da proposta 01 ("Soluções compactas"), referência docs/proposta-01/home-aprovada.png e medidas em
+# docs/proposta-01/VISUAL.md. Estilos só em body.v2 (src/styles.css, bloco "proposta 01"); a home atual não muda.
+# Ícones de interface do pacote (linha 1.5, currentColor), decorativos ao lado do texto.
+V2_ICONES = {
+    'brindes': '<rect x="5" y="10" width="22" height="17" rx="1"/><path d="M3 10h26v6H3zM16 10v17M16 10H9a4 4 0 1 1 4-4l3 4Zm0 0h7a4 4 0 1 0-4-4l-3 4Z"/>',
+    'uniformes': '<path d="m11 4-8 5 4 7 4-2v14h10V14l4 2 4-7-8-5a5 5 0 0 1-10 0Z"/>',
+    'kits': '<path d="m4 10 12-6 12 6v15l-12 5-12-5V10Zm0 0 12 6 12-6M16 16v14M10 7l12 6"/>',
+    'eventos': '<rect x="5" y="6" width="22" height="23" rx="2"/><path d="M10 3v6M22 3v6M5 12h22m-11 3 2 4 4 .6-3 3 .7 4.4-3.7-2-3.7 2 .7-4.4-3-3 4-.6 2-4Z"/>',
+    'hotelaria': '<path d="M3 25h26M5 22a11 11 0 0 1 22 0H5Zm11-11V7m-2 0h4M2 28h28"/>',
+    'chevron': '<path d="m12 7 9 9-9 9"/>',
+    'mais': '<path d="M6 16h20M16 6v20"/>',
+}
 
 
-def categorias_section():
-    """/v2/: produtos em destaque (fotos ambientadas, um bloco grande e oito menores) e, abaixo, todos os tipos de
-    peça com modelo no catálogo, em links curtos."""
-    por_tipo = {}
-    for c in CATALOGO:
-        por_tipo.setdefault(c['tipo'], []).append(c)
-    itens = [(h, img, n, cta) for h, img, n, cta in DESTAQUES_V2 if img in IMAGES]
-    blocos = ''.join(
-        f'<a class="dest-tile{" dest-grande" if i == 0 else ""}" href="{h}">'
-        f'{picture(img, "", "(max-width: 760px) 92vw, 780px" if i == 0 else "(max-width: 760px) 46vw, 390px", style="object-position:center")}'
-        f'<span class="dest-info"><span class="dest-nome">{esc(n)}</span><span class="dest-cta">{cta} {ARROW}</span></span></a>'
-        for i, (h, img, n, cta) in enumerate(itens))
-    tipos = ''.join(f'<li><a href="/catalogo/?tipo={k}#catalogo">{TIPO_ROTULO[k]}</a></li>' for k in MENU_BRINDES if por_tipo.get(k))
-    tipos += '<li><a href="/confeccoes-personalizadas/">Uniformes</a></li><li><a href="/kits-corporativos/">Kits</a></li>'
-    return f'''<section class="section destaques" aria-labelledby="dest-t">
+def v2_icone(nome, cls='t-ico'):
+    return (f'<svg class="{cls}" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" '
+            f'stroke-linejoin="round" aria-hidden="true" focusable="false">{V2_ICONES[nome]}</svg>')
+
+
+V2_SOLUCOES = [('/brindes-corporativos/', 'brindes', 'Brindes corporativos'), ('/confeccoes-personalizadas/', 'uniformes', 'Uniformes e confecções'),
+               ('/kits-corporativos/', 'kits', 'Kits corporativos'), ('/eventos-corporativos/', 'eventos', 'Eventos corporativos'),
+               ('/hotelaria-e-gastronomia/', 'hotelaria', 'Hotelaria e gastronomia')]
+# (foto, nome, destino real, filtro, texto alternativo): ordem e filtros da especificação (kits / dia a dia / vestuário)
+V2_CATEGORIAS = [
+    ('kits', 'Kits corporativos', '/kits-corporativos/', 'kits', 'Caixa bordô com caderno preto, garrafa e copo, com a marca fictícia Sua Marca.'),
+    ('garrafas', 'Garrafas', '/catalogo/?tipo=garrafas#catalogo', 'dia-a-dia', 'Três garrafas (inox, azul-marinho e creme) com a marca fictícia Sua Marca.'),
+    ('canecas', 'Canecas', '/catalogo/?tipo=canecas#catalogo', 'dia-a-dia', 'Três canecas (azul-marinho, creme e bordô) com a marca fictícia Sua Marca.'),
+    ('cadernos', 'Cadernos', '/catalogo/?tipo=cadernos#catalogo', 'dia-a-dia', 'Cadernos bordô, cru e preto com caneta, com a marca fictícia Sua Marca.'),
+    ('ecobags', 'Ecobags', '/catalogo/?tipo=ecobags#catalogo', 'dia-a-dia', 'Ecobag de algodão cru com a marca fictícia Sua Marca, ao lado de bolsas mostarda e azul.'),
+    ('vestuario', 'Vestuário', '/confeccoes-personalizadas/', 'vestuario', 'Camisas polo dobradas (azul-marinho, creme e verde) com a marca fictícia Sua Marca bordada.'),
+]
+V2_FILTROS = [('todos', 'Todos'), ('kits', 'Kits'), ('dia-a-dia', 'Dia a dia'), ('vestuario', 'Vestuário')]
+# guia do blog -> foto do pacote
+V2_GUIAS = [('brindes-de-fim-de-ano-para-clientes', 'guia-fim-de-ano'), ('o-que-colocar-no-kit-de-boas-vindas', 'guia-boas-vindas'),
+            ('brindes-e-compliance-politica-de-presentes', 'guia-compliance')]
+# 6ª pergunta da referência, com o texto que o site já usa (perguntas de brindes e etapa "Aprovação" do método)
+V2_FAQ = HOME_FAQ + [('Como funciona a aprovação da arte?', 'A marca da sua empresa é aplicada nas peças pelos fornecedores, e a arte é enviada '
+                      'para a sua aprovação antes da produção. Nessa etapa são validadas a arte, as aplicações, as especificações e os detalhes.')]
+
+
+def v2_hero():
+    return f'''<section class="t-hero" aria-labelledby="t-hero-t">
+  <div class="t-hero-txt">
+    <p class="eyebrow">Fim de ano</p>
+    <h1 id="t-hero-t" class="t-h1">Um brinde a quem <em>fez parte do seu ano.</em></h1>
+    <p class="t-lead">Taças, copos e kits com a sua marca para agradecer clientes e equipes.</p>
+    <div class="actions">{cta_link('Solicitar proposta', track_label='v2-hero')}</div>
+  </div>
+  <figure class="t-hero-foto">{picture('hero', 'Caixa de presente bordô, taça e estojo de vinho com a marca fictícia Sua Marca, entre enfeites de Natal.', '(max-width: 767px) 100vw, 52vw', eager=True)}<figcaption>Imagem ilustrativa • Marca fictícia</figcaption></figure>
+</section>'''
+
+
+def v2_solucoes():
+    itens = ''.join(f'<li><a href="{h}">{v2_icone(i)}<span>{esc(n)}</span></a></li>' for h, i, n in V2_SOLUCOES)
+    return f'''<section class="t-sol" aria-labelledby="t-sol-t">
+  <div class="wrap t-sol-in"><h2 id="t-sol-t" class="t-sol-title">O que a TaMa faz</h2><ul class="t-sol-list">{itens}</ul></div>
+</section>'''
+
+
+def v2_catalogo():
+    filtros = ''.join(f'<button type="button" class="t-pill" data-filtro="{k}" aria-pressed="{"true" if k == "todos" else "false"}">{n}</button>' for k, n in V2_FILTROS)
+    cards = ''.join(
+        f'<li class="t-card-item" data-tag="{tag}"><a class="t-card" href="{href}">'
+        f'{picture(img, alt, "(max-width: 479px) calc(100vw - 40px), (max-width: 1199px) calc(50vw - 36px), 430px", cls="t-card-img")}'
+        f'<span class="t-card-copy"><span class="t-card-nome">{esc(nome)}</span><span class="t-card-link">Ver modelos {ARROW}</span></span></a></li>'
+        for img, nome, href, tag, alt in V2_CATEGORIAS)
+    return f'''<section class="t-cat" aria-labelledby="t-cat-t">
   <div class="wrap">
-    <div class="section-head row">
-      <h2 id="dest-t" class="section-title">Produtos em destaque</h2>
-      <a class="link" href="/catalogo/">Ver o catálogo completo {ARROW}</a>
-    </div>
-    <div class="dest-grid">{blocos}</div>
-    <ul class="dest-tipos" aria-label="Todos os tipos de peça">{tipos}</ul>
-    <p class="note">Imagens ilustrativas.</p>
+    <h2 id="t-cat-t" class="t-h2">Brindes para levar sua marca <em>mais longe</em></h2>
+    <p class="t-sub">Kits, produtos personalizados e confecções para diferentes ocasiões.</p>
+    <div class="t-filtros" role="group" aria-label="Filtrar categorias" data-filtros="t-cat-grid">{filtros}</div>
+    <ul class="t-cat-grid" id="t-cat-grid">{cards}</ul>
+    <p class="note">Imagens ilustrativas: a marca fictícia aparece como exemplo; no seu projeto, entra a marca da sua empresa. Modelos e cores são confirmados na proposta.</p>
   </div>
 </section>'''
 
 
-def frentes_section(titulo_visivel=False):
+def v2_processo():
+    passos = ''.join(f'<li><span class="t-num" aria-hidden="true">{i + 1:02d}</span><span>{t}</span>{v2_icone("chevron", "t-chev") if i < len(STEPS) - 1 else ""}</li>'
+                     for i, (t, _d, _k) in enumerate(STEPS))
+    return f'''<section class="t-proc-sec" aria-labelledby="t-proc-t">
+  <div class="wrap"><div class="t-proc">
+    <h2 id="t-proc-t" class="t-proc-title">Do briefing <br>à entrega</h2>
+    <ol class="t-proc-list">{passos}</ol>
+  </div></div>
+</section>'''
+
+
+def v2_faq():
+    meio = (len(V2_FAQ) + 1) // 2
+    col = lambda itens: ''.join(f'<details class="t-faq-item"><summary>{q}{v2_icone("mais", "t-mais")}</summary><p>{a}</p></details>' for q, a in itens)
+    return f'''<section class="t-faq" aria-labelledby="t-faq-t">
+  <div class="wrap">
+    <h2 id="t-faq-t" class="t-h2 t-h2-sm">{arc("t-petala")}Perguntas frequentes</h2>
+    <p class="t-sub">Respostas curtas para as dúvidas mais comuns sobre nossos brindes e processos.</p>
+    <div class="t-faq-cols"><div>{col(V2_FAQ[:meio])}</div><div>{col(V2_FAQ[meio:])}</div></div>
+  </div>
+</section>'''
+
+
+def v2_guias():
+    por_slug = {a['slug']: a for a in blog.ARTS if not a.get('noindex')}
+    itens = ''.join(
+        f'<li><a class="t-guia" href="{por_slug[s]["path"]}">{picture(img, "", "(max-width: 767px) calc(100vw - 40px), 430px")}'
+        f'<span class="t-guia-copy"><span class="t-kicker">Guia</span><span class="t-guia-nome">{esc(por_slug[s].get("breadcrumb") or por_slug[s]["title"])}</span>'
+        f'<span class="t-card-link">Ler o guia {ARROW}</span></span></a></li>'
+        for s, img in V2_GUIAS if s in por_slug)
+    if not itens:
+        return ''
+    return f'''<section class="t-guias" aria-labelledby="t-guias-t">
+  <div class="wrap">
+    <h2 id="t-guias-t" class="t-h2 t-h2-sm">{arc("t-petala")}Guias para decidir com segurança</h2>
+    <p class="t-sub">Conteúdos da TaMa sobre como escolher, o que incluir e como respeitar as regras de quem recebe.</p>
+    <ul class="t-guias-grid">{itens}</ul>
+  </div>
+</section>'''
+
+
+def frentes_section():
     # O cartão inteiro é um único <a> (como antes): título, texto e chamada formam o nome acessível do link.
     # Fotos decorativas (alt vazio): o título já diz o destino. O espaço antes de cada <br> mantém
     # "Brindes corporativos" com espaço no texto do link.
@@ -1790,7 +1870,7 @@ def frentes_section(titulo_visivel=False):
         f'<span class="frente-link">{esc(cta)} {ARROW}</span></div></a>'
         for href, img, pos, t, d, cta in FRENTES)
     return f'''<section class="frentes" aria-labelledby="frentes-t">
-  {'<div class="wrap"><h2 id="frentes-t" class="section-title frentes-titulo">O que a TaMa faz</h2></div>' if titulo_visivel else '<h2 id="frentes-t" class="visually-hidden">O que a TaMa faz</h2>'}
+  <h2 id="frentes-t" class="visually-hidden">O que a TaMa faz</h2>
   <div class="wrap frentes-grid">
 {cards}
   </div>
@@ -1818,7 +1898,7 @@ def slides_do_site():
     return out
 
 
-def hero_carousel(slides=None, label='Destaques da TaMa Creative', assurances=True, limite=None):
+def hero_carousel(slides=None, label='Destaques da TaMa Creative', assurances=True):
     # Fotos claras de estúdio (pacote tama-home-v2). No computador a foto ocupa a metade direita e se funde ao tom do
     # slide (creme, sálvia, rosé, linho); o texto fica numa coluna própria, sem encostar nos produtos. No celular o texto
     # vem acima da foto. frame: enquadramento da foto (--fx no computador, --fx-m no celular) e largura (--pw).
@@ -1829,8 +1909,6 @@ def hero_carousel(slides=None, label='Destaques da TaMa Creative', assurances=Tr
     if da_temporada is not None:
         slides.insert(0, slides.pop(da_temporada))   # temporada: o slide marcado com ela abre o carrossel
         h1 = f'<h1 class="visually-hidden">{esc(ASSINATURA.rstrip("."))}</h1>'
-    if limite:
-        slides = slides[:limite]   # home minimalista: só os primeiros slides
     n = len(slides)
     # legenda curta (cabe ao lado dos controles em qualquer largura), conforme a marca que aparece nas fotos
     nota = {NOTA_FICTICIA_LONGA: NOTA_FICTICIA, NOTA_TAMA: NOTA_TAMA_CURTA}.get(nota_marca(s[3] for s in slides), 'Imagens ilustrativas • Marcas fictícias e TaMa como exemplo')
@@ -1879,19 +1957,19 @@ def page_home():
 
 
 def page_home_v2():
-    """Proposta de home minimalista em /v2/, para a cliente aprovar online antes de substituir a home (fora do Google e
-    do sitemap). Se aprovada, este corpo passa para page_home e a página sai."""
+    """Proposta 01 da home em /v2/ (pacote TAMA-kit-visual), para a cliente aprovar online antes de substituir a home
+    (fora do Google e do sitemap). Se aprovada, este corpo passa para page_home e a página sai."""
     return {
-        'path': '/v2/', 'title': 'Home minimalista (proposta) | TaMa Creative', 'index': False, 'body_class': 'v2', 'og': slides_do_site()[0][1],
-        'description': 'Proposta de home minimalista da TaMa Creative, para aprovação.',
+        'path': '/v2/', 'title': 'Home (proposta 01) | TaMa Creative', 'index': False, 'body_class': 'v2', 'og': 'hero',
+        'description': 'Proposta 01 da home da TaMa Creative (soluções compactas), para aprovação.',
         'assunto': 'um projeto para a minha empresa',
-        'preload': preload_image(slides_do_site()[0][1], HERO_SIZES),
-        'body': hero_carousel(limite=4) + f'''
-{frentes_section(titulo_visivel=True)}
-{process_strip()}
-{categorias_section()}
-{faq(HOME_FAQ, title='Perguntas sobre a TaMa')}
-{guias_block('home')}
+        'preload': preload_image('hero', '(max-width: 767px) 100vw, 52vw'),
+        'body': v2_hero() + f'''
+{v2_solucoes()}
+{v2_catalogo()}
+{v2_processo()}
+{v2_faq()}
+{v2_guias()}
 {end_cta()}''',
     }
 

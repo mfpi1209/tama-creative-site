@@ -899,3 +899,20 @@
       .then(function () { if (timer) clearTimeout(timer); sending = false; submitBtn.disabled = false; submitBtn.removeAttribute('aria-busy'); });
   });
 })();
+
+/* /v2/ (proposta 01): filtros das categorias (Todos, Kits, Dia a dia, Vestuário). Cada botão marca aria-pressed e
+   esconde os cards de outro grupo (data-tag); sem JavaScript, os seis cards aparecem. */
+(function () {
+  document.querySelectorAll('[data-filtros]').forEach(function (grupo) {
+    var lista = document.getElementById(grupo.getAttribute('data-filtros'));
+    if (!lista) return;
+    var botoes = grupo.querySelectorAll('[data-filtro]');
+    botoes.forEach(function (b) {
+      b.addEventListener('click', function () {
+        var f = b.getAttribute('data-filtro');
+        botoes.forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+        lista.querySelectorAll('[data-tag]').forEach(function (item) { item.hidden = f !== 'todos' && item.getAttribute('data-tag') !== f; });
+      });
+    });
+  });
+})();

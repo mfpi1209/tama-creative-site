@@ -89,12 +89,18 @@ try {
 
   // /v2/: proposta de home minimalista para a cliente aprovar online (fora do Google e do sitemap)
   {
-    const v2 = await (await fetch(BASE + '/v2/')).text(), mapa = await (await fetch(BASE + '/sitemap.xml')).text(), v1 = await (await fetch(BASE + '/')).text();
-    const ordem = ['class="hero', 'class="frentes"', 'process-strip', 'section destaques', 'Perguntas sobre a TaMa', 'section guias', 'class="end-cta'].map(k => v2.indexOf(k));
+    const v2 = await (await fetch(BASE + '/v2/')).text(), mapa = await (await fetch(BASE + '/sitemap.xml')).text();
+    const ordem = ['class="t-hero', 'class="t-sol', 'class="t-cat', 'class="t-proc-sec', 'class="t-faq', 'class="t-guias', 'class="end-cta'].map(k => v2.indexOf(k));
     ok(/<meta name="robots" content="noindex/.test(v2) && !mapa.includes('/v2/') && ordem.every((p, i) => p > 0 && (i === 0 || p > ordem[i - 1]))
-      && (v2.match(/class="frente-card"/g) || []).length === (v1.match(/class="frente-card"/g) || []).length
-      && (v2.match(/class="dest-tile/g) || []).length >= 3 && !v2.includes('<article class="product studio"') && (v2.match(/class="slide /g) || []).length <= 4,
-      '/v2/: carrossel, as frentes da home, do briefing à entrega, produtos em destaque (fotos ambientadas, sem cards de catálogo), perguntas, guias e chamada final; fora do Google e do sitemap');
+      && !v2.includes('aria-roledescription="carrossel"') && (v2.match(/<li class="t-card-item"/g) || []).length === 6 && (v2.match(/class="t-pill"/g) || []).length === 4
+      && (v2.match(/<details class="t-faq-item"/g) || []).length === 6 && (v2.match(/class="t-num"/g) || []).length === 6 && !v2.includes('Soluções compactas</p>'),
+      '/v2/ (proposta 01): hero fixo, soluções, catálogo 3×2 com 4 filtros, processo em 6 passos, 6 perguntas, guias e chamada final; fora do Google e do sitemap');
+    await page.goto(BASE + '/v2/', { waitUntil: 'networkidle0' });
+    const filtrados = {};
+    for (const f of ['kits', 'dia-a-dia', 'vestuario', 'todos']) { await page.click(`[data-filtro="${f}"]`); filtrados[f] = await page.$$eval('.t-card-item', l => l.filter(i => !i.hidden).length); }
+    ok(JSON.stringify(filtrados) === '{"kits":1,"dia-a-dia":4,"vestuario":1,"todos":6}' && await page.$$eval('[data-filtro]', b => b.map(x => x.getAttribute('aria-pressed')).join()) === 'true,false,false,false'
+      && await page.$$eval('.t-card', a => a.every(x => /^\/(kits-corporativos|confeccoes-personalizadas|catalogo)\//.test(x.getAttribute('href')))),
+      `/v2/: filtros Kits (1), Dia a dia (4), Vestuário (1) e Todos (6) com aria-pressed, e cada card leva a uma página real ${JSON.stringify(filtrados)}`);
   }
   console.log('Carrossel da abertura');
   await page.setViewport({ width: 1280, height: 900 });

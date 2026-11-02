@@ -1453,47 +1453,159 @@ body:has(.pdp-wrap) .crumbs.wrap { max-width: 1440px; padding-inline: clamp(16px
   .atalhos[aria-labelledby="ativ-atalhos-t"] .atalhos-list li:nth-child(3n + 1) { border-left: 0; padding-left: 0; }
 }
 
-/* /v2/ (body.v2): padrão de medidas proposto em 02/11/2026. Conteúdo até 1200 px, seções a 80/48 px,
-   títulos 48/32 (banner), 32/24 (seção), 40/28 (chamada final); banner em ~55% da tela no computador. */
-body.v2 main .wrap { max-width: calc(1200px + 2 * var(--gutter)); }
-body.v2 .header-row { min-height: 56px; }
-body.v2 .head-search { height: 40px; }
-body.v2 .hero.light .slide-title { font-size: clamp(1.875rem, 1.2rem + 1.9vw, 3rem); margin: 10px 0 12px; }
-body.v2 .hero.light .slide-desc { font-size: 1rem; margin-bottom: 20px; }
-body.v2 .end-cta { padding-block: clamp(48px, 5.6vw, 80px); }
-body.v2 main > .section { padding-block: clamp(48px, 5.6vw, 80px); }
-body.v2 .section-title { font-size: clamp(1.5rem, 1.15rem + 1vw, 2rem); }
-body.v2 .frentes { padding-block: clamp(40px, 4.4vw, 64px); }
-body.v2 .frentes-titulo { margin-bottom: clamp(20px, 2.4vw, 32px); }
-/* /v2/: produtos em destaque com fotos ambientadas: bloco grande (2×2) e cinco menores, nome sobre a foto */
-.dest-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); grid-auto-rows: clamp(180px, 17vw, 250px); gap: clamp(10px, 1.2vw, 16px); }
-.dest-tile { position: relative; display: block; overflow: hidden; border-radius: 6px; background: var(--sand); color: #fff; text-decoration: none; isolation: isolate; }
-.dest-tile.dest-grande { grid-column: span 2; grid-row: span 2; }
-.dest-tile picture, .dest-tile img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.dest-tile img { transition: transform .7s cubic-bezier(.2, .7, .2, 1); }
-.dest-tile::after { content: ""; position: absolute; inset: 40% 0 0; background: linear-gradient(180deg, transparent, rgba(30, 20, 16, .62)); z-index: 1; }
-.dest-info { position: absolute; left: clamp(14px, 1.6vw, 22px); right: 14px; bottom: clamp(12px, 1.4vw, 20px); z-index: 2; display: grid; gap: 4px; }
-.dest-nome { font: 500 clamp(1.25rem, 1rem + .7vw, 1.6rem)/1.1 var(--f-serif); }
-.dest-grande .dest-nome { font-size: clamp(1.6rem, 1.2rem + 1.2vw, 2.25rem); }
-.dest-cta { display: inline-flex; align-items: center; gap: 8px; font-size: .875rem; font-weight: 600; color: #F6EEE8; }
-.dest-cta .i-arrow { width: 1em; height: 1em; transition: transform .2s ease; }
-@media (hover: hover) { .dest-tile:hover img { transform: scale(1.04); } .dest-tile:hover .i-arrow { transform: translateX(3px); } }
-.dest-tile:focus-visible { outline-offset: 3px; }
-.dest-tipos { display: flex; flex-wrap: wrap; gap: 8px; margin: clamp(20px, 2.4vw, 28px) 0 0; padding: 0; list-style: none; }
-.dest-tipos a { display: inline-flex; align-items: center; min-height: 36px; padding: 0 14px; border: 1px solid var(--line-strong); border-radius: 999px; font-size: .875rem; color: var(--ink); text-decoration: none; }
-.dest-tipos a:hover { border-color: var(--wine); color: var(--wine); }
-.destaques .note { margin-top: 14px; }
-@media (max-width: 760px) {
-  .dest-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: 44vw; }
-  .dest-tile.dest-grande { grid-row: span 1; grid-column: span 2; }
+/* /v2/ (body.v2): home da proposta 01 "Soluções compactas" (pacote TAMA-kit-visual de 02/11/2026).
+   Referência docs/proposta-01/home-aprovada.png; medidas de docs/proposta-01/VISUAL.md (desktop 1440: container
+   1340, margens 50). Só nesta página: a home atual e as páginas internas não mudam. Fontes: as do site (serif e
+   sans existentes), não as substitutas do pacote. */
+body.v2 { --t-bg: #FAF7F2; --t-surface: #FCF9F5; --t-sand: #F1E9DE; --t-brand: #521B2C; --t-green: #183C29; --t-footer: #27221F;
+  --t-text: #292321; --t-muted: #71675F; --t-line: #E5DCD3; --t-coral: #C96751; background: var(--t-bg); color: var(--t-text); }
+body.v2 .wrap, body.v2 .site-header .wrap, body.v2 .announce .wrap { max-width: none; width: min(1340px, calc(100% - 100px)); padding-inline: 0; margin-inline: auto; }
+body.v2 .announce .wrap { min-height: 28px; }
+body.v2 .header-row { min-height: 64px; }
+body.v2 .head-search { max-width: 620px; height: 40px; }
+body.v2 :focus-visible { outline: 2px solid var(--t-brand); outline-offset: 4px; }
+@media (min-width: 761px) { body.v2 .site-nav, body.v2 .site-nav > .nav-link, body.v2 .nav-group > .nav-toggle { min-height: 42px; } }
+.t-h1 { margin: 16px 0 0; max-width: 610px; font: 500 64px/64px var(--f-serif); letter-spacing: -.025em; color: var(--t-text); }
+.t-h1 em { display: block; font-style: italic; color: var(--t-brand); }
+.t-h2 { margin: 0; font: 500 48px/52px var(--f-serif); letter-spacing: -.025em; color: var(--t-text); }
+.t-h2 em { font-style: italic; color: var(--t-brand); }
+.t-h2-sm { font-size: 36px; line-height: 40px; display: flex; align-items: center; }
+.t-petala { width: 22px; height: 22px; flex: none; margin-right: 12px; color: var(--t-coral); fill: currentColor; }
+.t-sub { margin: 10px 0 0; font-size: 16px; line-height: 25px; color: var(--t-muted); }
+.t-card-link { display: inline-flex; align-items: center; gap: 8px; font-size: 15px; line-height: 22px; font-weight: 600; color: var(--t-brand); }
+.t-card-link .i-arrow { width: 16px; height: 16px; transition: transform .18s ease; }
+/* hero de fim de ano: texto à esquerda (48%), foto à direita (52%) com fade areia na borda esquerda */
+.t-hero { display: grid; grid-template-columns: 48% 52%; min-height: 560px; background: var(--t-sand); }
+.t-hero-txt { align-self: center; padding: 48px 40px 48px max(50px, calc((100vw - 1340px) / 2)); }
+.t-lead { margin: 18px 0 0; max-width: 460px; font-size: 16px; line-height: 25px; color: var(--t-muted); }
+.t-hero .actions { margin-top: 28px; }
+.t-hero-foto { position: relative; margin: 0; min-height: 100%; overflow: hidden; }
+.t-hero-foto picture, .t-hero-foto img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 66% center; }
+.t-hero-foto img { -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 14%); mask-image: linear-gradient(90deg, transparent 0, #000 14%); }
+.t-hero-foto figcaption { position: absolute; right: 12px; bottom: 12px; padding: 4px 9px; border-radius: 4px; background: rgba(252, 249, 245, .82); font-size: 11px; color: var(--t-muted); }
+/* soluções compactas: título com divisor e cinco itens com ícone, sem fotos */
+.t-sol { padding-block: 40px; background: var(--t-surface); border-bottom: 1px solid var(--t-line); }
+.t-sol-in { display: flex; align-items: center; }
+.t-sol-title { flex: 0 0 285px; margin: 0; padding: 14px 32px 14px 0; border-right: 1px solid var(--t-line); font: 500 36px/40px var(--f-serif); letter-spacing: -.02em; }
+.t-sol-list { flex: 1; display: flex; margin: 0; padding: 0 0 0 24px; list-style: none; }
+.t-sol-list li { flex: 1; }
+.t-sol-list a { display: grid; justify-items: center; gap: 12px; padding: 8px; text-align: center; font-size: 15px; line-height: 19px; font-weight: 600; color: var(--t-text); text-decoration: none; }
+.t-sol-list a:hover { color: var(--t-brand); }
+.t-ico { width: 44px; height: 44px; color: var(--t-brand); }
+/* catálogo 3×2 com filtros: card inteiro é o link, sem texto sobre a foto, sem sombra */
+.t-cat { padding-block: 56px; }
+.t-filtros { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+.t-pill { height: 34px; padding: 0 22px; border: 1px solid var(--t-line); border-radius: 999px; background: var(--t-surface); font: 600 14px/1 var(--f-sans); color: var(--t-text); cursor: pointer; transition: background-color .18s ease, border-color .18s ease, color .18s ease; }
+.t-pill:hover { border-color: var(--t-brand); }
+.t-pill[aria-pressed="true"] { background: var(--t-brand); border-color: var(--t-brand); color: #FCF9F5; }
+.t-cat-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; margin: 30px 0 0; padding: 0; list-style: none; }
+.t-card-item[hidden] { display: none; }
+.t-card { display: block; height: 100%; overflow: hidden; border: 1px solid var(--t-line); border-radius: 6px; background: var(--t-surface); color: var(--t-text); text-decoration: none; transition: border-color .18s ease; }
+.t-card picture { display: block; aspect-ratio: 1.1; overflow: hidden; }
+.t-card img { width: 100%; height: 100%; object-fit: cover; object-position: center; transition: transform .18s ease; }
+.t-card-copy { display: grid; justify-items: start; gap: 10px; padding: 20px 24px; }
+.t-card-nome { font: 500 32px/34px var(--f-serif); letter-spacing: -.02em; }
+@media (hover: hover) {
+  .t-card:hover, .t-guia:hover { border-color: var(--t-brand); }
+  .t-card:hover img, .t-guia:hover img { transform: scale(1.02); }
+  .t-card:hover .i-arrow, .t-guia:hover .i-arrow { transform: translateX(3px); }
 }
-@media (prefers-reduced-motion: reduce) { .dest-tile img, .dest-cta .i-arrow { transition: none; } }
-body.v2 .end-cta h2 { font-size: clamp(1.75rem, 1.2rem + 1.4vw, 2.5rem); }
-@media (min-width: 761px) {
-  body.v2 .site-nav, body.v2 .site-nav > .nav-link, body.v2 .nav-group > .nav-toggle { min-height: 40px; }
-  body.v2 .hero.light .slide { min-height: 0; height: clamp(400px, 34vw, 500px); }
+.t-cat .note { margin-top: 20px; }
+/* processo: faixa areia com os seis passos em círculos e chevrons */
+.t-proc { display: flex; align-items: center; gap: 32px; padding: 32px; border-radius: 12px; background: var(--t-sand); }
+.t-proc-title { flex: 0 0 210px; margin: 0; padding-right: 32px; border-right: 1px solid var(--t-line); font: 500 32px/36px var(--f-serif); letter-spacing: -.02em; }
+.t-proc-list { flex: 1; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); margin: 0; padding: 0; list-style: none; }
+.t-proc-list li { position: relative; display: grid; justify-items: center; gap: 8px; font-size: 14px; line-height: 20px; font-weight: 600; text-align: center; }
+.t-num { display: grid; place-items: center; width: 44px; height: 44px; border: 1px solid var(--t-line); border-radius: 50%; background: var(--t-surface); font: 600 14px/1 var(--f-sans); color: var(--t-brand); }
+.t-chev { position: absolute; top: 12px; right: -10px; width: 20px; height: 20px; color: var(--t-muted); }
+/* perguntas: duas colunas com divisor central */
+.t-faq { padding-top: 64px; }
+.t-faq-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; margin-top: 24px; }
+.t-faq-cols > div + div { padding-left: 48px; border-left: 1px solid var(--t-line); }
+.t-faq-item { border-bottom: 1px solid var(--t-line); }
+.t-faq-item summary { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 20px 0; font-size: 15px; line-height: 22px; font-weight: 600; cursor: pointer; list-style: none; }
+.t-faq-item summary::-webkit-details-marker { display: none; }
+.t-mais { width: 20px; height: 20px; flex: none; color: var(--t-text); transition: transform .18s ease; }
+.t-faq-item[open] .t-mais { transform: rotate(45deg); }
+.t-faq-item p { margin: 0 0 20px; padding-right: 36px; font-size: 15px; line-height: 24px; color: var(--t-muted); }
+/* guias: três cards com foto 16/9 */
+.t-guias { padding-block: 56px 64px; }
+.t-guias-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; margin: 28px 0 0; padding: 0; list-style: none; }
+.t-guia { display: block; height: 100%; overflow: hidden; border: 1px solid var(--t-line); border-radius: 6px; background: var(--t-surface); color: var(--t-text); text-decoration: none; transition: border-color .18s ease; }
+.t-guia picture { display: block; aspect-ratio: 16 / 9; overflow: hidden; }
+.t-guia img { width: 100%; height: 100%; object-fit: cover; transition: transform .18s ease; }
+.t-guia-copy { display: grid; justify-items: start; gap: 8px; padding: 20px; }
+.t-kicker { font-size: 12px; line-height: 18px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--t-coral); }
+.t-guia-nome { font: 500 24px/28px var(--f-serif); letter-spacing: -.015em; }
+/* chamada final bordô e rodapé carvão */
+body.v2 .end-cta { padding-block: 52px; background: var(--t-brand); }
+body.v2 .end-cta .eyebrow { display: none; }
+body.v2 .end-cta h2 { font-size: 48px; line-height: 52px; }
+body.v2 .end-cta p { font-size: 16px; line-height: 24px; }
+body.v2 .end-cta .actions { gap: 16px; margin-top: 24px; }
+body.v2 .site-footer { background: var(--t-footer); }
+/* Ajustes medidos contra a referência a 1440 px (sobreposição a 50%, docs/proposta-01/AJUSTES.md): no mockup os textos
+   ficam ~20% acima dos números do VISUAL.md; estes valores aproximam a referência sem mudar a estrutura. */
+@media (min-width: 768px) {
+  .t-hero .eyebrow { font-size: 13px; }
+  .t-h1 { font-size: clamp(46px, 4.7vw, 68px); line-height: 1; }
+  .t-lead { font-size: 19px; line-height: 29px; max-width: 520px; }
+  .t-hero .btn { min-height: 52px; padding-inline: 30px; font-size: 16px; }
+  .t-sol-title { flex: 0 0 auto; padding-right: 44px; font-size: clamp(32px, 2.9vw, 42px); line-height: 1.1; }
+  .t-sol-list { padding-left: 32px; }
+  .t-sol-list a { font-size: 17px; line-height: 21px; max-width: 150px; margin-inline: auto; }
+  .t-ico { width: 48px; height: 48px; }
+  .t-h2 { font-size: clamp(40px, 4vw, 58px); line-height: 1.07; }
+  .t-sub { font-size: 18px; line-height: 28px; }
+  .t-pill { height: 40px; padding-inline: 24px; font-size: 15px; }
+  .t-card-nome { font-size: clamp(28px, 2.5vw, 36px); line-height: 1.06; }
+  .t-card-link { font-size: 17px; line-height: 24px; }
+  .t-card-copy { padding: 22px 26px 24px; }
+  .t-proc-title { flex-basis: 230px; font-size: 38px; line-height: 42px; }
+  .t-num { width: 52px; height: 52px; font-size: 16px; }
+  .t-chev { top: 16px; }
+  .t-proc-list li { font-size: 16px; }
+  .t-h2-sm { font-size: clamp(32px, 2.8vw, 40px); line-height: 1.1; }
+  .t-faq-item summary { font-size: 17px; line-height: 24px; }
+  .t-guia-nome { font-size: 28px; line-height: 32px; }
+  .t-kicker { font-size: 13px; }
+  body.v2 .end-cta p { font-size: 18px; line-height: 28px; }
+  body.v2 .end-cta .btn { min-height: 52px; padding-inline: 30px; font-size: 16px; }
 }
-@media (max-width: 760px) {
-  body.v2 .hero.light .slide-copy { padding-block: 20px 14px; }
-  body.v2 .hero.light .slide-photo { aspect-ratio: 16 / 10; }
+@media (max-width: 1199px) {
+  body.v2 .wrap, body.v2 .site-header .wrap, body.v2 .announce .wrap { width: calc(100% - 48px); }
+  .t-hero-txt { padding-left: 24px; }
+  .t-cat-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .t-sol-title { flex-basis: 220px; }
+}
+@media (max-width: 1023px) {
+  .t-proc { flex-direction: column; align-items: stretch; }
+  .t-proc-title { flex: none; padding: 0; border: 0; }
+  .t-sol-in { flex-direction: column; align-items: stretch; gap: 20px; }
+  .t-sol-title { flex: none; padding: 0; border: 0; }
+  .t-sol-list { padding: 0; }
+}
+@media (max-width: 767px) {
+  body.v2 .wrap, body.v2 .site-header .wrap, body.v2 .announce .wrap { width: calc(100% - 40px); }
+  .t-hero { grid-template-columns: minmax(0, 1fr); min-height: 0; }
+  .t-hero-txt { padding: 32px 20px 28px; }
+  .t-hero-foto { aspect-ratio: 4 / 3; min-height: 0; }
+  .t-hero-foto img { -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 12%); mask-image: linear-gradient(180deg, transparent 0, #000 12%); }
+  .t-h1 { font-size: 42px; line-height: 44px; }
+  .t-h2, body.v2 .end-cta h2 { font-size: 34px; line-height: 38px; }
+  .t-h2-sm { font-size: 30px; line-height: 34px; }
+  .t-card-nome { font-size: 26px; line-height: 30px; }
+  .t-sol-title { font-size: 30px; line-height: 34px; }
+  .t-sol-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  .t-cat-grid { gap: 16px; }
+  .t-card-copy { padding: 16px; }
+  .t-proc-list { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px 8px; }
+  .t-chev { display: none; }
+  .t-faq-cols { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .t-faq-cols > div + div { padding-left: 0; border-left: 0; }
+  .t-guias-grid { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 479px) { .t-cat-grid { grid-template-columns: minmax(0, 1fr); } }
+@media (prefers-reduced-motion: reduce) {
+  .t-card, .t-card img, .t-guia, .t-guia img, .t-pill, .t-mais, .t-card-link .i-arrow { transition: none; }
 }

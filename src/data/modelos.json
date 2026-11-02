@@ -2035,6 +2035,16 @@
    "descricao_seo": ""
   },
   {
+   "produto": "Jogo Americano Personalizado",
+   "genero": "f",
+   "resumo": "O jogo americano personalizado são aquelas peças que ficam sob a louça de cada cliente do Restaurante, Pizzaria, Bar, Lanchonete, Churrascaria, Taberna, entre outros locais do ramo de alimentos e entretenimento.",
+   "usos": [],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   }
+  },
+  {
    "produto": "Jogo americano retangular",
    "genero": "m",
    "resumo": "Clássico e versátil, o jogo americano retangular organiza a mesa e mantém a identidade da casa à vista em cada refeição. Atende restaurantes, hotéis e refeitórios corporativos, além de eventos com serviço à mesa. Cor, material e aplicação da marca são definidos na proposta.",
@@ -2095,9 +2105,29 @@
    }
   },
   {
+   "produto": "Kit Gift Executivo",
+   "genero": "f",
+   "resumo": "Tamanho da caixa: 35,5 × 25,5 cm\nMedidas do caderno: 21 × 14,8 cm\nAltura do copo: 13 cm\n**Inclusa personalização em 1 cor para todos os itens do kit.",
+   "usos": [],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   }
+  },
+  {
    "produto": "Kit para Pizza Personalizado com Tábua + Cortador + Espátula",
    "genero": "f",
    "resumo": "Kit para Pizza Personalizado. Ideal para Presentear Amigos e Familiares, este conjunto oferece praticidade e estilo. Personalize com seu toque especial e surpreenda em qualquer ocasião.",
+   "usos": [],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   }
+  },
+  {
+   "produto": "Kit Premium Onboarding Presente Personalizado",
+   "genero": "f",
+   "resumo": "Acompanha uma Caneta Metal Touch\n\n- Garrafa Térmica inox de 500 ML\n\n- Caderneta de couro sintético, 21x14 marcador de página em cetim e fita elástica para fechar. 78 folhas amareladas sem pauta.\n\n- Caixa de papel resitente",
    "usos": [],
    "medidas": {
     "valor": "",

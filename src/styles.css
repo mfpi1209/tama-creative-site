@@ -1452,3 +1452,19 @@ body:has(.pdp-wrap) .crumbs.wrap { max-width: 1440px; padding-inline: clamp(16px
   .atalhos[aria-labelledby="ativ-atalhos-t"] .atalhos-list li { justify-content: flex-start; }
   .atalhos[aria-labelledby="ativ-atalhos-t"] .atalhos-list li:nth-child(3n + 1) { border-left: 0; padding-left: 0; }
 }
+
+/* Home minimalista (proposta): 4 frentes só com nome e seta, 4 peças sem bolinhas de cor, mais respiro entre blocos */
+section.section.frentes-min-sec { padding-block: clamp(56px, 7vw, 112px); }
+section.section.home-min-prods { padding-block: clamp(64px, 8vw, 128px); }
+section.section.home-min-prods .section-head { margin-bottom: clamp(20px, 2.4vw, 32px); align-items: end; }
+.min-title { font-size: clamp(1.75rem, 1.2rem + 1.6vw, 2.5rem); }
+.frentes-min-sec .min-title { margin-bottom: clamp(20px, 2.4vw, 32px); }
+.frentes-min-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(10px, 1.2vw, 18px); }
+.frente-min { display: grid; gap: 14px; color: var(--ink); text-decoration: none; }
+.frente-min picture { display: block; aspect-ratio: 4 / 5; overflow: hidden; border-radius: 4px; background: var(--sand); }
+.frente-min img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s ease; }
+.frente-min-nome { display: inline-flex; align-items: center; gap: 10px; font: 500 clamp(1.15rem, .9rem + .7vw, 1.5rem)/1.15 var(--f-serif); color: var(--wine); }
+.frente-min-nome .i-arrow { width: .9em; height: .9em; transition: transform .2s ease; }
+@media (hover: hover) { .frente-min:hover img { transform: scale(1.03); } .frente-min:hover .i-arrow { transform: translateX(3px); } }
+.home-min-prods .product.studio .swatch-row, .home-min-prods .product.studio .prod-desc, .home-min-prods .product.studio .prod-meta { display: none; }
+@media (max-width: 760px) { .frentes-min-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }

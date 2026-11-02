@@ -968,6 +968,19 @@ def studio_block(slugs, title, eyebrow, intro, aria, more=None, sid=None, cls=''
 </section>'''
 
 
+def home_products_min_block():
+    cards = ''.join(home_product_card(CATALOGO_BY[s]) for s in [s for s in SEL['home'] if s in CATALOGO_BY][:4])
+    return f'''<section class="section ivory home-prods home-min-prods" aria-labelledby="prods-t">
+  <div class="wrap">
+    <div class="section-head row">
+      <h2 id="prods-t" class="section-title min-title">Peças em destaque</h2>
+      <a class="link" href="/catalogo/">Ver o catálogo {ARROW}</a>
+    </div>
+    <div class="studio-grid">{cards}</div>
+  </div>
+</section>'''
+
+
 def home_products_block():
     cards = ''.join(home_product_card(CATALOGO_BY[s]) for s in SEL['home'] if s in CATALOGO_BY)
     return f'''<section class="section home-prods" aria-labelledby="prods-t">
@@ -1738,6 +1751,25 @@ SECOES = SITE_DADOS.get('secoes') or {}
 FRENTES = [(f['link'], f['imagem'], f.get('posicao') or 'center', tuple(f['titulo']), tuple(f['texto']), f['chamada'])
            for f in (SECOES.get('home-frentes') or {}).get('itens') or []]   # site.json › secoes › home-frentes (inventário › Páginas › Home)
 
+def frentes_min_section():
+    """Home minimalista: 4 frentes em cartões de foto, só com o nome e a seta."""
+    ordem = ['/brindes-corporativos/', '/kits-corporativos/', '/confeccoes-personalizadas/', '/eventos-corporativos/']
+    por = {f[0]: f for f in FRENTES}
+    sizes = '(max-width: 760px) calc(50vw - 24px), (max-width: 1340px) 23vw, 320px'
+    cards = '\n'.join(
+        f'    <a class="frente-min" href="{href}">{picture(img, "", sizes, style=f"object-position:{pos}")}'
+        f'<span class="frente-min-nome">{esc(" ".join(x.strip() for x in t))} {ARROW}</span></a>'
+        for href, img, pos, t, d, cta in (por[u] for u in ordem if u in por))
+    return f'''<section class="section frentes-min-sec" aria-labelledby="frentes-t">
+  <div class="wrap">
+    <h2 id="frentes-t" class="section-title min-title">O que a TaMa faz</h2>
+    <div class="frentes-min-grid">
+{cards}
+    </div>
+  </div>
+</section>'''
+
+
 def frentes_section():
     # O cartão inteiro é um único <a> (como antes): título, texto e chamada formam o nome acessível do link.
     # Fotos decorativas (alt vazio): o título já diz o destino. O espaço antes de cada <br> mantém
@@ -1777,7 +1809,7 @@ def slides_do_site():
     return out
 
 
-def hero_carousel(slides=None, label='Destaques da TaMa Creative', assurances=True):
+def hero_carousel(slides=None, label='Destaques da TaMa Creative', assurances=True, limite=None):
     # Fotos claras de estúdio (pacote tama-home-v2). No computador a foto ocupa a metade direita e se funde ao tom do
     # slide (creme, sálvia, rosé, linho); o texto fica numa coluna própria, sem encostar nos produtos. No celular o texto
     # vem acima da foto. frame: enquadramento da foto (--fx no computador, --fx-m no celular) e largura (--pw).
@@ -1788,6 +1820,8 @@ def hero_carousel(slides=None, label='Destaques da TaMa Creative', assurances=Tr
     if da_temporada is not None:
         slides.insert(0, slides.pop(da_temporada))   # temporada: o slide marcado com ela abre o carrossel
         h1 = f'<h1 class="visually-hidden">{esc(ASSINATURA.rstrip("."))}</h1>'
+    if limite:
+        slides = slides[:limite]   # home minimalista: só os primeiros slides
     n = len(slides)
     # legenda curta (cabe ao lado dos controles em qualquer largura), conforme a marca que aparece nas fotos
     nota = {NOTA_FICTICIA_LONGA: NOTA_FICTICIA, NOTA_TAMA: NOTA_TAMA_CURTA}.get(nota_marca(s[3] for s in slides), 'Imagens ilustrativas • Marcas fictícias e TaMa como exemplo')
@@ -1831,6 +1865,21 @@ def page_home():
 {ocasioes_faixa()}
 {faq(HOME_FAQ, title='Perguntas sobre a TaMa')}
 {guias_block('home')}
+{end_cta()}''',
+    }
+
+
+def page_home_v2():
+    """Proposta de home minimalista em /v2/, para a cliente aprovar online antes de substituir a home (fora do Google e
+    do sitemap). Se aprovada, este corpo passa para page_home e a página sai."""
+    return {
+        'path': '/v2/', 'title': 'Home minimalista (proposta) | TaMa Creative', 'index': False, 'og': slides_do_site()[0][1],
+        'description': 'Proposta de home minimalista da TaMa Creative, para aprovação.',
+        'assunto': 'um projeto para a minha empresa',
+        'preload': preload_image(slides_do_site()[0][1], HERO_SIZES),
+        'body': hero_carousel(limite=4) + f'''
+{frentes_min_section()}
+{home_products_min_block()}
 {end_cta()}''',
     }
 
@@ -2478,7 +2527,7 @@ def page_404():
     }
 
 
-PAGES = [page_home, page_catalogo, page_brindes, page_kits, page_ativacoes, page_hotelaria, page_fim_de_ano, page_curadoria, page_confeccoes, page_sobre,
+PAGES = [page_home, page_home_v2, page_catalogo, page_brindes, page_kits, page_ativacoes, page_hotelaria, page_fim_de_ano, page_curadoria, page_confeccoes, page_sobre,
  page_proposta, page_obrigado, page_privacidade, page_404]
 PAGES += [lambda c=c: page_produto(c) for c in CATALOGO]   # uma página por modelo do catálogo (/catalogo/<nome>/)
 

@@ -87,6 +87,14 @@ try {
   await page.click('#consent [data-consent="denied"]');
   ok((await (await fetch(BASE + '/privacidade/')).text()).includes('id="cookies"'), 'política de privacidade explica os cookies');
 
+  // /v2/: proposta de home minimalista para a cliente aprovar online (fora do Google e do sitemap)
+  {
+    const v2 = await (await fetch(BASE + '/v2/')).text(), mapa = await (await fetch(BASE + '/sitemap.xml')).text();
+    ok(/<meta name="robots" content="noindex/.test(v2) && !mapa.includes('/v2/') && (v2.match(/class="frente-min"/g) || []).length === 4
+      && (v2.match(/<article class="product studio"/g) || []).length === 4 && (v2.match(/class="slide /g) || []).length <= 4
+      && !v2.includes('process-strip') && !v2.includes('occ-faixa') && v2.includes('class="end-cta'),
+      '/v2/: home minimalista (até 4 slides, 4 frentes, 4 peças e chamada final), fora do Google e do sitemap');
+  }
   console.log('Carrossel da abertura');
   await page.setViewport({ width: 1280, height: 900 });
   await page.goto(BASE + '/', { waitUntil: 'networkidle0' });

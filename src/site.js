@@ -906,12 +906,18 @@
   document.querySelectorAll('[data-filtros]').forEach(function (grupo) {
     var lista = document.getElementById(grupo.getAttribute('data-filtros'));
     if (!lista) return;
-    var botoes = grupo.querySelectorAll('[data-filtro]');
+    var botoes = grupo.querySelectorAll('[data-filtro]'), status = document.getElementById(grupo.getAttribute('data-status'));
     botoes.forEach(function (b) {
       b.addEventListener('click', function () {
         var f = b.getAttribute('data-filtro');
-        botoes.forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
-        lista.querySelectorAll('[data-tag]').forEach(function (item) { item.hidden = f !== 'todos' && item.getAttribute('data-tag') !== f; });
+        var aplicar = function () {
+          botoes.forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+          var n = 0;
+          lista.querySelectorAll('[data-tag]').forEach(function (item) { item.hidden = f !== 'todos' && item.getAttribute('data-tag') !== f; if (!item.hidden) n++; });
+          if (status) status.textContent = n + (n === 1 ? ' categoria' : ' categorias') + (f === 'todos' ? '' : ': ' + b.textContent);
+        };
+        // cards que ficam deslizam para o novo lugar (View Transitions); sem suporte ou com movimento reduzido, troca direta
+        if (document.startViewTransition && !matchMedia('(prefers-reduced-motion: reduce)').matches) document.startViewTransition(aplicar); else aplicar();
       });
     });
   });

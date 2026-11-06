@@ -40,3 +40,37 @@ folhas ou carrossel, então a parte de molas, velocidade e momento não se aplic
 | Reduced transparency / more contrast | Cabeçalho translúcido sempre | Sólido com `prefers-reduced-transparency`; sólido com borda definida com `prefers-contrast: more` |
 | Typography: espaçamento por tamanho | Títulos com espaçamento negativo, corpo em 0, rótulos em caixa alta positivos | Mantido (já seguia) |
 | Animar só `transform` e `opacity` | Zoom da foto em `transform` | Mantido |
+
+## Terceira passada: reauditoria com as skills instaladas (06/11/2026)
+
+Quatro auditorias em paralelo, só leitura: **impeccable** (audit + critique: 13/20 técnica, 22/32 heurísticas),
+**emil-design-eng** (acabamento e movimento), **design:accessibility-review** (WCAG 2.1 AA) e **motion** (desempenho:
+nota A, CLS 0, LCP do hero ~200 ms no computador). Aplicado na /v2/:
+
+| Achado (quem apontou) | Correção |
+|---|---|
+| Anel de foco invisível no verde, no bordô e no rodapé (todas) | Anel creme `#FCF9F5` nessas faixas; sem anel duplo na busca; sem anel em volta de `main` após o "Pular para o conteúdo" |
+| Filtro sem aviso para leitor de tela e com salto seco (acessibilidade, impeccable, emil, motion) | `role="status"` com "N categorias: Kits"; View Transitions (cards deslizam) onde há suporte e sem movimento reduzido |
+| Nome do link dos cards começava pela descrição da foto (acessibilidade, impeccable) | `aria-labelledby` no título; título vira `h3`; "Ver modelos", "Ler o guia" e "GUIA" ocultos para leitor de tela |
+| Hover e "pressionar" dos botões brigando (emil, motion) | Pressionar usa `scale` (não `transform`); sem subida no hover na /v2/; mola curta na volta |
+| Curvas e tempos diferentes de zoom (emil, motion) | Uma curva `cubic-bezier(.23,1,.32,1)` e zoom 1,03 em 350 ms nas três famílias de card, só com mouse |
+| Sombra dos cartões aparecia de golpe (emil, motion) | `box-shadow` volta à transição |
+| Pills sem contorno visível (acessibilidade); "Vestuário" sozinho na 2ª linha no celular (emil, impeccable) | Contorno `#948779` (3,3:1); pills mais estreitas no celular, os quatro numa linha; contorno extra no modo de alto contraste do Windows |
+| Perguntas abriam sem transição; "+" no meio de perguntas de duas linhas (emil) | Altura animada (`::details-content`, onde há suporte); "+" na primeira linha; hover e foco com respiro |
+| Blur do cabeçalho caro e quase invisível (motion) | Cabeçalho sólido |
+| Fotos de "O que a TaMa faz" maiores que o necessário (motion) | `sizes` do tamanho real (também melhora a home atual, sem mudar o visual) |
+| Hero apertado e foto borrada de 768 a 1023 px (impeccable) | Hero empilhado até 1023 px; `sizes` do hero de acordo com a área pintada |
+| Dois blocos de cards seguidos sem separação; nomes do catálogo maiores que os títulos da seção (impeccable) | "O que a TaMa faz" em faixa areia; nomes dos dois grupos com o mesmo tamanho |
+| "Ler o guia" desalinhado; pesos de título diferentes (impeccable) | Link no pé dos três cards; títulos de seção com peso 500 |
+| Página longa no celular; WhatsApp flutuante cobrindo o rodapé (impeccable) | Fotos do catálogo 4:3 até 479 px e guias em linha até 767 px (de 9.108 para 8.210 px); rodapé com espaço para o botão |
+| Movimento reduzido: hover ainda "pulava" (motion) | Sem zoom, seta ou escala com movimento reduzido |
+| Bordô em dois tons (#521B2C e #501B2B) (impeccable) | Na /v2/, `--wine` usa o mesmo bordô da proposta |
+
+Não aplicado (afeta o site todo ou depende de decisão):
+- Menus do cabeçalho abertos por hover: Esc não fecha e `aria-expanded` não acompanha; o toque no ☰ do celular abre o
+  teclado (foco vai para a busca); regra global de movimento reduzido corta também fades de cor. São do site inteiro.
+- Alvos abaixo de 44 px fora da /v2/: botão "Solicitar proposta" do cabeçalho (42 px), links do rodapé (~33 px),
+  ícones sociais (40 px). Critério AAA; do site inteiro.
+- Segundo botão no hero ("Ver presentes de fim de ano"), sugerido pelo impeccable: o mockup tem um botão só.
+- O filtro "Kits" e "Vestuário" levam às mesmas páginas dos cartões de "O que a TaMa faz" (o controle de 4 filtros
+  e 6 cards é do pacote aprovado).

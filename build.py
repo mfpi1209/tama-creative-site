@@ -1773,6 +1773,9 @@ V2_FAQ = HOME_FAQ + [('Como funciona a aprovação da arte?', 'A marca da sua em
                       'para a sua aprovação antes da produção. Nessa etapa são validadas a arte, as aplicações, as especificações e os detalhes.')]
 
 
+V2_HERO_SIZES = '(max-width: 1023px) 100vw, (max-width: 1615px) 840px, 52vw'   # foto em cover numa caixa de 560 px de altura
+
+
 def v2_hero():
     return f'''<section class="t-hero" aria-labelledby="t-hero-t">
   <div class="t-hero-txt">
@@ -1781,22 +1784,23 @@ def v2_hero():
     <p class="t-lead">Taças, copos e kits com a sua marca para agradecer clientes e equipes.</p>
     <div class="actions">{cta_link('Solicitar proposta', track_label='v2-hero')}</div>
   </div>
-  <figure class="t-hero-foto">{picture('hero', 'Caixa de presente bordô, taça e estojo de vinho com a marca fictícia Sua Marca, entre enfeites de Natal.', '(max-width: 767px) 100vw, 52vw', eager=True)}<figcaption>Imagem ilustrativa • Marca fictícia</figcaption></figure>
+  <figure class="t-hero-foto">{picture('hero', 'Caixa de presente bordô, taça e estojo de vinho com a marca fictícia Sua Marca, entre enfeites de Natal.', V2_HERO_SIZES, eager=True)}<figcaption>Imagem ilustrativa • Marca fictícia</figcaption></figure>
 </section>'''
 
 
 def v2_catalogo():
     filtros = ''.join(f'<button type="button" class="t-pill" data-filtro="{k}" aria-pressed="{"true" if k == "todos" else "false"}">{n}</button>' for k, n in V2_FILTROS)
     cards = ''.join(
-        f'<li class="t-card-item" data-tag="{tag}"><a class="t-card" href="{href}">'
+        f'<li class="t-card-item" data-tag="{tag}" style="view-transition-name:t-card-{img}"><a class="t-card" href="{href}" aria-labelledby="t-card-{img}">'
         f'{picture(img, alt, "(max-width: 479px) calc(100vw - 40px), (max-width: 1199px) calc(50vw - 36px), 430px", cls="t-card-img")}'
-        f'<span class="t-card-copy"><span class="t-card-nome">{esc(nome)}</span><span class="t-card-link">Ver modelos {ARROW}</span></span></a></li>'
+        f'<span class="t-card-copy"><h3 class="t-card-nome" id="t-card-{img}">{esc(nome)}</h3><span class="t-card-link" aria-hidden="true">Ver modelos {ARROW}</span></span></a></li>'
         for img, nome, href, tag, alt in V2_CATEGORIAS)
     return f'''<section class="t-cat" aria-labelledby="t-cat-t">
   <div class="wrap">
     <h2 id="t-cat-t" class="t-h2">Brindes para levar sua marca <em>mais longe</em></h2>
     <p class="t-sub">Kits, produtos personalizados e confecções para diferentes ocasiões.</p>
-    <div class="t-filtros" role="group" aria-label="Filtrar categorias" data-filtros="t-cat-grid">{filtros}</div>
+    <div class="t-filtros" role="group" aria-label="Filtrar categorias" data-filtros="t-cat-grid" data-status="t-cat-status">{filtros}</div>
+    <p class="visually-hidden" role="status" id="t-cat-status"></p>
     <ul class="t-cat-grid" id="t-cat-grid">{cards}</ul>
     <p class="note">Imagens ilustrativas: a marca fictícia aparece como exemplo; no seu projeto, entra a marca da sua empresa. Modelos e cores são confirmados na proposta.</p>
   </div>
@@ -1818,9 +1822,9 @@ def v2_faq():
 def v2_guias():
     por_slug = {a['slug']: a for a in blog.ARTS if not a.get('noindex')}
     itens = ''.join(
-        f'<li><a class="t-guia" href="{por_slug[s]["path"]}">{picture(img, "", "(max-width: 767px) calc(100vw - 40px), 430px")}'
-        f'<span class="t-guia-copy"><span class="t-kicker">Guia</span><span class="t-guia-nome">{esc(por_slug[s].get("breadcrumb") or por_slug[s]["title"])}</span>'
-        f'<span class="t-card-link">Ler o guia {ARROW}</span></span></a></li>'
+        f'<li><a class="t-guia" href="{por_slug[s]["path"]}" aria-labelledby="t-guia-{img}">{picture(img, "", "(max-width: 767px) calc(100vw - 40px), 430px")}'
+        f'<span class="t-guia-copy"><span class="t-kicker" aria-hidden="true">Guia</span><h3 class="t-guia-nome" id="t-guia-{img}">{esc(por_slug[s].get("breadcrumb") or por_slug[s]["title"])}</h3>'
+        f'<span class="t-card-link" aria-hidden="true">Ler o guia {ARROW}</span></span></a></li>'
         for s, img in V2_GUIAS if s in por_slug)
     if not itens:
         return ''
@@ -1837,7 +1841,7 @@ def frentes_section(titulo_visivel=False):
     # O cartão inteiro é um único <a> (como antes): título, texto e chamada formam o nome acessível do link.
     # Fotos decorativas (alt vazio): o título já diz o destino. O espaço antes de cada <br> mantém
     # "Brindes corporativos" com espaço no texto do link.
-    sizes = '(max-width: 760px) calc(100vw - 32px), (max-width: 1340px) 31vw, 400px'
+    sizes = '(max-width: 760px) calc(100vw - 32px), (max-width: 1099px) 31vw, min(19vw, 264px)'
     cards = '\n'.join(
         f'    <a class="frente-card" href="{href}">{picture(img, "", sizes, style=f"object-position:{pos}")}'
         f'<div class="frente-info"><h3>{esc(t[0])} <br>{esc(t[1])}</h3><p>{esc(d[0])} <br>{esc(d[1])}</p>'
@@ -1937,7 +1941,7 @@ def page_home_v2():
         'path': '/v2/', 'title': 'Home (proposta 01) | TaMa Creative', 'index': False, 'body_class': 'v2', 'og': 'hero',
         'description': 'Proposta 01 da home da TaMa Creative (soluções compactas), para aprovação.',
         'assunto': 'um projeto para a minha empresa',
-        'preload': preload_image('hero', '(max-width: 767px) 100vw, 52vw'),
+        'preload': preload_image('hero', V2_HERO_SIZES),
         'body': v2_hero() + f'''
 {frentes_section(titulo_visivel=True)}
 {v2_catalogo()}

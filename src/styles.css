@@ -1556,7 +1556,6 @@ body.v2 .site-footer { background: var(--t-footer); }
 }
 /* Auditoria pelo HIG da Apple (06/11/2026, docs/proposta-01/AUDITORIA.md): contraste mínimo 4,5:1 em texto pequeno,
    alvos de toque de 44 px, textos de apoio legíveis, linhas curtas, espaçamento constante e texto a 200% sem corte. */
-body.v2 .t-kicker { color: #A9472F; }
 body.v2 .t-pill { height: 44px; }
 body.v2 .eyebrow { font-size: 0.8125rem; }
 body.v2 .note { font-size: 0.8125rem; line-height: 1.55; }
@@ -1570,29 +1569,101 @@ body.v2 .process-section { padding-block: 64px; }
 /* Skill apple-design (Emil Kowalski, 06/11/2026): resposta no toque, cabeçalho com borda suave e respeito às
    preferências de transparência e contraste; tamanhos de texto em rem (crescem com a fonte escolhida no navegador). */
 body.v2 a, body.v2 button, body.v2 summary { touch-action: manipulation; }
-body.v2 .t-card, body.v2 .t-guia, body.v2 .frente-card, body.v2 .t-pill, body.v2 .btn { transition-property: border-color, background-color, color, transform; }
-body.v2 .t-card:active, body.v2 .t-guia:active, body.v2 .frente-card:active { transform: scale(.985); transition-duration: .1s; transition-timing-function: ease-out; }
-body.v2 .t-pill:active, body.v2 .btn:active { transform: scale(.97); transition-duration: .1s; transition-timing-function: ease-out; }
-body.v2 .site-header { border-bottom-color: transparent; box-shadow: 0 8px 18px -16px rgba(40, 22, 16, .35); }
-@media (prefers-reduced-transparency: reduce) { body.v2 .site-header { background: var(--t-bg); -webkit-backdrop-filter: none; backdrop-filter: none; } }
 @media (prefers-contrast: more) {
   body.v2 .site-header { background: var(--t-bg); -webkit-backdrop-filter: none; backdrop-filter: none; box-shadow: none; border-bottom: 1px solid var(--t-text); }
   body.v2 .t-card, body.v2 .t-guia, body.v2 .t-pill { border-color: var(--t-muted); }
 }
-@media (prefers-reduced-motion: reduce) { body.v2 .t-card:active, body.v2 .t-guia:active, body.v2 .frente-card:active, body.v2 .t-pill:active, body.v2 .btn:active { transform: none; } }
+/* Reauditoria com as skills (06/11/2026: emil-design-eng, motion, design:accessibility-review e impeccable),
+   detalhes em docs/proposta-01/AUDITORIA.md. */
+body.v2 { --t-ease-out: cubic-bezier(.23, 1, .32, 1); }
+/* foco visível também nas faixas escuras (verde, bordô e rodapé) e sem anel duplo na busca */
+body.v2 :is(.announce, .nav-bar, .end-cta, .site-footer, .on-dark) :focus-visible { outline-color: #FCF9F5; }
+body.v2 .head-search input:focus-visible, body.v2 [tabindex="-1"]:focus-visible { outline: none; }
+/* card: o título vira h3 (nome do link) sem mudar o visual */
+body.v2 .t-card-nome, body.v2 .t-guia-nome { margin: 0; }
+body.v2 .t-card picture, body.v2 .t-guia picture { background: var(--t-sand); }
+/* movimento: uma curva só (ease-out forte), zoom igual nas três famílias de card, pressionar com "scale" (não briga
+   com o hover dos botões), filtros trocam de estado na hora */
+body.v2 .t-card img, body.v2 .t-guia img, body.v2 .frente-card img { transition: transform .35s var(--t-ease-out); }
+body.v2 .t-card-link .i-arrow, body.v2 .frente-link .i-arrow { transition: transform .2s var(--t-ease-out); }
+body.v2 .t-card, body.v2 .t-guia, body.v2 .frente-card { transition: border-color .18s ease, box-shadow .2s ease, scale .1s ease-out; }
+@media (hover: hover) and (pointer: fine) {
+  body.v2 .t-card:hover img, body.v2 .t-guia:hover img, body.v2 .frente-card:hover img { transform: scale(1.03); }
+  body.v2 .t-card:active, body.v2 .t-guia:active, body.v2 .frente-card:active { scale: .985; }
+  body.v2 .btn:hover { transform: none; }
+  body.v2 .t-faq-item summary:hover { color: var(--t-brand); }
+  body.v2 .nav-group:hover > .nav-toggle .nav-caret { transform: rotate(180deg); }
+}
+body.v2 .btn { transition: background-color .18s ease, border-color .18s ease, color .18s ease, scale .38s linear(0, .036, .122, .232, .351, .466, .571, .664, .743, .808, .861, .902, .934, .957, .975, .987, .995, 1.001, 1.004, 1.006, 1.006, 1.006, 1.006, 1); }
+body.v2 .btn:active, body.v2 .t-pill:active { scale: .97; transition-duration: .1s; transition-timing-function: ease-out; }
+body.v2 .t-pill { border-color: #948779; transition: border-color .15s ease, scale .1s ease-out; }
+body.v2 .t-pill[aria-pressed="true"] { border-color: var(--t-brand); }
+@media (forced-colors: active) { body.v2 .t-pill[aria-pressed="true"] { outline: 3px solid CanvasText; outline-offset: 2px; } }
+/* filtro: os cards que ficam deslizam para o novo lugar (View Transitions, só onde há suporte) */
+::view-transition-group(*) { animation-duration: .26s; animation-timing-function: cubic-bezier(.23, 1, .32, 1); }
+::view-transition-new(*):only-child { animation: t-entra .22s cubic-bezier(.23, 1, .32, 1) both; }
+::view-transition-old(*):only-child { animation: t-sai .12s ease-out both; }
+::view-transition-old(root), ::view-transition-new(root) { animation: none; }
+@keyframes t-entra { from { opacity: 0; transform: scale(.96); } }
+@keyframes t-sai { to { opacity: 0; transform: scale(.98); } }
+/* perguntas: a resposta abre com a altura animada (onde há suporte) e o "+" acompanha; ícone na 1ª linha */
+body.v2 .t-faq-item { interpolate-size: allow-keywords; }
+body.v2 .t-faq-item::details-content { block-size: 0; overflow: clip; opacity: 0; transition: block-size .24s var(--t-ease-out), opacity .18s ease, content-visibility .24s allow-discrete; }
+body.v2 .t-faq-item[open]::details-content { block-size: auto; opacity: 1; }
+body.v2 .t-faq-item summary { align-items: flex-start; margin-inline: -12px; padding-inline: 12px; border-radius: 8px; transition: color .15s ease; }
+body.v2 .t-faq-item summary:focus-visible { outline-offset: -2px; }
+body.v2 .t-mais { margin-top: .125rem; transition: transform .24s var(--t-ease-out); }
+/* leitura: quebra de linha equilibrada, legenda do hero sempre legível, apoio com contraste folgado */
+body.v2 .t-lead, body.v2 .t-sub, body.v2 .t-faq-item p { text-wrap: pretty; }
+body.v2 .t-lead { color: #6B625D; }
+body.v2 .t-hero-foto figcaption { background: rgba(252, 249, 245, .94); }
+body.v2 .process-num { font-variant-numeric: lining-nums tabular-nums; }
+body.v2 .frente-info { min-width: 0; overflow-wrap: anywhere; }
+/* tokens: um bordô só (os componentes do site usam --wine) e o coral de texto */
+body.v2 { --wine: var(--t-brand); --t-coral-text: #A9472F; }
+body.v2 .t-kicker { color: var(--t-coral-text); }
+/* ritmo: "O que a TaMa faz" numa faixa areia, separada do catálogo; nomes dos dois grupos de cards no mesmo tamanho */
+body.v2 .frentes { background: var(--t-sand); padding-block: 56px; }
+body.v2 .frente-card h3 { font-size: clamp(1.45rem, 2.1vw, 1.875rem); }
+body.v2 .t-card-nome { font-size: clamp(1.5rem, 2.1vw, 1.875rem); }
+/* títulos de seção com o mesmo peso e espaçamento */
+body.v2 .process-section .section-title, body.v2 .end-cta h2 { font-weight: 500; letter-spacing: -.025em; }
+body.v2 .process-section .section-title { font-size: clamp(2.5rem, 4vw, 3.625rem); line-height: 1.07; }
+/* guias: "Ler o guia" alinhado no pé dos três cards */
+body.v2 .t-guia { display: flex; flex-direction: column; }
+body.v2 .t-guia-copy { flex: 1; grid-template-rows: auto auto 1fr; }
+body.v2 .t-guia-copy .t-card-link { align-self: end; }
+body.v2 .t-guia-nome { text-wrap: balance; }
+/* o botão flutuante do WhatsApp não cobre a última linha do rodapé */
+body.v2 .site-footer { padding-bottom: 96px; }
+/* cabeçalho: sólido (o blur a 97% quase não aparecia e custava GPU a cada rolagem) */
+body.v2 .site-header { background: var(--t-bg); -webkit-backdrop-filter: none; backdrop-filter: none; }
+@media (max-width: 767px) {
+  body.v2 .t-pill { padding-inline: 14px; }
+  body.v2 .t-filtros { gap: 8px; }
+  body.v2 .frente-card:focus-visible { outline-offset: -3px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  body.v2 .t-card:hover img, body.v2 .t-guia:hover img, body.v2 .frente-card:hover img,
+  body.v2 .t-card:hover .i-arrow, body.v2 .t-guia:hover .i-arrow, body.v2 .frente-card:hover .i-arrow,
+  body.v2 .btn:hover .i-arrow { transform: none; }
+  body.v2 .t-card:active, body.v2 .t-guia:active, body.v2 .frente-card:active, body.v2 .t-pill:active, body.v2 .btn:active { scale: none; }
+  body.v2 .t-faq-item::details-content { transition: none; }
+}
 @media (max-width: 1199px) {
   body.v2 .wrap, body.v2 .site-header .wrap, body.v2 .announce .wrap { width: calc(100% - 48px); }
   .t-hero-txt { padding-left: 24px; }
   .t-cat-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-width: 1023px) {
+  .t-hero { grid-template-columns: minmax(0, 1fr); min-height: 0; }
+  .t-hero-txt { padding: 40px 24px 32px; }
+  .t-hero-foto { aspect-ratio: 16 / 10; min-height: 0; }
+  .t-hero-foto img { -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 12%); mask-image: linear-gradient(180deg, transparent 0, #000 12%); }
 }
 @media (max-width: 767px) {
   body.v2 .wrap, body.v2 .site-header .wrap, body.v2 .announce .wrap { width: calc(100% - 40px); }
-  .t-hero { grid-template-columns: minmax(0, 1fr); min-height: 0; }
   .t-hero-txt { padding: 32px 20px 28px; }
-  .t-hero-foto { aspect-ratio: 4 / 3; min-height: 0; }
-  .t-hero-foto img { -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 12%); mask-image: linear-gradient(180deg, transparent 0, #000 12%); }
   .t-h1 { font-size: 2.625rem; line-height: 2.75rem; }
   .t-h2, body.v2 .end-cta h2 { font-size: 2.125rem; line-height: 2.375rem; }
   .t-h2-sm { font-size: 1.875rem; line-height: 2.125rem; }
@@ -1603,7 +1674,13 @@ body.v2 .site-header { border-bottom-color: transparent; box-shadow: 0 8px 18px 
   .t-faq-cols > div + div { padding-left: 0; border-left: 0; }
   .t-guias-grid { grid-template-columns: minmax(0, 1fr); }
 }
-@media (max-width: 479px) { .t-cat-grid { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 479px) { .t-cat-grid { grid-template-columns: minmax(0, 1fr); } body.v2 .t-card picture { aspect-ratio: 4 / 3; } }
+@media (max-width: 767px) {
+  body.v2 .t-guia { display: grid; grid-template-columns: 40% minmax(0, 1fr); }
+  body.v2 .t-guia picture { aspect-ratio: 1; height: 100%; }
+  body.v2 .t-guia-copy { padding: 16px; }
+  body.v2 .t-guia-nome { font-size: 1.25rem; line-height: 1.2; }
+}
 @media (prefers-reduced-motion: reduce) {
   .t-card, .t-card img, .t-guia, .t-guia img, .t-pill, .t-mais, .t-card-link .i-arrow { transition: none; }
 }

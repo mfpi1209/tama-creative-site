@@ -190,6 +190,8 @@ try {
   await page.evaluate(() => { localStorage.clear(); localStorage.setItem('tama-consent', 'denied'); });
   await page.reload({ waitUntil: 'networkidle0' });
   const G = '#gift-grid';
+  // 12 peças por vez: "Ver mais" até a garrafa térmica aparecer
+  for (let i = 0; i < 20 && await page.$eval(`${G} .product[data-slug="garrafa-termica"]`, el => el.classList.contains('cat-fora')); i++) await page.click('[data-gift-mais]');
   await page.$eval(`${G} .product[data-slug="garrafa-termica"]`, el => el.scrollIntoView({ block: 'center' }));
   await page.click(`${G} .product[data-slug="garrafa-termica"] .swatch[data-color="Azul royal"]`);
   ok(await page.$eval(`${G} .product[data-slug="garrafa-termica"] .color-name`, e => e.textContent === 'Azul royal'), 'troca de cor atualiza o nome da cor');
@@ -213,9 +215,14 @@ try {
 
   console.log('Ideias por ocasião (mesma base do catálogo)');
   await page.goto(BASE + '/brindes-por-ocasiao/', { waitUntil: 'networkidle0' });
-  const visible = () => page.$$eval('#gift-grid .product, #idea-grid .idea', g => g.filter(x => !x.hidden && getComputedStyle(x).display !== 'none').length);
+  // visible: peças que passam no filtro (as além das 12 primeiras ficam para o "Ver mais", mas contam)
+  const visible = () => page.$$eval('#gift-grid .product, #idea-grid .idea', g => g.filter(x => !x.hidden).length);
   const totalOcc = await page.$$eval('#gift-grid .product', g => g.length);
-  ok(totalOcc >= 20 && await visible() === totalOcc, `todas as peças por ocasião aparecem sem filtro (${totalOcc})`);
+  ok(totalOcc >= 20 && await visible() === totalOcc, `todas as peças por ocasião passam sem filtro (${totalOcc})`);
+  const naTela = () => page.$$eval('#gift-grid .product', g => g.filter(x => !x.hidden && getComputedStyle(x).display !== 'none').length);
+  ok(await naTela() === 12 && await page.$eval('[data-gift-mais-box]', b => !b.hidden && /de \d+ peças/.test(b.textContent)), 'por ocasião: 12 peças na tela e "Ver mais" com o total');
+  await page.click('[data-gift-mais]');
+  ok(await naTela() === Math.min(24, totalOcc), `"Ver mais" mostra mais 12 (${Math.min(24, totalOcc)})`);
   ok(await page.$$eval('#gift-grid .product', g => g.every(x => x.dataset.occ)) && !(await page.$('#idea-grid')), 'só modelos do catálogo, sem ideias sem foto');
   ok(await page.$$eval('#gift-grid .product img', i => new Set(i.map(x => (x.currentSrc || x.src).split('/').pop().split('.')[0])).size === i.length), 'por ocasião: cada peça tem a sua própria foto (nenhuma repetida)');
   ok(await colorsHavePhoto(page, '#gift-grid .product'), 'toda cor mostrada por ocasião tem foto própria (nenhuma bolinha sem efeito)');
@@ -431,7 +438,7 @@ try {
   const KIT_TIPOS = { 'kits-escritorio': ['kit-escritorio', 'kit-pratico'], 'kits-cozinha': ['kit-cozinha', 'mesa-de-descobertas', 'gelato-experience', 'kit-petiscos'], 'kits-boas-vindas': ['kit-boas-vindas-tech', 'kit-conectado', 'kit-pratico'], 'kits-executivo': ['kit-executivo-verde', 'em-movimento'], 'kits-pausa': ['pausa-e-inspiracao', 'kit-cafe'], 'kits-fim-de-ano': ['kit-brinde', 'kit-coquetel', 'kit-caipirinha', 'kit-gin', 'kit-vinho', 'kit-agradecimento'] };
   const KITS_NOVOS = ['kit-boas-vindas-tech', 'kit-cozinha', 'kit-agradecimento', 'kit-caipirinha', 'kit-gin', 'kit-vinho'];
   const tiposKit = await page.evaluate(ids => ids.map(id => { const s = document.getElementById(id); return s && { id, h2: s.querySelector('.section-head h2')?.textContent.trim() || '', linha: s.querySelector('.section-head p')?.textContent.trim() || '', slugs: [...s.querySelectorAll('.kit-card a[data-track-label^="kit-"]')].map(a => a.dataset.trackLabel.slice(4)), vazio: !!s.querySelector('.kit-vazio a[href^="/solicitar-proposta/?tipo=kits"]') }; }), Object.keys(KIT_TIPOS));
-  ok(tiposKit.every(Boolean) && await page.$$eval('#kits .kit-tipos a', (a, ids) => a.map(x => x.getAttribute('href')).join() === ids.map(i => '#' + i).join(), Object.keys(KIT_TIPOS)) && await page.$$eval('.studio-grid', g => g.length === 0),
+  ok(tiposKit.every(Boolean) && await page.$$eval('section[aria-labelledby="kits-atalhos-t"] .atalhos-list a', (a, ids) => a.map(x => x.getAttribute('href')).join() === ids.map(i => '#' + i).join(), Object.keys(KIT_TIPOS)) && await page.$$eval('.studio-grid', g => g.length === 0),
      'kits: atalhos e uma seção com âncora para cada um dos 6 tipos (escritório, cozinha, boas-vindas, executivo, pausa, fim de ano), sem bloco do catálogo');
   // o Kit de agradecimento entrou no Kit fim de ano (02/11/2026): sem seção própria, e o link antigo #kits-agradecimento cai na seção de fim de ano
   ok(await page.evaluate(() => !document.querySelector('section#kits-agradecimento, #kits .kit-tipos a[href="#kits-agradecimento"]') && document.getElementById('kits-agradecimento')?.closest('section')?.id === 'kits-fim-de-ano'),
@@ -520,9 +527,21 @@ try {
   await page.goto(BASE + '/brindes-por-ocasiao/?ocasiao=eventos#pecas', { waitUntil: 'networkidle0' });
   const n2 = await visible(), e2 = await page.$$eval('#gift-grid .product', g => g.filter(x => x.dataset.occ.split(' ').includes('eventos')).length);
   ok(n2 === e2 && n2 > 0, `link de coleção (?ocasiao=eventos) já abre filtrado (${n2})`);
+  for (let i = 0; i < 20 && await page.$eval('#gift-grid .product[data-slug="taca-de-gin"]', el => el.classList.contains('cat-fora')); i++) await page.click('[data-gift-mais]');
   await page.$eval('#gift-grid .pick[data-slug="taca-de-gin"]', el => el.scrollIntoView({ block: 'center' }));
   await page.click('#gift-grid .pick[data-slug="taca-de-gin"]');
 
+  {
+    const formatos = [];
+    for (const pg of ['brindes-corporativos', 'kits-corporativos', 'confeccoes-personalizadas', 'eventos-corporativos', 'hotelaria-e-gastronomia', 'brindes-de-fim-de-ano']) {
+      const h = await (await fetch(BASE + '/' + pg + '/')).text();
+      const m = h.match(/<section class="(atalhos[^"]*)"[\s\S]*?<\/section>/);
+      const itens = m ? (m[0].match(/<li>/g) || []).length : 0, icones = m ? (m[0].match(/<svg viewBox="0 0 24 24"/g) || []).length : 0;
+      formatos.push(`${pg}:${m ? m[1] : 'sem'}:${itens}:${icones}`);
+    }
+    ok(formatos.every(f => { const [, cls, n, ic] = f.split(':'); return cls === 'atalhos sem-linha' && +n >= 3 && +ic === +n; }),
+       `atalhos no mesmo formato em todas as páginas de frente, sempre com ícone (${formatos.join(' | ')})`);
+  }
   console.log('Processo (Do briefing à entrega)');
   await page.goto(BASE + '/', { waitUntil: 'networkidle0' });
   const proc = await page.$eval('section.process-strip', s => ({
@@ -651,7 +670,7 @@ try {
   await fp.goto(BASE + '/brindes-de-fim-de-ano/', { waitUntil: 'networkidle0' });
   ok(await fp.$$eval('h1', h => h.length === 1 && /Um brinde a quem\s*fez parte do seu ano\./.test(h[0].textContent.replace(/\s+/g, ' '))) && await fp.$eval('.foto-hero-photo img', i => i.loading === 'eager' && /fim-header/.test(i.currentSrc) && i.alt.length > 20), 'fim de ano: H1 "Um brinde a quem fez parte do seu ano." e a foto em alta na abertura');
   ok(await fp.$$eval('.foto-hero .actions a', a => a.map(x => x.getAttribute('href')).join() === '/solicitar-proposta/?tipo=kits,#brindar' && a[0].classList.contains('btn-wine')), 'fim de ano: botão principal é a proposta (tipo=kits); "Explorar os presentes" (#brindar) é secundário');
-  ok(await fp.$$eval('.atalhos.lado .atalhos-list a', a => a.map(x => x.getAttribute('href')).join() === '#brindar,#kits-fim-de-ano,#personalizacao' && a.every(x => document.querySelector(x.getAttribute('href')))), 'fim de ano: atalhos "Escolha como brindar." levam às seções da página');
+  ok(await fp.$$eval('section[aria-labelledby="fim-atalhos-t"] .atalhos-list a', a => a.map(x => x.getAttribute('href')).join() === '#brindar,#kits-fim-de-ano,#personalizacao' && a.every(x => document.querySelector(x.getAttribute('href')))), 'fim de ano: atalhos "Escolha como brindar." levam às seções da página');
   ok(await fp.$$eval('#brindar .product.studio', c => c.length === 8 && c.every(x => (x.dataset.occ || '').split(' ').includes('fim-de-ano'))) && await fp.$eval('#brindar a[href="/catalogo/?ocasiao=fim-de-ano"]', a => /fim de ano no catálogo/.test(a.textContent)), 'fim de ano: 8 taças e copos em #brindar, com link para o catálogo filtrado');
   ok(await fp.$$eval('.kit-card', k => k.length === 8 && k.filter(x => x.classList.contains('big')).length === 2 && k.slice(0, 2).every(x => x.classList.contains('big')) && k.every(x => x.querySelector('img').alt.length > 20)) && await fp.$$eval('.kit-card a', a => a.map(x => x.getAttribute('href')).join() === ['Brinde', 'Coquetel', 'Caipirinha', 'Gin', 'Vinho', 'Caf%C3%A9', 'Petiscos', 'de%20Agradecimento'].map(n => '/solicitar-proposta/?tipo=kits&interesse=Kit%20' + n).join()), 'fim de ano: Kit Brinde, Coquetel, Caipirinha, Gin, Vinho, Café, Petiscos e de Agradecimento (2 em destaque), com "Solicitar proposta deste kit" no pedido');
   ok(await fp.$$eval('.kit-card', k => ['Caipirinha', 'Gin', 'Vinho'].every(n => k.some(x => x.querySelector('h3').textContent === 'Kit ' + n && /Sem bebida/.test(x.textContent)))), 'fim de ano: os kits Caipirinha, Gin e Vinho dizem "Sem bebida" (só acessórios)');

@@ -5,14 +5,14 @@
   --bg: #FAF7F2;
   --ivory: #F2EBE2;
   --sand: #EBE2D7;
-  --surface: #FFFDF9;
+  --surface: #FCF9F5;
   --ink: #282322;
   --muted: #6B625D;
   --line: #E6DDD3;
   --line-strong: #D6C6BB;
-  --wine: #501B2B;
+  --wine: #521B2C;
   --wine-2: #792C42;
-  --forest: #203728;
+  --forest: #183C29;
   --forest-2: #354C38;
   --amber: #B87742;
   --amber-soft: #D9C4A6;
@@ -42,6 +42,10 @@
 
   --gutter: clamp(16px, 3vw, 48px);   /* mesma margem do cabeçalho */
   --radius: 6px;
+  --ease-out: cubic-bezier(.23, 1, .32, 1);   /* curva única das transições (padrão da V2) */
+  --coral-ink: #A9472F;                      /* coral para texto: 5,5:1 sobre o creme */
+  --field-line: #948779;                     /* contorno de campos e controles: 3,3:1 */
+  --target: 2.75rem;                         /* alvo de toque mínimo (44 px) */
   --header-h: 78px;
   color-scheme: light;
 }
@@ -199,8 +203,8 @@ button.link { background: none; border-width: 0 0 1px; border-radius: 0; padding
 .product:hover { box-shadow: var(--shadow); }
 .product:target { border-color: var(--wine-2); }
 .prod-media { position: relative; display: block; width: 100%; padding: 0; border: 0; background: #E6DACE; cursor: zoom-in; overflow: hidden; aspect-ratio: 850 / 780; }
-.prod-media img { width: 100%; height: 100%; object-fit: cover; transition: transform .55s ease; }
-.prod-media:hover img { transform: scale(1.06); }
+.prod-media img { width: 100%; height: 100%; object-fit: cover; transition: transform .35s var(--ease-out); }
+@media (hover: hover) and (pointer: fine) { .prod-media:hover img { transform: scale(1.03); } }
 .prod-label { position: absolute; top: 10px; left: 10px; z-index: 1; pointer-events: none; padding: 4px 9px; border-radius: 999px; background: rgba(255, 253, 249, .9); color: var(--wine); font-size: .6875rem; font-weight: 700; }
 .prod-zoom { position: absolute; top: 10px; right: 10px; width: 30px; height: 30px; border-radius: 50%; background: rgba(255, 253, 249, .9); color: var(--wine); display: grid; place-items: center; }
 .prod-zoom svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; }
@@ -602,7 +606,9 @@ body:has(.wa-float) .float-bag { bottom: calc(88px + env(safe-area-inset-bottom,
   .prod-desc { min-height: 0; }
 }
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { animation: none !important; transition: none !important; }
+  /* menos movimento, não nenhum retorno: animações e transformações saem; cor e opacidade seguem com até 150 ms */
+  *, *::before, *::after { animation: none !important; transition-property: color, background-color, border-color, opacity, box-shadow !important; transition-duration: .15s !important; }
+  *:hover, *:active, *:focus-visible { transform: none !important; scale: none !important; }
   html { scroll-behavior: auto; }
   .rail, .collections-rail { scroll-behavior: auto; }
 }
@@ -653,7 +659,6 @@ body:has(.wa-float) .float-bag { bottom: calc(88px + env(safe-area-inset-bottom,
 .product.studio { border-color: var(--line); }
 .product.studio:hover { box-shadow: 0 14px 34px -22px rgba(60, 30, 30, .45); }
 .product.studio .prod-media { aspect-ratio: 1 / 1; background: #F3EEE7; }
-.product.studio .prod-media:hover img { transform: scale(1.03); }
 .product.studio .prod-info { gap: 8px; padding: 16px 16px 18px; }
 .product.studio h3 { font: 400 1.25rem/1.2 var(--f-serif); letter-spacing: -.01em; }
 .product.studio .prod-desc { font-size: .8125rem; color: var(--muted); }
@@ -1095,7 +1100,7 @@ html.cat-lock { overflow: hidden; }
 .bag-label { display: none; }
 @media (min-width: 1240px) {
   .nav-sub { position: absolute; top: calc(100% - 4px); left: -14px; z-index: 70; min-width: 250px; padding: 8px; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; box-shadow: var(--shadow-lg); }
-  .nav-group.is-open > .nav-sub, .nav-group:hover > .nav-sub { display: block; }
+  .nav-group.is-open > .nav-sub { display: block; }
   .nav-group:hover > .nav-toggle { color: var(--wine-2); }
   .bag { display: inline-flex; align-items: center; width: auto; padding-inline: 12px 14px; gap: 8px; border-radius: 999px; }
   .bag-label { display: inline; font-size: .8125rem; font-weight: 700; }
@@ -1265,7 +1270,7 @@ html.cat-lock { overflow: hidden; }
   .site-nav { gap: 2px; min-height: 48px; }
   .site-nav > .head-search { display: none; }
   .nav-bar .nav-link { height: 48px; min-height: 48px; padding: 0 14px; color: #F6EFE6; font-size: .9375rem; font-weight: 500; }
-  .nav-bar .nav-link:hover, .nav-group.is-open > .nav-toggle, .nav-group:hover > .nav-toggle { color: #fff; background: rgba(255, 255, 255, .08); }
+  .nav-bar .nav-link:hover, .nav-group.is-open > .nav-toggle, .nav-toggle:hover { color: #fff; background: rgba(255, 255, 255, .08); }
   .nav-bar .nav-link[aria-current="page"], .nav-group.is-current > .nav-toggle { color: #fff; }
   .nav-bar .nav-link[aria-current="page"]::after { left: 14px; right: 14px; bottom: 9px; background: var(--amber-soft); }
   .nav-main > .nav-toggle { font-weight: 700; }
@@ -1453,6 +1458,59 @@ body:has(.pdp-wrap) .crumbs.wrap { max-width: 1440px; padding-inline: clamp(16px
   .atalhos[aria-labelledby="ativ-atalhos-t"] .atalhos-list li { justify-content: flex-start; }
   .atalhos[aria-labelledby="ativ-atalhos-t"] .atalhos-list li:nth-child(3n + 1) { border-left: 0; padding-left: 0; }
 }
+
+/* Padrão do site (auditoria de 06/11/2026, docs/proposta-01/AUDITORIA.md): o que a /v2/ estabeleceu vale para todas
+   as páginas — foco visível nas faixas escuras, alvos de 44 px, retorno ao pressionar, uma curva de transição,
+   contorno de campos com 3:1 e texto de apoio legível. */
+:is(.announce, .nav-bar, .end-cta, .site-footer, .on-dark, .manifesto) :focus-visible { outline-color: #FCF9F5; }
+.head-search input:focus-visible { outline: none; }
+.head-search:focus-within { border-color: var(--wine); box-shadow: 0 0 0 2px var(--wine); }
+.btn { transition: background-color .18s ease, border-color .18s ease, color .18s ease, scale .1s ease-out; }
+.btn:hover { transform: none; }
+.btn:active, .pick:active, .chip:active, .cat-opt:active { scale: .97; }
+.btn:hover .i-arrow, .link:hover .i-arrow { transform: translateX(3px); }
+.i-arrow { transition: transform .2s var(--ease-out); }
+.btn-sm { min-height: var(--target); }
+.pick, .chip, .cat-clear { min-height: var(--target); }
+.cat-clear { display: inline-flex; align-items: center; }
+.footer-links a { display: inline-flex; align-items: center; min-height: var(--target); }
+.footer-social a { width: var(--target); height: var(--target); }
+.product.studio .prod-zoom { width: 2.25rem; height: 2.25rem; }
+.product.studio .prod-zoom::after { content: ""; position: absolute; inset: -4px; }
+.product.studio .prod-meta.is-pending { display: none; }   /* "Material e técnica sob consulta" já está na nota da página */
+input:not([type="checkbox"]):not([type="radio"]):not([type="range"]), select, textarea, .choice { border-color: var(--field-line); }
+.post-kicker { color: var(--coral-ink) !important; }
+.footer-title, .cat-form legend, figcaption { font-size: max(.75rem, 1em * .8125); }
+.footer-title, .cat-form legend { font-size: .8125rem; }
+.frente-card img, .case-media img { transition: transform .35s var(--ease-out); }
+@media (hover: none), (pointer: coarse) { .frente-card:hover img, .case-media:hover img, .frente-card:hover .i-arrow { transform: none; } }
+@media (max-width: 760px) { .pdp-select, .head-search input, .cat-search input { font-size: 1rem; } }
+
+/* página de produto: modelo sem vistas nem outras cores ocupa a largura toda (sem coluna vazia); uma cor só não vira
+   escolha; o título do produto (h1) fica acima dos títulos de seção */
+.pdp-gallery.sem-rail { grid-template-columns: minmax(0, 1fr); }
+.pdp-gallery.sem-rail .pdp-rail { display: none; }
+.pdp-cores.uma-cor .swatches { display: none; }
+.rel-title { font-size: clamp(1.6rem, 1.2rem + 1vw, 2.1rem); }
+.end-cta h2 { font-size: clamp(2rem, 1.4rem + 2vw, 3rem); }
+.section-title, .end-cta h2, .atalhos-title, .pdp-title { font-weight: 500; letter-spacing: -.02em; }
+
+/* botões flutuantes: o rodapé reserva espaço para o WhatsApp; a pílula da seleção recua sobre a chamada final e o
+   rodapé (a pílula bordô sumia no fundo bordô e cobria botões) */
+.site-footer { padding-bottom: calc(96px + env(safe-area-inset-bottom, 0px)); }
+.float-bag { transition: opacity .18s ease, translate .2s var(--ease-out); }
+.float-bag.recua { opacity: 0; translate: 0 8px; pointer-events: none; }
+
+/* Eventos corporativos: a foto atual do cabeçalho não tem área livre à esquerda, então o texto vai acima da foto em
+   todas as larguras (enquanto a foto não for trocada no admin por uma com espaço à esquerda) */
+body[data-service="ativacoes"] .foto-hero { display: block; min-height: 0; }
+body[data-service="ativacoes"] .foto-hero .crumbs { position: static; }
+body[data-service="ativacoes"] .foto-hero-copy { max-width: 640px; padding-block: 22px 30px; }
+body[data-service="ativacoes"] .foto-hero-photo { position: relative; right: auto; width: 100%; aspect-ratio: 21 / 8; -webkit-mask-image: linear-gradient(180deg, transparent, #000 14%); mask-image: linear-gradient(180deg, transparent, #000 14%); }
+body[data-service="ativacoes"] .foto-hero-photo img { object-position: center; }
+body[data-service="ativacoes"] .foto-hero-photo figcaption { right: var(--gutter); bottom: 12px; }
+@media (max-width: 1100px) { body[data-service="ativacoes"] .foto-hero-photo { aspect-ratio: 2 / 1; } }
+@media (max-width: 760px) { body[data-service="ativacoes"] .foto-hero-photo { aspect-ratio: 4 / 3; } }
 
 /* /v2/ (body.v2): home da proposta 01 "Soluções compactas" (pacote TAMA-kit-visual de 02/11/2026).
    Referência docs/proposta-01/home-aprovada.png; medidas de docs/proposta-01/VISUAL.md (desktop 1440: container

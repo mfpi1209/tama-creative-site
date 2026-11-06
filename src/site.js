@@ -112,10 +112,11 @@
     // altura do menu = da base do cabeçalho até o fim da tela (a faixa do topo varia: temporada, tamanho de fonte)
     if (open) nav.style.maxHeight = Math.max(200, window.innerHeight - nav.getBoundingClientRect().top) + 'px'; else nav.style.maxHeight = '';
   }
-  if (menuBtn) menuBtn.addEventListener('click', function () {
+  if (menuBtn) menuBtn.addEventListener('click', function (e) {
     var abrir = menuBtn.getAttribute('aria-expanded') !== 'true';
     setMenu(abrir);
-    if (abrir) { var l = nav.querySelector('input, a'); if (l) l.focus(); }   // a busca e os links vêm antes do botão no HTML: o foco vai para eles
+    // pelo teclado, o foco vai para o primeiro item do menu (não para a busca, que abriria o teclado do celular); no toque fica no botão
+    if (abrir && e.detail === 0) { var l = nav.querySelector('.nav-link, .nav-toggle'); if (l) l.focus(); }
   });
   // menu do celular aberto: se o foco sair do menu e do botão (Tab depois do último link), o menu fecha
   if (nav) nav.addEventListener('focusout', function (e) {
@@ -127,10 +128,26 @@
   function setSub(btn, open) { btn.setAttribute('aria-expanded', String(open)); btn.parentElement.classList.toggle('is-open', open); }
   function closeSubs(except) { toggles.forEach(function (t) { if (t !== except) setSub(t, false); }); }
   toggles.forEach(function (t) {
-    t.addEventListener('click', function () { var open = t.getAttribute('aria-expanded') !== 'true'; closeSubs(t); setSub(t, open); });
+    t.addEventListener('click', function (e) {
+      // clique logo depois do hover (o painel acabou de abrir): mantém aberto em vez de fechar
+      if (desk.matches && e.detail > 0 && Date.now() - (t._abertoHover || 0) < 700) { closeSubs(t); setSub(t, true); return; }
+      var open = t.getAttribute('aria-expanded') !== 'true'; closeSubs(t); setSub(t, open);
+    });
   });
   // no computador, passar o mouse em outro grupo fecha o que foi aberto por clique (nunca dois painéis juntos)
-  toggles.forEach(function (t) { t.parentElement.addEventListener('mouseenter', function () { if (desk.matches) closeSubs(t); }); });
+  // no computador, o hover abre o painel pelo mesmo estado do clique (aria-expanded e Esc valem), com uma pequena espera ao sair
+  var hoverTimer = null;
+  toggles.forEach(function (t) {
+    var g = t.parentElement;
+    g.addEventListener('mouseenter', function () {
+      if (!desk.matches || g.classList.contains('is-fechado')) return;
+      clearTimeout(hoverTimer); closeSubs(t); if (t.getAttribute('aria-expanded') !== 'true') t._abertoHover = Date.now(); setSub(t, true);
+    });
+    g.addEventListener('mouseleave', function () {
+      if (!desk.matches || g.contains(document.activeElement)) return;
+      clearTimeout(hoverTimer); hoverTimer = setTimeout(function () { setSub(t, false); }, 140);
+    });
+  });
   document.addEventListener('keydown', function (e) {
     if (e.key !== 'Escape') return;
     var aberto = toggles.filter(function (t) { return t.getAttribute('aria-expanded') === 'true'; })[0];
@@ -277,6 +294,15 @@
     document.querySelectorAll('[data-sel-count]').forEach(function (el) { el.textContent = n; el.hidden = n === 0; });
     document.querySelectorAll('[data-sel-count-text]').forEach(function (el) { el.textContent = n + (n === 1 ? ' peça' : ' peças'); });
     document.querySelectorAll('.float-bag').forEach(function (b) { b.hidden = n === 0 || location.pathname === '/solicitar-proposta/'; });
+    // a pílula recua enquanto a chamada final ou o rodapé estão na tela (uma vez só: o observador fica ligado)
+    if (!window._bagObs && 'IntersectionObserver' in window) {
+      var faixas = document.querySelectorAll('.end-cta, .site-footer'), visiveis = new Set();
+      window._bagObs = new IntersectionObserver(function (es) {
+        es.forEach(function (en) { if (en.isIntersecting) visiveis.add(en.target); else visiveis.delete(en.target); });
+        document.querySelectorAll('.float-bag').forEach(function (b) { b.classList.toggle('recua', visiveis.size > 0); });
+      });
+      faixas.forEach(function (f) { window._bagObs.observe(f); });
+    }
     document.querySelectorAll('.pick[data-slug]').forEach(function (b) { b.setAttribute('aria-pressed', String(find(sel, b.getAttribute('data-slug')) !== -1)); });
     sel.forEach(function (x) { if (x.c) paintColor(x.s, x.c); });
     var dl = document.getElementById('drawer-list');
@@ -675,6 +701,9 @@
       if (atual && novo !== atual) atual.replaceWith(novo);
       heroAtual = k;
     };
+    // 12 peças por vez, como o catálogo (antes eram todas as 163 de uma vez); "Ver mais" soma mais 12 e os filtros recomeçam
+    var GIFT_PAG = 12, giftLimite = GIFT_PAG;
+    var giftMaisBox = document.querySelector('[data-gift-mais-box]'), giftMais = document.querySelector('[data-gift-mais]');
     var apply = function () {
       trocaHero();
       var n = 0, nAlem = 0;
@@ -684,7 +713,15 @@
         var okOcc = state.occ === 'todas' || (' ' + g.getAttribute('data-occ') + ' ').indexOf(' ' + state.occ + ' ') !== -1;
         g.hidden = !(okCat && okOcc);
         if (!g.hidden) { n++; if (cat === 'alem') nAlem++; }
+        g.classList.toggle('cat-fora', !g.hidden && n > giftLimite);
       });
+      if (giftMaisBox) {
+        var vistos = Math.min(n, giftLimite), resto = n - vistos;
+        giftMaisBox.hidden = resto <= 0;
+        giftMaisBox.querySelector('[data-gift-vistos]').textContent = vistos;
+        giftMaisBox.querySelector('[data-gift-total]').textContent = n;
+        giftMais.textContent = 'Ver mais ' + Math.min(GIFT_PAG, resto) + (Math.min(GIFT_PAG, resto) === 1 ? ' peça' : ' peças');
+      }
       if (alemHead) alemHead.hidden = nAlem === 0;
       countEl.textContent = n + (n === 1 ? ' peça' : ' peças');
       emptyEl.hidden = n !== 0;
@@ -695,6 +732,7 @@
     document.querySelectorAll('.chip[data-filter]').forEach(function (chip) {
       chip.addEventListener('click', function () {
         state[chip.getAttribute('data-filter')] = chip.getAttribute('data-value');
+        giftLimite = GIFT_PAG;
         apply();
         var q = new URLSearchParams();
         if (state.cat !== 'todas') q.set('categoria', state.cat);
@@ -703,7 +741,14 @@
         track('filter_curadoria', { filter: chip.getAttribute('data-filter'), value: chip.getAttribute('data-value') });
       });
     });
-    document.getElementById('gift-reset').addEventListener('click', function () { state.cat = 'todas'; state.occ = 'todas'; apply(); history.replaceState(null, '', location.pathname + '#pecas'); });
+    if (giftMais) giftMais.addEventListener('click', function () {
+      var antes = giftLimite; giftLimite += GIFT_PAG; apply();
+      // o foco vai para a primeira peça nova (quem usa teclado continua de onde parou)
+      var nova = [].filter.call(document.querySelectorAll('#gift-grid .product'), function (g) { return !g.hidden; })[antes];
+      var alvo = nova && nova.querySelector('a.prod-link, a');
+      if (alvo) alvo.focus();
+    });
+    document.getElementById('gift-reset').addEventListener('click', function () { state.cat = 'todas'; state.occ = 'todas'; giftLimite = GIFT_PAG; apply(); history.replaceState(null, '', location.pathname + '#pecas'); });
     apply();
   }
 

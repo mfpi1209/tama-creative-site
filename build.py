@@ -678,7 +678,7 @@ def home_product_card(h, eager=False, sizes='(max-width: 760px) 46vw, (max-width
     verso_id = (c.get('versos') or {}).get(h['cores'][0][0])
     verso = f'<span class="prod-alt">{picture(verso_id, "", sizes)}</span>' if verso_id in IMAGES else ''
     slug, nome = h['slug'], h['nome']
-    zoom = f'<button class="prod-zoom" type="button" data-zoom="{slug}" aria-label="Ampliar foto de {esc(nome)}"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 3v10M3 8h10"/></svg></button>'
+    zoom = f'<button class="prod-zoom" type="button" data-zoom="{slug}" aria-label="Ampliar foto de {esc(nome)}"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="7" cy="7" r="4.5"/><path d="M10.4 10.4 14 14M7 5v4M5 7h4"/></svg></button>'
     alt_cls = ' has-alt' if verso else ''
     media = (f'<a class="prod-media{alt_cls}" href="{url}" tabindex="-1" aria-hidden="true">{foto}{verso}</a>{zoom}' if url
              else f'<button class="prod-media" type="button" data-zoom="{slug}" aria-label="Ampliar foto de {esc(nome)}">{foto}</button>')
@@ -897,7 +897,7 @@ def page_produto(c):
     if relacionados:
         rel_html = f'''<section class="section" aria-labelledby="rel-t">
   <div class="wrap">
-    <div class="section-head row"><div class="stack" style="gap:12px"><p class="eyebrow">{cat_nome}</p><h2 id="rel-t" class="section-title">Outros modelos para combinar</h2><p class="muted">Modelos da mesma categoria, para compor um kit ou uma seleção com a sua marca.</p></div><a class="link" href="/catalogo/?categoria={c['categoria']}#catalogo">Ver a categoria completa {ARROW}</a></div>
+    <div class="section-head row"><div class="stack" style="gap:12px"><p class="eyebrow">{cat_nome}</p><h2 id="rel-t" class="section-title rel-title">Outros modelos para combinar</h2><p class="muted">Modelos da mesma categoria, para compor um kit ou uma seleção com a sua marca.</p></div><a class="link" href="/catalogo/?categoria={c['categoria']}#catalogo">Ver a categoria completa {ARROW}</a></div>
     <div class="studio-grid">{''.join(home_product_card(x) for x in relacionados)}</div>
   </div>
 </section>'''
@@ -916,9 +916,9 @@ def page_produto(c):
         'body': f'''<section class="section pdp-sec">
   <div class="wrap pdp-wrap">
     <div class="product pdp" data-slug="{slug}" data-pdp data-url="{url}" data-tipo="{tipo}" data-vistas="{esc(json.dumps(vistas, ensure_ascii=False, separators=(',', ':')))}">
-      <div class="pdp-gallery">
+      <div class="pdp-gallery{'' if vistas_html or len(thumbs) > 1 else ' sem-rail'}">
         <div class="pdp-rail">{vistas_html}{f'<div class="pdp-thumbs" role="group" aria-label="Cores de {esc(nome)}">{"".join(thumbs)}</div>' if len(thumbs) > 1 else ''}</div>
-        <div class="prod-media pdp-main" data-hover-zoom>{picture(c['img'], c['alt'], '(max-width: 900px) 92vw, 840px', eager=True)}<button class="prod-zoom" type="button" data-zoom="{slug}" aria-label="Ampliar foto de {esc(nome)}"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 3v10M3 8h10"/></svg></button><p class="pdp-ilustra">Imagem ilustrativa</p></div>
+        <div class="prod-media pdp-main" data-hover-zoom>{picture(c['img'], c['alt'], '(max-width: 900px) 92vw, 840px', eager=True)}<button class="prod-zoom" type="button" data-zoom="{slug}" aria-label="Ampliar foto de {esc(nome)}"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="7" cy="7" r="4.5"/><path d="M10.4 10.4 14 14M7 5v4M5 7h4"/></svg></button><p class="pdp-ilustra">Imagem ilustrativa</p></div>
       </div>
       <div class="pdp-info">
         <p class="eyebrow"><a href="/catalogo/?categoria={c["categoria"]}#catalogo">{cat_nome}</a></p>
@@ -926,7 +926,7 @@ def page_produto(c):
         <div class="pdp-resumo-box" data-pdp-more><p class="pdp-resumo">{esc(info['resumo']) + ' ' if info.get('resumo') else ''}<span class="prod-desc pdp-desc">Modelo da imagem: {c['descricao']}</span></p><button class="pdp-more" type="button" aria-expanded="false" hidden>Ler mais</button></div>
         <p class="prod-meta" hidden>{c['meta']}</p>
         <ol class="pdp-steps">
-          <li class="pdp-cores"><p class="pdp-q"><b aria-hidden="true">1</b>Cor de referência: <strong class="color-name">{cores[0][0]}</strong></p>{swatches(dict(c, cores=cores))}</li>
+          <li class="pdp-cores{' uma-cor' if len(cores) == 1 else ''}"><p class="pdp-q"><b aria-hidden="true">1</b>Cor de referência: <strong class="color-name">{cores[0][0]}</strong></p>{swatches(dict(c, cores=cores))}</li>
           <li><label class="pdp-q" for="pdp-ocasiao"><b aria-hidden="true">2</b>Para qual ocasião?</label>
             <select class="pdp-select" id="pdp-ocasiao" data-pdp-occ><option value="">Selecione uma ocasião (opcional)</option>{''.join(f'<option>{v}</option>' for v in OCCS.values())}</select></li>
           <li><label class="pdp-q" for="pdp-qtd"><b aria-hidden="true">3</b>Quantidade aproximada</label>
@@ -1953,14 +1953,14 @@ def page_home_v2():
 
 
 # rótulos iguais aos filtros do catálogo (CAT_PROD)
-BRINDES_ATALHOS = [(CAT_PROD['garrafas-copos'], '/catalogo/?categoria=garrafas-copos'), (CAT_PROD['canetas-escritorio'], '/catalogo/?categoria=canetas-escritorio'),
-                   (CAT_PROD['tecnologia'], '/catalogo/?categoria=tecnologia'),
-                   (CAT_PROD['bolsas-embalagens'], '/catalogo/?categoria=bolsas-embalagens'), (CAT_PROD['casa-bem-estar'], '/catalogo/?categoria=casa-bem-estar')]
+BRINDES_ATALHOS = [(CAT_PROD['garrafas-copos'], '/catalogo/?categoria=garrafas-copos', 'garrafa'), (CAT_PROD['canetas-escritorio'], '/catalogo/?categoria=canetas-escritorio', 'caneta'),
+                   (CAT_PROD['tecnologia'], '/catalogo/?categoria=tecnologia', 'tecnologia'),
+                   (CAT_PROD['bolsas-embalagens'], '/catalogo/?categoria=bolsas-embalagens', 'bolsa'), (CAT_PROD['casa-bem-estar'], '/catalogo/?categoria=casa-bem-estar', 'casa')]
 
 
 def brindes_hero(trail):
     return cab_hero(trail, 'brindes', cta_link(tipo='brindes', track_label='brindes-head')
-                     + '<a class="btn btn-line" href="#estudio-b-t">Explorar as peças</a>') + '\n' + atalhos('Encontre o brinde para a sua próxima ideia.', BRINDES_ATALHOS, 'brindes-atalhos-t', linha=False, traco=True)
+                     + '<a class="btn btn-line" href="#estudio-b-t">Explorar as peças</a>') + '\n' + atalhos('Encontre o brinde para a sua próxima ideia.', BRINDES_ATALHOS, 'brindes-atalhos-t', linha=False)
 
 
 def page_brindes():
@@ -2074,10 +2074,18 @@ def kits_hero(trail):
     return cab_hero(trail, 'kits', cta_link(tipo='kits', track_label='kits-head') + '<a class="btn btn-line" href="#kits">Conhecer os kits</a>')
 
 
+# ícone de cada tipo de kit (âncora de kits.json); tipo novo cadastrado no admin usa o ícone de presente
+KITS_ICONES = {'kits-escritorio': 'caderno', 'kits-cozinha': 'talheres', 'kits-boas-vindas': 'acena', 'kits-executivo': 'maleta',
+               'kits-pausa': 'xicara', 'kits-fim-de-ano': 'taca'}
+
+
+def kits_atalhos():
+    return [(titulo, f'#{sid}', KITS_ICONES.get(sid, 'presente')) for sid, titulo, _l, _k in KITS_TIPOS]
+
+
 def page_kits():
     trail = [('/', 'Início'), ('/kits-corporativos/', 'Kits corporativos')]
     topo = kits_topo()
-    chips = ''.join(f'<a class="chip" href="#{sid}">{titulo}</a>' for sid, titulo, _l, _k in KITS_TIPOS)
     return {
         'path': '/kits-corporativos/', 'og': topo, 'assunto': 'kits corporativos', 'title': 'Kits corporativos e de boas-vindas | TaMa Creative',
         'description': 'Kits de boas-vindas, kits para eventos e presentes para clientes, com curadoria, embalagem personalizada e a marca da sua empresa. Solicite uma proposta.',
@@ -2085,11 +2093,10 @@ def page_kits():
         'service': {'key': 'kits', 'name': 'Kits corporativos personalizados', 'type': 'Kits corporativos'},
         'preload': preload_image(topo, FOTO_HERO_SIZES),   # mesma imagem e sizes da foto do cabeçalho
         'crumbs_inline': True,   # o caminho fica sobre a área creme da foto, logo abaixo do cabeçalho do site
-        'body': kits_hero(trail) + season_callout('kits') + f'''
+        'body': kits_hero(trail) + '\n' + atalhos('Um kit para cada momento.', kits_atalhos(), 'kits-atalhos-t', linha=False) + season_callout('kits') + f'''
 <section class="section kits-intro" id="kits" aria-labelledby="kits-p-t" style="padding-top:clamp(24px,3vw,40px)">
   <div class="wrap">
     <div class="section-head"><p class="eyebrow">Kits corporativos</p><h2 id="kits-p-t" class="section-title">Kits de referência para adaptar à sua marca</h2><p class="muted">Composições organizadas por tipo de kit. A TaMa ajusta peças, embalagem e cartão ao seu público, à ocasião e ao investimento, sempre com a marca da sua empresa.</p></div>
-    <nav class="kit-occ kit-tipos" aria-label="Tipos de kit"><span>Veja por tipo:</span>{chips}</nav>
   </div>
 </section>
 {kits_tipos_html()}
@@ -2156,7 +2163,8 @@ def page_curadoria():
     </div>
     <h2 class="visually-hidden">Peças sugeridas</h2>
     <div class="studio-grid" id="gift-grid">{''.join(home_product_card(c) for c in pecas)}</div>
-    <div class="empty" id="gift-empty" hidden><p>Nenhuma peça combina esses filtros. <button class="link" type="button" id="gift-reset" style="background:none;border:0;cursor:pointer">Limpar os filtros</button>. Se a peça que você procura não está aqui, descreva a ideia no <a href="/solicitar-proposta/">pedido de proposta</a>.</p></div>
+    <div class="cat-mais" data-gift-mais-box hidden><p>Mostrando <strong data-gift-vistos></strong> de <strong data-gift-total></strong> peças</p><button class="btn btn-line" type="button" data-gift-mais>Ver mais peças</button></div>
+    <div class="empty" id="gift-empty" hidden><p>Nenhuma peça combina esses filtros. <button class="link" type="button" id="gift-reset">Limpar os filtros</button>. Se a peça que você procura não está aqui, descreva a ideia no <a href="/solicitar-proposta/">pedido de proposta</a>.</p></div>
     <p class="note" style="margin-top:24px">{NOTE_IMAGENS}</p>
   </div>
 </section>
@@ -2195,14 +2203,14 @@ def atalhos(titulo, itens, aria, linha=True, centro=False, traco=False, eyebrow=
 </section>'''
 
 
-CONF_PECAS = [('Camisetas polo', '/catalogo/?tipo=polos#catalogo'), ('Camisetas', '/catalogo/?tipo=camisetas#catalogo'),
-              ('Camisas sociais', '/catalogo/?tipo=camisas#catalogo'), ('Moletons', '/catalogo/?tipo=moletons#catalogo'),
-              ('Aventais', '/catalogo/?tipo=aventais#catalogo'), ('Dólmãs', '/catalogo/?tipo=dolmas#catalogo')]
+CONF_PECAS = [('Camisetas polo', '/catalogo/?tipo=polos#catalogo', 'polo'), ('Camisetas', '/catalogo/?tipo=camisetas#catalogo', 'camiseta'),
+              ('Camisas sociais', '/catalogo/?tipo=camisas#catalogo', 'camisa'), ('Moletons', '/catalogo/?tipo=moletons#catalogo', 'moletom'),
+              ('Aventais', '/catalogo/?tipo=aventais#catalogo', 'avental'), ('Dólmãs', '/catalogo/?tipo=dolmas#catalogo', 'dolma')]
 
 
 def conf_hero(trail):
     return cab_hero(trail, 'confeccoes', cta_link(tipo='confeccoes', track_label='conf-head')
-                    + '<a class="btn btn-line" href="#estudio-c-t">Explorar as peças</a>') + '\n' + atalhos('Encontre as peças para a sua equipe.', CONF_PECAS, 'conf-pecas-t')
+                    + '<a class="btn btn-line" href="#estudio-c-t">Explorar as peças</a>') + '\n' + atalhos('Encontre as peças para a sua equipe.', CONF_PECAS, 'conf-pecas-t', linha=False)
 
 
 def page_confeccoes():
@@ -2246,6 +2254,25 @@ def page_confeccoes():
 
 ATIV_FORMATOS = [('Degustações no ponto de venda', '#fmt-degustacao', 'carrinho'), ('Feiras e eventos', '#fmt-feiras', 'calendario'),
                  ('Ações promocionais', '#fmt-promocao', 'pessoas'), ('Buffet completo', '#fmt-buffet', 'cloche'), ('Decoração', '#fmt-decoracao', 'arranjo')]
+# ícones dos atalhos de todas as páginas (mesmo traço fino; auditoria de 06/11/2026: um padrão só, sempre com ícone)
+ICONES['garrafa'] = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M10 2.8h4M10.4 2.8v2.6c0 .9-2.4 1.6-2.4 3.6v10.6c0 .9.7 1.6 1.6 1.6h4.8c.9 0 1.6-.7 1.6-1.6V9c0-2-2.4-2.7-2.4-3.6V2.8"/><path d="M8 12.4h8"/></svg>'
+ICONES['caneta'] = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M15.6 3.6l4.8 4.8L9 19.8l-5.4 1.2L4.8 15.6z"/><path d="M13.4 5.8l4.8 4.8M4.8 15.6l3.6 3.6"/></svg>'
+ICONES['tecnologia'] = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="6.6" y="2.8" width="10.8" height="18.4" rx="2"/><path d="M10.4 18.2h3.2M10 9.6l-1.4 2.6h3.4l-1.6 3"/></svg>'
+ICONES['bolsa'] = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4.6 8.2h14.8l-1.2 12.6H5.8z"/><path d="M8.6 10.6V7a3.4 3.4 0 0 1 6.8 0v3.6"/></svg>'
+ICONES['casa'] = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9.4 9.4h5.2v11.4H9.4z"/><path d="M12 9.4V7.6M12 6.4c-1.2-1-1.2-2.4 0-3.6 1.2 1.2 1.2 2.6 0 3.6z"/><path d="M7.4 20.8h9.2"/></svg>'
+ICONES['polo'] = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 3.4 4.2 5.6 2.8 10l3 1.2 1-2v11.6h10.4V9.2l1 2 3-1.2-1.4-4.4L15 3.4"/><path d="M9 3.4l3 3.4 3-3.4M12 6.8v3.4"/></svg>'
+ICONES['camiseta'] = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 3.4 4.2 5.6 2.8 10l3 1.2 1-2v11.6h10.4V9.2l1 2 3-1.2-1.4-4.4L15 3.4c-.4 1.4-1.6 2.2-3 2.2S9.4 4.8 9 3.4z"/></svg>'
+ICONES['camisa'] = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9.2 3.2 5 5.2 3.4 20.8h17.2L19 5.2l-4.2-2"/><path d="M9.2 3.2 12 6.4l2.8-3.2M12 6.4v14.4M10.6 9.6h.01M10.6 13h.01M10.6 16.4h.01"/></svg>'
+ICONES['moletom'] = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8.6 4.4C6 5.2 4.4 7 3.6 9.6L3 18.6l2.8.6.8-6.6v8.2h10.8v-8.2l.8 6.6 2.8-.6-.6-9C19.6 7 18 5.2 15.4 4.4"/><path d="M8.6 4.4a3.4 3.4 0 0 0 6.8 0M10.6 8.2v3M13.4 8.2v3M8.8 16.4h6.4"/></svg>'
+ICONES['avental'] = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8.6 3.2c0 2.2-.4 3.6-1 4.6H6v13h12v-13h-1.6c-.6-1-1-2.4-1-4.6"/><path d="M8.6 3.2h6.8M6 9.6 2.8 11.4M18 9.6l3.2 1.8M9 14h6v3.6H9z"/></svg>'
+ICONES['dolma'] = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8.8 3.4 4.4 5.4 3 20.6h18L19.6 5.4l-4.4-2"/><path d="M8.8 3.4 12 7l3.2-3.6M14 9.4h.01M14 12.8h.01M14 16.2h.01M10 9.4h.01M10 12.8h.01M10 16.2h.01"/></svg>'
+ICONES['taca'] = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7.4 3h9.2l-.4 5.2a4.2 4.2 0 0 1-8.4 0z"/><path d="M12 12.4v7.4M8.6 20.8h6.8M7.6 6.6h8.8"/></svg>'
+ICONES['presente'] = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 9.4h16v3.4H4zM5.4 12.8h13.2v8H5.4zM12 9.4v11.4"/><path d="M12 9.4c-1.4-2.6-4.6-3.6-4.6-1.6 0 1.2 1.6 1.6 4.6 1.6zM12 9.4c1.4-2.6 4.6-3.6 4.6-1.6 0 1.2-1.6 1.6-4.6 1.6z"/></svg>'
+ICONES['mensagem'] = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="5.6" width="18" height="12.8" rx="1.6"/><path d="m3.6 6.6 8.4 6.2 8.4-6.2M7 15h4"/></svg>'
+ICONES['caderno'] = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="5.4" y="3" width="13.6" height="18" rx="1.4"/><path d="M8.6 3v18M3.8 7h3.2M3.8 12h3.2M3.8 17h3.2M11.4 8h4.8"/></svg>'
+ICONES['maleta'] = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="7.4" width="18" height="12.6" rx="1.6"/><path d="M9 7.4V5.6c0-.9.7-1.6 1.6-1.6h2.8c.9 0 1.6.7 1.6 1.6v1.8M3 12.6h18M10.6 12.6v1.8h2.8v-1.8"/></svg>'
+ICONES['xicara'] = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4.4 8.6h12.4v5.2a5 5 0 0 1-5 5h-2.4a5 5 0 0 1-5-5z"/><path d="M16.8 10.2h1.4a2.2 2.2 0 0 1 0 4.4h-1.6M3.4 21h14.4M8.6 3.4c-.6.8-.6 1.6 0 2.4M12.2 3.4c-.6.8-.6 1.6 0 2.4"/></svg>'
+ICONES['acena'] = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8.4 12.8V6.6a1.4 1.4 0 0 1 2.8 0v5M11.2 11V4.6a1.4 1.4 0 0 1 2.8 0V11M14 11V5.8a1.4 1.4 0 0 1 2.8 0v7.6c0 4-2.6 7.2-6.4 7.2-2.4 0-4-1.2-5.2-3.4l-1.8-3.2a1.4 1.4 0 0 1 2.4-1.4l1.6 2.4"/></svg>'
 # ícone de Decoração (arranjo num vaso), no mesmo traço fino dos demais
 ICONES['arranjo'] = ('<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8.4 14.4h7.2l-1.1 6.2H9.5z"/>'
                      '<path d="M12 14.4V8.6"/><circle cx="12" cy="6" r="2.4"/><path d="M12 12.2c-2.2 0-3.6-1.2-4-3 2.2 0 3.6 1.2 4 3z'
@@ -2338,7 +2365,7 @@ HOT_ATALHOS = [('Mesa e salão', '#amb-salao', 'talheres'), ('Cozinha e atendime
 
 
 def hot_hero(trail):
-    return cab_hero(trail, 'hotelaria', cta_link(tipo='hotelaria', track_label='hotelaria-head') + '<a class="btn btn-line" href="#hot-pecas-t">Explorar as peças</a>') + '\n' + atalhos('Personalização que acompanha o seu atendimento.', HOT_ATALHOS, 'hot-atalhos-t', linha=False, centro=True)
+    return cab_hero(trail, 'hotelaria', cta_link(tipo='hotelaria', track_label='hotelaria-head') + '<a class="btn btn-line" href="#hot-pecas-t">Explorar as peças</a>') + '\n' + atalhos('Personalização que acompanha o seu atendimento.', HOT_ATALHOS, 'hot-atalhos-t', linha=False)
 
 
 def page_hotelaria():
@@ -2387,7 +2414,7 @@ def page_hotelaria():
 FIM_DE_ANO_KITS = kits_da_lista('fim_de_ano')
 
 
-FIM_ATALHOS = [('Taças e copos', '#brindar'), ('Conjuntos e embalagens', '#kits-fim-de-ano'), ('Personalização e mensagens', '#personalizacao')]
+FIM_ATALHOS = [('Taças e copos', '#brindar', 'taca'), ('Conjuntos e embalagens', '#kits-fim-de-ano', 'presente'), ('Personalização e mensagens', '#personalizacao', 'mensagem')]
 
 
 def page_fim_de_ano():
@@ -2415,7 +2442,7 @@ def page_fim_de_ano():
         'body': cab_hero([('/', 'Início'), ('/brindes-de-fim-de-ano/', 'Fim de ano')], 'fim-de-ano',
                          cta_link(tipo='kits', track_label='fim-de-ano-head')
                          + '<a class="btn btn-line" href="#brindar">Explorar os presentes</a>') + '\n' + atalhos(
-            'Escolha como brindar.', fim_atalhos, 'fim-atalhos-t', linha=False, eyebrow='Para brindar', lado=True) + f"""
+            'Escolha como brindar.', fim_atalhos, 'fim-atalhos-t', linha=False) + f"""
 {vitrine('fim-brindar', 'brindar-t', more=('/catalogo/?ocasiao=fim-de-ano', 'Ver todos de fim de ano no catálogo'), sid='brindar', cls='ivory')}
 {kits_sec}
 {vitrine('fim-presentear', 'presentear-t', more=('/catalogo/', 'Ver o catálogo'), sid='presentear')}

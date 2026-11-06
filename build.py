@@ -1777,15 +1777,29 @@ V2_FAQ = HOME_FAQ + [('Como funciona a aprovação da arte?', 'A marca da sua em
 V2_HERO_SIZES = '(max-width: 1023px) 100vw, (max-width: 1615px) 840px, 52vw'   # foto em cover numa caixa de 560 px de altura
 
 
+def v2_hero_dados():
+    """Banner da home: na temporada de fim de ano, a arte aprovada da proposta 01 (img/v2/hero.png); fora dela, o primeiro
+    slide ativo sem temporada do Carrossel (inventário › Carrossel), para a cliente trocar o banner sem mexer no código.
+    Devolve (imagem, alt, eyebrow, título em HTML, texto, botões)."""
+    if SEASON == 'fim-de-ano':
+        return ('hero', 'Caixa de presente bordô, taça e estojo de vinho com a marca fictícia Sua Marca, entre enfeites de Natal.',
+                'Fim de ano', 'Um brinde a quem <em>fez parte do seu ano.</em>',
+                'Taças, copos e kits com a sua marca para agradecer clientes e equipes.', cta_link('Solicitar proposta', track_label='home-hero'))
+    slides = [sl for sl in slides_do_site() if not (len(sl) > 8 and sl[8])] or slides_do_site()
+    _tom, img, _frame, alt, eyebrow, titulo, texto, acoes = slides[0][:8]
+    return (img, alt, eyebrow, titulo, texto, acoes)
+
+
 def v2_hero():
+    img, alt, eyebrow, titulo, texto, acoes = v2_hero_dados()
     return f'''<section class="t-hero" aria-labelledby="t-hero-t">
   <div class="t-hero-txt">
-    <p class="eyebrow">Fim de ano</p>
-    <h1 id="t-hero-t" class="t-h1">Um brinde a quem <em>fez parte do seu ano.</em></h1>
-    <p class="t-lead">Taças, copos e kits com a sua marca para agradecer clientes e equipes.</p>
-    <div class="actions">{cta_link('Solicitar proposta', track_label='v2-hero')}</div>
+    <p class="eyebrow">{eyebrow}</p>
+    <h1 id="t-hero-t" class="t-h1">{titulo}</h1>
+    <p class="t-lead">{texto}</p>
+    <div class="actions">{acoes}</div>
   </div>
-  <figure class="t-hero-foto">{picture('hero', 'Caixa de presente bordô, taça e estojo de vinho com a marca fictícia Sua Marca, entre enfeites de Natal.', V2_HERO_SIZES, eager=True)}<figcaption>Imagem ilustrativa • Marca fictícia</figcaption></figure>
+  <figure class="t-hero-foto">{picture(img, alt, V2_HERO_SIZES, eager=True)}<figcaption>Imagem ilustrativa • Marca fictícia</figcaption></figure>
 </section>'''
 
 
@@ -1917,36 +1931,19 @@ def hero_carousel(slides=None, label='Destaques da TaMa Creative', assurances=Tr
 
 
 def page_home():
+    """Home da proposta 01 ("Soluções compactas"), aprovada pela cliente em 06/11/2026 (antes publicada em /v2/).
+    Medidas e decisões: docs/proposta-01/ (VISUAL.md, AJUSTES.md, AUDITORIA.md); estilos em body.v2."""
+    hero_img = v2_hero_dados()[0]
     return {
-        'path': '/', 'title': 'Brindes corporativos, uniformes e kits | TaMa Creative', 'og': slides_do_site()[0][1],
+        'path': '/', 'title': 'Brindes corporativos, uniformes e kits | TaMa Creative', 'og': hero_img, 'body_class': 'v2',
         'og_title': 'TaMa Creative · ' + ASSINATURA.rstrip('.'),
         'description': 'Brindes, uniformes, kits, eventos corporativos e peças de hotelaria com a marca da sua empresa. A TaMa seleciona, personaliza e coordena da escolha das peças à entrega.',
         'assunto': 'um projeto para a minha empresa',
-        'preload': preload_image(slides_do_site()[0][1], HERO_SIZES),
-        'body': hero_carousel() + f'''
-{frentes_section()}
-{process_strip()}
-{home_products_block()}
-{kits_block(compacto=True)}
-{ocasioes_faixa()}
-{faq(HOME_FAQ, title='Perguntas sobre a TaMa')}
-{guias_block('home')}
-{end_cta()}''',
-    }
-
-
-def page_home_v2():
-    """Proposta 01 da home em /v2/ (pacote TAMA-kit-visual), para a cliente aprovar online antes de substituir a home
-    (fora do Google e do sitemap). Se aprovada, este corpo passa para page_home e a página sai."""
-    return {
-        'path': '/v2/', 'title': 'Home (proposta 01) | TaMa Creative', 'index': False, 'body_class': 'v2', 'og': 'hero',
-        'description': 'Proposta 01 da home da TaMa Creative (soluções compactas), para aprovação.',
-        'assunto': 'um projeto para a minha empresa',
-        'preload': preload_image('hero', V2_HERO_SIZES),
+        'preload': preload_image(hero_img, V2_HERO_SIZES),
         'body': v2_hero() + f'''
 {frentes_section(titulo_visivel=True)}
 {v2_catalogo()}
-{process_section('Como trabalhamos', 'Do briefing à entrega', 'Seis etapas, com a peça, a personalização e a arte aprovadas por você antes da produção.', 'v2-como-t')}
+{process_section('Como trabalhamos', 'Do briefing à entrega', 'Seis etapas, com a peça, a personalização e a arte aprovadas por você antes da produção.', 'home-como-t')}
 {v2_faq()}
 {v2_guias()}
 {end_cta()}''',
@@ -2636,7 +2633,7 @@ def page_404():
     }
 
 
-PAGES = [page_home, page_home_v2, page_catalogo, page_brindes, page_kits, page_ativacoes, page_hotelaria, page_fim_de_ano, page_curadoria, page_confeccoes, page_sobre,
+PAGES = [page_home, page_catalogo, page_brindes, page_kits, page_ativacoes, page_hotelaria, page_fim_de_ano, page_curadoria, page_confeccoes, page_sobre,
  page_proposta, page_obrigado, page_privacidade, page_404]
 PAGES += [lambda c=c: page_produto(c) for c in CATALOGO]   # uma página por modelo do catálogo (/catalogo/<nome>/)
 
@@ -2690,6 +2687,7 @@ def build_static():
         '/branding-identidade-visual/*  /                    301',
         '/ativacoes          /eventos-corporativos/        301',
         '/degustacao         /eventos-corporativos/        301',
+        '/v2/                /                             301',   # proposta 01 aprovada: virou a home (06/11/2026)
         '/ativacoes-promocionais/  /eventos-corporativos/  301',   # endereços antigos da página (até 24/10/2026)
         '/ativacoes-promocionais-eventos-corporativos/  /eventos-corporativos/  301',
         '/hotelaria          /hotelaria-e-gastronomia/       301',

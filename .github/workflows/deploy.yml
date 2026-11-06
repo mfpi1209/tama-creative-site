@@ -60,6 +60,7 @@ jobs:
           check /solicitar-proposta/ 200
           check /eventos-corporativos/ 200
           check /ativacoes-promocionais/ 301
+          check /v2/ 301
           check /ativacoes-promocionais-eventos-corporativos/ 301
           check /hotelaria-e-gastronomia/ 200
           check /brindes-de-fim-de-ano/ 200

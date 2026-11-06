@@ -87,103 +87,38 @@ try {
   await page.click('#consent [data-consent="denied"]');
   ok((await (await fetch(BASE + '/privacidade/')).text()).includes('id="cookies"'), 'política de privacidade explica os cookies');
 
-  // /v2/: proposta de home minimalista para a cliente aprovar online (fora do Google e do sitemap)
+  console.log('Home (proposta 01, aprovada em 06/11/2026)');
   {
-    const v2 = await (await fetch(BASE + '/v2/')).text(), mapa = await (await fetch(BASE + '/sitemap.xml')).text();
-    const ordem = ['class="t-hero', 'class="frentes"', 'class="t-cat', 'process-section', 'class="t-faq', 'class="t-guias', 'class="end-cta'].map(k => v2.indexOf(k));
-    ok(/<meta name="robots" content="noindex/.test(v2) && !mapa.includes('/v2/') && ordem.every((p, i) => p > 0 && (i === 0 || p > ordem[i - 1]))
-      && !v2.includes('aria-roledescription="carrossel"') && (v2.match(/<li class="t-card-item"/g) || []).length === 6 && (v2.match(/class="t-pill"/g) || []).length === 4
-      && (v2.match(/class="frente-card"/g) || []).length === 5 && (v2.match(/<details class="t-faq-item"/g) || []).length === 6 && /class="section on-dark process-section"/.test(v2) && (v2.match(/class="process-step"/g) || []).length === 6 && !v2.includes('Soluções compactas</p>'),
-      '/v2/ (proposta 01): hero fixo, os 5 cartões de O que a TaMa faz, catálogo 3×2 com 4 filtros, processo em 6 passos com ícones no verde, 6 perguntas, guias e chamada final; fora do Google e do sitemap');
-    await page.goto(BASE + '/v2/', { waitUntil: 'networkidle0' });
+    const home = await (await fetch(BASE + '/')).text(), redir = await (await fetch(BASE + '/_redirects')).text();
+    const ordem = ['class="t-hero', 'class="frentes"', 'class="t-cat', 'process-section', 'class="t-faq', 'class="t-guias', 'class="end-cta'].map(k => home.indexOf(k));
+    ok(ordem.every((p, i) => p > 0 && (i === 0 || p > ordem[i - 1])) && /<body[^>]*class="v2"/.test(home) && !/name="robots" content="noindex/.test(home)
+      && !home.includes('aria-roledescription="carrossel"') && (home.match(/<li class="t-card-item"/g) || []).length === 6 && (home.match(/class="t-pill"/g) || []).length === 4
+      && (home.match(/class="frente-card"/g) || []).length === 5 && (home.match(/<details class="t-faq-item"/g) || []).length === 6 && /class="section on-dark process-section"/.test(home)
+      && (home.match(/class="process-step"/g) || []).length === 6,
+      'home: banner, os 5 cartões de O que a TaMa faz, catálogo 3×2 com 4 filtros, processo em 6 passos no verde, 6 perguntas, guias e chamada final');
+    ok(/^\/v2\/\s+\/\s+301/m.test(redir), '/v2/ (endereço da proposta) redireciona para a home');
+    await page.setViewport({ width: 1280, height: 900 });
+    await page.goto(BASE + '/', { waitUntil: 'networkidle0' });
+    const hero = await page.evaluate(() => ({ h1s: document.querySelectorAll('h1').length, eyebrow: document.querySelector('.t-hero .eyebrow')?.textContent, h1: document.querySelector('.t-hero h1')?.textContent.replace(/\s+/g, ' ').trim(),
+      img: document.querySelector('.t-hero img'), cta: document.querySelector('.t-hero .btn-wine')?.getAttribute('href') }));
+    const heroImg = await page.$eval('.t-hero img', i => ({ eager: i.loading === 'eager', alta: i.getAttribute('fetchpriority') === 'high', alt: i.alt.length > 20, src: i.currentSrc }));
+    ok(hero.h1s === 1 && heroImg.eager && heroImg.alta && heroImg.alt && /^\/solicitar-proposta\//.test(hero.cta)
+      && (SEASON === 'fim-de-ano' ? hero.eyebrow === 'Fim de ano' && hero.h1 === 'Um brinde a quem fez parte do seu ano.' && /\/img\/hero\./.test(heroImg.src) : !!hero.eyebrow && !!hero.h1 && hero.eyebrow !== 'Fim de ano'),
+      `home: banner com um único H1, foto prioritária e proposta; ${SEASON === 'fim-de-ano' ? 'na temporada, a arte de fim de ano' : 'fora da temporada, o 1º slide do Carrossel'} ("${hero.h1}")`);
     const filtrados = {};
     for (const f of ['kits', 'dia-a-dia', 'vestuario', 'todos']) { await page.click(`[data-filtro="${f}"]`); filtrados[f] = await page.$$eval('.t-card-item', l => l.filter(i => !i.hidden).length); }
     ok(JSON.stringify(filtrados) === '{"kits":1,"dia-a-dia":4,"vestuario":1,"todos":6}' && await page.$$eval('[data-filtro]', b => b.map(x => x.getAttribute('aria-pressed')).join()) === 'true,false,false,false'
-      && await page.$$eval('.t-card', a => a.every(x => /^\/(kits-corporativos|confeccoes-personalizadas|catalogo)\//.test(x.getAttribute('href')))),
-      `/v2/: filtros Kits (1), Dia a dia (4), Vestuário (1) e Todos (6) com aria-pressed, e cada card leva a uma página real ${JSON.stringify(filtrados)}`);
+      && await page.$eval('#t-cat-status', s => s.textContent === '6 categorias')
+      && await page.$$eval('.t-card', a => a.every(x => /^\/(kits-corporativos|confeccoes-personalizadas|catalogo)\//.test(x.getAttribute('href')) && document.getElementById(x.getAttribute('aria-labelledby')))),
+      `home: filtros Kits (1), Dia a dia (4), Vestuário (1) e Todos (6) com aria-pressed e aviso; cada card leva a uma página real e tem o título como nome ${JSON.stringify(filtrados)}`);
+    ok(await page.$$eval('.frentes-grid .frente-card', a => a.map(x => x.getAttribute('href')).join() === '/brindes-corporativos/,/confeccoes-personalizadas/,/kits-corporativos/,/eventos-corporativos/,/hotelaria-e-gastronomia/'),
+       'home apresenta as cinco áreas (brindes, confecções, kits, eventos, hotelaria)');
+    for (const w of [320, 768, 1024, 1180, 1440]) {
+      await page.setViewport({ width: w, height: 900 });
+      ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), `home sem rolagem horizontal em ${w} px`);
+    }
+    await page.setViewport({ width: 1280, height: 900 });
   }
-  console.log('Carrossel da abertura');
-  await page.setViewport({ width: 1280, height: 900 });
-  await page.goto(BASE + '/', { waitUntil: 'networkidle0' });
-  ok(await page.$$eval('h1', h => h.length) === 1 && await page.$$eval('#hero .slide', s => s.length) === 6 && await page.$$eval('#hero button, #hero [data-hero-count], #hero .dot', b => b.length === 0), 'home tem um único H1 com 6 slides e o carrossel não tem botões (sem tocar/pausar, contador, pontos ou setas)');
-  const slideHrefs = ['/catalogo/', '/brindes-de-fim-de-ano/', '/confeccoes-personalizadas/', '/kits-corporativos/', '/catalogo/?categoria=canetas-escritorio#catalogo', '/eventos-corporativos/'];
-  if (FIM === 1) slideHrefs.unshift(slideHrefs.splice(1, 1)[0]);
-  ok(await page.$$eval('#hero .slide .btn-line', a => a.map(x => x.getAttribute('href')).join()) === slideHrefs.join(), 'slides levam a rotas reais do site (catálogo, fim de ano, confecções, kits, escritório, ativações)');
-  ok(await page.$eval(`#slide-${FIM}`, s => s.querySelector('.eyebrow').textContent === 'Fim de ano' && s.querySelector('p.slide-title').textContent.replace(/\s+/g, ' ') === 'Um brinde a quem fez parte do seu ano.' && s.querySelector('.btn-line').getAttribute('href') === '/brindes-de-fim-de-ano/' && s.querySelector('[data-track-label="hero-fim-de-ano"]').getAttribute('href') === '/solicitar-proposta/?tipo=kits' && /fictícia/.test(s.querySelector('img').alt)), `slide ${FIM} é o de fim de ano: leva a /brindes-de-fim-de-ano/ e ao pedido de kits, sem H1 e com a marca fictícia no texto alternativo`);
-  ok(await page.$$eval('.kits-home .kit-card', k => k.length === 2 && k.every(x => x.classList.contains('big') && x.querySelector('img').alt.length > 20)) && await page.$eval('.kits-home a[href="/kits-corporativos/"]', a => /todos os kits/i.test(a.textContent)), 'home mostra 2 kits em destaque e leva a todos os kits');
-  ok(await page.$$eval('.occ-faixa .occ-chips a', a => a.length === 6 && a.every(x => x.getAttribute('href') === '/brindes-de-fim-de-ano/' ? x.textContent.trim() === 'Fim de ano' : /^\/brindes-por-ocasiao\/\?ocasiao=[a-z-]+#pecas$/.test(x.getAttribute('href')))) && await page.$eval('.occ-faixa a[href="/brindes-por-ocasiao/"]', a => !!a), 'ocasiões em chips na home (fim de ano na página própria) e link para todas');
-  ok(await page.$$eval('#hero .slide-copy', s => s.every(x => !x.querySelector('.hero-meta'))) && await page.$$eval('.garantias li', l => l.length === 3), 'frases de confiança saem do banner e ficam na faixa abaixo do carrossel');
-  ok(await page.$$eval('.home-prods .product.studio', c => c.length === 8 && c.every(x => x.querySelector('img').alt.length > 15 && x.querySelectorAll('.swatch').length >= 4)), 'destaques: 8 peças em estúdio claro, com texto alternativo e cores com foto');
-  ok(await page.$$eval('.home-prods .product.studio h3', h => h.slice(0, 4).map(x => x.textContent).join('|') === 'Polo masculina|Polo feminina|Camiseta masculina|Camiseta feminina'), 'polo e camiseta aparecem em pares masculina/feminina, lado a lado');
-  ok(await page.$$eval('.home-prods .product.studio', c => [c[0], c[1], c[2], c[3]].map(x => { const i = x.querySelector('img'); return (i.currentSrc || i.getAttribute('srcset') || i.src).match(/([a-z0-9-]+~[a-z0-9-]+)\./)[1]; }).join('|') === 'polo~vermelho|polo-feminina~azul-royal|camiseta~branco|camiseta-feminina~preto'), 'a peça feminina ao lado vem em outra cor (azul royal × vermelho)');
-  // nenhuma peça abre na mesma cor da vizinha (lado a lado ou logo abaixo), no computador e no celular
-  for (const w of [1440, 390]) {
-    await page.setViewport({ width: w, height: 900 });
-    const rep = await page.$$eval('.home-prods .product.studio', cards => {
-      const pos = cards.map(c => ({ r: c.getBoundingClientRect(), cor: c.querySelector('.color-name').textContent, n: c.querySelector('h3').textContent }));
-      const out = [];
-      pos.forEach((a, i) => pos.forEach((b, j) => {
-        if (j <= i) return;
-        const lado = Math.abs(a.r.top - b.r.top) < 5 && Math.abs(a.r.right - b.r.left) < 40;
-        const baixo = Math.abs(a.r.left - b.r.left) < 5 && Math.abs(a.r.bottom - b.r.top) < 40;
-        if ((lado || baixo) && a.cor === b.cor) out.push(`${a.n}/${b.n}: ${a.cor}`);
-      }));
-      return out;
-    });
-    ok(rep.length === 0, `destaques vizinhos abrem em cores diferentes em ${w} px${rep.length ? ' — ' + rep.join('; ') : ''}`);
-  }
-  await page.setViewport({ width: 1280, height: 900 });
-  ok(await page.$eval('.home-prods .section-head a.link', a => a.getAttribute('href') === '/catalogo/' && /modelos do catálogo/.test(a.textContent)), 'destaques levam ao catálogo completo');
-  await page.$eval('.product.studio[data-slug="polo-masculina"]', el => el.scrollIntoView({ block: 'center' }));
-  await page.click('.product.studio[data-slug="polo-masculina"] .swatch[data-color="Preto"]');
-  ok(await page.$eval('.product.studio[data-slug="polo-masculina"] .color-name', n => n.textContent === 'Preto'), 'cor de referência muda só o nome da cor (a foto não é recolorida)');
-  await page.click('.pick[data-slug="polo-masculina"]');
-  await page.goto(BASE + '/solicitar-proposta/', { waitUntil: 'networkidle0' });
-  ok(await page.$eval('#f-selecao', i => i.value.includes('Polo masculina (Preto)')), 'destaque selecionado chega ao pedido de proposta com a cor');
-  await page.evaluate(() => { localStorage.clear(); localStorage.setItem('tama-consent', 'denied'); });
-  await page.goto(BASE + '/', { waitUntil: 'networkidle0' });
-  const tecla = k => page.$eval('#hero', (h, k) => h.dispatchEvent(new KeyboardEvent('keydown', { key: k, bubbles: true })), k);
-  await tecla('ArrowRight');
-  ok(await page.$eval('#slide-2', s => s.classList.contains('is-active') && !s.hasAttribute('aria-hidden')), 'seta do teclado avança para o slide 2');
-  ok(await page.$eval('#slide-1', s => s.hasAttribute('inert')), 'slide inativo fica inerte (fora do foco)');
-  if (FIM === 1) await tecla('ArrowLeft');
-  await Promise.all([page.waitForNavigation({ waitUntil: 'networkidle0' }), page.click(`#slide-${FIM} .btn-line`)]);
-  ok(new URL(page.url()).pathname === '/brindes-de-fim-de-ano/' && /Um brinde a quem\s*fez parte do seu ano\./.test(await page.$eval('h1', h => h.textContent.replace(/\s+/g, ' '))), 'o slide de fim de ano leva a /brindes-de-fim-de-ano/');
-  await page.goto(BASE + '/', { waitUntil: 'networkidle0' });
-  await tecla('ArrowRight');
-  ok(await page.$$eval('#hero .slide', s => new Set(s.map(x => getComputedStyle(x).backgroundColor)).size === 4), 'cada slide tem o seu tom de fundo');
-  ok(await page.$$eval('#hero .slide img', i => i[0].loading === 'eager' && i[0].getAttribute('fetchpriority') === 'high' && i.slice(1).every(x => x.loading === 'lazy')), 'só a primeira foto do carrossel é prioritária');
-  ok(await page.$$eval('#hero .slide', s => s.every(x => { if (x.classList.contains('respiro')) return true; const c = x.querySelector('.slide-copy').getBoundingClientRect(), p = x.querySelector('.slide-photo').getBoundingClientRect(); return c.right <= p.left + p.width * 0.18; })), 'no computador o texto não invade a área nítida da foto');
-  await page.hover('#hero .slide.is-active .slide-photo');
-  ok(await page.$eval('#hero', h => h.classList.contains('is-held')), 'com o mouse sobre o carrossel a troca automática espera');
-  await page.mouse.move(5, 5);
-  // slide de fim de ano (fim-header): a taça solta começa em ~36% da largura da foto e a caixa termina em ~98%.
-  // Mede onde essas faixas caem na tela (object-fit: cover + object-position) e onde termina o texto de fato.
-  const fimFrame = () => page.$eval(`#slide-${FIM}`, s => {
-    const ph = s.querySelector('.slide-photo').getBoundingClientRect(), img = s.querySelector('img'), r = img.getBoundingClientRect();
-    const iw = +img.getAttribute('width'), ih = +img.getAttribute('height'), k = Math.max(r.width / iw, r.height / ih), sw = iw * k;
-    const x0 = r.left - (sw - r.width) * parseFloat(getComputedStyle(img).objectPosition) / 100, at = f => x0 + f * sw;
-    let texto = 0;
-    for (const el of s.querySelector('.slide-copy').children) { const g = document.createRange(); g.selectNodeContents(el); for (const q of g.getClientRects()) texto = Math.max(texto, q.right); }
-    const c = s.querySelector('.slide-copy').getBoundingClientRect();
-    return { texto, taca: at(0.36), caixa: at(0.98), left: Math.max(ph.left, r.left), right: Math.min(ph.right, r.right, innerWidth), acima: ph.top >= c.bottom - 1 };
-  });
-  for (const w of [1440, 1280]) {
-    await page.setViewport({ width: w, height: 900 });
-    const f = await fimFrame();
-    ok(f.texto <= f.taca && f.taca >= f.left && f.caixa <= f.right + 1, `fim de ano em ${w} px: taças e caixa inteiras na foto e o texto termina antes da taça (${Math.round(f.texto)} ≤ ${Math.round(f.taca)})`);
-  }
-  await page.setViewport({ width: 390, height: 844, isMobile: true, hasTouch: true });
-  await page.goto(BASE + '/', { waitUntil: 'networkidle0' });
-  ok(await page.$$eval('#hero .slide', s => s.every(x => x.querySelector('.slide-photo').getBoundingClientRect().top >= x.querySelector('.slide-copy').getBoundingClientRect().bottom - 1)), 'no celular o texto fica acima da foto, sem sobreposição');
-  const fm = await fimFrame();
-  ok(fm.acima && fm.taca >= fm.left && fm.caixa <= fm.right + 1, 'fim de ano no celular: a taça solta e a caixa aparecem inteiras abaixo do texto');
-  for (const w of [320, 768, 1024, 1180, 1440]) {
-    await page.setViewport({ width: w, height: 900 });
-    ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), `carrossel sem rolagem horizontal em ${w} px`);
-  }
-  await page.setViewport({ width: 1280, height: 900 });
-
   console.log('Vitrine, cores e seleção');
   // a vitrine das 21 peças fica na curadoria; a home mostra os destaques em estúdio claro
   await page.goto(BASE + '/brindes-por-ocasiao/', { waitUntil: 'networkidle0' });
@@ -544,14 +479,12 @@ try {
   }
   console.log('Processo (Do briefing à entrega)');
   await page.goto(BASE + '/', { waitUntil: 'networkidle0' });
-  const proc = await page.$eval('section.process-strip', s => ({
-    steps: [...s.querySelectorAll('ol.process-line > li')].map(li => li.textContent.replace(/^\s*\d+\s*/, '').trim()),
-    decor: [...s.querySelectorAll('.proc-n')].map(e => e.getAttribute('aria-hidden')),
-    link: s.querySelector('a[href^="/sobre/"]')?.getAttribute('href'),
+  const proc = await page.$eval('section.process-section', s => ({
+    steps: [...s.querySelectorAll('.process-step h3')].map(h => h.textContent.trim()),
+    decor: [...s.querySelectorAll('.process-num')].map(e => e.getAttribute('aria-hidden')),
   }));
-  ok(proc.steps.join(',') === 'Briefing,Curadoria,Proposta,Aprovação,Produção,Entrega', 'home resume as 6 etapas numa linha (lista ordenada)');
+  ok(proc.steps.join(',') === 'Briefing,Curadoria,Proposta,Aprovação,Produção,Entrega', 'home mostra as 6 etapas, com ícones, na faixa verde');
   ok(proc.decor.length === 6 && proc.decor.every(v => v === 'true'), 'números das etapas são decorativos (aria-hidden)');
-  ok(!!proc.link, 'faixa do processo leva a "Como trabalhamos"');
   // Seção padrão (process_section): as mesmas 6 etapas, com os mesmos nomes e na mesma ordem, em todas as páginas de frente,
   // no fim de ano e em /sobre/; nada do formato antigo (ol.steps com 4 etapas) pode sobrar.
   const ETAPAS = 'Briefing,Curadoria,Proposta,Aprovação,Produção,Entrega';
@@ -679,13 +612,11 @@ try {
   ok(await fp.$$eval('#personalizacao .process-step', s => s.length === 6) && await fp.$$eval('.faq-list details', d => d.length === 4) && await fp.$$eval('a[href="/solicitar-proposta/?tipo=kits"]', a => a.length >= 2), 'fim de ano: as 6 etapas em #personalizacao, 4 perguntas e CTA final com tipo=kits');
   ok(await colorsHavePhoto(fp, '.studio-grid .product'), 'fim de ano: toda cor mostrada tem foto própria');
   await fp.goto(BASE + '/', { waitUntil: 'networkidle0' });
-  ok(await fp.$eval('.occ-faixa a[href="/brindes-de-fim-de-ano/"]', a => a.textContent.trim() === 'Fim de ano'), 'na home, o chip Fim de ano leva à página própria');
   ok(await fp.$eval('.site-footer a[href="/brindes-de-fim-de-ano/"]', a => a.textContent === 'Brindes de fim de ano'), 'rodapé lista "Brindes de fim de ano" nas soluções');
   await fp.goto(BASE + '/', { waitUntil: 'networkidle0' });
   ok(await fp.$$eval('.frentes-grid .frente-card', a => a.map(x => x.getAttribute('href')).join() === '/brindes-corporativos/,/confeccoes-personalizadas/,/kits-corporativos/,/eventos-corporativos/,/hotelaria-e-gastronomia/'), 'home apresenta as cinco áreas da TaMa');
-  ok(await fp.$eval('h1', h => /brindes, uniformes, kits, eventos corporativos e hotelaria/i.test(h.textContent)), 'H1 da home diz o que a TaMa oferece (as cinco áreas, como na assinatura)');
+  ok(await fp.$eval('meta[property="og:title"]', m => /brindes, uniformes, kits, eventos corporativos e hotelaria/i.test(m.content)), 'título de compartilhamento da home diz o que a TaMa oferece (as cinco áreas, como na assinatura)');
   ok(await fp.$eval('.site-footer .footer-brand p', p => /^Brindes, uniformes, kits, eventos corporativos e hotelaria para empresas\./.test(p.textContent)) && await fp.$$eval('.announce li', l => l.map(x => x.textContent).join() === 'Atendimento consultivo,Arte aprovada antes da produção,Coordenação do pedido à entrega'), 'assinatura do rodapé com as cinco áreas e barra do topo com os três compromissos');
-  ok(await fp.$$eval('.kit-card a[href*="tipo=kits"]', a => a.length === 2 && a.every(x => x.href.includes('interesse=') && /^Solicitar proposta deste kit/.test(x.textContent.trim()))), 'cada kit da home tem "Solicitar proposta deste kit" com o interesse no pedido');
   ok(await fp.$$eval('.end-cta', s => s.length === 1 && s[0].querySelector('.eyebrow').textContent === 'Próximo passo' && /\?$/.test(s[0].querySelector('h2').textContent) && s[0].querySelectorAll('.actions a').length === 2 && /^Solicitar proposta/.test(s[0].querySelector('.actions a').textContent.trim())), 'fechamento padrão: eyebrow, título em pergunta e dois botões (Solicitar proposta + WhatsApp)');
   await fp.evaluate(() => localStorage.setItem('tama-selecao', JSON.stringify([{ s: 'linha-polo', c: 'Preto' }, { s: 'caneca-de-ceramica', c: null }, { s: 'baralho-exclusivo', c: null }])));
   await fp.goto(BASE + '/solicitar-proposta/', { waitUntil: 'networkidle0' });

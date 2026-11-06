@@ -93,7 +93,7 @@ try {
     const ordem = ['class="t-hero', 'class="frentes"', 'class="t-cat', 'process-section', 'class="t-faq', 'class="t-guias', 'class="end-cta'].map(k => v2.indexOf(k));
     ok(/<meta name="robots" content="noindex/.test(v2) && !mapa.includes('/v2/') && ordem.every((p, i) => p > 0 && (i === 0 || p > ordem[i - 1]))
       && !v2.includes('aria-roledescription="carrossel"') && (v2.match(/<li class="t-card-item"/g) || []).length === 6 && (v2.match(/class="t-pill"/g) || []).length === 4
-      && (v2.match(/class="frente-card"/g) || []).length === 5 && (v2.match(/<details class="t-faq-item"/g) || []).length === 6 && /class="section on-dark process-section"/.test(v2) && (v2.match(/class="process-step/g) || []).length === 6 && !v2.includes('Soluções compactas</p>'),
+      && (v2.match(/class="frente-card"/g) || []).length === 5 && (v2.match(/<details class="t-faq-item"/g) || []).length === 6 && /class="section on-dark process-section"/.test(v2) && (v2.match(/class="process-step"/g) || []).length === 6 && !v2.includes('Soluções compactas</p>'),
       '/v2/ (proposta 01): hero fixo, os 5 cartões de O que a TaMa faz, catálogo 3×2 com 4 filtros, processo em 6 passos com ícones no verde, 6 perguntas, guias e chamada final; fora do Google e do sitemap');
     await page.goto(BASE + '/v2/', { waitUntil: 'networkidle0' });
     const filtrados = {};

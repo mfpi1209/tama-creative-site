@@ -24,3 +24,19 @@ Pontos para decisão do conteúdo (não alterados):
 - O cartão de hotelaria usa o título "Hotelaria / Jogo americano" e o de eventos "Buffet Completo / Serviço Completo",
   como foram editados no admin (Páginas › Home); valem também na home atual.
 - "Solicitar proposta" aparece duas vezes (hero e chamada final), com o mesmo destino: esperado.
+
+## Segunda passada: skill apple-design (Emil Kowalski, github.com/emilkowalski/skills)
+
+A skill traduz para a web as palestras de design da Apple (WWDC): resposta imediata, movimento interrompível,
+consistência espacial, materiais, preferências de acessibilidade e tipografia. A /v2/ não tem gestos de arrastar,
+folhas ou carrossel, então a parte de molas, velocidade e momento não se aplica; o resto foi conferido:
+
+| Princípio da skill | Antes | Depois |
+|---|---|---|
+| Typography: respeitar o tamanho de texto do usuário (`rem`, não `px`) | 38 regras de texto em `px`: a fonte escolhida no navegador não mudava nada | Textos em `rem`; a 125%, 150% e 200% a página cresce sem corte nem rolagem lateral |
+| Response: retorno no toque, não ao soltar | Cards e filtros só reagiam ao passar o mouse | `:active` com leve redução de escala (100 ms) em cards, filtros e botões; desligado com Reduce Motion |
+| Response: atrasos no caminho do toque | Toque duplo podia atrasar o toque simples | `touch-action: manipulation` em links, botões e perguntas |
+| Materials: borda suave, não divisor rígido | Cabeçalho com linha de 1 px | Sombra suave na borda do cabeçalho |
+| Reduced transparency / more contrast | Cabeçalho translúcido sempre | Sólido com `prefers-reduced-transparency`; sólido com borda definida com `prefers-contrast: more` |
+| Typography: espaçamento por tamanho | Títulos com espaçamento negativo, corpo em 0, rótulos em caixa alta positivos | Mantido (já seguia) |
+| Animar só `transform` e `opacity` | Zoom da foto em `transform` | Mantido |

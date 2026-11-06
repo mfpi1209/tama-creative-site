@@ -150,7 +150,7 @@ TIPOS = [
     ('copos', 'Copos', r'^copos?\b'),                                   # inclusive "Copo de vinho com tampa"
     ('porta-vinho', 'Porta-vinho', r'^porta-vinhos?\b|-para-vinho\b'),  # "Estojo para vinho", "Bolsa térmica para vinho"
     ('canecas', 'Canecas', r'^canecas?\b'),
-    ('xicaras', 'Xícaras', r'^xicaras?\b'),
+    ('xicaras', 'Xícaras', r'^xicaras?\b|-de-xicaras?\b'),           # inclusive "Conj. de xícaras express"
     ('squeezes', 'Squeezes', r'^squeezes?\b'),
     ('garrafas', 'Garrafas', r'^garrafas?\b'),                         # âncora no início: "Chaveiro abridor de garrafa" fica de fora
     ('agendas', 'Agendas', r'^agendas?\b'),
@@ -162,14 +162,14 @@ TIPOS = [
     ('camisetas', 'Camisetas', r'^camisetas?\b'),
     ('moletons', 'Blusas de moletom', r'^(blusa-de-)?moletom\b|^moletons\b'),
     ('camisas', 'Camisas', r'^camisas?\b'),
-    ('dolmas', 'Dólmãs', r'^dolmas?\b'),
+    ('dolmas', 'Dólmãs', r'^(kit-)?dolmas?\b'),                       # inclusive "Kit dólmã chef + touca"
     ('aventais', 'Aventais', r'^aventa(l|is)\b'),
     ('bones', 'Bonés', r'^bones?\b'),
     # tipos dos modelos novos que não estão no menu (filtram o catálogo pelo ?tipo=)
     ('bolsas', 'Bolsas e nécessaires', r'^(bolsa|necessaire)s?\b'),
     ('escritorio', 'Escritório', r'^(porta-canetas|porta-cartao|porta-cartoes|suporte-de-celular|estojo-de-escritorio)\b'),
-    ('cozinha', 'Cozinha', r'^(tabua|kit-churrasco|cortador)\b'),
-    ('bar', 'Bar', r'^(coqueteleira|abridor|porta-lata)\b'),
+    ('cozinha', 'Cozinha', r'^(tabua|mini-tabua|kit-churrasco|cortador|kit-para-pizza|combo-kit-para-petiscos|suporte-com-\d+-facas|petisqueira|ramequim)\b'),
+    ('bar', 'Bar', r'^(coqueteleira|abridor|porta-lata|socador|saca-rolhas|porta-copos|estojo-com-acessorios-de-vinho)\b'),
 ]
 TIPO_DA_CATEGORIA = {'tecnologia': 'tecnologia'}
 TIPO_ROTULO = {**{k: r for k, r, _ in TIPOS}, 'tecnologia': 'Tecnologia'}
@@ -1288,9 +1288,9 @@ def season_callout(where):
 # Tipos de brinde e de confecção levam ao catálogo filtrado (/catalogo/?tipo=<chave>#catalogo, rótulos em TIPO_ROTULO).
 MENU_BRINDES = ['agendas', 'cadernos', 'canetas', 'canecas', 'copos', 'xicaras', 'tacas', 'squeezes', 'garrafas', 'porta-vinho', 'mochilas', 'ecobags',
                 'tecnologia']
-# Tipo sem modelo no catálogo fica fora do menu (sem link vazio). Exceção, enquanto True: os 12 tipos de brinde aparecem
-# mesmo vazios, porque os modelos novos da lista de 20/10 entram no banco depois (o integrador importa as fotos).
-MENU_TIPOS_VAZIOS = True
+# Tipo sem modelo no catálogo fica fora do menu (sem link vazio): o link de um tipo sem modelo abria o catálogo inteiro
+# (auditoria de 06/11/2026: Xícaras e Porta-vinho mostravam polos e camisas). Volta sozinho quando um modelo do tipo entra.
+MENU_TIPOS_VAZIOS = False
 MENU_CONFECCOES = [('polos', 'Camiseta polo'), ('camisetas', 'Camiseta'), ('moletons', 'Blusa de moletom'), ('camisas', 'Camisa'),
                    ('dolmas', 'Dólmã'), ('aventais', 'Avental'), ('bones', 'Bonés')]
 MENU_KITS = [('Kit escritório', '#kits-escritorio'), ('Kit cozinha', '#kits-cozinha'), ('Kit boas-vindas', '#kits-boas-vindas'),
@@ -2135,7 +2135,7 @@ def page_curadoria():
                  + ''.join(f'<button class="chip" type="button" data-filter="cat" data-value="{k}" aria-pressed="false">{CAT_PROD[k]}</button>' for k in cats))
     url = SITE + '/brindes-por-ocasiao/'
     item_list = {'@type': 'ItemList', '@id': url + '#lista', 'name': 'Brindes e presentes corporativos por ocasião', 'numberOfItems': len(pecas),
-                 'itemListElement': [{'@type': 'ListItem', 'position': i + 1, 'name': c['nome'], 'url': SITE + '/catalogo/#' + c['slug']} for i, c in enumerate(pecas)]}
+                 'itemListElement': [{'@type': 'ListItem', 'position': i + 1, 'name': c['nome'], 'url': SITE + (c.get('url') or '/catalogo/#' + c['slug'])} for i, c in enumerate(pecas)]}
     return {
         'path': '/brindes-por-ocasiao/', 'title': 'Brindes corporativos por ocasião | TaMa Creative',
         'description': 'Ideias de brindes e presentes corporativos para boas-vindas, eventos, fim de ano, reconhecimento e lançamentos, com a marca da sua empresa. Monte a seleção.',
@@ -2195,8 +2195,9 @@ def atalhos(titulo, itens, aria, linha=True, centro=False, traco=False, eyebrow=
 </section>'''
 
 
-CONF_PECAS = [('Polos e camisetas', '/catalogo/?categoria=vestuario'), ('Camisas sociais', '/catalogo/?q=camisa'),
-              ('Moletons', '/catalogo/?q=moletom'), ('Dólmãs e aventais', '/hotelaria-e-gastronomia/')]
+CONF_PECAS = [('Camisetas polo', '/catalogo/?tipo=polos#catalogo'), ('Camisetas', '/catalogo/?tipo=camisetas#catalogo'),
+              ('Camisas sociais', '/catalogo/?tipo=camisas#catalogo'), ('Moletons', '/catalogo/?tipo=moletons#catalogo'),
+              ('Aventais', '/catalogo/?tipo=aventais#catalogo'), ('Dólmãs', '/catalogo/?tipo=dolmas#catalogo')]
 
 
 def conf_hero(trail):
@@ -2269,8 +2270,12 @@ def ativ_formatos():
         id_attr = f' id="{esc(i["id"])}"' if i.get('id') else ''
         link = (' ' + ativ_evento_link('ativ-' + i['id'].replace('fmt-', ''))) if i.get('pedido') else ''
         linhas.append(f'      <div class="item"{id_attr}>{arc()}<div><h3>{esc(i["titulo"])}</h3><p>{esc(i["texto"])}{link}</p></div></div>')
-    cab_html = (f'    <div class="section-head"><p class="eyebrow">{esc(f.get("eyebrow") or "")}</p><h2 id="formatos-t" class="section-title">'
-                f'{esc(f.get("titulo") or "")}</h2><p class="muted">{esc(f.get("texto") or "")}</p></div>\n    <div class="cols-2">\n')
+    if (f.get('titulo') or '').strip():
+        eyebrow = f'<p class="eyebrow">{esc(f["eyebrow"])}</p>' if (f.get('eyebrow') or '').strip() else ''
+        texto = f'<p class="muted">{esc(f["texto"])}</p>' if (f.get('texto') or '').strip() else ''
+        cab_html = f'    <div class="section-head">{eyebrow}<h2 id="formatos-t" class="section-title">{esc(f["titulo"])}</h2>{texto}</div>\n    <div class="cols-2">\n'
+    else:   # título vazio no admin: sem cabeçalho visível (antes ficava um arco solto e um h2 vazio)
+        cab_html = '    <h2 id="formatos-t" class="visually-hidden">Formatos</h2>\n    <div class="cols-2">\n'
     return cab_html + '\n'.join(linhas)
 
 
@@ -2281,7 +2286,14 @@ def ativ_evento_link(label):
 
 def ativ_hero(trail):
     return cab_hero(trail, 'ativacoes', cta_link(tipo='ativacoes', track_label='ativacoes-head') + '<a class="btn btn-line" href="#formatos">Conhecer os formatos</a>',
-                    sizes=ATIV_HERO_SIZES) + '\n' + atalhos('Uma ação para cada encontro.', ATIV_FORMATOS, 'ativ-atalhos-t', linha=False)
+                    sizes=ATIV_HERO_SIZES) + '\n' + atalhos('Uma ação para cada encontro.', ativ_atalhos(), 'ativ-atalhos-t', linha=False)
+
+
+def ativ_atalhos():
+    """Atalhos do topo de /eventos-corporativos/ com o mesmo título do bloco de destino (site.json › ativacoes-formatos),
+    para o atalho nunca dizer uma coisa e levar a outra quando o título muda no admin."""
+    titulos = {i.get('id'): (i.get('titulo') or '').strip() for i in (SECOES.get('ativacoes-formatos') or {}).get('itens') or []}
+    return [(titulos.get(h.lstrip('#')) or rotulo, h, icone) for rotulo, h, icone in ATIV_FORMATOS]
 
 
 def page_ativacoes():

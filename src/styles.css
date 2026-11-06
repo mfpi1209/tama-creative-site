@@ -106,6 +106,7 @@ main { overflow-x: clip; }
 .btn-sm { min-height: 42px; padding: 0 18px; font-size: .8125rem; }
 .btn[disabled] { opacity: .6; cursor: progress; transform: none; }
 .link { display: inline-flex; align-items: center; gap: 8px; font-size: .8125rem; font-weight: 700; color: var(--wine); padding-block: 6px; border-bottom: 1px solid transparent; }
+button.link { background: none; border-width: 0 0 1px; border-radius: 0; padding-inline: 0; font-family: inherit; cursor: pointer; }   /* "limpe os filtros" como link, não botão cinza do navegador */
 .link:hover { border-color: currentColor; }
 .icon-btn { display: inline-grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--line-strong); background: transparent; color: var(--ink); cursor: pointer; transition: background .2s ease, border-color .2s ease, color .2s ease; }
 .icon-btn:hover { border-color: var(--wine); color: var(--wine); }

@@ -2838,7 +2838,7 @@
   {
    "id": "bolsa-dobravel-termica~vermelho",
    "produto": "Bolsa dobrável térmica",
-   "categoria": "vestuario",
+   "categoria": "bolsas-embalagens",
    "modelo": "Bolsa dobrável térmica",
    "cor": {
     "nome": "Vermelho",
@@ -10489,7 +10489,7 @@
     "nome": "Azul royal",
     "hex": "#1F4FB8"
    },
-   "categoria": "cozinha-bar",
+   "categoria": "garrafas-copos",
    "mestre": "midia/produtos/mestre/caneca~azul-royal.png",
    "id": "caneca~azul-royal",
    "tecnica": {
@@ -10529,7 +10529,7 @@
     "nome": "Branco",
     "hex": "#F7F5F0"
    },
-   "categoria": "cozinha-bar",
+   "categoria": "garrafas-copos",
    "mestre": "midia/produtos/mestre/caneca~branco.png",
    "id": "caneca~branco",
    "tecnica": {
@@ -10554,7 +10554,7 @@
   {
    "id": "caneca~laranja",
    "produto": "Caneca",
-   "categoria": "cozinha-bar",
+   "categoria": "garrafas-copos",
    "modelo": "Clássica, com alça",
    "cor": {
     "nome": "Laranja",
@@ -10604,7 +10604,7 @@
     "nome": "Preto",
     "hex": "#1E1E1E"
    },
-   "categoria": "cozinha-bar",
+   "categoria": "garrafas-copos",
    "mestre": "midia/produtos/mestre/caneca~preto.png",
    "id": "caneca~preto",
    "tecnica": {
@@ -10642,7 +10642,7 @@
     "nome": "Verde",
     "hex": "#1F6B45"
    },
-   "categoria": "cozinha-bar",
+   "categoria": "garrafas-copos",
    "mestre": "midia/produtos/mestre/caneca~verde.png",
    "id": "caneca~verde",
    "tecnica": {
@@ -10680,7 +10680,7 @@
     "nome": "Vermelho",
     "hex": "#C8202F"
    },
-   "categoria": "cozinha-bar",
+   "categoria": "garrafas-copos",
    "mestre": "midia/produtos/mestre/caneca~vermelho.png",
    "id": "caneca~vermelho",
    "tecnica": {
@@ -13822,7 +13822,7 @@
   {
    "id": "conj-de-xicaras-express-c-pires-2-pcs~xicaras",
    "produto": "CONJ. DE XÍCARAS EXPRESS C/ PIRES - 2 PÇS",
-   "categoria": "canetas-escritorio",
+   "categoria": "garrafas-copos",
    "modelo": "Conjunto de duas xícaras americano com pires.",
    "cor": {
     "nome": "Xícaras",
@@ -21453,7 +21453,7 @@
   {
    "id": "kit-gift-executivo~preto",
    "produto": "Kit Gift Executivo",
-   "categoria": "vestuario",
+   "categoria": "canetas-escritorio",
    "modelo": "O Kit Smart Office com Caderno com folhas pautadas, Caneta e Copo é ideal para brindes de impacto em reuniões, eventos e ativações corporativas. O caderno A5 possui capa com textura moderna e placa para personalização.",
    "cor": {
     "nome": "Preto",

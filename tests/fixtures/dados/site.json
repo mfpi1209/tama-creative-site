@@ -475,14 +475,8 @@
     },
     {
      "id": "fmt-buffet",
-     "titulo": "Buffet completo",
-     "texto": "Buffet para eventos corporativos, lançamentos e encontros da empresa, coordenado pela TaMa com parceiros especializados. O formato do serviço é definido com você na proposta.",
-     "pedido": true
-    },
-    {
-     "id": "fmt-decoracao",
-     "titulo": "Decoração",
-     "texto": "Ambientação do espaço do evento na identidade da sua marca, do painel às mesas, coordenada pela TaMa com parceiros especializados. O escopo é definido com você na proposta.",
+     "titulo": "Buffet e decoração",
+     "texto": "Buffet e ambientação do espaço na identidade da sua marca, do painel às mesas, para eventos corporativos, lançamentos e encontros da empresa, coordenados pela TaMa com parceiros especializados. O formato e o escopo são definidos com você na proposta.",
      "pedido": true
     }
    ]

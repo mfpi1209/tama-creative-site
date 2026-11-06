@@ -481,7 +481,7 @@ try {
   ok(menuP.kits.length === 6 && menuP.kits.join() === ['escritorio', 'cozinha', 'boas-vindas', 'executivo', 'pausa', 'fim-de-ano'].map(k => '/kits-corporativos/#kits-' + k).join() && menuP.kitsAll.join() === '/kits-corporativos/',
      'menuP Kits: 6 links de tipo de kit (âncoras de /kits-corporativos/; o Kit de agradecimento está no Kit fim de ano) e "Ver todos os kits"');
   ok(menuP.conf.length >= 7 && menuP.conf.every(tipoHref) && menuP.confAll.join() === '/confeccoes-personalizadas/', `menuP Confecções: ${menuP.conf.length} tipos de peça no catálogo filtrado e "Uniformes e confecções"`);
-  ok(menuP.ativ.join() === '/eventos-corporativos/#fmt-buffet,/eventos-corporativos/#fmt-decoracao' && menuP.ativAll.join() === '/eventos-corporativos/', 'menuP Ativações: Buffet completo, Decoração e "Conhecer ativações"');
+  ok(menuP.ativ.join() === '/eventos-corporativos/#fmt-buffet' && menuP.ativAll.join() === '/eventos-corporativos/', 'menu Eventos corporativos: uma opção só, "Buffet e decoração", e "Conhecer eventos corporativos"');
   const semAncora = [];
   for (const [u, hs] of [['/kits-corporativos/', menuP.kits], ['/eventos-corporativos/', menuP.ativ]]) { const html = await (await fetch(BASE + u)).text(); hs.forEach(h => { if (!html.includes(`id="${h.split('#')[1]}"`)) semAncora.push(h); }); }
   ok(semAncora.length === 0, `os links dos painéis Kits e Ativações caem em âncoras que existem${semAncora.length ? ' — faltam: ' + semAncora.join(', ') : ''}`);
@@ -643,18 +643,19 @@ try {
        `${path}: um H1, CTA com o tipo ${tipo} e peças do catálogo`);
   }
   ok(await fp.$$eval('.studio-grid .product', c => ['cardapio', 'porta-contas', 'dolma', 'avental'].every(s => c.some(x => x.dataset.slug === s))), 'hotelaria reúne cardápio, porta-contas, dólmã e avental da mesma base');
-  // ativações: Buffet completo e Decoração entre os formatos, nos atalhos e nas perguntas; as cenas só entram com foto
+  // eventos: "Buffet e decoração" num bloco só (unificados em 06/11/2026), nos atalhos e nas perguntas; #fmt-decoracao antigo leva ao bloco
   await fp.goto(BASE + '/eventos-corporativos/', { waitUntil: 'networkidle0' });
   const ativ = await fp.evaluate(() => ({
     fmts: ['fmt-degustacao', 'fmt-feiras', 'fmt-promocao', 'fmt-buffet', 'fmt-decoracao'].every(id => document.getElementById(id)?.closest('#formatos')),
     atalhos: [...document.querySelectorAll('.atalhos .atalhos-list a')].map(a => a.getAttribute('href')),
     alvos: [...document.querySelectorAll('.atalhos .atalhos-list a')].every(a => document.querySelector(a.getAttribute('href'))),
-    textos: ['fmt-buffet', 'fmt-decoracao'].map(id => document.querySelector('#' + id + ' p')?.textContent || ''),
-    links: ['fmt-buffet', 'fmt-decoracao'].map(id => document.querySelector('#' + id + ' a')?.getAttribute('href') || ''),
+    textos: ['fmt-buffet'].map(id => document.querySelector('#' + id + ' p')?.textContent || ''),
+    links: ['fmt-buffet'].map(id => document.querySelector('#' + id + ' a')?.getAttribute('href') || ''),
+    unificado: document.querySelector('#fmt-buffet h3')?.textContent === 'Buffet e decoração' && !!document.querySelector('#fmt-buffet #fmt-decoracao') && document.querySelectorAll('#formatos .item').length === 5,
     faq: [...document.querySelectorAll('.faq-list details')].some(d => /buffet/i.test(d.textContent) && /decoração/i.test(d.textContent) && /parceiros especializados/.test(d.textContent)),
     cenas: [...document.querySelectorAll('#formatos .ativ-cenas figure')].map(f => [f.querySelector('img')?.alt || '', f.querySelector('figcaption')?.textContent || '']),
   }));
-  ok(ativ.fmts && ativ.alvos && ['#fmt-promocao', '#fmt-buffet', '#fmt-decoracao'].every(h => ativ.atalhos.includes(h)), `ativações: Buffet completo (#fmt-buffet) e Decoração (#fmt-decoracao) em "Onde a ativação acontece" e nos atalhos, que levam às seções (${ativ.atalhos.join(' ')})`);
+  ok(ativ.fmts && ativ.alvos && ativ.unificado && ['#fmt-promocao', '#fmt-buffet'].every(h => ativ.atalhos.includes(h)) && !ativ.atalhos.includes('#fmt-decoracao'), `eventos: "Buffet e decoração" num bloco só (#fmt-buffet, com a âncora antiga #fmt-decoracao) e nos atalhos, que levam às seções (${ativ.atalhos.join(' ')})`);
   ok(ativ.textos.every(t => /parceiros especializados/.test(t) && !/R\$|\d|pessoas|convidados|cardápio|capacidade/i.test(t)) && ativ.faq, 'ativações: buffet e decoração coordenados com parceiros especializados, sem cardápio, capacidade, número de pessoas nem preço, e citados nas perguntas');
   ok(ativ.cenas.length <= 2 && ativ.cenas.every(([alt, leg]) => /marca fictícia (Solar|Oliva)/.test(alt) && leg === 'Cena ilustrativa · marca fictícia'), `ativações: faixa com as cenas de buffet e decoração (${ativ.cenas.length} de 2 com foto), legenda "Cena ilustrativa · marca fictícia"`);
   const ATIV_EVENTO = '/solicitar-proposta/?tipo=ativacoes&interesse=' + encodeURIComponent('Buffet ou decoração para evento');

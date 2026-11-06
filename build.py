@@ -166,7 +166,8 @@ TIPOS = [
     ('aventais', 'Aventais', r'^aventa(l|is)\b'),
     ('bones', 'Bonés', r'^bones?\b'),
     # tipos dos modelos novos que não estão no menu (filtram o catálogo pelo ?tipo=)
-    ('bolsas', 'Bolsas e nécessaires', r'^(bolsa|necessaire)s?\b'),
+    ('bolsas', 'Bolsas', r'^bolsas?\b'),
+    ('necessaires', 'Nécessaires', r'^necessaires?\b'),
     ('escritorio', 'Escritório', r'^(porta-canetas|porta-cartao|porta-cartoes|suporte-de-celular|estojo-de-escritorio)\b'),
     ('cozinha', 'Cozinha', r'^(tabua|mini-tabua|kit-churrasco|cortador|kit-para-pizza|combo-kit-para-petiscos|suporte-com-\d+-facas|petisqueira|ramequim)\b'),
     ('bar', 'Bar', r'^(coqueteleira|abridor|porta-lata|socador|saca-rolhas|porta-copos|estojo-com-acessorios-de-vinho)\b'),
@@ -1296,7 +1297,7 @@ MENU_CONFECCOES = [('polos', 'Camiseta polo'), ('camisetas', 'Camiseta'), ('mole
 MENU_KITS = [('Kit escritório', '#kits-escritorio'), ('Kit cozinha', '#kits-cozinha'), ('Kit boas-vindas', '#kits-boas-vindas'),
              ('Kit executivo', '#kits-executivo'), ('Kit pausa', '#kits-pausa'),
              ('Kit fim de ano', '#kits-fim-de-ano')]   # âncoras de /kits-corporativos/ (o Kit de agradecimento entra no Kit fim de ano)
-MENU_ATIVACOES = [('Buffet completo', '#fmt-buffet'), ('Decoração', '#fmt-decoracao')]   # âncoras de /eventos-corporativos/
+MENU_ATIVACOES = [('Buffet e decoração', '#fmt-buffet')]   # âncora de /eventos-corporativos/ (buffet e decoração unificados em 06/11/2026)
 
 
 def nav_menu(path):
@@ -2253,7 +2254,7 @@ def page_confeccoes():
 
 
 ATIV_FORMATOS = [('Degustações no ponto de venda', '#fmt-degustacao', 'carrinho'), ('Feiras e eventos', '#fmt-feiras', 'calendario'),
-                 ('Ações promocionais', '#fmt-promocao', 'pessoas'), ('Buffet completo', '#fmt-buffet', 'cloche'), ('Decoração', '#fmt-decoracao', 'arranjo')]
+                 ('Ações promocionais', '#fmt-promocao', 'pessoas'), ('Buffet e decoração', '#fmt-buffet', 'cloche')]
 # ícones dos atalhos de todas as páginas (mesmo traço fino; auditoria de 06/11/2026: um padrão só, sempre com ícone)
 ICONES['garrafa'] = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M10 2.8h4M10.4 2.8v2.6c0 .9-2.4 1.6-2.4 3.6v10.6c0 .9.7 1.6 1.6 1.6h4.8c.9 0 1.6-.7 1.6-1.6V9c0-2-2.4-2.7-2.4-3.6V2.8"/><path d="M8 12.4h8"/></svg>'
 ICONES['caneta'] = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M15.6 3.6l4.8 4.8L9 19.8l-5.4 1.2L4.8 15.6z"/><path d="M13.4 5.8l4.8 4.8M4.8 15.6l3.6 3.6"/></svg>'
@@ -2296,7 +2297,8 @@ def ativ_formatos():
     for i in f.get('itens') or []:
         id_attr = f' id="{esc(i["id"])}"' if i.get('id') else ''
         link = (' ' + ativ_evento_link('ativ-' + i['id'].replace('fmt-', ''))) if i.get('pedido') else ''
-        linhas.append(f'      <div class="item"{id_attr}>{arc()}<div><h3>{esc(i["titulo"])}</h3><p>{esc(i["texto"])}{link}</p></div></div>')
+        antiga = '<span id="fmt-decoracao" class="ancora-antiga"></span>' if i.get('id') == 'fmt-buffet' and not any(x.get('id') == 'fmt-decoracao' for x in f.get('itens') or []) else ''
+        linhas.append(f'      <div class="item"{id_attr}>{antiga}{arc()}<div><h3>{esc(i["titulo"])}</h3><p>{esc(i["texto"])}{link}</p></div></div>')
     if (f.get('titulo') or '').strip():
         eyebrow = f'<p class="eyebrow">{esc(f["eyebrow"])}</p>' if (f.get('eyebrow') or '').strip() else ''
         texto = f'<p class="muted">{esc(f["texto"])}</p>' if (f.get('texto') or '').strip() else ''

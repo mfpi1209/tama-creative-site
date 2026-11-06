@@ -1746,7 +1746,6 @@ FRENTES = [(f['link'], f['imagem'], f.get('posicao') or 'center', tuple(f['titul
 # Ícones de interface do pacote (linha 1.5, currentColor), decorativos. "O que a TaMa faz" usa os cartões da home
 # atual (frentes_section), a pedido de 02/11, no lugar da faixa compacta de ícones da referência.
 V2_ICONES = {
-    'chevron': '<path d="m12 7 9 9-9 9"/>',
     'mais': '<path d="M6 16h20M16 6v20"/>',
 }
 
@@ -1801,17 +1800,6 @@ def v2_catalogo():
     <ul class="t-cat-grid" id="t-cat-grid">{cards}</ul>
     <p class="note">Imagens ilustrativas: a marca fictícia aparece como exemplo; no seu projeto, entra a marca da sua empresa. Modelos e cores são confirmados na proposta.</p>
   </div>
-</section>'''
-
-
-def v2_processo():
-    passos = ''.join(f'<li><span class="t-num" aria-hidden="true">{i + 1:02d}</span><span>{t}</span>{v2_icone("chevron", "t-chev") if i < len(STEPS) - 1 else ""}</li>'
-                     for i, (t, _d, _k) in enumerate(STEPS))
-    return f'''<section class="t-proc-sec" aria-labelledby="t-proc-t">
-  <div class="wrap"><div class="t-proc">
-    <h2 id="t-proc-t" class="t-proc-title">Do briefing <br>à entrega</h2>
-    <ol class="t-proc-list">{passos}</ol>
-  </div></div>
 </section>'''
 
 
@@ -1953,7 +1941,7 @@ def page_home_v2():
         'body': v2_hero() + f'''
 {frentes_section(titulo_visivel=True)}
 {v2_catalogo()}
-{v2_processo()}
+{process_section('Como trabalhamos', 'Do briefing à entrega', 'Seis etapas, com a peça, a personalização e a arte aprovadas por você antes da produção.', 'v2-como-t')}
 {v2_faq()}
 {v2_guias()}
 {end_cta()}''',

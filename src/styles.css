@@ -1508,13 +1508,6 @@ body.v2 .frentes-grid { width: min(1340px, calc(100% - 100px)); max-width: none;
   .t-card:hover .i-arrow, .t-guia:hover .i-arrow { transform: translateX(3px); }
 }
 .t-cat .note { margin-top: 20px; }
-/* processo: faixa areia com os seis passos em círculos e chevrons */
-.t-proc { display: flex; align-items: center; gap: 32px; padding: 32px; border-radius: 12px; background: var(--t-sand); }
-.t-proc-title { flex: 0 0 210px; margin: 0; padding-right: 32px; border-right: 1px solid var(--t-line); font: 500 32px/36px var(--f-serif); letter-spacing: -.02em; }
-.t-proc-list { flex: 1; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); margin: 0; padding: 0; list-style: none; }
-.t-proc-list li { position: relative; display: grid; justify-items: center; gap: 8px; font-size: 14px; line-height: 20px; font-weight: 600; text-align: center; }
-.t-num { display: grid; place-items: center; width: 44px; height: 44px; border: 1px solid var(--t-line); border-radius: 50%; background: var(--t-surface); font: 600 14px/1 var(--f-sans); color: var(--t-brand); }
-.t-chev { position: absolute; top: 12px; right: -10px; width: 20px; height: 20px; color: var(--t-muted); }
 /* perguntas: duas colunas com divisor central */
 .t-faq { padding-top: 64px; }
 .t-faq-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; margin-top: 24px; }
@@ -1554,10 +1547,6 @@ body.v2 .site-footer { background: var(--t-footer); }
   .t-card-nome { font-size: clamp(28px, 2.5vw, 36px); line-height: 1.06; }
   .t-card-link { font-size: 17px; line-height: 24px; }
   .t-card-copy { padding: 22px 26px 24px; }
-  .t-proc-title { flex-basis: 230px; font-size: 38px; line-height: 42px; }
-  .t-num { width: 52px; height: 52px; font-size: 16px; }
-  .t-chev { top: 16px; }
-  .t-proc-list li { font-size: 16px; }
   .t-h2-sm { font-size: clamp(32px, 2.8vw, 40px); line-height: 1.1; }
   .t-faq-item summary { font-size: 17px; line-height: 24px; }
   .t-guia-nome { font-size: 28px; line-height: 32px; }
@@ -1565,14 +1554,25 @@ body.v2 .site-footer { background: var(--t-footer); }
   body.v2 .end-cta p { font-size: 18px; line-height: 28px; }
   body.v2 .end-cta .btn { min-height: 52px; padding-inline: 30px; font-size: 16px; }
 }
+/* Auditoria pelo HIG da Apple (06/11/2026, docs/proposta-01/AUDITORIA.md): contraste mínimo 4,5:1 em texto pequeno,
+   alvos de toque de 44 px, textos de apoio legíveis, linhas curtas, espaçamento constante e texto a 200% sem corte. */
+body.v2 .t-kicker { color: #A9472F; }
+body.v2 .t-pill { height: 44px; }
+body.v2 .eyebrow { font-size: 13px; }
+body.v2 .note { font-size: 13px; line-height: 1.55; }
+body.v2 .t-hero-foto figcaption { font-size: 12px; }
+body.v2 .process-step p { font-size: 14px; line-height: 1.5; }
+body.v2 .t-sub, body.v2 .note, body.v2 .t-faq-item p, body.v2 .process-section .section-head .muted { max-width: 64ch; }
+body.v2 .t-faq-item p { padding-right: 0; }
+body.v2 .frente-card h3, body.v2 .t-card-nome, body.v2 .t-guia-nome { overflow-wrap: break-word; hyphens: auto; }
+body.v2 .process-section { padding-block: 64px; }
+@media (max-width: 767px) { body.v2 .process-section { padding-block: 48px; } }
 @media (max-width: 1199px) {
   body.v2 .wrap, body.v2 .site-header .wrap, body.v2 .announce .wrap { width: calc(100% - 48px); }
   .t-hero-txt { padding-left: 24px; }
   .t-cat-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-width: 1023px) {
-  .t-proc { flex-direction: column; align-items: stretch; }
-  .t-proc-title { flex: none; padding: 0; border: 0; }
 }
 @media (max-width: 767px) {
   body.v2 .wrap, body.v2 .site-header .wrap, body.v2 .announce .wrap { width: calc(100% - 40px); }
@@ -1586,8 +1586,6 @@ body.v2 .site-footer { background: var(--t-footer); }
   .t-card-nome { font-size: 26px; line-height: 30px; }
   .t-cat-grid { gap: 16px; }
   .t-card-copy { padding: 16px; }
-  .t-proc-list { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px 8px; }
-  .t-chev { display: none; }
   .t-faq-cols { grid-template-columns: minmax(0, 1fr); gap: 0; }
   .t-faq-cols > div + div { padding-left: 0; border-left: 0; }
   .t-guias-grid { grid-template-columns: minmax(0, 1fr); }

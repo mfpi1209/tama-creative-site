@@ -200,7 +200,16 @@
   "taca-termica-desmontavel-em-personalizada",
   "kit-para-anotacoes-com-caneta",
   "conj-de-xicaras-express-c-pires-2-pcs",
-  "avental-pvc-mescla"
+  "avental-pvc-mescla",
+  "kit-boas-vindas-3-pcs",
+  "agenda-diaria-2027",
+  "power-bank-power-bank-com-lanterna-e-multissaidas",
+  "power-bank-com-indicador-led",
+  "power-bank-com-lanterna-e-multissaidas-08219",
+  "kit-para-anotacoes",
+  "caderneta-para-anotacoes-com-caneta",
+  "camisa-polo",
+  "copo-termico-tipo-stanley-com-tampa"
  ],
  "foto_base": {
   "abridor-de-garrafa-de-mesa": "abridor-mesa~preto",
@@ -208,6 +217,7 @@
   "agenda": "agenda-couro~cafe",
   "agenda-bicolor-com-porta-caneta": "agenda-bicolor-porta-caneta~caramelo",
   "agenda-de-bolso-vertical": "agenda-bolso-vertical~preto",
+  "agenda-diaria-2027": "agenda-diaria-2027~preta",
   "agenda-diaria-wire-o": "agenda-diaria~azul-marinho",
   "avental": "avental~cru",
   "avental-cintura-meia-saia": "avental-cintura-meia-saia~preto",
@@ -231,6 +241,7 @@
   "bule-transparente-com-tampa-natural": "bule-vidro~transparente",
   "cabo-usb": "cabo-usb~preto",
   "caderneta-espiral-parda-com-caneta": "caderneta-kraft-caneta~kraft",
+  "caderneta-para-anotacoes-com-caneta": "caderneta-para-anotacoes-com-caneta~preto",
   "caderno-a5-com-elastico": "caderno-a5~preto",
   "caderno-com-aba-de-fechamento-e-bolso-porta-cartao": "caderno-aba-bolso~preto",
   "caderno-com-capa-natural-e-caneta": "caderno-capa-bambu~natural",
@@ -243,6 +254,7 @@
   "caixa-para-presente-com-tampa-transparente": "caixa-tampa-transparente~bronze",
   "camisa-feminina": "camisa-feminina~cinza",
   "camisa-masculina": "camisa-masculina~rosa-claro",
+  "camisa-polo": "camisa-polo~verde",
   "camiseta-feminina": "camiseta-feminina~preto",
   "camiseta-masculina": "camiseta~branco",
   "caneca": "caneca~vermelho",
@@ -305,6 +317,7 @@
   "copo-termico-com-faixa-natural": "copo-faixa-bambu~preto",
   "copo-termico-com-revestimento-natural-e-alca": "copo-bambu-alca~natural",
   "copo-termico-com-tampa-abridor": "copo-termico-tampa-abridor~preto",
+  "copo-termico-tipo-stanley-com-tampa": "copo-termico-tipo-stanley-com-tampa~varias-cores",
   "coqueteleira": "coqueteleira~prata",
   "cortador-de-pizza": "cortador-pizza~vermelho",
   "difusor-de-aromas": "difusor~ambar",
@@ -338,9 +351,11 @@
   "jogo-americano-personalizado": "jogo-americano-personalizado~preto",
   "jogo-americano-retangular": "jogo-americano-retangular~verde-escuro",
   "jogo-de-facas-de-queijo-em-estojo": "facas-queijo-estojo~preto",
+  "kit-boas-vindas-3-pcs": "kit-boas-vindas-3-pcs~preto",
   "kit-churrasco-em-estojo": "kit-churrasco~preto",
   "kit-dolma-chef-touca-profissional": "kit-dolma-chef-touca-profissional~branco",
   "kit-gift-executivo": "kit-gift-executivo~preto",
+  "kit-para-anotacoes": "kit-para-anotacoes~azul",
   "kit-para-anotacoes-com-caneta": "kit-para-anotacoes-com-caneta~vermelho",
   "kit-para-pizza-personalizado-com-tabua-cortador-espatula": "kit-para-pizza-personalizado-com-tabua-cortador-espatula~tom-natural",
   "kit-premium-onboarding-presente-personalizado": "kit-premium-onboarding-presente-personalizado~preto",
@@ -371,7 +386,10 @@
   "porta-contas": "porta-contas~preto",
   "porta-copos-redondo": "porta-copos~natural",
   "porta-lata-termico": "porta-lata~azul-marinho",
+  "power-bank-com-indicador-led": "power-bank-com-indicador-led~branco",
+  "power-bank-com-lanterna-e-multissaidas-08219": "power-bank-com-lanterna-e-multissaidas-08219~vermelho",
   "power-bank-com-ventosas": "power-bank-ventosa~rosa",
+  "power-bank-power-bank-com-lanterna-e-multissaidas": "power-bank-power-bank-com-lanterna-e-multissaidas~branco",
   "power-bank-slim": "power-bank-slim~prata",
   "ramequim": "ramequim~branco",
   "regua": "regua-madeira~natural",
@@ -1497,6 +1515,62 @@
   "avental-pvc-mescla": [
    "eventos",
    "campanhas"
+  ],
+  "kit-boas-vindas-3-pcs": [
+   "boas-vindas",
+   "eventos",
+   "campanhas",
+   "lancamentos"
+  ],
+  "agenda-diaria-2027": [
+   "boas-vindas"
+  ],
+  "power-bank-power-bank-com-lanterna-e-multissaidas": [
+   "boas-vindas",
+   "eventos",
+   "executivos",
+   "campanhas",
+   "lancamentos",
+   "fim-de-ano"
+  ],
+  "power-bank-com-indicador-led": [
+   "boas-vindas",
+   "eventos",
+   "executivos",
+   "campanhas",
+   "fim-de-ano"
+  ],
+  "power-bank-com-lanterna-e-multissaidas-08219": [
+   "boas-vindas",
+   "eventos",
+   "executivos",
+   "campanhas",
+   "fim-de-ano"
+  ],
+  "kit-para-anotacoes": [
+   "boas-vindas",
+   "eventos",
+   "executivos",
+   "campanhas",
+   "lancamentos",
+   "fim-de-ano"
+  ],
+  "caderneta-para-anotacoes-com-caneta": [
+   "boas-vindas",
+   "eventos",
+   "executivos",
+   "campanhas",
+   "lancamentos",
+   "fim-de-ano"
+  ],
+  "camisa-polo": [
+   "boas-vindas",
+   "eventos"
+  ],
+  "copo-termico-tipo-stanley-com-tampa": [
+   "boas-vindas",
+   "eventos",
+   "executivos"
   ]
  },
  "aliases": {

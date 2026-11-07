@@ -7230,6 +7230,1227 @@
    "atualizado_em": "2026-10-18"
   },
   {
+   "id": "camiseta-estonada-baby-look~amarelo-ouro",
+   "produto": "Camiseta estonada baby look",
+   "categoria": "vestuario",
+   "modelo": "Modelagem feminina baby look, efeito desbotado",
+   "cor": {
+    "nome": "Amarelo ouro",
+    "hex": "#F3CB45"
+   },
+   "material": {
+    "valor": "Malha 100% algodão penteado fio 30.1, 165 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta estonada baby look na cor amarelo ouro, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 22 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 21).",
+   "arquivo": "/img/produtos/camiseta-estonada-baby-look~amarelo-ouro.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "514897e0eea21d18366daa824b53837a068fc55b32f0c8586f6af41fb970f762",
+   "bytes": 45780,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-estonada-baby-look~areia",
+   "produto": "Camiseta estonada baby look",
+   "categoria": "vestuario",
+   "modelo": "Modelagem feminina baby look, efeito desbotado",
+   "cor": {
+    "nome": "Areia",
+    "hex": "#D7C3A0"
+   },
+   "material": {
+    "valor": "Malha 100% algodão penteado fio 30.1, 165 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta estonada baby look na cor areia, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 22 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 21).",
+   "arquivo": "/img/produtos/camiseta-estonada-baby-look~areia.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "6305870d00b7e17e5048bc1e8a46c203f2134264a301f3e984fe5c0feec89e7f",
+   "bytes": 55452,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-estonada-baby-look~azul-marinho",
+   "produto": "Camiseta estonada baby look",
+   "categoria": "vestuario",
+   "modelo": "Modelagem feminina baby look, efeito desbotado",
+   "cor": {
+    "nome": "Azul-marinho",
+    "hex": "#5272C2"
+   },
+   "material": {
+    "valor": "Malha 100% algodão penteado fio 30.1, 165 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta estonada baby look na cor azul-marinho, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 22 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 21).",
+   "arquivo": "/img/produtos/camiseta-estonada-baby-look~azul-marinho.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "5b686a4c1df51abe5d2e97be3808ff65ba99b21bc87d606b8abf4c028d3f19b1",
+   "bytes": 47428,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-estonada-baby-look~azul-royal",
+   "produto": "Camiseta estonada baby look",
+   "categoria": "vestuario",
+   "modelo": "Modelagem feminina baby look, efeito desbotado",
+   "cor": {
+    "nome": "Azul royal",
+    "hex": "#4F8BE0"
+   },
+   "material": {
+    "valor": "Malha 100% algodão penteado fio 30.1, 165 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta estonada baby look na cor azul royal, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 22 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 21).",
+   "arquivo": "/img/produtos/camiseta-estonada-baby-look~azul-royal.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "555cc722680c31b11dab5a7583b9916de380b6dd306b5d187bc5a18451652bdf",
+   "bytes": 38404,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-estonada-baby-look~branco-gelo",
+   "produto": "Camiseta estonada baby look",
+   "categoria": "vestuario",
+   "modelo": "Modelagem feminina baby look, efeito desbotado",
+   "cor": {
+    "nome": "Branco gelo",
+    "hex": "#E2E3E4"
+   },
+   "material": {
+    "valor": "Malha 100% algodão penteado fio 30.1, 165 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta estonada baby look na cor branco gelo, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 22 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 21).",
+   "arquivo": "/img/produtos/camiseta-estonada-baby-look~branco-gelo.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "2b2c4ce0437c18ac3741d8207ae2fd8397848862c5a963006ea846725f4efa62",
+   "bytes": 35386,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-estonada-baby-look~cinza-chumbo",
+   "produto": "Camiseta estonada baby look",
+   "categoria": "vestuario",
+   "modelo": "Modelagem feminina baby look, efeito desbotado",
+   "cor": {
+    "nome": "Cinza chumbo",
+    "hex": "#5A5A5C"
+   },
+   "material": {
+    "valor": "Malha 100% algodão penteado fio 30.1, 165 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta estonada baby look na cor cinza chumbo, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 22 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 21).",
+   "arquivo": "/img/produtos/camiseta-estonada-baby-look~cinza-chumbo.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "5c95ee69d554453a4227338ef8d81e057fc9f5429621eda6aacea6c448e09349",
+   "bytes": 38290,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-estonada-baby-look~laranja",
+   "produto": "Camiseta estonada baby look",
+   "categoria": "vestuario",
+   "modelo": "Modelagem feminina baby look, efeito desbotado",
+   "cor": {
+    "nome": "Laranja",
+    "hex": "#F8A98A"
+   },
+   "material": {
+    "valor": "Malha 100% algodão penteado fio 30.1, 165 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta estonada baby look na cor laranja, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 22 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 21).",
+   "arquivo": "/img/produtos/camiseta-estonada-baby-look~laranja.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "07817e0c095badd2f01791ae829c74639e8cef1dc4cd57e122a65cf11e13d947",
+   "bytes": 43340,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-estonada-baby-look~marrom",
+   "produto": "Camiseta estonada baby look",
+   "categoria": "vestuario",
+   "modelo": "Modelagem feminina baby look, efeito desbotado",
+   "cor": {
+    "nome": "Marrom",
+    "hex": "#80583F"
+   },
+   "material": {
+    "valor": "Malha 100% algodão penteado fio 30.1, 165 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta estonada baby look na cor marrom, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 22 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 21).",
+   "arquivo": "/img/produtos/camiseta-estonada-baby-look~marrom.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "b9fb546acbc3f4ddc6a1ad0ef367d795851d1d248b068709de9aad4906d14e2f",
+   "bytes": 41510,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-estonada-baby-look~pink",
+   "produto": "Camiseta estonada baby look",
+   "categoria": "vestuario",
+   "modelo": "Modelagem feminina baby look, efeito desbotado",
+   "cor": {
+    "nome": "Pink",
+    "hex": "#EE8FD6"
+   },
+   "material": {
+    "valor": "Malha 100% algodão penteado fio 30.1, 165 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta estonada baby look na cor pink, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 22 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 21).",
+   "arquivo": "/img/produtos/camiseta-estonada-baby-look~pink.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "14336cfcc763f4b9357fdb407f43b077ef39a4dd9dcabe793fe4a4b4c8ab02a7",
+   "bytes": 43204,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-estonada-baby-look~roxo",
+   "produto": "Camiseta estonada baby look",
+   "categoria": "vestuario",
+   "modelo": "Modelagem feminina baby look, efeito desbotado",
+   "cor": {
+    "nome": "Roxo",
+    "hex": "#7A6578"
+   },
+   "material": {
+    "valor": "Malha 100% algodão penteado fio 30.1, 165 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta estonada baby look na cor roxo, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 22 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 21).",
+   "arquivo": "/img/produtos/camiseta-estonada-baby-look~roxo.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "7fe2bf82224f2b7d20dfab2e5bd2a5278ffe8940bc267664d029a347d92b7cf5",
+   "bytes": 40922,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-estonada-baby-look~verde-bandeira",
+   "produto": "Camiseta estonada baby look",
+   "categoria": "vestuario",
+   "modelo": "Modelagem feminina baby look, efeito desbotado",
+   "cor": {
+    "nome": "Verde bandeira",
+    "hex": "#3FB98C"
+   },
+   "material": {
+    "valor": "Malha 100% algodão penteado fio 30.1, 165 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta estonada baby look na cor verde bandeira, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 22 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 21).",
+   "arquivo": "/img/produtos/camiseta-estonada-baby-look~verde-bandeira.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "a7c5fca62ec39862570b72c62b434713e5bee2ec763da045a5ac3a0b29f2ff49",
+   "bytes": 51544,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-estonada-baby-look~verde-militar",
+   "produto": "Camiseta estonada baby look",
+   "categoria": "vestuario",
+   "modelo": "Modelagem feminina baby look, efeito desbotado",
+   "cor": {
+    "nome": "Verde militar",
+    "hex": "#8E9580"
+   },
+   "material": {
+    "valor": "Malha 100% algodão penteado fio 30.1, 165 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta estonada baby look na cor verde militar, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 22 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 21).",
+   "arquivo": "/img/produtos/camiseta-estonada-baby-look~verde-militar.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "904264295461df82d64993954b0af5016f027c6132ca433ec64552bda670995c",
+   "bytes": 44236,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-estonada-baby-look~verde-musgo",
+   "produto": "Camiseta estonada baby look",
+   "categoria": "vestuario",
+   "modelo": "Modelagem feminina baby look, efeito desbotado",
+   "cor": {
+    "nome": "Verde musgo",
+    "hex": "#3E8A5C"
+   },
+   "material": {
+    "valor": "Malha 100% algodão penteado fio 30.1, 165 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta estonada baby look na cor verde musgo, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 22 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 21).",
+   "arquivo": "/img/produtos/camiseta-estonada-baby-look~verde-musgo.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "898d084f76e73ca2ece77dd17e8906e641332e3552fdc30a893bde85d4f1d42f",
+   "bytes": 41296,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-estonada-baby-look~vermelho",
+   "produto": "Camiseta estonada baby look",
+   "categoria": "vestuario",
+   "modelo": "Modelagem feminina baby look, efeito desbotado",
+   "cor": {
+    "nome": "Vermelho",
+    "hex": "#D9646A"
+   },
+   "material": {
+    "valor": "Malha 100% algodão penteado fio 30.1, 165 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta estonada baby look na cor vermelho, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 22 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 21).",
+   "arquivo": "/img/produtos/camiseta-estonada-baby-look~vermelho.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "a63ee31f475f2b3c3624c3c11b8ef3070c6a46edb198049d9296bbc4acd2f015",
+   "bytes": 48860,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-estonada-oversized~areia",
+   "produto": "Camiseta estonada oversized",
+   "categoria": "vestuario",
+   "modelo": "Modelagem ampla, efeito desbotado",
+   "cor": {
+    "nome": "Areia",
+    "hex": "#D7C3A0"
+   },
+   "material": {
+    "valor": "Malha 100% algodão penteado fio 30.1, 165 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta estonada oversized na cor areia, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 24 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 23).",
+   "arquivo": "/img/produtos/camiseta-estonada-oversized~areia.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "a7508703e8780dbfc86ceba6d51d6be26411ab5461a96cb8d47a22e8ce32786f",
+   "bytes": 44180,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-estonada-oversized~azul-marinho",
+   "produto": "Camiseta estonada oversized",
+   "categoria": "vestuario",
+   "modelo": "Modelagem ampla, efeito desbotado",
+   "cor": {
+    "nome": "Azul-marinho",
+    "hex": "#5272C2"
+   },
+   "material": {
+    "valor": "Malha 100% algodão penteado fio 30.1, 165 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta estonada oversized na cor azul-marinho, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 24 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 23).",
+   "arquivo": "/img/produtos/camiseta-estonada-oversized~azul-marinho.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "e11e1a59751c0c11efaf61842b063d3ebad25aff6bf59e6f98c33fc407fe6982",
+   "bytes": 44812,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-estonada-oversized~branco-gelo",
+   "produto": "Camiseta estonada oversized",
+   "categoria": "vestuario",
+   "modelo": "Modelagem ampla, efeito desbotado",
+   "cor": {
+    "nome": "Branco gelo",
+    "hex": "#E2E3E4"
+   },
+   "material": {
+    "valor": "Malha 100% algodão penteado fio 30.1, 165 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta estonada oversized na cor branco gelo, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 24 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 23).",
+   "arquivo": "/img/produtos/camiseta-estonada-oversized~branco-gelo.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "e28cf2563db65367e9140bd7c9cf2f53a666d40a4e40d285df18ce3677c76e7a",
+   "bytes": 45356,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-estonada-oversized~cinza-chumbo",
+   "produto": "Camiseta estonada oversized",
+   "categoria": "vestuario",
+   "modelo": "Modelagem ampla, efeito desbotado",
+   "cor": {
+    "nome": "Cinza chumbo",
+    "hex": "#5A5A5C"
+   },
+   "material": {
+    "valor": "Malha 100% algodão penteado fio 30.1, 165 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta estonada oversized na cor cinza chumbo, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 24 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 23).",
+   "arquivo": "/img/produtos/camiseta-estonada-oversized~cinza-chumbo.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "45812d97259b775f0a9020fd085144f88552f89c0d2459db7ca5f44583130370",
+   "bytes": 36510,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-estonada-oversized~verde-militar",
+   "produto": "Camiseta estonada oversized",
+   "categoria": "vestuario",
+   "modelo": "Modelagem ampla, efeito desbotado",
+   "cor": {
+    "nome": "Verde militar",
+    "hex": "#8E9580"
+   },
+   "material": {
+    "valor": "Malha 100% algodão penteado fio 30.1, 165 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta estonada oversized na cor verde militar, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 24 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 23).",
+   "arquivo": "/img/produtos/camiseta-estonada-oversized~verde-militar.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "8ad6ea4b9001f8454d01a93adad97f65863d480ad0fbb82943cd7e838b0b82ab",
+   "bytes": 43090,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-estonada~amarelo-ouro",
+   "produto": "Camiseta estonada",
+   "categoria": "vestuario",
+   "modelo": "Gola careca, efeito desbotado",
+   "cor": {
+    "nome": "Amarelo ouro",
+    "hex": "#F3CB45"
+   },
+   "material": {
+    "valor": "Malha 100% algodão penteado fio 30.1, 165 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta estonada na cor amarelo ouro, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 20 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 19).",
+   "arquivo": "/img/produtos/camiseta-estonada~amarelo-ouro.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "4bd7f60792cca40f83def59ae30f270b61c798a7cd7c17201373f367947655cd",
+   "bytes": 32670,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-estonada~areia",
+   "produto": "Camiseta estonada",
+   "categoria": "vestuario",
+   "modelo": "Gola careca, efeito desbotado",
+   "cor": {
+    "nome": "Areia",
+    "hex": "#D7C3A0"
+   },
+   "material": {
+    "valor": "Malha 100% algodão penteado fio 30.1, 165 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta estonada na cor areia, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 20 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 19).",
+   "arquivo": "/img/produtos/camiseta-estonada~areia.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "0b0b995ef7b6bf963ed1d7559cf91fcedbafed55d5a3349afb50a3838f7bb8b8",
+   "bytes": 34236,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-estonada~azul-marinho",
+   "produto": "Camiseta estonada",
+   "categoria": "vestuario",
+   "modelo": "Gola careca, efeito desbotado",
+   "cor": {
+    "nome": "Azul-marinho",
+    "hex": "#5272C2"
+   },
+   "material": {
+    "valor": "Malha 100% algodão penteado fio 30.1, 165 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta estonada na cor azul-marinho, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 20 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 19).",
+   "arquivo": "/img/produtos/camiseta-estonada~azul-marinho.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "a20dd52ed722e05cb2f5fea0ed8dce792a86874617a073fca3e5ee90e8743eb1",
+   "bytes": 49126,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-estonada~azul-royal",
+   "produto": "Camiseta estonada",
+   "categoria": "vestuario",
+   "modelo": "Gola careca, efeito desbotado",
+   "cor": {
+    "nome": "Azul royal",
+    "hex": "#4F8BE0"
+   },
+   "material": {
+    "valor": "Malha 100% algodão penteado fio 30.1, 165 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta estonada na cor azul royal, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 20 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 19).",
+   "arquivo": "/img/produtos/camiseta-estonada~azul-royal.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "e2d5b03222af1e3167decb24912a593486fd93b95ba7686f0780c2fa3c7a4106",
+   "bytes": 39118,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-estonada~branco-gelo",
+   "produto": "Camiseta estonada",
+   "categoria": "vestuario",
+   "modelo": "Gola careca, efeito desbotado",
+   "cor": {
+    "nome": "Branco gelo",
+    "hex": "#E2E3E4"
+   },
+   "material": {
+    "valor": "Malha 100% algodão penteado fio 30.1, 165 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta estonada na cor branco gelo, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 20 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 19).",
+   "arquivo": "/img/produtos/camiseta-estonada~branco-gelo.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "5c92fd05dd31ed3241a18f211aaa1a5bdad28260384b778e596b8f73635772be",
+   "bytes": 33818,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-estonada~cinza-chumbo",
+   "produto": "Camiseta estonada",
+   "categoria": "vestuario",
+   "modelo": "Gola careca, efeito desbotado",
+   "cor": {
+    "nome": "Cinza chumbo",
+    "hex": "#5A5A5C"
+   },
+   "material": {
+    "valor": "Malha 100% algodão penteado fio 30.1, 165 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta estonada na cor cinza chumbo, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 20 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 19).",
+   "arquivo": "/img/produtos/camiseta-estonada~cinza-chumbo.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "347b1a8ecbd8011d82bef40aa7183d36b4901327cd23e8713f20d7d30a03052e",
+   "bytes": 34344,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-estonada~laranja",
+   "produto": "Camiseta estonada",
+   "categoria": "vestuario",
+   "modelo": "Gola careca, efeito desbotado",
+   "cor": {
+    "nome": "Laranja",
+    "hex": "#F8A98A"
+   },
+   "material": {
+    "valor": "Malha 100% algodão penteado fio 30.1, 165 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta estonada na cor laranja, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 20 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 19).",
+   "arquivo": "/img/produtos/camiseta-estonada~laranja.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "bc03828faa2ec081101ec4b2a30c90dbffac38d185922dfe97489143904002f7",
+   "bytes": 37268,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-estonada~marrom",
+   "produto": "Camiseta estonada",
+   "categoria": "vestuario",
+   "modelo": "Gola careca, efeito desbotado",
+   "cor": {
+    "nome": "Marrom",
+    "hex": "#80583F"
+   },
+   "material": {
+    "valor": "Malha 100% algodão penteado fio 30.1, 165 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta estonada na cor marrom, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 20 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 19).",
+   "arquivo": "/img/produtos/camiseta-estonada~marrom.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "ce42bafa41efa32a625ea299ba3ee66b2b547b465ede7d0fcdd2dca520cd81f5",
+   "bytes": 36318,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-estonada~pink",
+   "produto": "Camiseta estonada",
+   "categoria": "vestuario",
+   "modelo": "Gola careca, efeito desbotado",
+   "cor": {
+    "nome": "Pink",
+    "hex": "#EE8FD6"
+   },
+   "material": {
+    "valor": "Malha 100% algodão penteado fio 30.1, 165 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta estonada na cor pink, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 20 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 19).",
+   "arquivo": "/img/produtos/camiseta-estonada~pink.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "742f621933379f540ca59c9a91b3bb6e07d50671018126033e9074f892c956b4",
+   "bytes": 33432,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-estonada~roxo",
+   "produto": "Camiseta estonada",
+   "categoria": "vestuario",
+   "modelo": "Gola careca, efeito desbotado",
+   "cor": {
+    "nome": "Roxo",
+    "hex": "#7A6578"
+   },
+   "material": {
+    "valor": "Malha 100% algodão penteado fio 30.1, 165 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta estonada na cor roxo, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 20 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 19).",
+   "arquivo": "/img/produtos/camiseta-estonada~roxo.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "9d46a21b928f8437ef07651ec27a490c83fdfd2e09a3939f0b2cf354694b04c2",
+   "bytes": 34006,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-estonada~verde-bandeira",
+   "produto": "Camiseta estonada",
+   "categoria": "vestuario",
+   "modelo": "Gola careca, efeito desbotado",
+   "cor": {
+    "nome": "Verde bandeira",
+    "hex": "#3FB98C"
+   },
+   "material": {
+    "valor": "Malha 100% algodão penteado fio 30.1, 165 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta estonada na cor verde bandeira, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 20 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 19).",
+   "arquivo": "/img/produtos/camiseta-estonada~verde-bandeira.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "45efc8bce55678826ed1baf4528c951b5acbf3fff865e79abfcc6deac198303b",
+   "bytes": 48588,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-estonada~verde-militar",
+   "produto": "Camiseta estonada",
+   "categoria": "vestuario",
+   "modelo": "Gola careca, efeito desbotado",
+   "cor": {
+    "nome": "Verde militar",
+    "hex": "#8E9580"
+   },
+   "material": {
+    "valor": "Malha 100% algodão penteado fio 30.1, 165 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta estonada na cor verde militar, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 20 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 19).",
+   "arquivo": "/img/produtos/camiseta-estonada~verde-militar.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "b6f2e39d3682c0201cd592138eb36c84c4e278b021e75b1e72bf85dfe785a2f3",
+   "bytes": 44272,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-estonada~verde-musgo",
+   "produto": "Camiseta estonada",
+   "categoria": "vestuario",
+   "modelo": "Gola careca, efeito desbotado",
+   "cor": {
+    "nome": "Verde musgo",
+    "hex": "#3E8A5C"
+   },
+   "material": {
+    "valor": "Malha 100% algodão penteado fio 30.1, 165 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta estonada na cor verde musgo, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 20 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 19).",
+   "arquivo": "/img/produtos/camiseta-estonada~verde-musgo.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "49d24ded2e22a4b33b6b438512946288f99b161c231b81d97cafd90ce0a7e406",
+   "bytes": 47952,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-estonada~vermelho",
+   "produto": "Camiseta estonada",
+   "categoria": "vestuario",
+   "modelo": "Gola careca, efeito desbotado",
+   "cor": {
+    "nome": "Vermelho",
+    "hex": "#D9646A"
+   },
+   "material": {
+    "valor": "Malha 100% algodão penteado fio 30.1, 165 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta estonada na cor vermelho, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 20 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 19).",
+   "arquivo": "/img/produtos/camiseta-estonada~vermelho.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "94a57681c3c4fd4aa74367643246a015f8344c0c74c052eb872277176c2509c9",
+   "bytes": 38612,
+   "atualizado_em": "2026-11-06"
+  },
+  {
    "fornecedor": null,
    "bytes": 1366251,
    "sku": null,
@@ -8075,6 +9296,3336 @@
    "atualizado_em": "2026-10-18"
   },
   {
+   "id": "camiseta-oversized-suedine~areia",
+   "produto": "Camiseta oversized suedine",
+   "categoria": "vestuario",
+   "modelo": "Modelagem ampla, gola canelada",
+   "cor": {
+    "nome": "Areia",
+    "hex": "#D9C7A3"
+   },
+   "material": {
+    "valor": "Malha suedine 50% algodão e 50% poliéster, 235 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta oversized suedine na cor areia, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 12 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 11).",
+   "arquivo": "/img/produtos/camiseta-oversized-suedine~areia.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "38b81b526b08806897dbe90febf06aa1cbd7e37788be011ec65a3cd00972e579",
+   "bytes": 27818,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-oversized-suedine~branco",
+   "produto": "Camiseta oversized suedine",
+   "categoria": "vestuario",
+   "modelo": "Modelagem ampla, gola canelada",
+   "cor": {
+    "nome": "Branco",
+    "hex": "#F7F5F0"
+   },
+   "material": {
+    "valor": "Malha suedine 50% algodão e 50% poliéster, 235 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta oversized suedine na cor branco, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 12 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 11).",
+   "arquivo": "/img/produtos/camiseta-oversized-suedine~branco.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "d9591facc46bde94a86df8ab5af4f8b4427182d2256ebbfb49488f83667015bf",
+   "bytes": 25204,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-oversized-suedine~caramelo",
+   "produto": "Camiseta oversized suedine",
+   "categoria": "vestuario",
+   "modelo": "Modelagem ampla, gola canelada",
+   "cor": {
+    "nome": "Caramelo",
+    "hex": "#B98A5E"
+   },
+   "material": {
+    "valor": "Malha suedine 50% algodão e 50% poliéster, 235 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta oversized suedine na cor caramelo, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 12 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 11).",
+   "arquivo": "/img/produtos/camiseta-oversized-suedine~caramelo.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "d0194ff786356ca9eb26bca19b3718606aba91c8c0c8dcceae73b482264b36cb",
+   "bytes": 33796,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-oversized-suedine~off-white",
+   "produto": "Camiseta oversized suedine",
+   "categoria": "vestuario",
+   "modelo": "Modelagem ampla, gola canelada",
+   "cor": {
+    "nome": "Off-white",
+    "hex": "#F1ECE0"
+   },
+   "material": {
+    "valor": "Malha suedine 50% algodão e 50% poliéster, 235 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta oversized suedine na cor off-white, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 12 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 11).",
+   "arquivo": "/img/produtos/camiseta-oversized-suedine~off-white.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "f45a614bf67f460ed2c2d9ec1f870cc42ce895f78dbb800c370ddf6ed0fa5c5b",
+   "bytes": 28112,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-oversized-suedine~preto",
+   "produto": "Camiseta oversized suedine",
+   "categoria": "vestuario",
+   "modelo": "Modelagem ampla, gola canelada",
+   "cor": {
+    "nome": "Preto",
+    "hex": "#1E1E1E"
+   },
+   "material": {
+    "valor": "Malha suedine 50% algodão e 50% poliéster, 235 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta oversized suedine na cor preto, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 12 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 11).",
+   "arquivo": "/img/produtos/camiseta-oversized-suedine~preto.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "bba398eda716c5cad4ce0c5ac2736dfe43e4bb7cf4746841e972fc3a43edb262",
+   "bytes": 33682,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-pima-feminina~azul-marinho",
+   "produto": "Camiseta pima feminina",
+   "categoria": "vestuario",
+   "modelo": "Modelagem feminina, toque macio",
+   "cor": {
+    "nome": "Azul-marinho",
+    "hex": "#1E2A4A"
+   },
+   "material": {
+    "valor": "Malha 95% algodão Pima e 5% elastano, 170 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta pima feminina na cor azul-marinho, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 34 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 33).",
+   "arquivo": "/img/produtos/camiseta-pima-feminina~azul-marinho.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "21394c81d1f8b063bd85b92c154fce2d16333104b91943cbff012b9ddcf37175",
+   "bytes": 39368,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-pima-feminina~branco",
+   "produto": "Camiseta pima feminina",
+   "categoria": "vestuario",
+   "modelo": "Modelagem feminina, toque macio",
+   "cor": {
+    "nome": "Branco",
+    "hex": "#F7F5F0"
+   },
+   "material": {
+    "valor": "Malha 95% algodão Pima e 5% elastano, 170 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta pima feminina na cor branco, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 34 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 33).",
+   "arquivo": "/img/produtos/camiseta-pima-feminina~branco.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "89e80caebacc03d6c63d30438d59c99229365c144491571d7164ece80b33436a",
+   "bytes": 40292,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-pima-feminina~marrom",
+   "produto": "Camiseta pima feminina",
+   "categoria": "vestuario",
+   "modelo": "Modelagem feminina, toque macio",
+   "cor": {
+    "nome": "Marrom",
+    "hex": "#5A3A26"
+   },
+   "material": {
+    "valor": "Malha 95% algodão Pima e 5% elastano, 170 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta pima feminina na cor marrom, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 34 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 33).",
+   "arquivo": "/img/produtos/camiseta-pima-feminina~marrom.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "7ce089dcce8341d1f0369a5f033054536e32adf704b9ab5618b9b64e6f77155c",
+   "bytes": 36360,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-pima-feminina~off-white",
+   "produto": "Camiseta pima feminina",
+   "categoria": "vestuario",
+   "modelo": "Modelagem feminina, toque macio",
+   "cor": {
+    "nome": "Off-white",
+    "hex": "#F1ECE0"
+   },
+   "material": {
+    "valor": "Malha 95% algodão Pima e 5% elastano, 170 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta pima feminina na cor off-white, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 34 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 33).",
+   "arquivo": "/img/produtos/camiseta-pima-feminina~off-white.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "1704ff1599c804b54bf16c62756e51caef23e219ee8a3f7dbb5e46af971a46f7",
+   "bytes": 39386,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-pima-feminina~preto",
+   "produto": "Camiseta pima feminina",
+   "categoria": "vestuario",
+   "modelo": "Modelagem feminina, toque macio",
+   "cor": {
+    "nome": "Preto",
+    "hex": "#1E1E1E"
+   },
+   "material": {
+    "valor": "Malha 95% algodão Pima e 5% elastano, 170 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta pima feminina na cor preto, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 34 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 33).",
+   "arquivo": "/img/produtos/camiseta-pima-feminina~preto.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "78f19194e713bf1f5a40b4cff6067d391a19fcf38f6fc638a378ad1446e5fafe",
+   "bytes": 42354,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-pima-feminina~verde-militar",
+   "produto": "Camiseta pima feminina",
+   "categoria": "vestuario",
+   "modelo": "Modelagem feminina, toque macio",
+   "cor": {
+    "nome": "Verde militar",
+    "hex": "#5B6B45"
+   },
+   "material": {
+    "valor": "Malha 95% algodão Pima e 5% elastano, 170 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta pima feminina na cor verde militar, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 34 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 33).",
+   "arquivo": "/img/produtos/camiseta-pima-feminina~verde-militar.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "05f147dcc802c88a1a9975912d479440262afe206d041b1fea719cf60a26ae15",
+   "bytes": 51102,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-pima~azul-marinho",
+   "produto": "Camiseta pima",
+   "categoria": "vestuario",
+   "modelo": "Gola careca, toque macio",
+   "cor": {
+    "nome": "Azul-marinho",
+    "hex": "#1E2A4A"
+   },
+   "material": {
+    "valor": "Malha 95% algodão Pima e 5% elastano, 170 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta pima na cor azul-marinho, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 32 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 31).",
+   "arquivo": "/img/produtos/camiseta-pima~azul-marinho.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "38d4b54dc605367e2170dd13d22db30b2f378d5d828e4d7cc767ac75a757f7bf",
+   "bytes": 38094,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-pima~branco",
+   "produto": "Camiseta pima",
+   "categoria": "vestuario",
+   "modelo": "Gola careca, toque macio",
+   "cor": {
+    "nome": "Branco",
+    "hex": "#F7F5F0"
+   },
+   "material": {
+    "valor": "Malha 95% algodão Pima e 5% elastano, 170 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta pima na cor branco, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 32 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 31).",
+   "arquivo": "/img/produtos/camiseta-pima~branco.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "4d22406e5ac01c3d43d318d5ce78254a923c336a42206a76b53a97eaade521f2",
+   "bytes": 30394,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-pima~marrom",
+   "produto": "Camiseta pima",
+   "categoria": "vestuario",
+   "modelo": "Gola careca, toque macio",
+   "cor": {
+    "nome": "Marrom",
+    "hex": "#5A3A26"
+   },
+   "material": {
+    "valor": "Malha 95% algodão Pima e 5% elastano, 170 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta pima na cor marrom, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 32 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 31).",
+   "arquivo": "/img/produtos/camiseta-pima~marrom.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "1358765a1fa50f859da2805ff5273e429d8152efe7706e45e087df047afde612",
+   "bytes": 33764,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-pima~off-white",
+   "produto": "Camiseta pima",
+   "categoria": "vestuario",
+   "modelo": "Gola careca, toque macio",
+   "cor": {
+    "nome": "Off-white",
+    "hex": "#F1ECE0"
+   },
+   "material": {
+    "valor": "Malha 95% algodão Pima e 5% elastano, 170 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta pima na cor off-white, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 32 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 31).",
+   "arquivo": "/img/produtos/camiseta-pima~off-white.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "5c6713d5c00b81dceaba46539177c2d4841178dad2e8e37d0dda06a8a551011c",
+   "bytes": 23550,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-pima~preto",
+   "produto": "Camiseta pima",
+   "categoria": "vestuario",
+   "modelo": "Gola careca, toque macio",
+   "cor": {
+    "nome": "Preto",
+    "hex": "#1E1E1E"
+   },
+   "material": {
+    "valor": "Malha 95% algodão Pima e 5% elastano, 170 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta pima na cor preto, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 32 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 31).",
+   "arquivo": "/img/produtos/camiseta-pima~preto.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "027eaba841c9aa730cd4eb946d13d4ceb866f433ad07a46d97fde3051cbab767",
+   "bytes": 41304,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-pima~verde-militar",
+   "produto": "Camiseta pima",
+   "categoria": "vestuario",
+   "modelo": "Gola careca, toque macio",
+   "cor": {
+    "nome": "Verde militar",
+    "hex": "#5B6B45"
+   },
+   "material": {
+    "valor": "Malha 95% algodão Pima e 5% elastano, 170 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta pima na cor verde militar, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 32 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 31).",
+   "arquivo": "/img/produtos/camiseta-pima~verde-militar.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "14a281766ecd6a3dbc0e4318dd96d0f17f0d201316fc72ee4b2ec44453d7c942",
+   "bytes": 27268,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-poliamida-feminina~azul-marinho",
+   "produto": "Camiseta poliamida feminina",
+   "categoria": "vestuario",
+   "modelo": "Modelagem feminina, leve e de secagem rápida",
+   "cor": {
+    "nome": "Azul-marinho",
+    "hex": "#1E2A4A"
+   },
+   "material": {
+    "valor": "Malha 100% poliamida, 120 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta poliamida feminina na cor azul-marinho, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 42 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 41).",
+   "arquivo": "/img/produtos/camiseta-poliamida-feminina~azul-marinho.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "4b71258ad7e474a402363b5529359d7ba8877bc475f2dbb0216fa7b1baa52356",
+   "bytes": 45992,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-poliamida-feminina~branco",
+   "produto": "Camiseta poliamida feminina",
+   "categoria": "vestuario",
+   "modelo": "Modelagem feminina, leve e de secagem rápida",
+   "cor": {
+    "nome": "Branco",
+    "hex": "#F7F5F0"
+   },
+   "material": {
+    "valor": "Malha 100% poliamida, 120 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta poliamida feminina na cor branco, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 42 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 41).",
+   "arquivo": "/img/produtos/camiseta-poliamida-feminina~branco.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "42503f1a5ce1036872cbeac7b767fde5ed8fc246b291c39165136349e2f81f99",
+   "bytes": 43184,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-poliamida-feminina~cinza-chumbo",
+   "produto": "Camiseta poliamida feminina",
+   "categoria": "vestuario",
+   "modelo": "Modelagem feminina, leve e de secagem rápida",
+   "cor": {
+    "nome": "Cinza chumbo",
+    "hex": "#4E5560"
+   },
+   "material": {
+    "valor": "Malha 100% poliamida, 120 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta poliamida feminina na cor cinza chumbo, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 42 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 41).",
+   "arquivo": "/img/produtos/camiseta-poliamida-feminina~cinza-chumbo.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "6482de43820d7349c13fc791aa5c5eb07086bd021fb101ca8a2c8293406330e6",
+   "bytes": 40854,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-poliamida-feminina~preto",
+   "produto": "Camiseta poliamida feminina",
+   "categoria": "vestuario",
+   "modelo": "Modelagem feminina, leve e de secagem rápida",
+   "cor": {
+    "nome": "Preto",
+    "hex": "#1E1E1E"
+   },
+   "material": {
+    "valor": "Malha 100% poliamida, 120 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta poliamida feminina na cor preto, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 42 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 41).",
+   "arquivo": "/img/produtos/camiseta-poliamida-feminina~preto.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "bf4596aa7048ee829471b56fd3b157a0598637fb05752bb23fe84f1f68ad0d11",
+   "bytes": 45294,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-poliamida~azul-marinho",
+   "produto": "Camiseta poliamida",
+   "categoria": "vestuario",
+   "modelo": "Leve e de secagem rápida",
+   "cor": {
+    "nome": "Azul-marinho",
+    "hex": "#1E2A4A"
+   },
+   "material": {
+    "valor": "Malha 100% poliamida, 120 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta poliamida na cor azul-marinho, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 40 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 39).",
+   "arquivo": "/img/produtos/camiseta-poliamida~azul-marinho.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "cefbd4d6d913f65e30cf3501316b113bec31aa889c18d6677917d50a9ae588dd",
+   "bytes": 35100,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-poliamida~branco",
+   "produto": "Camiseta poliamida",
+   "categoria": "vestuario",
+   "modelo": "Leve e de secagem rápida",
+   "cor": {
+    "nome": "Branco",
+    "hex": "#F7F5F0"
+   },
+   "material": {
+    "valor": "Malha 100% poliamida, 120 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta poliamida na cor branco, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 40 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 39).",
+   "arquivo": "/img/produtos/camiseta-poliamida~branco.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "f838edfc717be9bf25ded880978c23e9cb951576ad45437608fbb9a638c8b67e",
+   "bytes": 32274,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-poliamida~cinza-chumbo",
+   "produto": "Camiseta poliamida",
+   "categoria": "vestuario",
+   "modelo": "Leve e de secagem rápida",
+   "cor": {
+    "nome": "Cinza chumbo",
+    "hex": "#4E5560"
+   },
+   "material": {
+    "valor": "Malha 100% poliamida, 120 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta poliamida na cor cinza chumbo, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 40 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 39).",
+   "arquivo": "/img/produtos/camiseta-poliamida~cinza-chumbo.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "2882b0f407a14a44cf91ec0428919784d750ec83c8d542c064d5b1556721b154",
+   "bytes": 28816,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-poliamida~preto",
+   "produto": "Camiseta poliamida",
+   "categoria": "vestuario",
+   "modelo": "Leve e de secagem rápida",
+   "cor": {
+    "nome": "Preto",
+    "hex": "#1E1E1E"
+   },
+   "material": {
+    "valor": "Malha 100% poliamida, 120 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta poliamida na cor preto, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 40 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 39).",
+   "arquivo": "/img/produtos/camiseta-poliamida~preto.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "85ce3dd825ebaf49729587c7d688162f7921a8007fede96cb5fc949ffcd66a60",
+   "bytes": 29178,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-premium-baby-look~amarelo-bebe",
+   "produto": "Camiseta premium baby look",
+   "categoria": "vestuario",
+   "modelo": "Modelagem feminina baby look, gola careca",
+   "cor": {
+    "nome": "Amarelo bebê",
+    "hex": "#F6F0C4"
+   },
+   "material": {
+    "valor": "Malha 100% algodão penteado fio 30.1, 165 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta premium baby look na cor amarelo bebê, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 8 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 7).",
+   "arquivo": "/img/produtos/camiseta-premium-baby-look~amarelo-bebe.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "5a434b13e3a7706afd1aeb7e7fc3e453b951063127f193453983c023c6a9d86e",
+   "bytes": 37580,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-premium-baby-look~amarelo-canario",
+   "produto": "Camiseta premium baby look",
+   "categoria": "vestuario",
+   "modelo": "Modelagem feminina baby look, gola careca",
+   "cor": {
+    "nome": "Amarelo canário",
+    "hex": "#F2D43A"
+   },
+   "material": {
+    "valor": "Malha 100% algodão penteado fio 30.1, 165 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta premium baby look na cor amarelo canário, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 8 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 7).",
+   "arquivo": "/img/produtos/camiseta-premium-baby-look~amarelo-canario.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "cee92f498a582d7bbf951ca7035db551a5daca254bd78e04c3fa1c43ddd7bbc8",
+   "bytes": 38928,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-premium-baby-look~azul-marinho",
+   "produto": "Camiseta premium baby look",
+   "categoria": "vestuario",
+   "modelo": "Modelagem feminina baby look, gola careca",
+   "cor": {
+    "nome": "Azul-marinho",
+    "hex": "#1E2A4A"
+   },
+   "material": {
+    "valor": "Malha 100% algodão penteado fio 30.1, 165 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta premium baby look na cor azul-marinho, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 8 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 7).",
+   "arquivo": "/img/produtos/camiseta-premium-baby-look~azul-marinho.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "2675c8e1c6f38c8d6872745492113589364f0a56abdf34611957c54f00213143",
+   "bytes": 48640,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-premium-baby-look~azul-royal",
+   "produto": "Camiseta premium baby look",
+   "categoria": "vestuario",
+   "modelo": "Modelagem feminina baby look, gola careca",
+   "cor": {
+    "nome": "Azul royal",
+    "hex": "#1F4FB8"
+   },
+   "material": {
+    "valor": "Malha 100% algodão penteado fio 30.1, 165 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta premium baby look na cor azul royal, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 8 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 7).",
+   "arquivo": "/img/produtos/camiseta-premium-baby-look~azul-royal.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "bb82bc4b893fad450c78beca487e995d3f9a8f6176946acaea2cfe1eb09ea2b8",
+   "bytes": 34166,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-premium-baby-look~bordo",
+   "produto": "Camiseta premium baby look",
+   "categoria": "vestuario",
+   "modelo": "Modelagem feminina baby look, gola careca",
+   "cor": {
+    "nome": "Bordô",
+    "hex": "#8E1B2A"
+   },
+   "material": {
+    "valor": "Malha 100% algodão penteado fio 30.1, 165 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta premium baby look na cor bordô, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 8 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 7).",
+   "arquivo": "/img/produtos/camiseta-premium-baby-look~bordo.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "ad2d74303e9660972e96ea0fc464137c95f60ee1edee5359ade07eab0de148c2",
+   "bytes": 36254,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-premium-baby-look~branco",
+   "produto": "Camiseta premium baby look",
+   "categoria": "vestuario",
+   "modelo": "Modelagem feminina baby look, gola careca",
+   "cor": {
+    "nome": "Branco",
+    "hex": "#F7F5F0"
+   },
+   "material": {
+    "valor": "Malha 100% algodão penteado fio 30.1, 165 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta premium baby look na cor branco, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 8 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 7).",
+   "arquivo": "/img/produtos/camiseta-premium-baby-look~branco.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "6a309adb38a86700b61790b585f1134c782a7cbe1d8062a3aa3e3689c1ae29c0",
+   "bytes": 44272,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-premium-baby-look~caramelo",
+   "produto": "Camiseta premium baby look",
+   "categoria": "vestuario",
+   "modelo": "Modelagem feminina baby look, gola careca",
+   "cor": {
+    "nome": "Caramelo",
+    "hex": "#B98A5E"
+   },
+   "material": {
+    "valor": "Malha 100% algodão penteado fio 30.1, 165 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta premium baby look na cor caramelo, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 8 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 7).",
+   "arquivo": "/img/produtos/camiseta-premium-baby-look~caramelo.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "2087664a0da4f7136096082d2ea1d5e154e09cddbc5788cec23088262da51f89",
+   "bytes": 43032,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-premium-baby-look~cinza-chumbo",
+   "produto": "Camiseta premium baby look",
+   "categoria": "vestuario",
+   "modelo": "Modelagem feminina baby look, gola careca",
+   "cor": {
+    "nome": "Cinza chumbo",
+    "hex": "#4E5560"
+   },
+   "material": {
+    "valor": "Malha 100% algodão penteado fio 30.1, 165 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta premium baby look na cor cinza chumbo, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 8 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 7).",
+   "arquivo": "/img/produtos/camiseta-premium-baby-look~cinza-chumbo.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "222b16b94f920c44e02646b6a41febd3ed492d7abc89d563555b4a709235d940",
+   "bytes": 34468,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-premium-baby-look~cinza-mescla",
+   "produto": "Camiseta premium baby look",
+   "categoria": "vestuario",
+   "modelo": "Modelagem feminina baby look, gola careca",
+   "cor": {
+    "nome": "Cinza mescla",
+    "hex": "#B7B7B5"
+   },
+   "material": {
+    "valor": "Malha 100% algodão penteado fio 30.1, 165 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta premium baby look na cor cinza mescla, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 8 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 7).",
+   "arquivo": "/img/produtos/camiseta-premium-baby-look~cinza-mescla.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "9e082194167c3264955af0078c195715f23f1720452ffba081ef6fe4a262a85e",
+   "bytes": 42750,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-premium-baby-look~laranja",
+   "produto": "Camiseta premium baby look",
+   "categoria": "vestuario",
+   "modelo": "Modelagem feminina baby look, gola careca",
+   "cor": {
+    "nome": "Laranja",
+    "hex": "#F26B3A"
+   },
+   "material": {
+    "valor": "Malha 100% algodão penteado fio 30.1, 165 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta premium baby look na cor laranja, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 8 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 7).",
+   "arquivo": "/img/produtos/camiseta-premium-baby-look~laranja.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "b3a9560188b3cf7523c423b264452ac93dab9fc476f491c44046d76145e7ad54",
+   "bytes": 41948,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-premium-baby-look~marrom",
+   "produto": "Camiseta premium baby look",
+   "categoria": "vestuario",
+   "modelo": "Modelagem feminina baby look, gola careca",
+   "cor": {
+    "nome": "Marrom",
+    "hex": "#5A3A26"
+   },
+   "material": {
+    "valor": "Malha 100% algodão penteado fio 30.1, 165 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta premium baby look na cor marrom, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 8 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 7).",
+   "arquivo": "/img/produtos/camiseta-premium-baby-look~marrom.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "3d55bbda3961e7357ab36cceb7b45c4f3e7d57b39464ffe3e10f21807a827cd0",
+   "bytes": 40362,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-premium-baby-look~off-white",
+   "produto": "Camiseta premium baby look",
+   "categoria": "vestuario",
+   "modelo": "Modelagem feminina baby look, gola careca",
+   "cor": {
+    "nome": "Off-white",
+    "hex": "#F1ECE0"
+   },
+   "material": {
+    "valor": "Malha 100% algodão penteado fio 30.1, 165 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta premium baby look na cor off-white, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 8 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 7).",
+   "arquivo": "/img/produtos/camiseta-premium-baby-look~off-white.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "e9e80e315f0e077e073b31955f61675a6a26f0560aee28ce4ad653c0c74357ec",
+   "bytes": 34950,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-premium-baby-look~pink",
+   "produto": "Camiseta premium baby look",
+   "categoria": "vestuario",
+   "modelo": "Modelagem feminina baby look, gola careca",
+   "cor": {
+    "nome": "Pink",
+    "hex": "#E0338C"
+   },
+   "material": {
+    "valor": "Malha 100% algodão penteado fio 30.1, 165 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta premium baby look na cor pink, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 8 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 7).",
+   "arquivo": "/img/produtos/camiseta-premium-baby-look~pink.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "71fbf26ae5e511e8342d1c3455e5daae949abf8c8dc48b12945b3b4828d069bd",
+   "bytes": 39190,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-premium-baby-look~preto",
+   "produto": "Camiseta premium baby look",
+   "categoria": "vestuario",
+   "modelo": "Modelagem feminina baby look, gola careca",
+   "cor": {
+    "nome": "Preto",
+    "hex": "#1E1E1E"
+   },
+   "material": {
+    "valor": "Malha 100% algodão penteado fio 30.1, 165 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta premium baby look na cor preto, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 8 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 7).",
+   "arquivo": "/img/produtos/camiseta-premium-baby-look~preto.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "33c4900d6201277fb7864a3155b1ab0db5ad26fc2073ef01fd4b68785c8a11c9",
+   "bytes": 35392,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-premium-baby-look~rosa-bebe",
+   "produto": "Camiseta premium baby look",
+   "categoria": "vestuario",
+   "modelo": "Modelagem feminina baby look, gola careca",
+   "cor": {
+    "nome": "Rosa bebê",
+    "hex": "#F2D6E3"
+   },
+   "material": {
+    "valor": "Malha 100% algodão penteado fio 30.1, 165 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta premium baby look na cor rosa bebê, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 8 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 7).",
+   "arquivo": "/img/produtos/camiseta-premium-baby-look~rosa-bebe.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "d69815653e78512170551688593d0f70e78f94678d16928581a3ba1d5c363431",
+   "bytes": 37548,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-premium-baby-look~roxo",
+   "produto": "Camiseta premium baby look",
+   "categoria": "vestuario",
+   "modelo": "Modelagem feminina baby look, gola careca",
+   "cor": {
+    "nome": "Roxo",
+    "hex": "#4B2A7B"
+   },
+   "material": {
+    "valor": "Malha 100% algodão penteado fio 30.1, 165 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta premium baby look na cor roxo, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 8 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 7).",
+   "arquivo": "/img/produtos/camiseta-premium-baby-look~roxo.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "be97942f77aafd75eae59dad926bd57f622cbd8e0c687ebf81452af5e192f554",
+   "bytes": 46412,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-premium-baby-look~verde-bandeira",
+   "produto": "Camiseta premium baby look",
+   "categoria": "vestuario",
+   "modelo": "Modelagem feminina baby look, gola careca",
+   "cor": {
+    "nome": "Verde bandeira",
+    "hex": "#1F9A4A"
+   },
+   "material": {
+    "valor": "Malha 100% algodão penteado fio 30.1, 165 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta premium baby look na cor verde bandeira, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 8 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 7).",
+   "arquivo": "/img/produtos/camiseta-premium-baby-look~verde-bandeira.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "34474275ea055d9f051d55f5ef10b44aa82f3a75a58a232ccf6231eab33f949d",
+   "bytes": 47724,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-premium-baby-look~verde-musgo",
+   "produto": "Camiseta premium baby look",
+   "categoria": "vestuario",
+   "modelo": "Modelagem feminina baby look, gola careca",
+   "cor": {
+    "nome": "Verde musgo",
+    "hex": "#2E4F3A"
+   },
+   "material": {
+    "valor": "Malha 100% algodão penteado fio 30.1, 165 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta premium baby look na cor verde musgo, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 8 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 7).",
+   "arquivo": "/img/produtos/camiseta-premium-baby-look~verde-musgo.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "5b422b8b93ea589a5f86b2c94a61817f74c3fbfd4d156ab3ee60cca82ca87904",
+   "bytes": 38028,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-premium-baby-look~verde-oliva",
+   "produto": "Camiseta premium baby look",
+   "categoria": "vestuario",
+   "modelo": "Modelagem feminina baby look, gola careca",
+   "cor": {
+    "nome": "Verde-oliva",
+    "hex": "#A5A26C"
+   },
+   "material": {
+    "valor": "Malha 100% algodão penteado fio 30.1, 165 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta premium baby look na cor verde-oliva, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 8 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 7).",
+   "arquivo": "/img/produtos/camiseta-premium-baby-look~verde-oliva.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "677993339663af36835116c1b33bc97183fd19c2495379009d0fd057bd4ce454",
+   "bytes": 38896,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-premium-baby-look~vermelho",
+   "produto": "Camiseta premium baby look",
+   "categoria": "vestuario",
+   "modelo": "Modelagem feminina baby look, gola careca",
+   "cor": {
+    "nome": "Vermelho",
+    "hex": "#C8202F"
+   },
+   "material": {
+    "valor": "Malha 100% algodão penteado fio 30.1, 165 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta premium baby look na cor vermelho, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 8 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 7).",
+   "arquivo": "/img/produtos/camiseta-premium-baby-look~vermelho.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "34b4faea77b7f9d45b6c188cf1758abf498118ca59f6b5dba415c225a5cf6c98",
+   "bytes": 45696,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-premium-gola-v~branco",
+   "produto": "Camiseta premium gola V",
+   "categoria": "vestuario",
+   "modelo": "Decote V",
+   "cor": {
+    "nome": "Branco",
+    "hex": "#F7F5F0"
+   },
+   "material": {
+    "valor": "Malha 100% algodão penteado fio 30.1, 165 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta premium gola V na cor branco, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 16 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 15).",
+   "arquivo": "/img/produtos/camiseta-premium-gola-v~branco.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "8b58507aa376ee85cfa645951ed493b64f28cf50f2b8a41e6fdcb6f26e211690",
+   "bytes": 35072,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-premium-gola-v~preto",
+   "produto": "Camiseta premium gola V",
+   "categoria": "vestuario",
+   "modelo": "Decote V",
+   "cor": {
+    "nome": "Preto",
+    "hex": "#1E1E1E"
+   },
+   "material": {
+    "valor": "Malha 100% algodão penteado fio 30.1, 165 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta premium gola V na cor preto, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 16 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 15).",
+   "arquivo": "/img/produtos/camiseta-premium-gola-v~preto.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "a10afc9b10ba622032a90fcb94ae36eef5663bc011556bc8ee3ffb11a23f49ab",
+   "bytes": 30618,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-premium-long-line~branco",
+   "produto": "Camiseta premium long line",
+   "categoria": "vestuario",
+   "modelo": "Comprimento alongado, gola com acabamento a fio",
+   "cor": {
+    "nome": "Branco",
+    "hex": "#F7F5F0"
+   },
+   "material": {
+    "valor": "Malha 100% algodão penteado fio 30.1, 165 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta premium long line na cor branco, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 18 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 17).",
+   "arquivo": "/img/produtos/camiseta-premium-long-line~branco.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "cad9002caaa2e53d5c7e4fd233b4770ac08bfb0f23fd6f3cb2bec6306cb542b6",
+   "bytes": 32634,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-premium-long-line~preto",
+   "produto": "Camiseta premium long line",
+   "categoria": "vestuario",
+   "modelo": "Comprimento alongado, gola com acabamento a fio",
+   "cor": {
+    "nome": "Preto",
+    "hex": "#1E1E1E"
+   },
+   "material": {
+    "valor": "Malha 100% algodão penteado fio 30.1, 165 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta premium long line na cor preto, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 18 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 17).",
+   "arquivo": "/img/produtos/camiseta-premium-long-line~preto.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "f2a19f00a4f7eb85ed058f1d511b3dec9ad8fa16e306e0115dee3adc47651691",
+   "bytes": 29060,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-premium-manga-longa~branco",
+   "produto": "Camiseta premium manga longa",
+   "categoria": "vestuario",
+   "modelo": "Gola careca, manga longa",
+   "cor": {
+    "nome": "Branco",
+    "hex": "#F7F5F0"
+   },
+   "material": {
+    "valor": "Malha 100% algodão penteado fio 30.1, 165 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta premium de manga longa na cor branco, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 14 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 13).",
+   "arquivo": "/img/produtos/camiseta-premium-manga-longa~branco.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "48671d98ffd1f0f44b7cca16d5e4fca6fbe4921601c7e4eb086be4800e74d6de",
+   "bytes": 31638,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-premium-manga-longa~cinza-chumbo",
+   "produto": "Camiseta premium manga longa",
+   "categoria": "vestuario",
+   "modelo": "Gola careca, manga longa",
+   "cor": {
+    "nome": "Cinza chumbo",
+    "hex": "#4E5560"
+   },
+   "material": {
+    "valor": "Malha 100% algodão penteado fio 30.1, 165 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta premium de manga longa na cor cinza chumbo, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 14 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 13).",
+   "arquivo": "/img/produtos/camiseta-premium-manga-longa~cinza-chumbo.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "e989805a1ef6b2fa76121a66571e13c99229ad7ead47f99f3c889c2471b57a3b",
+   "bytes": 35114,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-premium-manga-longa~cinza-mescla",
+   "produto": "Camiseta premium manga longa",
+   "categoria": "vestuario",
+   "modelo": "Gola careca, manga longa",
+   "cor": {
+    "nome": "Cinza mescla",
+    "hex": "#B7B7B5"
+   },
+   "material": {
+    "valor": "Malha 100% algodão penteado fio 30.1, 165 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta premium de manga longa na cor cinza mescla, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 14 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 13).",
+   "arquivo": "/img/produtos/camiseta-premium-manga-longa~cinza-mescla.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "1e20159e19578609e799bb7355b068e301814f4e00efed7e67974b995297bd38",
+   "bytes": 40996,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-premium-manga-longa~preto",
+   "produto": "Camiseta premium manga longa",
+   "categoria": "vestuario",
+   "modelo": "Gola careca, manga longa",
+   "cor": {
+    "nome": "Preto",
+    "hex": "#1E1E1E"
+   },
+   "material": {
+    "valor": "Malha 100% algodão penteado fio 30.1, 165 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta premium de manga longa na cor preto, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 14 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 13).",
+   "arquivo": "/img/produtos/camiseta-premium-manga-longa~preto.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "429758c70ea7a3f8d0cdd1d3d6e8334982a65b2e03b45738d965c6d3230d3dd6",
+   "bytes": 27816,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-premium-oversized~branco",
+   "produto": "Camiseta premium oversized",
+   "categoria": "vestuario",
+   "modelo": "Modelagem ampla, ombro caído",
+   "cor": {
+    "nome": "Branco",
+    "hex": "#F7F5F0"
+   },
+   "material": {
+    "valor": "Malha 100% algodão penteado fio 30.1, 165 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta premium oversized na cor branco, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 10 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 9).",
+   "arquivo": "/img/produtos/camiseta-premium-oversized~branco.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "efcff80c60a9793ef58cf778d5e0ea5de610437f46211e367e499ea91b109c87",
+   "bytes": 33802,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-premium-oversized~caramelo",
+   "produto": "Camiseta premium oversized",
+   "categoria": "vestuario",
+   "modelo": "Modelagem ampla, ombro caído",
+   "cor": {
+    "nome": "Caramelo",
+    "hex": "#B98A5E"
+   },
+   "material": {
+    "valor": "Malha 100% algodão penteado fio 30.1, 165 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta premium oversized na cor caramelo, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 10 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 9).",
+   "arquivo": "/img/produtos/camiseta-premium-oversized~caramelo.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "b731450c5b26b4a5c2fa85e89061ea76646e1619298e7169bfcd687e7bf2fd71",
+   "bytes": 30168,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-premium-oversized~marrom",
+   "produto": "Camiseta premium oversized",
+   "categoria": "vestuario",
+   "modelo": "Modelagem ampla, ombro caído",
+   "cor": {
+    "nome": "Marrom",
+    "hex": "#5A3A26"
+   },
+   "material": {
+    "valor": "Malha 100% algodão penteado fio 30.1, 165 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta premium oversized na cor marrom, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 10 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 9).",
+   "arquivo": "/img/produtos/camiseta-premium-oversized~marrom.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "4f5dbde6550bd429ed5e8b02f7adc488b407ecb77b5b1b2c9dee45b3a58bf909",
+   "bytes": 35770,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-premium-oversized~off-white",
+   "produto": "Camiseta premium oversized",
+   "categoria": "vestuario",
+   "modelo": "Modelagem ampla, ombro caído",
+   "cor": {
+    "nome": "Off-white",
+    "hex": "#F1ECE0"
+   },
+   "material": {
+    "valor": "Malha 100% algodão penteado fio 30.1, 165 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta premium oversized na cor off-white, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 10 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 9).",
+   "arquivo": "/img/produtos/camiseta-premium-oversized~off-white.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "db3bf3d60966f9e4ce1a2c8f1b4b84ab804b332c783b9647dca4b69ad8121ffe",
+   "bytes": 31182,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-premium-oversized~preto",
+   "produto": "Camiseta premium oversized",
+   "categoria": "vestuario",
+   "modelo": "Modelagem ampla, ombro caído",
+   "cor": {
+    "nome": "Preto",
+    "hex": "#1E1E1E"
+   },
+   "material": {
+    "valor": "Malha 100% algodão penteado fio 30.1, 165 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta premium oversized na cor preto, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 10 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 9).",
+   "arquivo": "/img/produtos/camiseta-premium-oversized~preto.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "2f3249e8f5a74ebdac5d5167b13d5421d54e1a8fe01987cc4f28d0e28a0c4a77",
+   "bytes": 33284,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-premium-oversized~roxo",
+   "produto": "Camiseta premium oversized",
+   "categoria": "vestuario",
+   "modelo": "Modelagem ampla, ombro caído",
+   "cor": {
+    "nome": "Roxo",
+    "hex": "#4B2A7B"
+   },
+   "material": {
+    "valor": "Malha 100% algodão penteado fio 30.1, 165 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta premium oversized na cor roxo, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 10 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 9).",
+   "arquivo": "/img/produtos/camiseta-premium-oversized~roxo.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "71ab6d5b42ec1ff797f44abc73770745be633bbd749533934372ae24751df4d9",
+   "bytes": 40558,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-premium-oversized~verde-oliva",
+   "produto": "Camiseta premium oversized",
+   "categoria": "vestuario",
+   "modelo": "Modelagem ampla, ombro caído",
+   "cor": {
+    "nome": "Verde-oliva",
+    "hex": "#A5A26C"
+   },
+   "material": {
+    "valor": "Malha 100% algodão penteado fio 30.1, 165 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta premium oversized na cor verde-oliva, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 10 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 9).",
+   "arquivo": "/img/produtos/camiseta-premium-oversized~verde-oliva.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "c22a4cec2929401a5c60207ea70e3562c6708116370fb7e242ac1e8e95833e84",
+   "bytes": 30770,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-premium~amarelo-bebe",
+   "produto": "Camiseta premium",
+   "categoria": "vestuario",
+   "modelo": "Gola careca, linha premium",
+   "cor": {
+    "nome": "Amarelo bebê",
+    "hex": "#F6F0C4"
+   },
+   "material": {
+    "valor": "Malha 100% algodão penteado fio 30.1, 165 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta premium na cor amarelo bebê, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 6 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 5).",
+   "arquivo": "/img/produtos/camiseta-premium~amarelo-bebe.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "71031f47a67a5185ee639c89d34882e4e172738925a4230a3b7882656577898d",
+   "bytes": 31880,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-premium~amarelo-canario",
+   "produto": "Camiseta premium",
+   "categoria": "vestuario",
+   "modelo": "Gola careca, linha premium",
+   "cor": {
+    "nome": "Amarelo canário",
+    "hex": "#F2D43A"
+   },
+   "material": {
+    "valor": "Malha 100% algodão penteado fio 30.1, 165 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta premium na cor amarelo canário, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 6 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 5).",
+   "arquivo": "/img/produtos/camiseta-premium~amarelo-canario.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "1c2243b59d466580603c12f5211110ba3727e54b675b5fc95c615ffca75d47f1",
+   "bytes": 36390,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-premium~azul-marinho",
+   "produto": "Camiseta premium",
+   "categoria": "vestuario",
+   "modelo": "Gola careca, linha premium",
+   "cor": {
+    "nome": "Azul-marinho",
+    "hex": "#1E2A4A"
+   },
+   "material": {
+    "valor": "Malha 100% algodão penteado fio 30.1, 165 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta premium na cor azul-marinho, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 6 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 5).",
+   "arquivo": "/img/produtos/camiseta-premium~azul-marinho.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "5d9b0d3f62dfa25cf0fb95fce1b10ca4a9b4d738f8914af26809bc2c7d8310ea",
+   "bytes": 32026,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-premium~azul-royal",
+   "produto": "Camiseta premium",
+   "categoria": "vestuario",
+   "modelo": "Gola careca, linha premium",
+   "cor": {
+    "nome": "Azul royal",
+    "hex": "#1F4FB8"
+   },
+   "material": {
+    "valor": "Malha 100% algodão penteado fio 30.1, 165 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta premium na cor azul royal, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 6 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 5).",
+   "arquivo": "/img/produtos/camiseta-premium~azul-royal.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "5f2e340c92e77717e44ff653176eab462080b78ba96c1c0916e764824714bc1b",
+   "bytes": 40086,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-premium~bordo",
+   "produto": "Camiseta premium",
+   "categoria": "vestuario",
+   "modelo": "Gola careca, linha premium",
+   "cor": {
+    "nome": "Bordô",
+    "hex": "#8E1B2A"
+   },
+   "material": {
+    "valor": "Malha 100% algodão penteado fio 30.1, 165 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta premium na cor bordô, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 6 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 5).",
+   "arquivo": "/img/produtos/camiseta-premium~bordo.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "36f5ce800e359fb777496d54ed13d2c762fc7fd48962e0c215cfdd1d8d01bbf6",
+   "bytes": 40834,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-premium~branco",
+   "produto": "Camiseta premium",
+   "categoria": "vestuario",
+   "modelo": "Gola careca, linha premium",
+   "cor": {
+    "nome": "Branco",
+    "hex": "#F7F5F0"
+   },
+   "material": {
+    "valor": "Malha 100% algodão penteado fio 30.1, 165 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta premium na cor branco, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 6 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 5).",
+   "arquivo": "/img/produtos/camiseta-premium~branco.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "9e6db4721ffada31bea9377fd11aeaeef9d1d144f02747ef505899a1feca75ec",
+   "bytes": 28014,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-premium~caramelo",
+   "produto": "Camiseta premium",
+   "categoria": "vestuario",
+   "modelo": "Gola careca, linha premium",
+   "cor": {
+    "nome": "Caramelo",
+    "hex": "#B98A5E"
+   },
+   "material": {
+    "valor": "Malha 100% algodão penteado fio 30.1, 165 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta premium na cor caramelo, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 6 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 5).",
+   "arquivo": "/img/produtos/camiseta-premium~caramelo.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "6001d756f7320bce5d259fe596d19132ce3e4fac91bfc0a443f5f7957ef8a443",
+   "bytes": 43620,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-premium~cinza-chumbo",
+   "produto": "Camiseta premium",
+   "categoria": "vestuario",
+   "modelo": "Gola careca, linha premium",
+   "cor": {
+    "nome": "Cinza chumbo",
+    "hex": "#4E5560"
+   },
+   "material": {
+    "valor": "Malha 100% algodão penteado fio 30.1, 165 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta premium na cor cinza chumbo, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 6 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 5).",
+   "arquivo": "/img/produtos/camiseta-premium~cinza-chumbo.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "8be9d31e75c30d4b9125ea8dc01095ab111536da35560a0c36ad4c142afed2c9",
+   "bytes": 35170,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-premium~cinza-mescla",
+   "produto": "Camiseta premium",
+   "categoria": "vestuario",
+   "modelo": "Gola careca, linha premium",
+   "cor": {
+    "nome": "Cinza mescla",
+    "hex": "#B7B7B5"
+   },
+   "material": {
+    "valor": "Malha 100% algodão penteado fio 30.1, 165 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta premium na cor cinza mescla, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 6 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 5).",
+   "arquivo": "/img/produtos/camiseta-premium~cinza-mescla.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "08079f196f49e9f9976b358e4f33bcd0cb8c4c015fbe25bbd6c59e40e00feca0",
+   "bytes": 55874,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-premium~laranja",
+   "produto": "Camiseta premium",
+   "categoria": "vestuario",
+   "modelo": "Gola careca, linha premium",
+   "cor": {
+    "nome": "Laranja",
+    "hex": "#F26B3A"
+   },
+   "material": {
+    "valor": "Malha 100% algodão penteado fio 30.1, 165 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta premium na cor laranja, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 6 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 5).",
+   "arquivo": "/img/produtos/camiseta-premium~laranja.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "07d203a92a541a1ed5d0b1bbb4c95ebfa3f30689edd29672b1c880147076debd",
+   "bytes": 28952,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-premium~marrom",
+   "produto": "Camiseta premium",
+   "categoria": "vestuario",
+   "modelo": "Gola careca, linha premium",
+   "cor": {
+    "nome": "Marrom",
+    "hex": "#5A3A26"
+   },
+   "material": {
+    "valor": "Malha 100% algodão penteado fio 30.1, 165 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta premium na cor marrom, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 6 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 5).",
+   "arquivo": "/img/produtos/camiseta-premium~marrom.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "dc1d9358e9019f4852114c153a4a402519f9631f24fd279a6a2e19ef39cb28aa",
+   "bytes": 38012,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-premium~off-white",
+   "produto": "Camiseta premium",
+   "categoria": "vestuario",
+   "modelo": "Gola careca, linha premium",
+   "cor": {
+    "nome": "Off-white",
+    "hex": "#F1ECE0"
+   },
+   "material": {
+    "valor": "Malha 100% algodão penteado fio 30.1, 165 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta premium na cor off-white, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 6 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 5).",
+   "arquivo": "/img/produtos/camiseta-premium~off-white.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "d0ce8057d2df8edec194f5b14b8480c35c6b8357f0e6e46ca97de50556752925",
+   "bytes": 38332,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-premium~pink",
+   "produto": "Camiseta premium",
+   "categoria": "vestuario",
+   "modelo": "Gola careca, linha premium",
+   "cor": {
+    "nome": "Pink",
+    "hex": "#E0338C"
+   },
+   "material": {
+    "valor": "Malha 100% algodão penteado fio 30.1, 165 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta premium na cor pink, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 6 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 5).",
+   "arquivo": "/img/produtos/camiseta-premium~pink.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "1f28d8021b68542aefd31756a0ce56066d3864f834614f7a91eafd12e81598bc",
+   "bytes": 49790,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-premium~preto",
+   "produto": "Camiseta premium",
+   "categoria": "vestuario",
+   "modelo": "Gola careca, linha premium",
+   "cor": {
+    "nome": "Preto",
+    "hex": "#1E1E1E"
+   },
+   "material": {
+    "valor": "Malha 100% algodão penteado fio 30.1, 165 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta premium na cor preto, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 6 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 5).",
+   "arquivo": "/img/produtos/camiseta-premium~preto.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "fb53c2c094cc84ae4b09ca0e671aacefe48600cf12dd041aafbbec12b65a9e85",
+   "bytes": 28880,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-premium~rosa-bebe",
+   "produto": "Camiseta premium",
+   "categoria": "vestuario",
+   "modelo": "Gola careca, linha premium",
+   "cor": {
+    "nome": "Rosa bebê",
+    "hex": "#F2D6E3"
+   },
+   "material": {
+    "valor": "Malha 100% algodão penteado fio 30.1, 165 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta premium na cor rosa bebê, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 6 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 5).",
+   "arquivo": "/img/produtos/camiseta-premium~rosa-bebe.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "f5a6e1ac52e6ac51ff757219432418c43aef5c6a35f733d64fff9c494aac4f30",
+   "bytes": 27116,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-premium~roxo",
+   "produto": "Camiseta premium",
+   "categoria": "vestuario",
+   "modelo": "Gola careca, linha premium",
+   "cor": {
+    "nome": "Roxo",
+    "hex": "#4B2A7B"
+   },
+   "material": {
+    "valor": "Malha 100% algodão penteado fio 30.1, 165 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta premium na cor roxo, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 6 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 5).",
+   "arquivo": "/img/produtos/camiseta-premium~roxo.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "190153d8597190c37544f4de674312beca15bba8d48fe7ea469628c04d724435",
+   "bytes": 42582,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-premium~verde-bandeira",
+   "produto": "Camiseta premium",
+   "categoria": "vestuario",
+   "modelo": "Gola careca, linha premium",
+   "cor": {
+    "nome": "Verde bandeira",
+    "hex": "#1F9A4A"
+   },
+   "material": {
+    "valor": "Malha 100% algodão penteado fio 30.1, 165 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta premium na cor verde bandeira, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 6 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 5).",
+   "arquivo": "/img/produtos/camiseta-premium~verde-bandeira.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "e2ecbd3f61646f8b4c06897c46a66fddb7a9aa73b1b42e8ec06c85cc6f77df0f",
+   "bytes": 40296,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-premium~verde-musgo",
+   "produto": "Camiseta premium",
+   "categoria": "vestuario",
+   "modelo": "Gola careca, linha premium",
+   "cor": {
+    "nome": "Verde musgo",
+    "hex": "#2E4F3A"
+   },
+   "material": {
+    "valor": "Malha 100% algodão penteado fio 30.1, 165 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta premium na cor verde musgo, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 6 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 5).",
+   "arquivo": "/img/produtos/camiseta-premium~verde-musgo.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "90fda85686ff86cc445cffd5cd1b0ed0b6ab292366f8038536dec4832e028b42",
+   "bytes": 39380,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-premium~verde-oliva",
+   "produto": "Camiseta premium",
+   "categoria": "vestuario",
+   "modelo": "Gola careca, linha premium",
+   "cor": {
+    "nome": "Verde-oliva",
+    "hex": "#A5A26C"
+   },
+   "material": {
+    "valor": "Malha 100% algodão penteado fio 30.1, 165 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta premium na cor verde-oliva, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 6 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 5).",
+   "arquivo": "/img/produtos/camiseta-premium~verde-oliva.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "2e255ed4e957e07ae785bdc750d330f0e713e7fc88686c04accf468c61276c79",
+   "bytes": 27942,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-premium~vermelho",
+   "produto": "Camiseta premium",
+   "categoria": "vestuario",
+   "modelo": "Gola careca, linha premium",
+   "cor": {
+    "nome": "Vermelho",
+    "hex": "#C8202F"
+   },
+   "material": {
+    "valor": "Malha 100% algodão penteado fio 30.1, 165 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta premium na cor vermelho, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 6 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 5).",
+   "arquivo": "/img/produtos/camiseta-premium~vermelho.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "6ed1515c60ecb50e1a4c7d981e5008ef67343f9d3df1d6f83caa2224feab20ef",
+   "bytes": 42218,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-tech-modal-feminina~azul-marinho",
+   "produto": "Camiseta tech modal feminina",
+   "categoria": "vestuario",
+   "modelo": "Modelagem feminina, toque macio e elasticidade",
+   "cor": {
+    "nome": "Azul-marinho",
+    "hex": "#1E2A4A"
+   },
+   "material": {
+    "valor": "Malha 96% modal e 4% elastano, 170 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta tech modal feminina na cor azul-marinho, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 38 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 37).",
+   "arquivo": "/img/produtos/camiseta-tech-modal-feminina~azul-marinho.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "1f0c1ecce6d4482cf182e76a6a63a2abc370a6dbd3755a5aeb67848a30ecef62",
+   "bytes": 38702,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-tech-modal-feminina~off-white",
+   "produto": "Camiseta tech modal feminina",
+   "categoria": "vestuario",
+   "modelo": "Modelagem feminina, toque macio e elasticidade",
+   "cor": {
+    "nome": "Off-white",
+    "hex": "#F1ECE0"
+   },
+   "material": {
+    "valor": "Malha 96% modal e 4% elastano, 170 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta tech modal feminina na cor off-white, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 38 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 37).",
+   "arquivo": "/img/produtos/camiseta-tech-modal-feminina~off-white.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "23ba7b68044e1216c3dade3ac908aff778bf3e5ac251a1fcb9f7d2219fe954ae",
+   "bytes": 34658,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-tech-modal-feminina~preto",
+   "produto": "Camiseta tech modal feminina",
+   "categoria": "vestuario",
+   "modelo": "Modelagem feminina, toque macio e elasticidade",
+   "cor": {
+    "nome": "Preto",
+    "hex": "#1E1E1E"
+   },
+   "material": {
+    "valor": "Malha 96% modal e 4% elastano, 170 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta tech modal feminina na cor preto, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 38 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 37).",
+   "arquivo": "/img/produtos/camiseta-tech-modal-feminina~preto.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "bd914599b85e5e63b8afb0c38db3723e5b4bec2e302626285e7d9e56b47581cc",
+   "bytes": 38288,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-tech-modal~azul-marinho",
+   "produto": "Camiseta tech modal",
+   "categoria": "vestuario",
+   "modelo": "Gola careca, toque macio e elasticidade",
+   "cor": {
+    "nome": "Azul-marinho",
+    "hex": "#1E2A4A"
+   },
+   "material": {
+    "valor": "Malha 96% modal e 4% elastano, 170 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta tech modal na cor azul-marinho, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 36 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 35).",
+   "arquivo": "/img/produtos/camiseta-tech-modal~azul-marinho.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "72dd9b55291b22f853775a218774846189a5957a859b0083d056678ca01faf1c",
+   "bytes": 40970,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-tech-modal~off-white",
+   "produto": "Camiseta tech modal",
+   "categoria": "vestuario",
+   "modelo": "Gola careca, toque macio e elasticidade",
+   "cor": {
+    "nome": "Off-white",
+    "hex": "#F1ECE0"
+   },
+   "material": {
+    "valor": "Malha 96% modal e 4% elastano, 170 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta tech modal na cor off-white, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 36 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 35).",
+   "arquivo": "/img/produtos/camiseta-tech-modal~off-white.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "85ac95c0551e588789c9dc6052f928d54d455c6706675f180174ff83471a32c1",
+   "bytes": 29410,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-tech-modal~preto",
+   "produto": "Camiseta tech modal",
+   "categoria": "vestuario",
+   "modelo": "Gola careca, toque macio e elasticidade",
+   "cor": {
+    "nome": "Preto",
+    "hex": "#1E1E1E"
+   },
+   "material": {
+    "valor": "Malha 96% modal e 4% elastano, 170 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta tech modal na cor preto, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 36 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 35).",
+   "arquivo": "/img/produtos/camiseta-tech-modal~preto.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "7c90bc77a448caf3dcdda0d77882b129dd3651cad928b22c67993e5f50ddc87c",
+   "bytes": 32110,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-vestido-estonada~azul-bebe",
+   "produto": "Camiseta vestido estonada",
+   "categoria": "vestuario",
+   "modelo": "Comprimento de vestido, efeito desbotado",
+   "cor": {
+    "nome": "Azul bebê",
+    "hex": "#9DB8E2"
+   },
+   "material": {
+    "valor": "Malha 100% algodão penteado fio 30.1, 165 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta vestido estonada na cor azul bebê, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 26 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 25).",
+   "arquivo": "/img/produtos/camiseta-vestido-estonada~azul-bebe.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "9cd69cd86379b0a38ef5cdcb72db41a72f4bf34ac4515844d5352e13e04defe0",
+   "bytes": 34290,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-vestido-estonada~cinza-chumbo",
+   "produto": "Camiseta vestido estonada",
+   "categoria": "vestuario",
+   "modelo": "Comprimento de vestido, efeito desbotado",
+   "cor": {
+    "nome": "Cinza chumbo",
+    "hex": "#5A5A5C"
+   },
+   "material": {
+    "valor": "Malha 100% algodão penteado fio 30.1, 165 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta vestido estonada na cor cinza chumbo, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 26 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 25).",
+   "arquivo": "/img/produtos/camiseta-vestido-estonada~cinza-chumbo.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "0e51afcd3c56867bc6c5a66d7b8eed6395a0797fa9d9cac21287bdbc94580d59",
+   "bytes": 41226,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-vestido-estonada~rosa-bebe",
+   "produto": "Camiseta vestido estonada",
+   "categoria": "vestuario",
+   "modelo": "Comprimento de vestido, efeito desbotado",
+   "cor": {
+    "nome": "Rosa bebê",
+    "hex": "#E28A99"
+   },
+   "material": {
+    "valor": "Malha 100% algodão penteado fio 30.1, 165 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta vestido estonada na cor rosa bebê, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 26 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 25).",
+   "arquivo": "/img/produtos/camiseta-vestido-estonada~rosa-bebe.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "a2fe95ac6dbb2f5098ad39007fd71950d98a9712235bd102966881b8301fca74",
+   "bytes": 33314,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta-vestido-estonada~verde-agua",
+   "produto": "Camiseta vestido estonada",
+   "categoria": "vestuario",
+   "modelo": "Comprimento de vestido, efeito desbotado",
+   "cor": {
+    "nome": "Verde-água",
+    "hex": "#8FE0CB"
+   },
+   "material": {
+    "valor": "Malha 100% algodão penteado fio 30.1, 165 g/m²",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta vestido estonada na cor verde-água, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 26 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 25).",
+   "arquivo": "/img/produtos/camiseta-vestido-estonada~verde-agua.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "274eec46d0a96cb43079f6e4c548b32e12edc2bae12249b38289ab353a109352",
+   "bytes": 39346,
+   "atualizado_em": "2026-11-06"
+  },
+  {
    "fornecedor": null,
    "bytes": 1467892,
    "sku": null,
@@ -8444,6 +12995,80 @@
    "atualizado_em": "2026-10-18"
   },
   {
+   "id": "camiseta~cinza-chumbo",
+   "produto": "Camiseta masculina",
+   "categoria": "vestuario",
+   "modelo": "Gola careca",
+   "cor": {
+    "nome": "Cinza chumbo",
+    "hex": "#4E5560"
+   },
+   "material": {
+    "valor": "Meia malha 100% algodão fio 24/1 cardado, 150 g/m²",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta masculina na cor cinza chumbo, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 4 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor, a confirmar (as outras cores do modelo são de outra origem).",
+   "arquivo": "/img/produtos/camiseta~cinza-chumbo.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "165219bffebffdcf7055711c34b3d53ab49ca9b4e49df94dda8b55e2a6fafe98",
+   "bytes": 35792,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "camiseta~cinza-mescla",
+   "produto": "Camiseta masculina",
+   "categoria": "vestuario",
+   "modelo": "Gola careca",
+   "cor": {
+    "nome": "Cinza mescla",
+    "hex": "#B7B7B5"
+   },
+   "material": {
+    "valor": "Meia malha 100% algodão fio 24/1 cardado, 150 g/m²",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta masculina na cor cinza mescla, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 4 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor, a confirmar (as outras cores do modelo são de outra origem).",
+   "arquivo": "/img/produtos/camiseta~cinza-mescla.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "9b9d843bd62af6d12971147ee89f1a7079d2ab38efc9df842750cf7bd6aa188f",
+   "bytes": 39278,
+   "atualizado_em": "2026-11-06"
+  },
+  {
    "produto": "Camiseta masculina",
    "categoria": "vestuario",
    "modelo": "Gola careca",
@@ -8772,6 +13397,43 @@
    "largura": 1024,
    "altura": 1024,
    "atualizado_em": "2026-10-18"
+  },
+  {
+   "id": "camiseta~verde-musgo",
+   "produto": "Camiseta masculina",
+   "categoria": "vestuario",
+   "modelo": "Gola careca",
+   "cor": {
+    "nome": "Verde musgo",
+    "hex": "#2E4F3A"
+   },
+   "material": {
+    "valor": "Meia malha 100% algodão fio 24/1 cardado, 150 g/m²",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camiseta masculina na cor verde musgo, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 4 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor, a confirmar (as outras cores do modelo são de outra origem).",
+   "arquivo": "/img/produtos/camiseta~verde-musgo.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "9d48677beb83ef7001a8440b5fbc89dfaf547d6e49155ba2c7b99407ddb1ff79",
+   "bytes": 33316,
+   "atualizado_em": "2026-11-06"
   },
   {
    "produto": "Camiseta masculina",
@@ -22747,6 +27409,376 @@
    "atualizado_em": "2026-10-20"
   },
   {
+   "id": "moletom-blusao~areia",
+   "produto": "Moletom blusão",
+   "categoria": "vestuario",
+   "modelo": "Gola careca, punhos e barra em ribana",
+   "cor": {
+    "nome": "Areia",
+    "hex": "#D9C7A3"
+   },
+   "material": {
+    "valor": "Moletom 2 cabos, 50% algodão e 50% poliéster",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Moletom blusão na cor areia, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 46 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 45).",
+   "arquivo": "/img/produtos/moletom-blusao~areia.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "e9b72ccff08dd2da44c3b2539484a9c0ca7b5f671194cee7203a6ad571beba34",
+   "bytes": 32886,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "moletom-blusao~azul-marinho",
+   "produto": "Moletom blusão",
+   "categoria": "vestuario",
+   "modelo": "Gola careca, punhos e barra em ribana",
+   "cor": {
+    "nome": "Azul-marinho",
+    "hex": "#1E2A4A"
+   },
+   "material": {
+    "valor": "Moletom 2 cabos, 50% algodão e 50% poliéster",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Moletom blusão na cor azul-marinho, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 46 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 45).",
+   "arquivo": "/img/produtos/moletom-blusao~azul-marinho.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "92fc75de0edf57c722c38325e48417f518ff857bf74a7d9523fb559368127cf2",
+   "bytes": 39412,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "moletom-blusao~branco",
+   "produto": "Moletom blusão",
+   "categoria": "vestuario",
+   "modelo": "Gola careca, punhos e barra em ribana",
+   "cor": {
+    "nome": "Branco",
+    "hex": "#F7F5F0"
+   },
+   "material": {
+    "valor": "Moletom 2 cabos, 50% algodão e 50% poliéster",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Moletom blusão na cor branco, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 46 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 45).",
+   "arquivo": "/img/produtos/moletom-blusao~branco.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "618b468ed7e612eb998df8131759e8718ecd1417f2dc8a07eaaf5fa641b2e0d9",
+   "bytes": 24512,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "moletom-blusao~caramelo",
+   "produto": "Moletom blusão",
+   "categoria": "vestuario",
+   "modelo": "Gola careca, punhos e barra em ribana",
+   "cor": {
+    "nome": "Caramelo",
+    "hex": "#B98A5E"
+   },
+   "material": {
+    "valor": "Moletom 2 cabos, 50% algodão e 50% poliéster",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Moletom blusão na cor caramelo, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 46 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 45).",
+   "arquivo": "/img/produtos/moletom-blusao~caramelo.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "0b28c97591112dacbb4b177added3cc5193cc40380fd6065a6013281a34b3681",
+   "bytes": 40126,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "moletom-blusao~cinza-mescla",
+   "produto": "Moletom blusão",
+   "categoria": "vestuario",
+   "modelo": "Gola careca, punhos e barra em ribana",
+   "cor": {
+    "nome": "Cinza mescla",
+    "hex": "#B7B7B5"
+   },
+   "material": {
+    "valor": "Moletom 2 cabos, 50% algodão e 50% poliéster",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Moletom blusão na cor cinza mescla, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 46 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 45).",
+   "arquivo": "/img/produtos/moletom-blusao~cinza-mescla.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "abf324e5dd19a4f76b4645a73f62516cad22939c7b678d3e4a1846d11aa879a5",
+   "bytes": 48566,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "moletom-blusao~off-white",
+   "produto": "Moletom blusão",
+   "categoria": "vestuario",
+   "modelo": "Gola careca, punhos e barra em ribana",
+   "cor": {
+    "nome": "Off-white",
+    "hex": "#F1ECE0"
+   },
+   "material": {
+    "valor": "Moletom 2 cabos, 50% algodão e 50% poliéster",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Moletom blusão na cor off-white, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 46 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 45).",
+   "arquivo": "/img/produtos/moletom-blusao~off-white.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "2d9f558f1d19f8bfce1a48ec8787b95076996c3507a97740035f66f352315fe7",
+   "bytes": 27776,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "moletom-blusao~preto",
+   "produto": "Moletom blusão",
+   "categoria": "vestuario",
+   "modelo": "Gola careca, punhos e barra em ribana",
+   "cor": {
+    "nome": "Preto",
+    "hex": "#1E1E1E"
+   },
+   "material": {
+    "valor": "Moletom 2 cabos, 50% algodão e 50% poliéster",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Moletom blusão na cor preto, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 46 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 45).",
+   "arquivo": "/img/produtos/moletom-blusao~preto.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "04c7152a638b326d480c38e672a517cbdf7c087b5abacf421b75242ff9df3215",
+   "bytes": 32216,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "moletom-blusao~roxo",
+   "produto": "Moletom blusão",
+   "categoria": "vestuario",
+   "modelo": "Gola careca, punhos e barra em ribana",
+   "cor": {
+    "nome": "Roxo",
+    "hex": "#4B2A7B"
+   },
+   "material": {
+    "valor": "Moletom 2 cabos, 50% algodão e 50% poliéster",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Moletom blusão na cor roxo, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 46 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 45).",
+   "arquivo": "/img/produtos/moletom-blusao~roxo.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "bb87ee3fd8285cf96830dbc46f0e55e6b101a60d446d61de66b39801d1bba9b5",
+   "bytes": 46004,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "moletom-blusao~verde-militar",
+   "produto": "Moletom blusão",
+   "categoria": "vestuario",
+   "modelo": "Gola careca, punhos e barra em ribana",
+   "cor": {
+    "nome": "Verde militar",
+    "hex": "#5B6B45"
+   },
+   "material": {
+    "valor": "Moletom 2 cabos, 50% algodão e 50% poliéster",
+    "status": "confirmado"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Moletom blusão na cor verde militar, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 46 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor (p. 45).",
+   "arquivo": "/img/produtos/moletom-blusao~verde-militar.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "50b3f27db33c0986c8216ed8d88d13bef95c21db151e9834a2524cb9797103a2",
+   "bytes": 32290,
+   "atualizado_em": "2026-11-06"
+  },
+  {
+   "id": "moletom~areia",
+   "produto": "Moletom com capuz",
+   "categoria": "vestuario",
+   "modelo": "Bolso canguru",
+   "cor": {
+    "nome": "Areia",
+    "hex": "#D9C7A3"
+   },
+   "material": {
+    "valor": "Moletom 2 cabos, 50% algodão e 50% poliéster",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Moletom com capuz na cor areia, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 44 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor, a confirmar (as outras cores do modelo são de outra origem).",
+   "arquivo": "/img/produtos/moletom~areia.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "50f54503806cdc7dfaddd077e48aa5415f0d783777f03e251f8a546eae27da70",
+   "bytes": 34438,
+   "atualizado_em": "2026-11-06"
+  },
+  {
    "fornecedor": null,
    "bytes": 1355982,
    "sku": null,
@@ -23041,6 +28073,43 @@
    "atualizado_em": "2026-10-18"
   },
   {
+   "id": "moletom~caramelo",
+   "produto": "Moletom com capuz",
+   "categoria": "vestuario",
+   "modelo": "Bolso canguru",
+   "cor": {
+    "nome": "Caramelo",
+    "hex": "#B98A5E"
+   },
+   "material": {
+    "valor": "Moletom 2 cabos, 50% algodão e 50% poliéster",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Moletom com capuz na cor caramelo, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 44 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor, a confirmar (as outras cores do modelo são de outra origem).",
+   "arquivo": "/img/produtos/moletom~caramelo.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "c5935b4ec9b60e1c1bfedea8e544f4087976036ce4f646cc3a84a37b30553358",
+   "bytes": 43422,
+   "atualizado_em": "2026-11-06"
+  },
+  {
    "fornecedor": null,
    "bytes": 1593997,
    "sku": null,
@@ -23115,6 +28184,43 @@
    "atualizado_em": "2026-10-18"
   },
   {
+   "id": "moletom~cinza-mescla",
+   "produto": "Moletom com capuz",
+   "categoria": "vestuario",
+   "modelo": "Bolso canguru",
+   "cor": {
+    "nome": "Cinza mescla",
+    "hex": "#B7B7B5"
+   },
+   "material": {
+    "valor": "Moletom 2 cabos, 50% algodão e 50% poliéster",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Moletom com capuz na cor cinza mescla, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 44 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor, a confirmar (as outras cores do modelo são de outra origem).",
+   "arquivo": "/img/produtos/moletom~cinza-mescla.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "78bbd25f6a669efcbc12239bec0036e0469db620a5e37693730d4a84b529804a",
+   "bytes": 45516,
+   "atualizado_em": "2026-11-06"
+  },
+  {
    "produto": "Moletom com capuz",
    "categoria": "vestuario",
    "modelo": "Bolso canguru",
@@ -23149,6 +28255,43 @@
    "largura": 1024,
    "altura": 1024,
    "atualizado_em": "2026-10-18"
+  },
+  {
+   "id": "moletom~off-white",
+   "produto": "Moletom com capuz",
+   "categoria": "vestuario",
+   "modelo": "Bolso canguru",
+   "cor": {
+    "nome": "Off-white",
+    "hex": "#F1ECE0"
+   },
+   "material": {
+    "valor": "Moletom 2 cabos, 50% algodão e 50% poliéster",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Moletom com capuz na cor off-white, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 44 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor, a confirmar (as outras cores do modelo são de outra origem).",
+   "arquivo": "/img/produtos/moletom~off-white.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "a322c567370e6c29d4500f413981ea915b73f336fae3bfbdc8aa5e7649f2765a",
+   "bytes": 21820,
+   "atualizado_em": "2026-11-06"
   },
   {
    "fornecedor": null,
@@ -23372,6 +28515,43 @@
    "atualizado_em": "2026-10-18"
   },
   {
+   "id": "moletom~roxo",
+   "produto": "Moletom com capuz",
+   "categoria": "vestuario",
+   "modelo": "Bolso canguru",
+   "cor": {
+    "nome": "Roxo",
+    "hex": "#4B2A7B"
+   },
+   "material": {
+    "valor": "Moletom 2 cabos, 50% algodão e 50% poliéster",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Moletom com capuz na cor roxo, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 44 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor, a confirmar (as outras cores do modelo são de outra origem).",
+   "arquivo": "/img/produtos/moletom~roxo.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "4e875d5806841c7f8ca404b00d449d0bdd926937dc8a9a40107c790007765bfb",
+   "bytes": 50804,
+   "atualizado_em": "2026-11-06"
+  },
+  {
    "fornecedor": null,
    "bytes": 1431086,
    "sku": null,
@@ -23444,6 +28624,43 @@
    "largura": 1024,
    "altura": 1024,
    "atualizado_em": "2026-10-18"
+  },
+  {
+   "id": "moletom~verde-militar",
+   "produto": "Moletom com capuz",
+   "categoria": "vestuario",
+   "modelo": "Bolso canguru",
+   "cor": {
+    "nome": "Verde militar",
+    "hex": "#5B6B45"
+   },
+   "material": {
+    "valor": "Moletom 2 cabos, 50% algodão e 50% poliéster",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Moletom com capuz na cor verde militar, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 44 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor, a confirmar (as outras cores do modelo são de outra origem).",
+   "arquivo": "/img/produtos/moletom~verde-militar.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "d93746164e071b9edbcb17a0f2c15bc9531f0fe73f8fffd3027ca7f3eb4faadd",
+   "bytes": 35036,
+   "atualizado_em": "2026-11-06"
   },
   {
    "produto": "Moletom com capuz",
@@ -24519,6 +29736,43 @@
    "atualizado_em": "2026-10-20"
   },
   {
+   "id": "polo-feminina~areia",
+   "produto": "Polo feminina",
+   "categoria": "vestuario",
+   "modelo": "Modelagem feminina",
+   "cor": {
+    "nome": "Areia",
+    "hex": "#D9C7A3"
+   },
+   "material": {
+    "valor": "Malha 60% poliéster e 40% algodão, 200 g/m²",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camisa polo feminina na cor areia, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 30 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor, a confirmar (as outras cores do modelo são de outra origem).",
+   "arquivo": "/img/produtos/polo-feminina~areia.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "d110661dd07938b33f723bddb4dac90b832236c91e237e201033161f5f2848cd",
+   "bytes": 35676,
+   "atualizado_em": "2026-11-06"
+  },
+  {
    "fornecedor": null,
    "bytes": 1702059,
    "sku": null,
@@ -24888,6 +30142,43 @@
    "atualizado_em": "2026-10-18"
   },
   {
+   "id": "polo-feminina~cinza-mescla",
+   "produto": "Polo feminina",
+   "categoria": "vestuario",
+   "modelo": "Modelagem feminina",
+   "cor": {
+    "nome": "Cinza mescla",
+    "hex": "#B7B7B5"
+   },
+   "material": {
+    "valor": "Malha 60% poliéster e 40% algodão, 200 g/m²",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camisa polo feminina na cor cinza mescla, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 30 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor, a confirmar (as outras cores do modelo são de outra origem).",
+   "arquivo": "/img/produtos/polo-feminina~cinza-mescla.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "caa3745355b11eaabf131a77a3f4be493017443925cb8df11b13c752a6eb532c",
+   "bytes": 46400,
+   "atualizado_em": "2026-11-06"
+  },
+  {
    "produto": "Polo feminina",
    "categoria": "vestuario",
    "modelo": "Modelagem feminina",
@@ -25218,6 +30509,43 @@
    "atualizado_em": "2026-10-18"
   },
   {
+   "id": "polo-feminina~verde-musgo",
+   "produto": "Polo feminina",
+   "categoria": "vestuario",
+   "modelo": "Modelagem feminina",
+   "cor": {
+    "nome": "Verde musgo",
+    "hex": "#2E4F3A"
+   },
+   "material": {
+    "valor": "Malha 60% poliéster e 40% algodão, 200 g/m²",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camisa polo feminina na cor verde musgo, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 30 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor, a confirmar (as outras cores do modelo são de outra origem).",
+   "arquivo": "/img/produtos/polo-feminina~verde-musgo.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "cf0bbf084f05b2aa42e07b69842bc489890b7042749b2b9c93ddccf569e6d9ad",
+   "bytes": 42612,
+   "atualizado_em": "2026-11-06"
+  },
+  {
    "produto": "Polo feminina",
    "categoria": "vestuario",
    "modelo": "Modelagem feminina",
@@ -25362,6 +30690,43 @@
    "largura": 1024,
    "altura": 1024,
    "atualizado_em": "2026-10-18"
+  },
+  {
+   "id": "polo~areia",
+   "produto": "Polo masculina",
+   "categoria": "vestuario",
+   "modelo": "Gola e botões",
+   "cor": {
+    "nome": "Areia",
+    "hex": "#D9C7A3"
+   },
+   "material": {
+    "valor": "Malha 60% poliéster e 40% algodão, 200 g/m²",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camisa polo masculina na cor areia, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 28 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor, a confirmar (as outras cores do modelo são de outra origem).",
+   "arquivo": "/img/produtos/polo~areia.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "ad0b0c61f756c493d6d68e466b3551e940ae05c57b707d538ca87325ce6cfda4",
+   "bytes": 34948,
+   "atualizado_em": "2026-11-06"
   },
   {
    "fornecedor": null,
@@ -25732,6 +31097,43 @@
    "altura": 1024
   },
   {
+   "id": "polo~cinza-mescla",
+   "produto": "Polo masculina",
+   "categoria": "vestuario",
+   "modelo": "Gola e botões",
+   "cor": {
+    "nome": "Cinza mescla",
+    "hex": "#B7B7B5"
+   },
+   "material": {
+    "valor": "Malha 60% poliéster e 40% algodão, 200 g/m²",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camisa polo masculina na cor cinza mescla, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 28 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor, a confirmar (as outras cores do modelo são de outra origem).",
+   "arquivo": "/img/produtos/polo~cinza-mescla.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "c64ee5ed6b0ac378e8a5ad17713053513ed00a370ea6d4ef64a0eb37040c17a5",
+   "bytes": 42204,
+   "atualizado_em": "2026-11-06"
+  },
+  {
    "produto": "Polo masculina",
    "categoria": "vestuario",
    "modelo": "Gola e botões",
@@ -26060,6 +31462,43 @@
    "atualizado_em": "2026-10-18",
    "largura": 1024,
    "altura": 1024
+  },
+  {
+   "id": "polo~verde-musgo",
+   "produto": "Polo masculina",
+   "categoria": "vestuario",
+   "modelo": "Gola e botões",
+   "cor": {
+    "nome": "Verde musgo",
+    "hex": "#2E4F3A"
+   },
+   "material": {
+    "valor": "Malha 60% poliéster e 40% algodão, 200 g/m²",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camisa polo masculina na cor verde musgo, em foto com modelo, sem estampa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Catálogo 2026 (PDF do fornecedor), importado em 06/11/2026. Foto do fornecedor com modelo, ilustrativa.",
+   "substitui": null,
+   "observacao": "Foto da p. 28 do Catálogo 2026 do fornecedor, com o fundo estendido para ficar quadrada. Material conforme o catálogo do fornecedor, a confirmar (as outras cores do modelo são de outra origem).",
+   "arquivo": "/img/produtos/polo~verde-musgo.webp",
+   "mestre": null,
+   "largura": 1024,
+   "altura": 1024,
+   "sha256": "2284579ea3be7e1df8aa9f795236837cd1005cdc61fede072d4b3b3f7f1085a8",
+   "bytes": 33204,
+   "atualizado_em": "2026-11-06"
   },
   {
    "produto": "Polo masculina",

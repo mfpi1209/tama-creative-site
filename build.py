@@ -2295,7 +2295,7 @@ def ativ_formatos():
         id_attr = f' id="{esc(i["id"])}"' if i.get('id') else ''
         link = (' ' + ativ_evento_link('ativ-' + i['id'].replace('fmt-', ''))) if i.get('pedido') else ''
         antiga = '<span id="fmt-decoracao" class="ancora-antiga"></span>' if i.get('id') == 'fmt-buffet' and not any(x.get('id') == 'fmt-decoracao' for x in f.get('itens') or []) else ''
-        linhas.append(f'      <div class="item"{id_attr}>{antiga}{arc()}<div><h3>{esc(i["titulo"])}</h3><p>{esc(i["texto"])}{link}</p></div></div>')
+        linhas.append(f'      <div class="item"{id_attr}>{arc()}<div>{antiga}<h3>{esc(i["titulo"])}</h3><p>{esc(i["texto"])}{link}</p></div></div>')
     if (f.get('titulo') or '').strip():
         eyebrow = f'<p class="eyebrow">{esc(f["eyebrow"])}</p>' if (f.get('eyebrow') or '').strip() else ''
         texto = f'<p class="muted">{esc(f["texto"])}</p>' if (f.get('texto') or '').strip() else ''

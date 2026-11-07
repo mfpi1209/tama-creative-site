@@ -1452,11 +1452,6 @@ body:has(.pdp-wrap) .crumbs.wrap { max-width: 1440px; padding-inline: clamp(16px
 .ativ-cenas picture, .ativ-cenas img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; border-radius: var(--radius); }
 .ativ-cenas figcaption { margin-top: 8px; font-size: var(--s-xs); color: var(--muted); }
 @media (max-width: 760px) { .ativ-cenas { grid-template-columns: minmax(0, 1fr); } }
-/* cinco atalhos com ícone em Ativações: entre 901 e 1280 px, três colunas (3 + 2) para os rótulos não quebrarem em três linhas */
-@media (min-width: 901px) and (max-width: 1280px) {
-  .atalhos[aria-labelledby="ativ-atalhos-t"] .atalhos-list { grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: 8px; }
-  .atalhos[aria-labelledby="ativ-atalhos-t"] .atalhos-list li { justify-content: flex-start; }
-  .atalhos[aria-labelledby="ativ-atalhos-t"] .atalhos-list li:nth-child(3n + 1) { border-left: 0; padding-left: 0; }
 }
 
 /* Padrão do site (auditoria de 06/11/2026, docs/proposta-01/AUDITORIA.md): o que a /v2/ estabeleceu vale para todas
@@ -1511,6 +1506,29 @@ body[data-service="ativacoes"] .foto-hero-photo img { object-position: center; }
 body[data-service="ativacoes"] .foto-hero-photo figcaption { right: var(--gutter); bottom: 12px; }
 @media (max-width: 1100px) { body[data-service="ativacoes"] .foto-hero-photo { aspect-ratio: 2 / 1; } }
 @media (max-width: 760px) { body[data-service="ativacoes"] .foto-hero-photo { aspect-ratio: 4 / 3; } }
+
+/* atalhos: no computador cada rótulo fica numa linha só (colunas do tamanho do texto, espaçamento igual entre elas);
+   quando não cabem, a lista rola de lado em vez de quebrar. No celular segue a lista em coluna. */
+@media (min-width: 901px) {
+  .atalhos-list { grid-template-columns: repeat(var(--n, 4), auto); justify-content: space-between; column-gap: clamp(8px, 1vw, 20px); overflow-x: auto; scrollbar-width: none; padding-bottom: 2px; }
+  .atalhos-list::-webkit-scrollbar { display: none; }
+  .atalhos-list li { white-space: nowrap; }
+  .atalhos-list li + li { padding-left: clamp(8px, 1vw, 20px); }
+  .atalhos-list:has(svg:not(.i-arrow)) li { justify-content: flex-start; }
+  .atalhos-list a { gap: 10px; font-size: clamp(.9375rem, .6rem + .45vw, 1.0625rem); }
+  .atalhos-list a svg:not(.i-arrow) { width: clamp(28px, 2.5vw, 36px); height: clamp(28px, 2.5vw, 36px); margin-right: 0; }
+}
+/* tablet (901–1100 px): 5 ou 6 atalhos não cabem numa linha; ficam 3 por linha, cada rótulo inteiro, sem rolagem */
+@media (min-width: 901px) and (max-width: 1100px) {
+  .atalhos-list { grid-template-columns: repeat(3, auto); justify-content: start; column-gap: clamp(20px, 3vw, 40px); row-gap: 8px; overflow: visible; }
+  .atalhos-list li + li { padding-left: clamp(20px, 3vw, 40px); }
+  .atalhos-list li:nth-child(3n + 1) { border-left: 0; padding-left: 0; }
+}
+/* Eventos › Formatos: a âncora antiga #fmt-decoracao não ocupa espaço; com número ímpar de blocos, o último ocupa a
+   linha inteira (sem buraco na grade de duas colunas) */
+.ancora-antiga { display: block; height: 0; }
+#formatos .cols-2 > .item:last-child:nth-child(odd) { grid-column: 1 / -1; }
+#formatos .cols-2 > .item:last-child:nth-child(odd) > div { max-width: 64ch; }
 
 /* /v2/ (body.v2): home da proposta 01 "Soluções compactas" (pacote TAMA-kit-visual de 02/11/2026).
    Referência docs/proposta-01/home-aprovada.png; medidas de docs/proposta-01/VISUAL.md (desktop 1440: container

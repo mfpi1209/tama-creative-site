@@ -596,6 +596,80 @@
    "substitui": null
   },
   {
+   "id": "agenda-diaria-2027~marrom",
+   "produto": "Agenda Diária 2027",
+   "categoria": "canetas-escritorio",
+   "modelo": "Altura Altura : 18,9 cm  Largura Largura : 14,9 cm  Profundidade Profundidade : 2,4 cm  Medidas gravação Medidas gravação : 6,5 cm x 7,5 cm",
+   "cor": {
+    "nome": "Marrom",
+    "hex": "#BD5A0A"
+   },
+   "material": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Agenda Diária 2027 marrom, com a marca TaMa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Foto enviada pelo Inventário (/admin/inventario/) em 02/11/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/agenda-diaria-2027~marrom.webp",
+   "mestre": null,
+   "largura": 1254,
+   "altura": 836,
+   "sha256": "dddedbe4045b8129d282e8f38993a1da3a65b6610d7f2a7e503fadb9f3dd6405",
+   "bytes": 109670,
+   "atualizado_em": "2026-11-02"
+  },
+  {
+   "id": "agenda-diaria-2027~preta",
+   "produto": "Agenda Diária 2027",
+   "categoria": "canetas-escritorio",
+   "modelo": "Altura Altura : 18,9 cm  Largura Largura : 14,9 cm  Profundidade Profundidade : 2,4 cm  Medidas gravação Medidas gravação : 6,5 cm x 7,5 cm",
+   "cor": {
+    "nome": "Preta",
+    "hex": "#2C2D30"
+   },
+   "material": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Agenda Diária 2027 preta, com a marca TaMa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "revisao",
+   "origem": "Foto enviada pelo Inventário (/admin/inventario/) em 02/11/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/agenda-diaria-2027~preta.webp",
+   "mestre": null,
+   "largura": 1254,
+   "altura": 836,
+   "sha256": "0367a661414f5ae5c8d65504d99b0f5476c5d2733aefdab0e54ff253ecc661de",
+   "bytes": 127290,
+   "atualizado_em": "2026-11-02"
+  },
+  {
    "id": "agenda-diaria~azul",
    "produto": "Agenda diária wire-o",
    "categoria": "canetas-escritorio",
@@ -4598,6 +4672,43 @@
    "atualizado_em": "2026-10-20"
   },
   {
+   "id": "caderneta-para-anotacoes-com-caneta~preto",
+   "produto": "CADERNETA PARA ANOTAÇÕES COM CANETA",
+   "categoria": "canetas-escritorio",
+   "modelo": "CADERNETA PARA ANOTAÇÕES",
+   "cor": {
+    "nome": "Preto",
+    "hex": "#060A13"
+   },
+   "material": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "CADERNETA PARA ANOTAÇÕES COM CANETA preto, com a marca TaMa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "aprovada",
+   "origem": "Foto enviada pelo Inventário (/admin/inventario/) em 05/11/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/caderneta-para-anotacoes-com-caneta~preto.webp",
+   "mestre": null,
+   "largura": 852,
+   "altura": 630,
+   "sha256": "094a96362fe87c49bc6e7c4387c4b2ceed12d4243b81c0e932e3097dd7d94082",
+   "bytes": 18714,
+   "atualizado_em": "2026-11-05"
+  },
+  {
    "id": "caderno-a5~azul-marinho",
    "produto": "Caderno A5 com elástico",
    "categoria": "canetas-escritorio",
@@ -7228,6 +7339,43 @@
    "largura": 1024,
    "altura": 1024,
    "atualizado_em": "2026-10-18"
+  },
+  {
+   "id": "camisa-polo~verde",
+   "produto": "Camisa Polo",
+   "categoria": "vestuario",
+   "modelo": "Camisa Polo",
+   "cor": {
+    "nome": "Verde",
+    "hex": "#297F53"
+   },
+   "material": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Camisa Polo verde, com a marca TaMa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "aprovada",
+   "origem": "Foto enviada pelo Inventário (/admin/inventario/) em 06/11/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/camisa-polo~verde.webp",
+   "mestre": null,
+   "largura": 1254,
+   "altura": 1254,
+   "sha256": "96d596c69f955d85fcfaa63696d699057bcf5f17e2b854a52c15a7a6f8452f0d",
+   "bytes": 174202,
+   "atualizado_em": "2026-11-06"
   },
   {
    "fornecedor": null,
@@ -16632,6 +16780,43 @@
    "atualizado_em": "2026-10-20"
   },
   {
+   "id": "copo-termico-tipo-stanley-com-tampa~varias-cores",
+   "produto": "Copo Térmico Tipo Stanley Com Tampa",
+   "categoria": "garrafas-copos",
+   "modelo": "» CARACTERÍSTICAS: – Várias opções de cores – Isolamento térmico – Ideal para manter sua cerveja gelada até acabar – Designer diferenciado – Portátil – Não tóxico – Prático",
+   "cor": {
+    "nome": "Várias cores",
+    "hex": "#EAECF1"
+   },
+   "material": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Copo Térmico Tipo Stanley Com Tampa",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "aprovada",
+   "origem": "Foto enviada pelo Inventário (/admin/inventario/) em 07/11/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/copo-termico-tipo-stanley-com-tampa~varias-cores.webp",
+   "mestre": null,
+   "largura": 1254,
+   "altura": 1254,
+   "sha256": "3344a25979525c831d2d44d6ca74be116d18b460a7a4d70361385e9668d3f50d",
+   "bytes": 120656,
+   "atualizado_em": "2026-11-07"
+  },
+  {
    "fornecedor": null,
    "bytes": 569161,
    "sku": null,
@@ -21229,6 +21414,43 @@
    "substitui": null
   },
   {
+   "id": "kit-boas-vindas-3-pcs~preto",
+   "produto": "KIT BOAS VINDAS - 3 PÇS",
+   "categoria": "canetas-escritorio",
+   "modelo": "KIT BOAS VINDAS",
+   "cor": {
+    "nome": "Preto",
+    "hex": "#131416"
+   },
+   "material": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Garrafa Preta e mochila sacola preta em Nylon com alças ajustáveis e fone de ouvido branco com microfone, controle de volume e estojo.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "aprovada",
+   "origem": "Foto enviada pelo Inventário (/admin/inventario/) em 02/11/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/kit-boas-vindas-3-pcs~preto.webp",
+   "mestre": null,
+   "largura": 1254,
+   "altura": 836,
+   "sha256": "8245fad25225cebe2db04c44eabfaf26804079d54173464a26b8f9f1466477b0",
+   "bytes": 129670,
+   "atualizado_em": "2026-11-02"
+  },
+  {
    "id": "kit-caneta-lapiseira~azul-marinho",
    "produto": "Caneta e lapiseira em estojo",
    "categoria": "canetas-escritorio",
@@ -21420,7 +21642,7 @@
    "modelo": "",
    "cor": {
     "nome": "Branco",
-    "hex": "#1F4FB8"
+    "hex": "#FAFAFA"
    },
    "material": {
     "valor": "",
@@ -21523,6 +21745,43 @@
    "sha256": "9e14bcae0a68af58109de3e96fa598b78417094aa94ecab956cfabc331271797",
    "bytes": 41850,
    "atualizado_em": "2026-11-02"
+  },
+  {
+   "id": "kit-para-anotacoes~azul",
+   "produto": "Kit para Anotações",
+   "categoria": "canetas-escritorio",
+   "modelo": "Kit para Anotações com Caneta",
+   "cor": {
+    "nome": "Azul",
+    "hex": "#1F4FB8"
+   },
+   "material": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Kit para Anotações azul, com a marca TaMa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "aprovada",
+   "origem": "Foto enviada pelo Inventário (/admin/inventario/) em 05/11/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/kit-para-anotacoes~azul.webp",
+   "mestre": null,
+   "largura": 1000,
+   "altura": 1000,
+   "sha256": "1c448378c18b268ac9bf0911628843512830f1ea49b852865e07cf4285b02002",
+   "bytes": 117030,
+   "atualizado_em": "2026-11-05"
   },
   {
    "id": "kit-para-pizza-personalizado-com-tabua-cortador-espatula~tom-natural",
@@ -27095,6 +27354,117 @@
    "produto": "Saquinho transparente",
    "alt": "Saquinho transparente com zíper e a marca TaMa na frente.",
    "substitui": null
+  },
+  {
+   "id": "power-bank-com-indicador-led~branco",
+   "produto": "Power Bank com Indicador LED",
+   "categoria": "acessorios",
+   "modelo": "Power Bank com Indicador LED",
+   "cor": {
+    "nome": "BRANCO",
+    "hex": "#FFFFFF"
+   },
+   "material": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Power Bank com Indicador LED",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "aprovada",
+   "origem": "Foto enviada pelo Inventário (/admin/inventario/) em 05/11/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/power-bank-com-indicador-led~branco.webp",
+   "mestre": null,
+   "largura": 960,
+   "altura": 962,
+   "sha256": "a51bdb03f0f01d190dd383822c90d96c16a4e822a896fb13e3f68a84d141465e",
+   "bytes": 24136,
+   "atualizado_em": "2026-11-05"
+  },
+  {
+   "id": "power-bank-com-lanterna-e-multissaidas-08219~vermelho",
+   "produto": "Power Bank com Lanterna e Multissaídas 08219",
+   "categoria": "acessorios",
+   "modelo": "Power Bank com Lanterna e Multissaídas 08219",
+   "cor": {
+    "nome": "Vermelho",
+    "hex": "#F50A0A"
+   },
+   "material": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Power Bank com Lanterna e Multissaídas 08219 vermelho, com a marca TaMa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "aprovada",
+   "origem": "Foto enviada pelo Inventário (/admin/inventario/) em 05/11/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/power-bank-com-lanterna-e-multissaidas-08219~vermelho.webp",
+   "mestre": null,
+   "largura": 1126,
+   "altura": 782,
+   "sha256": "2fa1db2d6f7e7bf0cab1256089b7a80302cb074cfedb7666b0937fa91edd1a88",
+   "bytes": 27900,
+   "atualizado_em": "2026-11-05"
+  },
+  {
+   "id": "power-bank-power-bank-com-lanterna-e-multissaidas~branco",
+   "produto": "Power Bank Power Bank com Lanterna e Multissaídas",
+   "categoria": "vestuario",
+   "modelo": "Power Bank com Lanterna e Multissaídas",
+   "cor": {
+    "nome": "Branco",
+    "hex": "#FAFCFF"
+   },
+   "material": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "tecnica": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "fornecedor": null,
+   "sku": null,
+   "estoque": null,
+   "alt": "Power Bank Power Bank com Lanterna e Multissaídas branco, com a marca TaMa.",
+   "uso": [
+    "catalogo"
+   ],
+   "ilustrativa": true,
+   "aprovacao": "aprovada",
+   "origem": "Foto enviada pelo Inventário (/admin/inventario/) em 05/11/2026.",
+   "substitui": null,
+   "observacao": "",
+   "arquivo": "/img/produtos/power-bank-power-bank-com-lanterna-e-multissaidas~branco.webp",
+   "mestre": null,
+   "largura": 466,
+   "altura": 764,
+   "sha256": "04ba60e72595f1f7a6a516acbd71b1196a5cba3b0de4db5495666a8bd384cbd4",
+   "bytes": 18374,
+   "atualizado_em": "2026-11-05"
   },
   {
    "id": "power-bank-slim~azul-marinho",

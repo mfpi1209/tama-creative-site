@@ -669,3 +669,12 @@ main h3 { font-weight: 700; }
 .col { padding-top: 20px; border-top: 1px solid var(--c-line); }
 .on-dark .col, .on-dark .item { border-top-color: rgba(255, 255, 255, .14); }
 .prova-list li { grid-template-columns: minmax(0, 1fr); }
+
+/* frente ↔ verso no hover: o verso cobre a frente por inteiro (fundo próprio no mesmo tom e mesclagem isolada), e a
+   frente esmaece junto; antes as duas fotos se multiplicavam e a peça escurecia com o logo duplicado */
+.prod-media .prod-alt { background: color-mix(in srgb, var(--tint, #EEF0F3) 11%, #fff); isolation: isolate; transition: opacity var(--d-3) var(--ease); }
+.prod-media.has-alt > picture img { transition: opacity var(--d-3) var(--ease), transform var(--d-4) var(--ease); }
+@media (hover: hover) {
+  /* só quando a cor escolhida tem verso (sem verso, o .prod-alt fica oculto e a frente continua) */
+  .prod-media.has-alt:hover:has(> .prod-alt:not([hidden])) > picture img { opacity: 0; }
+}

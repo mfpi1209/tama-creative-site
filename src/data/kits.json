@@ -228,7 +228,8 @@
    "kits": [
     "kit-boas-vindas-tech",
     "kit-conectado",
-    "kit-pratico"
+    "kit-pratico",
+    "kit-escritorio"
    ]
   },
   {
@@ -237,7 +238,8 @@
    "linha": "Para lideranças, clientes especiais e quem viaja a trabalho.",
    "kits": [
     "kit-executivo-verde",
-    "em-movimento"
+    "em-movimento",
+    "kit-conectado"
    ]
   },
   {
@@ -262,7 +264,8 @@
     "kit-petiscos",
     "kit-agradecimento",
     "kit-escritorio",
-    "pausa-e-inspiracao"
+    "pausa-e-inspiracao",
+    "kit-conectado"
    ]
   }
  ]

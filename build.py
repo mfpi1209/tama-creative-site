@@ -1790,8 +1790,36 @@ def v2_hero_dados():
     return (img, alt, eyebrow, titulo, texto, acoes)
 
 
+# Vídeo do banner (src/video/banner-kit.mp4 e .webm, montado em 08/11/2026 a partir da foto do kit e de 3 detalhes gerados):
+# entra só na temporada de fim de ano, por cima da foto, que fica como reserva (e como única imagem com movimento reduzido).
+# Copiado para /video/<nome>.<hash>.<ext> em build_static (cache de 1 ano, como /img/).
+_VIDEO_BANNER = {}
+
+
+def video_banner():
+    """URLs públicas do vídeo do banner, por formato ('webm', 'mp4'), ou {} quando os arquivos não existem."""
+    if _VIDEO_BANNER:
+        return _VIDEO_BANNER
+    for ext in ('webm', 'mp4'):
+        src = os.path.join(SRC, 'video', f'banner-kit.{ext}')
+        if os.path.isfile(src):
+            _VIDEO_BANNER[ext] = f'/video/banner-kit.{hashlib.md5(open(src, "rb").read()).hexdigest()[:8]}.{ext}'
+    return _VIDEO_BANNER
+
+
+def copiar_videos():
+    for ext, url in video_banner().items():
+        os.makedirs(os.path.join(DIST, 'video'), exist_ok=True)
+        shutil.copy2(os.path.join(SRC, 'video', f'banner-kit.{ext}'), os.path.join(DIST, url.lstrip('/')))
+
+
 def v2_hero():
     img, alt, eyebrow, titulo, texto, acoes = v2_hero_dados()
+    video = ''
+    if SEASON == 'fim-de-ano' and img == 'hero' and video_banner():
+        poster = f'/img/{IMAGES[img]["stem"]}-{next((w for w in IMAGES[img]["widths"] if w >= 1280), IMAGES[img]["widths"][-1])}.jpg'
+        fontes = ''.join(f'<source src="{u}" type="video/{e}">' for e, u in video_banner().items())
+        video = f'<video class="t-hero-video" autoplay muted loop playsinline preload="metadata" poster="{poster}" aria-hidden="true" tabindex="-1">{fontes}</video>'
     return f'''<section class="t-hero" aria-labelledby="t-hero-t">
   <div class="t-hero-txt">
     <p class="eyebrow">{eyebrow}</p>
@@ -1799,7 +1827,7 @@ def v2_hero():
     <p class="t-lead">{texto}</p>
     <div class="actions">{acoes}</div>
   </div>
-  <figure class="t-hero-foto">{picture(img, alt, V2_HERO_SIZES, eager=True)}<figcaption>Imagem ilustrativa • Marca fictícia</figcaption></figure>
+  <figure class="t-hero-foto">{picture(img, alt, V2_HERO_SIZES, eager=True)}{video}<figcaption>{'Vídeo' if video else 'Imagem'} ilustrativ{'o' if video else 'a'} • Marca fictícia</figcaption></figure>
 </section>'''
 
 
@@ -2295,7 +2323,7 @@ def ativ_formatos():
         id_attr = f' id="{esc(i["id"])}"' if i.get('id') else ''
         link = (' ' + ativ_evento_link('ativ-' + i['id'].replace('fmt-', ''))) if i.get('pedido') else ''
         antiga = '<span id="fmt-decoracao" class="ancora-antiga"></span>' if i.get('id') == 'fmt-buffet' and not any(x.get('id') == 'fmt-decoracao' for x in f.get('itens') or []) else ''
-        linhas.append(f'      <div class="item"{id_attr}>{antiga}{arc()}<div><h3>{esc(i["titulo"])}</h3><p>{esc(i["texto"])}{link}</p></div></div>')
+        linhas.append(f'      <div class="item"{id_attr}>{arc()}<div>{antiga}<h3>{esc(i["titulo"])}</h3><p>{esc(i["texto"])}{link}</p></div></div>')
     if (f.get('titulo') or '').strip():
         eyebrow = f'<p class="eyebrow">{esc(f["eyebrow"])}</p>' if (f.get('eyebrow') or '').strip() else ''
         texto = f'<p class="muted">{esc(f["texto"])}</p>' if (f.get('texto') or '').strip() else ''
@@ -2651,6 +2679,7 @@ def build_static():
     from PIL import Image
     import io
     shutil.copytree(os.path.join(SRC, 'fonts'), os.path.join(DIST, 'fonts'), ignore=shutil.ignore_patterns('*.css'))
+    copiar_videos()
     write('favicon.svg', open(os.path.join(LOGOS, 'tama-favicon-64.svg'), encoding='utf-8').read())
     # arquivos públicos usados fora do site (ex.: logo da assinatura de e-mail): /email/...
     if os.path.isdir(os.path.join(SRC, 'email')):

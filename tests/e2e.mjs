@@ -97,6 +97,10 @@ try {
       && (home.match(/class="process-step"/g) || []).length === 6,
       'home: banner, os 5 cartões de O que a TaMa faz, catálogo 3×2 com 4 filtros, processo em 6 passos no verde, 6 perguntas, guias e chamada final');
     ok(/^\/v2\/\s+\/\s+301/m.test(redir), '/v2/ (endereço da proposta) redireciona para a home');
+    // vídeo do banner (src/video/banner-kit.*): só na temporada, por cima da foto, com pôster e sem som
+    const temVideo = (await fetch(BASE + '/')).ok && home.includes('class="t-hero-video"');
+    ok(SEASON === 'fim-de-ano' ? (temVideo && /<video class="t-hero-video" autoplay muted loop playsinline[^>]*poster="\/img\/hero\.[^"]+"/.test(home) && (home.match(/<source src="\/video\/banner-kit\.[a-f0-9]{8}\.(webm|mp4)"/g) || []).length === 2 && home.includes('<picture') && /Vídeo ilustrativo/.test(home)) : !temVideo,
+       SEASON === 'fim-de-ano' ? 'banner: vídeo em loop, sem som, com pôster e a foto como reserva (webm e mp4 com hash)' : 'banner fora da temporada: só a foto, sem vídeo');
     await page.setViewport({ width: 1280, height: 900 });
     await page.goto(BASE + '/', { waitUntil: 'networkidle0' });
     const hero = await page.evaluate(() => ({ h1s: document.querySelectorAll('h1').length, eyebrow: document.querySelector('.t-hero .eyebrow')?.textContent, h1: document.querySelector('.t-hero h1')?.textContent.replace(/\s+/g, ' ').trim(),

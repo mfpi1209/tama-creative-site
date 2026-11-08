@@ -105,7 +105,9 @@ try {
       && heroImg.eager && heroImg.alta && heroImg.w > 0 && heroImg.h > 0 && /recorte-garrafa-termica~/.test(heroImg.src) && /^Garrafa térmica na cor /.test(heroImg.alt),
       `home: um único H1, proposta e catálogo, 6 cenas com a garrafa real (recorte) carregada com prioridade e medidas declaradas ("${heroImg.alt}")`);
     // a apresentação respeita movimento reduzido (os testes rodam com reduce): começa pausada
-    ok(await page.$eval('[data-ms-stage]', s => s.classList.contains('is-paused')) && await page.$eval('[data-ms-pause]', b => b.getAttribute('aria-label') === 'Reproduzir apresentação'), 'home: com movimento reduzido, a apresentação começa pausada (botão "Reproduzir")');
+    ok(await page.$eval('[data-ms-stage]', s => s.classList.contains('is-paused')) && !(await page.$('.ms-choice, [data-ms-pause]')), 'home: com movimento reduzido, a apresentação começa pausada; sem fileira de botões nem play/pause');
+    const coresIniciais = await page.$$eval('.ms-scene img', i => i.map(x => x.alt.match(/na cor (.+?), com/)?.[1]));
+    ok(coresIniciais.length === 6 && new Set(coresIniciais).size === 6, `home: cada peça abre numa cor diferente (${coresIniciais.join(', ')})`);
     // troca de cor da garrafa: foto real da cor, botão marcado, texto alternativo e link do produto
     const cores = await page.$$eval('[data-ms-swatches="0"] button', b => b.map(x => x.dataset.cor));
     const alvo = cores.find(c => c !== cores[0]);
@@ -115,11 +117,6 @@ try {
     const slugAlvo = alvo.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-');
     ok(cores.length >= 4 && depois.pressed.join() === alvo && depois.src.includes(`garrafa-termica~${slugAlvo}`) && depois.alt.includes(alvo.toLowerCase()) && depois.link === `/catalogo/garrafa-termica/?cor=${slugAlvo}`,
       `home: escolher ${alvo} troca a foto pela foto real dessa cor, o botão marcado, o texto alternativo e o link do produto (${cores.length} cores)`);
-    // escolher outra cena: nome, link e cena ativa mudam; as cores só aparecem na cena da garrafa
-    await page.click('.ms-choice[data-go="1"]'); await sleep(300);
-    ok(await page.evaluate(() => document.querySelector('.ms-scene.is-active')?.dataset.scene === '1' && document.querySelector('[data-ms-name]').textContent === 'Agenda'
-      && /^\/catalogo\/agenda\/\?cor=[a-z-]+$/.test(document.querySelector('[data-ms-link]').getAttribute('href')) && document.querySelector('[data-ms-swatches="0"]').hidden && !document.querySelector('[data-ms-swatches="1"]').hidden
-      && document.querySelector('.ms-choice[data-go="1"]').getAttribute('aria-pressed') === 'true'), 'home: escolher a 2ª peça mostra a agenda, com nome, link, cores e botão marcados');
     ok(await page.$$eval('.tm-fronts-grid .tm-front-a', a => a.map(x => x.getAttribute('href')).join() === '/brindes-corporativos/,/confeccoes-personalizadas/,/kits-corporativos/,/eventos-corporativos/,/hotelaria-e-gastronomia/'),
        'home apresenta as cinco áreas (brindes, confecções, kits, eventos, hotelaria)');
     const gal = await page.evaluate(() => ({ itens: [...document.querySelectorAll('.tm-gal-a')].map(a => a.getAttribute('href')), recortes: document.querySelectorAll('.tm-gal-a img[src*="/recorte-"]').length,

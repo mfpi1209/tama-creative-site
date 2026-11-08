@@ -2092,17 +2092,13 @@ def home_hero():
                     f'<span aria-hidden="true">Cor</span>{bts}</div>')
     dados = [{'n': m['nome'], 'c': cat, 'u': m['url'], 'a': cores[0][1]} for cls, m, cores, palavra, cat, mk, rotulo, curto in cenas]
     first = cenas[0]
-    escolhas = ''.join(
-        f'<button class="ms-choice" type="button" data-go="{i}" aria-pressed="{str(i == 0).lower()}" aria-label="{esc(m["nome"])}">'
-        f'{cutout(cores[0][2], "", "40px", cls="ms-thumb").replace(chr(32) + "loading=" + chr(34) + "lazy" + chr(34), " loading=" + chr(34) + "eager" + chr(34) + " fetchpriority=" + chr(34) + "low" + chr(34))}<span><small>{rotulo}</small><strong>{curto}</strong></span><i class="ms-mini" aria-hidden="true"></i></button>'
-        for i, (cls, m, cores, palavra, cat, mk, rotulo, curto) in enumerate(cenas))
     n = len(cenas)
     return f'''<section class="ms-hero" aria-labelledby="tm-hero-t">
   <div class="wrap ms-hero-in">
     {copy}
     <div class="ms-stage" id="ms-stage" data-ms-stage data-cenas="{esc(json.dumps(dados, ensure_ascii=False))}" role="region" aria-roledescription="carrossel" aria-label="Peças do catálogo em movimento" style="--accent:{first[2][0][1]}">
       <div class="ms-spot" aria-hidden="true"></div>
-      <div class="ms-topline"><span><i class="ms-live" aria-hidden="true"></i>Coleção em movimento</span></div>
+      <div class="ms-topline"><span><i class="ms-live" aria-hidden="true"></i>Coleção em movimento</span><span class="ms-note">Fotos reais · marca TaMa como exemplo</span></div>
       {html}
       <div class="ms-info"><div><small data-ms-cat>{first[4]}</small><strong data-ms-name>{esc(first[1]["nome"])}</strong></div>
         <a href="{first[1]["url"]}?cor={color_slug(first[2][0][0])}" data-ms-link>Conheça a peça {ARROW}</a></div>
@@ -2111,12 +2107,6 @@ def home_hero():
       <div class="ms-ticker" aria-hidden="true"><span data-ms-progress></span></div>
     </div>
   </div>
-  <div class="wrap ms-controlbar">
-    <p class="ms-intro">{"Seis" if n == 6 else n} peças. {"Seis" if n == 6 else n} formas de se apresentar.</p>
-    <div class="ms-controls" role="group" aria-label="Controle da apresentação"><div class="ms-choices">{escolhas}</div>
-      <button class="ms-pause" type="button" data-ms-pause aria-label="Pausar apresentação" title="Pausar apresentação"><svg viewBox="0 0 16 16" aria-hidden="true"><path data-ms-pause-icon d="M4 3h3v10H4zM9 3h3v10H9z"/></svg></button></div>
-  </div>
-  <p class="wrap tm-hero-note">Fotos reais do catálogo, recortadas do fundo, com a marca TaMa como exemplo. Cores de referência; disponibilidade confirmada na proposta.</p>
 </section>'''
 
 
@@ -2132,7 +2122,7 @@ HERO_CENAS = [
 ]
 
 
-HERO_COR_INICIAL = {'caneta': 'Bordô', 'agenda': 'Azul-marinho', 'taca': 'Vermelho'}
+HERO_COR_INICIAL = {'garrafa': 'Azul royal', 'agenda': 'Caramelo', 'caneta': 'Bordô', 'polo': 'Verde', 'caneca': 'Laranja', 'taca': 'Turquesa'}   # uma cor diferente em cada peça
 # Cores fora da apresentação porque a foto tem a marca em outro tamanho ou posição (a troca de cor mostraria o logo
 # "pulando"); continuam no catálogo. Conferido lado a lado em 08/11/2026.
 HERO_CORES_FORA = {'agenda': {'Café'}, 'taca': {'Bordô', 'Azul royal', 'Preto'}}

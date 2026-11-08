@@ -1123,7 +1123,7 @@
       b.addEventListener('pointerenter', pre); b.addEventListener('focus', pre);
       b.addEventListener('click', function () {
         if (b.getAttribute('aria-pressed') === 'true') return;
-        userPaused = true; hoverPause = false; setPaused();
+        elapsed = 0;   // trocar a cor recomeça o tempo da cena (com o mouse em cima, a apresentação já está pausada)
         var my = ++req; fl.classList.add('is-swapping');
         pre().then(function (ok) {
           if (my !== req) return;

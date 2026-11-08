@@ -1,0 +1,285 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rebrand TaMa Creative</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap">
+<style>
+/* Layout: prancha de marca em coluna larga; cada direção é uma faixa com paleta, tipo, elementos e aplicações.
+   Tema claro de propósito: as cores da marca precisam ser vistas sobre papel branco, como em embalagem e impressos. */
+:root {
+  --paper: #FFFFFF; --mist: #F4F6F8; --line: #E1E5EA; --ink: #17191C; --ink-2: #59616C;
+  --bordo: #76263E; --coral: #C2391F; --ameixa: #4A2338;
+  --f-display: "Manrope", "Helvetica Neue", Arial, sans-serif; --f-text: "DM Sans", "Segoe UI", Arial, sans-serif;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+body { background: var(--paper); color: var(--ink); font: 400 16px/1.65 var(--f-text); padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+main { max-width: 1120px; margin: 0 auto; padding-block: 48px 96px; display: grid; gap: 72px; }
+h1, h2, h3 { font-family: var(--f-display); margin: 0; letter-spacing: -.025em; line-height: 1.1; text-wrap: balance; }
+h1 { font-size: clamp(2.2rem, 1.5rem + 3vw, 3.6rem); font-weight: 800; letter-spacing: -.045em; }
+h2 { font-size: clamp(1.6rem, 1.2rem + 1.4vw, 2.4rem); font-weight: 800; letter-spacing: -.035em; }
+h3 { font-size: 1.05rem; font-weight: 700; }
+p { margin: 0; max-width: 66ch; }
+.label { display: flex; align-items: center; gap: 10px; font: 600 .75rem/1.2 var(--f-text); letter-spacing: .14em; text-transform: uppercase; color: var(--ink-2); }
+.label::before { content: ""; width: 22px; height: 2px; background: var(--bordo); }
+.lead { font-size: 1.125rem; color: var(--ink-2); }
+.muted { color: var(--ink-2); }
+ul { margin: 0; padding-left: 1.15em; display: grid; gap: 6px; max-width: 70ch; }
+section { display: grid; gap: 22px; }
+.head { display: grid; gap: 14px; padding-bottom: 32px; border-bottom: 1px solid var(--line); }
+.grid2 { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+.grid3 { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+.box { border: 1px solid var(--line); border-radius: 14px; padding: 20px; display: grid; gap: 10px; align-content: start; min-width: 0; }
+.box.soft { background: var(--mist); border-color: transparent; }
+
+/* direção */
+.dir { display: grid; gap: 28px; padding: clamp(24px, 4vw, 44px); border-radius: 24px; background: var(--mist); }
+.dir-head { display: grid; gap: 10px; }
+.dir-tag { justify-self: start; padding: 4px 12px; border-radius: 999px; font: 600 .75rem/1.6 var(--f-text); background: var(--paper); border: 1px solid var(--line); }
+.dir-tag.rec { background: var(--ink); color: #fff; border-color: var(--ink); }
+.cols { display: grid; gap: 24px; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+.cols > * { min-width: 0; }
+
+/* paleta */
+.swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 10px; }
+.sw { border-radius: 12px; overflow: hidden; background: var(--paper); border: 1px solid var(--line); }
+.sw i { display: block; height: 74px; }
+.sw div { padding: 8px 10px 10px; display: grid; gap: 1px; }
+.sw b { font: 600 .8125rem/1.3 var(--f-display); }
+.sw span { font: 500 .75rem/1.4 ui-monospace, SFMono-Regular, Menlo, monospace; color: var(--ink-2); }
+.sw small { font-size: .6875rem; color: var(--ink-2); }
+
+/* marca */
+.wm { display: inline-grid; justify-items: start; line-height: 1; color: var(--ink); }
+.wm b { font: 800 3rem/.9 var(--f-display); letter-spacing: -.055em; }
+.wm small { margin-top: 6px; padding-left: .12em; font: 700 .7rem/1 var(--f-display); letter-spacing: .42em; text-transform: uppercase; }
+.stage { display: grid; place-items: center; gap: 16px; min-height: 220px; padding: 28px; border-radius: 16px; background: var(--paper); position: relative; overflow: hidden; }
+.stage.dark { background: var(--ink); }
+.word { position: absolute; inset: auto 0 18%; text-align: center; font: 800 5.2rem/1 var(--f-display); letter-spacing: -.06em; color: rgba(214, 221, 233, .55); pointer-events: none; }
+.obj { position: relative; width: 74px; height: 150px; border-radius: 30px 30px 18px 18px; box-shadow: 14px 22px 18px rgba(29, 41, 48, .18); }
+.obj::before { content: ""; position: absolute; left: 16px; right: 16px; top: -18px; height: 22px; border-radius: 8px 8px 2px 2px; background: linear-gradient(90deg, #9aa1a9, #e6e8eb 45%, #8c939b); }
+.obj span { position: absolute; left: 0; right: 0; bottom: 34px; text-align: center; font: 800 .8rem/1 var(--f-display); color: #fff; letter-spacing: -.04em; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { padding: 6px 12px; border-radius: 999px; border: 1px solid var(--line); background: var(--paper); font-size: .8125rem; }
+
+/* aplicações */
+.apps { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+.app { border-radius: 14px; overflow: hidden; border: 1px solid var(--line); background: var(--paper); display: grid; }
+.app .art { height: 150px; display: grid; place-items: center; position: relative; overflow: hidden; }
+.app p { padding: 10px 12px; font-size: .8125rem; color: var(--ink-2); }
+.card-biz { width: 150px; height: 90px; border-radius: 6px; box-shadow: 0 10px 24px rgba(23, 25, 28, .14); display: grid; align-content: space-between; padding: 12px; }
+.box3d { width: 140px; height: 96px; border-radius: 6px; box-shadow: 0 14px 28px rgba(23, 25, 28, .16); display: grid; place-items: center; position: relative; }
+.box3d::after { content: ""; position: absolute; left: 0; right: 0; top: 26px; height: 1px; background: rgba(23, 25, 28, .12); }
+.tag { width: 74px; height: 110px; border-radius: 6px; display: grid; place-items: center; box-shadow: 0 10px 22px rgba(23, 25, 28, .14); }
+
+.tablewrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 14px; }
+table { border-collapse: collapse; width: 100%; min-width: 680px; font-size: .9375rem; }
+th, td { text-align: left; vertical-align: top; padding: 12px 14px; border-bottom: 1px solid var(--line); }
+th { font: 600 .75rem/1.2 var(--f-text); letter-spacing: .1em; text-transform: uppercase; color: var(--ink-2); background: var(--mist); }
+tr:last-child td { border-bottom: 0; }
+.dots { letter-spacing: .1em; color: var(--bordo); }
+.callout { border-left: 3px solid var(--bordo); background: #F5ECEF; padding: 16px 20px; border-radius: 0 12px 12px 0; display: grid; gap: 8px; }
+</style>
+
+<main>
+  <header class="head">
+    <p class="label">TaMa Creative · proposta de marca</p>
+    <h1>Rebrand: três direções</h1>
+    <p class="lead">Paleta, tipografia, elementos e aplicações de cada caminho, a partir do que o redesign já testou no site e do que você aprovou e rejeitou até aqui. São direções para decidir o rumo, não logotipos finais.</p>
+  </header>
+
+  <section>
+    <p class="label">Ponto de partida</p>
+    <h2>O que já existe e o que precisa ser resolvido</h2>
+    <div class="grid2">
+      <div class="box soft">
+        <h3>Hoje convivem duas marcas</h3>
+        <p>O logotipo oficial, com nome em serifa bordô e o arco coral, segue no favicon, na imagem de compartilhamento e na assinatura de e-mail. No site, entrou a assinatura "TaMa." em Manrope, aprovada na prévia. O rebrand precisa escolher uma e levar para todos os pontos.</p>
+      </div>
+      <div class="box soft">
+        <h3>O que você já disse</h3>
+        <ul>
+          <li>Aprovou: base branca e cinza frio, Manrope, produtos reais grandes e soltos.</li>
+          <li>Rejeitou: creme, bege e bordô dominante (a primeira proposta).</li>
+          <li>Achou frio demais quando ficou tudo cinza; o calor veio da cor dos produtos.</li>
+        </ul>
+      </div>
+      <div class="box soft">
+        <h3>O que a marca precisa dizer</h3>
+        <p>A TaMa seleciona, personaliza e coordena. A marca do cliente é a estrela. A identidade da TaMa tem de ser reconhecível e sofisticada sem competir com o logo que vai estampado em cada peça.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Direção A -->
+  <section class="dir" aria-labelledby="a-t">
+    <div class="dir-head">
+      <span class="dir-tag rec">Direção A · recomendada</span>
+      <h2 id="a-t">Objeto em foco</h2>
+      <p class="lead">A marca recua e o produto aparece. É a evolução do que o site já mostra: papel branco, tinta preta, bordô só na assinatura e nas ações, e cor emprestada de cada peça.</p>
+    </div>
+    <div class="swatches">
+      <div class="sw"><i style="background:#FFFFFF;border-bottom:1px solid #E1E5EA"></i><div><b>Papel</b><span>#FFFFFF</span><small>fundo</small></div></div>
+      <div class="sw"><i style="background:#F4F6F8"></i><div><b>Névoa</b><span>#F4F6F8</span><small>superfícies</small></div></div>
+      <div class="sw"><i style="background:#17191C"></i><div><b>Tinta</b><span>#17191C</span><small>texto 17,6:1</small></div></div>
+      <div class="sw"><i style="background:#59616C"></i><div><b>Grafite</b><span>#59616C</span><small>apoio 6,3:1</small></div></div>
+      <div class="sw"><i style="background:#76263E"></i><div><b>Bordô TaMa</b><span>#76263E</span><small>assinatura e ação 9,9:1</small></div></div>
+      <div class="sw"><i style="background:linear-gradient(90deg,#2447CB 0 20%,#C8202F 20% 40%,#1F6B45 40% 60%,#E36A1E 60% 80%,#2BB3A6 80%)"></i><div><b>Cor do produto</b><span>variável</span><small>tom a 10 % no fundo</small></div></div>
+    </div>
+    <div class="cols">
+      <div class="stage">
+        <div class="word">PRESENÇA.</div>
+        <div class="obj" style="background:#2447CB"><span>TaMa</span></div>
+        <div class="wm"><b>Ta<span style="color:#76263E">Ma.</span></b><small>Creative</small></div>
+      </div>
+      <div style="display:grid;gap:14px;align-content:start">
+        <h3>Elementos</h3>
+        <ul>
+          <li><strong>Assinatura "TaMa."</strong> em Manrope 800, com o ponto bordô como o fecho da curadoria. Vira o logotipo oficial, desenhado em vetor.</li>
+          <li><strong>O produto recortado</strong>, com sombra de chão, é a imagem principal da marca.</li>
+          <li><strong>A palavra grande ao fundo</strong> (PRESENÇA., BRINDE.) em cinza muito claro, como assinatura de campanha.</li>
+          <li><strong>O traço de 22 px</strong> em bordô antes dos rótulos.</li>
+          <li><strong>O fundo tingido pela cor da peça</strong> traz calor sem creme.</li>
+        </ul>
+        <h3>Tipografia</h3>
+        <p class="muted">Manrope 600–800 em títulos, com o tracking fechado. DM Sans em textos e interface.</p>
+      </div>
+    </div>
+    <div class="apps">
+      <div class="app"><div class="art" style="background:#F4F6F8"><div class="box3d" style="background:#FFFFFF"><div class="wm" style="transform:scale(.5)"><b>Ta<span style="color:#76263E">Ma.</span></b><small>Creative</small></div></div></div><p>Caixa branca, assinatura pequena; a marca do cliente vai no cartão e nas peças.</p></div>
+      <div class="app"><div class="art" style="background:#E9EBEE"><div class="card-biz" style="background:#17191C;color:#fff"><div class="wm" style="color:#fff;transform:scale(.42);transform-origin:left top"><b>Ta<span style="color:#E8A9BB">Ma.</span></b><small>Creative</small></div><small style="font-size:.55rem;opacity:.7">tamacreative.com.br</small></div></div><p>Cartão em tinta preta, ponto em bordô claro.</p></div>
+      <div class="app"><div class="art" style="background:#F4F6F8"><div class="tag" style="background:#76263E"><span style="font:800 1.1rem/1 var(--f-display);color:#fff;letter-spacing:-.05em">TaMa.</span></div></div><p>Etiqueta bordada ou tag de embalagem em bordô.</p></div>
+    </div>
+    <div class="grid2">
+      <div class="box"><h3>A favor</h3><p class="muted">Já está no site, o que reduz o custo e evita retrabalho. É sofisticada, deixa o produto e a marca do cliente brilharem e já foi aprovada por você na prévia.</p></div>
+      <div class="box"><h3>Risco</h3><p class="muted">Sem um elemento gráfico próprio, a marca pode ficar genérica. Para não ficar, a assinatura precisa de desenho próprio (não só texto em Manrope) e de um pequeno símbolo.</p></div>
+    </div>
+  </section>
+
+  <!-- Direção B -->
+  <section class="dir" aria-labelledby="b-t">
+    <div class="dir-head">
+      <span class="dir-tag">Direção B</span>
+      <h2 id="b-t">O arco</h2>
+      <p class="lead">Recupera o arco do logo oficial, um segmento de círculo cortado por uma reta, e o transforma no elemento gráfico central. Liga o rebrand à história da marca.</p>
+    </div>
+    <div class="swatches">
+      <div class="sw"><i style="background:#FFFFFF;border-bottom:1px solid #E1E5EA"></i><div><b>Papel</b><span>#FFFFFF</span><small>fundo</small></div></div>
+      <div class="sw"><i style="background:#F4F6F8"></i><div><b>Névoa</b><span>#F4F6F8</span><small>superfícies</small></div></div>
+      <div class="sw"><i style="background:#17191C"></i><div><b>Tinta</b><span>#17191C</span><small>texto</small></div></div>
+      <div class="sw"><i style="background:#C2391F"></i><div><b>Coral TaMa</b><span>#C2391F</span><small>o arco e a ação 5,4:1</small></div></div>
+      <div class="sw"><i style="background:#4A2338"></i><div><b>Ameixa</b><span>#4A2338</span><small>institucional 13,2:1</small></div></div>
+      <div class="sw"><i style="background:#F7E3DE"></i><div><b>Coral claro</b><span>#F7E3DE</span><small>fundos de destaque</small></div></div>
+    </div>
+    <div class="cols">
+      <div class="stage">
+        <svg viewBox="-10 -10 220 220" width="150" height="150" aria-hidden="true"><circle cx="100" cy="0" r="100" transform="translate(0 100)" fill="none" stroke="#E1E5EA" stroke-dasharray="4 6"/><path d="M0 100A100 100 0 0 0 100 200Z" fill="#C2391F"/></svg>
+        <div class="wm"><b style="color:#4A2338">Ta<span style="color:#C2391F">Ma</span></b><small style="color:#4A2338">Creative</small></div>
+      </div>
+      <div style="display:grid;gap:14px;align-content:start">
+        <h3>Elementos</h3>
+        <ul>
+          <li><strong>O arco</strong> como máscara de fotos, como recorte das fotos de produto e como marcador de lista.</li>
+          <li><strong>O círculo tracejado</strong> representa o projeto que a TaMa ajuda a fechar. Ele aparece no processo e nas transições.</li>
+          <li><strong>O coral ajustado</strong> (mais escuro que o do logo atual) tem contraste para botões e é o único acento.</li>
+          <li><strong>Ameixa no lugar do bordô:</strong> mais profunda, para textos institucionais e para o rodapé.</li>
+        </ul>
+        <h3>Tipografia</h3>
+        <p class="muted">Manrope em títulos e DM Sans no texto. O nome "TaMa" pode manter a serifa do logo atual, redesenhada.</p>
+      </div>
+    </div>
+    <div class="apps">
+      <div class="app"><div class="art" style="background:#F7E3DE"><div class="box3d" style="background:#FFFFFF"><svg viewBox="0 0 100 100" width="44" height="44" aria-hidden="true"><path d="M0 0A100 100 0 0 0 100 100Z" fill="#C2391F"/></svg></div></div><p>Caixa com o arco como selo; cor coral clara no interior.</p></div>
+      <div class="app"><div class="art" style="background:#E9EBEE"><div class="card-biz" style="background:#4A2338;color:#fff;position:relative;overflow:hidden"><svg viewBox="0 0 100 100" width="70" height="70" style="position:absolute;right:-18px;bottom:-18px" aria-hidden="true"><path d="M0 0A100 100 0 0 0 100 100Z" fill="#C2391F"/></svg><b style="font:800 .9rem/1 var(--f-display)">TaMa</b><small style="font-size:.55rem;opacity:.75">tamacreative.com.br</small></div></div><p>Cartão ameixa com o arco saindo da borda.</p></div>
+      <div class="app"><div class="art" style="background:#F4F6F8"><div style="width:120px;height:120px;border-radius:0 0 0 120px;background:#2447CB;display:grid;place-items:end start;padding:14px"><span style="font:800 .8rem/1 var(--f-display);color:#fff">Garrafas</span></div></div><p>Fotos e categorias recortadas no formato do arco.</p></div>
+    </div>
+    <div class="grid2">
+      <div class="box"><h3>A favor</h3><p class="muted">É a mais distintiva e a mais fácil de reconhecer. Preserva o patrimônio do logo atual e dá um elemento próprio a usar em embalagens e redes.</p></div>
+      <div class="box"><h3>Risco</h3><p class="muted">O coral volta a puxar para quente e fica perto da linguagem rejeitada, se usado em áreas grandes. O site precisaria de ajustes de cor e de máscaras nas fotos.</p></div>
+    </div>
+  </section>
+
+  <!-- Direção C -->
+  <section class="dir" aria-labelledby="c-t">
+    <div class="dir-head">
+      <span class="dir-tag">Direção C</span>
+      <h2 id="c-t">Paleta viva</h2>
+      <p class="lead">A marca é preta e branca, e a cor muda com o que está sendo apresentado. Cada coleção ou categoria tem sua cor, e o ponto de "TaMa." acompanha.</p>
+    </div>
+    <div class="swatches">
+      <div class="sw"><i style="background:#17191C"></i><div><b>Tinta</b><span>#17191C</span><small>a marca</small></div></div>
+      <div class="sw"><i style="background:#FFFFFF;border-bottom:1px solid #E1E5EA"></i><div><b>Papel</b><span>#FFFFFF</span><small>fundo</small></div></div>
+      <div class="sw"><i style="background:#2447CB"></i><div><b>Azul</b><span>#2447CB</span><small>garrafas e copos 7,4:1</small></div></div>
+      <div class="sw"><i style="background:#C8202F"></i><div><b>Vermelho</b><span>#C8202F</span><small>vestuário 5,7:1</small></div></div>
+      <div class="sw"><i style="background:#1F6B45"></i><div><b>Verde</b><span>#1F6B45</span><small>kits 6,5:1</small></div></div>
+      <div class="sw"><i style="background:#B8520F"></i><div><b>Laranja</b><span>#B8520F</span><small>cozinha e bar 4,9:1</small></div></div>
+      <div class="sw"><i style="background:#1E2A4A"></i><div><b>Marinho</b><span>#1E2A4A</span><small>escritório 14,1:1</small></div></div>
+      <div class="sw"><i style="background:#76263E"></i><div><b>Bordô</b><span>#76263E</span><small>institucional</small></div></div>
+    </div>
+    <div class="cols">
+      <div class="stage">
+        <div style="display:flex;gap:18px;flex-wrap:wrap;justify-content:center">
+          <div class="wm"><b>Ta<span style="color:#2447CB">Ma.</span></b><small>Garrafas</small></div>
+          <div class="wm"><b>Ta<span style="color:#C8202F">Ma.</span></b><small>Vestuário</small></div>
+          <div class="wm"><b>Ta<span style="color:#1F6B45">Ma.</span></b><small>Kits</small></div>
+        </div>
+      </div>
+      <div style="display:grid;gap:14px;align-content:start">
+        <h3>Elementos</h3>
+        <ul>
+          <li><strong>O ponto que muda de cor:</strong> a assinatura é sempre a mesma, só o ponto troca de cor por coleção.</li>
+          <li><strong>Blocos de cor chapada</strong> por categoria, no lugar das fotos ambientadas.</li>
+          <li><strong>Campanhas sazonais</strong> ganham uma cor própria (fim de ano, boas-vindas).</li>
+        </ul>
+        <h3>Tipografia</h3>
+        <p class="muted">Manrope 800 bem grande, com números de coleção. DM Sans no texto.</p>
+      </div>
+    </div>
+    <div class="apps">
+      <div class="app"><div class="art" style="background:#2447CB"><span style="font:800 2rem/1 var(--f-display);color:#fff;letter-spacing:-.05em">Garrafas.</span></div><p>Página de categoria com a cor da coleção.</p></div>
+      <div class="app"><div class="art" style="background:#F4F6F8"><div class="chips"><span class="chip" style="background:#2447CB;color:#fff;border-color:#2447CB">Garrafas</span><span class="chip" style="background:#C8202F;color:#fff;border-color:#C8202F">Vestuário</span><span class="chip" style="background:#1F6B45;color:#fff;border-color:#1F6B45">Kits</span></div></div><p>Navegação e filtros em código de cor.</p></div>
+      <div class="app"><div class="art" style="background:#1F6B45"><div class="box3d" style="background:#FFFFFF"><span style="font:800 1rem/1 var(--f-display);letter-spacing:-.05em">Ta<span style="color:#1F6B45">Ma.</span></span></div></div><p>Embalagem de kit na cor da coleção.</p></div>
+    </div>
+    <div class="grid2">
+      <div class="box"><h3>A favor</h3><p class="muted">É a mais alegre e a mais "criativa". Resolve a queixa de frieza e organiza o catálogo pela cor.</p></div>
+      <div class="box"><h3>Risco</h3><p class="muted">Dilui o reconhecimento da TaMa, porque cada página tem outra cor. A cor da coleção também pode brigar com a cor da peça, e é a mais cara de manter consistente.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <p class="label">Comparação</p>
+    <h2>Como cada direção se sai</h2>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Critério</th><th>A · Objeto em foco</th><th>B · O arco</th><th>C · Paleta viva</th></tr></thead>
+      <tbody>
+        <tr><td>Reconhecimento da TaMa</td><td class="dots">●●●○</td><td class="dots">●●●●</td><td class="dots">●●○○</td></tr>
+        <tr><td>Sofisticação</td><td class="dots">●●●●</td><td class="dots">●●●○</td><td class="dots">●●○○</td></tr>
+        <tr><td>Calor, sem creme</td><td class="dots">●●●○</td><td class="dots">●●●●</td><td class="dots">●●●●</td></tr>
+        <tr><td>Deixa a marca do cliente brilhar</td><td class="dots">●●●●</td><td class="dots">●●●○</td><td class="dots">●●○○</td></tr>
+        <tr><td>Custo para aplicar no site atual</td><td>Baixo (já está quase lá)</td><td>Médio (cores, máscaras, símbolo)</td><td>Alto (sistema de cor por coleção)</td></tr>
+        <tr><td>Continuidade com o logo atual</td><td>Troca o logo pela assinatura</td><td>Mantém o arco e o coral</td><td>Troca o logo</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section>
+    <p class="label">Recomendação</p>
+    <h2>A, com o arco como detalhe</h2>
+    <div class="callout">
+      <p>Seguir com a direção A, que você já aprovou e que o site já expressa, e trazer da direção B um único elemento: o arco, redesenhado pequeno, como símbolo ao lado da assinatura "TaMa.", no favicon, no selo das embalagens e nos marcadores. O coral fica fora da paleta e o arco passa a ser desenhado em bordô.</p>
+      <p>Assim o site não precisa ser refeito, as duas marcas viram uma só e a identidade ganha um elemento próprio sem voltar ao visual quente que foi rejeitado.</p>
+    </div>
+  </section>
+
+  <section>
+    <p class="label">Próximos passos</p>
+    <h2>Para fechar o rebrand</h2>
+    <div class="grid3">
+      <div class="box"><h3>1. Decidir a direção</h3><p class="muted">A, B, C ou a combinação recomendada.</p></div>
+      <div class="box"><h3>2. Desenhar o logotipo</h3><p class="muted">Vetorizar a assinatura com ajustes de espaçamento e o símbolo, em versões horizontal, vertical, reduzida e negativa. Recomendo que um designer de marcas finalize essa etapa.</p></div>
+      <div class="box"><h3>3. Aplicar em tudo</h3><p class="muted">Favicon, imagem de compartilhamento, assinatura de e-mail, proposta em PDF, caixa, cartão, etiqueta e redes. Hoje eles ainda usam o logo antigo.</p></div>
+      <div class="box"><h3>4. Guia de marca</h3><p class="muted">Paleta, tipografia, usos corretos e incorretos, fotografia (uma só marca fictícia nos exemplos) e movimento.</p></div>
+    </div>
+  </section>
+</main>
+</html>

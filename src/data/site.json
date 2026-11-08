@@ -106,7 +106,7 @@
   {
    "id": "ativacoes",
    "tom": "tone-cream",
-   "imagem": "slide-ativacoes-202611060139",
+   "imagem": "slide-ativacoes-202611081900",
    "enquadramento": "--fx:100%;--fx-m:70%",
    "alt": "Seu evento, uma experiência completa.  Buffet completo e decoração personalizada para receber, encantar e conectar pessoas. A TaMa cuida de cada detalhe, com sabores e ambientes pensados para a sua marca e a ocasião.  Vamos planejar seu evento?",
    "eyebrow": "Eventos corporativos",
@@ -173,7 +173,7 @@
   },
   "ativacoes": {
    "pagina": "/eventos-corporativos/",
-   "imagem": "topo-ativacoes-202611022131",
+   "imagem": "topo-ativacoes-202611081828",
    "alt": "Buffet para eventos corporativos, lançamentos e encontros da empresa, coordenado pela TaMa com parceiros especializados. O formato do serviço é definido com você na proposta. S",
    "eyebrow": "Eventos Corporativos",
    "linhas": [
@@ -189,9 +189,9 @@
   },
   "hotelaria": {
    "pagina": "/hotelaria-e-gastronomia/",
-   "imagem": "hot-header",
+   "imagem": "topo-hotelaria-202611081853",
    "alt": "Garçonete de camisa branca e avental verde-oliva com a marca fictícia Oliva arruma o guardanapo bordado num prato; na mesa, cardápio e porta-contas caramelo com a marca gravada, taças e jogo americano, num restaurante iluminado.",
-   "eyebrow": "Hotelaria e gastronomia",
+   "eyebrow": "Mesa & Serviço",
    "linhas": [
     "Sua identidade,"
    ],
@@ -199,7 +199,7 @@
     "em cada detalhe",
     "de receber."
    ],
-   "texto": "Cardápios, porta-contas, jogos americanos e uniformes personalizados para restaurantes, bares e hotéis. Peças que levam a identidade da sua casa à mesa e à equipe.",
+   "texto": "Cardápios, porta-contas, jogos americanos e uniformes personalizados para restaurantes, bares e hotéis. Peças para levar a identidade da sua marca da mesa ao atendimento.",
    "legenda": "Imagem ilustrativa • Marca fictícia",
    "posicao_celular": "92% center"
   },
@@ -299,9 +299,11 @@
     "porta-contas",
     "jogo-americano-retangular",
     "jogo-americano-oval",
-    "jogo-americano-impresso",
     "dolma",
-    "avental"
+    "avental",
+    "avental-pvc-mescla",
+    "avental-cintura-meia-saia",
+    "avental-vintage"
    ]
   },
   "fim-brindar": {
@@ -481,7 +483,7 @@
   "ativacoes-cenas": {
    "itens": [
     {
-     "imagem": "secao-ativ-cena-1-202610272021",
+     "imagem": "secao-ativ-cena-1-202611081837",
      "alt": "Buffet corporativo montado com uma mesa de antepassos e queijos selecionados.",
      "legenda": "Cena ilustrativa · marca fictícia"
     },

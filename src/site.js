@@ -1027,7 +1027,7 @@
 
 })();
 
-/* ---------- Abertura em três cenas (padrão da prévia aprovada) ---------- */
+/* ---------- Abertura da home: seis peças em cena (padrão da prévia aprovada) ---------- */
 (function () {
   var stage = document.querySelector('[data-ms-stage]');
   if (!stage) return;
@@ -1037,10 +1037,19 @@
   var data = []; try { data = JSON.parse(stage.getAttribute('data-cenas')); } catch (e) {}
   var bar = stage.querySelector('[data-ms-progress]'), pauseBtn = document.querySelector('[data-ms-pause]'), icon = document.querySelector('[data-ms-pause-icon]');
   var nameEl = stage.querySelector('[data-ms-name]'), catEl = stage.querySelector('[data-ms-cat]'), linkEl = stage.querySelector('[data-ms-link]'), capEl = stage.querySelector('[data-ms-caption]');
-  var sw = stage.querySelector('[data-ms-swatches]');
-  var n = scenes.length, current = 0, elapsed = 0, DURATION = 7000, userPaused = media.matches, visible = true, last = performance.now();
-  var corGarrafa = null;   // slug da cor escolhida (vale para o link da garrafa)
+  var groups = [].slice.call(stage.querySelectorAll('[data-ms-swatches]'));
+  var n = scenes.length, current = 0, elapsed = 0, DURATION = 7000, userPaused = media.matches, visible = true, last = performance.now(), hoverPause = false;
+  var cor = [];   // por cena: { slug, hex } da cor escolhida
   function pad(x) { return (x < 10 ? '0' : '') + x; }
+  function group(i) { return groups.filter(function (g) { return +g.getAttribute('data-ms-swatches') === i; })[0]; }
+  function pressed(i) { var g = group(i), b = g && g.querySelector('[aria-pressed="true"]'); return b ? { slug: b.getAttribute('data-cor-slug'), hex: b.style.getPropertyValue('--c') } : null; }
+  // reflexo de luz: a máscara é a própria foto recortada (o brilho fica só dentro da peça)
+  function setMask(scene) {
+    var fl = scene.querySelector('.ms-float'), img = fl && fl.querySelector('img');
+    if (!img) return;
+    var put = function () { if (img.currentSrc) fl.style.setProperty('--mask', 'url("' + img.currentSrc + '")'); };
+    if (img.complete) put(); else img.addEventListener('load', put, { once: true });
+  }
   function setPaused() {
     var p = userPaused || !visible || document.hidden;
     stage.classList.toggle('is-paused', p);
@@ -1050,24 +1059,27 @@
       icon.setAttribute('d', userPaused ? 'M4 2l10 6-10 6z' : 'M4 3h3v10H4zM9 3h3v10H9z');
     }
   }
+  function syncInfo() {
+    var d = data[current] || {}, c = cor[current] || pressed(current);
+    nameEl.textContent = d.n || ''; catEl.textContent = d.c || '';
+    linkEl.href = d.u + (c ? '?cor=' + c.slug : '');
+    stage.style.setProperty('--accent', (c && c.hex) || d.a);
+  }
   function go(i, manual) {
     current = (i + n) % n; elapsed = 0;
     scenes.forEach(function (s, k) { s.classList.toggle('is-active', k === current); s.setAttribute('aria-hidden', String(k !== current)); });
     choices.forEach(function (c, k) { c.setAttribute('aria-pressed', String(k === current)); var m = c.querySelector('.ms-mini'); if (m) m.style.width = '0%'; });
-    var d = data[current] || {};
-    nameEl.textContent = d.n || ''; catEl.textContent = d.c || '';
-    linkEl.href = d.u + (current === 0 && corGarrafa ? '?cor=' + corGarrafa : '');
+    groups.forEach(function (g) { g.hidden = +g.getAttribute('data-ms-swatches') !== current; });
     capEl.textContent = pad(current + 1) + ' — ' + pad(n);
-    if (sw) sw.hidden = current !== 0;
-    var acc = current === 0 && sw ? (sw.querySelector('[aria-pressed="true"]') || {}).style : null;
-    stage.style.setProperty('--accent', acc && acc.getPropertyValue('--c') ? acc.getPropertyValue('--c') : d.a);
-    document.documentElement.style.setProperty('--accent', stage.style.getPropertyValue('--accent'));
+    syncInfo(); setMask(scenes[current]);
+    // botão da peça visível na fileira (celular: a fileira rola de lado)
+    var ch = choices[current]; if (ch && ch.parentElement.scrollWidth > ch.parentElement.clientWidth) ch.parentElement.scrollTo({ left: ch.offsetLeft - 8, behavior: media.matches ? 'auto' : 'smooth' });
     stage.classList.remove('is-switching'); void stage.offsetWidth; stage.classList.add('is-switching');
-    if (manual) userPaused = true;
+    if (manual) { userPaused = true; hoverPause = false; }
     setPaused();
   }
   choices.forEach(function (c) { c.addEventListener('click', function () { go(+c.getAttribute('data-go'), true); }); });
-  if (pauseBtn) pauseBtn.addEventListener('click', function () { userPaused = !userPaused; last = performance.now(); setPaused(); });
+  if (pauseBtn) pauseBtn.addEventListener('click', function () { userPaused = !userPaused; hoverPause = false; last = performance.now(); setPaused(); });
   var light = stage.querySelector('[data-ms-light]');
   if (light) light.addEventListener('click', function () {
     var dark = stage.classList.toggle('is-dark');
@@ -1086,21 +1098,24 @@
   document.addEventListener('visibilitychange', function () { last = performance.now(); setPaused(); });
   if ('IntersectionObserver' in window) new IntersectionObserver(function (es) { visible = es[0].isIntersecting; setPaused(); }, { threshold: .15 }).observe(stage);
   if (media.addEventListener) media.addEventListener('change', function () { if (media.matches) userPaused = true; setPaused(); });
-  // passar o mouse ou focar a apresentação pausa a troca automática (volta ao sair, se a pessoa não pausou)
-  var hoverPause = false;
+  // mouse sobre a apresentação: pausa a troca, a luz segue o ponteiro e a peça inclina em 3D (nunca no toque)
   stage.addEventListener('pointerenter', function (e) { if (e.pointerType === 'mouse' && !userPaused) { hoverPause = true; userPaused = true; setPaused(); } });
-  stage.addEventListener('pointerleave', function () { if (hoverPause) { hoverPause = false; userPaused = media.matches; last = performance.now(); setPaused(); } stage.style.setProperty('--mx', '0px'); stage.style.setProperty('--my', '0px'); });
-  // paralaxe leve com o mouse (nunca no toque nem com movimento reduzido)
+  stage.addEventListener('pointerleave', function () {
+    if (hoverPause) { hoverPause = false; userPaused = media.matches; last = performance.now(); setPaused(); }
+    ['--mx', '--my'].forEach(function (k) { stage.style.setProperty(k, '0px'); });
+    ['--rx', '--ry'].forEach(function (k) { stage.style.setProperty(k, '0deg'); });
+  });
   stage.addEventListener('pointermove', function (e) {
     if (e.pointerType !== 'mouse' || media.matches) return;
     var r = stage.getBoundingClientRect(), x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
     stage.style.setProperty('--mx', (x - .5) * 12 + 'px'); stage.style.setProperty('--my', (y - .5) * 8 + 'px');
+    stage.style.setProperty('--ry', (x - .5) * 16 + 'deg'); stage.style.setProperty('--rx', (.5 - y) * 10 + 'deg');
     stage.style.setProperty('--lx', x * 100 + '%'); stage.style.setProperty('--ly', y * 100 + '%');
   });
-  // cor da garrafa: foto real da cor, pré-carregada; se falhar, mantém a atual
-  if (sw) {
-    var fl = scenes[0].querySelector('.ms-float'), pic = fl && fl.querySelector('picture'), img = pic && pic.querySelector('img'), req = 0;
-    [].forEach.call(sw.querySelectorAll('button'), function (b) {
+  // cores de cada peça: foto real da cor, pré-carregada; se falhar, mantém a atual
+  groups.forEach(function (g) {
+    var i = +g.getAttribute('data-ms-swatches'), scene = scenes[i], fl = scene.querySelector('.ms-float'), pic = fl.querySelector('picture'), img = pic.querySelector('img'), req = 0;
+    [].forEach.call(g.querySelectorAll('button'), function (b) {
       var pre = function () { if (b._pre) return b._pre; var im = new Image(); im.sizes = img.sizes; im.srcset = b.getAttribute('data-webp'); b._pre = im.decode ? im.decode().then(function () { return true; }, function () { return false; }) : Promise.resolve(true); return b._pre; };
       b.addEventListener('pointerenter', pre); b.addEventListener('focus', pre);
       b.addEventListener('click', function () {
@@ -1113,16 +1128,17 @@
             pic.querySelector('source[type="image/avif"]').setAttribute('srcset', b.getAttribute('data-avif'));
             img.setAttribute('srcset', b.getAttribute('data-webp'));
             img.alt = img.getAttribute('data-alt-base') + ' na cor ' + b.getAttribute('data-cor').toLowerCase() + ', com a marca TaMa';
-            [].forEach.call(sw.querySelectorAll('button'), function (x) { x.setAttribute('aria-pressed', String(x === b)); });
-            corGarrafa = b.getAttribute('data-cor-slug');
-            linkEl.href = data[0].u + '?cor=' + corGarrafa;
-            stage.style.setProperty('--accent', b.style.getPropertyValue('--c'));
+            [].forEach.call(g.querySelectorAll('button'), function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+            cor[i] = { slug: b.getAttribute('data-cor-slug'), hex: b.style.getPropertyValue('--c') };
+            if (i === current) syncInfo();
+            img.addEventListener('load', function () { setMask(scene); }, { once: true });
           }
           setTimeout(function () { fl.classList.remove('is-swapping'); }, 60);
         });
       });
     });
-  }
+  });
+  setMask(scenes[0]);
   setPaused();
 })();
 

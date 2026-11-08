@@ -2005,10 +2005,11 @@ def hero_cores():
 
 
 def home_hero():
-    """Abertura da home no padrão da prévia aprovada ("Estudo de movimento / 03"): três cenas com peças reais do catálogo
-    (garrafa, caderno, ecobag), recortadas do fundo, que entram com movimento e trocam a cada 7 s, com pausa, escolha manual
-    e troca de cor da garrafa por foto real. Sem JavaScript, a primeira cena fica parada e completa."""
-    c, cores = hero_cores()
+    """Abertura da home no padrão da prévia aprovada ("Estudo de movimento / 03"), ampliada para seis peças reais do
+    catálogo (garrafa, agenda, caneta, polo, caneca e taça), recortadas do fundo (img/recortes/). Cada cena tem palavra
+    revelada letra a letra, entrada e efeito próprios (órbitas, folhas, assinatura, costura, vapor, brilho), reflexo de luz
+    no formato da peça e cores que trocam a foto real. Troca a cada 7 s, com pausa e escolha manual. Sem JavaScript, a
+    primeira cena fica parada e completa."""
     temporada = (f'<a class="tm-hero-season" href="/brindes-de-fim-de-ano/" data-track="season_click" data-track-label="home-hero">'
                  f'<span class="tm-dot" aria-hidden="true"></span>Fim de ano: presentes com a sua marca {ARROW}</a>' if SEASON == 'fim-de-ano' else '')
     copy = f'''<div class="ms-copy">
@@ -2020,76 +2021,99 @@ def home_hero():
       {temporada}
     </div>'''
     cenas = []
-    for cls, slug, palavra, cat, mk, acento, rotulo in HERO_CENAS:
+    for cls, slug, palavra, cat, mk, rotulo, curto in HERO_CENAS:
         m = CATALOGO_BY.get(slug)
         if not m:
             continue
-        rec = (cores[0][2] if slug == HERO_PRODUTO and cores else f'recorte-{m["img"]}')
-        if rec not in IMAGES:
+        cores = [(nome, hexv, f'recorte-{resto[0]}') for nome, hexv, *resto in m['cores']
+                 if resto and f'recorte-{resto[0]}' in IMAGES and nome not in HERO_CORES_FORA.get(cls, ())]
+        cores.sort(key=lambda x: x[0] != HERO_COR_INICIAL.get(cls))   # cor de abertura da cena (as demais na ordem do catálogo)
+        if not cores:
             continue
-        cenas.append((cls, m, rec, palavra, cat, mk, acento, rotulo))
+        cenas.append((cls, m, cores, palavra, cat, mk, rotulo, curto))
     if not cenas:
         return f'<section class="ms-hero" aria-labelledby="tm-hero-t"><div class="wrap ms-hero-in">{copy}</div></section>'
     sizes = '(max-width: 700px) 70vw, 420px'
     deco = {
-        'garrafa': '<div class="ms-halo" aria-hidden="true"></div><div class="ms-arc" aria-hidden="true"></div><div class="ms-orbit"><div class="ms-orbspin"></div></div><div class="ms-orbit ms-o2"></div>',
-        'caderno': '<div class="ms-sheet" aria-hidden="true"></div><div class="ms-lines" aria-hidden="true">' + ''.join(f'<i style="--i:{i}"></i>' for i in range(8)) + '</div>',
-        'ecobag': '<div class="ms-halo ms-halo-bag" aria-hidden="true"></div><div class="ms-ribbon"></div><div class="ms-ribbon ms-r2"></div>',
+        'garrafa': '<div class="ms-halo"></div><div class="ms-arc"></div><div class="ms-orbit"><div class="ms-orbspin"></div></div><div class="ms-orbit ms-o2"></div>',
+        'agenda': '<div class="ms-halo"></div><div class="ms-sheet"></div><div class="ms-sheet ms-sheet2"></div><div class="ms-lines">' + ''.join(f'<i style="--i:{i}"></i>' for i in range(8)) + '</div>',
+        'caneta': ('<div class="ms-halo"></div><svg class="ms-sign" viewBox="0 0 600 220" preserveAspectRatio="none"><path pathLength="1" d="M20 150c40-60 70-90 95-70s-30 90 5 80 60-120 90-110-20 110 15 100 50-80 80-75 0 70 35 60 70-55 110-50 60 30 130 0"/></svg>'
+                   '<div class="ms-baseline"></div>'),
+        'polo': '<div class="ms-halo"></div><svg class="ms-stitch" viewBox="0 0 400 400"><circle pathLength="1" cx="200" cy="200" r="190"/><circle class="ms-stitch2" pathLength="1" cx="200" cy="200" r="160"/></svg><div class="ms-weave"></div>',
+        'caneca': ('<div class="ms-halo"></div><svg class="ms-steam" viewBox="0 0 120 160">'
+                   + ''.join(f'<path style="--i:{i}" d="M{30 + i * 30} 150c-14-22 14-36 0-58s14-36 0-58"/>' for i in range(3)) + '</svg><div class="ms-saucer"></div>'),
+        'taca': '<div class="ms-halo"></div><div class="ms-bubbles">' + ''.join(f'<i style="--i:{i};--x:{(i * 37) % 100}%"></i>' for i in range(14)) + '</div><div class="ms-glint"></div>',
     }
-    html = ''
-    for i, (cls, m, rec, palavra, cat, mk, acento, rotulo) in enumerate(cenas):
-        alt = (f'{m["nome"]} na cor {cores[0][0].lower()}, com a marca TaMa' if m['slug'] == HERO_PRODUTO and cores else f'{m["nome"]} com a marca TaMa')
-        img = cutout(rec, alt, sizes, eager=(i == 0), cls='ms-img', attrs=' data-alt-base="' + esc(m['nome']) + '"' if m['slug'] == HERO_PRODUTO else '')
+    html, swg = '', ''
+    for i, (cls, m, cores, palavra, cat, mk, rotulo, curto) in enumerate(cenas):
+        nome0, _h, rec0 = cores[0]
+        alt = f'{m["nome"]} na cor {nome0.lower()}, com a marca TaMa'
+        img = cutout(rec0, alt, sizes, eager=(i == 0), cls='ms-img', attrs=f' data-alt-base="{esc(m["nome"])}"')
+        if i:   # as cenas seguintes já chegam carregadas (prioridade baixa): nenhuma cena aparece vazia na troca
+            img = img.replace(' loading="lazy"', ' loading="eager" fetchpriority="low"')
+        letras = ''.join(f'<span style="--l:{k}">{ch}</span>' for k, ch in enumerate(palavra))
         html += (f'<div class="ms-scene ms-{cls}{" is-active" if i == 0 else ""}" data-scene="{i}" aria-hidden="{str(i != 0).lower()}">'
-                 f'<div class="ms-word" aria-hidden="true">{palavra}</div>{deco.get(cls, "")}<div class="ms-floor" aria-hidden="true"></div>'
-                 f'<div class="ms-anchor"><div class="ms-motion"><div class="ms-float">{img}</div></div></div>'
+                 f'<div class="ms-word" aria-hidden="true">{letras}</div><div class="ms-deco" aria-hidden="true">{deco.get(cls, "")}</div><div class="ms-floor" aria-hidden="true"></div>'
+                 f'<div class="ms-anchor"><div class="ms-tilt"><div class="ms-motion"><div class="ms-float">{img}<span class="ms-shine" aria-hidden="true"></span></div></div></div></div>'
                  f'<span class="ms-marker ms-left" aria-hidden="true">{mk[0]}</span><span class="ms-marker ms-right" aria-hidden="true">{mk[1]}</span></div>')
-    dados = [{'n': m['nome'], 'c': cat, 'u': m['url'], 'a': acento} for cls, m, rec, palavra, cat, mk, acento, rotulo in cenas]
-    sw = ''
-    if cores and cenas[0][1]['slug'] == HERO_PRODUTO:
-        for j, (nome, hexv, rec) in enumerate(cores):
-            mm = IMAGES[rec]
-            webp = ', '.join(f'/img/{mm["stem"]}-{w}.webp {w}w' for w in mm['widths'])
-            avif = ', '.join(f'/img/{mm["stem"]}-{w}.avif {w}w' for w in mm['widths'])
-            sw += (f'<button type="button" style="--c:{hexv}" aria-pressed="{str(j == 0).lower()}" data-cor="{esc(nome)}" data-cor-slug="{color_slug(nome)}" '
-                   f'data-webp="{webp}" data-avif="{avif}" aria-label="{esc(nome)}"></button>')
-        sw = f'<div class="ms-swatches" data-ms-swatches role="group" aria-label="Cores da garrafa térmica"><span aria-hidden="true">Cor</span>{sw}</div>'
+        if len(cores) > 1:
+            bts = ''
+            for j, (nome, hexv, rec) in enumerate(cores):
+                mm = IMAGES[rec]
+                webp = ', '.join(f'/img/{mm["stem"]}-{w}.webp {w}w' for w in mm['widths'])
+                avif = ', '.join(f'/img/{mm["stem"]}-{w}.avif {w}w' for w in mm['widths'])
+                bts += (f'<button type="button" style="--c:{hexv}" aria-pressed="{str(j == 0).lower()}" data-cor="{esc(nome)}" data-cor-slug="{color_slug(nome)}" '
+                        f'data-webp="{webp}" data-avif="{avif}" aria-label="{esc(nome)}"></button>')
+            swg += (f'<div class="ms-swatches" data-ms-swatches="{i}" role="group" aria-label="Cores: {esc(m["nome"])}"{"" if i == 0 else " hidden"}>'
+                    f'<span aria-hidden="true">Cor</span>{bts}</div>')
+    dados = [{'n': m['nome'], 'c': cat, 'u': m['url'], 'a': cores[0][1]} for cls, m, cores, palavra, cat, mk, rotulo, curto in cenas]
     first = cenas[0]
     escolhas = ''.join(
-        f'<button class="ms-choice" type="button" data-go="{i}" aria-pressed="{str(i == 0).lower()}">'
-        f'{cutout(rec, "", "40px", cls="ms-thumb")}<span><small>{rotulo}</small><strong>{esc(m["nome"].split(" de ")[0])}</strong></span><i class="ms-mini" aria-hidden="true"></i></button>'
-        for i, (cls, m, rec, palavra, cat, mk, acento, rotulo) in enumerate(cenas))
-    link0 = first[1]['url'] + (f'?cor={color_slug(cores[0][0])}' if first[1]['slug'] == HERO_PRODUTO and cores else '')
+        f'<button class="ms-choice" type="button" data-go="{i}" aria-pressed="{str(i == 0).lower()}" aria-label="{esc(m["nome"])}">'
+        f'{cutout(cores[0][2], "", "40px", cls="ms-thumb")}<span><small>{rotulo}</small><strong>{curto}</strong></span><i class="ms-mini" aria-hidden="true"></i></button>'
+        for i, (cls, m, cores, palavra, cat, mk, rotulo, curto) in enumerate(cenas))
+    n = len(cenas)
     return f'''<section class="ms-hero" aria-labelledby="tm-hero-t">
   <div class="wrap ms-hero-in">
     {copy}
-    <div class="ms-stage" id="ms-stage" data-ms-stage data-cenas="{esc(json.dumps(dados, ensure_ascii=False))}" role="region" aria-roledescription="carrossel" aria-label="Peças do catálogo em movimento" style="--accent:{first[6]}">
+    <div class="ms-stage" id="ms-stage" data-ms-stage data-cenas="{esc(json.dumps(dados, ensure_ascii=False))}" role="region" aria-roledescription="carrossel" aria-label="Peças do catálogo em movimento" style="--accent:{first[2][0][1]}">
+      <div class="ms-spot" aria-hidden="true"></div>
       <div class="ms-topline"><span><i class="ms-live" aria-hidden="true"></i>Coleção em movimento</span>
         <button class="ms-light" type="button" data-ms-light aria-pressed="false" aria-label="Ativar iluminação de contraste" title="Alternar iluminação"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="3"/><path d="M10 1v3m0 12v3M1 10h3m12 0h3M3.6 3.6l2 2m8.8 8.8 2 2M3.6 16.4l2-2m8.8-8.8 2-2"/></svg></button></div>
       {html}
       <div class="ms-flash" aria-hidden="true"></div>
       <div class="ms-info"><div><small data-ms-cat>{first[4]}</small><strong data-ms-name>{esc(first[1]["nome"])}</strong></div>
-        <a href="{link0}" data-ms-link>Conheça a peça {ARROW}</a></div>
-      {sw}
-      <span class="ms-caption" data-ms-caption aria-hidden="true">01 — {len(cenas):02d}</span>
+        <a href="{first[1]["url"]}?cor={color_slug(first[2][0][0])}" data-ms-link>Conheça a peça {ARROW}</a></div>
+      {swg}
+      <span class="ms-caption" data-ms-caption aria-hidden="true">01 — {n:02d}</span>
       <div class="ms-ticker" aria-hidden="true"><span data-ms-progress></span></div>
     </div>
   </div>
   <div class="wrap ms-controlbar">
-    <p class="ms-intro">Três peças. Três formas de se apresentar.</p>
-    <div class="ms-controls" role="group" aria-label="Controle da apresentação">{escolhas}
+    <p class="ms-intro">{"Seis" if n == 6 else n} peças. {"Seis" if n == 6 else n} formas de se apresentar.</p>
+    <div class="ms-controls" role="group" aria-label="Controle da apresentação"><div class="ms-choices">{escolhas}</div>
       <button class="ms-pause" type="button" data-ms-pause aria-label="Pausar apresentação" title="Pausar apresentação"><svg viewBox="0 0 16 16" aria-hidden="true"><path data-ms-pause-icon d="M4 3h3v10H4zM9 3h3v10H9z"/></svg></button></div>
   </div>
   <p class="wrap tm-hero-note">Fotos reais do catálogo, recortadas do fundo, com a marca TaMa como exemplo. Cores de referência; disponibilidade confirmada na proposta.</p>
 </section>'''
 
 
-# (classe, modelo, palavra, rótulo da cena, marcadores, cor de destaque, rótulo do botão): cenas da abertura
+# (classe, modelo, palavra, rótulo da cena, marcadores, rótulo do botão, nome curto): cenas da abertura, na ordem
+# pedida pelo cliente em 08/11/2026. A cor de destaque de cada cena é a da cor escolhida da peça.
 HERO_CENAS = [
-    ('garrafa', 'garrafa-termica', 'PRESENÇA.', '01 / Para acompanhar', ('Design para<br>acompanhar', 'Sua marca.<br>Em movimento.'), '#345EE0', '01 / Presença'),
-    ('caderno', 'caderno-de-anotacoes', 'IDEIAS.', '02 / Para inspirar', ('Espaço para<br>o próximo passo', 'Ideias que<br>ganham forma.'), '#69738F', '02 / Ideias'),
-    ('ecobag', 'ecobag', 'CONEXÃO.', '03 / Para conectar', ('Feita para<br>ir junto', 'Mais cor.<br>Mais possibilidades.'), '#48816A', '03 / Conexão'),
+    ('garrafa', 'garrafa-termica', 'PRESENÇA.', '01 / Para acompanhar', ('Design para<br>acompanhar', 'Sua marca.<br>Em movimento.'), '01 / Presença', 'Garrafa'),
+    ('agenda', 'agenda', 'IDEIAS.', '02 / Para organizar', ('Espaço para<br>o próximo passo', 'Ideias que<br>ganham forma.'), '02 / Ideias', 'Agenda'),
+    ('caneta', 'caneta-executiva-esferografica', 'TRAÇO.', '03 / Para assinar', ('Cada traço<br>com a sua marca', 'Detalhe que<br>fica na mão.'), '03 / Traço', 'Caneta'),
+    ('polo', 'polo-masculina', 'EQUIPE.', '04 / Para vestir', ('Identidade<br>que se veste', 'Sua equipe.<br>Uma só marca.'), '04 / Equipe', 'Polo'),
+    ('caneca', 'caneca', 'PAUSA.', '05 / Para o dia a dia', ('Presente em<br>toda pausa', 'Do café<br>à reunião.'), '05 / Pausa', 'Caneca'),
+    ('taca', 'taca-de-vinho', 'BRINDE.', '06 / Para celebrar', ('Para celebrar<br>juntos', 'Cada brinde.<br>Uma lembrança.'), '06 / Brinde', 'Taça'),
 ]
+
+
+HERO_COR_INICIAL = {'caneta': 'Bordô', 'agenda': 'Azul-marinho', 'taca': 'Vermelho'}
+# Cores fora da apresentação porque a foto tem a marca em outro tamanho ou posição (a troca de cor mostraria o logo
+# "pulando"); continuam no catálogo. Conferido lado a lado em 08/11/2026.
+HERO_CORES_FORA = {'agenda': {'Café'}, 'taca': {'Bordô', 'Azul royal', 'Preto'}}
 
 
 # Galeria de coleções (escolha do cliente em 08/11/2026): uma peça real recortada por categoria, grande e solta, sem

@@ -2,9 +2,14 @@
 para as cenas em que o produto aparece solto sobre o fundo do site (abertura da home, troca de cor).
 
 Uso (fora do build; os recortes vão para img/recortes/ e entram no commit):
+    # recomendado: contorno pelo modelo de recorte (rembg, isnet-general-use) num ambiente à parte, com Python 3.12:
+    #   python3.12 -m venv .venv-recorte && .venv-recorte/bin/pip install "rembg[cpu]" scipy
+    #   .venv-recorte/bin/python tools/recortar.py --modelo garrafa-termica~azul-royal ...
+    # sem --modelo, o contorno sai das regras de cor abaixo (serve para fundos lisos e peças simples)
     pip install numpy scipy        # só para esta ferramenta
     python tools/recortar.py garrafa-termica~azul-royal garrafa-termica~preto ...
     python tools/recortar.py --vaos ecobag~verde   # vãos fechados (alças) também saem
+    python tools/recortar.py --sombra-total caneta-executiva~preto   # sombra ao longo de peças deitadas
     python tools/recortar.py --folha   # também grava midia/recortes-folha.png (conferência sobre fundos claro e escuro)
 
 Como funciona: a cor do fundo é a mediana da borda da foto; só o fundo ligado à borda sai (um branco dentro do produto,
@@ -26,11 +31,44 @@ OUT = os.path.join(ROOT, 'img', 'recortes')
 T_IN, T_OUT = 7.0, 30.0   # distância de cor (0–255): abaixo de T_IN é fundo; acima de T_OUT é produto
 
 
-def recortar(nome, vaos_fechados=False):
-    im = np.asarray(Image.open(os.path.join(SRC, nome + '.webp')).convert('RGB')).astype(np.float32)
+_SESSAO = None
+
+
+def _finalizar(im, bg, a):
+    """Descontamina a borda (tira o tom do fundo dos pixels semitransparentes) e monta o RGBA."""
+    # descontamina a borda: cor = (pixel - fundo × (1 - a)) / a
+    aa = np.clip(a, 1e-3, 1)[..., None]
+    cor = np.clip((im - bg * (1 - aa)) / aa, 0, 255)
+    cor = np.where(aa > .995, im, cor)
+    rgba = np.dstack([cor, a * 255]).astype(np.uint8)
+    out = Image.fromarray(rgba, 'RGBA')
+    return out
+
+
+
+def alfa_modelo(src):
+    """Contorno pelo modelo de recorte (rembg, isnet-general-use): separa peça, sombra e fundo melhor que as regras de cor
+    (sombras na diagonal, vidro, cromados, vãos de alças)."""
+    global _SESSAO
+    from rembg import new_session, remove
+    if _SESSAO is None:
+        _SESSAO = new_session('isnet-general-use')
+    return np.asarray(remove(src, session=_SESSAO, only_mask=True, post_process_mask=False)).astype(np.float32) / 255
+
+
+def recortar(nome, vaos_fechados=False, sombra_total=False, modelo=False):
+    src = Image.open(os.path.join(SRC, nome + '.webp')).convert('RGB')
+    if src.width != 1024:   # algumas cores vêm em 1254 px: todas as cores de uma peça na mesma escala (o enquadramento é o mesmo)
+        src = src.resize((1024, round(src.height * 1024 / src.width)), Image.LANCZOS)
+    im = np.asarray(src).astype(np.float32)
     h, w, _ = im.shape
     borda = np.concatenate([im[:6].reshape(-1, 3), im[-6:].reshape(-1, 3), im[:, :6].reshape(-1, 3), im[:, -6:].reshape(-1, 3)])
     bg = np.median(borda, axis=0)
+    if modelo:
+        a = alfa_modelo(src)
+        a[a < .03] = 0
+        a[a > .97] = 1
+        return _finalizar(im, bg, a)
     suave = ndimage.uniform_filter(im, size=(3, 3, 1))
     dist = np.abs(suave - bg).max(axis=2)
     # fundo = região abaixo de T_OUT ligada à borda (o branco da marca, dentro da peça, não encosta na borda)
@@ -66,7 +104,7 @@ def recortar(nome, vaos_fechados=False):
         # sombra mais alta (bolsas, cadernos): cinza neutro e um pouco mais escuro que o fundo, na faixa de 22 % da base;
         # o creme das folhas de um caderno (vermelho > azul) não entra
         faixa2 = np.zeros((h, w), bool)
-        faixa2[max(0, base - int(h * .22)):] = True
+        faixa2[0 if sombra_total else max(0, base - int(h * .22)):] = True   # peças deitadas na diagonal (caneta): sombra ao longo de todo o corpo
         tom_fundo = bg[0] - bg[2]   # o fundo de estúdio é levemente quente; a sombra tem o mesmo tom
         neutro = ((im[..., 0] - im[..., 2]) <= tom_fundo + 5) & (sat < 18)
         sombra |= faixa2 & neutro & (lum < bg.mean() - 3) & (lum > 120)
@@ -83,20 +121,25 @@ def recortar(nome, vaos_fechados=False):
             a[(rot > 0) & (rot != maior)] = 0
     a = ndimage.gaussian_filter(a, .6)
     a[a < .02] = 0
-    # descontamina a borda: cor = (pixel - fundo × (1 - a)) / a
-    aa = np.clip(a, 1e-3, 1)[..., None]
-    cor = np.clip((im - bg * (1 - aa)) / aa, 0, 255)
-    cor = np.where(aa > .995, im, cor)
-    rgba = np.dstack([cor, a * 255]).astype(np.uint8)
-    out = Image.fromarray(rgba, 'RGBA')
-    caixa = out.getbbox()
-    if caixa:   # margem de 4 % em volta da peça, centralizada
-        m = int(max(w, h) * .04)
-        x0, y0, x1, y1 = max(0, caixa[0] - m), max(0, caixa[1] - m), min(w, caixa[2] + m), min(h, caixa[3] + m)
-        out = out.crop((x0, y0, x1, y1))
+    return _finalizar(im, bg, a)
+
+
+def salvar_grupo(nomes, recs):
+    """Recorta todas as cores de uma peça na MESMA caixa (a união das peças, com 4 % de margem): na troca de cor, a peça
+    não muda de lugar nem de tamanho."""
+    caixas = [r.getchannel('A').point(lambda v: 255 if v > 128 else 0).getbbox() for r in recs]
+    caixas = [c for c in caixas if c]
+    w, h = recs[0].size
+    m = int(max(w, h) * .04)
+    x0, y0 = max(0, min(c[0] for c in caixas) - m), max(0, min(c[1] for c in caixas) - m)
+    x1, y1 = min(w, max(c[2] for c in caixas) + m), min(h, max(c[3] for c in caixas) + m)
     os.makedirs(OUT, exist_ok=True)
-    out.save(os.path.join(OUT, nome + '.webp'), 'WEBP', quality=90, method=6, exact=True)
-    return out
+    saida = []
+    for nome, r in zip(nomes, recs):
+        c = r.crop((x0, y0, x1, y1))
+        c.save(os.path.join(OUT, nome + '.webp'), 'WEBP', quality=90, method=6, exact=True)
+        saida.append(c)
+    return saida
 
 
 def folha(recs):
@@ -115,7 +158,12 @@ def folha(recs):
 if __name__ == '__main__':
     args = [a for a in sys.argv[1:] if not a.startswith('--')]
     # --vaos: remove também vãos fechados (alças de bolsas); nas demais peças, um branco interno é a marca impressa
-    recs = [recortar(n, '--vaos' in sys.argv) for n in args]
+    recs = [recortar(n, '--vaos' in sys.argv, '--sombra-total' in sys.argv, '--modelo' in sys.argv) for n in args]
+    # cores da mesma peça (mesmo nome antes do ~) saem com a mesma caixa
+    grupos = {}
+    for n, r in zip(args, recs):
+        grupos.setdefault(n.split('~')[0], []).append((n, r))
+    recs = [c for g in grupos.values() for c in salvar_grupo([n for n, _ in g], [r for _, r in g])]
     if '--folha' in sys.argv and recs:
         folha(recs)
     print(f'{len(recs)} recorte(s) em img/recortes/')

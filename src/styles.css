@@ -1532,8 +1532,15 @@ body[data-service="ativacoes"] .foto-hero-photo figcaption { right: var(--gutter
 
 /* banner com vídeo (temporada): o vídeo cobre a foto, que fica por baixo como reserva e como pôster; com movimento
    reduzido o vídeo não aparece */
-.t-hero-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 14%); mask-image: linear-gradient(90deg, transparent 0, #000 14%); }
-@media (max-width: 1023px) { .t-hero-video { -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 12%); mask-image: linear-gradient(180deg, transparent 0, #000 12%); } }
+.t-hero-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 32%); mask-image: linear-gradient(90deg, transparent 0, #000 32%); }
+/* ligação suave entre o painel de texto e a foto/vídeo: esmaecimento mais longo e um véu de areia por cima da borda,
+   para casar as cores mesmo quando o fundo do clipe é mais claro que o painel */
+.t-hero-foto img { -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 32%); mask-image: linear-gradient(90deg, transparent 0, #000 32%); }
+.t-hero-foto::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(90deg, var(--t-sand) 0, color-mix(in srgb, var(--t-sand) 70%, transparent) 12%, transparent 38%); }
+@media (max-width: 1023px) {
+  .t-hero-video, .t-hero-foto img { -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 26%); mask-image: linear-gradient(180deg, transparent 0, #000 26%); }
+  .t-hero-foto::after { background: linear-gradient(180deg, var(--t-sand) 0, color-mix(in srgb, var(--t-sand) 70%, transparent) 10%, transparent 32%); }
+}
 @media (prefers-reduced-motion: reduce) { .t-hero-video { display: none; } }
 
 /* /v2/ (body.v2): home da proposta 01 "Soluções compactas" (pacote TAMA-kit-visual de 02/11/2026).
@@ -1699,7 +1706,7 @@ body.v2 .t-mais { margin-top: .125rem; transition: transform .24s var(--t-ease-o
 /* leitura: quebra de linha equilibrada, legenda do hero sempre legível, apoio com contraste folgado */
 body.v2 .t-lead, body.v2 .t-sub, body.v2 .t-faq-item p { text-wrap: pretty; }
 body.v2 .t-lead { color: #6B625D; }
-body.v2 .t-hero-foto figcaption { background: rgba(252, 249, 245, .94); }
+body.v2 .t-hero-foto figcaption { background: rgba(252, 249, 245, .94); z-index: 1; }
 body.v2 .process-num { font-variant-numeric: lining-nums tabular-nums; }
 body.v2 .frente-info { min-width: 0; overflow-wrap: anywhere; }
 /* tokens: um bordô só (os componentes do site usam --wine) e o coral de texto */

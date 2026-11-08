@@ -16,6 +16,7 @@ DIST = os.path.join(ROOT, 'dist')
 IMG_SRC = os.path.join(ROOT, 'img')
 LOGOS = os.path.join(ROOT, 'brand', 'logos')  # cópia versionada de ../tama-creative-logos/svg (o build no Netlify só vê este repositório)
 LOGOS_OFICIAIS = os.path.join(ROOT, '..', 'tama-creative-logos', 'svg')
+PETALA_DIR = os.path.join(ROOT, 'brand', 'petala')  # identidade "pétala" (08/11/2026), gerada por tools/marca_assets.py
 
 # ------------------------------------------------------------------ config
 CFG = json.load(open(os.path.join(ROOT, 'site.config.json'), encoding='utf-8'))
@@ -86,11 +87,15 @@ def themed_svg(name, cls, label):
 
 
 LOGO = themed_svg('tama-logo-horizontal-positivo', 'logo', 'TaMa Creative')
-# Assinatura da marca no cabeçalho e no rodapé (redesenho de 11/2026, aprovada pelo cliente em 08/11/2026): "TaMa." em
-# Manrope 800 com "Ma." em bordô e "CREATIVE" espaçado, como na prévia aprovada. Texto real (fonte do site), decorativo:
-# o nome acessível fica no link que a envolve. O SVG oficial segue no favicon, no ícone e na imagem de compartilhamento.
-LOGO_DECOR = ('<span class="wordmark" aria-hidden="true"><span class="wordmark-name">Ta<span class="wordmark-ma">Ma.</span></span>'
-              '<span class="wordmark-sub">Creative</span></span>')
+# Assinatura da marca no cabeçalho e no rodapé (identidade "pétala", decidida pelo cliente em 08/11/2026): a pétala
+# coral à esquerda, "TaMa" em Sora com "Ma" em bordô e "CREATIVE" espaçado. Texto real (fonte do site), decorativo: o
+# nome acessível fica no link que a envolve. Favicon, ícones e imagem de compartilhamento usam brand/petala/.
+PETALA = 'M6 4C0 56 34 94 96 96C62 70 32 40 6 4Z'   # a pétala, em caixa de 100 × 100 (evolução do arco do logotipo)
+def petala(cls=''):
+    return f'<svg class="petala{(" " + cls) if cls else ""}" viewBox="0 0 100 100" aria-hidden="true" focusable="false"><path d="{PETALA}"/></svg>'
+LOGO_DECOR = ('<span class="wordmark" aria-hidden="true">' + petala('wordmark-petal')
+              + '<span class="wordmark-txt"><span class="wordmark-name">Ta<span class="wordmark-ma">Ma</span></span>'
+              '<span class="wordmark-sub">Creative</span></span></span>')
 SELO = themed_svg('tama-selo-positivo', 'selo', '')
 
 
@@ -1504,7 +1509,7 @@ def footer():
     <div><p class="footer-title">Contato</p><ul class="footer-links">{contact_col}</ul></div>
   </div>
   <div class="wrap footer-bottom">
-    <div class="left">{SELO}<span>© {date.today().year} TaMa Creative{(' · ' + empresa) if empresa else ''}</span></div>
+    <div class="left">{petala('selo-petala')}<span>© {date.today().year} TaMa Creative{(' · ' + empresa) if empresa else ''}</span></div>
     <span>{NOTE_RODAPE}</span>
   </div>
 </footer>'''
@@ -1746,13 +1751,12 @@ def shell(page, body):
 <meta name="description" content="{esc(page['description'])}">
 {canonical}
 <meta name="robots" content="{robots}">
-<link rel="preload" href="/fonts/dm-sans-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/sora-latin.woff2" as="font" type="font/woff2" crossorigin>
 {page.get('preload', '')}
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<meta name="theme-color" content="#FFFFFF">
+<meta name="theme-color" content="#FBF8F3">
 <meta property="og:type" content="{page.get('og_type', 'website')}">
 <meta property="og:locale" content="pt_BR">
 <meta property="og:site_name" content="TaMa Creative">
@@ -2155,7 +2159,7 @@ def home_galeria():
         links += f'<li><a href="{href}">{CAT_PROD[k]}</a></li>'
     return f'''<section class="section tm-gallery" aria-labelledby="tm-gal-t">
   <div class="wrap">
-    <div class="tm-gal-head" data-reveal><div><p class="eyebrow">Galeria de coleções</p><h2 id="tm-gal-t" class="tm-h2">Encontre a sua próxima ideia.</h2></div>
+    <div class="tm-gal-head" data-reveal><div><p class="eyebrow">Galeria de coleções</p><h2 id="tm-gal-t" class="tm-h2">Encontre a sua <em>próxima ideia.</em></h2></div>
       <div class="tm-gal-nav"><button class="tm-gal-btn" type="button" data-gal-prev aria-controls="tm-gal-list" aria-label="Categorias anteriores"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button>
         <span class="tm-gal-count" data-gal-count aria-hidden="true">01 — {n:02d}</span>
         <button class="tm-gal-btn" type="button" data-gal-next aria-controls="tm-gal-list" aria-label="Próximas categorias"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div></div>
@@ -2183,7 +2187,7 @@ def home_frentes():
                   f'<span class="tm-front-go" aria-hidden="true">{ARROW}</span></span></a></li>')
     return f'''<section class="section tm-fronts" aria-labelledby="tm-fronts-t">
   <div class="wrap">
-    <div class="tm-head" data-reveal><p class="eyebrow">O que a TaMa faz</p><h2 id="tm-fronts-t" class="tm-h2">Cinco frentes, <em>a mesma atenção à sua marca.</em></h2>
+    <div class="tm-head" data-reveal><p class="eyebrow">O que a TaMa faz</p><h2 id="tm-fronts-t" class="tm-h2">Cinco frentes, <em>uma linguagem.</em></h2>
       <p class="tm-sub">Do brinde do dia a dia ao evento completo: a mesma curadoria e a mesma atenção à sua marca em cada peça.</p></div>
     <ul class="tm-fronts-grid" role="list">{itens}</ul>
   </div>
@@ -2215,7 +2219,7 @@ def home_kits():
     contextos = ''.join(f'<li><a class="chip" href="/kits-corporativos/#{a}">{esc(t)}</a></li>' for a, t, _l, _k in KITS_TIPOS)
     return f'''<section class="section ivory tm-kits2" aria-labelledby="tm-kits-t">
   <div class="wrap">
-    <div class="tm-head tm-head-row" data-reveal><div><p class="eyebrow">Kits corporativos</p><h2 id="tm-kits-t" class="tm-h2">Composições prontas <em>para ajustar.</em></h2>
+    <div class="tm-head tm-head-row" data-reveal><div><p class="eyebrow">Kits corporativos</p><h2 id="tm-kits-t" class="tm-h2">Composições completas, <em>prontas para ajustar.</em></h2>
       <p class="tm-sub">Caixa, cartão e peças com a sua marca. Troque peças, cores e quantidade na proposta.</p></div>
       <a class="link" href="/kits-corporativos/">Ver todos os kits {ARROW}</a></div>
     <ul class="tm-kits2-grid" role="list">{itens}</ul>
@@ -2949,19 +2953,19 @@ def build_static():
     from PIL import Image
     import io
     shutil.copytree(os.path.join(SRC, 'fonts'), os.path.join(DIST, 'fonts'), ignore=shutil.ignore_patterns('*.css'))
-    write('favicon.svg', open(os.path.join(LOGOS, 'tama-favicon-64.svg'), encoding='utf-8').read())
+    write('favicon.svg', open(os.path.join(PETALA_DIR, 'favicon-64.svg'), encoding='utf-8').read())
     # arquivos públicos usados fora do site (ex.: logo da assinatura de e-mail): /email/...
     if os.path.isdir(os.path.join(SRC, 'email')):
         shutil.copytree(os.path.join(SRC, 'email'), os.path.join(DIST, 'email'), dirs_exist_ok=True)
-    write('favicon-32.png', resvg_py.svg_to_bytes(svg_path=os.path.join(LOGOS, 'tama-favicon-64.svg'), width=32), 'wb')
-    write('apple-touch-icon.png', resvg_py.svg_to_bytes(svg_path=os.path.join(LOGOS, 'tama-avatar-512.svg'), width=180), 'wb')
-    write('logo-512.png', resvg_py.svg_to_bytes(svg_path=os.path.join(LOGOS, 'tama-avatar-512.svg'), width=512), 'wb')
-    # Share image 1200x630: plum panel with the negative logo + kit photo
-    og = Image.new('RGB', (1200, 630), (101, 37, 61))
+    write('favicon-32.png', resvg_py.svg_to_bytes(svg_path=os.path.join(PETALA_DIR, 'favicon-64.svg'), width=32), 'wb')
+    write('apple-touch-icon.png', resvg_py.svg_to_bytes(svg_path=os.path.join(PETALA_DIR, 'avatar-512.svg'), width=180), 'wb')
+    write('logo-512.png', resvg_py.svg_to_bytes(svg_path=os.path.join(PETALA_DIR, 'avatar-512.svg'), width=512), 'wb')
+    # imagem de compartilhamento 1200 × 630: painel marfim com a assinatura (pétala) + foto do kit
+    og = Image.new('RGB', (1200, 630), (251, 248, 243))
     photo = Image.open(os.path.join(IMG_SRC, 'v2', 'hero-gift.webp')).convert('RGB')
     ph = photo.resize((1120, 630), Image.LANCZOS).crop((440, 0, 440 + 640, 630))
     og.paste(ph, (560, 0))
-    logo = Image.open(io.BytesIO(resvg_py.svg_to_bytes(svg_path=os.path.join(LOGOS, 'tama-logo-vertical-negativo.svg'), width=380))).convert('RGBA')
+    logo = Image.open(io.BytesIO(resvg_py.svg_to_bytes(svg_path=os.path.join(PETALA_DIR, 'lockup-positivo.svg'), width=400))).convert('RGBA')
     og.paste(logo, ((560 - logo.width) // 2, (630 - logo.height) // 2), logo)
     buf = io.BytesIO(); og.save(buf, 'JPEG', quality=86, optimize=True)
     write('og-default.jpg', buf.getvalue(), 'wb')

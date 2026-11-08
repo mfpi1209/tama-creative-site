@@ -1,8 +1,12 @@
-"""Gera os arquivos da proposta de rebrand (docs/rebrand/): assinatura "TaMa.", símbolo do arco, lockups e paletas,
-em SVG com o texto convertido em contorno (abre sem a fonte instalada) e em PNG grande com fundo transparente.
+"""Gera os arquivos da marca, em SVG com o texto convertido em contorno (abre sem a fonte instalada) e em PNG grande com
+fundo transparente:
+- brand/petala/: a identidade "pétala" decidida pelo cliente em 08/11/2026 (Sora), usada pelo build no favicon, nos
+  ícones e na imagem de compartilhamento;
+- docs/rebrand/: as três direções da proposta anterior (Manrope), mantidas como registro.
 
 Uso:  pip install fonttools brotli   (só para esta ferramenta; resvg-py já está em requirements.txt)
-      python tools/marca_assets.py
+      python tools/marca_assets.py            (as duas pastas)
+      python tools/marca_assets.py petala     (só brand/petala/)
 
 A fonte é a Manrope do próprio site (src/fonts/manrope-latin.woff2, variável), instanciada no peso de cada texto.
 São arquivos de proposta: o logotipo final deve ser ajustado (espaçamento ótico, kerning) por um designer de marcas.
@@ -18,25 +22,30 @@ from fontTools.varLib.instancer import instantiateVariableFont
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 FONTE = os.path.join(ROOT, 'src', 'fonts', 'manrope-latin.woff2')
+SORA = os.path.join(ROOT, 'src', 'fonts', 'sora-latin.woff2')
 OUT = os.path.join(ROOT, 'docs', 'rebrand')
+OUT_PETALA = os.path.join(ROOT, 'brand', 'petala')
+PETALA = 'M6 4C0 56 34 94 96 96C62 70 32 40 6 4Z'   # a pétala (build.py › PETALA), em caixa de 100 × 100
 ARC = 'M0 0A100 100 0 0 0 100 100Z'   # o arco do logotipo oficial (build.py › ARC), em caixa de 100 × 100
 
 TINTA, BORDO, BORDO_CLARO, BRANCO = '#17191C', '#76263E', '#E8A9BB', '#FFFFFF'
 CORAL, AMEIXA = '#C2391F', '#4A2338'
+# identidade "pétala"
+GRAFITE, BORDO_P, CORAL_P, MARFIM = '#1F2328', '#6B1F3B', '#E14B3B', '#FBF8F3'
 
 _cache = {}
 
 
-def fonte(peso):
-    if peso not in _cache:
-        f = TTFont(FONTE)
-        _cache[peso] = instantiateVariableFont(f, {'wght': peso}, inplace=False)
-    return _cache[peso]
+def fonte(peso, arquivo=FONTE):
+    if (arquivo, peso) not in _cache:
+        f = TTFont(arquivo)
+        _cache[arquivo, peso] = instantiateVariableFont(f, {'wght': peso}, inplace=False)
+    return _cache[arquivo, peso]
 
 
-def texto(s, peso, tamanho, x, y, tracking=0.0):
+def texto(s, peso, tamanho, x, y, tracking=0.0, arquivo=FONTE):
     """Contorno do texto s (linha de base em y), com tracking em em. Devolve (path d, largura)."""
-    f = fonte(peso)
+    f = fonte(peso, arquivo)
     upm = f['head'].unitsPerEm
     cmap, gs, hmtx = f.getBestCmap(), f.getGlyphSet(), f['hmtx']
     k = tamanho / upm
@@ -78,8 +87,8 @@ def svg(conteudo, w, h, fundo=None, margem=0):
             f'{bg}<g transform="translate({margem} {margem})">{conteudo}</g></svg>')
 
 
-def salvar(nome, s, largura_png=3000):
-    base = os.path.join(OUT, nome)
+def salvar(nome, s, largura_png=3000, pasta=OUT):
+    base = os.path.join(pasta, nome)
     os.makedirs(os.path.dirname(base), exist_ok=True)
     open(base + '.svg', 'w', encoding='utf-8').write(s)
     open(base + '.png', 'wb').write(bytes(resvg_py.svg_to_bytes(svg_string=s, width=largura_png)))
@@ -153,7 +162,50 @@ def paletas():
         salvar(f'paletas/paleta-{chave}', s, 4000)
 
 
+def lockup_petala(cor_ta, cor_ma, cor_sub, cor_petala, tam=200):
+    """Pétala + 'TaMa' (Sora 700, tracking -0,045 em) + 'CREATIVE' (Sora 600, 0,3 do tamanho, tracking 0,5 em), nas
+    proporções da assinatura do site (v3.css › .wordmark): a pétala começa no topo das maiúsculas e desce um pouco
+    abaixo da linha de base. Devolve (svg interno, largura, altura)."""
+    cap = 0.73 * tam                      # altura das maiúsculas da Sora
+    lado = 0.95 * tam
+    x0 = lado + tam * 0.12
+    d1, w1 = texto('Ta', 700, tam, x0, cap, -0.045, SORA)
+    d2, w2 = texto('Ma', 700, tam, x0 + w1 - 0.045 * tam, cap, -0.045, SORA)
+    sub = tam * 0.3
+    ysub = cap + tam * 0.22 + sub * 0.73
+    d3, w3 = texto('CREATIVE', 600, sub, x0 + tam * 0.09, ysub, 0.5, SORA)
+    w = x0 + max(w1 + w2 - 0.045 * tam, w3 + tam * 0.09)
+    h = max(lado, ysub)
+    k = lado / 100
+    g = (f'<path d="{PETALA}" fill="{cor_petala}" transform="scale({k:.4f})"/>'
+         f'<path d="{d1}" fill="{cor_ta}"/><path d="{d2}" fill="{cor_ma}"/><path d="{d3}" fill="{cor_sub}"/>')
+    return g, w, h
+
+
+def petala_assets():
+    """brand/petala/: símbolo, lockups, favicon e avatar da identidade "pétala"."""
+    m = 40
+    for nome, cor in [('simbolo-coral', CORAL_P), ('simbolo-bordo', BORDO_P), ('simbolo-grafite', GRAFITE), ('simbolo-branco', BRANCO)]:
+        salvar(nome, svg(f'<path d="{PETALA}" fill="{cor}" transform="scale(4)"/>', 400, 400, margem=m), 2000, OUT_PETALA)
+    for nome, ta, ma, sub, pet in [('lockup-positivo', GRAFITE, BORDO_P, GRAFITE, CORAL_P), ('lockup-negativo', BRANCO, BORDO_CLARO, BRANCO, CORAL_P),
+                                   ('lockup-grafite', GRAFITE, GRAFITE, GRAFITE, GRAFITE), ('lockup-branco', BRANCO, BRANCO, BRANCO, BRANCO)]:
+        g, w, h = lockup_petala(ta, ma, sub, pet)
+        salvar(nome, svg(g, w, h, margem=m), 3000, OUT_PETALA)
+    # favicon e avatar: a pétala em marfim sobre o bordô (legível em 16 px, na aba clara ou escura)
+    for nome, lado, rx in [('favicon-64', 64, 14), ('avatar-512', 512, 112)]:
+        k = lado * 0.64 / 100
+        off = lado * 0.18
+        s = (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {lado} {lado}" width="{lado}" height="{lado}">'
+             f'<rect width="{lado}" height="{lado}" rx="{rx}" fill="{BORDO_P}"/>'
+             f'<path d="{PETALA}" fill="{MARFIM}" transform="translate({off:.2f} {off:.2f}) scale({k:.4f})"/></svg>')
+        salvar(nome, s, lado * 2 if lado < 512 else 1024, OUT_PETALA)
+
+
 if __name__ == '__main__':
-    logos()
-    paletas()
-    print('arquivos em', os.path.relpath(OUT, ROOT))
+    import sys
+    petala_assets()
+    print('arquivos em', os.path.relpath(OUT_PETALA, ROOT))
+    if sys.argv[1:] != ['petala']:
+        logos()
+        paletas()
+        print('arquivos em', os.path.relpath(OUT, ROOT))

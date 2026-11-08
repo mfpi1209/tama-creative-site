@@ -130,10 +130,10 @@
    "alt": "Brindes com marcas fictícias sobre blocos de pedra: garrafa azul Nexo, ecobag cru com alças verdes Vera, copo térmico terracota Elo, caderno verde Vera com caneta prata e nécessaire grafite Elo, em estúdio com luz natural.",
    "eyebrow": "Brindes corporativos",
    "linhas": [
-    "Sua marca presente."
+    "Sua marca presente"
    ],
    "destaque": [
-    "Muito além da entrega."
+    "no dia a dia."
    ],
    "texto": "Brindes personalizados para fazer parte da rotina de clientes e equipes. Explore opções para eventos, campanhas e relacionamento, com as cores e a identidade da sua empresa.",
    "legenda": "Imagem ilustrativa • Marca fictícia",
@@ -145,11 +145,10 @@
    "alt": "Kit de boas-vindas aberto da marca fictícia Lume, numa caixa grafite com berço claro: caderneta, caneta, copo com tampa, fone de ouvido sem fio com estojo, power bank e caixa de som.",
    "eyebrow": "Kits corporativos",
    "linhas": [
-    "A identidade",
-    "da sua empresa."
+    "Um kit com a cara"
    ],
    "destaque": [
-    "Em cada detalhe."
+    "da sua empresa."
    ],
    "texto": "Cores, peças e embalagens que traduzem a sua marca. Kits personalizados para receber, reconhecer e criar conexões.",
    "legenda": "Imagem ilustrativa • Marca fictícia",
@@ -174,15 +173,15 @@
   "ativacoes": {
    "pagina": "/eventos-corporativos/",
    "imagem": "topo-ativacoes-202611022131",
-   "alt": "Buffet para eventos corporativos, lançamentos e encontros da empresa, coordenado pela TaMa com parceiros especializados. O formato do serviço é definido com você na proposta. S",
-   "eyebrow": "Eventos Corporativos",
+   "alt": "Mesa de buffet com antepastos, frutas e queijos montada para um evento corporativo.",
+   "eyebrow": "Eventos corporativos",
    "linhas": [
     "Seu evento"
    ],
    "destaque": [
-    "Organização de eventos"
+    "com a sua marca."
    ],
-   "texto": "Crie oportunidades para o público conhecer, experimentar e se conectar com o seu produto. Ações em lojas, feiras e eventos, planejadas conforme o objetivo da sua marca.",
+   "texto": "Buffet, decoração, brindes, uniformes e kits para eventos, feiras e ações da sua empresa. A TaMa coordena os parceiros e define o escopo com você na proposta.",
    "legenda": "Imagem ilustrativa • Marca fictícia",
    "posicao_celular": "88% center",
    "desloc": 0.07
@@ -193,11 +192,10 @@
    "alt": "Garçonete de camisa branca e avental verde-oliva com a marca fictícia Oliva arruma o guardanapo bordado num prato; na mesa, cardápio e porta-contas caramelo com a marca gravada, taças e jogo americano, num restaurante iluminado.",
    "eyebrow": "Hotelaria e gastronomia",
    "linhas": [
-    "Sua identidade,"
+    "A sua casa,"
    ],
    "destaque": [
-    "em cada detalhe",
-    "de receber."
+    "da mesa à equipe."
    ],
    "texto": "Cardápios, porta-contas, jogos americanos e uniformes personalizados para restaurantes, bares e hotéis. Peças que levam a identidade da sua casa à mesa e à equipe.",
    "legenda": "Imagem ilustrativa • Marca fictícia",
@@ -415,8 +413,8 @@
       "corporativos"
      ],
      "texto": [
-      "Buffet Completo",
-      "Serviço Completo"
+      "Buffet, decoração",
+      "e ações com a sua marca."
      ],
      "chamada": "Conhecer os eventos corporativos"
     },
@@ -425,8 +423,8 @@
      "imagem": "hot-header",
      "posicao": "70% center",
      "titulo": [
-      "Hotelaria",
-      "Jogo americano"
+      "Hotelaria e",
+      "gastronomia"
      ],
      "texto": [
       "Cardápios, porta-contas, jogos",
@@ -448,32 +446,32 @@
    "itens": [
     {
      "id": "fmt-degustacao",
-     "titulo": "Eventos",
-     "texto": "Transforme seu evento corporativo em uma experiência marcante com buffet completo, cardápio personalizado e atendimento profissional. Cuidamos de cada detalhe, da preparação à montagem e desmontagem, para você receber seus convidados com sabor e tranquilidade.",
+     "titulo": "Buffet completo",
+     "texto": "Cardápio personalizado e atendimento profissional, da preparação à montagem e desmontagem.",
      "pedido": false
     },
     {
      "id": "fmt-feiras",
-     "titulo": "Feiras e eventos",
+     "titulo": "Feiras e estandes",
      "texto": "Brindes, uniformes e materiais para o estande e para receber quem visita.",
      "pedido": false
     },
     {
      "id": "fmt-promocao",
-     "titulo": "Eventos Corporativos",
+     "titulo": "Campanhas e lançamentos",
      "texto": "Brindes, amostras e materiais para campanhas de venda, lançamentos e ações com distribuidores.",
      "pedido": false
     },
     {
-     "id": "",
-     "titulo": "Ações internas",
-     "texto": "Convenções, lançamentos para a equipe e datas da empresa, com kits e peças na mesma linguagem.",
+     "id": "fmt-internas",
+     "titulo": "Encontros da equipe",
+     "texto": "Convenções, lançamentos internos e datas da empresa, com kits e peças na mesma linguagem.",
      "pedido": false
     },
     {
      "id": "fmt-buffet",
-     "titulo": "Buffet e decoração",
-     "texto": "Buffet e ambientação do espaço na identidade da sua marca, do painel às mesas, para eventos corporativos, lançamentos e encontros da empresa, coordenados pela TaMa com parceiros especializados. O formato e o escopo são definidos com você na proposta.",
+     "titulo": "Ambientação com a sua marca",
+     "texto": "Decoração do espaço na identidade da sua marca, do painel às mesas, coordenada pela TaMa com parceiros especializados e definida com você na proposta.",
      "pedido": true
     }
    ]
@@ -487,7 +485,7 @@
     },
     {
      "imagem": "secao-ativ-cena-2-202610272025",
-     "alt": "Seja um casamento, formatura, aniversários ou eventos corporativos, a mesa de antepastos transforma a recepção.",
+     "alt": "Mesa de antepastos montada para a recepção de um evento.",
      "legenda": "Cena ilustrativa · marca fictícia"
     }
    ]

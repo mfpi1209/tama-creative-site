@@ -90,10 +90,10 @@ try {
   console.log('Home (redesenho de 11/2026)');
   {
     const home = await (await fetch(BASE + '/')).text(), redir = await (await fetch(BASE + '/_redirects')).text();
-    const ordem = ['class="ms-hero', 'class="section tm-fronts', 'class="section tm-gallery', 'class="section tm-products', 'class="section tm-kits', 'process-section', 'class="section tm-proof', 'class="t-faq', 'class="end-cta'].map(k => home.indexOf(k));
+    const ordem = ['class="ms-hero', 'class="tm-assure', 'class="section tm-gallery', 'class="section tm-fronts', 'class="section tm-kits2', 'process-section', 'class="t-faq', 'class="end-cta'].map(k => home.indexOf(k));
     ok(ordem.every((p, i) => p > 0 && (i === 0 || p > ordem[i - 1])) && !/name="robots" content="noindex/.test(home)
       && (home.match(/class="tm-front[ "]/g) || []).length === 5 && (home.match(/<details class="t-faq-item"/g) || []).length === 6 && (home.match(/class="process-step"/g) || []).length === 6,
-      'home: abertura em cenas, 5 frentes, galeria de coleções, produtos, kits, processo em 6 passos, compromissos, 6 perguntas e chamada final, nessa ordem');
+      'home: abertura em cenas, garantias, galeria de coleções, 5 frentes, kits, processo em 6 passos, 6 perguntas (com leituras) e chamada final, nessa ordem');
     ok(/^\/v2\/\s+\/\s+301/m.test(redir), '/v2/ (endereço da proposta) redireciona para a home');
     await page.setViewport({ width: 1280, height: 900 });
     await page.goto(BASE + '/', { waitUntil: 'networkidle0' });
@@ -128,7 +128,8 @@ try {
       `home: galeria de coleções com ${gal.itens.length} categorias (peças recortadas) levando ao catálogo filtrado`);
     await page.click('[data-gal-next]'); await sleep(400);
     ok(await page.$eval('[data-gal-count]', c => c.textContent.startsWith('02')) && await page.$eval('[data-gal-prev]', b => !b.disabled), 'home: a seta da galeria avança uma categoria e atualiza o contador');
-    ok(await page.$$eval('.tm-products .product.studio', c => c.length >= 4) && await colorsHavePhoto(page, '.tm-products .product.studio'), 'home: produtos reais com cor que troca a foto');
+    ok(await page.$$eval('.tm-kit-a', a => a.length >= 1 && a.length <= 3 && a.every(x => /^\/solicitar-proposta\/\?tipo=kits&interesse=/.test(x.getAttribute('href')) && x.querySelector('img')?.alt.length > 20)) && !(await page.$('.tm-products')),
+       'home: até 3 kits soltos, cada um levando ao pedido com o kit como interesse; sem a grade densa de produtos');
     for (const w of [320, 360, 390, 768, 1024, 1180, 1440]) {
       await page.setViewport({ width: w, height: 900 });
       ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), `home sem rolagem horizontal em ${w} px`);
@@ -384,35 +385,45 @@ try {
   const preloadKits = await page.$eval('link[rel="preload"][as="image"]', l => l.getAttribute('imagesrcset') || '');
   ok(topoKits.eager && /kits-header(-v3)?\./.test(topoKits.src) && preloadKits.includes(topoKits.src.match(/kits-header(-v3)?\./)?.[0]) && (/kits-header-v3\./.test(topoKits.src) ? /boas-vindas/.test(topoKits.alt) && /fictícia Lume/.test(topoKits.alt) && /power bank/.test(topoKits.alt) && /caixa de som/.test(topoKits.alt) : /fictícias/.test(topoKits.alt)),
      `kits: abertura com o kit de boas-vindas da marca fictícia Lume (ou a foto anterior enquanto a nova não existe), prioritária e com preload da mesma imagem (${topoKits.src.match(/kits-header(-v3)?/)?.[0]})`);
-  // /kits-corporativos/ por tipo de kit: uma seção com âncora para cada tipo (o menu aponta para elas). Os kits novos da
-  // apresentação de 20/10 só aparecem quando a foto existe em img/v2/; os demais têm de estar sempre no seu tipo.
+  // /kits-corporativos/: grade única (cada kit uma vez) com filtro por contexto; as âncoras dos 6 contextos (usadas no
+  // menu) continuam e abrem a grade já filtrada. Os kits novos só aparecem quando a foto existe em img/v2/.
   const KIT_TIPOS = { 'kits-escritorio': ['kit-escritorio', 'kit-pratico'], 'kits-cozinha': ['kit-cozinha', 'mesa-de-descobertas', 'gelato-experience', 'kit-petiscos'], 'kits-boas-vindas': ['kit-boas-vindas-tech', 'kit-conectado', 'kit-pratico'], 'kits-executivo': ['kit-executivo-verde', 'em-movimento'], 'kits-pausa': ['pausa-e-inspiracao', 'kit-cafe'], 'kits-fim-de-ano': ['kit-brinde', 'kit-coquetel', 'kit-caipirinha', 'kit-gin', 'kit-vinho', 'kit-agradecimento'] };
   const KITS_NOVOS = ['kit-boas-vindas-tech', 'kit-cozinha', 'kit-agradecimento', 'kit-caipirinha', 'kit-gin', 'kit-vinho'];
-  const tiposKit = await page.evaluate(ids => ids.map(id => { const s = document.getElementById(id); return s && { id, h2: s.querySelector('.section-head h2')?.textContent.trim() || '', linha: s.querySelector('.section-head p')?.textContent.trim() || '', slugs: [...s.querySelectorAll('.kit-card a[data-track-label^="kit-"]')].map(a => a.dataset.trackLabel.slice(4)), vazio: !!s.querySelector('.kit-vazio a[href^="/solicitar-proposta/?tipo=kits"]') }; }), Object.keys(KIT_TIPOS));
-  ok(tiposKit.every(Boolean) && await page.$$eval('section[aria-labelledby="kits-atalhos-t"] .atalhos-list a', (a, ids) => a.map(x => x.getAttribute('href')).join() === ids.map(i => '#' + i).join(), Object.keys(KIT_TIPOS)) && await page.$$eval('.studio-grid', g => g.length === 0),
-     'kits: atalhos e uma seção com âncora para cada um dos 6 tipos (escritório, cozinha, boas-vindas, executivo, pausa, fim de ano), sem bloco do catálogo');
-  // o Kit de agradecimento entrou no Kit fim de ano (02/11/2026): sem seção própria, e o link antigo #kits-agradecimento cai na seção de fim de ano
-  ok(await page.evaluate(() => !document.querySelector('section#kits-agradecimento, #kits .kit-tipos a[href="#kits-agradecimento"]') && document.getElementById('kits-agradecimento')?.closest('section')?.id === 'kits-fim-de-ano'),
-     'kits: o Kit de agradecimento fica no Kit fim de ano, sem seção nem atalho próprio; a âncora antiga #kits-agradecimento leva à seção de fim de ano');
-  ok(tiposKit.every(t => t && t.h2 && t.linha.length > 20 && t.slugs.every(s => KIT_TIPOS[t.id].includes(s)) && KIT_TIPOS[t.id].every(s => KITS_NOVOS.includes(s) || t.slugs.includes(s)) && (t.slugs.length > 0 || (t.vazio && KIT_TIPOS[t.id].every(s => KITS_NOVOS.includes(s))))),
-     `kits: cada tipo com título, uma linha de texto e os seus kits; só kit novo sem foto pode faltar (${tiposKit.map(t => t && t.id.replace('kits-', '') + ' ' + t.slugs.length).join(', ')})`);
-  const novosNaPagina = KITS_NOVOS.filter(s => tiposKit.some(t => t && t.slugs.includes(s)));
+  const grade = await page.evaluate(() => ({
+    ancoras: [...document.querySelectorAll('.kits-grade [data-kit-ancora]')].map(a => [a.id, a.dataset.kitAncora]),
+    chips: [...document.querySelectorAll('[data-kit-filtro]')].map(c => c.dataset.kitFiltro),
+    cards: [...document.querySelectorAll('.kit-grid-unica .kit-card')].map(k => ({ slug: k.querySelector('a[data-track-label^="kit-"]')?.dataset.trackLabel.slice(4), ctx: k.dataset.ctx.split(' '), h: k.querySelector('h3').textContent })),
+    secoesAntigas: document.querySelectorAll('.kits-tipo').length, catalogo: document.querySelectorAll('.studio-grid').length,
+  }));
+  const slugsGrade = grade.cards.map(c => c.slug);
+  ok(Object.keys(KIT_TIPOS).every(id => grade.ancoras.some(([a, d]) => a === id && d === id)) && grade.ancoras.some(([a, d]) => a === 'kits-agradecimento' && d === 'kits-fim-de-ano')
+    && grade.chips[0] === '' && grade.secoesAntigas === 0 && grade.catalogo === 0 && new Set(slugsGrade).size === slugsGrade.length,
+    `kits: grade única sem repetição (${slugsGrade.length} kits), filtro "Todos" + contextos, âncoras dos 6 contextos e a antiga #kits-agradecimento (→ fim de ano)`);
+  ok(Object.entries(KIT_TIPOS).every(([id, slugs]) => grade.cards.filter(c => c.ctx.includes(id)).every(c => slugs.includes(c.slug)) && slugs.every(s => KITS_NOVOS.includes(s) || grade.cards.some(c => c.slug === s && c.ctx.includes(id))))
+    && grade.cards.find(c => c.slug === 'kit-pratico')?.ctx.join() === 'kits-escritorio,kits-boas-vindas',
+    'kits: cada kit marcado com os seus contextos; o Kit Prático aparece uma vez, em escritório e boas-vindas; só kit novo sem foto pode faltar');
+  const novosNaPagina = KITS_NOVOS.filter(s => slugsGrade.includes(s));
   console.log(`  · kits novos com foto: ${novosNaPagina.length} de ${KITS_NOVOS.length}${novosNaPagina.length < KITS_NOVOS.length ? ' (os demais aguardam a foto em img/v2/)' : ''}`);
-  for (const id of Object.keys(KIT_TIPOS)) { await page.$eval('#' + id, e => e.scrollIntoView()); await page.$$eval(`#${id} img`, i => Promise.all(i.map(x => x.complete ? 0 : new Promise(r => { x.onload = x.onerror = r; })))); }
-  const kitsPag = await page.$$eval('.kits-tipo .kit-card', k => k.map(x => { const im = x.querySelector('img'); return { n: x.querySelector('.eyebrow').textContent, h: x.querySelector('h3').textContent, img: im.currentSrc || im.src, ok: im.complete && im.naturalWidth > 0, alt: im.alt, href: x.querySelector('a').getAttribute('href') }; }));
-  ok(kitsPag.length >= 13 && kitsPag.every(k => k.ok && /\/img\/(kitp-[a-z-]+?(-v[23])?|kits-header-v3)\./.test(k.img) && k.alt.length > 30 && !/mercedes|apple|airpods|agrocete|rc business|bayer|loja agro|alibaba|bambu|inox|madeira|couro|kraft/i.test(k.alt) && k.href === '/solicitar-proposta/?tipo=kits&interesse=' + encodeURIComponent(/^Kit /.test(k.h) ? k.h : 'Kit ' + k.h)),
-     `kits: ${kitsPag.length} cards com foto carregada, texto alternativo sem marcas de terceiros nem material afirmado e "Solicitar proposta deste kit" com o interesse`);
-  const ordemKits = [...new Set(kitsPag.map(k => k.h))];
-  ok(ordemKits.every((h, i) => kitsPag.filter(k => k.h === h).every(k => k.n === 'Kit ' + String(i + 1).padStart(2, '0'))) && kitsPag.filter(k => k.h === 'Kit Prático').length === 2,
-     `kits: numeração seguida (Kit 01 a Kit ${String(ordemKits.length).padStart(2, '0')}); o Kit Prático, em escritório e boas-vindas, tem o mesmo número nos dois`);
+  await page.click('[data-kit-filtro="kits-cozinha"]'); await sleep(150);
+  const filtrado = await page.evaluate(() => ({ vis: [...document.querySelectorAll('.kit-grid-unica .kit-card')].filter(k => !k.hidden).map(k => k.dataset.ctx), hash: location.hash, status: document.querySelector('[data-kit-status]').textContent }));
+  ok(filtrado.vis.length > 0 && filtrado.vis.every(c => c.split(' ').includes('kits-cozinha')) && filtrado.hash === '#kits-cozinha' && new RegExp('^' + filtrado.vis.length + ' kits?$').test(filtrado.status),
+    `kits: o filtro Kit cozinha mostra só os kits de cozinha (${filtrado.vis.length}), grava #kits-cozinha e avisa o total`);
+  await page.goto(BASE + '/kits-corporativos/#kits-agradecimento', { waitUntil: 'networkidle0' }); await sleep(150);
+  ok(await page.evaluate(() => document.querySelector('[data-kit-filtro][aria-pressed="true"]')?.dataset.kitFiltro === 'kits-fim-de-ano' && [...document.querySelectorAll('.kit-grid-unica .kit-card')].filter(k => !k.hidden).every(k => k.dataset.ctx.includes('kits-fim-de-ano'))),
+    'kits: o link antigo #kits-agradecimento abre a grade filtrada em Kit fim de ano');
+  await page.goto(BASE + '/kits-corporativos/', { waitUntil: 'networkidle0' });
+  await page.$eval('.kit-grid-unica', e => e.scrollIntoView()); await page.$$eval('.kit-grid-unica img', i => Promise.all(i.map(x => { x.loading = 'eager'; return x.complete ? 0 : new Promise(r => { x.onload = x.onerror = r; }); })));
+  const kitsPag = await page.$$eval('.kit-grid-unica .kit-card', k => k.map(x => { const im = x.querySelector('img'); return { n: x.querySelector('.eyebrow').textContent, h: x.querySelector('h3').textContent, img: im.currentSrc || im.src, ok: im.complete && im.naturalWidth > 0, alt: im.alt, href: x.querySelector('a').getAttribute('href') }; }));
+  ok(kitsPag.length >= 9 && kitsPag.every(k => k.ok && /\/img\/(kitp-[a-z-]+?(-v[23])?|kits-header-v3)\./.test(k.img) && k.alt.length > 30 && !/mercedes|apple|airpods|agrocete|rc business|bayer|loja agro|alibaba|bambu|inox|madeira|couro|kraft/i.test(k.alt) && k.href === '/solicitar-proposta/?tipo=kits&interesse=' + encodeURIComponent(/^Kit /.test(k.h) ? k.h : 'Kit ' + k.h) && !/^Kit \d+$/.test(k.n)),
+     `kits: ${kitsPag.length} cards com foto carregada, contexto no lugar do número, texto alternativo sem marcas de terceiros nem material afirmado e "Solicitar proposta deste kit" com o interesse`);
   ok(kitsPag.filter(k => ['Kit Boas-vindas Conectado', 'Kit Cozinha', 'Kit de Agradecimento', 'Kit Caipirinha', 'Kit Gin', 'Kit Vinho'].includes(k.h)).every(k => /Marca fictícia (Lume|Brasa|Aura|Vila|Noa|Terra); caixa /.test(k.alt)) && kitsPag.filter(k => /^Kit (Caipirinha|Gin|Vinho)$/.test(k.h)).every(k => /Sem bebida/.test(k.alt)),
      'kits novos: texto alternativo com a marca fictícia e a cor da caixa; os de drinque e de vinho dizem "sem bebida"');
   const fotosV3 = kitsPag.filter(k => /^(Gelato Experience|Mesa de Descobertas)$/.test(k.h));
-  ok(fotosV3.length === 2 && fotosV3.every(k => /kitp-(gelato-experience|mesa-de-descobertas)-v[23]\./.test(k.img) && /Marca fictícia (Nexo|Elo)/.test(k.alt)), `kits: Gelato Experience (Nexo) e Mesa de Descobertas (Elo) com a foto nova, ou a v2 enquanto ela não existe (${fotosV3.map(k => k.img.match(/-v\d/)?.[0]).join(' ')})`);
-  ok(!(await page.$('#tipos-t')) && !(await page.evaluate(() => document.body.textContent.includes('Um kit para cada relação'))), 'kits: sem a seção repetida "Um kit para cada relação" (os tipos de kit já estão nas seções do menu)');
-  ok(!(await page.$('#rail-kits')) && await page.$eval('#comp-t', h => { const next = h.closest('section').nextElementSibling; return next && !!next.querySelector('#kit-m-t'); }), 'kits: depois de "Três camadas" vem direto "Como montamos o seu kit" (sem o bloco de peças)');
+  ok(fotosV3.every(k => /kitp-(gelato-experience|mesa-de-descobertas)-v[23]\./.test(k.img) && /Marca fictícia (Nexo|Elo)/.test(k.alt)), `kits: Gelato Experience (Nexo) e Mesa de Descobertas (Elo), quando no site, com a foto nova ou a v2 (${fotosV3.map(k => k.img.match(/-v\d/)?.[0]).join(' ') || 'fora do site'})`);
+  ok(!(await page.$('#tipos-t')) && !(await page.evaluate(() => document.body.textContent.includes('Um kit para cada relação'))), 'kits: sem a seção repetida "Um kit para cada relação"');
+  ok(!(await page.$('#rail-kits')) && await page.$eval('#comp-t', h => { const next = h.closest('section').nextElementSibling; return next && next.matches('.process-strip'); }), 'kits: depois de "Três camadas" vem a faixa compacta do passo a passo (sem o bloco de peças)');
   // menu do redesenho de 11/2026 (build.py: nav_menu): Produtos ▾, Kits ▾, Soluções ▾, Inspirações ▾ e Sobre
-  ok(await page.$$eval('#site-nav .nav-links > .nav-link, #site-nav .nav-links > .nav-group > .nav-toggle', a => a.map(x => x.textContent.trim()).join()) === 'Produtos,Kits,Soluções,Inspirações,Sobre', 'menu com Produtos, Kits, Soluções, Inspirações e Sobre');
+  ok(await page.$$eval('#site-nav .nav-links > .nav-link, #site-nav .nav-links > .nav-group > .nav-toggle', a => a.map(x => x.textContent.trim()).join()) === 'Produtos,Kits,Soluções,Ocasiões,Sobre', 'menu com Produtos, Kits, Soluções, Ocasiões e Sobre');
   const menuP = await page.evaluate(() => {
     const hrefs = sel => [...document.querySelectorAll(sel)].map(a => a.getAttribute('href'));
     return { tipos: hrefs('#sub-produtos .nav-col-tipos a'), rotulos: [...document.querySelectorAll('#sub-produtos .nav-col-tipos a')].map(a => a.textContent.replace(/\s+/g, ' ').trim()), fotos: document.querySelectorAll('#site-nav img').length,
@@ -427,15 +438,15 @@ try {
      `menu Produtos: ${menuP.cats.length} categorias, ${menuP.conf.length} peças de vestuário e "Catálogo completo"`);
   ok(menuP.kits.length === 6 && menuP.kits.join() === ['escritorio', 'cozinha', 'boas-vindas', 'executivo', 'pausa', 'fim-de-ano'].map(k => '/kits-corporativos/#kits-' + k).join() && menuP.kitsAll.join() === '/kits-corporativos/',
      'menu Kits: 6 links de tipo de kit (âncoras de /kits-corporativos/) e "Ver todos os kits"');
-  ok(menuP.sol.join() === '/brindes-corporativos/,/confeccoes-personalizadas/,/kits-corporativos/,/eventos-corporativos/,/hotelaria-e-gastronomia/', 'menu Soluções: as cinco frentes');
+  ok(menuP.sol.join() === '/brindes-corporativos/,/confeccoes-personalizadas/,/eventos-corporativos/,/hotelaria-e-gastronomia/', 'menu Soluções: as quatro frentes (Kits tem item próprio no menu)');
   ok(['/brindes-de-fim-de-ano/', '/brindes-por-ocasiao/', '/blog/'].every(h => menuP.insp.includes(h)) && menuP.insp.filter(h => h.startsWith('/brindes-por-ocasiao/?ocasiao=')).length >= 5 && (SEASON === 'fim-de-ano' ? menuP.fim === 'Fim de ano temporada' : menuP.fim === 'Fim de ano'),
-     'menu Inspirações: ocasiões (fim de ano em destaque na temporada), brindes por ocasião e guias');
+     'menu Ocasiões: ocasiões (fim de ano em destaque na temporada), brindes por ocasião e guias');
   const semAncora = [];
   for (const [u, hs] of [['/kits-corporativos/', menuP.kits]]) { const html = await (await fetch(BASE + u)).text(); hs.forEach(h => { if (!html.includes(`id="${h.split('#')[1]}"`)) semAncora.push(h); }); }
   ok(semAncora.length === 0, `os links do painel Kits caem em âncoras que existem${semAncora.length ? ' — faltam: ' + semAncora.join(', ') : ''}`);
   // página certa marcada: o botão do grupo com aria-current="true" e o link da página com aria-current="page"
   const navAtual = u => page.evaluate(async u => { const d = new DOMParser().parseFromString(await (await fetch(u)).text(), 'text/html'); return [...d.querySelectorAll('#site-nav [aria-current]')].map(x => x.getAttribute('aria-controls') || x.getAttribute('href')).join(); }, BASE + u);
-  const atuais = { '/kits-corporativos/': 'sub-kits,/kits-corporativos/,/kits-corporativos/', '/confeccoes-personalizadas/': 'sub-solucoes,/confeccoes-personalizadas/', '/catalogo/polo-masculina/': 'sub-produtos',
+  const atuais = { '/kits-corporativos/': 'sub-kits,/kits-corporativos/', '/confeccoes-personalizadas/': 'sub-solucoes,/confeccoes-personalizadas/', '/catalogo/polo-masculina/': 'sub-produtos',
     '/catalogo/caneca/': 'sub-produtos', '/catalogo/': 'sub-produtos,/catalogo/', '/brindes-corporativos/': 'sub-solucoes,/brindes-corporativos/', '/hotelaria-e-gastronomia/': 'sub-solucoes,/hotelaria-e-gastronomia/',
     '/brindes-de-fim-de-ano/': 'sub-inspiracoes,/brindes-de-fim-de-ano/', '/eventos-corporativos/': 'sub-solucoes,/eventos-corporativos/', '/blog/': 'sub-inspiracoes,/blog/', '/sobre/': '/sobre/', '/': '' };
   const marcaErrada = [];
@@ -462,7 +473,7 @@ try {
   await page.keyboard.press('Escape');
   ok(await page.$eval('[aria-controls="sub-busca"]', b => b.getAttribute('aria-expanded') === 'false' && document.activeElement === b), 'busca do cabeçalho: Esc fecha e devolve o foco à lupa');
   ok(await page.$$eval('.site-footer .footer-links', ls => ls[1] && [...ls[1].querySelectorAll('a')].map(x => x.textContent.trim()).join() === 'Brindes corporativos,Uniformes e confecções,Eventos corporativos,Hotelaria e gastronomia') && await page.$eval('.site-footer a[href="/blog/"]', a => a.textContent === 'Guias e conteúdos'), 'rodapé: Soluções com os nomes do menu e o blog como "Guias e conteúdos"');
-  ok(await page.$$eval('.foto-hero figcaption, .entrega-foto figcaption', f => f.length >= 1 && f.every(x => x.textContent === 'Imagem ilustrativa • Marca fictícia')) && await page.$$eval('.kits-page .note', n => n.length === 1 && /^Imagens? ilustrativas?: (a marca TaMa e marcas fictícias aparecem|a marca (TaMa aparece|é fictícia e aparece)) como exemplo; no seu projeto, entra a marca da sua empresa\./.test(n[0].textContent)), 'kits: legenda padrão da marca fictícia no cabeçalho e uma nota padrão (marca TaMa e marcas fictícias como exemplo) depois dos tipos de kit');
+  ok(await page.$$eval('.foto-hero figcaption, .entrega-foto figcaption', f => f.length >= 1 && f.every(x => x.textContent === 'Imagem ilustrativa • Marca fictícia')) && await page.$$eval('.kits-grade .note', n => n.length === 1 && /^Imagens? ilustrativas?: (a marca TaMa e marcas fictícias aparecem|a marca (TaMa aparece|é fictícia e aparece)) como exemplo; no seu projeto, entra a marca da sua empresa\./.test(n[0].textContent)), 'kits: legenda padrão da marca fictícia no cabeçalho e uma nota padrão (marca TaMa e marcas fictícias como exemplo) depois da grade de kits');
   ok(await page.$$eval('a[href^="/branding-identidade-visual/"], a[href^="/projetos/"]', a => a.length === 0), 'nenhum link para branding ou projetos');
   await page.goto(BASE + '/confeccoes-personalizadas/', { waitUntil: 'networkidle0' });
   ok(await page.$$eval('.studio-grid .product.studio', c => c.length === 10) && await page.$eval('.studio-grid', g => !!g.closest('section').querySelector('a[href="/catalogo/?categoria=vestuario"]')), 'confecções: 10 peças em estúdio com link para o catálogo filtrado');
@@ -485,7 +496,7 @@ try {
 
   {
     const formatos = [];
-    for (const pg of ['brindes-corporativos', 'kits-corporativos', 'confeccoes-personalizadas', 'eventos-corporativos', 'hotelaria-e-gastronomia', 'brindes-de-fim-de-ano']) {
+    for (const pg of ['brindes-corporativos', 'confeccoes-personalizadas', 'eventos-corporativos', 'hotelaria-e-gastronomia', 'brindes-de-fim-de-ano']) {
       const h = await (await fetch(BASE + '/' + pg + '/')).text();
       const m = h.match(/<section class="(atalhos[^"]*)"[\s\S]*?<\/section>/);
       const itens = m ? (m[0].match(/<li>/g) || []).length : 0, icones = m ? (m[0].match(/<svg viewBox="0 0 24 24"/g) || []).length : 0;
@@ -505,7 +516,15 @@ try {
   // Seção padrão (process_section): as mesmas 6 etapas, com os mesmos nomes e na mesma ordem, em todas as páginas de frente,
   // no fim de ano e em /sobre/; nada do formato antigo (ol.steps com 4 etapas) pode sobrar.
   const ETAPAS = 'Briefing,Curadoria,Proposta,Aprovação,Produção,Entrega';
-  for (const path of ['/brindes-corporativos/', '/kits-corporativos/', '/confeccoes-personalizadas/', '/eventos-corporativos/', '/hotelaria-e-gastronomia/', '/brindes-de-fim-de-ano/', '/sobre/']) {
+  // nas páginas de frente e em kits, a versão compacta (as 6 etapas numa linha, com link para o Sobre); completa só na home, no fim de ano e no Sobre
+  for (const path of ['/brindes-corporativos/', '/kits-corporativos/', '/confeccoes-personalizadas/', '/eventos-corporativos/', '/hotelaria-e-gastronomia/']) {
+    await page.goto(BASE + path, { waitUntil: 'networkidle0' });
+    const c = await page.evaluate(() => ({ cheia: document.querySelectorAll('section.process-section').length, nomes: [...document.querySelectorAll('.process-strip .process-line li')].map(l => l.textContent.replace(/^\d+/, '').trim()).join(','),
+      link: document.querySelector('.process-strip a[href="/sobre/#como-t"]') !== null,
+      antesFaq: (() => { const s = document.querySelector('.process-strip'); let n = s?.nextElementSibling; while (n && !n.matches('section')) n = n.nextElementSibling; return !!n?.querySelector('.faq-list'); })() }));
+    ok(c.cheia === 0 && c.nomes === ETAPAS && c.link && c.antesFaq, `${path}: passo a passo compacto (6 etapas na mesma ordem, link "Como trabalhamos"), logo antes das perguntas`);
+  }
+  for (const path of ['/brindes-de-fim-de-ano/', '/sobre/']) {
     await page.goto(BASE + path, { waitUntil: 'networkidle0' });
     const p = await page.evaluate(() => ({
       secoes: document.querySelectorAll('section.process-section').length,
@@ -584,6 +603,21 @@ try {
   ok(await page.evaluate(() => (localStorage.getItem('tama-selecao') || '[]') === '[]'), 'seleção é limpa após envio confirmado');
   const events = await page.evaluate(() => (window.dataLayer || []).map(e => e.event).filter(Boolean));
   ok(['form_start', 'proposta_falha', 'proposta_gravada'].every(e => events.includes(e)), `eventos do formulário disparados (${[...new Set(events)].join(', ')})`);
+  // "Solicitar proposta só desta peça": a seleção não segue junto, a não ser que a pessoa peça; objetivo é opcional
+  {
+    const sp = await browser.newPage();
+    await sp.emulateMediaFeatures([{ name: 'prefers-reduced-motion', value: 'reduce' }]);
+    await sp.goto(BASE + '/catalogo/caneca/', { waitUntil: 'networkidle0' });
+    ok(await sp.$eval('[data-pdp-proposta]', a => /[?&]so=1(&|$)/.test(a.getAttribute('href'))), 'produto: "Solicitar proposta só desta peça" marca o pedido como de uma peça só (so=1)');
+    await sp.evaluate(() => { localStorage.setItem('tama-consent', 'denied'); localStorage.setItem('tama-selecao', JSON.stringify([{ s: 'caneca', c: 'Vermelho' }, { s: 'garrafa-termica', c: 'Azul royal' }])); });
+    await sp.goto(BASE + '/solicitar-proposta/?tipo=brindes&so=1&interesse=' + encodeURIComponent('Caneca (Vermelho)'), { waitUntil: 'networkidle0' });
+    const antes = await sp.evaluate(() => ({ sel: document.getElementById('f-selecao').value, lista: document.getElementById('picked-wrap').hidden, inc: !document.getElementById('so-peca-incluir').hidden, n: document.querySelector('[data-incluir-n]').textContent }));
+    ok(antes.sel === '' && antes.lista && antes.inc && antes.n === '2 peças', 'formulário de uma peça: a seleção (2 peças) não vai junto e há o botão para incluí-la');
+    await sp.click('[data-incluir-selecao]'); await sleep(100);
+    ok(await sp.evaluate(() => document.getElementById('f-selecao').value.includes('Garrafa térmica') && !document.getElementById('picked-wrap').hidden), 'incluir a seleção põe as peças de volta no pedido');
+    ok(await sp.$eval('#f-objetivo', t => !t.required) && await sp.$$eval('.field .opt', o => o.length >= 4), 'formulário: objetivo opcional e os campos opcionais sinalizados');
+    await sp.close();
+  }
   console.log('Frentes novas, seleção antiga e selo');
   const fp = await browser.newPage();
   await fp.setViewport({ width: 1280, height: 900 });

@@ -340,8 +340,12 @@
     var pl = document.getElementById('picked-list');
     if (pl) {
       fillList(pl, sel);
-      document.getElementById('picked-wrap').hidden = n === 0;
-      document.getElementById('f-selecao').value = sel.map(label).join('; ');
+      // "Solicitar proposta só desta peça" (?so=1): a seleção não segue junto, a menos que a pessoa peça
+      var soPeca = /[?&]so=1(&|$)/.test(location.search) && !window._incluiSelecao;
+      document.getElementById('picked-wrap').hidden = n === 0 || soPeca;
+      document.getElementById('f-selecao').value = soPeca ? '' : sel.map(label).join('; ');
+      var inc = document.getElementById('so-peca-incluir');
+      if (inc) { inc.hidden = !(soPeca && n > 0); var ic = inc.querySelector('[data-incluir-n]'); if (ic) ic.textContent = n + (n === 1 ? ' peça' : ' peças'); }
     }
     if (lbSlug) syncLightbox();
   }
@@ -624,7 +628,7 @@
       x.o = ex.o; x.q = ex.q;
       var it = label(x);
       pdpProp.setAttribute('data-interesse', it);
-      pdpProp.href = '/solicitar-proposta/?tipo=' + encodeURIComponent(pdp.getAttribute('data-tipo') || 'brindes') + '&interesse=' + encodeURIComponent(it);
+      pdpProp.href = '/solicitar-proposta/?tipo=' + encodeURIComponent(pdp.getAttribute('data-tipo') || 'brindes') + '&so=1&interesse=' + encodeURIComponent(it);
     };
     var pdpSalva = function () {
       var sel = getSel(), i = find(sel, pdpSlug), ex = pdpExtras(pdpSlug);
@@ -879,7 +883,6 @@
     check('f-nome', form.nome.value.trim().length < 2 ? 'Informe seu nome.' : '');
     check('f-contato', !contato ? 'Informe um e-mail ou WhatsApp para resposta.' : (!isMail && digits.length < 10 ? 'Confira o contato: use um e-mail válido ou um telefone com DDD.' : ''));
     check('f-tipo', !form.querySelector('input[name="tipo"]:checked') ? 'Escolha o tipo de projeto.' : '');
-    check('f-objetivo', form.objetivo.value.trim().length < 10 ? 'Conte em poucas palavras o objetivo da ação.' : '');
     check('f-consent', !form.consentimento.checked ? 'É preciso concordar com o uso dos dados para receber a proposta.' : '');
     if (first) {
       var f = document.getElementById(first), target = f.matches('fieldset') ? f.querySelector('input') : f;
@@ -1166,4 +1169,42 @@
   list.addEventListener('scroll', function () { requestAnimationFrame(update); }, { passive: true });
   window.addEventListener('resize', update);
   update();
+})();
+
+/* ---------- Pedido só de uma peça: incluir a seleção, se a pessoa quiser ---------- */
+(function () {
+  var b = document.querySelector('[data-incluir-selecao]');
+  if (!b) return;
+  b.addEventListener('click', function () { window._incluiSelecao = true; window.dispatchEvent(new StorageEvent('storage', { key: 'tama-selecao' })); var pw = document.getElementById('picked-wrap'); if (pw) { pw.hidden = false; } document.getElementById('so-peca-incluir').hidden = true; });
+})();
+
+/* ---------- Kits: grade única com filtro por contexto (o endereço #kits-<contexto> abre já filtrado) ---------- */
+(function () {
+  var box = document.querySelector('.kits-grade');
+  if (!box) return;
+  var chips = [].slice.call(box.querySelectorAll('[data-kit-filtro]')), cards = [].slice.call(box.querySelectorAll('.kit-card[data-ctx]'));
+  var status = box.querySelector('[data-kit-status]'), linhaEl = box.querySelector('[data-kit-linha]'), linhaBase = linhaEl ? linhaEl.textContent : '';
+  var linhas = {}; try { linhas = JSON.parse(linhaEl.getAttribute('data-linhas')); } catch (e) {}
+  var ancoras = {}; [].forEach.call(box.querySelectorAll('[data-kit-ancora]'), function (a) { ancoras[a.id] = a.getAttribute('data-kit-ancora'); });
+  function apply(sid, rolar) {
+    var n = 0;
+    chips.forEach(function (c) { c.setAttribute('aria-pressed', String(c.getAttribute('data-kit-filtro') === sid)); });
+    cards.forEach(function (k) { var on = !sid || k.getAttribute('data-ctx').split(' ').indexOf(sid) !== -1; k.hidden = !on; if (on) n++; });
+    if (linhaEl) linhaEl.textContent = (sid && linhas[sid]) || linhaBase;
+    if (status) status.textContent = n + (n === 1 ? ' kit' : ' kits');
+    if (rolar) setTimeout(function () {   // depois do salto nativo da âncora (altura zero): a grade inteira fica à vista, abaixo do cabeçalho
+      var hh = (document.querySelector('.site-header') || {}).offsetHeight || 0;
+      window.scrollTo({ top: box.getBoundingClientRect().top + window.scrollY - hh - 8, behavior: 'instant' });
+    }, 60);
+  }
+  chips.forEach(function (c) {
+    c.addEventListener('click', function () {
+      var sid = c.getAttribute('data-kit-filtro');
+      history.replaceState(null, '', sid ? '#' + sid : location.pathname);
+      apply(sid, false);
+    });
+  });
+  function fromHash(rolar) { var h = location.hash.replace('#', ''); if (h in ancoras) apply(ancoras[h], rolar); }
+  fromHash(true);
+  window.addEventListener('hashchange', function () { fromHash(true); });
 })();

@@ -969,7 +969,7 @@
    "id": "avental-cintura-meia-saia~preto",
    "produto": "Avental Cintura Meia Saia",
    "categoria": "vestuario",
-   "modelo": "Avental Simplismente lindo!  Destinado aos Chefs, Cozinheiras e atendentes que amam estar com muito estilo.",
+   "modelo": "Avental de cintura, modelo meia saia",
    "cor": {
     "nome": "Preto",
     "hex": "#1F4FB8"
@@ -1733,7 +1733,7 @@
    "id": "avental-pvc-mescla~preto",
    "produto": "Avental PVC Mescla",
    "categoria": "vestuario",
-   "modelo": "Avental PVC",
+   "modelo": "Avental em PVC",
    "cor": {
     "nome": "Preto",
     "hex": "#0C0C0E"
@@ -1807,7 +1807,7 @@
    "id": "avental-vintage-jeans~colorido",
    "produto": "Avental Vintage Jeans",
    "categoria": "vestuario",
-   "modelo": "Destinado aos barbeiros, Chefs, Cozinheiros e atendentes que amam estar com muito estilo.",
+   "modelo": "Avental em jeans, estilo vintage",
    "cor": {
     "nome": "Colorido",
     "hex": "#B51FB7"
@@ -1844,7 +1844,7 @@
    "id": "avental-vintage-jeans~jeans",
    "produto": "Avental Vintage Jeans",
    "categoria": "vestuario",
-   "modelo": "Destinado aos barbeiros, Chefs, Cozinheiros e atendentes que amam estar com muito estilo.",
+   "modelo": "Avental em jeans, estilo vintage",
    "cor": {
     "nome": "JEANS",
     "hex": "#1F38B7"
@@ -4675,7 +4675,7 @@
    "id": "caderneta-para-anotacoes-com-caneta~preto",
    "produto": "CADERNETA PARA ANOTAÇÕES COM CANETA",
    "categoria": "canetas-escritorio",
-   "modelo": "CADERNETA PARA ANOTAÇÕES",
+   "modelo": "Caderneta para anotações com caneta",
    "cor": {
     "nome": "Preto",
     "hex": "#060A13"
@@ -13934,7 +13934,7 @@
    "id": "combo-kit-para-petiscos-kit-para-queijos-personalizados~mandeira",
    "produto": "Combo Kit para Petiscos & Kit para Queijos Personalizados",
    "categoria": "cozinha-bar",
-   "modelo": "1 Petisqueira 21x21 cm 2 Ramequins 9,5x9,5 2 Espátulas 14 xm Kit para Queijos Personali",
+   "modelo": "Petisqueira, ramequins e espátulas, com kit para queijos",
    "cor": {
     "nome": "Mandeira",
     "hex": "#1F4FB8"
@@ -13971,7 +13971,7 @@
    "id": "conj-de-xicaras-express-c-pires-2-pcs~xicaras",
    "produto": "CONJ. DE XÍCARAS EXPRESS C/ PIRES - 2 PÇS",
    "categoria": "garrafas-copos",
-   "modelo": "Conjunto de duas xícaras americano com pires.",
+   "modelo": "Duas xícaras com pires",
    "cor": {
     "nome": "Xícaras",
     "hex": "#FFFFFF"
@@ -16783,7 +16783,7 @@
    "id": "copo-termico-tipo-stanley-com-tampa~varias-cores",
    "produto": "Copo Térmico Tipo Stanley Com Tampa",
    "categoria": "garrafas-copos",
-   "modelo": "» CARACTERÍSTICAS: – Várias opções de cores – Isolamento térmico – Ideal para manter sua cerveja gelada até acabar – Designer diferenciado – Portátil – Não tóxico – Prático",
+   "modelo": "Copo térmico com tampa",
    "cor": {
     "nome": "Várias cores",
     "hex": "#EAECF1"
@@ -21158,7 +21158,7 @@
    "id": "jogo-americano-personalizado~preto",
    "produto": "Jogo Americano Personalizado",
    "categoria": "hotelaria-gastronomia",
-   "modelo": "Sintético (Alta Durabilidade)",
+   "modelo": "Jogo americano sintético",
    "cor": {
     "nome": "Preto",
     "hex": "#1F4FB8"
@@ -21417,7 +21417,7 @@
    "id": "kit-boas-vindas-3-pcs~preto",
    "produto": "KIT BOAS VINDAS - 3 PÇS",
    "categoria": "canetas-escritorio",
-   "modelo": "KIT BOAS VINDAS",
+   "modelo": "Garrafa, mochila sacola e fone de ouvido",
    "cor": {
     "nome": "Preto",
     "hex": "#131416"
@@ -21676,7 +21676,7 @@
    "id": "kit-gift-executivo~preto",
    "produto": "Kit Gift Executivo",
    "categoria": "canetas-escritorio",
-   "modelo": "O Kit Smart Office com Caderno com folhas pautadas, Caneta e Copo é ideal para brindes de impacto em reuniões, eventos e ativações corporativas. O caderno A5 possui capa com textura moderna e placa para personalização.",
+   "modelo": "Caderno A5, caneta e copo",
    "cor": {
     "nome": "Preto",
     "hex": "#31343A"
@@ -21713,7 +21713,7 @@
    "id": "kit-para-anotacoes-com-caneta~vermelho",
    "produto": "Kit para Anotações com Caneta",
    "categoria": "canetas-escritorio",
-   "modelo": "it para Anotações com Caneta",
+   "modelo": "Bloco de anotações com caneta",
    "cor": {
     "nome": "Vermelho",
     "hex": "#ED0C0C"
@@ -21787,7 +21787,7 @@
    "id": "kit-para-pizza-personalizado-com-tabua-cortador-espatula~tom-natural",
    "produto": "Kit para Pizza Personalizado com Tábua + Cortador + Espátula",
    "categoria": "cozinha-bar",
-   "modelo": "1 Tábua 35x35x1,6 cm 1 Espátula 25x06x3,0 cm 1 Cortador 21x10x1,6 cm",
+   "modelo": "Tábua, cortador e espátula para pizza",
    "cor": {
     "nome": "Tom Natural",
     "hex": "#1F4FB8"
@@ -21824,7 +21824,7 @@
    "id": "kit-premium-onboarding-presente-personalizado~preto",
    "produto": "Kit Premium Onboarding Presente Personalizado",
    "categoria": "canetas-escritorio",
-   "modelo": "Kit Premium",
+   "modelo": "Kit de onboarding",
    "cor": {
     "nome": "Preto",
     "hex": "#18191B"
@@ -27359,7 +27359,7 @@
    "id": "power-bank-com-indicador-led~branco",
    "produto": "Power Bank com Indicador LED",
    "categoria": "acessorios",
-   "modelo": "Power Bank com Indicador LED",
+   "modelo": "Carregador portátil com indicador de carga",
    "cor": {
     "nome": "BRANCO",
     "hex": "#FFFFFF"
@@ -27396,7 +27396,7 @@
    "id": "power-bank-com-lanterna-e-multissaidas-08219~vermelho",
    "produto": "Power Bank com Lanterna e Multissaídas 08219",
    "categoria": "acessorios",
-   "modelo": "Power Bank com Lanterna e Multissaídas 08219",
+   "modelo": "Carregador portátil com lanterna e várias saídas",
    "cor": {
     "nome": "Vermelho",
     "hex": "#F50A0A"
@@ -27433,7 +27433,7 @@
    "id": "power-bank-power-bank-com-lanterna-e-multissaidas~branco",
    "produto": "Power Bank Power Bank com Lanterna e Multissaídas",
    "categoria": "vestuario",
-   "modelo": "Power Bank com Lanterna e Multissaídas",
+   "modelo": "Carregador portátil com lanterna",
    "cor": {
     "nome": "Branco",
     "hex": "#FAFCFF"

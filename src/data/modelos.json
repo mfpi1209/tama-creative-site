@@ -129,7 +129,8 @@
    "medidas": {
     "valor": "",
     "status": "a_confirmar"
-   }
+   },
+   "nome": "Avental de cintura meia saia"
   },
   {
    "produto": "Avental com laço",
@@ -155,7 +156,8 @@
    "medidas": {
     "valor": "",
     "status": "a_confirmar"
-   }
+   },
+   "nome": "Avental de PVC mescla"
   },
   {
    "produto": "Avental Roma",
@@ -175,7 +177,8 @@
    "medidas": {
     "valor": "",
     "status": "a_confirmar"
-   }
+   },
+   "nome": "Avental vintage"
   },
   {
    "produto": "Avental Vintage Jeans",
@@ -186,7 +189,7 @@
     "valor": "",
     "status": "a_confirmar"
    },
-   "nome": "Avental Minimalista Lisboa"
+   "nome": "Avental vintage jeans"
   },
   {
    "produto": "Bloco capa dura com caneta na capa",
@@ -430,7 +433,8 @@
    "medidas": {
     "valor": "",
     "status": "a_confirmar"
-   }
+   },
+   "nome": "Caderneta para anotações com caneta"
   },
   {
    "produto": "Caderno A5 com elástico",
@@ -632,7 +636,8 @@
    "medidas": {
     "valor": "",
     "status": "a_confirmar"
-   }
+   },
+   "nome": "Camisa polo"
   },
   {
    "produto": "Camiseta feminina",
@@ -816,7 +821,8 @@
    "medidas": {
     "valor": "",
     "status": "a_confirmar"
-   }
+   },
+   "nome": "Caneca térmica com abridor"
   },
   {
    "produto": "Caneca térmica com misturador automático",
@@ -1276,7 +1282,8 @@
    "medidas": {
     "valor": "",
     "status": "a_confirmar"
-   }
+   },
+   "nome": "Kit para petiscos e queijos"
   },
   {
    "produto": "CONJ. DE XÍCARAS EXPRESS C/ PIRES - 2 PÇS",
@@ -1286,7 +1293,8 @@
    "medidas": {
     "valor": "",
     "status": "a_confirmar"
-   }
+   },
+   "nome": "Conjunto de 2 xícaras de café com pires"
   },
   {
    "produto": "Copo 360°",
@@ -1617,7 +1625,8 @@
    "medidas": {
     "valor": "",
     "status": "a_confirmar"
-   }
+   },
+   "nome": "Copo térmico com tampa"
   },
   {
    "produto": "Coqueteleira",
@@ -2102,7 +2111,8 @@
    "medidas": {
     "valor": "",
     "status": "a_confirmar"
-   }
+   },
+   "nome": "Jogo americano"
   },
   {
    "produto": "Jogo americano retangular",
@@ -2144,7 +2154,8 @@
    "medidas": {
     "valor": "",
     "status": "a_confirmar"
-   }
+   },
+   "nome": "Kit boas-vindas com 3 peças"
   },
   {
    "produto": "Kit churrasco em estojo",
@@ -2172,7 +2183,8 @@
    "medidas": {
     "valor": "",
     "status": "a_confirmar"
-   }
+   },
+   "nome": "Kit dólmã e touca de chef"
   },
   {
    "produto": "Kit Gift Executivo",
@@ -2182,7 +2194,8 @@
    "medidas": {
     "valor": "",
     "status": "a_confirmar"
-   }
+   },
+   "nome": "Kit presente executivo"
   },
   {
    "produto": "Kit para Anotações",
@@ -2202,7 +2215,8 @@
    "medidas": {
     "valor": "",
     "status": "a_confirmar"
-   }
+   },
+   "nome": "Kit para anotações com caneta"
   },
   {
    "produto": "Kit para Pizza Personalizado com Tábua + Cortador + Espátula",
@@ -2212,7 +2226,8 @@
    "medidas": {
     "valor": "",
     "status": "a_confirmar"
-   }
+   },
+   "nome": "Kit pizza com tábua, cortador e espátula"
   },
   {
    "produto": "Kit Premium Onboarding Presente Personalizado",
@@ -2222,7 +2237,8 @@
    "medidas": {
     "valor": "",
     "status": "a_confirmar"
-   }
+   },
+   "nome": "Kit onboarding premium"
   },
   {
    "produto": "Lacre",
@@ -2658,7 +2674,8 @@
    "medidas": {
     "valor": "",
     "status": "a_confirmar"
-   }
+   },
+   "nome": "Power bank com indicador LED"
   },
   {
    "produto": "Power Bank com Lanterna e Multissaídas 08219",
@@ -2668,7 +2685,8 @@
    "medidas": {
     "valor": "",
     "status": "a_confirmar"
-   }
+   },
+   "nome": "Power bank com lanterna e várias saídas"
   },
   {
    "produto": "Power bank com ventosas",
@@ -2689,12 +2707,13 @@
   {
    "produto": "Power Bank Power Bank com Lanterna e Multissaídas",
    "genero": "f",
-   "resumo": "Power Bank 1com Lanterna e Multissaídas",
+   "resumo": "Power bank com Lanterna e Multissaídas",
    "usos": [],
    "medidas": {
     "valor": "",
     "status": "a_confirmar"
-   }
+   },
+   "nome": "Power bank com lanterna"
   },
   {
    "produto": "Power bank slim",
@@ -3235,7 +3254,8 @@
    "medidas": {
     "valor": "",
     "status": "a_confirmar"
-   }
+   },
+   "nome": "Taça térmica desmontável"
   },
   {
    "produto": "Toalha de rosto",

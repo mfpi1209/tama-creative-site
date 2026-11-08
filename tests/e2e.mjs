@@ -90,7 +90,7 @@ try {
   console.log('Home (redesenho de 11/2026)');
   {
     const home = await (await fetch(BASE + '/')).text(), redir = await (await fetch(BASE + '/_redirects')).text();
-    const ordem = ['class="ms-hero', 'class="tm-assure', 'class="section tm-gallery', 'class="section tm-fronts', 'class="section tm-kits2', 'process-section', 'class="t-faq', 'class="end-cta'].map(k => home.indexOf(k));
+    const ordem = ['class="ms-hero', 'class="tm-assure', 'class="section tm-gallery', 'class="section tm-fronts', 'class="section ivory tm-kits2', 'process-section', 'class="t-faq', 'class="end-cta'].map(k => home.indexOf(k));
     ok(ordem.every((p, i) => p > 0 && (i === 0 || p > ordem[i - 1])) && !/name="robots" content="noindex/.test(home)
       && (home.match(/class="tm-front[ "]/g) || []).length === 5 && (home.match(/<details class="t-faq-item"/g) || []).length === 6 && (home.match(/class="process-step"/g) || []).length === 6,
       'home: abertura em cenas, garantias, galeria de coleções, 5 frentes, kits, processo em 6 passos, 6 perguntas (com leituras) e chamada final, nessa ordem');

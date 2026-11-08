@@ -51,19 +51,19 @@ try {
   const links = await page.$$eval('a[href^="/"]', as => [...new Set(as.map(a => a.getAttribute('href').split('#')[0].split('?')[0]))]);
   const broken = [];
   for (const l of links) { const r = await fetch(BASE + l); await r.arrayBuffer(); if (r.status !== 200) broken.push(l + ' ' + r.status); }
-  const catHref = await page.$eval('#sub-brindes', n => [...n.querySelectorAll('a')].map(a => [a.textContent.trim(), a.getAttribute('href')]).find(([t]) => t === 'Catálogo completo')?.[1]);
-  ok(catHref === '/catalogo/', `menu Brindes › "Catálogo completo" abre /catalogo/ (${catHref})`);
+  const catHref = await page.$eval('#sub-produtos', n => [...n.querySelectorAll('a')].map(a => [a.textContent.trim(), a.getAttribute('href')]).find(([t]) => t.startsWith('Catálogo completo'))?.[1]);
+  ok(catHref === '/catalogo/', `menu Produtos › "Catálogo completo" abre /catalogo/ (${catHref})`);
   ok(await page.$eval('#site-nav .head-search', f => f.getAttribute('action') === '/catalogo/' && f.querySelector('input').name === 'q'), 'menu do celular tem a busca no catálogo (/catalogo/?q=)');
   ok(broken.length === 0, `${links.length} links internos respondem 200${broken.length ? ' — quebrados: ' + broken.join(', ') : ''}`);
   await page.evaluate(() => localStorage.setItem('tama-consent', 'denied'));   // o aviso de cookies (testado adiante) cobriria o fim do menu no celular
   await page.reload({ waitUntil: 'networkidle0' });
   await page.click('#menu-btn');
   ok(await page.$eval('#site-nav', n => n.classList.contains('is-open')), 'menu mobile abre');
-  await page.click('[aria-controls="sub-brindes"]');
-  ok(await page.$eval('[aria-controls="sub-brindes"]', b => b.getAttribute('aria-expanded') === 'true') && await page.$eval('#sub-brindes', d => getComputedStyle(d).display !== 'none' && d.querySelectorAll('.nav-list:not(.nav-list-pe) a').length >= 12), 'no celular, Brindes abre em acordeão com a lista dos tipos de peça');
-  ok(await page.$$eval('#sub-brindes a', as => as.every(a => a.getBoundingClientRect().height >= 44 && a.getBoundingClientRect().right <= innerWidth && a.scrollWidth <= a.clientWidth + 1)) && await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), 'celular: lista de Brindes com toque de 44px, texto sem vazar e sem rolagem lateral');
+  await page.click('[aria-controls="sub-produtos"]');
+  ok(await page.$eval('[aria-controls="sub-produtos"]', b => b.getAttribute('aria-expanded') === 'true') && await page.$eval('#sub-produtos', d => getComputedStyle(d).display !== 'none' && d.querySelectorAll('.nav-col-tipos .nav-list a').length >= 12), 'no celular, Produtos abre em acordeão com categorias e tipos de peça');
+  ok(await page.$$eval('#sub-produtos a', as => as.every(a => a.getBoundingClientRect().height >= 44 && a.getBoundingClientRect().right <= innerWidth && a.scrollWidth <= a.clientWidth + 1)) && await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), 'celular: lista de Produtos com toque de 44px, texto sem vazar e sem rolagem lateral');
   await page.click('[aria-controls="sub-kits"]');
-  ok(await page.$eval('[aria-controls="sub-brindes"]', b => b.getAttribute('aria-expanded') === 'false') && await page.$eval('#sub-kits', d => getComputedStyle(d).display !== 'none'), 'abrir outro grupo (Kits) fecha o anterior');
+  ok(await page.$eval('[aria-controls="sub-produtos"]', b => b.getAttribute('aria-expanded') === 'false') && await page.$eval('#sub-kits', d => getComputedStyle(d).display !== 'none'), 'abrir outro grupo (Kits) fecha o anterior');
   await page.keyboard.press('Escape');
   ok(await page.$eval('[aria-controls="sub-kits"]', b => b.getAttribute('aria-expanded') === 'false' && document.activeElement === b) && await page.$eval('#site-nav', n => n.classList.contains('is-open')), 'Esc fecha primeiro o submenu (o foco volta ao botão), com o menu ainda aberto');
   await page.keyboard.press('Escape');
@@ -87,33 +87,36 @@ try {
   await page.click('#consent [data-consent="denied"]');
   ok((await (await fetch(BASE + '/privacidade/')).text()).includes('id="cookies"'), 'política de privacidade explica os cookies');
 
-  console.log('Home (proposta 01, aprovada em 06/11/2026)');
+  console.log('Home (redesenho de 11/2026)');
   {
     const home = await (await fetch(BASE + '/')).text(), redir = await (await fetch(BASE + '/_redirects')).text();
-    const ordem = ['class="t-hero', 'class="frentes"', 'class="t-cat', 'process-section', 'class="t-faq', 'class="t-guias', 'class="end-cta'].map(k => home.indexOf(k));
-    ok(ordem.every((p, i) => p > 0 && (i === 0 || p > ordem[i - 1])) && /<body[^>]*class="v2"/.test(home) && !/name="robots" content="noindex/.test(home)
-      && !home.includes('aria-roledescription="carrossel"') && (home.match(/<li class="t-card-item"/g) || []).length === 6 && (home.match(/class="t-pill"/g) || []).length === 4
-      && (home.match(/class="frente-card"/g) || []).length === 5 && (home.match(/<details class="t-faq-item"/g) || []).length === 6 && /class="section on-dark process-section"/.test(home)
-      && (home.match(/class="process-step"/g) || []).length === 6,
-      'home: banner, os 5 cartões de O que a TaMa faz, catálogo 3×2 com 4 filtros, processo em 6 passos no verde, 6 perguntas, guias e chamada final');
+    const ordem = ['class="tm-hero', 'class="section tm-fronts', 'class="section tm-cats', 'class="section tm-products', 'class="section tm-kits', 'process-section', 'class="section tm-proof', 'class="t-faq', 'class="end-cta'].map(k => home.indexOf(k));
+    ok(ordem.every((p, i) => p > 0 && (i === 0 || p > ordem[i - 1])) && !/name="robots" content="noindex/.test(home) && !home.includes('aria-roledescription="carrossel"')
+      && (home.match(/class="tm-front[ "]/g) || []).length === 5 && (home.match(/<details class="t-faq-item"/g) || []).length === 6 && (home.match(/class="process-step"/g) || []).length === 6,
+      'home: cena com produto real, 5 frentes, categorias, produtos, kits, processo em 6 passos, compromissos, 6 perguntas e chamada final, nessa ordem');
     ok(/^\/v2\/\s+\/\s+301/m.test(redir), '/v2/ (endereço da proposta) redireciona para a home');
     await page.setViewport({ width: 1280, height: 900 });
     await page.goto(BASE + '/', { waitUntil: 'networkidle0' });
-    const hero = await page.evaluate(() => ({ h1s: document.querySelectorAll('h1').length, eyebrow: document.querySelector('.t-hero .eyebrow')?.textContent, h1: document.querySelector('.t-hero h1')?.textContent.replace(/\s+/g, ' ').trim(),
-      img: document.querySelector('.t-hero img'), cta: document.querySelector('.t-hero .btn-wine')?.getAttribute('href') }));
-    const heroImg = await page.$eval('.t-hero img', i => ({ eager: i.loading === 'eager', alta: i.getAttribute('fetchpriority') === 'high', alt: i.alt.length > 20, src: i.currentSrc }));
-    ok(hero.h1s === 1 && heroImg.eager && heroImg.alta && heroImg.alt && /^\/solicitar-proposta\//.test(hero.cta)
-      && (SEASON === 'fim-de-ano' ? hero.eyebrow === 'Fim de ano' && hero.h1 === 'Um brinde a quem fez parte do seu ano.' && /\/img\/hero\./.test(heroImg.src) : !!hero.eyebrow && !!hero.h1 && hero.eyebrow !== 'Fim de ano'),
-      `home: banner com um único H1, foto prioritária e proposta; ${SEASON === 'fim-de-ano' ? 'na temporada, a arte de fim de ano' : 'fora da temporada, o 1º slide do Carrossel'} ("${hero.h1}")`);
-    const filtrados = {};
-    for (const f of ['kits', 'dia-a-dia', 'vestuario', 'todos']) { await page.click(`[data-filtro="${f}"]`); filtrados[f] = await page.$$eval('.t-card-item', l => l.filter(i => !i.hidden).length); }
-    ok(JSON.stringify(filtrados) === '{"kits":1,"dia-a-dia":4,"vestuario":1,"todos":6}' && await page.$$eval('[data-filtro]', b => b.map(x => x.getAttribute('aria-pressed')).join()) === 'true,false,false,false'
-      && await page.$eval('#t-cat-status', s => s.textContent === '6 categorias')
-      && await page.$$eval('.t-card', a => a.every(x => /^\/(kits-corporativos|confeccoes-personalizadas|catalogo)\//.test(x.getAttribute('href')) && document.getElementById(x.getAttribute('aria-labelledby')))),
-      `home: filtros Kits (1), Dia a dia (4), Vestuário (1) e Todos (6) com aria-pressed e aviso; cada card leva a uma página real e tem o título como nome ${JSON.stringify(filtrados)}`);
-    ok(await page.$$eval('.frentes-grid .frente-card', a => a.map(x => x.getAttribute('href')).join() === '/brindes-corporativos/,/confeccoes-personalizadas/,/kits-corporativos/,/eventos-corporativos/,/hotelaria-e-gastronomia/'),
+    const hero = await page.evaluate(() => ({ h1s: document.querySelectorAll('h1').length, h1: document.querySelector('.tm-hero h1')?.textContent.replace(/\s+/g, ' ').trim(),
+      ctas: [...document.querySelectorAll('.tm-hero-copy .actions a')].map(a => a.getAttribute('href').split('?')[0]) }));
+    const heroImg = await page.$eval('.tm-stage img', i => ({ eager: i.loading === 'eager', alta: i.getAttribute('fetchpriority') === 'high', alt: i.alt, w: +i.getAttribute('width'), h: +i.getAttribute('height'), src: i.currentSrc }));
+    ok(hero.h1s === 1 && hero.h1 === 'Ideias reais. Marcas presentes.' && hero.ctas.join() === '/catalogo/,/solicitar-proposta/' && heroImg.eager && heroImg.alta && heroImg.w > 0 && heroImg.h > 0
+      && /recorte-garrafa-termica~/.test(heroImg.src) && /^Garrafa térmica na cor /.test(heroImg.alt),
+      `home: um único H1, catálogo e proposta, e a garrafa térmica real (recorte) carregada com prioridade e medidas declaradas ("${heroImg.alt}")`);
+    // troca de cor: a foto real da cor escolhida, o nome da cor, o botão marcado, o texto alternativo e o link do produto
+    const cores = await page.$$eval('.tm-swatch', b => b.map(x => x.dataset.cor));
+    const alvo = cores.find(c => c !== cores[0]);
+    await page.click(`.tm-swatch[data-cor="${alvo}"]`); await sleep(400);
+    const depois = await page.evaluate(() => ({ nome: document.querySelector('[data-hero-cor]').textContent, src: document.querySelector('.tm-stage img').currentSrc, alt: document.querySelector('.tm-stage img').alt,
+      pressed: [...document.querySelectorAll('.tm-swatch[aria-pressed="true"]')].map(b => b.dataset.cor), link: document.querySelector('[data-hero-link]').getAttribute('href') }));
+    const slugAlvo = alvo.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-');
+    ok(cores.length >= 4 && depois.nome === alvo && depois.pressed.join() === alvo && depois.src.includes(`garrafa-termica~${slugAlvo}`) && depois.alt.includes(alvo.toLowerCase()) && depois.link === `/catalogo/garrafa-termica/?cor=${slugAlvo}`,
+      `home: escolher ${alvo} troca a foto pela foto real dessa cor, o nome, o botão marcado, o texto alternativo e o link do produto (${cores.length} cores)`);
+    ok(await page.$$eval('.tm-fronts-grid .tm-front-a', a => a.map(x => x.getAttribute('href')).join() === '/brindes-corporativos/,/confeccoes-personalizadas/,/kits-corporativos/,/eventos-corporativos/,/hotelaria-e-gastronomia/'),
        'home apresenta as cinco áreas (brindes, confecções, kits, eventos, hotelaria)');
-    for (const w of [320, 768, 1024, 1180, 1440]) {
+    ok(await page.$$eval('.tm-cat', a => a.length >= 5 && a.every(x => /^\/catalogo\/\?categoria=[a-z-]+#catalogo$/.test(x.getAttribute('href')))), 'home: atalhos de categoria levam ao catálogo filtrado');
+    ok(await page.$$eval('.tm-products .product.studio', c => c.length >= 4) && await colorsHavePhoto(page, '.tm-products .product.studio'), 'home: produtos reais com cor que troca a foto');
+    for (const w of [320, 360, 390, 768, 1024, 1180, 1440]) {
       await page.setViewport({ width: w, height: 900 });
       ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), `home sem rolagem horizontal em ${w} px`);
     }
@@ -306,7 +309,7 @@ try {
   await page.goto(BASE + '/catalogo/?tipo=nao-existe', { waitUntil: 'networkidle0' });
   ok(await catMatch() === nModelos && await page.$eval('[data-cat-tipo]', b => b.hidden) && await page.$eval('#cat-filtros input[name="tipo"][value=""]', i => i.checked) && await page.$eval('[data-cat-badge]', b => b.hidden), 'tipo desconhecido na URL abre o catálogo sem filtro (radio em Todos)');
   // os tipos do menu têm modelo no catálogo; sem modelo, só os 12 tipos de brinde que esperam as fotos dos modelos novos
-  const menuTipos = await page.$$eval('#sub-brindes .nav-list:not(.nav-list-pe) a, #sub-confeccoes .nav-list a', a => a.map(x => new URL(x.href).searchParams.get('tipo')));
+  const menuTipos = await page.$$eval('#sub-produtos .nav-col-tipos a, #sub-produtos .nav-col-conf a', a => a.map(x => new URL(x.href).searchParams.get('tipo')));
   const tiposComModelo = await page.$$eval('#cat-filtros input[name="tipo"]', r => r.map(i => i.value).filter(Boolean));
   const tiposVazios = menuTipos.filter(t => !tiposComModelo.includes(t));
   ok(menuTipos.length >= 16 && tiposVazios.every(t => TIPOS_BRINDE.includes(t)), `links de tipo do menu (${menuTipos.length}) levam a modelos; sem modelo, só tipos de brinde (${tiposVazios.join(', ') || 'nenhum'})`);
@@ -395,56 +398,57 @@ try {
   ok(fotosV3.length === 2 && fotosV3.every(k => /kitp-(gelato-experience|mesa-de-descobertas)-v[23]\./.test(k.img) && /Marca fictícia (Nexo|Elo)/.test(k.alt)), `kits: Gelato Experience (Nexo) e Mesa de Descobertas (Elo) com a foto nova, ou a v2 enquanto ela não existe (${fotosV3.map(k => k.img.match(/-v\d/)?.[0]).join(' ')})`);
   ok(!(await page.$('#tipos-t')) && !(await page.evaluate(() => document.body.textContent.includes('Um kit para cada relação'))), 'kits: sem a seção repetida "Um kit para cada relação" (os tipos de kit já estão nas seções do menu)');
   ok(!(await page.$('#rail-kits')) && await page.$eval('#comp-t', h => { const next = h.closest('section').nextElementSibling; return next && !!next.querySelector('#kit-m-t'); }), 'kits: depois de "Três camadas" vem direto "Como montamos o seu kit" (sem o bloco de peças)');
-  // menu da apresentação de 20/10 (build.py: nav_menu): Brindes ▾ (tipos), Kits ▾, Confecções ▾, Eventos corporativos ▾, Sobre e Blog
-  ok(await page.$$eval('#site-nav > .nav-link, #site-nav > .nav-group > .nav-toggle', a => a.map(x => x.textContent.trim()).join()) === 'Brindes,Kits,Confecções,Eventos corporativos,Sobre,Blog', 'menu com Brindes, Kits, Confecções, Ativações, Sobre e Blog');
+  // menu do redesenho de 11/2026 (build.py: nav_menu): Produtos ▾, Kits ▾, Soluções ▾, Inspirações ▾ e Sobre
+  ok(await page.$$eval('#site-nav .nav-links > .nav-link, #site-nav .nav-links > .nav-group > .nav-toggle', a => a.map(x => x.textContent.trim()).join()) === 'Produtos,Kits,Soluções,Inspirações,Sobre', 'menu com Produtos, Kits, Soluções, Inspirações e Sobre');
   const menuP = await page.evaluate(() => {
     const hrefs = sel => [...document.querySelectorAll(sel)].map(a => a.getAttribute('href'));
-    return { tipos: hrefs('#sub-brindes .nav-list:not(.nav-list-pe) a'), rotulos: [...document.querySelectorAll('#sub-brindes .nav-list a')].map(a => a.textContent.replace(/\s+/g, ' ').trim()), fotos: document.querySelectorAll('#sub-brindes img').length, pe: hrefs('#sub-brindes .nav-list-pe a, #sub-brindes .nav-sub-all'),
-      fim: document.querySelector('#sub-brindes .nav-list-pe a[href="/brindes-de-fim-de-ano/"]')?.textContent.replace(/\s+/g, ' ').trim() || '',
-      kits: hrefs('#sub-kits .nav-list a'), kitsAll: hrefs('#sub-kits .nav-sub-all'), conf: hrefs('#sub-confeccoes .nav-list a'), confAll: hrefs('#sub-confeccoes .nav-sub-all'),
-      ativ: hrefs('#sub-ativacoes .nav-list a'), ativAll: hrefs('#sub-ativacoes .nav-sub-all') };
+    return { tipos: hrefs('#sub-produtos .nav-col-tipos a'), rotulos: [...document.querySelectorAll('#sub-produtos .nav-col-tipos a')].map(a => a.textContent.replace(/\s+/g, ' ').trim()), fotos: document.querySelectorAll('#site-nav img').length,
+      cats: hrefs('#sub-produtos .nav-col-cats a'), all: hrefs('#sub-produtos .nav-sub-all'), conf: hrefs('#sub-produtos .nav-col-conf a'),
+      kits: hrefs('#sub-kits .nav-list a'), kitsAll: hrefs('#sub-kits .nav-sub-all'), sol: hrefs('#sub-solucoes a'), insp: hrefs('#sub-inspiracoes a'),
+      fim: document.querySelector('#sub-inspiracoes a[href="/brindes-de-fim-de-ano/"]')?.textContent.replace(/\s+/g, ' ').trim() || '' };
   });
   const tipoHref = h => /^\/catalogo\/\?tipo=[a-z-]+#catalogo$/.test(h);
-  ok(menuP.tipos.length >= 12 && menuP.tipos.every(tipoHref) && TIPOS_BRINDE.concat('tecnologia').every(k => menuP.tipos.includes(`/catalogo/?tipo=${k}#catalogo`)) && menuP.fotos === 0,
-     `menuP Brindes: lista (sem fotos, como os outros menus) com os 12 tipos de brinde e Tecnologia levando ao catálogo filtrado (${menuP.tipos.length} tipos)`);
-  ok(menuP.rotulos.join() === ['Agendas', 'Cadernos', 'Canetas', 'Canecas', 'Copos', 'Xícaras', 'Taças', 'Squeezes', 'Garrafas', 'Porta-vinho', 'Mochilas', 'Ecobags', 'Tecnologia',
-    'Brindes corporativos', 'Hotelaria', 'Por ocasião'].concat(SEASON === 'fim-de-ano' ? ['Fim de ano temporada'] : []).join()
-     && menuP.tipos.slice(0, 12).join() === TIPOS_BRINDE.map(k => `/catalogo/?tipo=${k}#catalogo`).join(),
-     `menuP Brindes: itens na ordem pedida (Agendas, Cadernos, …, Squeezes, Garrafas, Porta-vinho, Mochilas, Ecobags, Tecnologia) e "Hotelaria" no pé (${menuP.rotulos.join(', ')})`);
-  ok(['/brindes-corporativos/', '/hotelaria-e-gastronomia/', '/brindes-por-ocasiao/'].every(h => menuP.pe.includes(h)) && menuP.pe.at(-1) === '/catalogo/' && (SEASON === 'fim-de-ano' ? menuP.fim === 'Fim de ano temporada' : !menuP.fim),
-     `menuP Brindes: pé com Brindes corporativos, Hotelaria, Por ocasião${SEASON === 'fim-de-ano' ? ', Fim de ano em destaque' : ''} e Catálogo completo`);
+  ok(menuP.tipos.length >= 12 && menuP.tipos.every(tipoHref) && TIPOS_BRINDE.concat('tecnologia').filter(k => menuP.tipos.includes(`/catalogo/?tipo=${k}#catalogo`)).length >= 12 && menuP.fotos === 0,
+     `menu Produtos: tipos de brinde (e Tecnologia) levando ao catálogo filtrado, sem fotos (${menuP.tipos.length} tipos)`);
+  ok(menuP.cats.length >= 5 && menuP.cats.every(h => /^\/catalogo\/\?categoria=[a-z-]+#catalogo$/.test(h)) && menuP.all.join() === '/catalogo/' && menuP.conf.length >= 7 && menuP.conf.every(tipoHref),
+     `menu Produtos: ${menuP.cats.length} categorias, ${menuP.conf.length} peças de vestuário e "Catálogo completo"`);
   ok(menuP.kits.length === 6 && menuP.kits.join() === ['escritorio', 'cozinha', 'boas-vindas', 'executivo', 'pausa', 'fim-de-ano'].map(k => '/kits-corporativos/#kits-' + k).join() && menuP.kitsAll.join() === '/kits-corporativos/',
-     'menuP Kits: 6 links de tipo de kit (âncoras de /kits-corporativos/; o Kit de agradecimento está no Kit fim de ano) e "Ver todos os kits"');
-  ok(menuP.conf.length >= 7 && menuP.conf.every(tipoHref) && menuP.confAll.join() === '/confeccoes-personalizadas/', `menuP Confecções: ${menuP.conf.length} tipos de peça no catálogo filtrado e "Uniformes e confecções"`);
-  ok(menuP.ativ.join() === '/eventos-corporativos/#fmt-buffet' && menuP.ativAll.join() === '/eventos-corporativos/', 'menu Eventos corporativos: uma opção só, "Buffet e decoração", e "Conhecer eventos corporativos"');
+     'menu Kits: 6 links de tipo de kit (âncoras de /kits-corporativos/) e "Ver todos os kits"');
+  ok(menuP.sol.join() === '/brindes-corporativos/,/confeccoes-personalizadas/,/kits-corporativos/,/eventos-corporativos/,/hotelaria-e-gastronomia/', 'menu Soluções: as cinco frentes');
+  ok(['/brindes-de-fim-de-ano/', '/brindes-por-ocasiao/', '/blog/'].every(h => menuP.insp.includes(h)) && menuP.insp.filter(h => h.startsWith('/brindes-por-ocasiao/?ocasiao=')).length >= 5 && (SEASON === 'fim-de-ano' ? menuP.fim === 'Fim de ano temporada' : menuP.fim === 'Fim de ano'),
+     'menu Inspirações: ocasiões (fim de ano em destaque na temporada), brindes por ocasião e guias');
   const semAncora = [];
-  for (const [u, hs] of [['/kits-corporativos/', menuP.kits], ['/eventos-corporativos/', menuP.ativ]]) { const html = await (await fetch(BASE + u)).text(); hs.forEach(h => { if (!html.includes(`id="${h.split('#')[1]}"`)) semAncora.push(h); }); }
-  ok(semAncora.length === 0, `os links dos painéis Kits e Ativações caem em âncoras que existem${semAncora.length ? ' — faltam: ' + semAncora.join(', ') : ''}`);
+  for (const [u, hs] of [['/kits-corporativos/', menuP.kits]]) { const html = await (await fetch(BASE + u)).text(); hs.forEach(h => { if (!html.includes(`id="${h.split('#')[1]}"`)) semAncora.push(h); }); }
+  ok(semAncora.length === 0, `os links do painel Kits caem em âncoras que existem${semAncora.length ? ' — faltam: ' + semAncora.join(', ') : ''}`);
   // página certa marcada: o botão do grupo com aria-current="true" e o link da página com aria-current="page"
   const navAtual = u => page.evaluate(async u => { const d = new DOMParser().parseFromString(await (await fetch(u)).text(), 'text/html'); return [...d.querySelectorAll('#site-nav [aria-current]')].map(x => x.getAttribute('aria-controls') || x.getAttribute('href')).join(); }, BASE + u);
-  const atuais = { '/kits-corporativos/': 'sub-kits,/kits-corporativos/', '/confeccoes-personalizadas/': 'sub-confeccoes,/confeccoes-personalizadas/', '/catalogo/polo-masculina/': 'sub-confeccoes',
-    '/catalogo/caneca/': 'sub-brindes', '/catalogo/': 'sub-brindes,/catalogo/', '/brindes-corporativos/': 'sub-brindes,/brindes-corporativos/', '/hotelaria-e-gastronomia/': 'sub-brindes,/hotelaria-e-gastronomia/',
-    '/brindes-de-fim-de-ano/': SEASON === 'fim-de-ano' ? 'sub-brindes,/brindes-de-fim-de-ano/' : 'sub-brindes', '/eventos-corporativos/': 'sub-ativacoes,/eventos-corporativos/', '/sobre/': '/sobre/', '/': '' };
+  const atuais = { '/kits-corporativos/': 'sub-kits,/kits-corporativos/,/kits-corporativos/', '/confeccoes-personalizadas/': 'sub-solucoes,/confeccoes-personalizadas/', '/catalogo/polo-masculina/': 'sub-produtos',
+    '/catalogo/caneca/': 'sub-produtos', '/catalogo/': 'sub-produtos,/catalogo/', '/brindes-corporativos/': 'sub-solucoes,/brindes-corporativos/', '/hotelaria-e-gastronomia/': 'sub-solucoes,/hotelaria-e-gastronomia/',
+    '/brindes-de-fim-de-ano/': 'sub-inspiracoes,/brindes-de-fim-de-ano/', '/eventos-corporativos/': 'sub-solucoes,/eventos-corporativos/', '/blog/': 'sub-inspiracoes,/blog/', '/sobre/': '/sobre/', '/': '' };
   const marcaErrada = [];
   for (const [u, esperado] of Object.entries(atuais)) { const r = await navAtual(u); if (r !== esperado) marcaErrada.push(`${u} → ${r || 'nada'}`); }
   ok(marcaErrada.length === 0, `o menu marca (aria-current) o grupo e o link da página certa${marcaErrada.length ? ' — ' + marcaErrada.join('; ') : ''}`);
-  // computador: os quatro painéis abrem inteiros na tela e legíveis de 1240 a 1440 px; os tipos de Brindes em 2 colunas
-  for (const [w, h] of [[1240, 768], [1440, 900]]) {
+  // computador: os quatro painéis abrem inteiros na tela e legíveis de 1024 a 1440 px
+  for (const [w, h] of [[1024, 768], [1440, 900]]) {
     await page.setViewport({ width: w, height: h }); await page.evaluate(() => scrollTo(0, 0)); await sleep(100);
     const fora = [];
-    for (const k of ['brindes', 'kits', 'confeccoes', 'ativacoes']) {
+    for (const k of ['produtos', 'kits', 'solucoes', 'inspiracoes']) {
       await page.click(`[aria-controls="sub-${k}"]`); await sleep(100);
       const r = await page.$eval(`#sub-${k}`, d => { const b = d.getBoundingClientRect(), as = [...d.querySelectorAll('a')];
-        return { vis: getComputedStyle(d).display !== 'none' && b.height > 0, l: Math.round(b.left), r: Math.round(b.right), b: Math.round(b.bottom), lista: !!d.closest('.nav-drop') && !d.querySelector('img'),
+        return { vis: getComputedStyle(d).display !== 'none' && b.height > 0, l: Math.round(b.left), r: Math.round(b.right), b: Math.round(b.bottom),
           leg: as.every(a => parseFloat(getComputedStyle(a).fontSize) >= 14 && a.scrollWidth <= a.clientWidth + 1 && a.getBoundingClientRect().right <= b.right + 1) }; });
-      if (!r.vis || r.l < 0 || r.r > w || r.b > h || !r.leg || !r.lista) fora.push(`${k} ${JSON.stringify(r)}`);
+      if (!r.vis || r.l < 0 || r.r > w || r.b > h || !r.leg) fora.push(`${k} ${JSON.stringify(r)}`);
       await page.keyboard.press('Escape'); await sleep(50);
     }
-    ok(fora.length === 0 && await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), `${w} px: os quatro painéis do menu abrem inteiros na tela e legíveis (todos em lista)${fora.length ? ' — ' + fora.join('; ') : ''}`);
+    ok(fora.length === 0 && await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), `${w} px: os quatro painéis do menu abrem inteiros na tela e legíveis${fora.length ? ' — ' + fora.join('; ') : ''}`);
   }
   await page.setViewport({ width: 1280, height: 900 });
-  ok(await page.$eval('.header-row .head-search', f => f.getAttribute('action') === '/catalogo/' && f.querySelector('input[name="q"]')), 'busca no catálogo na linha de cima do cabeçalho');
-  ok(await page.$$eval('.site-footer .footer-links', ls => ls[0] && [...ls[0].querySelectorAll('a')].map(x => x.textContent.trim()).join() === 'Brindes corporativos,Uniformes e confecções,Kits corporativos,Eventos corporativos,Hotelaria') && await page.$eval('.site-footer a[href="/blog/"]', a => a.textContent === 'Conteúdos'), 'rodapé repete as cinco áreas com os nomes do menu e chama o blog de "Conteúdos", como o menu');
+  // busca: botão de lupa abre o campo, o foco vai para ele e Esc devolve o foco ao botão
+  await page.click('[aria-controls="sub-busca"]'); await sleep(150);
+  ok(await page.evaluate(() => document.activeElement?.id === 'busca-topo') && await page.$eval('.header-row .head-search', f => f.getAttribute('action') === '/catalogo/' && f.querySelector('input[name="q"]')), 'busca do cabeçalho: abre pela lupa com o foco no campo (/catalogo/?q=)');
+  await page.keyboard.press('Escape');
+  ok(await page.$eval('[aria-controls="sub-busca"]', b => b.getAttribute('aria-expanded') === 'false' && document.activeElement === b), 'busca do cabeçalho: Esc fecha e devolve o foco à lupa');
+  ok(await page.$$eval('.site-footer .footer-links', ls => ls[1] && [...ls[1].querySelectorAll('a')].map(x => x.textContent.trim()).join() === 'Brindes corporativos,Uniformes e confecções,Eventos corporativos,Hotelaria e gastronomia') && await page.$eval('.site-footer a[href="/blog/"]', a => a.textContent === 'Guias e conteúdos'), 'rodapé: Soluções com os nomes do menu e o blog como "Guias e conteúdos"');
   ok(await page.$$eval('.foto-hero figcaption, .entrega-foto figcaption', f => f.length >= 1 && f.every(x => x.textContent === 'Imagem ilustrativa • Marca fictícia')) && await page.$$eval('.kits-page .note', n => n.length === 1 && /^Imagens? ilustrativas?: (a marca TaMa e marcas fictícias aparecem|a marca (TaMa aparece|é fictícia e aparece)) como exemplo; no seu projeto, entra a marca da sua empresa\./.test(n[0].textContent)), 'kits: legenda padrão da marca fictícia no cabeçalho e uma nota padrão (marca TaMa e marcas fictícias como exemplo) depois dos tipos de kit');
   ok(await page.$$eval('a[href^="/branding-identidade-visual/"], a[href^="/projetos/"]', a => a.length === 0), 'nenhum link para branding ou projetos');
   await page.goto(BASE + '/confeccoes-personalizadas/', { waitUntil: 'networkidle0' });
@@ -483,7 +487,7 @@ try {
     steps: [...s.querySelectorAll('.process-step h3')].map(h => h.textContent.trim()),
     decor: [...s.querySelectorAll('.process-num')].map(e => e.getAttribute('aria-hidden')),
   }));
-  ok(proc.steps.join(',') === 'Briefing,Curadoria,Proposta,Aprovação,Produção,Entrega', 'home mostra as 6 etapas, com ícones, na faixa verde');
+  ok(proc.steps.join(',') === 'Briefing,Curadoria,Proposta,Aprovação,Produção,Entrega', 'home mostra as 6 etapas, com ícones, na faixa escura');
   ok(proc.decor.length === 6 && proc.decor.every(v => v === 'true'), 'números das etapas são decorativos (aria-hidden)');
   // Seção padrão (process_section): as mesmas 6 etapas, com os mesmos nomes e na mesma ordem, em todas as páginas de frente,
   // no fim de ano e em /sobre/; nada do formato antigo (ol.steps com 4 etapas) pode sobrar.
@@ -614,9 +618,9 @@ try {
   await fp.goto(BASE + '/', { waitUntil: 'networkidle0' });
   ok(await fp.$eval('.site-footer a[href="/brindes-de-fim-de-ano/"]', a => a.textContent === 'Brindes de fim de ano'), 'rodapé lista "Brindes de fim de ano" nas soluções');
   await fp.goto(BASE + '/', { waitUntil: 'networkidle0' });
-  ok(await fp.$$eval('.frentes-grid .frente-card', a => a.map(x => x.getAttribute('href')).join() === '/brindes-corporativos/,/confeccoes-personalizadas/,/kits-corporativos/,/eventos-corporativos/,/hotelaria-e-gastronomia/'), 'home apresenta as cinco áreas da TaMa');
+  ok(await fp.$$eval('.tm-fronts-grid .tm-front-a', a => a.map(x => x.getAttribute('href')).join() === '/brindes-corporativos/,/confeccoes-personalizadas/,/kits-corporativos/,/eventos-corporativos/,/hotelaria-e-gastronomia/'), 'home apresenta as cinco áreas da TaMa');
   ok(await fp.$eval('meta[property="og:title"]', m => /brindes, uniformes, kits, eventos corporativos e hotelaria/i.test(m.content)), 'título de compartilhamento da home diz o que a TaMa oferece (as cinco áreas, como na assinatura)');
-  ok(await fp.$eval('.site-footer .footer-brand p', p => /^Brindes, uniformes, kits, eventos corporativos e hotelaria para empresas\./.test(p.textContent)) && await fp.$$eval('.announce li', l => l.map(x => x.textContent).join() === 'Atendimento consultivo,Arte aprovada antes da produção,Coordenação do pedido à entrega'), 'assinatura do rodapé com as cinco áreas e barra do topo com os três compromissos');
+  ok(await fp.$eval('.site-footer .footer-brand p', p => /^Brindes, uniformes, kits, eventos corporativos e hotelaria para empresas\./.test(p.textContent)) , 'assinatura do rodapé com as cinco áreas');
   ok(await fp.$$eval('.end-cta', s => s.length === 1 && s[0].querySelector('.eyebrow').textContent === 'Próximo passo' && /\?$/.test(s[0].querySelector('h2').textContent) && s[0].querySelectorAll('.actions a').length === 2 && /^Solicitar proposta/.test(s[0].querySelector('.actions a').textContent.trim())), 'fechamento padrão: eyebrow, título em pergunta e dois botões (Solicitar proposta + WhatsApp)');
   await fp.evaluate(() => localStorage.setItem('tama-selecao', JSON.stringify([{ s: 'linha-polo', c: 'Preto' }, { s: 'caneca-de-ceramica', c: null }, { s: 'baralho-exclusivo', c: null }])));
   await fp.goto(BASE + '/solicitar-proposta/', { waitUntil: 'networkidle0' });
@@ -761,11 +765,11 @@ try {
   let barra = null, diff = [];
   for (const p of ['/', '/blog/', idx.posts[0], '/sobre/', '/catalogo/', '/solicitar-proposta/', '/brindes-corporativos/', '/404.html']) {
     await bp.goto(BASE + p, { waitUntil: 'networkidle0' });
-    const b = await bp.evaluate(() => { const a = document.querySelector('body > .announce'), h = document.querySelector('body > .site-header'); return a && h && getComputedStyle(a).display !== 'none' ? [a.querySelector('.wrap > p, .wrap > .announce-season')?.textContent.replace(/\s+/g, ' ').trim(), [...a.querySelectorAll('ul li')].map(l => l.textContent.trim()).join('|'), getComputedStyle(a).backgroundColor, !!h.querySelector('.brand') && !!h.querySelector('#site-nav') && !!h.querySelector('#menu-btn')].join('§') : null; });
+    const b = await bp.evaluate(() => { const a = document.querySelector('body > .announce'), h = document.querySelector('body > .site-header'); return h ? [a ? a.querySelector('.announce-season')?.textContent.replace(/\s+/g, ' ').trim() : '', a ? getComputedStyle(a).backgroundColor : '', !!h.querySelector('.brand') && !!h.querySelector('#site-nav') && !!h.querySelector('#menu-btn')].join('§') : null; });
     if (barra === null) barra = b;
     if (b !== barra) diff.push(p);
   }
-  ok(barra && barra.includes('Atendimento consultivo|Arte aprovada antes da produção|Coordenação do pedido à entrega') && diff.length === 0, `barra do topo (3 compromissos) e cabeçalho iguais em todas as páginas, inclusive no blog${diff.length ? ' — diferem: ' + diff.join(', ') : ''}`);
+  ok(barra && (SEASON === 'fim-de-ano' ? barra.startsWith('Fim de ano:') : barra.startsWith('§')) && diff.length === 0, `barra do topo (só na temporada) e cabeçalho iguais em todas as páginas, inclusive no blog${diff.length ? ' — diferem: ' + diff.join(', ') : ''}`);
   await bp.close();
 
   console.log('Inventário (/admin/inventario/)');

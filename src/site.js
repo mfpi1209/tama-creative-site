@@ -110,7 +110,8 @@
     nav.classList.toggle('is-open', open);
     document.documentElement.classList.toggle('menu-open', open);   // trava a rolagem do fundo enquanto o menu está aberto
     // altura do menu = da base do cabeçalho até o fim da tela (a faixa do topo varia: temporada, tamanho de fonte)
-    if (open) nav.style.maxHeight = Math.max(200, window.innerHeight - nav.getBoundingClientRect().top) + 'px'; else nav.style.maxHeight = '';
+    // o painel do celular ocupa da base do cabeçalho até o fim da tela (no computador o menu fica na linha e não muda)
+    if (open && !desk.matches) nav.style.maxHeight = nav.style.height = Math.max(200, window.innerHeight - nav.getBoundingClientRect().top) + 'px'; else nav.style.maxHeight = nav.style.height = '';
   }
   if (menuBtn) menuBtn.addEventListener('click', function (e) {
     var abrir = menuBtn.getAttribute('aria-expanded') !== 'true';
@@ -123,7 +124,7 @@
     if (nav.classList.contains('is-open') && e.relatedTarget && !nav.contains(e.relatedTarget) && e.relatedTarget !== menuBtn) setMenu(false);
   });
   /* painéis (Brindes, Kits, Confecções, Eventos corporativos): botão com aria-expanded; um aberto por vez */
-  var desk = window.matchMedia ? window.matchMedia('(min-width: 1240px)') : { matches: true };
+  var desk = window.matchMedia ? window.matchMedia('(min-width: 1024px)') : { matches: true };
   var toggles = [].slice.call(document.querySelectorAll('[data-nav-toggle]'));
   function setSub(btn, open) { btn.setAttribute('aria-expanded', String(open)); btn.parentElement.classList.toggle('is-open', open); }
   function closeSubs(except) { toggles.forEach(function (t) { if (t !== except) setSub(t, false); }); }
@@ -132,6 +133,8 @@
       // clique logo depois do hover (o painel acabou de abrir): mantém aberto em vez de fechar
       if (desk.matches && e.detail > 0 && Date.now() - (t._abertoHover || 0) < 700) { closeSubs(t); setSub(t, true); return; }
       var open = t.getAttribute('aria-expanded') !== 'true'; closeSubs(t); setSub(t, open);
+      // busca do cabeçalho: ao abrir, o foco vai para o campo (o menu do celular fecha para não ficar por trás)
+      if (open && t.getAttribute('aria-controls') === 'sub-busca') { setMenu(false); var q = document.getElementById('busca-topo'); if (q) setTimeout(function () { q.focus(); }, 30); }
     });
   });
   // no computador, passar o mouse em outro grupo fecha o que foi aberto por clique (nunca dois painéis juntos)
@@ -140,7 +143,7 @@
   toggles.forEach(function (t) {
     var g = t.parentElement;
     g.addEventListener('mouseenter', function () {
-      if (!desk.matches || g.classList.contains('is-fechado')) return;
+      if (!desk.matches || g.classList.contains('is-fechado') || g.classList.contains('no-hover')) return;
       clearTimeout(hoverTimer); closeSubs(t); if (t.getAttribute('aria-expanded') !== 'true') t._abertoHover = Date.now(); setSub(t, true);
     });
     g.addEventListener('mouseleave', function () {
@@ -172,7 +175,7 @@
     if (g && desk.matches) { g.classList.add('is-fechado'); g.addEventListener('mouseleave', function sai() { g.classList.remove('is-fechado'); g.removeEventListener('mouseleave', sai); }); }
   });
   // ao passar para a largura de computador, o menu do celular não fica aberto por trás
-  if (window.matchMedia) { var mqDesk = window.matchMedia('(min-width: 1240px)'); var fecha = function () { if (mqDesk.matches) setMenu(false); }; if (mqDesk.addEventListener) mqDesk.addEventListener('change', fecha); }
+  if (window.matchMedia) { var mqDesk = window.matchMedia('(min-width: 1024px)'); var fecha = function () { if (mqDesk.matches) setMenu(false); }; if (mqDesk.addEventListener) mqDesk.addEventListener('change', fecha); }
   // âncoras da home antiga: #brindes e #marcas vão para o mesmo destino que /brindes e /marcas no deploy/nginx.conf
   var legacy = { brindes: '/brindes-corporativos/', curadoria: '/brindes-por-ocasiao/', ocasioes: '/brindes-por-ocasiao/', confeccoes: '/confeccoes-personalizadas/', marcas: '/catalogo/', sobre: '/sobre/', contato: '/solicitar-proposta/', colecoes: '/brindes-por-ocasiao/' };
   function legacyRedirect() { var h = location.hash.replace('#', ''); if (location.pathname === '/' && legacy[h]) location.replace(legacy[h]); }
@@ -223,12 +226,18 @@
       if (ex.o) novo.o = ex.o; if (ex.q) novo.q = ex.q;
       sel.push(novo);
       toast('Adicionado à sua seleção');
+      bump(slug);
       track('select_product', { item: slug });
     } else {
       sel.splice(i, 1);
       toast('Removido da seleção');
     }
     setSel(sel);
+  }
+  function bump(slug) {
+    if (reduceMotion) return;
+    document.querySelectorAll('[data-sel-count]').forEach(function (el) { el.classList.remove('is-bump'); void el.offsetWidth; el.classList.add('is-bump'); });
+    document.querySelectorAll('.pick[data-slug="' + slug + '"]').forEach(function (b) { b.classList.remove('is-added'); void b.offsetWidth; b.classList.add('is-added'); });
   }
   function variant(slug, color) {
     var c = CAT[slug];
@@ -238,6 +247,13 @@
     return v[1].map(function (w) { return '/img/' + v[0] + '-' + w + '.' + ext + ' ' + w + 'w'; }).join(', ');
   }
   function swapPicture(pic, v) {
+    // troca suave: a foto atual esmaece só até a nova carregar (sem área vazia); erro ou demora voltam ao normal
+    var box = pic.parentElement, im0 = pic.querySelector('img');
+    if (box && im0 && !reduceMotion) {
+      box.classList.add('is-swapping');
+      var done = function () { box.classList.remove('is-swapping'); im0.removeEventListener('load', done); im0.removeEventListener('error', done); };
+      im0.addEventListener('load', done); im0.addEventListener('error', done); setTimeout(done, 900);
+    }
     pic.querySelectorAll('source').forEach(function (s) {
       var ext = (s.getAttribute('type') || '').split('/')[1];
       if (ext) s.setAttribute('srcset', srcset(v, ext));
@@ -254,6 +270,8 @@
     var v = variant(slug, color);
     document.querySelectorAll('.product[data-slug="' + slug + '"]').forEach(function (card) {
       card.setAttribute('data-color', color);
+      var hx = ((CAT[slug] && CAT[slug].c) || []).filter(function (c) { return c[0] === color; })[0];
+      if (hx) card.style.setProperty('--tint', hx[1]);   // fundo da foto no tom da cor escolhida
       card.querySelectorAll('.swatch').forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-color') === color)); });
       var n = card.querySelector('.color-name'); if (n) n.textContent = color;
       var pic = card.querySelector('.prod-media picture');
@@ -282,6 +300,18 @@
       var st = document.createElement('strong'); st.textContent = CAT[x.s].n; info.appendChild(st);
       var sm = document.createElement('small'); sm.textContent = (x.c ? 'Cor de referência: ' + x.c : 'Ideia além do óbvio') + (extras(x) ? ' · ' + extras(x) : ''); info.appendChild(sm);
       li.appendChild(info);
+      var qw = document.createElement('label'); qw.className = 'picked-qty';
+      var qt = document.createElement('span'); qt.textContent = 'Qtd.'; qw.appendChild(qt);
+      var qi = document.createElement('input'); qi.type = 'number'; qi.min = '1'; qi.step = '1'; qi.inputMode = 'numeric'; qi.placeholder = '—'; qi.value = x.q || '';
+      qi.setAttribute('aria-label', 'Quantidade aproximada de ' + CAT[x.s].n);
+      qi.addEventListener('change', function () {
+        var s = getSel(), i = find(s, x.s); if (i === -1) return;
+        var v = parseInt(qi.value, 10); if (v > 0) s[i].q = v; else { delete s[i].q; qi.value = ''; }
+        store(STORE_KEY, JSON.stringify(s));   // sem render(): o foco continua no campo
+        sm.textContent = (s[i].c ? 'Cor de referência: ' + s[i].c : 'Ideia além do óbvio') + (extras(s[i]) ? ' · ' + extras(s[i]) : '');
+        var fs = document.getElementById('f-selecao'); if (fs) fs.value = s.map(label).join('; ');
+      });
+      qw.appendChild(qi); li.appendChild(qw);
       var rm = document.createElement('button'); rm.type = 'button'; rm.textContent = 'Remover';
       rm.setAttribute('aria-label', 'Remover ' + CAT[x.s].n + ' da seleção');
       rm.addEventListener('click', function () { var s = getSel(), i = find(s, x.s); if (i !== -1) { s.splice(i, 1); setSel(s); } });
@@ -966,4 +996,83 @@
       });
     });
   });
+})();
+
+/* ---------- Movimento e cena principal (redesenho de 11/2026) ---------- */
+(function () {
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // cabeçalho: fio inferior depois de rolar um pouco
+  var header = document.querySelector('.site-header');
+  if (header) {
+    var onScroll = function () { header.classList.toggle('is-scrolled', window.scrollY > 8); };
+    onScroll(); window.addEventListener('scroll', onScroll, { passive: true });
+  }
+
+  // revelação das seções: uma vez por elemento; sem IntersectionObserver ou com movimento reduzido, tudo fica visível
+  var items = [].slice.call(document.querySelectorAll('[data-reveal]'));
+  if (items.length && 'IntersectionObserver' in window && !reduce) {
+    document.documentElement.classList.add('js-reveal');
+    // escalonamento curto entre irmãos da mesma lista (até 6 passos de 70 ms)
+    items.forEach(function (el) { var p = el.parentElement, i = [].indexOf.call(p.children, el); if (p.children.length > 1) el.style.setProperty('--i', Math.min(i, 6)); });
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: .08 });
+    items.forEach(function (el) {
+      // o que já está na tela ao carregar aparece sem esperar (evita piscar acima da dobra)
+      var r = el.getBoundingClientRect();
+      if (r.top < window.innerHeight * .9) el.classList.add('is-in'); else io.observe(el);
+    });
+  }
+
+  // cena principal: troca de cor pela foto real, com pré-carga e sem deixar a área vazia
+  var stage = document.querySelector('[data-hero-stage]');
+  if (!stage) return;
+  var float = stage.querySelector('[data-float]'), pic = float && float.querySelector('picture'), img = pic && pic.querySelector('img');
+  var nameEl = stage.querySelector('[data-hero-cor]'), link = stage.querySelector('[data-hero-link]');
+  var btns = [].slice.call(stage.querySelectorAll('.tm-swatch'));
+  var sizes = img ? img.getAttribute('sizes') : '';
+  var cache = {};
+  function preload(b) {
+    var k = b.getAttribute('data-cor-slug');
+    if (cache[k]) return cache[k];
+    var im = new Image(); im.decoding = 'async'; im.sizes = sizes; im.srcset = b.getAttribute('data-webp');
+    cache[k] = im.decode ? im.decode().then(function () { return true; }, function () { return false; }) : Promise.resolve(true);
+    return cache[k];
+  }
+  function apply(b) {
+    pic.querySelector('source[type="image/avif"]').setAttribute('srcset', b.getAttribute('data-avif'));
+    img.setAttribute('srcset', b.getAttribute('data-webp'));
+    img.alt = img.getAttribute('data-alt-base') + ' na cor ' + b.getAttribute('data-cor').toLowerCase() + ', com a marca TaMa no corpo.';
+  }
+  function choose(b) {
+    if (b.getAttribute('aria-pressed') === 'true') return;
+    var prev = btns.filter(function (x) { return x.getAttribute('aria-pressed') === 'true'; })[0];
+    btns.forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+    nameEl.textContent = b.getAttribute('data-cor');
+    stage.style.setProperty('--tint', b.style.getPropertyValue('--c'));   // o arco da cena acompanha a cor da peça
+    if (link) link.setAttribute('href', link.getAttribute('href').split('?')[0] + '?cor=' + b.getAttribute('data-cor-slug'));
+    if (reduce) { apply(b); return; }
+    float.classList.add('is-swapping');
+    var ready = preload(b), t0 = Date.now();
+    ready.then(function (ok) {
+      // espera o esmaecer (até 160 ms) e troca; se a foto falhar, mantém a anterior e desfaz a escolha
+      setTimeout(function () {
+        if (ok) apply(b);
+        else if (prev) { btns.forEach(function (x) { x.setAttribute('aria-pressed', String(x === prev)); }); nameEl.textContent = prev.getAttribute('data-cor'); stage.style.setProperty('--tint', prev.style.getPropertyValue('--c')); }
+        float.classList.remove('is-swapping');
+      }, Math.max(0, 160 - (Date.now() - t0)));
+    });
+  }
+  btns.forEach(function (b) {
+    b.addEventListener('click', function () { choose(b); });
+    b.addEventListener('pointerenter', function () { preload(b); });
+    b.addEventListener('focus', function () { preload(b); });
+  });
+
+  // flutuação: pausa fora da tela e com a aba oculta
+  var visible = true;
+  function sync() { stage.classList.toggle('is-paused', !visible || document.hidden); }
+  if ('IntersectionObserver' in window) new IntersectionObserver(function (es) { visible = es[0].isIntersecting; sync(); }).observe(stage);
+  document.addEventListener('visibilitychange', sync);
 })();

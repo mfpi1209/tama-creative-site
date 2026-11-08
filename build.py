@@ -86,7 +86,11 @@ def themed_svg(name, cls, label):
 
 
 LOGO = themed_svg('tama-logo-horizontal-positivo', 'logo', 'TaMa Creative')
-LOGO_DECOR = themed_svg('tama-logo-horizontal-positivo', 'logo', '')
+# Assinatura da marca no cabeçalho e no rodapé (redesenho de 11/2026, aprovada pelo cliente em 08/11/2026): "TaMa." em
+# Manrope 800 com "Ma." em bordô e "CREATIVE" espaçado, como na prévia aprovada. Texto real (fonte do site), decorativo:
+# o nome acessível fica no link que a envolve. O SVG oficial segue no favicon, no ícone e na imagem de compartilhamento.
+LOGO_DECOR = ('<span class="wordmark" aria-hidden="true"><span class="wordmark-name">Ta<span class="wordmark-ma">Ma.</span></span>'
+              '<span class="wordmark-sub">Creative</span></span>')
 SELO = themed_svg('tama-selo-positivo', 'selo', '')
 
 
@@ -305,6 +309,11 @@ def build_images():
     if MOCKUPS and os.path.isdir(marca):  # branded versions replace the v2 photo of the same name
         over = {fn[:-5]: os.path.join(marca, fn) for fn in os.listdir(marca) if fn.lower().endswith('.webp')}
         sources = [(n, over.pop(n, s)) for n, s in sources] + sorted(over.items())
+    recortes = os.path.join(IMG_SRC, 'recortes')   # produtos sem fundo (tools/recortar.py), para as cenas da home
+    if os.path.isdir(recortes):
+        for fn in sorted(os.listdir(recortes)):
+            if fn.lower().endswith('.webp'):
+                build_cutout('recorte-' + fn[:-5], os.path.join(recortes, fn), out, cache)
     for name, src in sorted(sources):
         im = Image.open(src).convert('RGB')
         widths = [w for w in (420, 640, 960, 1280, 1920) if w < im.width - 40] + [im.width]
@@ -325,6 +334,35 @@ def build_images():
                     r = im if w == im.width else im.resize((w, h), Image.LANCZOS)
                     r.save(cached, 'JPEG' if ext == 'jpg' else ext.upper(), **kw)
                 IMG_FILES.setdefault(stem, []).append((cached, os.path.join(out, f'{stem}-{w}.{ext}')))
+
+
+def build_cutout(name, src, out, cache):
+    """Recorte com transparência (img/recortes/): WebP e AVIF em 3 larguras; sem JPG (o fundo ficaria branco)."""
+    from PIL import Image
+    im = Image.open(src).convert('RGBA')
+    widths = [w for w in (360, 560, 820) if w < im.width - 20] + [im.width]
+    stem = f"{name}.{hashlib.md5(open(src, 'rb').read()).hexdigest()[:8]}"
+    IMAGES[name] = {'w': im.width, 'h': im.height, 'widths': widths, 'stem': stem, 'src': src, 'alpha': True}
+    for w in widths:
+        h = round(im.height * w / im.width)
+        for ext, kw in (('avif', {'quality': 70}), ('webp', {'quality': 86, 'method': 6, 'exact': True})):
+            cached = os.path.join(cache, f'{stem}-{w}.{ext}')
+            if not os.path.exists(cached):
+                r = im if w == im.width else im.resize((w, h), Image.LANCZOS)
+                r.save(cached, ext.upper(), **kw)
+            IMG_FILES.setdefault(stem, []).append((cached, os.path.join(out, f'{stem}-{w}.{ext}')))
+
+
+def cutout(name, alt, sizes, eager=False, cls='', attrs=''):
+    """<picture> de um recorte (AVIF/WebP com transparência), com largura e altura declaradas."""
+    m = IMAGES[name]
+    def srcset(ext):
+        return ', '.join(f'/img/{m["stem"]}-{w}.{ext} {w}w' for w in m['widths'])
+    fb = next((w for w in m['widths'] if w >= 560), m['widths'][-1])
+    load = ' loading="eager" fetchpriority="high"' if eager else ' loading="lazy"'
+    return (f'<picture><source type="image/avif" srcset="{srcset("avif")}" sizes="{sizes}">'
+            f'<img src="/img/{m["stem"]}-{fb}.webp" srcset="{srcset("webp")}" sizes="{sizes}" width="{m["w"]}" height="{m["h"]}" '
+            f'alt="{esc(alt)}" decoding="async"{load}{f" class={chr(34)}{cls}{chr(34)}" if cls else ""}{attrs}></picture>')
 
 
 OG_USADAS = set()   # imagens usadas como og:image (recortadas em 1200 × 630 no fim do build)
@@ -685,7 +723,7 @@ def home_product_card(h, eager=False, sizes='(max-width: 760px) 46vw, (max-width
              else f'<button class="prod-media" type="button" data-zoom="{slug}" aria-label="Ampliar foto de {esc(nome)}">{foto}</button>')
     titulo = f'<a class="prod-link" href="{url}">{nome}</a>' if url else nome
     rotulo = f'{len(cores)} cores' if grupo and len(cores) > 1 else h['cores'][0][0]
-    return f'''<article class="product studio" id="{h['slug']}" data-slug="{h['slug']}"{cat}{occ}{extra}>
+    return f'''<article class="product studio" id="{h['slug']}" data-slug="{h['slug']}" style="--tint:{h['cores'][0][1]}"{cat}{occ}{extra}>
   {media}
   <div class="prod-info">
     <h3>{titulo}</h3>
@@ -916,7 +954,7 @@ def page_produto(c):
         'preload': preload_image(c['img'], '(max-width: 900px) 92vw, 1100px'),
         'body': f'''<section class="section pdp-sec">
   <div class="wrap pdp-wrap">
-    <div class="product pdp" data-slug="{slug}" data-pdp data-url="{url}" data-tipo="{tipo}" data-vistas="{esc(json.dumps(vistas, ensure_ascii=False, separators=(',', ':')))}">
+    <div class="product pdp" style="--tint:{cores[0][1]}" data-slug="{slug}" data-pdp data-url="{url}" data-tipo="{tipo}" data-vistas="{esc(json.dumps(vistas, ensure_ascii=False, separators=(',', ':')))}">
       <div class="pdp-gallery{'' if vistas_html or len(thumbs) > 1 else ' sem-rail'}">
         <div class="pdp-rail">{vistas_html}{f'<div class="pdp-thumbs" role="group" aria-label="Cores de {esc(nome)}">{"".join(thumbs)}</div>' if len(thumbs) > 1 else ''}</div>
         <div class="prod-media pdp-main" data-hover-zoom>{picture(c['img'], c['alt'], '(max-width: 900px) 92vw, 840px', eager=True)}<button class="prod-zoom" type="button" data-zoom="{slug}" aria-label="Ampliar foto de {esc(nome)}"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="7" cy="7" r="4.5"/><path d="M10.4 10.4 14 14M7 5v4M5 7h4"/></svg></button><p class="pdp-ilustra">Imagem ilustrativa</p></div>
@@ -1300,10 +1338,20 @@ MENU_KITS = [('Kit escritório', '#kits-escritorio'), ('Kit cozinha', '#kits-coz
 MENU_ATIVACOES = [('Buffet e decoração', '#fmt-buffet')]   # âncora de /eventos-corporativos/ (buffet e decoração unificados em 06/11/2026)
 
 
+# Áreas da TaMa no submenu Soluções (e na home): (endereço, nome, linha de apoio)
+SOLUCOES = [
+    ('/brindes-corporativos/', 'Brindes corporativos', 'Peças do dia a dia com a sua marca'),
+    ('/confeccoes-personalizadas/', 'Uniformes e confecções', 'Polos, camisetas, dólmãs e aventais'),
+    ('/kits-corporativos/', 'Kits corporativos', 'Composições com caixa e cartão'),
+    ('/eventos-corporativos/', 'Eventos corporativos', 'Buffet, decoração e materiais'),
+    ('/hotelaria-e-gastronomia/', 'Hotelaria e gastronomia', 'Mesa, cozinha, recepção e equipe'),
+]
+
+
 def nav_menu(path):
-    """Menu principal (2ª linha do cabeçalho): Brindes ▾ (lista dos tipos de peça e, abaixo, as páginas de brindes),
-    Kits ▾, Confecções ▾, Eventos corporativos ▾, Sobre e Blog; os quatro painéis são listas no mesmo formato. Os painéis são botões com aria-expanded; no celular viram
-    acordeão. O grupo da página atual ganha aria-current="true" no botão, e o link da página, aria-current="page"."""
+    """Menu principal: Produtos ▾, Kits ▾, Soluções ▾, Inspirações ▾ e Sobre. Cada painel é um botão com aria-expanded
+    (clique e teclado; o hover só complementa no computador). No celular, os painéis viram acordeão. O grupo da página
+    atual ganha aria-current="true" no botão, e o link da página, aria-current="page"."""
     def cur(p, exato=False):
         return ' aria-current="page"' if (path == p if exato else path.startswith(p)) else ''
 
@@ -1313,37 +1361,42 @@ def nav_menu(path):
                 f'aria-controls="sub-{chave}" data-nav-toggle{atual}>{rotulo}<svg class="nav-caret" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5l3 3 3-3"/></svg></button>'
                 f'<div class="nav-sub" id="sub-{chave}"><div class="nav-sub-in">{painel}</div></div></div>')
 
+    def coluna(titulo, itens, cls=''):
+        return f'<div class="nav-col{" " + cls if cls else ""}"><p class="nav-col-t">{titulo}</p><ul class="nav-list">{itens}</ul></div>'
+
     por_tipo = {}
     for c in CATALOGO:
         por_tipo.setdefault(c['tipo'], []).append(c)
-    # página de um modelo (/catalogo/<id>/): vestuário marca Confecções; os demais modelos e o catálogo marcam Brindes
     m = re.match(r'^/catalogo/([^/]+)/$', path)
-    mod = CATALOGO_BY.get(m.group(1)) if m else None
-    conf_atual = path.startswith('/confeccoes-personalizadas/') or bool(mod and mod['categoria'] == 'vestuario')
-    brindes_atual = not conf_atual and path.startswith(('/brindes-corporativos/', '/hotelaria-e-gastronomia/', '/brindes-por-ocasiao/', '/brindes-de-fim-de-ano/', '/catalogo/'))
+    produtos_atual = path.startswith('/catalogo/') or bool(m)
+    solucoes_atual = path.startswith(tuple(p for p, _, _ in SOLUCOES if p != '/kits-corporativos/'))
+    insp_atual = path.startswith(('/brindes-por-ocasiao/', '/brindes-de-fim-de-ano/', '/blog/'))
 
+    cats = ''.join(f'<li><a href="/catalogo/?categoria={k}#catalogo">{v}<small>{n}</small></a></li>'
+                   for k, v, n in ((k, v, sum(1 for c in CATALOGO if c['categoria'] == k)) for k, v in CAT_PROD.items()) if n)
     tipos_b = ''.join(f'<li><a href="/catalogo/?tipo={k}#catalogo">{TIPO_ROTULO[k]}</a></li>'
                       for k in MENU_BRINDES if por_tipo.get(k) or (MENU_TIPOS_VAZIOS and k != 'tecnologia'))
-    fim = (f'<li><a class="nav-season" href="/brindes-de-fim-de-ano/"{cur("/brindes-de-fim-de-ano/")}>Fim de ano <em>temporada</em></a></li>'
-           if SEASON == 'fim-de-ano' else '')
-    p_brindes = (f'<ul class="nav-list">{tipos_b}</ul>'
-                 f'<ul class="nav-list nav-list-pe"><li><a href="/brindes-corporativos/"{cur("/brindes-corporativos/")}>Brindes corporativos</a></li>'
-                 f'<li><a href="/hotelaria-e-gastronomia/"{cur("/hotelaria-e-gastronomia/")}>Hotelaria</a></li>'
-                 f'<li><a href="/brindes-por-ocasiao/"{cur("/brindes-por-ocasiao/")}>Por ocasião</a></li>{fim}</ul>'
-                 f'<a class="nav-sub-all" href="/catalogo/"{cur("/catalogo/", True)}>Catálogo completo {ARROW}</a>')
-    kits = ''.join(f'<li><a href="/kits-corporativos/{a}">{t}</a></li>' for t, a in MENU_KITS)
-    p_kits = f'<ul class="nav-list">{kits}</ul><a class="nav-sub-all" href="/kits-corporativos/"{cur("/kits-corporativos/")}>Ver todos os kits {ARROW}</a>'
     conf = ''.join(f'<li><a href="/catalogo/?tipo={k}#catalogo">{t}</a></li>' for k, t in MENU_CONFECCOES if por_tipo.get(k))
-    p_conf = (f'<ul class="nav-list">{conf}</ul>'
-              f'<a class="nav-sub-all" href="/confeccoes-personalizadas/"{cur("/confeccoes-personalizadas/")}>Uniformes e confecções {ARROW}</a>')
-    ativ = ''.join(f'<li><a href="/eventos-corporativos/{a}">{t}</a></li>' for t, a in MENU_ATIVACOES)
-    p_ativ = f'<ul class="nav-list">{ativ}</ul><a class="nav-sub-all" href="/eventos-corporativos/"{cur("/eventos-corporativos/")}>Conhecer eventos corporativos {ARROW}</a>'
-    return (grupo('brindes', 'Brindes', p_brindes, brindes_atual, ' nav-main nav-drop')
+    p_produtos = (f'<div class="nav-cols">{coluna("Categorias", cats, "nav-col-cats")}{coluna("Brindes por tipo", tipos_b, "nav-col-tipos")}'
+                  f'{coluna("Vestuário", conf, "nav-col-conf")}</div>'
+                  f'<a class="nav-sub-all" href="/catalogo/"{cur("/catalogo/", True)}>Catálogo completo <small>{len(CATALOGO)} modelos</small> {ARROW}</a>')
+    kits = ''.join(f'<li><a href="/kits-corporativos/{a}">{t}</a></li>' for t, a in MENU_KITS)
+    p_kits = (f'<div class="nav-cols">{coluna("Por contexto", kits)}'
+              f'<div class="nav-col nav-col-nota"><p class="nav-col-t">Sob medida</p><p>Caixa, cartão e peças com a sua marca. Peça ajustes na composição, na embalagem e na quantidade.</p></div></div>'
+              f'<a class="nav-sub-all" href="/kits-corporativos/"{cur("/kits-corporativos/")}>Ver todos os kits {ARROW}</a>')
+    sol = ''.join(f'<li><a class="nav-item-desc" href="{p}"{cur(p)}><strong>{t}</strong><span>{d}</span></a></li>' for p, t, d in SOLUCOES)
+    p_sol = f'<div class="nav-cols">{coluna("Frentes da TaMa", sol, "nav-col-sol")}</div>'
+    fim = (f'<li><a class="nav-season" href="/brindes-de-fim-de-ano/"{cur("/brindes-de-fim-de-ano/")}>Fim de ano <em>temporada</em></a></li>'
+           if SEASON == 'fim-de-ano' else f'<li><a href="/brindes-de-fim-de-ano/"{cur("/brindes-de-fim-de-ano/")}>Fim de ano</a></li>')
+    occ = ''.join(f'<li><a href="{collection_href(k)}">{v}</a></li>' for k, v in OCCS.items() if k != 'fim-de-ano')
+    conteudos = (f'<li><a href="/brindes-por-ocasiao/"{cur("/brindes-por-ocasiao/")}>Brindes por ocasião</a></li>'
+                 f'<li><a href="/blog/"{cur("/blog/")}>Guias e conteúdos</a></li>')
+    p_insp = f'<div class="nav-cols">{coluna("Ocasiões", fim + occ)}{coluna("Campanhas e conteúdos", conteudos)}</div>'
+    return (grupo('produtos', 'Produtos', p_produtos, produtos_atual, ' nav-drop nav-wide')
             + grupo('kits', 'Kits', p_kits, path.startswith('/kits-corporativos/'), ' nav-drop')
-            + grupo('confeccoes', 'Confecções', p_conf, conf_atual, ' nav-drop')
-            + grupo('ativacoes', 'Eventos corporativos', p_ativ, path.startswith('/eventos-corporativos/'), ' nav-drop')
-            + f'<a class="nav-link nav-sep" href="/sobre/"{cur("/sobre/")}>Sobre</a>'
-            + f'<a class="nav-link" href="/blog/"{cur("/blog/")}>Blog</a>')
+            + grupo('solucoes', 'Soluções', p_sol, solucoes_atual, ' nav-drop')
+            + grupo('inspiracoes', 'Inspirações', p_insp, insp_atual, ' nav-drop')
+            + f'<a class="nav-link" href="/sobre/"{cur("/sobre/")}>Sobre</a>')
 
 
 # Redes sociais no rodapé. Endereços provisórios (placeholders) até a TaMa confirmar os perfis: troque o href aqui
@@ -1375,23 +1428,21 @@ def busca_form(sid):
 
 def header(path):
     links = nav_menu(path)
-    wa = (f'<a class="head-wa" href="https://wa.me/{WA}" data-track="whatsapp_click" rel="noopener">{CHAT}<span>WhatsApp</span></a>' if WA else '')
+    aviso = ANNOUNCE_SEASON if SEASON == 'fim-de-ano' else ''
     return f'''<a class="skip" href="#conteudo">Pular para o conteúdo</a>
-<aside class="announce" aria-label="Destaques da TaMa"><div class="wrap">{ANNOUNCE_SEASON if SEASON == 'fim-de-ano' else f'<p>{ASSINATURA}</p>'}<ul>{''.join(f'<li>{g}</li>' for g in GARANTIAS)}</ul></div></aside>
+{f'<aside class="announce" aria-label="Destaque da temporada"><div class="wrap">{aviso}</div></aside>' if aviso else ''}
 <header class="site-header">
   <div class="wrap header-row">
     <a class="brand" href="/" aria-label="TaMa Creative, página inicial">{LOGO_DECOR}</a>
-    {busca_form('busca-topo')}
+    <nav class="site-nav" id="site-nav" aria-label="Principal">{busca_form('busca-menu')}<div class="nav-links">{links}</div>{cta_link(cls='btn btn-wine nav-cta', track_label='menu-celular')}</nav>
     <div class="head-actions">
-      {wa}
-      <button class="icon-btn bag" type="button" data-open-drawer aria-label="Sua seleção de peças">{BAG_SVG}<span class="bag-label" aria-hidden="true">Seleção</span><span class="bag-count" data-sel-count hidden>0</span></button>
-      {cta_link('<span class="cta-long">Solicitar proposta</span><span class="cta-short">Proposta</span>', cls='btn btn-wine btn-sm head-cta', track_label='header')}
+      <div class="nav-group head-search-group no-hover"><button class="icon-btn" type="button" aria-expanded="false" aria-controls="sub-busca" data-nav-toggle aria-label="Buscar no catálogo">{SEARCH_SVG}</button>
+        <div class="nav-sub search-sub" id="sub-busca"><div class="nav-sub-in">{busca_form('busca-topo')}<p class="search-hint">Ex.: garrafa, polo, caderno, kit</p></div></div></div>
+      <button class="icon-btn bag" type="button" data-open-drawer aria-label="Minha seleção">{BAG_SVG}<span class="bag-label" aria-hidden="true">Seleção</span><span class="bag-count" data-sel-count hidden>0</span></button>
+      {cta_link('<span class="cta-long">Solicitar proposta</span><span class="cta-short">Proposta</span>', cls='btn btn-wine btn-sm head-cta', track_label='header', arrow=False)}
       <button class="icon-btn menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Abrir menu"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="i-open" d="M4 8h16M4 16h16"/><path class="i-close" d="M6 6l12 12M18 6L6 18"/></svg></button>
     </div>
   </div>
-  <div class="nav-bar"><div class="wrap">
-    <nav class="site-nav" id="site-nav" aria-label="Principal">{busca_form('busca-menu')}{links}{cta_link(cls='btn btn-wine nav-cta', track_label='menu-celular')}</nav>
-  </div></div>
 </header>'''
 
 
@@ -1420,17 +1471,20 @@ def empresa_linha():
 
 
 def footer():
-    sol = ''.join(f'<li><a href="{p}">{t}</a></li>' for p, t in NAV)   # as cinco áreas, com os nomes oficiais do menu
-    ocas = ''.join(f'<li><a href="{p}">{t}</a></li>' for p, t in [('/brindes-de-fim-de-ano/', 'Brindes de fim de ano'), ('/brindes-por-ocasiao/', 'Brindes por ocasião'), ('/catalogo/', 'Catálogo completo')])
+    prod = (''.join(f'<li><a href="/catalogo/?categoria={k}#catalogo">{v}</a></li>' for k, v in list(CAT_PROD.items())[:5] if any(c['categoria'] == k for c in CATALOGO))
+            + '<li><a href="/catalogo/">Catálogo completo</a></li><li><a href="/kits-corporativos/">Kits corporativos</a></li>')
+    sol = ''.join(f'<li><a href="{p}">{t}</a></li>' for p, t, _d in SOLUCOES if p != '/kits-corporativos/')
+    insp = ''.join(f'<li><a href="{p}">{t}</a></li>' for p, t in [('/brindes-de-fim-de-ano/', 'Brindes de fim de ano'), ('/brindes-por-ocasiao/', 'Brindes por ocasião'), ('/blog/', 'Guias e conteúdos')])
     contacts = contact_lines()
     contact_col = ''.join(f'<li>{c}</li>' for c in contacts) + '<li><a href="/solicitar-proposta/">Solicitar proposta</a></li>'
     empresa = empresa_linha()
     return f'''<footer class="site-footer">
   <div class="wrap footer-grid">
     <div class="footer-brand"><a class="brand" href="/" aria-label="TaMa Creative, página inicial">{LOGO_DECOR}</a><p>{ASSINATURA} A TaMa seleciona as peças, personaliza com a marca da sua empresa e coordena os fornecedores até a entrega.</p>{redes_html()}</div>
+    <div><p class="footer-title">Produtos</p><ul class="footer-links">{prod}</ul></div>
     <div><p class="footer-title">Soluções</p><ul class="footer-links">{sol}</ul></div>
-    <div><p class="footer-title">Ocasiões e catálogo</p><ul class="footer-links">{ocas}</ul></div>
-    <div><p class="footer-title">TaMa</p><ul class="footer-links"><li><a href="/sobre/">Sobre</a></li><li><a href="/blog/">Conteúdos</a></li><li><a href="/privacidade/">Privacidade</a></li><li><button class="link-btn" type="button" data-consent-open>Cookies</button></li></ul></div>
+    <div><p class="footer-title">Inspirações</p><ul class="footer-links">{insp}</ul></div>
+    <div><p class="footer-title">TaMa</p><ul class="footer-links"><li><a href="/sobre/">Sobre</a></li><li><a href="/privacidade/">Privacidade</a></li><li><button class="link-btn" type="button" data-consent-open>Cookies</button></li></ul></div>
     <div><p class="footer-title">Contato</p><ul class="footer-links">{contact_col}</ul></div>
   </div>
   <div class="wrap footer-bottom">
@@ -1472,12 +1526,12 @@ def guias_block(chave, title='Guias para decidir com segurança', intro='Conteú
 </section>'''
 
 
-def end_cta(title='Vamos dar forma à sua ideia?', text='Conte a ocasião, o público, a quantidade e a data: a TaMa responde com uma proposta de peças, personalização e condições.', tipo=None, eyebrow='Próximo passo', label='Solicitar proposta'):
+def end_cta(title='Vamos dar forma à sua ideia?', text='Conte a ocasião, o público, a quantidade e a data: a TaMa responde com uma proposta de peças, personalização e condições.', tipo=None, eyebrow='Próximo passo', label='Solicitar proposta', vitrine=''):
     """Fechamento de todas as páginas, sempre com a mesma estrutura: eyebrow, título em forma de pergunta, uma frase de
     apoio e dois botões (Solicitar proposta e WhatsApp)."""
     return f'''<section class="end-cta" aria-labelledby="cta-t">
   <div class="wrap"><p class="eyebrow light">{eyebrow}</p><h2 id="cta-t">{title}</h2><p>{text}</p>
-  <div class="actions" style="justify-content:center">{cta_link(label, tipo=tipo, cls='btn btn-light', track_label='end-cta')}{wa_button('btn btn-glass')}</div></div>
+  <div class="actions" style="justify-content:center">{cta_link(label, tipo=tipo, cls='btn btn-light', track_label='end-cta')}{wa_button('btn btn-glass')}</div>{vitrine}</div>
 </section>'''
 
 
@@ -1677,12 +1731,12 @@ def shell(page, body):
 {canonical}
 <meta name="robots" content="{robots}">
 <link rel="preload" href="/fonts/dm-sans-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/fonts/playfair-display-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin>
 {page.get('preload', '')}
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<meta name="theme-color" content="#FAF7F2">
+<meta name="theme-color" content="#FFFFFF">
 <meta property="og:type" content="{page.get('og_type', 'website')}">
 <meta property="og:locale" content="pt_BR">
 <meta property="og:site_name" content="TaMa Creative">
@@ -1930,23 +1984,221 @@ def hero_carousel(slides=None, label='Destaques da TaMa Creative', assurances=Tr
 {strip}'''
 
 
+# ------------------------------------------------------------------ home (redesenho de 11/2026)
+# Cena principal: a garrafa térmica real do catálogo, recortada do fundo (tools/recortar.py) e trocada por foto ao
+# escolher a cor. Só entram as cores com recorte limpo (img/recortes/); as demais seguem na página do produto.
+HERO_PRODUTO = 'garrafa-termica'
+HERO_CUT_SIZES = '(max-width: 760px) 130px, 200px'   # a garrafa é alta (≈ 0,37:1): a altura da cena define a largura
+
+
+def hero_cores():
+    c = CATALOGO_BY.get(HERO_PRODUTO)
+    if not c:
+        return None, []
+    cores = []
+    for nome, hexv, *resto in c['cores']:
+        foto = resto[0] if resto else None
+        rec = f'recorte-{foto}' if foto else None
+        if rec in IMAGES:
+            cores.append((nome, hexv, rec))
+    return c, cores
+
+
+def home_hero():
+    c, cores = hero_cores()
+    temporada = (f'<a class="tm-hero-season" href="/brindes-de-fim-de-ano/" data-track="season_click" data-track-label="home-hero">'
+                 f'<span class="tm-dot" aria-hidden="true"></span>Fim de ano: presentes com a sua marca {ARROW}</a>' if SEASON == 'fim-de-ano' else '')
+    texto = f'''<div class="tm-hero-copy">
+      <p class="eyebrow">Sua marca ganha forma</p>
+      <h1 id="tm-hero-t" class="tm-display">Ideias reais. <span>Marcas</span> <em>presentes.</em></h1>
+      <p class="tm-lead">Brindes, uniformes, kits e materiais para eventos e hotelaria com a marca da sua empresa. A TaMa seleciona, personaliza e coordena da escolha à entrega.</p>
+      <div class="actions"><a class="btn btn-wine" href="/catalogo/" data-track="home_hero_catalogo">Explorar produtos {ARROW}</a>{cta_link('Solicitar proposta', cls='btn btn-line', arrow=False, track_label='home-hero')}</div>
+      {temporada}
+    </div>'''
+    if not cores:
+        return f'<section class="tm-hero" aria-labelledby="tm-hero-t"><div class="wrap tm-hero-in">{texto}</div></section>'
+
+    def dados(rec):
+        m = IMAGES[rec]
+        return (', '.join(f'/img/{m["stem"]}-{w}.webp {w}w' for w in m['widths']), ', '.join(f'/img/{m["stem"]}-{w}.avif {w}w' for w in m['widths']))
+    btns = ''
+    for i, (nome, hexv, rec) in enumerate(cores):
+        webp, avif = dados(rec)
+        btns += (f'<button class="tm-swatch" type="button" style="--c:{hexv}" aria-pressed="{str(i == 0).lower()}" data-cor="{esc(nome)}" '
+                 f'data-cor-slug="{color_slug(nome)}" data-webp="{webp}" data-avif="{avif}" aria-label="{esc(nome)}"><span aria-hidden="true"></span></button>')
+    nome0, _h, rec0 = cores[0]
+    alt0 = f'{c["nome"]} na cor {nome0.lower()}, com a marca TaMa no corpo.'
+    return f'''<section class="tm-hero" aria-labelledby="tm-hero-t">
+  <div class="wrap tm-hero-in">
+    {texto}
+    <div class="tm-stage" data-hero-stage style="--tint:{cores[0][1]}">
+      <div class="tm-stage-arch" aria-hidden="true"></div>
+      <figure class="tm-stage-fig">
+        <div class="tm-float" data-float>{cutout(rec0, alt0, HERO_CUT_SIZES, eager=True, cls='tm-stage-img', attrs=f' data-alt-base="{esc(c["nome"])}"')}</div>
+        <span class="tm-stage-shadow" aria-hidden="true"></span>
+        <figcaption class="tm-stage-tag"><span class="tm-dot" aria-hidden="true"></span><span>Do nosso catálogo</span><strong>{esc(c["nome"])}</strong></figcaption>
+      </figure>
+      <div class="tm-stage-controls">
+        <p class="tm-stage-label" id="tm-cor-t">Escolha a cor <strong data-hero-cor aria-live="polite">{esc(nome0)}</strong></p>
+        <div class="tm-swatches" role="group" aria-labelledby="tm-cor-t">{btns}</div>
+        <a class="link tm-stage-link" href="{c["url"]}?cor={color_slug(nome0)}" data-hero-link>Ver a garrafa nesta cor {ARROW}</a>
+      </div>
+    </div>
+  </div>
+  <p class="wrap tm-hero-note">Fotos reais do catálogo, com a marca TaMa como exemplo. Cores de referência; disponibilidade confirmada na proposta.</p>
+</section>'''
+
+
+def home_frentes():
+    """As cinco frentes da TaMa: foto de site.json › secoes › home-frentes (inventário) e nome oficial de SOLUCOES."""
+    fotos = {f[0]: (f[1], f[2]) for f in FRENTES}
+    itens = ''
+    for i, (href, nome, linha) in enumerate(SOLUCOES):
+        img, pos = fotos.get(href, (None, 'center'))
+        sizes = ('(max-width: 760px) calc(100vw - 32px), (max-width: 1180px) 50vw, 660px' if i == 0
+                 else '(max-width: 760px) calc(100vw - 32px), (max-width: 1180px) 50vw, 330px')
+        foto = picture(img, '', sizes, style=f'object-position:{pos}') if img in IMAGES else ''
+        itens += (f'<li class="tm-front{" tm-front-lg" if i == 0 else ""}" data-reveal><a href="{href}" class="tm-front-a">'
+                  f'<span class="tm-front-media">{foto}</span>'
+                  f'<span class="tm-front-copy"><span class="tm-front-n" aria-hidden="true">{i + 1:02d}</span><h3>{nome}</h3><span class="tm-front-d">{linha}</span>'
+                  f'<span class="tm-front-go" aria-hidden="true">{ARROW}</span></span></a></li>')
+    return f'''<section class="section tm-fronts" aria-labelledby="tm-fronts-t">
+  <div class="wrap">
+    <div class="tm-head" data-reveal><p class="eyebrow">O que a TaMa faz</p><h2 id="tm-fronts-t" class="tm-h2">Cinco frentes, <em>uma linguagem.</em></h2>
+      <p class="tm-sub">Do brinde do dia a dia ao evento completo: a mesma curadoria e a mesma atenção à sua marca em cada peça.</p></div>
+    <ul class="tm-fronts-grid" role="list">{itens}</ul>
+  </div>
+</section>'''
+
+
+def home_categorias():
+    """Atalhos para o catálogo filtrado por categoria, com a foto real do primeiro modelo da categoria."""
+    itens = ''
+    for k, nome in CAT_PROD.items():
+        mods = [c for c in CATALOGO if c['categoria'] == k]
+        if not mods:
+            continue
+        foto = picture(mods[0]['img'], '', '(max-width: 760px) 40vw, 200px')
+        tint = mods[0]['cores'][0][1] if mods[0].get('cores') else '#EEF0F3'
+        itens += (f'<li data-reveal><a class="tm-cat" href="/catalogo/?categoria={k}#catalogo" style="--tint:{tint}"><span class="tm-cat-media">{foto}</span>'
+                  f'<span class="tm-cat-name">{nome}</span><span class="tm-cat-n">{len(mods)} modelos</span></a></li>')
+    return f'''<section class="section tm-cats" aria-labelledby="tm-cats-t">
+  <div class="wrap">
+    <div class="tm-head tm-head-row" data-reveal><div><p class="eyebrow">Catálogo</p><h2 id="tm-cats-t" class="tm-h2">Encontre pelo tipo de peça.</h2></div>
+      <a class="link" href="/catalogo/">Ver os {len(CATALOGO)} modelos {ARROW}</a></div>
+    <ul class="tm-cats-grid" role="list">{itens}</ul>
+  </div>
+</section>'''
+
+
+def home_produtos():
+    cards = ''.join(home_product_card(CATALOGO_BY[s]) for s in SEL['home'] if s in CATALOGO_BY)
+    if not cards:
+        return ''
+    return f'''<section class="section tm-products" aria-labelledby="tm-prods-t">
+  <div class="wrap">
+    <div class="tm-head tm-head-row" data-reveal><div><p class="eyebrow">Produtos reais</p><h2 id="tm-prods-t" class="tm-h2">Escolha a cor. <em>Monte a seleção.</em></h2>
+      <p class="tm-sub">Toque na cor para ver a foto da peça, adicione à seleção e envie tudo junto no pedido de proposta.</p></div>
+      <a class="link" href="/catalogo/">Abrir o catálogo {ARROW}</a></div>
+    <div class="studio-grid">{cards}</div>
+    <p class="note">{NOTE_IMAGENS}</p>
+  </div>
+</section>'''
+
+
+def home_kits():
+    kits = [k for k in HOME_KITS if kit_foto(k[0])]
+    if not kits:
+        return ''
+    slug, nome, desc = kits[0]
+    foto, marca, cor = kit_foto(slug)
+    alt = f'{nome}: {desc}' + (f' Marca fictícia {marca}; {cor}.' if marca else '')
+    outros = ''.join(
+        f'<li><a class="tm-kit-mini" href="/kits-corporativos/">{picture(kit_foto(s)[0], "", "(max-width: 760px) 30vw, 180px")}<span>{esc(n)}</span></a></li>'
+        for s, n, _d in kits[1:4])
+    contextos = ''.join(f'<li><a class="chip" href="/kits-corporativos/#{a}">{esc(t)}</a></li>' for a, t, _l, _k in KITS_TIPOS)
+    interesse = nome if nome.startswith('Kit') else 'Kit ' + nome
+    return f'''<section class="section tm-kits" aria-labelledby="tm-kits-t">
+  <div class="wrap tm-kits-in">
+    <figure class="tm-kits-photo" data-reveal>{picture(foto, alt, "(max-width: 900px) calc(100vw - 32px), 640px")}<figcaption>{NOTA_FICTICIA if marca else NOTA_TAMA_CURTA}</figcaption></figure>
+    <div class="tm-kits-copy" data-reveal>
+      <p class="eyebrow">Kits corporativos</p>
+      <h2 id="tm-kits-t" class="tm-h2">Composições completas, <em>prontas para ajustar.</em></h2>
+      <div class="tm-kit-feature"><h3>{esc(nome)}</h3><p>{esc(desc)}</p></div>
+      <ul class="tm-kit-points" role="list"><li><strong>Itens</strong><span>Peças escolhidas para a ocasião e o público</span></li><li><strong>Embalagem</strong><span>Caixa e cartão com a sua marca</span></li><li><strong>Ajustes</strong><span>Troque peças, cores e quantidade na proposta</span></li></ul>
+      <div class="actions"><a class="btn btn-wine" href="/kits-corporativos/">Ver os kits {ARROW}</a><a class="btn btn-line" href="/solicitar-proposta/?tipo=kits&amp;interesse={urllib.parse.quote(interesse)}" data-track="cta_solicitar_proposta" data-track-label="home-kit" data-interesse="{esc(interesse)}">Pedir este kit com ajustes</a></div>
+      {f'<ul class="tm-kit-minis" role="list">{outros}</ul>' if outros else ''}
+      <nav class="tm-kit-ctx" aria-label="Kits por contexto"><ul class="tm-chips" role="list">{contextos}</ul></nav>
+    </div>
+  </div>
+</section>'''
+
+
+def home_compromissos():
+    """Evidências reais disponíveis: os compromissos de trabalho (PROVAS). Sem números, logotipos de clientes ou
+    depoimentos, que ainda não foram comprovados (docs/PENDENCIAS.md)."""
+    itens = ''.join(f'<li data-reveal><span class="tm-proof-n" aria-hidden="true">{i + 1:02d}</span><h3>{t}</h3><p>{d}</p></li>' for i, (t, d) in enumerate(PROVAS))
+    return f'''<section class="section tm-proof" aria-labelledby="tm-proof-t">
+  <div class="wrap tm-proof-in">
+    <div class="tm-head" data-reveal><p class="eyebrow">Compromissos</p><h2 id="tm-proof-t" class="tm-h2">O que você pode esperar.</h2>
+      <p class="tm-sub">Nenhuma peça vai para a produção sem a sua aprovação.</p><a class="link" href="/sobre/">Conheça a TaMa {ARROW}</a></div>
+    <ul class="tm-proof-list" role="list">{itens}</ul>
+  </div>
+</section>'''
+
+
+def home_guias():
+    por_slug = {a['slug']: a for a in blog.ARTS if not a.get('noindex')}
+    itens = ''.join(
+        f'<li data-reveal><a class="tm-guide" href="{por_slug[s]["path"]}"><span class="tm-guide-media">{picture(img, "", "(max-width: 760px) calc(100vw - 32px), 420px")}</span>'
+        f'<span class="tm-guide-k">Guia</span><h3>{esc(por_slug[s].get("breadcrumb") or por_slug[s]["title"])}</h3>'
+        f'<span class="tm-guide-go">Ler o guia {ARROW}</span></a></li>'
+        for s, img in V2_GUIAS if s in por_slug and img in IMAGES)
+    if not itens:
+        return ''
+    return f'''<section class="section tm-guides" aria-labelledby="tm-guides-t">
+  <div class="wrap">
+    <div class="tm-head tm-head-row" data-reveal><div><p class="eyebrow">Conteúdos</p><h2 id="tm-guides-t" class="tm-h2">Para decidir com segurança.</h2></div>
+      <a class="link" href="/blog/">Todos os guias {ARROW}</a></div>
+    <ul class="tm-guides-grid" role="list">{itens}</ul>
+  </div>
+</section>'''
+
+
+def home_vitrine_cores():
+    """Fecho da home: as cores reais da garrafa lado a lado (recortes), a cor dos produtos como expressão da marca."""
+    c, cores = hero_cores()
+    if len(cores) < 3:
+        return ''
+    itens = ''.join(f'<li style="--tint:{hexv}">{cutout(rec, "", "70px")}</li>' for _n, hexv, rec in cores)
+    return f'<ul class="tm-lineup" role="list" aria-hidden="true">{itens}</ul>'
+
+
 def page_home():
-    """Home da proposta 01 ("Soluções compactas"), aprovada pela cliente em 06/11/2026 (antes publicada em /v2/).
-    Medidas e decisões: docs/proposta-01/ (VISUAL.md, AJUSTES.md, AUDITORIA.md); estilos em body.v2."""
-    hero_img = v2_hero_dados()[0]
+    """Home do redesenho de 11/2026: cena com produto real, frentes, categorias, produtos, kits, processo, compromissos,
+    conteúdos, perguntas e chamada final (docs/REDESIGN.md)."""
+    c, cores = hero_cores()
+    preload = ''
+    if cores:
+        m = IMAGES[cores[0][2]]
+        srcs = ', '.join(f'/img/{m["stem"]}-{w}.avif {w}w' for w in m['widths'])
+        preload = f'<link rel="preload" as="image" type="image/avif" imagesrcset="{srcs}" imagesizes="{HERO_CUT_SIZES}" fetchpriority="high">'
     return {
-        'path': '/', 'title': 'Brindes corporativos, uniformes e kits | TaMa Creative', 'og': hero_img, 'body_class': 'v2',
+        'path': '/', 'title': 'Brindes corporativos, uniformes e kits | TaMa Creative', 'og': 'kits', 'body_class': 'home',
         'og_title': 'TaMa Creative · ' + ASSINATURA.rstrip('.'),
         'description': 'Brindes, uniformes, kits, eventos corporativos e peças de hotelaria com a marca da sua empresa. A TaMa seleciona, personaliza e coordena da escolha das peças à entrega.',
         'assunto': 'um projeto para a minha empresa',
-        'preload': preload_image(hero_img, V2_HERO_SIZES),
-        'body': v2_hero() + f'''
-{frentes_section(titulo_visivel=True)}
-{v2_catalogo()}
-{process_section('Como trabalhamos', 'Do briefing à entrega', 'Seis etapas, com a peça, a personalização e a arte aprovadas por você antes da produção.', 'home-como-t')}
+        'preload': preload,
+        'body': home_hero() + f'''
+{home_frentes()}
+{home_categorias()}
+{home_produtos()}
+{home_kits()}
+{process_section('Como trabalhamos', 'Do briefing à entrega.', 'Seis etapas, com a peça, a personalização e a arte aprovadas por você antes da produção.', 'home-como-t')}
+{home_compromissos()}
+{home_guias()}
 {v2_faq()}
-{v2_guias()}
-{end_cta()}''',
+{end_cta(vitrine=home_vitrine_cores())}''',
     }
 
 
@@ -2746,7 +2998,8 @@ def main():
     conferir_imagens_site()
     fonts_css = open(os.path.join(SRC, 'fonts', 'fonts.css'), encoding='utf-8').read()
     masks = f':root{{--arc-mask:url("{ARC_MASK}");--pattern-mask:url("{pattern_uri()}")}}'
-    CSS = minify_css(fonts_css + masks + open(os.path.join(SRC, 'styles.css'), encoding='utf-8').read())
+    CSS = minify_css(fonts_css + masks + open(os.path.join(SRC, 'styles.css'), encoding='utf-8').read()
+                     + open(os.path.join(SRC, 'v3.css'), encoding='utf-8').read())   # v3.css: tokens e componentes do redesenho (11/2026), por cima do legado
     CSS_FILE = f'site.{hashlib.md5(CSS.encode()).hexdigest()[:8]}.css'
     write('assets/' + CSS_FILE, CSS)
     cat = catalog_json()

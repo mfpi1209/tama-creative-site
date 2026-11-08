@@ -4,6 +4,7 @@ para as cenas em que o produto aparece solto sobre o fundo do site (abertura da 
 Uso (fora do build; os recortes vão para img/recortes/ e entram no commit):
     pip install numpy scipy        # só para esta ferramenta
     python tools/recortar.py garrafa-termica~azul-royal garrafa-termica~preto ...
+    python tools/recortar.py --vaos ecobag~verde   # vãos fechados (alças) também saem
     python tools/recortar.py --folha   # também grava midia/recortes-folha.png (conferência sobre fundos claro e escuro)
 
 Como funciona: a cor do fundo é a mediana da borda da foto; só o fundo ligado à borda sai (um branco dentro do produto,
@@ -25,7 +26,7 @@ OUT = os.path.join(ROOT, 'img', 'recortes')
 T_IN, T_OUT = 7.0, 30.0   # distância de cor (0–255): abaixo de T_IN é fundo; acima de T_OUT é produto
 
 
-def recortar(nome):
+def recortar(nome, vaos_fechados=False):
     im = np.asarray(Image.open(os.path.join(SRC, nome + '.webp')).convert('RGB')).astype(np.float32)
     h, w, _ = im.shape
     borda = np.concatenate([im[:6].reshape(-1, 3), im[-6:].reshape(-1, 3), im[:, :6].reshape(-1, 3), im[:, -6:].reshape(-1, 3)])
@@ -37,6 +38,17 @@ def recortar(nome):
     rot, _ = ndimage.label(perto)
     ids = np.unique(np.concatenate([rot[0], rot[-1], rot[:, 0], rot[:, -1]]))
     fundo = np.isin(rot, ids[ids > 0])
+    # vãos fechados (o espaço dentro das alças de uma bolsa): regiões da cor do fundo, sem ligação com a borda, maiores
+    # que 0,6 % da foto. Um branco pequeno dentro da peça (a marca impressa) fica.
+    vaos, nv = ndimage.label((dist < T_IN + 3) & ~fundo) if vaos_fechados else (None, 0)
+    if nv:
+        areas = ndimage.sum(np.ones_like(dist), vaos, range(1, nv + 1))
+        caixas = ndimage.find_objects(vaos)
+        # grande e compacto (preenche boa parte da própria caixa): o vão de uma alça; letras da marca são vazadas e saem da conta
+        grandes = [i + 1 for i, ar in enumerate(areas)
+                   if ar > h * w * .012 and ar / ((caixas[i][0].stop - caixas[i][0].start) * (caixas[i][1].stop - caixas[i][1].start)) > .45]
+        if grandes:
+            fundo |= ndimage.binary_dilation(np.isin(vaos, grandes), iterations=2) & perto
     a = np.ones((h, w), np.float32)
     rampa = np.clip((dist - T_IN) / (T_OUT - T_IN), 0, 1)
     a[fundo] = rampa[fundo]
@@ -51,6 +63,18 @@ def recortar(nome):
         faixa = np.zeros((h, w), bool)
         faixa[max(0, base - int(h * .1)):] = True
         sombra = faixa & (sat < 22) & (lum > 78)
+        # sombra mais alta (bolsas, cadernos): cinza neutro e um pouco mais escuro que o fundo, na faixa de 22 % da base;
+        # o creme das folhas de um caderno (vermelho > azul) não entra
+        faixa2 = np.zeros((h, w), bool)
+        faixa2[max(0, base - int(h * .22)):] = True
+        tom_fundo = bg[0] - bg[2]   # o fundo de estúdio é levemente quente; a sombra tem o mesmo tom
+        neutro = ((im[..., 0] - im[..., 2]) <= tom_fundo + 5) & (sat < 18)
+        sombra |= faixa2 & neutro & (lum < bg.mean() - 3) & (lum > 120)
+        # só a sombra que encosta no fundo: um branco cercado pela peça (a marca impressa) não é sombra
+        rot_s, ns = ndimage.label(sombra)
+        if ns:
+            toca = np.unique(rot_s[ndimage.binary_dilation(fundo, iterations=2) & sombra])
+            sombra = np.isin(rot_s, toca[toca > 0])
         a[sombra] = 0
         # o que sobrar ligado à peça só por fiapos (resto de sombra) sai: fica o maior bloco sólido
         rot, n = ndimage.label(a > .5)
@@ -90,7 +114,8 @@ def folha(recs):
 
 if __name__ == '__main__':
     args = [a for a in sys.argv[1:] if not a.startswith('--')]
-    recs = [recortar(n) for n in args]
+    # --vaos: remove também vãos fechados (alças de bolsas); nas demais peças, um branco interno é a marca impressa
+    recs = [recortar(n, '--vaos' in sys.argv) for n in args]
     if '--folha' in sys.argv and recs:
         folha(recs)
     print(f'{len(recs)} recorte(s) em img/recortes/')

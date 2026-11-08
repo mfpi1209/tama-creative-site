@@ -26,7 +26,7 @@ Todas as rotas usam o mesmo `shell()` (cabeçalho, rodapé, gaveta, cookies), en
 
 | Rota | Modelo | Situação |
 |---|---|---|
-| `/` | `page_home` | Reconstruída (seções `tm-*`) |
+| `/` | `page_home` | Reconstruída (abertura `ms-*` em três cenas, galeria e seções `tm-*`) |
 | `/catalogo/` | `page_catalogo` + `catalogo_block` | Restilizada (filtros, contagem, etiquetas removíveis, vazio) |
 | `/catalogo/<modelo>/` (176) | `page_produto` | Restilizada; troca de foto com esmaecimento; fundo no tom da cor |
 | `/kits-corporativos/` | `page_kits` | Restilizada |
@@ -75,18 +75,22 @@ de movimento (`data-reveal`, flutuação pausável).
 
 ## Movimento
 
-- Cena principal: a garrafa térmica real recortada (`tools/recortar.py` → `img/recortes/`) flutua ~10 px com inclinação
-  de ±1,6° (6 px/±1° no celular), pausada fora da tela e com a aba oculta. Ao escolher a cor, a foto daquela cor é
-  pré-carregada (ao passar o mouse ou focar) e trocada com esmaecimento; se falhar, volta à anterior. Nome, botão
-  marcado, texto alternativo e link do produto acompanham. Sem rotação 360° (não há imagens para isso).
+- Abertura da home no padrão da prévia aprovada ("Estudo de movimento / 03", 08/11/2026): três cenas com peças reais
+  recortadas (garrafa térmica, caderno de anotações, ecobag), cada uma com palavra grande, halo, órbitas ou linhas,
+  marcadores e entrada própria (1,5 s); troca a cada 7 s com barra de progresso, botões com miniatura e pausa. A troca
+  automática pausa ao passar o mouse, fora da tela, com a aba oculta, ao escolher uma peça e, com movimento reduzido,
+  começa pausada. Paralaxe leve só com mouse; modo de contraste opcional. Na garrafa, as cores trocam a foto real
+  (pré-carregada; se falhar, mantém a atual) e acompanham texto alternativo e link. Sem rotação 360°.
+- Galeria de coleções (escolha do cliente, 08/11/2026): uma peça recortada por categoria, grande e solta, sem cartão,
+  com setas, contador "01 — 09", barra de progresso e a lista de todas as categorias.
 - Seções aparecem uma vez (opacidade + 18 px); sem JavaScript ou com `prefers-reduced-motion`, tudo fica visível e
   parado. Zoom de imagem 1,035 nos cards (desligado em toque). Só `transform` e `opacity`.
-- Recortes: só as cores com recorte limpo entram na cena (azul royal, preto, laranja, verde, vermelho, rosa). Branco e
+- Recortes (`tools/recortar.py`, `--vaos` para alças de bolsas): só as cores com recorte limpo entram na cena (azul royal, preto, laranja, verde, vermelho, rosa). Branco e
   prata têm pouco contraste com o fundo da foto e ficam só na página do produto, com as fotos originais.
 
 ## Verificação
 
-- `tests/e2e.mjs` (dados de teste): **347 ok, 0 falhas**. Atualizados os testes que descreviam a home e o menu antigos;
+- `tests/e2e.mjs` (dados de teste): **350 ok, 0 falhas**. Atualizados os testes que descreviam a home e o menu antigos;
   novos: troca de cor da cena (foto, nome, botão, alt, link), busca do cabeçalho com foco e Esc, menu nas cinco seções,
   página atual marcada, painéis inteiros em 1024 e 1440 px, ausência de rolagem lateral de 320 a 1440 px.
 - Varredura própria (dados reais) em 360, 390, 768, 1024 e 1440 px por 18 páginas representativas: sem rolagem lateral,

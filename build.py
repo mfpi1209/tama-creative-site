@@ -1988,7 +1988,7 @@ def hero_carousel(slides=None, label='Destaques da TaMa Creative', assurances=Tr
 # Cena principal: a garrafa térmica real do catálogo, recortada do fundo (tools/recortar.py) e trocada por foto ao
 # escolher a cor. Só entram as cores com recorte limpo (img/recortes/); as demais seguem na página do produto.
 HERO_PRODUTO = 'garrafa-termica'
-HERO_CUT_SIZES = '(max-width: 760px) 130px, 200px'   # a garrafa é alta (≈ 0,37:1): a altura da cena define a largura
+HERO_CUT_SIZES = '(max-width: 700px) 70vw, 420px'   # mesma medida da imagem da cena (home_hero)
 
 
 def hero_cores():
@@ -2005,47 +2005,130 @@ def hero_cores():
 
 
 def home_hero():
+    """Abertura da home no padrão da prévia aprovada ("Estudo de movimento / 03"): três cenas com peças reais do catálogo
+    (garrafa, caderno, ecobag), recortadas do fundo, que entram com movimento e trocam a cada 7 s, com pausa, escolha manual
+    e troca de cor da garrafa por foto real. Sem JavaScript, a primeira cena fica parada e completa."""
     c, cores = hero_cores()
     temporada = (f'<a class="tm-hero-season" href="/brindes-de-fim-de-ano/" data-track="season_click" data-track-label="home-hero">'
                  f'<span class="tm-dot" aria-hidden="true"></span>Fim de ano: presentes com a sua marca {ARROW}</a>' if SEASON == 'fim-de-ano' else '')
-    texto = f'''<div class="tm-hero-copy">
-      <p class="eyebrow">Sua marca ganha forma</p>
-      <h1 id="tm-hero-t" class="tm-display">Ideias reais. <span>Marcas</span> <em>presentes.</em></h1>
-      <p class="tm-lead">Brindes, uniformes, kits e materiais para eventos e hotelaria com a marca da sua empresa. A TaMa seleciona, personaliza e coordena da escolha à entrega.</p>
-      <div class="actions"><a class="btn btn-wine" href="/catalogo/" data-track="home_hero_catalogo">Explorar produtos {ARROW}</a>{cta_link('Solicitar proposta', cls='btn btn-line', arrow=False, track_label='home-hero')}</div>
+    copy = f'''<div class="ms-copy">
+      <p class="eyebrow">Objetos que criam conexões</p>
+      <h1 id="tm-hero-t" class="ms-title">Uma ideia. <span>Muitas formas</span> de <em>marcar.</em></h1>
+      <p class="ms-lede">Sua marca encontra novas formas de fazer parte da vida. Brindes, uniformes, kits e materiais escolhidos para acompanhar, inspirar e conectar.</p>
+      <div class="actions">{cta_link('Vamos criar juntos', cls='btn btn-wine', track_label='home-hero')}<a class="btn btn-line" href="/catalogo/" data-track="home_hero_catalogo">Explorar o catálogo</a></div>
+      <div class="ms-detail"><span class="ms-line" aria-hidden="true"></span><div><small>Personalidade em cada detalhe</small><strong>Do primeiro olhar ao uso de todo dia.</strong></div></div>
       {temporada}
     </div>'''
-    if not cores:
-        return f'<section class="tm-hero" aria-labelledby="tm-hero-t"><div class="wrap tm-hero-in">{texto}</div></section>'
-
-    def dados(rec):
-        m = IMAGES[rec]
-        return (', '.join(f'/img/{m["stem"]}-{w}.webp {w}w' for w in m['widths']), ', '.join(f'/img/{m["stem"]}-{w}.avif {w}w' for w in m['widths']))
-    btns = ''
-    for i, (nome, hexv, rec) in enumerate(cores):
-        webp, avif = dados(rec)
-        btns += (f'<button class="tm-swatch" type="button" style="--c:{hexv}" aria-pressed="{str(i == 0).lower()}" data-cor="{esc(nome)}" '
-                 f'data-cor-slug="{color_slug(nome)}" data-webp="{webp}" data-avif="{avif}" aria-label="{esc(nome)}"><span aria-hidden="true"></span></button>')
-    nome0, _h, rec0 = cores[0]
-    alt0 = f'{c["nome"]} na cor {nome0.lower()}, com a marca TaMa no corpo.'
-    return f'''<section class="tm-hero" aria-labelledby="tm-hero-t">
-  <div class="wrap tm-hero-in">
-    {texto}
-    <div class="tm-stage" data-hero-stage style="--tint:{cores[0][1]}">
-      <div class="tm-stage-arch" aria-hidden="true"></div>
-      <figure class="tm-stage-fig">
-        <div class="tm-float" data-float>{cutout(rec0, alt0, HERO_CUT_SIZES, eager=True, cls='tm-stage-img', attrs=f' data-alt-base="{esc(c["nome"])}"')}</div>
-        <span class="tm-stage-shadow" aria-hidden="true"></span>
-        <figcaption class="tm-stage-tag"><span class="tm-dot" aria-hidden="true"></span><span>Do nosso catálogo</span><strong>{esc(c["nome"])}</strong></figcaption>
-      </figure>
-      <div class="tm-stage-controls">
-        <p class="tm-stage-label" id="tm-cor-t">Escolha a cor <strong data-hero-cor aria-live="polite">{esc(nome0)}</strong></p>
-        <div class="tm-swatches" role="group" aria-labelledby="tm-cor-t">{btns}</div>
-        <a class="link tm-stage-link" href="{c["url"]}?cor={color_slug(nome0)}" data-hero-link>Ver a garrafa nesta cor {ARROW}</a>
-      </div>
+    cenas = []
+    for cls, slug, palavra, cat, mk, acento, rotulo in HERO_CENAS:
+        m = CATALOGO_BY.get(slug)
+        if not m:
+            continue
+        rec = (cores[0][2] if slug == HERO_PRODUTO and cores else f'recorte-{m["img"]}')
+        if rec not in IMAGES:
+            continue
+        cenas.append((cls, m, rec, palavra, cat, mk, acento, rotulo))
+    if not cenas:
+        return f'<section class="ms-hero" aria-labelledby="tm-hero-t"><div class="wrap ms-hero-in">{copy}</div></section>'
+    sizes = '(max-width: 700px) 70vw, 420px'
+    deco = {
+        'garrafa': '<div class="ms-halo" aria-hidden="true"></div><div class="ms-arc" aria-hidden="true"></div><div class="ms-orbit"><div class="ms-orbspin"></div></div><div class="ms-orbit ms-o2"></div>',
+        'caderno': '<div class="ms-sheet" aria-hidden="true"></div><div class="ms-lines" aria-hidden="true">' + ''.join(f'<i style="--i:{i}"></i>' for i in range(8)) + '</div>',
+        'ecobag': '<div class="ms-halo ms-halo-bag" aria-hidden="true"></div><div class="ms-ribbon"></div><div class="ms-ribbon ms-r2"></div>',
+    }
+    html = ''
+    for i, (cls, m, rec, palavra, cat, mk, acento, rotulo) in enumerate(cenas):
+        alt = (f'{m["nome"]} na cor {cores[0][0].lower()}, com a marca TaMa' if m['slug'] == HERO_PRODUTO and cores else f'{m["nome"]} com a marca TaMa')
+        img = cutout(rec, alt, sizes, eager=(i == 0), cls='ms-img', attrs=' data-alt-base="' + esc(m['nome']) + '"' if m['slug'] == HERO_PRODUTO else '')
+        html += (f'<div class="ms-scene ms-{cls}{" is-active" if i == 0 else ""}" data-scene="{i}" aria-hidden="{str(i != 0).lower()}">'
+                 f'<div class="ms-word" aria-hidden="true">{palavra}</div>{deco.get(cls, "")}<div class="ms-floor" aria-hidden="true"></div>'
+                 f'<div class="ms-anchor"><div class="ms-motion"><div class="ms-float">{img}</div></div></div>'
+                 f'<span class="ms-marker ms-left" aria-hidden="true">{mk[0]}</span><span class="ms-marker ms-right" aria-hidden="true">{mk[1]}</span></div>')
+    dados = [{'n': m['nome'], 'c': cat, 'u': m['url'], 'a': acento} for cls, m, rec, palavra, cat, mk, acento, rotulo in cenas]
+    sw = ''
+    if cores and cenas[0][1]['slug'] == HERO_PRODUTO:
+        for j, (nome, hexv, rec) in enumerate(cores):
+            mm = IMAGES[rec]
+            webp = ', '.join(f'/img/{mm["stem"]}-{w}.webp {w}w' for w in mm['widths'])
+            avif = ', '.join(f'/img/{mm["stem"]}-{w}.avif {w}w' for w in mm['widths'])
+            sw += (f'<button type="button" style="--c:{hexv}" aria-pressed="{str(j == 0).lower()}" data-cor="{esc(nome)}" data-cor-slug="{color_slug(nome)}" '
+                   f'data-webp="{webp}" data-avif="{avif}" aria-label="{esc(nome)}"></button>')
+        sw = f'<div class="ms-swatches" data-ms-swatches role="group" aria-label="Cores da garrafa térmica"><span aria-hidden="true">Cor</span>{sw}</div>'
+    first = cenas[0]
+    escolhas = ''.join(
+        f'<button class="ms-choice" type="button" data-go="{i}" aria-pressed="{str(i == 0).lower()}">'
+        f'{cutout(rec, "", "40px", cls="ms-thumb")}<span><small>{rotulo}</small><strong>{esc(m["nome"].split(" de ")[0])}</strong></span><i class="ms-mini" aria-hidden="true"></i></button>'
+        for i, (cls, m, rec, palavra, cat, mk, acento, rotulo) in enumerate(cenas))
+    link0 = first[1]['url'] + (f'?cor={color_slug(cores[0][0])}' if first[1]['slug'] == HERO_PRODUTO and cores else '')
+    return f'''<section class="ms-hero" aria-labelledby="tm-hero-t">
+  <div class="wrap ms-hero-in">
+    {copy}
+    <div class="ms-stage" id="ms-stage" data-ms-stage data-cenas="{esc(json.dumps(dados, ensure_ascii=False))}" role="region" aria-roledescription="carrossel" aria-label="Peças do catálogo em movimento" style="--accent:{first[6]}">
+      <div class="ms-topline"><span><i class="ms-live" aria-hidden="true"></i>Coleção em movimento</span>
+        <button class="ms-light" type="button" data-ms-light aria-pressed="false" aria-label="Ativar iluminação de contraste" title="Alternar iluminação"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="3"/><path d="M10 1v3m0 12v3M1 10h3m12 0h3M3.6 3.6l2 2m8.8 8.8 2 2M3.6 16.4l2-2m8.8-8.8 2-2"/></svg></button></div>
+      {html}
+      <div class="ms-flash" aria-hidden="true"></div>
+      <div class="ms-info"><div><small data-ms-cat>{first[4]}</small><strong data-ms-name>{esc(first[1]["nome"])}</strong></div>
+        <a href="{link0}" data-ms-link>Conheça a peça {ARROW}</a></div>
+      {sw}
+      <span class="ms-caption" data-ms-caption aria-hidden="true">01 — {len(cenas):02d}</span>
+      <div class="ms-ticker" aria-hidden="true"><span data-ms-progress></span></div>
     </div>
   </div>
-  <p class="wrap tm-hero-note">Fotos reais do catálogo, com a marca TaMa como exemplo. Cores de referência; disponibilidade confirmada na proposta.</p>
+  <div class="wrap ms-controlbar">
+    <p class="ms-intro">Três peças. Três formas de se apresentar.</p>
+    <div class="ms-controls" role="group" aria-label="Controle da apresentação">{escolhas}
+      <button class="ms-pause" type="button" data-ms-pause aria-label="Pausar apresentação" title="Pausar apresentação"><svg viewBox="0 0 16 16" aria-hidden="true"><path data-ms-pause-icon d="M4 3h3v10H4zM9 3h3v10H9z"/></svg></button></div>
+  </div>
+  <p class="wrap tm-hero-note">Fotos reais do catálogo, recortadas do fundo, com a marca TaMa como exemplo. Cores de referência; disponibilidade confirmada na proposta.</p>
+</section>'''
+
+
+# (classe, modelo, palavra, rótulo da cena, marcadores, cor de destaque, rótulo do botão): cenas da abertura
+HERO_CENAS = [
+    ('garrafa', 'garrafa-termica', 'PRESENÇA.', '01 / Para acompanhar', ('Design para<br>acompanhar', 'Sua marca.<br>Em movimento.'), '#345EE0', '01 / Presença'),
+    ('caderno', 'caderno-de-anotacoes', 'IDEIAS.', '02 / Para inspirar', ('Espaço para<br>o próximo passo', 'Ideias que<br>ganham forma.'), '#69738F', '02 / Ideias'),
+    ('ecobag', 'ecobag', 'CONEXÃO.', '03 / Para conectar', ('Feita para<br>ir junto', 'Mais cor.<br>Mais possibilidades.'), '#48816A', '03 / Conexão'),
+]
+
+
+# Galeria de coleções (escolha do cliente em 08/11/2026): uma peça real recortada por categoria, grande e solta, sem
+# cartão. A foto vem de img/recortes/ (tools/recortar.py); categoria sem recorte usa a foto de estúdio do 1º modelo.
+GALERIA_RECORTES = {'garrafas-copos': 'garrafa-termica~azul-royal', 'vestuario': 'polo~vermelho', 'canetas-escritorio': 'caderno~azul-marinho',
+                    'bolsas-embalagens': 'ecobag~verde', 'tecnologia': 'power-bank-slim~prata', 'cozinha-bar': 'tabua-queijos~natural',
+                    'acessorios': 'carteira~caramelo', 'casa-bem-estar': 'difusor~ambar', 'hotelaria-gastronomia': 'cardapio~azul-marinho'}
+GALERIA_ORDEM = ['garrafas-copos', 'vestuario', 'canetas-escritorio', 'bolsas-embalagens', 'tecnologia', 'cozinha-bar', 'acessorios', 'casa-bem-estar', 'hotelaria-gastronomia']
+
+
+def home_galeria():
+    itens, links = '', ''
+    cats = [k for k in GALERIA_ORDEM if k in CAT_PROD] + [k for k in CAT_PROD if k not in GALERIA_ORDEM]
+    n = 0
+    for k in cats:
+        mods = [c for c in CATALOGO if c['categoria'] == k]
+        if not mods:
+            continue
+        n += 1
+        href = f'/catalogo/?categoria={k}#catalogo'
+        rec = 'recorte-' + GALERIA_RECORTES.get(k, '')
+        foto = (cutout(rec, '', '(max-width: 700px) 62vw, 300px', cls='tm-gal-img') if rec in IMAGES
+                else picture(mods[0]['img'], '', '(max-width: 700px) 62vw, 300px', cls='tm-gal-img tm-gal-foto'))
+        itens += (f'<li class="tm-gal-item"><a class="tm-gal-a" href="{href}"><span class="tm-gal-media">{foto}</span>'
+                  f'<span class="tm-gal-copy"><span class="tm-gal-name">{CAT_PROD[k]}</span><span class="tm-gal-go" aria-hidden="true">{ARROW}</span>'
+                  f'<span class="tm-gal-n">{len(mods)} modelos</span></span></a></li>')
+        links += f'<li><a href="{href}">{CAT_PROD[k]}</a></li>'
+    return f'''<section class="section tm-gallery" aria-labelledby="tm-gal-t">
+  <div class="wrap">
+    <div class="tm-gal-head" data-reveal><div><p class="eyebrow">Galeria de coleções</p><h2 id="tm-gal-t" class="tm-h2">Encontre a sua próxima ideia.</h2></div>
+      <div class="tm-gal-nav"><button class="tm-gal-btn" type="button" data-gal-prev aria-controls="tm-gal-list" aria-label="Categorias anteriores"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button>
+        <span class="tm-gal-count" data-gal-count aria-hidden="true">01 — {n:02d}</span>
+        <button class="tm-gal-btn" type="button" data-gal-next aria-controls="tm-gal-list" aria-label="Próximas categorias"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div></div>
+  </div>
+  <div class="tm-gal-track"><ul class="tm-gal-list" id="tm-gal-list" role="list" data-gal-list tabindex="0" aria-label="Categorias do catálogo">{itens}</ul></div>
+  <div class="wrap">
+    <div class="tm-gal-bar" aria-hidden="true"><span data-gal-bar></span></div>
+    <nav aria-label="Todas as categorias"><ul class="tm-gal-links" role="list">{links}</ul></nav>
+  </div>
 </section>'''
 
 
@@ -2067,26 +2150,6 @@ def home_frentes():
     <div class="tm-head" data-reveal><p class="eyebrow">O que a TaMa faz</p><h2 id="tm-fronts-t" class="tm-h2">Cinco frentes, <em>uma linguagem.</em></h2>
       <p class="tm-sub">Do brinde do dia a dia ao evento completo: a mesma curadoria e a mesma atenção à sua marca em cada peça.</p></div>
     <ul class="tm-fronts-grid" role="list">{itens}</ul>
-  </div>
-</section>'''
-
-
-def home_categorias():
-    """Atalhos para o catálogo filtrado por categoria, com a foto real do primeiro modelo da categoria."""
-    itens = ''
-    for k, nome in CAT_PROD.items():
-        mods = [c for c in CATALOGO if c['categoria'] == k]
-        if not mods:
-            continue
-        foto = picture(mods[0]['img'], '', '(max-width: 760px) 40vw, 200px')
-        tint = mods[0]['cores'][0][1] if mods[0].get('cores') else '#EEF0F3'
-        itens += (f'<li data-reveal><a class="tm-cat" href="/catalogo/?categoria={k}#catalogo" style="--tint:{tint}"><span class="tm-cat-media">{foto}</span>'
-                  f'<span class="tm-cat-name">{nome}</span><span class="tm-cat-n">{len(mods)} modelos</span></a></li>')
-    return f'''<section class="section tm-cats" aria-labelledby="tm-cats-t">
-  <div class="wrap">
-    <div class="tm-head tm-head-row" data-reveal><div><p class="eyebrow">Catálogo</p><h2 id="tm-cats-t" class="tm-h2">Encontre pelo tipo de peça.</h2></div>
-      <a class="link" href="/catalogo/">Ver os {len(CATALOGO)} modelos {ARROW}</a></div>
-    <ul class="tm-cats-grid" role="list">{itens}</ul>
   </div>
 </section>'''
 
@@ -2191,7 +2254,7 @@ def page_home():
         'preload': preload,
         'body': home_hero() + f'''
 {home_frentes()}
-{home_categorias()}
+{home_galeria()}
 {home_produtos()}
 {home_kits()}
 {process_section('Como trabalhamos', 'Do briefing à entrega.', 'Seis etapas, com a peça, a personalização e a arte aprovadas por você antes da produção.', 'home-como-t')}

@@ -1025,54 +1025,129 @@
     });
   }
 
-  // cena principal: troca de cor pela foto real, com pré-carga e sem deixar a área vazia
-  var stage = document.querySelector('[data-hero-stage]');
+})();
+
+/* ---------- Abertura em três cenas (padrão da prévia aprovada) ---------- */
+(function () {
+  var stage = document.querySelector('[data-ms-stage]');
   if (!stage) return;
-  var float = stage.querySelector('[data-float]'), pic = float && float.querySelector('picture'), img = pic && pic.querySelector('img');
-  var nameEl = stage.querySelector('[data-hero-cor]'), link = stage.querySelector('[data-hero-link]');
-  var btns = [].slice.call(stage.querySelectorAll('.tm-swatch'));
-  var sizes = img ? img.getAttribute('sizes') : '';
-  var cache = {};
-  function preload(b) {
-    var k = b.getAttribute('data-cor-slug');
-    if (cache[k]) return cache[k];
-    var im = new Image(); im.decoding = 'async'; im.sizes = sizes; im.srcset = b.getAttribute('data-webp');
-    cache[k] = im.decode ? im.decode().then(function () { return true; }, function () { return false; }) : Promise.resolve(true);
-    return cache[k];
+  var media = window.matchMedia('(prefers-reduced-motion: reduce)');
+  var scenes = [].slice.call(stage.querySelectorAll('.ms-scene'));
+  var choices = [].slice.call(document.querySelectorAll('.ms-choice'));
+  var data = []; try { data = JSON.parse(stage.getAttribute('data-cenas')); } catch (e) {}
+  var bar = stage.querySelector('[data-ms-progress]'), pauseBtn = document.querySelector('[data-ms-pause]'), icon = document.querySelector('[data-ms-pause-icon]');
+  var nameEl = stage.querySelector('[data-ms-name]'), catEl = stage.querySelector('[data-ms-cat]'), linkEl = stage.querySelector('[data-ms-link]'), capEl = stage.querySelector('[data-ms-caption]');
+  var sw = stage.querySelector('[data-ms-swatches]');
+  var n = scenes.length, current = 0, elapsed = 0, DURATION = 7000, userPaused = media.matches, visible = true, last = performance.now();
+  var corGarrafa = null;   // slug da cor escolhida (vale para o link da garrafa)
+  function pad(x) { return (x < 10 ? '0' : '') + x; }
+  function setPaused() {
+    var p = userPaused || !visible || document.hidden;
+    stage.classList.toggle('is-paused', p);
+    if (pauseBtn) {
+      pauseBtn.setAttribute('aria-label', userPaused ? 'Reproduzir apresentação' : 'Pausar apresentação');
+      pauseBtn.title = pauseBtn.getAttribute('aria-label');
+      icon.setAttribute('d', userPaused ? 'M4 2l10 6-10 6z' : 'M4 3h3v10H4zM9 3h3v10H9z');
+    }
   }
-  function apply(b) {
-    pic.querySelector('source[type="image/avif"]').setAttribute('srcset', b.getAttribute('data-avif'));
-    img.setAttribute('srcset', b.getAttribute('data-webp'));
-    img.alt = img.getAttribute('data-alt-base') + ' na cor ' + b.getAttribute('data-cor').toLowerCase() + ', com a marca TaMa no corpo.';
+  function go(i, manual) {
+    current = (i + n) % n; elapsed = 0;
+    scenes.forEach(function (s, k) { s.classList.toggle('is-active', k === current); s.setAttribute('aria-hidden', String(k !== current)); });
+    choices.forEach(function (c, k) { c.setAttribute('aria-pressed', String(k === current)); var m = c.querySelector('.ms-mini'); if (m) m.style.width = '0%'; });
+    var d = data[current] || {};
+    nameEl.textContent = d.n || ''; catEl.textContent = d.c || '';
+    linkEl.href = d.u + (current === 0 && corGarrafa ? '?cor=' + corGarrafa : '');
+    capEl.textContent = pad(current + 1) + ' — ' + pad(n);
+    if (sw) sw.hidden = current !== 0;
+    var acc = current === 0 && sw ? (sw.querySelector('[aria-pressed="true"]') || {}).style : null;
+    stage.style.setProperty('--accent', acc && acc.getPropertyValue('--c') ? acc.getPropertyValue('--c') : d.a);
+    document.documentElement.style.setProperty('--accent', stage.style.getPropertyValue('--accent'));
+    stage.classList.remove('is-switching'); void stage.offsetWidth; stage.classList.add('is-switching');
+    if (manual) userPaused = true;
+    setPaused();
   }
-  function choose(b) {
-    if (b.getAttribute('aria-pressed') === 'true') return;
-    var prev = btns.filter(function (x) { return x.getAttribute('aria-pressed') === 'true'; })[0];
-    btns.forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
-    nameEl.textContent = b.getAttribute('data-cor');
-    stage.style.setProperty('--tint', b.style.getPropertyValue('--c'));   // o arco da cena acompanha a cor da peça
-    if (link) link.setAttribute('href', link.getAttribute('href').split('?')[0] + '?cor=' + b.getAttribute('data-cor-slug'));
-    if (reduce) { apply(b); return; }
-    float.classList.add('is-swapping');
-    var ready = preload(b), t0 = Date.now();
-    ready.then(function (ok) {
-      // espera o esmaecer (até 160 ms) e troca; se a foto falhar, mantém a anterior e desfaz a escolha
-      setTimeout(function () {
-        if (ok) apply(b);
-        else if (prev) { btns.forEach(function (x) { x.setAttribute('aria-pressed', String(x === prev)); }); nameEl.textContent = prev.getAttribute('data-cor'); stage.style.setProperty('--tint', prev.style.getPropertyValue('--c')); }
-        float.classList.remove('is-swapping');
-      }, Math.max(0, 160 - (Date.now() - t0)));
+  choices.forEach(function (c) { c.addEventListener('click', function () { go(+c.getAttribute('data-go'), true); }); });
+  if (pauseBtn) pauseBtn.addEventListener('click', function () { userPaused = !userPaused; last = performance.now(); setPaused(); });
+  var light = stage.querySelector('[data-ms-light]');
+  if (light) light.addEventListener('click', function () {
+    var dark = stage.classList.toggle('is-dark');
+    light.setAttribute('aria-pressed', String(dark));
+    light.setAttribute('aria-label', dark ? 'Ativar iluminação clara' : 'Ativar iluminação de contraste');
+  });
+  function tick(now) {
+    var dt = Math.max(0, now - last); last = now;
+    if (!userPaused && visible && !document.hidden) { elapsed += dt; if (elapsed >= DURATION) go(current + 1); }
+    var pct = Math.min(100, elapsed / DURATION * 100) + '%';
+    if (bar) bar.style.width = pct;
+    var m = choices[current] && choices[current].querySelector('.ms-mini'); if (m) m.style.width = pct;
+    requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+  document.addEventListener('visibilitychange', function () { last = performance.now(); setPaused(); });
+  if ('IntersectionObserver' in window) new IntersectionObserver(function (es) { visible = es[0].isIntersecting; setPaused(); }, { threshold: .15 }).observe(stage);
+  if (media.addEventListener) media.addEventListener('change', function () { if (media.matches) userPaused = true; setPaused(); });
+  // passar o mouse ou focar a apresentação pausa a troca automática (volta ao sair, se a pessoa não pausou)
+  var hoverPause = false;
+  stage.addEventListener('pointerenter', function (e) { if (e.pointerType === 'mouse' && !userPaused) { hoverPause = true; userPaused = true; setPaused(); } });
+  stage.addEventListener('pointerleave', function () { if (hoverPause) { hoverPause = false; userPaused = media.matches; last = performance.now(); setPaused(); } stage.style.setProperty('--mx', '0px'); stage.style.setProperty('--my', '0px'); });
+  // paralaxe leve com o mouse (nunca no toque nem com movimento reduzido)
+  stage.addEventListener('pointermove', function (e) {
+    if (e.pointerType !== 'mouse' || media.matches) return;
+    var r = stage.getBoundingClientRect(), x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+    stage.style.setProperty('--mx', (x - .5) * 12 + 'px'); stage.style.setProperty('--my', (y - .5) * 8 + 'px');
+    stage.style.setProperty('--lx', x * 100 + '%'); stage.style.setProperty('--ly', y * 100 + '%');
+  });
+  // cor da garrafa: foto real da cor, pré-carregada; se falhar, mantém a atual
+  if (sw) {
+    var fl = scenes[0].querySelector('.ms-float'), pic = fl && fl.querySelector('picture'), img = pic && pic.querySelector('img'), req = 0;
+    [].forEach.call(sw.querySelectorAll('button'), function (b) {
+      var pre = function () { if (b._pre) return b._pre; var im = new Image(); im.sizes = img.sizes; im.srcset = b.getAttribute('data-webp'); b._pre = im.decode ? im.decode().then(function () { return true; }, function () { return false; }) : Promise.resolve(true); return b._pre; };
+      b.addEventListener('pointerenter', pre); b.addEventListener('focus', pre);
+      b.addEventListener('click', function () {
+        if (b.getAttribute('aria-pressed') === 'true') return;
+        userPaused = true; hoverPause = false; setPaused();
+        var my = ++req; fl.classList.add('is-swapping');
+        pre().then(function (ok) {
+          if (my !== req) return;
+          if (ok) {
+            pic.querySelector('source[type="image/avif"]').setAttribute('srcset', b.getAttribute('data-avif'));
+            img.setAttribute('srcset', b.getAttribute('data-webp'));
+            img.alt = img.getAttribute('data-alt-base') + ' na cor ' + b.getAttribute('data-cor').toLowerCase() + ', com a marca TaMa';
+            [].forEach.call(sw.querySelectorAll('button'), function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+            corGarrafa = b.getAttribute('data-cor-slug');
+            linkEl.href = data[0].u + '?cor=' + corGarrafa;
+            stage.style.setProperty('--accent', b.style.getPropertyValue('--c'));
+          }
+          setTimeout(function () { fl.classList.remove('is-swapping'); }, 60);
+        });
+      });
     });
   }
-  btns.forEach(function (b) {
-    b.addEventListener('click', function () { choose(b); });
-    b.addEventListener('pointerenter', function () { preload(b); });
-    b.addEventListener('focus', function () { preload(b); });
-  });
+  setPaused();
+})();
 
-  // flutuação: pausa fora da tela e com a aba oculta
-  var visible = true;
-  function sync() { stage.classList.toggle('is-paused', !visible || document.hidden); }
-  if ('IntersectionObserver' in window) new IntersectionObserver(function (es) { visible = es[0].isIntersecting; sync(); }).observe(stage);
-  document.addEventListener('visibilitychange', sync);
+/* ---------- Galeria de coleções: setas, contador e barra de progresso ---------- */
+(function () {
+  var list = document.querySelector('[data-gal-list]');
+  if (!list) return;
+  var items = [].slice.call(list.children), prev = document.querySelector('[data-gal-prev]'), next = document.querySelector('[data-gal-next]');
+  var count = document.querySelector('[data-gal-count]'), bar = document.querySelector('[data-gal-bar]');
+  function pad(x) { return (x < 10 ? '0' : '') + x; }
+  function step() { return items.length > 1 ? items[1].offsetLeft - items[0].offsetLeft : list.clientWidth; }
+  function update() {
+    var max = list.scrollWidth - list.clientWidth, x = list.scrollLeft;
+    var first = Math.min(items.length - 1, Math.round(x / step()));
+    if (count) count.textContent = pad(first + 1) + ' — ' + pad(items.length);
+    var frac = list.clientWidth / list.scrollWidth;
+    if (bar) { bar.style.width = Math.max(8, frac * 100) + '%'; bar.style.transform = 'translateX(' + (max > 0 ? x / max * (1 / frac - 1) * 100 : 0) + '%)'; }
+    if (prev) prev.disabled = x <= 2;
+    if (next) next.disabled = x >= max - 2;
+  }
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function move(dir) { list.scrollBy({ left: dir * step(), behavior: reduce ? 'auto' : 'smooth' }); }
+  if (prev) prev.addEventListener('click', function () { move(-1); });
+  if (next) next.addEventListener('click', function () { move(1); });
+  list.addEventListener('scroll', function () { requestAnimationFrame(update); }, { passive: true });
+  window.addEventListener('resize', update);
+  update();
 })();

@@ -90,31 +90,44 @@ try {
   console.log('Home (redesenho de 11/2026)');
   {
     const home = await (await fetch(BASE + '/')).text(), redir = await (await fetch(BASE + '/_redirects')).text();
-    const ordem = ['class="tm-hero', 'class="section tm-fronts', 'class="section tm-cats', 'class="section tm-products', 'class="section tm-kits', 'process-section', 'class="section tm-proof', 'class="t-faq', 'class="end-cta'].map(k => home.indexOf(k));
-    ok(ordem.every((p, i) => p > 0 && (i === 0 || p > ordem[i - 1])) && !/name="robots" content="noindex/.test(home) && !home.includes('aria-roledescription="carrossel"')
+    const ordem = ['class="ms-hero', 'class="section tm-fronts', 'class="section tm-gallery', 'class="section tm-products', 'class="section tm-kits', 'process-section', 'class="section tm-proof', 'class="t-faq', 'class="end-cta'].map(k => home.indexOf(k));
+    ok(ordem.every((p, i) => p > 0 && (i === 0 || p > ordem[i - 1])) && !/name="robots" content="noindex/.test(home)
       && (home.match(/class="tm-front[ "]/g) || []).length === 5 && (home.match(/<details class="t-faq-item"/g) || []).length === 6 && (home.match(/class="process-step"/g) || []).length === 6,
-      'home: cena com produto real, 5 frentes, categorias, produtos, kits, processo em 6 passos, compromissos, 6 perguntas e chamada final, nessa ordem');
+      'home: abertura em cenas, 5 frentes, galeria de coleções, produtos, kits, processo em 6 passos, compromissos, 6 perguntas e chamada final, nessa ordem');
     ok(/^\/v2\/\s+\/\s+301/m.test(redir), '/v2/ (endereço da proposta) redireciona para a home');
     await page.setViewport({ width: 1280, height: 900 });
     await page.goto(BASE + '/', { waitUntil: 'networkidle0' });
-    const hero = await page.evaluate(() => ({ h1s: document.querySelectorAll('h1').length, h1: document.querySelector('.tm-hero h1')?.textContent.replace(/\s+/g, ' ').trim(),
-      ctas: [...document.querySelectorAll('.tm-hero-copy .actions a')].map(a => a.getAttribute('href').split('?')[0]) }));
-    const heroImg = await page.$eval('.tm-stage img', i => ({ eager: i.loading === 'eager', alta: i.getAttribute('fetchpriority') === 'high', alt: i.alt, w: +i.getAttribute('width'), h: +i.getAttribute('height'), src: i.currentSrc }));
-    ok(hero.h1s === 1 && hero.h1 === 'Ideias reais. Marcas presentes.' && hero.ctas.join() === '/catalogo/,/solicitar-proposta/' && heroImg.eager && heroImg.alta && heroImg.w > 0 && heroImg.h > 0
-      && /recorte-garrafa-termica~/.test(heroImg.src) && /^Garrafa térmica na cor /.test(heroImg.alt),
-      `home: um único H1, catálogo e proposta, e a garrafa térmica real (recorte) carregada com prioridade e medidas declaradas ("${heroImg.alt}")`);
-    // troca de cor: a foto real da cor escolhida, o nome da cor, o botão marcado, o texto alternativo e o link do produto
-    const cores = await page.$$eval('.tm-swatch', b => b.map(x => x.dataset.cor));
+    const hero = await page.evaluate(() => ({ h1s: document.querySelectorAll('h1').length, h1: document.querySelector('.ms-hero h1')?.textContent.replace(/\s+/g, ' ').trim(),
+      ctas: [...document.querySelectorAll('.ms-copy .actions a')].map(a => a.getAttribute('href').split('?')[0]), cenas: document.querySelectorAll('.ms-scene').length,
+      ativa: [...document.querySelectorAll('.ms-scene')].map(s => s.getAttribute('aria-hidden')).join() }));
+    const heroImg = await page.$eval('.ms-scene.is-active img', i => ({ eager: i.loading === 'eager', alta: i.getAttribute('fetchpriority') === 'high', alt: i.alt, w: +i.getAttribute('width'), h: +i.getAttribute('height'), src: i.currentSrc }));
+    ok(hero.h1s === 1 && hero.h1 === 'Uma ideia. Muitas formas de marcar.' && hero.ctas.join() === '/solicitar-proposta/,/catalogo/' && hero.cenas === 3 && hero.ativa === 'false,true,true'
+      && heroImg.eager && heroImg.alta && heroImg.w > 0 && heroImg.h > 0 && /recorte-garrafa-termica~/.test(heroImg.src) && /^Garrafa térmica na cor /.test(heroImg.alt),
+      `home: um único H1, proposta e catálogo, 3 cenas com a garrafa real (recorte) carregada com prioridade e medidas declaradas ("${heroImg.alt}")`);
+    // a apresentação respeita movimento reduzido (os testes rodam com reduce): começa pausada
+    ok(await page.$eval('[data-ms-stage]', s => s.classList.contains('is-paused')) && await page.$eval('[data-ms-pause]', b => b.getAttribute('aria-label') === 'Reproduzir apresentação'), 'home: com movimento reduzido, a apresentação começa pausada (botão "Reproduzir")');
+    // troca de cor da garrafa: foto real da cor, botão marcado, texto alternativo e link do produto
+    const cores = await page.$$eval('[data-ms-swatches] button', b => b.map(x => x.dataset.cor));
     const alvo = cores.find(c => c !== cores[0]);
-    await page.click(`.tm-swatch[data-cor="${alvo}"]`); await sleep(400);
-    const depois = await page.evaluate(() => ({ nome: document.querySelector('[data-hero-cor]').textContent, src: document.querySelector('.tm-stage img').currentSrc, alt: document.querySelector('.tm-stage img').alt,
-      pressed: [...document.querySelectorAll('.tm-swatch[aria-pressed="true"]')].map(b => b.dataset.cor), link: document.querySelector('[data-hero-link]').getAttribute('href') }));
+    await page.click(`[data-ms-swatches] button[data-cor="${alvo}"]`); await sleep(400);
+    const depois = await page.evaluate(() => ({ src: document.querySelector('.ms-garrafa img').currentSrc, alt: document.querySelector('.ms-garrafa img').alt,
+      pressed: [...document.querySelectorAll('[data-ms-swatches] button[aria-pressed="true"]')].map(b => b.dataset.cor), link: document.querySelector('[data-ms-link]').getAttribute('href') }));
     const slugAlvo = alvo.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-');
-    ok(cores.length >= 4 && depois.nome === alvo && depois.pressed.join() === alvo && depois.src.includes(`garrafa-termica~${slugAlvo}`) && depois.alt.includes(alvo.toLowerCase()) && depois.link === `/catalogo/garrafa-termica/?cor=${slugAlvo}`,
-      `home: escolher ${alvo} troca a foto pela foto real dessa cor, o nome, o botão marcado, o texto alternativo e o link do produto (${cores.length} cores)`);
+    ok(cores.length >= 4 && depois.pressed.join() === alvo && depois.src.includes(`garrafa-termica~${slugAlvo}`) && depois.alt.includes(alvo.toLowerCase()) && depois.link === `/catalogo/garrafa-termica/?cor=${slugAlvo}`,
+      `home: escolher ${alvo} troca a foto pela foto real dessa cor, o botão marcado, o texto alternativo e o link do produto (${cores.length} cores)`);
+    // escolher outra cena: nome, link e cena ativa mudam; as cores só aparecem na cena da garrafa
+    await page.click('.ms-choice[data-go="1"]'); await sleep(300);
+    ok(await page.evaluate(() => document.querySelector('.ms-scene.is-active')?.dataset.scene === '1' && document.querySelector('[data-ms-name]').textContent === 'Caderno de anotações'
+      && document.querySelector('[data-ms-link]').getAttribute('href') === '/catalogo/caderno-de-anotacoes/' && document.querySelector('[data-ms-swatches]').hidden
+      && document.querySelector('.ms-choice[data-go="1"]').getAttribute('aria-pressed') === 'true'), 'home: escolher a 2ª peça mostra o caderno, com nome, link e botão marcados');
     ok(await page.$$eval('.tm-fronts-grid .tm-front-a', a => a.map(x => x.getAttribute('href')).join() === '/brindes-corporativos/,/confeccoes-personalizadas/,/kits-corporativos/,/eventos-corporativos/,/hotelaria-e-gastronomia/'),
        'home apresenta as cinco áreas (brindes, confecções, kits, eventos, hotelaria)');
-    ok(await page.$$eval('.tm-cat', a => a.length >= 5 && a.every(x => /^\/catalogo\/\?categoria=[a-z-]+#catalogo$/.test(x.getAttribute('href')))), 'home: atalhos de categoria levam ao catálogo filtrado');
+    const gal = await page.evaluate(() => ({ itens: [...document.querySelectorAll('.tm-gal-a')].map(a => a.getAttribute('href')), recortes: document.querySelectorAll('.tm-gal-a img[src*="/recorte-"]').length,
+      links: document.querySelectorAll('.tm-gal-links a').length, cont: document.querySelector('[data-gal-count]').textContent }));
+    ok(gal.itens.length >= 5 && gal.itens.every(h => /^\/catalogo\/\?categoria=[a-z-]+#catalogo$/.test(h)) && gal.recortes >= 5 && gal.links === gal.itens.length && gal.cont === `01 — ${String(gal.itens.length).padStart(2, '0')}`,
+      `home: galeria de coleções com ${gal.itens.length} categorias (peças recortadas) levando ao catálogo filtrado`);
+    await page.click('[data-gal-next]'); await sleep(400);
+    ok(await page.$eval('[data-gal-count]', c => c.textContent.startsWith('02')) && await page.$eval('[data-gal-prev]', b => !b.disabled), 'home: a seta da galeria avança uma categoria e atualiza o contador');
     ok(await page.$$eval('.tm-products .product.studio', c => c.length >= 4) && await colorsHavePhoto(page, '.tm-products .product.studio'), 'home: produtos reais com cor que troca a foto');
     for (const w of [320, 360, 390, 768, 1024, 1180, 1440]) {
       await page.setViewport({ width: w, height: 900 });

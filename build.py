@@ -2213,7 +2213,7 @@ def home_kits():
                   f'<span class="tm-kit-media">{picture(foto, alt, "(max-width: 760px) calc(100vw - 32px), 420px")}</span>'
                   f'<h3>{esc(nome)}</h3><span class="tm-kit-d">{esc(desc)}</span><span class="tm-kit-go">Pedir este kit {ARROW}</span></a></li>')
     contextos = ''.join(f'<li><a class="chip" href="/kits-corporativos/#{a}">{esc(t)}</a></li>' for a, t, _l, _k in KITS_TIPOS)
-    return f'''<section class="section tm-kits2" aria-labelledby="tm-kits-t">
+    return f'''<section class="section ivory tm-kits2" aria-labelledby="tm-kits-t">
   <div class="wrap">
     <div class="tm-head tm-head-row" data-reveal><div><p class="eyebrow">Kits corporativos</p><h2 id="tm-kits-t" class="tm-h2">Composições prontas <em>para ajustar.</em></h2>
       <p class="tm-sub">Caixa, cartão e peças com a sua marca. Troque peças, cores e quantidade na proposta.</p></div>

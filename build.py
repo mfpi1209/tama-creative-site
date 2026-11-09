@@ -1361,7 +1361,7 @@ SOLUCOES = [
     ('/confeccoes-personalizadas/', 'Uniformes e confecções', 'Polos, camisetas, dólmãs e aventais'),
     ('/kits-corporativos/', 'Kits corporativos', 'Composições com caixa e cartão'),
     ('/eventos-corporativos/', 'Eventos corporativos', 'Buffet, decoração e materiais'),
-    ('/hotelaria-e-gastronomia/', 'Hotelaria e gastronomia', 'Mesa, cozinha, recepção e equipe'),
+    ('/hotelaria-e-gastronomia/', 'Hotelaria e gastronomia', 'Mesa e serviços personalizados'),
 ]
 
 

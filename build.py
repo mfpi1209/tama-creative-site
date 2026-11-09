@@ -310,6 +310,9 @@ def build_images():
             if os.path.isfile(f):
                 sources.append((n, f))
     sources += blog.image_sources(IMG_SRC)  # img/blog/: imagens enviadas pelo editor do blog
+    galeria = os.path.join(IMG_SRC, 'galeria')   # fotos próprias da galeria de coleções: img/galeria/<categoria>.jpg|webp|png
+    if os.path.isdir(galeria):
+        sources += [('galeria-' + os.path.splitext(fn)[0], os.path.join(galeria, fn)) for fn in sorted(os.listdir(galeria)) if fn.lower().endswith(('.webp', '.png', '.jpg', '.jpeg'))]
     marca = os.path.join(IMG_SRC, 'marca')
     if MOCKUPS and os.path.isdir(marca):  # branded versions replace the v2 photo of the same name
         over = {fn[:-5]: os.path.join(marca, fn) for fn in os.listdir(marca) if fn.lower().endswith('.webp')}
@@ -2136,12 +2139,15 @@ HERO_CORES_FORA = {'agenda': {'Café'}, 'taca': {'Bordô', 'Azul royal', 'Preto'
 # Galeria de coleções, "faixas que abrem" (escolha do cliente em 08/11/2026, rodada 2): a abertura já mostra as peças
 # recortadas, então a galeria usa fotos ambientadas de cada categoria (capas do blog, img/blog/) em faixas verticais; a
 # faixa em foco abre e mostra nome, quantidade de modelos e a seta. No celular vira uma lista que abre uma foto por vez.
-# O segundo valor é o ponto de foco da foto (object-position). Categoria sem foto usa a de estúdio do 1º modelo.
+# O segundo valor é o ponto de foco da foto (object-position). Uma foto própria em img/galeria/<categoria>.* (marca TaMa,
+# guia em docs/rebrand/FOTOS-GALERIA.md) substitui a capa do blog. Categoria sem foto usa a de estúdio do 1º modelo.
 GALERIA_FOTOS = {'garrafas-copos': ('blog-capa-garrafas-personalizadas', '27% 62%'), 'vestuario': ('blog-capa-polo-personalizada', '66% 60%'),
                  'canetas-escritorio': ('blog-capa-canetas-personalizadas', '62% 42%'), 'bolsas-embalagens': ('blog-capa-sacolas-personalizadas', '56% 42%'),
                  'tecnologia': ('blog-capa-brindes-tecnologicos', '50% 45%'), 'cozinha-bar': ('blog-capa-tacas-personalizadas-formatos', '42% 40%'),
                  'acessorios': ('blog-capa-necessaires-personalizadas', '60% 45%'), 'casa-bem-estar': ('blog-capa-jogos-americanos', '55% 52%'),
                  'hotelaria-gastronomia': ('blog-capa-cardapios-personalizados', '60% 40%')}
+# ponto de foco das fotos próprias (img/galeria/); ajuste aqui se a peça ficar cortada na faixa fechada
+GALERIA_FOCO = {}
 GALERIA_ORDEM = ['garrafas-copos', 'vestuario', 'canetas-escritorio', 'bolsas-embalagens', 'tecnologia', 'cozinha-bar', 'acessorios', 'casa-bem-estar', 'hotelaria-gastronomia']
 
 
@@ -2153,6 +2159,8 @@ def home_galeria():
     for i, k in enumerate(cats):
         mods = [c for c in CATALOGO if c['categoria'] == k]
         foto, foco = GALERIA_FOTOS.get(k, ('', '50% 50%'))
+        if 'galeria-' + k in IMAGES:   # foto própria (img/galeria/<categoria>.*) tem prioridade sobre a capa do blog
+            foto, foco = 'galeria-' + k, GALERIA_FOCO.get(k, '50% 50%')
         if foto not in IMAGES:
             foto, foco = mods[0]['img'], '50% 50%'
         img = picture(foto, '', '(max-width: 760px) 92vw, 62vw', cls='tm-strip-img', style=f'object-position:{foco}')

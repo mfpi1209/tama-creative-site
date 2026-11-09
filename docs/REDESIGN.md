@@ -12,9 +12,11 @@ Manrope + DM Sans descritas abaixo; o resto do documento continua valendo para e
 - **Tipografia**: Sora variável (OFL, `src/fonts/sora-latin*.woff2`, de `@fontsource-variable/sora@5.1.0`) em títulos
   (600–700, tracking −0,035 em) e texto (400). Fallback "Sora Fallback" (Arial com métricas ajustadas). Manrope e DM
   Sans ficam no repositório (proposta de rebrand anterior e /admin).
-- **Paleta** (`src/v3.css › :root`): marfim `#FBF8F3` / `#F5EFE7`, bege quente `#EDE3D6`, grafite `#1F2328` (14,9:1),
-  texto de apoio `#5E5A55` (6,5:1), bordô `#6B1F3B` (10,5:1; hover `#561830`), blush `#F4E6EA`, bordô claro `#E8A9BB`
-  sobre escuro, coral `#E14B3B` só na pétala e em detalhes (não é cor de texto), verde oliva `#2F4F3E` / `#E4E9E0`.
+- **Paleta** (`src/v3.css › :root`): branco `#FFFFFF`, gelo `#F4F6F8` / `#EBEEF2`, grafite `#1F2328` (15,8:1),
+  texto de apoio `#59616C` (6,3:1), bordô `#6B1F3B` (11,1:1; hover `#561830`), blush `#F4E6EA`, bordô claro `#E8A9BB`
+  sobre escuro, coral `#E14B3B` só na pétala e em detalhes (não é cor de texto), verde oliva `#2F4F3E` / `#E4E9E0`. O
+  marfim e o bege das pranchas foram aplicados e trocados pelo gelo a pedido do cliente. Guia completo em
+  `docs/rebrand/REBRAND-PETALA.md`.
 - **Assinatura**: pétala coral + "TaMa" (Ma em bordô, sem ponto) + CREATIVE espaçado (`build.py › PETALA, LOGO_DECOR`;
   `.wordmark`). Favicon, ícones e imagem de compartilhamento vêm de `brand/petala/`, gerada por
   `python tools/marca_assets.py petala`. `brand/logos/` (logotipo oficial anterior) não foi alterada.
@@ -23,8 +25,7 @@ Manrope + DM Sans descritas abaixo; o resto do documento continua valendo para e
   sublinhado bordô); cards de foto com seta em círculo branco que vira bordô no hover; curva bordô no canto superior
   direito da abertura (fora abaixo de 760 px) e pétalas blush/oliva no fechamento (`--petala`, máscara).
 - **Títulos da home**: "Cinco frentes, *uma linguagem.*", "Encontre a sua *próxima ideia.*", "Composições completas,
-  *prontas para ajustar.*". A galeria de coleções (`tm-gal-*`) só recebeu os tokens: as propostas visuais dela estão
-  em outra frente.
+  *prontas para ajustar.*". A galeria de coleções virou "faixas que abrem" (`tm-strip-*`), com fotos ambientadas.
 
 ## Diagnóstico (auditoria)
 

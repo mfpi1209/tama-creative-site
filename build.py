@@ -144,7 +144,10 @@ def pict(name, cls='pict'):
 
 # Seleções editoriais (home, ordem, foto-base, ocasiões, slugs antigos) sobre a base única src/data/produtos.json.
 SEL = json.load(open(os.path.join(DADOS, 'selecoes.json'), encoding='utf-8'))
-OCCS = SEL['ocasioes']
+# Ocasiões fora do site (pedido do cliente em 08/11/2026): somem do menu, do catálogo, da página de ocasiões e do
+# produto. Os dados continuam em selecoes.json; para voltar, tire a chave daqui.
+OCASIOES_FORA = {'reconhecimento', 'lancamentos'}
+OCCS = {k: v for k, v in SEL['ocasioes'].items() if k not in OCASIOES_FORA}
 ALIASES = SEL['aliases']
 # banco de imagens de produto (docs/BANCO-IMAGENS.md): uma entrada por imagem; o catálogo agrupa por produto
 PRODUTOS = json.load(open(os.path.join(DADOS, 'produtos.json'), encoding='utf-8'))['imagens']
@@ -223,7 +226,7 @@ def build_catalogo():
         versos = {i['cor']['nome']: i['id'] for i in extras if i['vista'] == 'verso'}
         detalhes = {i['cor']['nome']: i['id'] for i in extras if i['vista'] == 'detalhe'}
         out.append({'slug': slug, 'nome': nome, 'img': base['id'], 'categoria': base['categoria'], 'tipo': tipo_do_modelo(slug, base['categoria']), 'descricao': base.get('modelo') or '',
-                    'meta': spec_line(base), 'alt': base['alt'], 'cores': cores, 'ocasioes': SEL.get('ocasioes_por_modelo', {}).get(slug, []),
+                    'meta': spec_line(base), 'alt': base['alt'], 'cores': cores, 'ocasioes': [o for o in SEL.get('ocasioes_por_modelo', {}).get(slug, []) if o not in OCASIOES_FORA],
                     'url': f'/catalogo/{slug}/', 'grupo': grupo and [grupo['id'], grupo['alt']], 'versos': versos, 'detalhes': detalhes,
                     'extras': [[i['id'], i['vista'], i['alt']] for i in extras if i['vista'] != 'grupo'], 'base': base})
     ordem = list(CAT_PROD)
@@ -1104,7 +1107,6 @@ COLLECTIONS = [
     ('eventos', 'Eventos', 'Presença de marca em cada encontro.', 'conf-evento-camisetas'),
     ('executivos', 'Presentes executivos', 'Gestos refinados para relações importantes.', 'kitp-kit-executivo'),
     ('campanhas', 'Campanhas e promoções', 'Degustações, promoções e ações no ponto de venda.', 'conf-degustacao'),
-    ('lancamentos', 'Lançamentos', 'Peças para apresentar um produto ou uma novidade.', 'papelaria-cores'),
     ('fim-de-ano', 'Fim de ano', 'Presentes para encerrar o ano perto de quem importa.', 'kitp-kit-brinde'),
 ]
 # ocasiões com página própria: o card da coleção leva para ela (as demais abrem as ideias filtradas)
@@ -2431,7 +2433,7 @@ def page_kits():
 # (imagem, alt, eyebrow, linhas do título, destaque em itálico, apoio). Todas as fotos com marcas fictícias.
 OCC_HEROS = {k: (c['imagem'], c['alt'], esc(c['eyebrow']), [esc(x) for x in c['linhas']],
                  [esc(x) for x in c['destaque']] if len(c['destaque']) > 1 else esc(c['destaque'][0]), esc(c['texto']))
-             for k, c in (SECOES.get('ocasioes') or {}).items()}   # site.json › secoes › ocasioes (inventário › Páginas › Ocasiões)
+             for k, c in (SECOES.get('ocasioes') or {}).items() if k not in OCASIOES_FORA}   # site.json › secoes › ocasioes (inventário › Páginas › Ocasiões)
 
 def occ_hero(trail, k):
     img, alt, eyebrow, linhas, destaque, desc = OCC_HEROS[k]
@@ -2452,7 +2454,7 @@ def page_curadoria():
                  'itemListElement': [{'@type': 'ListItem', 'position': i + 1, 'name': c['nome'], 'url': SITE + (c.get('url') or '/catalogo/#' + c['slug'])} for i, c in enumerate(pecas)]}
     return {
         'path': '/brindes-por-ocasiao/', 'title': 'Brindes corporativos por ocasião | TaMa Creative',
-        'description': 'Ideias de brindes e presentes corporativos para boas-vindas, eventos, fim de ano, reconhecimento e lançamentos, com a marca da sua empresa. Monte a seleção.',
+        'description': 'Ideias de brindes e presentes corporativos para boas-vindas, eventos, presentes executivos, campanhas e fim de ano, com a marca da sua empresa. Monte a seleção.',
         'trail': [('/', 'Início'), ('/brindes-por-ocasiao/', 'Brindes por ocasião')],
         'service': {'key': 'ocasioes', 'name': 'Brindes e presentes corporativos por ocasião', 'type': 'Brindes corporativos'},
         'assunto': 'brindes e presentes por ocasião',

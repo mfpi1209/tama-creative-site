@@ -282,7 +282,7 @@ try {
   ok(await page.$eval('.pdp .pick', b => b.getAttribute('aria-pressed') === 'true') && (await page.evaluate(() => JSON.parse(localStorage.getItem('tama-selecao')))).some(x => x.s === 'caneca' && x.c === 'Azul royal'), 'na página do modelo, a peça já selecionada aparece marcada e a troca de cor vai para a seleção');
   ok(await page.$$eval('.studio-grid .product', ps => ps.length === 4 && ps.every(p => p.getAttribute('data-cat') === 'garrafas-copos')), 'página do modelo sugere 4 modelos da mesma categoria');
   // passos 2 e 3: a ocasião e a quantidade seguem com a peça para a seleção e para o link da proposta
-  ok(await page.$$eval('.pdp-steps > li', l => l.length === 3) && await page.$$eval('#pdp-ocasiao option', o => o.length === 8), 'página do modelo: passos cor, ocasião (7 opções) e quantidade');
+  ok(await page.$$eval('.pdp-steps > li', l => l.length === 3) && await page.$$eval('#pdp-ocasiao option', o => o.length === 6), 'página do modelo: passos cor, ocasião (5 opções, sem reconhecimento e lançamentos) e quantidade');
   await page.select('#pdp-ocasiao', 'Fim de ano');
   await page.click('.pdp-qty [data-qty="1"]'); await page.click('.pdp-qty [data-qty="1"]'); await sleep(200);
   const pdpSel = (await page.evaluate(() => JSON.parse(localStorage.getItem('tama-selecao')))).find(x => x.s === 'caneca');
@@ -352,7 +352,7 @@ try {
     return { ordem: fs.map(x => x.querySelector('legend').textContent).join(), vals: r.map(i => i.value).join(), todas: !!r[0] && r[0].value === '' && r[0].checked && r[0].parentNode.querySelector('span').textContent === 'Todas',
       contagem: r.slice(1).every(i => +i.parentNode.querySelector('small').textContent === cards.filter(c => (c.dataset.occ || '').split(' ').includes(i.value)).length && cards.length > 0) };
   });
-  ok(occSide.ordem === 'Categoria,Tipo de peça,Ocasião,Cor' && occSide.vals.split(',').length === 8 && occSide.vals.startsWith(',fim-de-ano,') && occSide.todas && occSide.contagem, `filtro lateral tem Ocasião (Todas + 7, Fim de ano primeiro) com a contagem dos cards (${occSide.vals})`);
+  ok(occSide.ordem === 'Categoria,Tipo de peça,Ocasião,Cor' && occSide.vals.split(',').length === 6 && !/reconhecimento|lancamentos/.test(occSide.vals) && occSide.vals.startsWith(',fim-de-ano,') && occSide.todas && occSide.contagem, `filtro lateral tem Ocasião (Todas + 5, Fim de ano primeiro, sem reconhecimento e lançamentos) com a contagem dos cards (${occSide.vals})`);
   await page.$eval('#cat-filtros input[name="ocasiao"][value="fim-de-ano"]', el => el.scrollIntoView({ block: 'center' }));
   await page.click('#cat-filtros input[name="ocasiao"][value="fim-de-ano"]'); await sleep(200);
   ok(await page.$$eval('#catalogo-grid .product', g => g.filter(x => !x.hidden).map(x => x.dataset.slug).join()) === occFim.slugs && /ocasiao=fim-de-ano/.test(await page.evaluate(() => location.search)) && await page.$eval('[data-cat-occ]', b => !b.hidden && b.textContent.includes('Fim de ano')), 'marcar Fim de ano mostra os mesmos modelos de ?ocasiao=fim-de-ano, grava a URL e mostra a etiqueta');
@@ -440,8 +440,8 @@ try {
   ok(menuP.kits.length === 6 && menuP.kits.join() === ['escritorio', 'cozinha', 'boas-vindas', 'executivo', 'pausa', 'fim-de-ano'].map(k => '/kits-corporativos/#kits-' + k).join() && menuP.kitsAll.join() === '/kits-corporativos/',
      'menu Kits: 6 links de tipo de kit (âncoras de /kits-corporativos/) e "Ver todos os kits"');
   ok(menuP.sol.join() === '/brindes-corporativos/,/confeccoes-personalizadas/,/eventos-corporativos/,/hotelaria-e-gastronomia/', 'menu Soluções: as quatro frentes (Kits tem item próprio no menu)');
-  ok(['/brindes-de-fim-de-ano/', '/brindes-por-ocasiao/', '/blog/'].every(h => menuP.insp.includes(h)) && menuP.insp.filter(h => h.startsWith('/brindes-por-ocasiao/?ocasiao=')).length >= 5 && (SEASON === 'fim-de-ano' ? menuP.fim === 'Fim de ano temporada' : menuP.fim === 'Fim de ano'),
-     'menu Ocasiões: ocasiões (fim de ano em destaque na temporada), brindes por ocasião e guias');
+  ok(['/brindes-de-fim-de-ano/', '/brindes-por-ocasiao/', '/blog/'].every(h => menuP.insp.includes(h)) && menuP.insp.filter(h => h.startsWith('/brindes-por-ocasiao/?ocasiao=')).length === 4 && !menuP.insp.some(h => /reconhecimento|lancamentos/.test(h)) && (SEASON === 'fim-de-ano' ? menuP.fim === 'Fim de ano temporada' : menuP.fim === 'Fim de ano'),
+     'menu Ocasiões: ocasiões sem reconhecimento e lançamentos (fim de ano em destaque na temporada), brindes por ocasião e guias');
   const semAncora = [];
   for (const [u, hs] of [['/kits-corporativos/', menuP.kits]]) { const html = await (await fetch(BASE + u)).text(); hs.forEach(h => { if (!html.includes(`id="${h.split('#')[1]}"`)) semAncora.push(h); }); }
   ok(semAncora.length === 0, `os links do painel Kits caem em âncoras que existem${semAncora.length ? ' — faltam: ' + semAncora.join(', ') : ''}`);
@@ -798,7 +798,7 @@ try {
   console.log('Aberturas e cabeçalho do site');
   // ocasiões: abertura com foto que troca com a ocasião escolhida (um H1 só, foto em alta, marca fictícia)
   await bp.goto(BASE + '/brindes-por-ocasiao/?ocasiao=eventos', { waitUntil: 'networkidle0' });
-  ok(await bp.evaluate(() => document.querySelectorAll('h1').length === 1 && /Sua marca/.test(document.querySelector('.foto-hero h1').textContent) && /ocasiao-eventos/.test(document.querySelector('.foto-hero-photo img').getAttribute('srcset') || '') && document.querySelectorAll('template[data-occ-hero]').length === 7),
+  ok(await bp.evaluate(() => document.querySelectorAll('h1').length === 1 && /Sua marca/.test(document.querySelector('.foto-hero h1').textContent) && /ocasiao-eventos/.test(document.querySelector('.foto-hero-photo img').getAttribute('srcset') || '') && document.querySelectorAll('template[data-occ-hero]').length === 5),
      '/brindes-por-ocasiao/: abertura com foto por ocasião (eventos) e um H1 só');
   await bp.click('.chip[data-filter="occ"][data-value="todas"]'); await sleep(200);
   ok(await bp.evaluate(() => /Cada ocasião/.test(document.querySelector('.foto-hero h1').textContent)), '/brindes-por-ocasiao/: "Todas" volta à abertura geral');

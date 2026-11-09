@@ -1756,7 +1756,7 @@ def shell(page, body):
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<meta name="theme-color" content="#FBF8F3">
+<meta name="theme-color" content="#FFFFFF">
 <meta property="og:type" content="{page.get('og_type', 'website')}">
 <meta property="og:locale" content="pt_BR">
 <meta property="og:site_name" content="TaMa Creative">
@@ -2081,8 +2081,9 @@ def home_hero():
             img = img.replace(' loading="lazy"', ' loading="eager" fetchpriority="low"')
         letras = ''.join(f'<span style="--l:{k}">{ch}</span>' for k, ch in enumerate(palavra))
         html += (f'<div class="ms-scene ms-{cls}{" is-active" if i == 0 else ""}" data-scene="{i}" aria-hidden="{str(i != 0).lower()}">'
-                 f'<div class="ms-word" aria-hidden="true">{letras}</div><div class="ms-deco" aria-hidden="true">{deco.get(cls, "")}</div><div class="ms-floor" aria-hidden="true"></div>'
+                 f'<div class="ms-deco" aria-hidden="true">{deco.get(cls, "")}</div><div class="ms-floor" aria-hidden="true"></div>'
                  f'<div class="ms-anchor"><div class="ms-tilt"><div class="ms-motion"><div class="ms-float">{img}<span class="ms-shine" aria-hidden="true"></span></div></div></div></div>'
+                 f'<div class="ms-word ms-word-line" aria-hidden="true">{letras}</div>'
                  f'<span class="ms-marker ms-left" aria-hidden="true">{mk[0]}</span><span class="ms-marker ms-right" aria-hidden="true">{mk[1]}</span></div>')
         if len(cores) > 1:
             bts = ''
@@ -2132,42 +2133,39 @@ HERO_COR_INICIAL = {'garrafa': 'Azul royal', 'agenda': 'Caramelo', 'caneta': 'Bo
 HERO_CORES_FORA = {'agenda': {'Café'}, 'taca': {'Bordô', 'Azul royal', 'Preto'}}
 
 
-# Galeria de coleções (escolha do cliente em 08/11/2026): uma peça real recortada por categoria, grande e solta, sem
-# cartão. A foto vem de img/recortes/ (tools/recortar.py); categoria sem recorte usa a foto de estúdio do 1º modelo.
-GALERIA_RECORTES = {'garrafas-copos': 'garrafa-termica~azul-royal', 'vestuario': 'polo~vermelho', 'canetas-escritorio': 'caderno~azul-marinho',
-                    'bolsas-embalagens': 'ecobag~verde', 'tecnologia': 'power-bank-slim~prata', 'cozinha-bar': 'tabua-queijos~natural',
-                    'acessorios': 'carteira~caramelo', 'casa-bem-estar': 'difusor~ambar', 'hotelaria-gastronomia': 'cardapio~azul-marinho'}
+# Galeria de coleções, "faixas que abrem" (escolha do cliente em 08/11/2026, rodada 2): a abertura já mostra as peças
+# recortadas, então a galeria usa fotos ambientadas de cada categoria (capas do blog, img/blog/) em faixas verticais; a
+# faixa em foco abre e mostra nome, quantidade de modelos e a seta. No celular vira uma lista que abre uma foto por vez.
+# O segundo valor é o ponto de foco da foto (object-position). Categoria sem foto usa a de estúdio do 1º modelo.
+GALERIA_FOTOS = {'garrafas-copos': ('blog-capa-garrafas-personalizadas', '27% 62%'), 'vestuario': ('blog-capa-polo-personalizada', '66% 60%'),
+                 'canetas-escritorio': ('blog-capa-canetas-personalizadas', '62% 42%'), 'bolsas-embalagens': ('blog-capa-sacolas-personalizadas', '56% 42%'),
+                 'tecnologia': ('blog-capa-brindes-tecnologicos', '50% 45%'), 'cozinha-bar': ('blog-capa-tacas-personalizadas-formatos', '42% 40%'),
+                 'acessorios': ('blog-capa-necessaires-personalizadas', '60% 45%'), 'casa-bem-estar': ('blog-capa-jogos-americanos', '55% 52%'),
+                 'hotelaria-gastronomia': ('blog-capa-cardapios-personalizados', '60% 40%')}
 GALERIA_ORDEM = ['garrafas-copos', 'vestuario', 'canetas-escritorio', 'bolsas-embalagens', 'tecnologia', 'cozinha-bar', 'acessorios', 'casa-bem-estar', 'hotelaria-gastronomia']
 
 
 def home_galeria():
-    itens, links = '', ''
+    itens = ''
     cats = [k for k in GALERIA_ORDEM if k in CAT_PROD] + [k for k in CAT_PROD if k not in GALERIA_ORDEM]
-    n = 0
-    for k in cats:
+    cats = [k for k in cats if any(c['categoria'] == k for c in CATALOGO)]
+    total = len(cats)
+    for i, k in enumerate(cats):
         mods = [c for c in CATALOGO if c['categoria'] == k]
-        if not mods:
-            continue
-        n += 1
-        href = f'/catalogo/?categoria={k}#catalogo'
-        rec = 'recorte-' + GALERIA_RECORTES.get(k, '')
-        foto = (cutout(rec, '', '(max-width: 700px) 62vw, 300px', cls='tm-gal-img') if rec in IMAGES
-                else picture(mods[0]['img'], '', '(max-width: 700px) 62vw, 300px', cls='tm-gal-img tm-gal-foto'))
-        itens += (f'<li class="tm-gal-item"><a class="tm-gal-a" href="{href}"><span class="tm-gal-media">{foto}</span>'
-                  f'<span class="tm-gal-copy"><span class="tm-gal-name">{CAT_PROD[k]}</span><span class="tm-gal-go" aria-hidden="true">{ARROW}</span>'
-                  f'<span class="tm-gal-n">{len(mods)} modelos</span></span></a></li>')
-        links += f'<li><a href="{href}">{CAT_PROD[k]}</a></li>'
+        foto, foco = GALERIA_FOTOS.get(k, ('', '50% 50%'))
+        if foto not in IMAGES:
+            foto, foco = mods[0]['img'], '50% 50%'
+        img = picture(foto, '', '(max-width: 760px) 92vw, 62vw', cls='tm-strip-img', style=f'object-position:{foco}')
+        n = f'{i + 1:02d}'
+        itens += (f'<li class="tm-strip"{" data-on" if i == 0 else ""}><a class="tm-strip-a" href="/catalogo/?categoria={k}#catalogo">{img}'
+                  f'<span class="tm-strip-v" aria-hidden="true"><span class="tm-strip-n">{n}</span>{CAT_PROD[k]}</span>'
+                  f'<span class="tm-strip-cap"><span class="tm-strip-n">{n} / {total:02d}</span><span class="tm-strip-name">{CAT_PROD[k]}</span>'
+                  f'<span class="tm-strip-c">{len(mods)} modelos no catálogo</span><span class="tm-strip-go" aria-hidden="true">{ARROW}</span></span></a></li>')
     return f'''<section class="section tm-gallery" aria-labelledby="tm-gal-t">
   <div class="wrap">
     <div class="tm-gal-head" data-reveal><div><p class="eyebrow">Galeria de coleções</p><h2 id="tm-gal-t" class="tm-h2">Encontre a sua <em>próxima ideia.</em></h2></div>
-      <div class="tm-gal-nav"><button class="tm-gal-btn" type="button" data-gal-prev aria-controls="tm-gal-list" aria-label="Categorias anteriores"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button>
-        <span class="tm-gal-count" data-gal-count aria-hidden="true">01 — {n:02d}</span>
-        <button class="tm-gal-btn" type="button" data-gal-next aria-controls="tm-gal-list" aria-label="Próximas categorias"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div></div>
-  </div>
-  <div class="tm-gal-track"><ul class="tm-gal-list" id="tm-gal-list" role="list" data-gal-list tabindex="0" aria-label="Categorias do catálogo">{itens}</ul></div>
-  <div class="wrap">
-    <div class="tm-gal-bar" aria-hidden="true"><span data-gal-bar></span></div>
-    <nav aria-label="Todas as categorias"><ul class="tm-gal-links" role="list">{links}</ul></nav>
+      <a class="tm-gal-all" href="/catalogo/">Ver o catálogo completo {ARROW}</a></div>
+    <ul class="tm-strips" role="list" data-strips aria-label="Categorias do catálogo">{itens}</ul>
   </div>
 </section>'''
 

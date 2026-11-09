@@ -1145,30 +1145,26 @@
   setPaused();
 })();
 
-/* ---------- Galeria de coleções: setas, contador e barra de progresso ---------- */
+/* ---------- Galeria de coleções: a faixa em foco abre (mouse, teclado ou toque) ---------- */
 (function () {
-  var list = document.querySelector('[data-gal-list]');
-  if (!list) return;
-  var items = [].slice.call(list.children), prev = document.querySelector('[data-gal-prev]'), next = document.querySelector('[data-gal-next]');
-  var count = document.querySelector('[data-gal-count]'), bar = document.querySelector('[data-gal-bar]');
-  function pad(x) { return (x < 10 ? '0' : '') + x; }
-  function step() { return items.length > 1 ? items[1].offsetLeft - items[0].offsetLeft : list.clientWidth; }
-  function update() {
-    var max = list.scrollWidth - list.clientWidth, x = list.scrollLeft;
-    var first = Math.min(items.length - 1, Math.round(x / step()));
-    if (count) count.textContent = pad(first + 1) + ' — ' + pad(items.length);
-    var frac = list.clientWidth / list.scrollWidth;
-    if (bar) { bar.style.width = Math.max(8, frac * 100) + '%'; bar.style.transform = 'translateX(' + (max > 0 ? x / max * (1 / frac - 1) * 100 : 0) + '%)'; }
-    if (prev) prev.disabled = x <= 2;
-    if (next) next.disabled = x >= max - 2;
-  }
-  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  function move(dir) { list.scrollBy({ left: dir * step(), behavior: reduce ? 'auto' : 'smooth' }); }
-  if (prev) prev.addEventListener('click', function () { move(-1); });
-  if (next) next.addEventListener('click', function () { move(1); });
-  list.addEventListener('scroll', function () { requestAnimationFrame(update); }, { passive: true });
-  window.addEventListener('resize', update);
-  update();
+  var box = document.querySelector('[data-strips]');
+  if (!box) return;
+  var items = [].slice.call(box.children), timer;
+  function open(li) { items.forEach(function (x) { if (x === li) x.setAttribute('data-on', ''); else x.removeAttribute('data-on'); }); }
+  box.addEventListener('mouseover', function (e) {
+    var li = e.target.closest('.tm-strip');
+    if (li && !li.hasAttribute('data-on')) { clearTimeout(timer); timer = setTimeout(function () { open(li); }, 70); }
+  });
+  box.addEventListener('mouseleave', function () { clearTimeout(timer); });
+  box.addEventListener('focusin', function (e) { var li = e.target.closest('.tm-strip'); if (li) open(li); });
+  // toque: o primeiro toque abre a faixa; o segundo segue o link (o estado é lido no pointerdown, antes do foco abrir a faixa)
+  var wasOpen = null;
+  box.addEventListener('pointerdown', function (e) { var li = e.target.closest('.tm-strip'); wasOpen = li ? li.hasAttribute('data-on') || e.pointerType === 'mouse' : null; });
+  box.addEventListener('click', function (e) {
+    var li = e.target.closest('.tm-strip');
+    if (li && wasOpen === false) { e.preventDefault(); open(li); }
+    wasOpen = null;
+  });
 })();
 
 /* ---------- Pedido só de uma peça: incluir a seleção, se a pessoa quiser ---------- */

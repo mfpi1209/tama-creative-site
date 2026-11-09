@@ -119,12 +119,13 @@ try {
       `home: escolher ${alvo} troca a foto pela foto real dessa cor, o botão marcado, o texto alternativo e o link do produto (${cores.length} cores)`);
     ok(await page.$$eval('.tm-fronts-grid .tm-front-a', a => a.map(x => x.getAttribute('href')).join() === '/brindes-corporativos/,/confeccoes-personalizadas/,/kits-corporativos/,/eventos-corporativos/,/hotelaria-e-gastronomia/'),
        'home apresenta as cinco áreas (brindes, confecções, kits, eventos, hotelaria)');
-    const gal = await page.evaluate(() => ({ itens: [...document.querySelectorAll('.tm-gal-a')].map(a => a.getAttribute('href')), recortes: document.querySelectorAll('.tm-gal-a img[src*="/recorte-"]').length,
-      links: document.querySelectorAll('.tm-gal-links a').length, cont: document.querySelector('[data-gal-count]').textContent }));
-    ok(gal.itens.length >= 5 && gal.itens.every(h => /^\/catalogo\/\?categoria=[a-z-]+#catalogo$/.test(h)) && gal.recortes >= 5 && gal.links === gal.itens.length && gal.cont === `01 — ${String(gal.itens.length).padStart(2, '0')}`,
-      `home: galeria de coleções com ${gal.itens.length} categorias (peças recortadas) levando ao catálogo filtrado`);
-    await page.click('[data-gal-next]'); await sleep(400);
-    ok(await page.$eval('[data-gal-count]', c => c.textContent.startsWith('02')) && await page.$eval('[data-gal-prev]', b => !b.disabled), 'home: a seta da galeria avança uma categoria e atualiza o contador');
+    const gal = await page.evaluate(() => ({ itens: [...document.querySelectorAll('.tm-strip-a')].map(a => a.getAttribute('href')), recortes: document.querySelectorAll('.tm-strips img[src*="/recorte-"]').length,
+      fotos: [...document.querySelectorAll('.tm-strip-img')].filter(i => /\/img\/blog-capa-/.test(i.currentSrc || i.src)).length, abertas: document.querySelectorAll('.tm-strip[data-on]').length,
+      nomes: [...document.querySelectorAll('.tm-strip-name')].map(n => n.textContent) }));
+    ok(gal.itens.length >= 5 && gal.itens.every(h => /^\/catalogo\/\?categoria=[a-z-]+#catalogo$/.test(h)) && gal.recortes === 0 && gal.fotos >= 5 && gal.abertas === 1 && gal.nomes.every(Boolean),
+      `home: galeria de coleções em faixas com ${gal.itens.length} categorias (fotos ambientadas, sem repetir os recortes da abertura), uma aberta, levando ao catálogo filtrado`);
+    await page.focus('.tm-strip:nth-child(3) .tm-strip-a'); await sleep(200);
+    ok(await page.$$eval('.tm-strip', l => l.map(x => x.hasAttribute('data-on')).join() === l.map((x, i) => i === 2).join()), 'home: a faixa em foco (teclado) abre e as outras fecham');
     ok(await page.$$eval('.tm-kit-a', a => a.length >= 1 && a.length <= 3 && a.every(x => /^\/solicitar-proposta\/\?tipo=kits&interesse=/.test(x.getAttribute('href')) && x.querySelector('img')?.alt.length > 20)) && !(await page.$('.tm-products')),
        'home: até 3 kits soltos, cada um levando ao pedido com o kit como interesse; sem a grade densa de produtos');
     for (const w of [320, 360, 390, 768, 1024, 1180, 1440]) {

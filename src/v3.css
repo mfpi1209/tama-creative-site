@@ -245,13 +245,17 @@ h1 em, h2 em, h3 em { font-style: normal; color: var(--c-brand); }
   .search-sub { background: var(--c-bg); border-top: 1px solid var(--c-line); border-bottom: 1px solid var(--c-line); box-shadow: 0 24px 40px -24px rgba(31, 35, 40, .18); }
   .head-search-group.is-open > .search-sub { animation: tm-drop var(--d-2) var(--ease); }
 }
-@media (min-width: 1024px) and (max-width: 1199px) {
+@media (min-width: 1024px) and (max-width: 1279px) {
   .bag-label { display: none; }
   .bag { padding: 0; width: 44px; justify-content: center; }
   .bag .bag-count { position: absolute; top: 3px; right: 1px; }
   .head-cta .cta-long { display: none; }
   .head-cta .cta-short { display: inline; }
   .nav-link { padding: 0 10px; }
+  /* seis itens no menu (Brindes, Kits, Confecções, Eventos corporativos, Sobre, Blog): mais compacto até 1279 px */
+  .site-nav .nav-link { padding: 0 7px; font-size: .875rem; }
+  .nav-caret { margin-left: 2px; }
+  .header-row { column-gap: 12px; }
 }
 @keyframes tm-drop {
   from { opacity: 0; transform: translateY(-6px); }

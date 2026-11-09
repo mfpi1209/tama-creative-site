@@ -1366,7 +1366,7 @@ SOLUCOES = [
 
 
 def nav_menu(path):
-    """Menu principal: Produtos ▾, Kits ▾, Soluções ▾, Inspirações ▾ e Sobre. Cada painel é um botão com aria-expanded
+    """Menu principal, na ordem do site publicado: Brindes ▾, Kits ▾, Confecções ▾, Eventos corporativos ▾, Sobre e Blog. Cada painel é um botão com aria-expanded
     (clique e teclado; o hover só complementa no computador). No celular, os painéis viram acordeão. O grupo da página
     atual ganha aria-current="true" no botão, e o link da página, aria-current="page"."""
     def cur(p, exato=False):
@@ -1385,35 +1385,35 @@ def nav_menu(path):
     for c in CATALOGO:
         por_tipo.setdefault(c['tipo'], []).append(c)
     m = re.match(r'^/catalogo/([^/]+)/$', path)
-    produtos_atual = path.startswith('/catalogo/') or bool(m)
-    solucoes_atual = path.startswith(tuple(p for p, _, _ in SOLUCOES if p != '/kits-corporativos/'))
-    insp_atual = path.startswith(('/brindes-por-ocasiao/', '/brindes-de-fim-de-ano/', '/blog/'))
+    brindes_atual = (path.startswith(('/catalogo/', '/brindes-corporativos/', '/hotelaria-e-gastronomia/', '/brindes-por-ocasiao/', '/brindes-de-fim-de-ano/'))
+                     or bool(m))
 
-    cats = ''.join(f'<li><a href="/catalogo/?categoria={k}#catalogo">{v}<small>{n}</small></a></li>'
-                   for k, v, n in ((k, v, sum(1 for c in CATALOGO if c['categoria'] == k)) for k, v in CAT_PROD.items()) if n)
+    # Brindes ▾: tipos de brinde (catálogo filtrado) e, ao lado, as páginas de brindes; "Catálogo completo" no rodapé
     tipos_b = ''.join(f'<li><a href="/catalogo/?tipo={k}#catalogo">{TIPO_ROTULO[k]}</a></li>'
                       for k in MENU_BRINDES if por_tipo.get(k) or (MENU_TIPOS_VAZIOS and k != 'tecnologia'))
-    conf = ''.join(f'<li><a href="/catalogo/?tipo={k}#catalogo">{t}</a></li>' for k, t in MENU_CONFECCOES if por_tipo.get(k))
-    p_produtos = (f'<div class="nav-cols">{coluna("Categorias", cats, "nav-col-cats")}{coluna("Brindes por tipo", tipos_b, "nav-col-tipos")}'
-                  f'{coluna("Vestuário", conf, "nav-col-conf")}</div>'
-                  f'<a class="nav-sub-all" href="/catalogo/"{cur("/catalogo/", True)}>Catálogo completo <small>{len(CATALOGO)} modelos</small> {ARROW}</a>')
+    fim = (f'<li><a class="nav-season" href="/brindes-de-fim-de-ano/"{cur("/brindes-de-fim-de-ano/")}>Fim de ano <em>temporada</em></a></li>'
+           if SEASON == 'fim-de-ano' else f'<li><a href="/brindes-de-fim-de-ano/"{cur("/brindes-de-fim-de-ano/")}>Fim de ano</a></li>')
+    mais = (f'<li><a href="/brindes-corporativos/"{cur("/brindes-corporativos/")}>Brindes corporativos</a></li>'
+            f'<li><a href="/hotelaria-e-gastronomia/"{cur("/hotelaria-e-gastronomia/")}>Hotelaria</a></li>'
+            f'<li><a href="/brindes-por-ocasiao/"{cur("/brindes-por-ocasiao/")}>Por ocasião</a></li>' + fim)
+    p_brindes = (f'<div class="nav-cols">{coluna("Por tipo", tipos_b, "nav-col-tipos")}{coluna("Brindes", mais, "nav-col-mais")}</div>'
+                 f'<a class="nav-sub-all" href="/catalogo/"{cur("/catalogo/", True)}>Catálogo completo <small>{len(CATALOGO)} modelos</small> {ARROW}</a>')
     kits = ''.join(f'<li><a href="/kits-corporativos/{a}">{t}</a></li>' for t, a in MENU_KITS)
     p_kits = (f'<div class="nav-cols">{coluna("Por contexto", kits)}'
               f'<div class="nav-col nav-col-nota"><p class="nav-col-t">Sob medida</p><p>Caixa, cartão e peças com a sua marca. Peça ajustes na composição, na embalagem e na quantidade.</p></div></div>'
               f'<a class="nav-sub-all" href="/kits-corporativos/"{cur("/kits-corporativos/")}>Ver todos os kits {ARROW}</a>')
-    sol = ''.join(f'<li><a class="nav-item-desc" href="{p}"{cur(p)}><strong>{t}</strong><span>{d}</span></a></li>' for p, t, d in SOLUCOES if p != '/kits-corporativos/')
-    p_sol = f'<div class="nav-cols">{coluna("Frentes da TaMa", sol, "nav-col-sol")}</div>'
-    fim = (f'<li><a class="nav-season" href="/brindes-de-fim-de-ano/"{cur("/brindes-de-fim-de-ano/")}>Fim de ano <em>temporada</em></a></li>'
-           if SEASON == 'fim-de-ano' else f'<li><a href="/brindes-de-fim-de-ano/"{cur("/brindes-de-fim-de-ano/")}>Fim de ano</a></li>')
-    occ = ''.join(f'<li><a href="{collection_href(k)}">{v}</a></li>' for k, v in OCCS.items() if k != 'fim-de-ano')
-    conteudos = (f'<li><a href="/brindes-por-ocasiao/"{cur("/brindes-por-ocasiao/")}>Todas as ocasiões</a></li>'
-                 f'<li><a href="/blog/"{cur("/blog/")}>Guias para escolher</a></li>')
-    p_insp = f'<div class="nav-cols">{coluna("Para cada momento", fim + occ)}{coluna("Mais", conteudos)}</div>'
-    return (grupo('produtos', 'Produtos', p_produtos, produtos_atual, ' nav-drop nav-wide')
+    conf = ''.join(f'<li><a href="/catalogo/?tipo={k}#catalogo">{t}</a></li>' for k, t in MENU_CONFECCOES if por_tipo.get(k))
+    p_conf = (f'<div class="nav-cols">{coluna("Peças", conf, "nav-col-conf")}</div>'
+              f'<a class="nav-sub-all" href="/confeccoes-personalizadas/"{cur("/confeccoes-personalizadas/")}>Uniformes e confecções {ARROW}</a>')
+    p_eventos = (f'<div class="nav-cols">{coluna("Formatos", '<li><a href="/eventos-corporativos/#fmt-buffet">Buffet e decoração</a></li>', "nav-col-eventos")}</div>'
+                 f'<a class="nav-sub-all" href="/eventos-corporativos/"{cur("/eventos-corporativos/")}>Conhecer eventos corporativos {ARROW}</a>')
+    # mesma ordem do site publicado (pedido do cliente em 08/11/2026): Brindes, Kits, Confecções, Eventos, Sobre e Blog
+    return (grupo('brindes', 'Brindes', p_brindes, brindes_atual, ' nav-drop nav-wide')
             + grupo('kits', 'Kits', p_kits, path.startswith('/kits-corporativos/'), ' nav-drop')
-            + grupo('solucoes', 'Soluções', p_sol, solucoes_atual, ' nav-drop')
-            + grupo('inspiracoes', 'Ocasiões', p_insp, insp_atual, ' nav-drop')
-            + f'<a class="nav-link" href="/sobre/"{cur("/sobre/")}>Sobre</a>')
+            + grupo('confeccoes', 'Confecções', p_conf, path.startswith('/confeccoes-personalizadas/'), ' nav-drop')
+            + grupo('eventos', 'Eventos corporativos', p_eventos, path.startswith('/eventos-corporativos/'), ' nav-drop')
+            + f'<a class="nav-link" href="/sobre/"{cur("/sobre/")}>Sobre</a>'
+            + f'<a class="nav-link" href="/blog/"{cur("/blog/")}>Blog</a>')
 
 
 # Redes sociais no rodapé. Endereços provisórios (placeholders) até a TaMa confirmar os perfis: troque o href aqui

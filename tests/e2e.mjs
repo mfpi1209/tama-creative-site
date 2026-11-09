@@ -51,19 +51,19 @@ try {
   const links = await page.$$eval('a[href^="/"]', as => [...new Set(as.map(a => a.getAttribute('href').split('#')[0].split('?')[0]))]);
   const broken = [];
   for (const l of links) { const r = await fetch(BASE + l); await r.arrayBuffer(); if (r.status !== 200) broken.push(l + ' ' + r.status); }
-  const catHref = await page.$eval('#sub-produtos', n => [...n.querySelectorAll('a')].map(a => [a.textContent.trim(), a.getAttribute('href')]).find(([t]) => t.startsWith('Catálogo completo'))?.[1]);
-  ok(catHref === '/catalogo/', `menu Produtos › "Catálogo completo" abre /catalogo/ (${catHref})`);
+  const catHref = await page.$eval('#sub-brindes', n => [...n.querySelectorAll('a')].map(a => [a.textContent.trim(), a.getAttribute('href')]).find(([t]) => t.startsWith('Catálogo completo'))?.[1]);
+  ok(catHref === '/catalogo/', `menu Brindes › "Catálogo completo" abre /catalogo/ (${catHref})`);
   ok(await page.$eval('#site-nav .head-search', f => f.getAttribute('action') === '/catalogo/' && f.querySelector('input').name === 'q'), 'menu do celular tem a busca no catálogo (/catalogo/?q=)');
   ok(broken.length === 0, `${links.length} links internos respondem 200${broken.length ? ' — quebrados: ' + broken.join(', ') : ''}`);
   await page.evaluate(() => localStorage.setItem('tama-consent', 'denied'));   // o aviso de cookies (testado adiante) cobriria o fim do menu no celular
   await page.reload({ waitUntil: 'networkidle0' });
   await page.click('#menu-btn');
   ok(await page.$eval('#site-nav', n => n.classList.contains('is-open')), 'menu mobile abre');
-  await page.click('[aria-controls="sub-produtos"]');
-  ok(await page.$eval('[aria-controls="sub-produtos"]', b => b.getAttribute('aria-expanded') === 'true') && await page.$eval('#sub-produtos', d => getComputedStyle(d).display !== 'none' && d.querySelectorAll('.nav-col-tipos .nav-list a').length >= 12), 'no celular, Produtos abre em acordeão com categorias e tipos de peça');
-  ok(await page.$$eval('#sub-produtos a', as => as.every(a => a.getBoundingClientRect().height >= 44 && a.getBoundingClientRect().right <= innerWidth && a.scrollWidth <= a.clientWidth + 1)) && await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), 'celular: lista de Produtos com toque de 44px, texto sem vazar e sem rolagem lateral');
+  await page.click('[aria-controls="sub-brindes"]');
+  ok(await page.$eval('[aria-controls="sub-brindes"]', b => b.getAttribute('aria-expanded') === 'true') && await page.$eval('#sub-brindes', d => getComputedStyle(d).display !== 'none' && d.querySelectorAll('.nav-col-tipos .nav-list a').length >= 12), 'no celular, Brindes abre em acordeão com os tipos de brinde e as páginas de brindes');
+  ok(await page.$$eval('#sub-brindes a', as => as.every(a => a.getBoundingClientRect().height >= 44 && a.getBoundingClientRect().right <= innerWidth && a.scrollWidth <= a.clientWidth + 1)) && await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), 'celular: lista de Brindes com toque de 44px, texto sem vazar e sem rolagem lateral');
   await page.click('[aria-controls="sub-kits"]');
-  ok(await page.$eval('[aria-controls="sub-produtos"]', b => b.getAttribute('aria-expanded') === 'false') && await page.$eval('#sub-kits', d => getComputedStyle(d).display !== 'none'), 'abrir outro grupo (Kits) fecha o anterior');
+  ok(await page.$eval('[aria-controls="sub-brindes"]', b => b.getAttribute('aria-expanded') === 'false') && await page.$eval('#sub-kits', d => getComputedStyle(d).display !== 'none'), 'abrir outro grupo (Kits) fecha o anterior');
   await page.keyboard.press('Escape');
   ok(await page.$eval('[aria-controls="sub-kits"]', b => b.getAttribute('aria-expanded') === 'false' && document.activeElement === b) && await page.$eval('#site-nav', n => n.classList.contains('is-open')), 'Esc fecha primeiro o submenu (o foco volta ao botão), com o menu ainda aberto');
   await page.keyboard.press('Escape');
@@ -324,7 +324,7 @@ try {
   await page.goto(BASE + '/catalogo/?tipo=nao-existe', { waitUntil: 'networkidle0' });
   ok(await catMatch() === nModelos && await page.$eval('[data-cat-tipo]', b => b.hidden) && await page.$eval('#cat-filtros input[name="tipo"][value=""]', i => i.checked) && await page.$eval('[data-cat-badge]', b => b.hidden), 'tipo desconhecido na URL abre o catálogo sem filtro (radio em Todos)');
   // os tipos do menu têm modelo no catálogo; sem modelo, só os 12 tipos de brinde que esperam as fotos dos modelos novos
-  const menuTipos = await page.$$eval('#sub-produtos .nav-col-tipos a, #sub-produtos .nav-col-conf a', a => a.map(x => new URL(x.href).searchParams.get('tipo')));
+  const menuTipos = await page.$$eval('#sub-brindes .nav-col-tipos a, #sub-confeccoes .nav-col-conf a', a => a.map(x => new URL(x.href).searchParams.get('tipo')));
   const tiposComModelo = await page.$$eval('#cat-filtros input[name="tipo"]', r => r.map(i => i.value).filter(Boolean));
   const tiposVazios = menuTipos.filter(t => !tiposComModelo.includes(t));
   ok(menuTipos.length >= 16 && tiposVazios.every(t => TIPOS_BRINDE.includes(t)), `links de tipo do menu (${menuTipos.length}) levam a modelos; sem modelo, só tipos de brinde (${tiposVazios.join(', ') || 'nenhum'})`);
@@ -423,41 +423,40 @@ try {
   ok(fotosV3.every(k => /kitp-(gelato-experience|mesa-de-descobertas)-v[23]\./.test(k.img) && /Marca fictícia (Nexo|Elo)/.test(k.alt)), `kits: Gelato Experience (Nexo) e Mesa de Descobertas (Elo), quando no site, com a foto nova ou a v2 (${fotosV3.map(k => k.img.match(/-v\d/)?.[0]).join(' ') || 'fora do site'})`);
   ok(!(await page.$('#tipos-t')) && !(await page.evaluate(() => document.body.textContent.includes('Um kit para cada relação'))), 'kits: sem a seção repetida "Um kit para cada relação"');
   ok(!(await page.$('#rail-kits')) && await page.$eval('#comp-t', h => { const next = h.closest('section').nextElementSibling; return next && next.matches('.process-strip'); }), 'kits: depois de "Três camadas" vem a faixa compacta do passo a passo (sem o bloco de peças)');
-  // menu do redesenho de 11/2026 (build.py: nav_menu): Produtos ▾, Kits ▾, Soluções ▾, Inspirações ▾ e Sobre
-  ok(await page.$$eval('#site-nav .nav-links > .nav-link, #site-nav .nav-links > .nav-group > .nav-toggle', a => a.map(x => x.textContent.trim()).join()) === 'Produtos,Kits,Soluções,Ocasiões,Sobre', 'menu com Produtos, Kits, Soluções, Ocasiões e Sobre');
+  // menu na ordem do site publicado (build.py: nav_menu): Brindes ▾, Kits ▾, Confecções ▾, Eventos corporativos ▾, Sobre e Blog
+  ok(await page.$$eval('#site-nav .nav-links > .nav-link, #site-nav .nav-links > .nav-group > .nav-toggle', a => a.map(x => x.textContent.trim()).join()) === 'Brindes,Kits,Confecções,Eventos corporativos,Sobre,Blog', 'menu com Brindes, Kits, Confecções, Eventos corporativos, Sobre e Blog (como no site publicado)');
   const menuP = await page.evaluate(() => {
     const hrefs = sel => [...document.querySelectorAll(sel)].map(a => a.getAttribute('href'));
-    return { tipos: hrefs('#sub-produtos .nav-col-tipos a'), rotulos: [...document.querySelectorAll('#sub-produtos .nav-col-tipos a')].map(a => a.textContent.replace(/\s+/g, ' ').trim()), fotos: document.querySelectorAll('#site-nav img').length,
-      cats: hrefs('#sub-produtos .nav-col-cats a'), all: hrefs('#sub-produtos .nav-sub-all'), conf: hrefs('#sub-produtos .nav-col-conf a'),
-      kits: hrefs('#sub-kits .nav-list a'), kitsAll: hrefs('#sub-kits .nav-sub-all'), sol: hrefs('#sub-solucoes a'), insp: hrefs('#sub-inspiracoes a'),
-      fim: document.querySelector('#sub-inspiracoes a[href="/brindes-de-fim-de-ano/"]')?.textContent.replace(/\s+/g, ' ').trim() || '' };
+    return { tipos: hrefs('#sub-brindes .nav-col-tipos a'), fotos: document.querySelectorAll('#site-nav img').length,
+      mais: hrefs('#sub-brindes .nav-col-mais a'), all: hrefs('#sub-brindes .nav-sub-all'), conf: hrefs('#sub-confeccoes .nav-col-conf a'), confAll: hrefs('#sub-confeccoes .nav-sub-all'),
+      kits: hrefs('#sub-kits .nav-list a'), kitsAll: hrefs('#sub-kits .nav-sub-all'), ev: hrefs('#sub-eventos a'), blog: hrefs('#site-nav .nav-links > a.nav-link'),
+      fim: document.querySelector('#sub-brindes a[href="/brindes-de-fim-de-ano/"]')?.textContent.replace(/\s+/g, ' ').trim() || '' };
   });
   const tipoHref = h => /^\/catalogo\/\?tipo=[a-z-]+#catalogo$/.test(h);
   ok(menuP.tipos.length >= 12 && menuP.tipos.every(tipoHref) && TIPOS_BRINDE.concat('tecnologia').filter(k => menuP.tipos.includes(`/catalogo/?tipo=${k}#catalogo`)).length >= 12 && menuP.fotos === 0,
-     `menu Produtos: tipos de brinde (e Tecnologia) levando ao catálogo filtrado, sem fotos (${menuP.tipos.length} tipos)`);
-  ok(menuP.cats.length >= 5 && menuP.cats.every(h => /^\/catalogo\/\?categoria=[a-z-]+#catalogo$/.test(h)) && menuP.all.join() === '/catalogo/' && menuP.conf.length >= 7 && menuP.conf.every(tipoHref),
-     `menu Produtos: ${menuP.cats.length} categorias, ${menuP.conf.length} peças de vestuário e "Catálogo completo"`);
+     `menu Brindes: tipos de brinde (e Tecnologia) levando ao catálogo filtrado, sem fotos (${menuP.tipos.length} tipos)`);
+  ok(menuP.mais.join() === '/brindes-corporativos/,/hotelaria-e-gastronomia/,/brindes-por-ocasiao/,/brindes-de-fim-de-ano/' && menuP.all.join() === '/catalogo/' && (SEASON === 'fim-de-ano' ? menuP.fim === 'Fim de ano temporada' : menuP.fim === 'Fim de ano'),
+     'menu Brindes: Brindes corporativos, Hotelaria, Por ocasião, Fim de ano (destaque na temporada) e "Catálogo completo"');
   ok(menuP.kits.length === 6 && menuP.kits.join() === ['escritorio', 'cozinha', 'boas-vindas', 'executivo', 'pausa', 'fim-de-ano'].map(k => '/kits-corporativos/#kits-' + k).join() && menuP.kitsAll.join() === '/kits-corporativos/',
      'menu Kits: 6 links de tipo de kit (âncoras de /kits-corporativos/) e "Ver todos os kits"');
-  ok(menuP.sol.join() === '/brindes-corporativos/,/confeccoes-personalizadas/,/eventos-corporativos/,/hotelaria-e-gastronomia/', 'menu Soluções: as quatro frentes (Kits tem item próprio no menu)');
-  ok(['/brindes-de-fim-de-ano/', '/brindes-por-ocasiao/', '/blog/'].every(h => menuP.insp.includes(h)) && menuP.insp.filter(h => h.startsWith('/brindes-por-ocasiao/?ocasiao=')).length === 4 && !menuP.insp.some(h => /reconhecimento|lancamentos/.test(h)) && (SEASON === 'fim-de-ano' ? menuP.fim === 'Fim de ano temporada' : menuP.fim === 'Fim de ano'),
-     'menu Ocasiões: ocasiões sem reconhecimento e lançamentos (fim de ano em destaque na temporada), brindes por ocasião e guias');
+  ok(menuP.conf.length >= 7 && menuP.conf.every(tipoHref) && menuP.confAll.join() === '/confeccoes-personalizadas/', `menu Confecções: ${menuP.conf.length} peças de vestuário e "Uniformes e confecções"`);
+  ok(menuP.ev.join() === '/eventos-corporativos/#fmt-buffet,/eventos-corporativos/' && menuP.blog.join() === '/sobre/,/blog/', 'menu Eventos corporativos (Buffet e decoração e a página) e os links Sobre e Blog');
   const semAncora = [];
-  for (const [u, hs] of [['/kits-corporativos/', menuP.kits]]) { const html = await (await fetch(BASE + u)).text(); hs.forEach(h => { if (!html.includes(`id="${h.split('#')[1]}"`)) semAncora.push(h); }); }
+  for (const [u, hs] of [['/kits-corporativos/', menuP.kits], ['/eventos-corporativos/', menuP.ev.filter(h => h.includes('#'))]]) { const html = await (await fetch(BASE + u)).text(); hs.forEach(h => { if (!html.includes(`id="${h.split('#')[1]}"`)) semAncora.push(h); }); }
   ok(semAncora.length === 0, `os links do painel Kits caem em âncoras que existem${semAncora.length ? ' — faltam: ' + semAncora.join(', ') : ''}`);
   // página certa marcada: o botão do grupo com aria-current="true" e o link da página com aria-current="page"
   const navAtual = u => page.evaluate(async u => { const d = new DOMParser().parseFromString(await (await fetch(u)).text(), 'text/html'); return [...d.querySelectorAll('#site-nav [aria-current]')].map(x => x.getAttribute('aria-controls') || x.getAttribute('href')).join(); }, BASE + u);
-  const atuais = { '/kits-corporativos/': 'sub-kits,/kits-corporativos/', '/confeccoes-personalizadas/': 'sub-solucoes,/confeccoes-personalizadas/', '/catalogo/polo-masculina/': 'sub-produtos',
-    '/catalogo/caneca/': 'sub-produtos', '/catalogo/': 'sub-produtos,/catalogo/', '/brindes-corporativos/': 'sub-solucoes,/brindes-corporativos/', '/hotelaria-e-gastronomia/': 'sub-solucoes,/hotelaria-e-gastronomia/',
-    '/brindes-de-fim-de-ano/': 'sub-inspiracoes,/brindes-de-fim-de-ano/', '/eventos-corporativos/': 'sub-solucoes,/eventos-corporativos/', '/blog/': 'sub-inspiracoes,/blog/', '/sobre/': '/sobre/', '/': '' };
+  const atuais = { '/kits-corporativos/': 'sub-kits,/kits-corporativos/', '/confeccoes-personalizadas/': 'sub-confeccoes,/confeccoes-personalizadas/', '/catalogo/polo-masculina/': 'sub-brindes',
+    '/catalogo/caneca/': 'sub-brindes', '/catalogo/': 'sub-brindes,/catalogo/', '/brindes-corporativos/': 'sub-brindes,/brindes-corporativos/', '/hotelaria-e-gastronomia/': 'sub-brindes,/hotelaria-e-gastronomia/',
+    '/brindes-de-fim-de-ano/': 'sub-brindes,/brindes-de-fim-de-ano/', '/eventos-corporativos/': 'sub-eventos,/eventos-corporativos/', '/blog/': '/blog/', '/sobre/': '/sobre/', '/': '' };
   const marcaErrada = [];
   for (const [u, esperado] of Object.entries(atuais)) { const r = await navAtual(u); if (r !== esperado) marcaErrada.push(`${u} → ${r || 'nada'}`); }
   ok(marcaErrada.length === 0, `o menu marca (aria-current) o grupo e o link da página certa${marcaErrada.length ? ' — ' + marcaErrada.join('; ') : ''}`);
-  // computador: os quatro painéis abrem inteiros na tela e legíveis de 1024 a 1440 px
+  // computador: os quatro painéis (Brindes, Kits, Confecções, Eventos) abrem inteiros na tela e legíveis de 1024 a 1440 px
   for (const [w, h] of [[1024, 768], [1440, 900]]) {
     await page.setViewport({ width: w, height: h }); await page.evaluate(() => scrollTo(0, 0)); await sleep(100);
     const fora = [];
-    for (const k of ['produtos', 'kits', 'solucoes', 'inspiracoes']) {
+    for (const k of ['brindes', 'kits', 'confeccoes', 'eventos']) {
       await page.click(`[aria-controls="sub-${k}"]`); await sleep(100);
       const r = await page.$eval(`#sub-${k}`, d => { const b = d.getBoundingClientRect(), as = [...d.querySelectorAll('a')];
         return { vis: getComputedStyle(d).display !== 'none' && b.height > 0, l: Math.round(b.left), r: Math.round(b.right), b: Math.round(b.bottom),

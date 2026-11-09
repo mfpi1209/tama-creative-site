@@ -2179,23 +2179,23 @@ def home_galeria():
 
 
 def home_frentes():
-    """As cinco frentes da TaMa: foto de site.json › secoes › home-frentes (inventário) e nome oficial de SOLUCOES."""
+    """As cinco frentes da TaMa (proposta C, escolhida em 08/11/2026): cinco arcos de foto lado a lado e uma única linha
+    bordô que passa pelos cinco na mesma altura, com um ponto em cada frente ("uma linguagem"). A linha se desenha
+    quando a seção aparece. Foto de site.json › secoes › home-frentes (inventário) e nome oficial de SOLUCOES."""
     fotos = {f[0]: (f[1], f[2]) for f in FRENTES}
     itens = ''
     for i, (href, nome, linha) in enumerate(SOLUCOES):
         img, pos = fotos.get(href, (None, 'center'))
-        sizes = ('(max-width: 760px) calc(100vw - 32px), (max-width: 1180px) 50vw, 660px' if i == 0
-                 else '(max-width: 760px) calc(100vw - 32px), (max-width: 1180px) 50vw, 330px')
-        foto = picture(img, '', sizes, style=f'object-position:{pos}') if img in IMAGES else ''
-        itens += (f'<li class="tm-front{" tm-front-lg" if i == 0 else ""}" data-reveal><a href="{href}" class="tm-front-a">'
-                  f'<span class="tm-front-media">{foto}</span>'
-                  f'<span class="tm-front-copy"><span class="tm-front-n" aria-hidden="true">{i + 1:02d}</span><h3>{nome}</h3><span class="tm-front-d">{linha}</span>'
-                  f'<span class="tm-front-go" aria-hidden="true">{ARROW}</span></span></a></li>')
+        foto = picture(img, '', '(max-width: 860px) 46vw, 250px', style=f'object-position:{pos}') if img in IMAGES else ''
+        itens += (f'<li class="tm-front" style="--i:{i}" data-reveal><a href="{href}" class="tm-front-a">'
+                  f'<span class="tm-front-frame"><span class="tm-front-media">{foto}</span><span class="tm-front-dot" aria-hidden="true"></span></span>'
+                  f'<span class="tm-front-copy"><span class="tm-front-n" aria-hidden="true">{i + 1:02d}</span><h3>{nome}</h3><span class="tm-front-d">{linha}</span></span></a></li>')
     return f'''<section class="section tm-fronts" aria-labelledby="tm-fronts-t">
   <div class="wrap">
-    <div class="tm-head" data-reveal><p class="eyebrow">O que a TaMa faz</p><h2 id="tm-fronts-t" class="tm-h2">Cinco frentes, <em>uma linguagem.</em></h2>
-      <p class="tm-sub">Do brinde do dia a dia ao evento completo: a mesma curadoria e a mesma atenção à sua marca em cada peça.</p></div>
-    <ul class="tm-fronts-grid" role="list">{itens}</ul>
+    <div class="tm-head" data-reveal><p class="eyebrow">O que a TaMa faz</p><h2 id="tm-fronts-t" class="tm-h2">Cinco frentes, <em>uma linguagem.</em></h2></div>
+    <div class="tm-fronts-scroll"><ul class="tm-fronts-grid" role="list" data-fronts>{itens}</ul></div>
+    <div class="tm-fronts-foot"><p>Do brinde do dia a dia ao evento completo: a mesma curadoria e a mesma atenção à sua marca em cada peça.</p>
+      <a class="tm-gal-all" href="/solicitar-proposta/">Solicitar proposta {ARROW}</a></div>
   </div>
 </section>'''
 

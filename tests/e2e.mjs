@@ -124,6 +124,9 @@ try {
       nomes: [...document.querySelectorAll('.tm-strip-name')].map(n => n.textContent) }));
     ok(gal.itens.length >= 5 && gal.itens.every(h => /^\/catalogo\/\?categoria=[a-z-]+#catalogo$/.test(h)) && gal.recortes === 0 && gal.fotos >= 5 && gal.abertas === 1 && gal.nomes.every(Boolean),
       `home: galeria de coleções em faixas com ${gal.itens.length} categorias (fotos ambientadas, sem repetir os recortes da abertura), uma aberta, levando ao catálogo filtrado`);
+    const fr = await page.evaluate(() => ({ arcos: document.querySelectorAll('.tm-fronts-grid .tm-front-media img').length, pontos: document.querySelectorAll('.tm-front-dot').length,
+      linha: getComputedStyle(document.querySelector('.tm-front-frame'), '::before').transform, cta: document.querySelector('.tm-fronts-foot a')?.getAttribute('href') }));
+    ok(fr.arcos === 5 && fr.pontos === 5 && (fr.linha === 'none' || fr.linha === 'matrix(1, 0, 0, 1, 0, 0)') && fr.cta === '/solicitar-proposta/', 'home: cinco frentes em arcos com a linha que atravessa já desenhada (reduzir movimento), um ponto por frente e o pedido de proposta no rodapé da seção');
     await page.focus('.tm-strip:nth-child(3) .tm-strip-a'); await sleep(200);
     ok(await page.$$eval('.tm-strip', l => l.map(x => x.hasAttribute('data-on')).join() === l.map((x, i) => i === 2).join()), 'home: a faixa em foco (teclado) abre e as outras fecham');
     ok(await page.$$eval('.tm-kit-a', a => a.length >= 1 && a.length <= 3 && a.every(x => /^\/solicitar-proposta\/\?tipo=kits&interesse=/.test(x.getAttribute('href')) && x.querySelector('img')?.alt.length > 20)) && !(await page.$('.tm-products')),

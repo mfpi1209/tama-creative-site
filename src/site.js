@@ -1145,6 +1145,17 @@
   setPaused();
 })();
 
+/* ---------- Cinco frentes: a linha bordô se desenha quando a seção aparece ---------- */
+(function () {
+  var g = document.querySelector('[data-fronts]');
+  if (!g || !('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  g.classList.add('is-armed');
+  var io = new IntersectionObserver(function (es) {
+    if (es.some(function (e) { return e.isIntersecting; })) { g.classList.add('is-drawn'); io.disconnect(); }
+  }, { threshold: .35 });
+  io.observe(g);
+})();
+
 /* ---------- Galeria de coleções: a faixa em foco abre (mouse, teclado ou toque) ---------- */
 (function () {
   var box = document.querySelector('[data-strips]');

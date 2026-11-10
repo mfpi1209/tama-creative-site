@@ -272,7 +272,11 @@
       card.setAttribute('data-color', color);
       var hx = ((CAT[slug] && CAT[slug].c) || []).filter(function (c) { return c[0] === color; })[0];
       if (hx) card.style.setProperty('--tint', hx[1]);   // fundo da foto no tom da cor escolhida
-      card.querySelectorAll('.swatch').forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-color') === color)); });
+      card.querySelectorAll('.swatch').forEach(function (b) {
+        var on = b.getAttribute('data-color') === color;
+        b.setAttribute('aria-pressed', String(on));
+        if (on && b.getAttribute('data-bg')) card.style.setProperty('--tint-bg', b.getAttribute('data-bg'));   // pastel de estúdio da cor
+      });
       var n = card.querySelector('.color-name'); if (n) n.textContent = color;
       var pic = card.querySelector('.prod-media picture');
       if (v && pic) swapPicture(pic, v);   // show the product in the chosen colour
@@ -451,10 +455,41 @@
       var r = (k && catForm.querySelector('input[name="ocasiao"][value="' + k + '"]')) || catForm.querySelector('input[name="ocasiao"][value=""]');
       if (r) r.checked = true;
     };
+    // ordenação: "Destaques" é a ordem do catálogo; por nome reordena os cards na grade (e a paginação segue a nova ordem)
+    var catOrdem = document.getElementById('cat-ordem'), catGrade = document.getElementById('catalogo-grid'), catOrig = catCards.slice(), catOrdemAtual = '';
+    var catNome = function (p) { var h = p.querySelector('h3'); return h ? h.textContent.trim() : ''; };
+    var catOrdenar = function (o) {
+      if (o === catOrdemAtual) return;
+      catOrdemAtual = o;
+      catCards = catOrig.slice();
+      if (o === 'az' || o === 'za') catCards.sort(function (a, b) { return catNome(a).localeCompare(catNome(b), 'pt-BR') * (o === 'za' ? -1 : 1); });
+      var frag = document.createDocumentFragment();
+      catCards.forEach(function (p) { frag.appendChild(p); });
+      catGrade.appendChild(frag);
+    };
+    var catTitulo = catBox.querySelector('[data-cat-title]');
+    var catRotulo = function (nome) { var r = catForm.querySelector('input[name="' + nome + '"]:checked'); return r && r.value ? r.parentNode.querySelector('span').textContent : ''; };
+    // "+N": com mais de 7 cores, o card mostra 6 e o botão abre as demais (a cor escolhida aparece sempre)
+    var catMaisCores = function (p) {
+      var b = p.querySelector('.swatch-mais'); if (!b) return;
+      var n = [].filter.call(p.querySelectorAll('.swatch'), function (s) { return getComputedStyle(s).display === 'none'; }).length;
+      b.hidden = !n && b.getAttribute('aria-expanded') !== 'true';
+      if (n) { b.textContent = '+' + n; b.setAttribute('aria-label', 'Mostrar mais ' + n + (n === 1 ? ' cor' : ' cores')); }
+    };
+    catCards.forEach(function (p) {
+      var sw = p.querySelector('.swatches');
+      if (!sw || sw.querySelectorAll('.swatch').length <= 7) return;
+      sw.classList.add('is-curta');
+      var b = document.createElement('button'); b.type = 'button'; b.className = 'swatch-mais'; b.setAttribute('aria-expanded', 'false');
+      sw.parentNode.insertBefore(b, sw.nextSibling);
+      b.addEventListener('click', function () { sw.classList.remove('is-curta'); b.setAttribute('aria-expanded', 'true'); b.hidden = true; var f = sw.querySelectorAll('.swatch')[6]; if (f) f.focus(); });
+      catMaisCores(p);
+    });
+    catGrade.addEventListener('click', function (e) { var s = e.target.closest('.swatch'); if (s) setTimeout(function () { catMaisCores(s.closest('.product')); }, 0); });
     var catNorm = function (s) { return String(s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim(); };
     var catState = function () {
       var c = catForm.querySelector('input[name="categoria"]:checked'), o = catForm.querySelector('input[name="ocasiao"]:checked'), t = catForm.querySelector('input[name="tipo"]:checked');
-      return { q: catNorm(catQ.value), cat: c ? c.value : '', tipo: t && catTIPOS.hasOwnProperty(t.value) ? t.value : '', occ: o && catOCC.hasOwnProperty(o.value) ? o.value : '', cores: [].map.call(catForm.querySelectorAll('input[name="cor"]:checked'), function (i) { return i.value; }) };
+      return { ordem: catOrdem ? catOrdem.value : '', q: catNorm(catQ.value), cat: c ? c.value : '', tipo: t && catTIPOS.hasOwnProperty(t.value) ? t.value : '', occ: o && catOCC.hasOwnProperty(o.value) ? o.value : '', cores: [].map.call(catForm.querySelectorAll('input[name="cor"]:checked'), function (i) { return i.value; }) };
     };
     // mostra 12 modelos por vez (todos continuam no HTML, para o Google e para quem está sem JavaScript); "Ver mais"
     // libera mais 12. Ao mudar busca ou filtro, volta a 12. O quanto já foi aberto fica no histórico (voltar da página
@@ -463,6 +498,7 @@
     var catMaisBox = catBox.querySelector('[data-cat-mais-box]'), catMais = catBox.querySelector('[data-cat-mais]');
     var catApply = function (push) {
       var st = catState(), n = 0, words = st.q ? st.q.split(' ') : [];
+      catOrdenar(st.ordem);
       catCards.forEach(function (p) {
         var hay = p.getAttribute('data-busca') || '', fams = (p.getAttribute('data-cores') || '').split(' ');
         var ok = (!st.cat || p.getAttribute('data-cat') === st.cat)
@@ -476,11 +512,13 @@
         // com filtro de cor, o card já mostra a peça numa cor da família escolhida
         if (ok && st.cores.length) {
           var sw = [].filter.call(p.querySelectorAll('.swatch'), function (b) { return st.cores.indexOf(catFAM[b.getAttribute('data-color')]) !== -1; })[0];
-          if (sw && sw.getAttribute('aria-pressed') !== 'true') paintColor(p.getAttribute('data-slug'), sw.getAttribute('data-color'));
+          if (sw && sw.getAttribute('aria-pressed') !== 'true') { paintColor(p.getAttribute('data-slug'), sw.getAttribute('data-color')); catMaisCores(p); }
         }
       });
       catBox.querySelectorAll('[data-cat-n]').forEach(function (el) { el.textContent = n; });
-      document.getElementById('cat-count').lastChild.textContent = n === 1 ? ' modelo' : ' modelos';
+      document.getElementById('cat-count').lastChild.textContent = n === 1 ? ' modelo disponível para explorar' : ' modelos disponíveis para explorar';
+      if (catTitulo) catTitulo.textContent = catRotulo('categoria') || catRotulo('tipo') || catRotulo('ocasiao') || (st.q ? 'Resultados da busca' : 'Todos os modelos');
+      catBox.querySelectorAll('[data-cat-grp]').forEach(function (g) { if (st[g.getAttribute('data-cat-grp') === 'tipo' ? 'tipo' : 'occ']) g.open = true; });   // grupo com filtro ativo fica aberto
       document.getElementById('cat-vazio').hidden = n > 0;
       catOccBox.hidden = !st.occ;
       catOccBox.querySelector('[data-cat-occ-name]').textContent = st.occ ? catOCC[st.occ] : '';
@@ -500,12 +538,14 @@
         if (st.cat) u.set('categoria', st.cat);
         if (st.occ) u.set('ocasiao', st.occ);
         if (st.cores.length) u.set('cor', st.cores.join(','));
+        if (st.ordem) u.set('ordem', st.ordem);
         history.replaceState({ catLimite: catLimite }, '', location.pathname + (u.toString() ? '?' + u : '') + '#catalogo');
       }
     };
     var catTimerQ;
     catQ.addEventListener('input', function () { clearTimeout(catTimerQ); catTimerQ = setTimeout(function () { catLimite = CAT_PAG; catApply(true); }, 150); });
     catForm.addEventListener('change', function () { catLimite = CAT_PAG; catApply(true); });
+    if (catOrdem) catOrdem.addEventListener('change', function () { catLimite = CAT_PAG; catApply(true); });   // fica fora do <form> (atributo form): o change não sobe até ele
     catForm.addEventListener('submit', function (e) { e.preventDefault(); catQ.blur(); });
     catForm.addEventListener('reset', function () { setTimeout(function () { catLimite = CAT_PAG; catApply(true); }, 0); });   // o reset volta os radios para "Todas"
     // remover a ocasião: a etiqueta some (e o radio volta para "Todas"), então o foco vai para o total de modelos
@@ -537,6 +577,8 @@
     var catPc = catForm.querySelector('input[name="categoria"][value="' + (catParams.get('categoria') || '').replace(/[^a-z-]/g, '') + '"]');
     if (catPc) catPc.checked = true;
     (catParams.get('cor') || '').split(',').forEach(function (f) { var i = catForm.querySelector('input[name="cor"][value="' + f.replace(/[^a-z-]/g, '') + '"]'); if (i) i.checked = true; });
+    var catPord = catParams.get('ordem');
+    if (catOrdem && (catPord === 'az' || catPord === 'za')) catOrdem.value = catPord;
     catApply(false);
     // gaveta de filtros (celular e tablet)
     var catOpenSide = function (open) {
@@ -544,7 +586,7 @@
       catScrim.hidden = !open;
       catOpener.setAttribute('aria-expanded', String(open));
       document.documentElement.classList.toggle('cat-lock', open);
-      if (open) { catSide.setAttribute('role', 'dialog'); catSide.setAttribute('aria-modal', 'true'); var f = catSide.querySelector('input:checked') || catSide.querySelector('input'); if (f) f.focus(); }
+      if (open) { catSide.setAttribute('role', 'dialog'); catSide.setAttribute('aria-modal', 'true'); var f = catSide.querySelector('details[open] input:checked') || catSide.querySelector('details[open] input') || catSide.querySelector('summary'); if (f) f.focus(); }
       else { catSide.removeAttribute('role'); catSide.removeAttribute('aria-modal'); catOpener.focus(); }
     };
     catOpener.addEventListener('click', function () { catOpenSide(true); });

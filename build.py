@@ -689,8 +689,38 @@ def catalog_json():
     return js + 'window.TAMA_ALIAS=' + json.dumps(ALIASES, ensure_ascii=False, separators=(',', ':')) + ';\n'
 
 
+def fundo_estudio(hexv):
+    """Fundo "Soft Color Studio" da foto: um pastel que acompanha a cor da peça sem competir com ela (azul: azul
+    acinzentado; vermelho: pêssego; branco: bege quente; verde: sálvia; preto: cinza quente; rosa: rosa pastel). A foto
+    entra por cima em multiply, então o fundo branco do estúdio assume o pastel e a sombra da peça continua natural."""
+    import colorsys
+    try:
+        r, g, b = (int(hexv.lstrip('#')[i:i + 2], 16) / 255 for i in (0, 2, 4))
+    except (ValueError, AttributeError):
+        return '#F5F0E8'
+    h, l, sat = colorsys.rgb_to_hls(r, g, b)
+    h *= 360
+    if sat < .16 or l > .86 or l < .12:   # brancos, pretos, cinzas e metálicos
+        return '#F5F0E8' if l > .78 else '#ECEAE6' if l < .32 else '#EEEDEA'
+    if h < 15 or h >= 345:
+        return '#F8E8E2'
+    if h < 45:
+        return '#F3EBE0' if l < .5 or sat < .5 else '#F8ECDD'   # marrons e naturais; laranja
+    if h < 70:
+        return '#F7F1DC'
+    if h < 165:
+        return '#E8EFE6'
+    if h < 195:
+        return '#E3F0EE'
+    if h < 255:
+        return '#E6ECF3'
+    if h < 290:
+        return '#ECE8F3'
+    return '#F9E8EE'
+
+
 def swatches(p):
-    btns = ''.join(f'<button class="swatch" type="button" style="--c:{hexv}" data-color="{esc(nome)}" aria-label="Cor de referência: {esc(nome)}" aria-pressed="{"true" if i == 0 else "false"}" title="{esc(nome)}"></button>'
+    btns = ''.join(f'<button class="swatch" type="button" style="--c:{hexv}" data-bg="{fundo_estudio(hexv)}" data-color="{esc(nome)}" aria-label="Cor de referência: {esc(nome)}" aria-pressed="{"true" if i == 0 else "false"}" title="{esc(nome)}"></button>'
                    for i, (nome, hexv) in enumerate(p['cores']))
     return f'<div class="swatches" role="group" aria-label="Cores de referência para {esc(p["nome"])}">{btns}</div>'
 
@@ -734,7 +764,7 @@ def home_product_card(h, eager=False, sizes='(max-width: 760px) 46vw, (max-width
              else f'<button class="prod-media" type="button" data-zoom="{slug}" aria-label="Ampliar foto de {esc(nome)}">{foto}</button>')
     titulo = f'<a class="prod-link" href="{url}">{nome}</a>' if url else nome
     rotulo = f'{len(cores)} cores' if grupo and len(cores) > 1 else h['cores'][0][0]
-    return f'''<article class="product studio" id="{h['slug']}" data-slug="{h['slug']}" style="--tint:{h['cores'][0][1]}"{cat}{occ}{extra}>
+    return f'''<article class="product studio" id="{h['slug']}" data-slug="{h['slug']}" style="--tint:{h['cores'][0][1]};--tint-bg:{fundo_estudio(h['cores'][0][1])}"{cat}{occ}{extra}>
   {media}
   <div class="prod-info">
     <h3>{titulo}</h3>
@@ -797,17 +827,22 @@ def catalogo_block():
     ocasioes_json = esc(json.dumps(OCCS, ensure_ascii=False, separators=(',', ':')))
     tipos_json = esc(json.dumps(TIPO_ROTULO, ensure_ascii=False, separators=(',', ':')))
     lupa = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 20 20"/></svg>'
+    seta = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>'
+
+    def grupo(titulo, opts, aberto, nome=''):
+        """Grupo de filtros recolhível (<details>): Tipo e Ocasião abrem fechados e o site.js abre o que tiver filtro ativo."""
+        return (f'<details class="cat-grp"{" open" if aberto else ""}{f' data-cat-grp="{nome}"' if nome else ""}><summary>{titulo}{seta}</summary>'
+                f'<div class="cat-opts" role="group" aria-label="{titulo}">{opts}</div></details>')
     return f'''<section class="section catalogo" id="catalogo" aria-labelledby="catalogo-t" style="padding-top:0">
   <div class="wrap cat-layout" data-catalogo data-familias="{familias_json}" data-ocasioes="{ocasioes_json}" data-tipos="{tipos_json}">
-    <h2 id="catalogo-t" class="visually-hidden">Modelos</h2>
     <div class="cat-scrim" data-cat-close hidden></div>
     <div class="cat-side" id="cat-filtros" aria-labelledby="cat-filtros-t">
       <div class="cat-side-head"><p class="cat-side-title" id="cat-filtros-t">Filtros</p><button class="icon-btn" type="button" data-cat-close aria-label="Fechar filtros"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
       <form class="cat-form" id="cat-form">
-        <fieldset><legend>Categoria</legend>{cat_opts}</fieldset>
-        <fieldset><legend>Tipo de peça</legend>{tipo_opts}</fieldset>
-        <fieldset><legend>Ocasião</legend>{occ_opts}</fieldset>
-        <fieldset><legend>Cor</legend>{cor_opts}</fieldset>
+        {grupo('Categoria', cat_opts, True)}
+        {grupo('Tipo de peça', tipo_opts, False, 'tipo')}
+        {grupo('Ocasião', occ_opts, False, 'ocasiao')}
+        {grupo('Cor', cor_opts, True)}
         <button class="link cat-clear" type="reset">Limpar filtros</button>
       </form>
       <div class="cat-side-foot"><button class="btn btn-wine" type="button" data-cat-close><span>Ver <span data-cat-n>{len(CATALOGO)}</span> modelos</span></button></div>
@@ -819,7 +854,10 @@ def catalogo_block():
       </div>
       <div class="cat-occ" data-cat-tipo hidden><span>Tipo:</span><span class="cat-occ-chip"><strong data-cat-tipo-name></strong><button type="button" data-cat-tipo-clear aria-label="Remover o filtro de tipo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></span></div>
       <div class="cat-occ" data-cat-occ hidden><span>Ocasião:</span><span class="cat-occ-chip"><strong data-cat-occ-name></strong><button type="button" data-cat-occ-clear aria-label="Remover o filtro de ocasião"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></span></div>
-      <div class="cat-status"><p id="cat-count" role="status" aria-live="polite"><strong data-cat-n>{len(CATALOGO)}</strong> modelos</p>
+      <div class="cat-status">
+        <div class="cat-head"><h2 id="catalogo-t" class="cat-title" data-cat-title>Todos os modelos</h2>
+          <p id="cat-count" role="status" aria-live="polite"><strong data-cat-n>{len(CATALOGO)}</strong> modelos disponíveis para explorar</p></div>
+        <div class="cat-sort"><label for="cat-ordem">Ordenar por</label><span class="cat-select"><select id="cat-ordem" name="ordem" form="cat-form"><option value="">Destaques</option><option value="az">Nome (A a Z)</option><option value="za">Nome (Z a A)</option></select>{seta}</span></div>
         <div class="cat-view" role="group" aria-label="Fotos por linha no celular"><button type="button" data-cat-cols="1" aria-pressed="true" aria-label="Uma foto por linha"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="4" width="14" height="16" rx="1.5"/></svg></button><button type="button" data-cat-cols="2" aria-pressed="false" aria-label="Duas fotos por linha"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="4" width="7.5" height="16" rx="1.5"/><rect x="13" y="4" width="7.5" height="16" rx="1.5"/></svg></button></div>
       </div>
       <div class="studio-grid cat-grid" id="catalogo-grid">{''.join(cards)}</div>
@@ -977,7 +1015,7 @@ def page_produto(c):
         'preload': preload_image(c['img'], '(max-width: 900px) 92vw, 1100px'),
         'body': f'''<section class="section pdp-sec">
   <div class="wrap pdp-wrap">
-    <div class="product pdp" style="--tint:{cores[0][1]}" data-slug="{slug}" data-pdp data-url="{url}" data-tipo="{tipo}" data-vistas="{esc(json.dumps(vistas, ensure_ascii=False, separators=(',', ':')))}">
+    <div class="product pdp" style="--tint:{cores[0][1]};--tint-bg:{fundo_estudio(cores[0][1])}" data-slug="{slug}" data-pdp data-url="{url}" data-tipo="{tipo}" data-vistas="{esc(json.dumps(vistas, ensure_ascii=False, separators=(',', ':')))}">
       <div class="pdp-gallery{'' if vistas_html or len(thumbs) > 1 else ' sem-rail'}">
         <div class="pdp-rail">{vistas_html}{f'<div class="pdp-thumbs" role="group" aria-label="Cores de {esc(nome)}">{"".join(thumbs)}</div>' if len(thumbs) > 1 else ''}</div>
         <div class="prod-media pdp-main" data-hover-zoom>{picture(c['img'], c['alt'], '(max-width: 900px) 92vw, 840px', eager=True)}<button class="prod-zoom" type="button" data-zoom="{slug}" aria-label="Ampliar foto de {esc(nome)}"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="7" cy="7" r="4.5"/><path d="M10.4 10.4 14 14M7 5v4M5 7h4"/></svg></button><p class="pdp-ilustra">Imagem ilustrativa</p></div>

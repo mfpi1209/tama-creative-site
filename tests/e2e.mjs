@@ -345,14 +345,17 @@ try {
   ok(await catMatch() === nModelos && await page.$eval('[data-cat-occ]', b => b.hidden) && await page.$eval('#cat-filtros input[name="ocasiao"][value=""]', i => i.checked), 'ocasião desconhecida na URL abre o catálogo sem filtro (radio em Todas)');
   // ocasião no filtro lateral: Todas + as 7 ocasiões com contagem (Fim de ano logo depois de Todas), entre Categoria e Cor
   await page.goto(BASE + '/catalogo/', { waitUntil: 'networkidle0' });
-  const occSide = await page.$$eval('#cat-filtros fieldset', fs => {
-    const f = fs.find(x => x.querySelector('legend').textContent === 'Ocasião');
+  const occSide = await page.$$eval('#cat-filtros details.cat-grp', fs => {
+    const f = fs.find(x => x.querySelector('summary').textContent.trim() === 'Ocasião');
     const r = f ? [...f.querySelectorAll('input[name="ocasiao"]')] : [];
     const cards = [...document.querySelectorAll('#catalogo-grid .product')];
-    return { ordem: fs.map(x => x.querySelector('legend').textContent).join(), vals: r.map(i => i.value).join(), todas: !!r[0] && r[0].value === '' && r[0].checked && r[0].parentNode.querySelector('span').textContent === 'Todas',
+    return { ordem: fs.map(x => x.querySelector('summary').textContent.trim()).join(), vals: r.map(i => i.value).join(), todas: !!r[0] && r[0].value === '' && r[0].checked && r[0].parentNode.querySelector('span').textContent === 'Todas',
       contagem: r.slice(1).every(i => +i.parentNode.querySelector('small').textContent === cards.filter(c => (c.dataset.occ || '').split(' ').includes(i.value)).length && cards.length > 0) };
   });
   ok(occSide.ordem === 'Categoria,Tipo de peça,Ocasião,Cor' && occSide.vals.split(',').length === 6 && !/reconhecimento|lancamentos/.test(occSide.vals) && occSide.vals.startsWith(',fim-de-ano,') && occSide.todas && occSide.contagem, `filtro lateral tem Ocasião (Todas + 5, Fim de ano primeiro, sem reconhecimento e lançamentos) com a contagem dos cards (${occSide.vals})`);
+  // o grupo Ocasião abre recolhido: o visitante abre pelo título antes de marcar
+  ok(await page.$eval('#cat-filtros details[data-cat-grp="ocasiao"]', d => !d.open), 'grupo Ocasião começa recolhido (sem filtro ativo)');
+  await page.click('#cat-filtros details[data-cat-grp="ocasiao"] summary'); await sleep(150);
   await page.$eval('#cat-filtros input[name="ocasiao"][value="fim-de-ano"]', el => el.scrollIntoView({ block: 'center' }));
   await page.click('#cat-filtros input[name="ocasiao"][value="fim-de-ano"]'); await sleep(200);
   ok(await page.$$eval('#catalogo-grid .product', g => g.filter(x => !x.hidden).map(x => x.dataset.slug).join()) === occFim.slugs && /ocasiao=fim-de-ano/.test(await page.evaluate(() => location.search)) && await page.$eval('[data-cat-occ]', b => !b.hidden && b.textContent.includes('Fim de ano')), 'marcar Fim de ano mostra os mesmos modelos de ?ocasiao=fim-de-ano, grava a URL e mostra a etiqueta');

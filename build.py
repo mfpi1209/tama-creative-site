@@ -2161,7 +2161,7 @@ HERO_CENAS = [
 HERO_COR_INICIAL = {'garrafa': 'Azul royal', 'agenda': 'Caramelo', 'caneta': 'Bordô', 'polo': 'Verde', 'caneca': 'Laranja', 'taca': 'Turquesa'}   # uma cor diferente em cada peça
 # Cores fora da apresentação porque a foto tem a marca em outro tamanho ou posição (a troca de cor mostraria o logo
 # "pulando"); continuam no catálogo. Conferido lado a lado em 08/11/2026.
-HERO_CORES_FORA = {'agenda': {'Café'}, 'taca': {'Bordô', 'Azul royal', 'Preto'}}
+HERO_CORES_FORA = {}   # desde 10/11/2026 todas as cores de cada peça saem da mesma foto-base (logo igual em posição e tamanho)
 
 
 # Galeria de coleções, "faixas que abrem" (escolha do cliente em 08/11/2026, rodada 2): a abertura já mostra as peças

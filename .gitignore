@@ -20,3 +20,7 @@ midia/kits/
 
 # Folhas de contato da auditoria de imagens (tools/auditar_imagens.py)
 midia/produtos/auditoria/
+midia/marca-ref/
+midia/produtos/petala/
+midia/galeria-png/
+midia/frentes-png/

@@ -130,10 +130,10 @@
    "alt": "Brindes com marcas fictícias sobre blocos de pedra: garrafa azul Nexo, ecobag cru com alças verdes Vera, copo térmico terracota Elo, caderno verde Vera com caneta prata e nécessaire grafite Elo, em estúdio com luz natural.",
    "eyebrow": "Brindes corporativos",
    "linhas": [
-    "Sua marca presente."
+    "Sua marca presente"
    ],
    "destaque": [
-    "Muito além da entrega."
+    "no dia a dia."
    ],
    "texto": "Brindes personalizados para fazer parte da rotina de clientes e equipes. Explore opções para eventos, campanhas e relacionamento, com as cores e a identidade da sua empresa.",
    "legenda": "Imagem ilustrativa • Marca fictícia",
@@ -145,11 +145,10 @@
    "alt": "Kit de boas-vindas aberto da marca fictícia Lume, numa caixa grafite com berço claro: caderneta, caneta, copo com tampa, fone de ouvido sem fio com estojo, power bank e caixa de som.",
    "eyebrow": "Kits corporativos",
    "linhas": [
-    "A identidade",
-    "da sua empresa."
+    "Um kit com a cara"
    ],
    "destaque": [
-    "Em cada detalhe."
+    "da sua empresa."
    ],
    "texto": "Cores, peças e embalagens que traduzem a sua marca. Kits personalizados para receber, reconhecer e criar conexões.",
    "legenda": "Imagem ilustrativa • Marca fictícia",
@@ -180,9 +179,9 @@
     "Seu evento"
    ],
    "destaque": [
-    "Organização de eventos"
+    "com a sua marca."
    ],
-   "texto": "Crie oportunidades para o público conhecer, experimentar e se conectar com o seu produto. Ações em lojas, feiras e eventos, planejadas conforme o objetivo da sua marca.",
+   "texto": "Buffet, decoração, brindes, uniformes e kits para eventos, feiras e ações da sua empresa. A TaMa coordena os parceiros e define o escopo com você na proposta.",
    "legenda": "Imagem ilustrativa • Marca fictícia",
    "posicao_celular": "88% center",
    "desloc": 0.07
@@ -193,11 +192,10 @@
    "alt": "Garçonete de camisa branca e avental verde-oliva com a marca fictícia Oliva arruma o guardanapo bordado num prato; na mesa, cardápio e porta-contas caramelo com a marca gravada, taças e jogo americano, num restaurante iluminado.",
    "eyebrow": "Mesa & Serviço",
    "linhas": [
-    "Sua identidade,"
+    "A sua casa,"
    ],
    "destaque": [
-    "em cada detalhe",
-    "de receber."
+    "da mesa à equipe."
    ],
    "texto": "Cardápios, porta-contas, jogos americanos e uniformes personalizados para restaurantes, bares e hotéis. Peças para levar a identidade da sua marca da mesa ao atendimento.",
    "legenda": "Imagem ilustrativa • Marca fictícia",
@@ -368,36 +366,38 @@
    "itens": [
     {
      "link": "/brindes-corporativos/",
-     "imagem": "home-frente-brindes-v2",
-     "posicao": "center",
+     "imagem": "home-frente-brindes-v4",
+     "posicao": "50% 50%",
      "titulo": [
       "Brindes",
       "corporativos"
      ],
      "texto": [
-      "Presentes que aproximam,",
-      "encantam e ficam."
+      "Garrafas, canecas, cadernos",
+      "e peças do dia a dia."
      ],
-     "chamada": "Ver os brindes"
+     "chamada": "Ver os brindes",
+     "alt": "Garrafa térmica e caneca azul-marinho com a assinatura TaMa e caneta sobre base de pedra, em fundo azul-petróleo com folhas. Imagem ilustrativa."
     },
     {
      "link": "/confeccoes-personalizadas/",
-     "imagem": "home-frente-confeccoes-v2",
-     "posicao": "center",
+     "imagem": "home-frente-confeccoes-v4",
+     "posicao": "50% 50%",
      "titulo": [
       "Uniformes e",
       "confecções"
      ],
      "texto": [
-      "Peças para equipes, ações",
-      "e eventos."
+      "Polos, camisetas, dólmãs",
+      "e aventais com a sua marca."
      ],
-     "chamada": "Conhecer os uniformes"
+     "chamada": "Conhecer os uniformes",
+     "alt": "Camisas polo azul-marinho e cinza dobradas, a azul com a assinatura TaMa bordada no peito, em fundo terracota. Imagem ilustrativa."
     },
     {
      "link": "/kits-corporativos/",
-     "imagem": "home-frente-kits-v2",
-     "posicao": "center",
+     "imagem": "home-frente-kits-v4",
+     "posicao": "50% 50%",
      "titulo": [
       "Kits",
       "corporativos"
@@ -406,35 +406,38 @@
       "Caixa, peças e cartão",
       "com a sua marca."
      ],
-     "chamada": "Conhecer os kits"
+     "chamada": "Conhecer os kits",
+     "alt": "Caixa de presente aberta com a assinatura TaMa na tampa, garrafa preta, caderno de couro marrom e caneta, em fundo dourado. Imagem ilustrativa."
     },
     {
      "link": "/eventos-corporativos/",
-     "imagem": "secao-frente-4-202611022025",
-     "posicao": "74% center",
+     "imagem": "home-frente-eventos-v4",
+     "posicao": "50% 50%",
      "titulo": [
       "Eventos",
       "corporativos"
      ],
      "texto": [
-      "Buffet Completo",
-      "Serviço Completo"
+      "Brindes, kits para participantes,",
+      "credenciais e materiais para ativações."
      ],
-     "chamada": "Conhecer os eventos corporativos"
+     "chamada": "Conhecer os eventos corporativos",
+     "alt": "Cordão vermelho com crachá, ecobag de lona e caderno com a assinatura TaMa, em fundo verde-profundo. Imagem ilustrativa."
     },
     {
      "link": "/hotelaria-e-gastronomia/",
-     "imagem": "hot-header",
-     "posicao": "70% center",
+     "imagem": "home-frente-hotelaria-v4",
+     "posicao": "50% 50%",
      "titulo": [
-      "Hotelaria",
-      "Jogo americano"
+      "Hotelaria e",
+      "gastronomia"
      ],
      "texto": [
-      "Cardápios, porta-contas, jogos",
-      "americanos e uniformes."
+      "Cardápios, jogos americanos, porta-contas,",
+      "embalagens e materiais de apresentação."
      ],
-     "chamada": "Conhecer as peças"
+     "chamada": "Conhecer as peças",
+     "alt": "Capa de cardápio e porta-contas de couro marrom com a assinatura TaMa em baixo-relevo e guardanapo de tecido com anel dourado, em fundo rosa-antigo. Imagem ilustrativa."
     }
    ]
   },
@@ -450,32 +453,32 @@
    "itens": [
     {
      "id": "fmt-degustacao",
-     "titulo": "Eventos",
-     "texto": "Transforme seu evento corporativo em uma experiência marcante com buffet completo, cardápio personalizado e atendimento profissional. Cuidamos de cada detalhe, da preparação à montagem e desmontagem, para você receber seus convidados com sabor e tranquilidade.",
+     "titulo": "Buffet completo",
+     "texto": "Cardápio personalizado e atendimento profissional, da preparação à montagem e desmontagem.",
      "pedido": false
     },
     {
      "id": "fmt-feiras",
-     "titulo": "Feiras e eventos",
+     "titulo": "Feiras e estandes",
      "texto": "Brindes, uniformes e materiais para o estande e para receber quem visita.",
      "pedido": false
     },
     {
      "id": "fmt-promocao",
-     "titulo": "Eventos Corporativos",
+     "titulo": "Campanhas e lançamentos",
      "texto": "Brindes, amostras e materiais para campanhas de venda, lançamentos e ações com distribuidores.",
      "pedido": false
     },
     {
-     "id": "",
-     "titulo": "Ações internas",
-     "texto": "Convenções, lançamentos para a equipe e datas da empresa, com kits e peças na mesma linguagem.",
+     "id": "fmt-internas",
+     "titulo": "Encontros da equipe",
+     "texto": "Convenções, lançamentos internos e datas da empresa, com kits e peças na mesma linguagem.",
      "pedido": false
     },
     {
      "id": "fmt-buffet",
-     "titulo": "Buffet e decoração",
-     "texto": "Buffet e ambientação do espaço na identidade da sua marca, do painel às mesas, para eventos corporativos, lançamentos e encontros da empresa, coordenados pela TaMa com parceiros especializados. O formato e o escopo são definidos com você na proposta.",
+     "titulo": "Ambientação com a sua marca",
+     "texto": "Decoração do espaço na identidade da sua marca, do painel às mesas, coordenada pela TaMa com parceiros especializados e definida com você na proposta.",
      "pedido": true
     }
    ]
@@ -489,7 +492,7 @@
     },
     {
      "imagem": "secao-ativ-cena-2-202610272025",
-     "alt": "Seja um casamento, formatura, aniversários ou eventos corporativos, a mesa de antepastos transforma a recepção.",
+     "alt": "Mesa de antepastos montada para a recepção de um evento.",
      "legenda": "Cena ilustrativa · marca fictícia"
     }
    ]
@@ -527,7 +530,7 @@
     "destaque": [
      "pede um presente."
     ],
-    "texto": "Boas-vindas, eventos, fim de ano, reconhecimento: escolha a ocasião, veja as peças que a TaMa sugere e envie a seleção junto com o pedido de proposta."
+    "texto": "Boas-vindas, eventos, presentes executivos e fim de ano: escolha a ocasião, veja as peças que a TaMa sugere e envie a seleção junto com o pedido de proposta."
    },
    "boas-vindas": {
     "imagem": "ocasiao-boas-vindas",

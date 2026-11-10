@@ -16,6 +16,7 @@ DIST = os.path.join(ROOT, 'dist')
 IMG_SRC = os.path.join(ROOT, 'img')
 LOGOS = os.path.join(ROOT, 'brand', 'logos')  # cópia versionada de ../tama-creative-logos/svg (o build no Netlify só vê este repositório)
 LOGOS_OFICIAIS = os.path.join(ROOT, '..', 'tama-creative-logos', 'svg')
+PETALA_DIR = os.path.join(ROOT, 'brand', 'petala')  # identidade "pétala" (08/11/2026), gerada por tools/marca_assets.py
 
 # ------------------------------------------------------------------ config
 CFG = json.load(open(os.path.join(ROOT, 'site.config.json'), encoding='utf-8'))
@@ -86,7 +87,15 @@ def themed_svg(name, cls, label):
 
 
 LOGO = themed_svg('tama-logo-horizontal-positivo', 'logo', 'TaMa Creative')
-LOGO_DECOR = themed_svg('tama-logo-horizontal-positivo', 'logo', '')
+# Assinatura da marca no cabeçalho e no rodapé (identidade "pétala", decidida pelo cliente em 08/11/2026): a pétala
+# coral à esquerda, "TaMa" em Sora com "Ma" em bordô e "CREATIVE" espaçado. Texto real (fonte do site), decorativo: o
+# nome acessível fica no link que a envolve. Favicon, ícones e imagem de compartilhamento usam brand/petala/.
+PETALA = 'M6 4C0 56 34 94 96 96C62 70 32 40 6 4Z'   # a pétala, em caixa de 100 × 100 (evolução do arco do logotipo)
+def petala(cls=''):
+    return f'<svg class="petala{(" " + cls) if cls else ""}" viewBox="0 0 100 100" aria-hidden="true" focusable="false"><path d="{PETALA}"/></svg>'
+LOGO_DECOR = ('<span class="wordmark" aria-hidden="true">' + petala('wordmark-petal')
+              + '<span class="wordmark-txt"><span class="wordmark-name">Ta<span class="wordmark-ma">Ma</span></span>'
+              '<span class="wordmark-sub">Creative</span></span></span>')
 SELO = themed_svg('tama-selo-positivo', 'selo', '')
 
 
@@ -135,7 +144,10 @@ def pict(name, cls='pict'):
 
 # Seleções editoriais (home, ordem, foto-base, ocasiões, slugs antigos) sobre a base única src/data/produtos.json.
 SEL = json.load(open(os.path.join(DADOS, 'selecoes.json'), encoding='utf-8'))
-OCCS = SEL['ocasioes']
+# Ocasiões fora do site (pedido do cliente em 08/11/2026): somem do menu, do catálogo, da página de ocasiões e do
+# produto. Os dados continuam em selecoes.json; para voltar, tire a chave daqui.
+OCASIOES_FORA = {'reconhecimento', 'lancamentos'}
+OCCS = {k: v for k, v in SEL['ocasioes'].items() if k not in OCASIOES_FORA}
 ALIASES = SEL['aliases']
 # banco de imagens de produto (docs/BANCO-IMAGENS.md): uma entrada por imagem; o catálogo agrupa por produto
 PRODUTOS = json.load(open(os.path.join(DADOS, 'produtos.json'), encoding='utf-8'))['imagens']
@@ -214,7 +226,7 @@ def build_catalogo():
         versos = {i['cor']['nome']: i['id'] for i in extras if i['vista'] == 'verso'}
         detalhes = {i['cor']['nome']: i['id'] for i in extras if i['vista'] == 'detalhe'}
         out.append({'slug': slug, 'nome': nome, 'img': base['id'], 'categoria': base['categoria'], 'tipo': tipo_do_modelo(slug, base['categoria']), 'descricao': base.get('modelo') or '',
-                    'meta': spec_line(base), 'alt': base['alt'], 'cores': cores, 'ocasioes': SEL.get('ocasioes_por_modelo', {}).get(slug, []),
+                    'meta': spec_line(base), 'alt': base['alt'], 'cores': cores, 'ocasioes': [o for o in SEL.get('ocasioes_por_modelo', {}).get(slug, []) if o not in OCASIOES_FORA],
                     'url': f'/catalogo/{slug}/', 'grupo': grupo and [grupo['id'], grupo['alt']], 'versos': versos, 'detalhes': detalhes,
                     'extras': [[i['id'], i['vista'], i['alt']] for i in extras if i['vista'] != 'grupo'], 'base': base})
     ordem = list(CAT_PROD)
@@ -278,7 +290,7 @@ CARROSSEL_HQ = {s['imagem'] for s in SITE_DADOS.get('carrossel') or [] if s.get(
 # fotos do carrossel mais estreitas que 1,9:1 que também já trazem o vazio do texto à esquerda (fim-header: a parede
 # iluminada ocupa o primeiro terço; a taça solta começa em ~37% da largura)
 CARROSSEL_RESPIRO = {s['imagem'] for s in SITE_DADOS.get('carrossel') or [] if s.get('respiro')}
-FOTOS_HQ = CARROSSEL_HQ | V2_FOTOS | {'home-frente-brindes-v2', 'home-frente-confeccoes-v2', 'home-frente-kits-v2', 'kits-header', 'kits-header-v3', 'conf-header', 'ativ-header', 'hot-header', 'brindes-header', 'brindes-entrega', 'fim-header', 'blog-header', 'sobre-header', 'ocasiao-boas-vindas', 'ocasiao-eventos', 'ocasiao-executivos', 'ocasiao-campanhas', 'ocasiao-lancamentos', 'ocasiao-reconhecimento', 'sobre-caderno', 'sobre-uniforme', 'sobre-caixa', 'slide-ativacoes'} | {c['imagem'] for c in (SITE_DADOS.get('cabecalhos') or {}).values() if c.get('imagem')} | {n for n in re.findall(r'"((?:topo|secao)-[a-z0-9-]+)"', json.dumps(SITE_DADOS.get('secoes') or {}))}   # fotos enviadas em alta pela TaMa, as dos cabeçalhos e as enviadas pelo inventário (site.json)
+FOTOS_HQ = CARROSSEL_HQ | V2_FOTOS | {'home-frente-brindes-v2', 'home-frente-confeccoes-v2', 'home-frente-kits-v2', 'kits-header', 'kits-header-v3', 'conf-header', 'ativ-header', 'hot-header', 'brindes-header', 'brindes-entrega', 'fim-header', 'blog-header', 'sobre-header', 'ocasiao-boas-vindas', 'ocasiao-eventos', 'ocasiao-executivos', 'ocasiao-campanhas', 'ocasiao-lancamentos', 'ocasiao-reconhecimento', 'sobre-caderno', 'sobre-uniforme', 'sobre-caixa', 'slide-ativacoes'} | {f.get('imagem') for f in ((SITE_DADOS.get('secoes') or {}).get('home-frentes') or {}).get('itens') or []} | {c['imagem'] for c in (SITE_DADOS.get('cabecalhos') or {}).values() if c.get('imagem')} | {n for n in re.findall(r'"((?:topo|secao)-[a-z0-9-]+)"', json.dumps(SITE_DADOS.get('secoes') or {}))}   # fotos enviadas em alta pela TaMa, as dos cabeçalhos e as enviadas pelo inventário (site.json)
 
 
 def build_images():
@@ -301,10 +313,18 @@ def build_images():
             if os.path.isfile(f):
                 sources.append((n, f))
     sources += blog.image_sources(IMG_SRC)  # img/blog/: imagens enviadas pelo editor do blog
+    galeria = os.path.join(IMG_SRC, 'galeria')   # fotos próprias da galeria de coleções: img/galeria/<categoria>.jpg|webp|png
+    if os.path.isdir(galeria):
+        sources += [('galeria-' + os.path.splitext(fn)[0], os.path.join(galeria, fn)) for fn in sorted(os.listdir(galeria)) if fn.lower().endswith(('.webp', '.png', '.jpg', '.jpeg'))]
     marca = os.path.join(IMG_SRC, 'marca')
     if MOCKUPS and os.path.isdir(marca):  # branded versions replace the v2 photo of the same name
         over = {fn[:-5]: os.path.join(marca, fn) for fn in os.listdir(marca) if fn.lower().endswith('.webp')}
         sources = [(n, over.pop(n, s)) for n, s in sources] + sorted(over.items())
+    recortes = os.path.join(IMG_SRC, 'recortes')   # produtos sem fundo (tools/recortar.py), para as cenas da home
+    if os.path.isdir(recortes):
+        for fn in sorted(os.listdir(recortes)):
+            if fn.lower().endswith('.webp'):
+                build_cutout('recorte-' + fn[:-5], os.path.join(recortes, fn), out, cache)
     for name, src in sorted(sources):
         im = Image.open(src).convert('RGB')
         widths = [w for w in (420, 640, 960, 1280, 1920) if w < im.width - 40] + [im.width]
@@ -325,6 +345,35 @@ def build_images():
                     r = im if w == im.width else im.resize((w, h), Image.LANCZOS)
                     r.save(cached, 'JPEG' if ext == 'jpg' else ext.upper(), **kw)
                 IMG_FILES.setdefault(stem, []).append((cached, os.path.join(out, f'{stem}-{w}.{ext}')))
+
+
+def build_cutout(name, src, out, cache):
+    """Recorte com transparência (img/recortes/): WebP e AVIF em 3 larguras; sem JPG (o fundo ficaria branco)."""
+    from PIL import Image
+    im = Image.open(src).convert('RGBA')
+    widths = [w for w in (360, 560, 820) if w < im.width - 20] + [im.width]
+    stem = f"{name}.{hashlib.md5(open(src, 'rb').read()).hexdigest()[:8]}"
+    IMAGES[name] = {'w': im.width, 'h': im.height, 'widths': widths, 'stem': stem, 'src': src, 'alpha': True}
+    for w in widths:
+        h = round(im.height * w / im.width)
+        for ext, kw in (('avif', {'quality': 70}), ('webp', {'quality': 86, 'method': 6, 'exact': True})):
+            cached = os.path.join(cache, f'{stem}-{w}.{ext}')
+            if not os.path.exists(cached):
+                r = im if w == im.width else im.resize((w, h), Image.LANCZOS)
+                r.save(cached, ext.upper(), **kw)
+            IMG_FILES.setdefault(stem, []).append((cached, os.path.join(out, f'{stem}-{w}.{ext}')))
+
+
+def cutout(name, alt, sizes, eager=False, cls='', attrs=''):
+    """<picture> de um recorte (AVIF/WebP com transparência), com largura e altura declaradas."""
+    m = IMAGES[name]
+    def srcset(ext):
+        return ', '.join(f'/img/{m["stem"]}-{w}.{ext} {w}w' for w in m['widths'])
+    fb = next((w for w in m['widths'] if w >= 560), m['widths'][-1])
+    load = ' loading="eager" fetchpriority="high"' if eager else ' loading="lazy"'
+    return (f'<picture><source type="image/avif" srcset="{srcset("avif")}" sizes="{sizes}">'
+            f'<img src="/img/{m["stem"]}-{fb}.webp" srcset="{srcset("webp")}" sizes="{sizes}" width="{m["w"]}" height="{m["h"]}" '
+            f'alt="{esc(alt)}" decoding="async"{load}{f" class={chr(34)}{cls}{chr(34)}" if cls else ""}{attrs}></picture>')
 
 
 OG_USADAS = set()   # imagens usadas como og:image (recortadas em 1200 × 630 no fim do build)
@@ -640,8 +689,38 @@ def catalog_json():
     return js + 'window.TAMA_ALIAS=' + json.dumps(ALIASES, ensure_ascii=False, separators=(',', ':')) + ';\n'
 
 
+def fundo_estudio(hexv):
+    """Fundo "Soft Color Studio" da foto: um pastel que acompanha a cor da peça sem competir com ela (azul: azul
+    acinzentado; vermelho: pêssego; branco: bege quente; verde: sálvia; preto: cinza quente; rosa: rosa pastel). A foto
+    entra por cima em multiply, então o fundo branco do estúdio assume o pastel e a sombra da peça continua natural."""
+    import colorsys
+    try:
+        r, g, b = (int(hexv.lstrip('#')[i:i + 2], 16) / 255 for i in (0, 2, 4))
+    except (ValueError, AttributeError):
+        return '#F5F0E8'
+    h, l, sat = colorsys.rgb_to_hls(r, g, b)
+    h *= 360
+    if sat < .16 or l > .86 or l < .12:   # brancos, pretos, cinzas e metálicos
+        return '#F5F0E8' if l > .78 else '#ECEAE6' if l < .32 else '#EEEDEA'
+    if h < 15 or h >= 345:
+        return '#F8E8E2'
+    if h < 45:
+        return '#F3EBE0' if l < .5 or sat < .5 else '#F8ECDD'   # marrons e naturais; laranja
+    if h < 70:
+        return '#F7F1DC'
+    if h < 165:
+        return '#E8EFE6'
+    if h < 195:
+        return '#E3F0EE'
+    if h < 255:
+        return '#E6ECF3'
+    if h < 290:
+        return '#ECE8F3'
+    return '#F9E8EE'
+
+
 def swatches(p):
-    btns = ''.join(f'<button class="swatch" type="button" style="--c:{hexv}" data-color="{esc(nome)}" aria-label="Cor de referência: {esc(nome)}" aria-pressed="{"true" if i == 0 else "false"}" title="{esc(nome)}"></button>'
+    btns = ''.join(f'<button class="swatch" type="button" style="--c:{hexv}" data-bg="{fundo_estudio(hexv)}" data-color="{esc(nome)}" aria-label="Cor de referência: {esc(nome)}" aria-pressed="{"true" if i == 0 else "false"}" title="{esc(nome)}"></button>'
                    for i, (nome, hexv) in enumerate(p['cores']))
     return f'<div class="swatches" role="group" aria-label="Cores de referência para {esc(p["nome"])}">{btns}</div>'
 
@@ -685,7 +764,7 @@ def home_product_card(h, eager=False, sizes='(max-width: 760px) 46vw, (max-width
              else f'<button class="prod-media" type="button" data-zoom="{slug}" aria-label="Ampliar foto de {esc(nome)}">{foto}</button>')
     titulo = f'<a class="prod-link" href="{url}">{nome}</a>' if url else nome
     rotulo = f'{len(cores)} cores' if grupo and len(cores) > 1 else h['cores'][0][0]
-    return f'''<article class="product studio" id="{h['slug']}" data-slug="{h['slug']}"{cat}{occ}{extra}>
+    return f'''<article class="product studio" id="{h['slug']}" data-slug="{h['slug']}" style="--tint:{h['cores'][0][1]};--tint-bg:{fundo_estudio(h['cores'][0][1])}"{cat}{occ}{extra}>
   {media}
   <div class="prod-info">
     <h3>{titulo}</h3>
@@ -748,17 +827,22 @@ def catalogo_block():
     ocasioes_json = esc(json.dumps(OCCS, ensure_ascii=False, separators=(',', ':')))
     tipos_json = esc(json.dumps(TIPO_ROTULO, ensure_ascii=False, separators=(',', ':')))
     lupa = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 20 20"/></svg>'
+    seta = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>'
+
+    def grupo(titulo, opts, aberto, nome=''):
+        """Grupo de filtros recolhível (<details>): Tipo e Ocasião abrem fechados e o site.js abre o que tiver filtro ativo."""
+        return (f'<details class="cat-grp"{" open" if aberto else ""}{f' data-cat-grp="{nome}"' if nome else ""}><summary>{titulo}{seta}</summary>'
+                f'<div class="cat-opts" role="group" aria-label="{titulo}">{opts}</div></details>')
     return f'''<section class="section catalogo" id="catalogo" aria-labelledby="catalogo-t" style="padding-top:0">
   <div class="wrap cat-layout" data-catalogo data-familias="{familias_json}" data-ocasioes="{ocasioes_json}" data-tipos="{tipos_json}">
-    <h2 id="catalogo-t" class="visually-hidden">Modelos</h2>
     <div class="cat-scrim" data-cat-close hidden></div>
     <div class="cat-side" id="cat-filtros" aria-labelledby="cat-filtros-t">
       <div class="cat-side-head"><p class="cat-side-title" id="cat-filtros-t">Filtros</p><button class="icon-btn" type="button" data-cat-close aria-label="Fechar filtros"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
       <form class="cat-form" id="cat-form">
-        <fieldset><legend>Categoria</legend>{cat_opts}</fieldset>
-        <fieldset><legend>Tipo de peça</legend>{tipo_opts}</fieldset>
-        <fieldset><legend>Ocasião</legend>{occ_opts}</fieldset>
-        <fieldset><legend>Cor</legend>{cor_opts}</fieldset>
+        {grupo('Categoria', cat_opts, True)}
+        {grupo('Tipo de peça', tipo_opts, False, 'tipo')}
+        {grupo('Ocasião', occ_opts, False, 'ocasiao')}
+        {grupo('Cor', cor_opts, True)}
         <button class="link cat-clear" type="reset">Limpar filtros</button>
       </form>
       <div class="cat-side-foot"><button class="btn btn-wine" type="button" data-cat-close><span>Ver <span data-cat-n>{len(CATALOGO)}</span> modelos</span></button></div>
@@ -770,7 +854,10 @@ def catalogo_block():
       </div>
       <div class="cat-occ" data-cat-tipo hidden><span>Tipo:</span><span class="cat-occ-chip"><strong data-cat-tipo-name></strong><button type="button" data-cat-tipo-clear aria-label="Remover o filtro de tipo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></span></div>
       <div class="cat-occ" data-cat-occ hidden><span>Ocasião:</span><span class="cat-occ-chip"><strong data-cat-occ-name></strong><button type="button" data-cat-occ-clear aria-label="Remover o filtro de ocasião"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></span></div>
-      <div class="cat-status"><p id="cat-count" role="status" aria-live="polite"><strong data-cat-n>{len(CATALOGO)}</strong> modelos</p>
+      <div class="cat-status">
+        <div class="cat-head"><h2 id="catalogo-t" class="cat-title" data-cat-title>Todos os modelos</h2>
+          <p id="cat-count" role="status" aria-live="polite"><strong data-cat-n>{len(CATALOGO)}</strong> modelos disponíveis para explorar</p></div>
+        <div class="cat-sort"><label for="cat-ordem">Ordenar por</label><span class="cat-select"><select id="cat-ordem" name="ordem" form="cat-form"><option value="">Destaques</option><option value="az">Nome (A a Z)</option><option value="za">Nome (Z a A)</option></select>{seta}</span></div>
         <div class="cat-view" role="group" aria-label="Fotos por linha no celular"><button type="button" data-cat-cols="1" aria-pressed="true" aria-label="Uma foto por linha"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="4" width="14" height="16" rx="1.5"/></svg></button><button type="button" data-cat-cols="2" aria-pressed="false" aria-label="Duas fotos por linha"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="4" width="7.5" height="16" rx="1.5"/><rect x="13" y="4" width="7.5" height="16" rx="1.5"/></svg></button></div>
       </div>
       <div class="studio-grid cat-grid" id="catalogo-grid">{''.join(cards)}</div>
@@ -799,7 +886,7 @@ def page_catalogo():
                           cls='text-head-xl') + f'''
 {season_callout('catalogo')}
 {catalogo_block()}
-{end_cta(tipo='brindes')}''',
+{end_cta('Encontrou peças para a sua marca?', tipo='brindes')}''',
     }
 
 
@@ -838,6 +925,18 @@ def titulo_produto(nome, genero=''):
 def thumb(name, label, attrs):
     return (f'<button class="pdp-thumb" type="button" {attrs} aria-label="{esc(label)}" aria-pressed="false">'
             f'<img src="{img_url(name, "webp", 420)}" alt="" width="120" height="120" loading="lazy" decoding="async"></button>')
+
+
+# Ícones do card "Detalhes do produto" (página de cada modelo): traço fino, sem preenchimento (v3.css › .pdp-det-grid)
+_ICO = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">{}</svg>'
+ICONE_DET = {
+    'material': _ICO.format('<path d="m12 3 9 5-9 5-9-5 9-5Z"/><path d="m3 13 9 5 9-5"/>'),
+    'personalizacao': _ICO.format('<path d="M12 3a9 9 0 1 0 0 18c1 0 1.6-.8 1.6-1.7 0-.5-.2-.9-.5-1.2-.3-.3-.5-.7-.5-1.2 0-.9.8-1.7 1.7-1.7H16a5 5 0 0 0 5-5c0-4-4-7.2-9-7.2Z"/>'
+                                  '<circle cx="7.5" cy="11.5" r="1"/><circle cx="10" cy="7.5" r="1"/><circle cx="14.5" cy="7.5" r="1"/><circle cx="17" cy="11" r="1"/>'),
+    'prazo': _ICO.format('<path d="M20 11V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h5"/><path d="M8 2v4M16 2v4M4 10h16"/><circle cx="17" cy="17" r="4"/><path d="M17 15.3V17l1.1 1.1"/>'),
+    'medidas': _ICO.format('<path d="M3 17 17 3l4 4L7 21z"/><path d="m7.5 12.5 2 2M10.5 9.5l2 2M13.5 6.5l2 2"/>'),
+    'info': _ICO.format('<circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/>'),
+}
 
 
 def page_produto(c):
@@ -880,11 +979,11 @@ def page_produto(c):
                        + '</div>')
     base = c['base']
     mat, tec = base.get('material') or {}, base.get('tecnica') or {}
-    mat_txt = mat['valor'] if mat.get('status') == 'confirmado' and mat.get('valor') else 'A confirmar na proposta.'
-    tec_txt = tec['valor'] if tec.get('status') == 'confirmado' and tec.get('valor') else 'Definida na proposta, conforme o material, com a arte para aprovação.'
+    mat_txt = mat['valor'] if mat.get('status') == 'confirmado' and mat.get('valor') else 'Conforme o modelo escolhido'
+    tec_txt = tec['valor'] if tec.get('status') == 'confirmado' and tec.get('valor') else 'Técnica e arte definidas na proposta'
     info = c.get('info') or {}
     med = info.get('medidas') or {}
-    medidas = (f'<div><dt>Medidas</dt><dd>{esc(med["valor"])}</dd></div>' if med.get('status') == 'confirmado' and med.get('valor') else '')
+    medidas = (f'<div>{ICONE_DET["medidas"]}<dt>Medidas</dt><dd>{esc(med["valor"])}</dd></div>' if med.get('status') == 'confirmado' and med.get('valor') else '')
     usos = [u for u in (info.get('usos') or []) if u]
     usos_html = (f'<div class="pdp-usos"><p class="pdp-label">Ideal para</p><ul>{"".join(f"<li>{esc(u)}</li>" for u in usos)}</ul></div>' if usos else '')
     tipo = {'vestuario': 'confeccoes', 'hotelaria-gastronomia': 'hotelaria'}.get(c['categoria'], 'brindes')
@@ -916,7 +1015,7 @@ def page_produto(c):
         'preload': preload_image(c['img'], '(max-width: 900px) 92vw, 1100px'),
         'body': f'''<section class="section pdp-sec">
   <div class="wrap pdp-wrap">
-    <div class="product pdp" data-slug="{slug}" data-pdp data-url="{url}" data-tipo="{tipo}" data-vistas="{esc(json.dumps(vistas, ensure_ascii=False, separators=(',', ':')))}">
+    <div class="product pdp" style="--tint:{cores[0][1]};--tint-bg:{fundo_estudio(cores[0][1])}" data-slug="{slug}" data-pdp data-url="{url}" data-tipo="{tipo}" data-vistas="{esc(json.dumps(vistas, ensure_ascii=False, separators=(',', ':')))}">
       <div class="pdp-gallery{'' if vistas_html or len(thumbs) > 1 else ' sem-rail'}">
         <div class="pdp-rail">{vistas_html}{f'<div class="pdp-thumbs" role="group" aria-label="Cores de {esc(nome)}">{"".join(thumbs)}</div>' if len(thumbs) > 1 else ''}</div>
         <div class="prod-media pdp-main" data-hover-zoom>{picture(c['img'], c['alt'], '(max-width: 900px) 92vw, 840px', eager=True)}<button class="prod-zoom" type="button" data-zoom="{slug}" aria-label="Ampliar foto de {esc(nome)}"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="7" cy="7" r="4.5"/><path d="M10.4 10.4 14 14M7 5v4M5 7h4"/></svg></button><p class="pdp-ilustra">Imagem ilustrativa</p></div>
@@ -935,24 +1034,28 @@ def page_produto(c):
         </ol>
         <div class="pdp-cta">
           <button class="pick btn-pick-lg pdp-add" type="button" data-slug="{slug}" aria-pressed="false"><span class="when-off">+ Adicionar à seleção</span><span class="when-on">✓ Na seleção</span><span class="visually-hidden">: {nome}</span></button>
-          <a class="pdp-link" href="/solicitar-proposta/?tipo={tipo}&amp;interesse={urllib.parse.quote(nome + ' (' + cores[0][0] + ')')}" data-track="cta_solicitar_proposta" data-track-label="produto" data-interesse="{esc(nome)} ({esc(cores[0][0])})" data-pdp-proposta>Solicitar proposta só desta peça {ARROW}</a>
+          <a class="pdp-link" href="/solicitar-proposta/?tipo={tipo}&amp;so=1&amp;interesse={urllib.parse.quote(nome + ' (' + cores[0][0] + ')')}" data-track="cta_solicitar_proposta" data-track-label="produto" data-interesse="{esc(nome)} ({esc(cores[0][0])})" data-pdp-proposta>Solicitar proposta só desta peça {ARROW}</a>
         </div>
         <p class="pdp-wa">Dúvidas? <a href="https://wa.me/{WA}" data-track="whatsapp_click" data-track-label="produto" data-interesse="{esc(nome)}" rel="noopener">Conversar no WhatsApp</a></p>
         {usos_html}
       </div>
     </div>
-    <dl class="pdp-spec">
-      {medidas}
-      <div><dt>Material</dt><dd>{mat_txt}</dd></div>
-      <div><dt>Personalização</dt><dd>{tec_txt}</dd></div>
-      <div><dt>Quantidade e prazo</dt><dd>Informados na proposta, conforme o volume do pedido e a técnica.</dd></div>
-    </dl>
+    <section class="pdp-detalhes" aria-labelledby="pdp-detalhes-t">
+      <div class="pdp-det-head"><h2 id="pdp-detalhes-t">Detalhes do produto</h2><span>Informações para orçamento</span></div>
+      <dl class="pdp-det-grid">
+        {medidas}
+        <div>{ICONE_DET['material']}<dt>Material</dt><dd>{mat_txt}</dd></div>
+        <div>{ICONE_DET['personalizacao']}<dt>Personalização</dt><dd>{tec_txt}</dd></div>
+        <div>{ICONE_DET['prazo']}<dt>Quantidade e prazo</dt><dd>Confirmados conforme o pedido</dd></div>
+      </dl>
+      <p class="pdp-det-nota">{ICONE_DET['info']}As especificações finais são confirmadas antes da produção.</p>
+    </section>
     <p class="pdp-sobre">{CAT_TEXTO.get(c['categoria'], '')}</p>
     <p class="note">{NOTE_IMAGENS}</p>
   </div>
 </section>
 {rel_html}
-{end_cta(tipo=tipo)}''',
+{end_cta('Quer esta peça com a sua marca?', tipo=tipo)}''',
     }
 
 
@@ -1058,7 +1161,6 @@ COLLECTIONS = [
     ('eventos', 'Eventos', 'Presença de marca em cada encontro.', 'conf-evento-camisetas'),
     ('executivos', 'Presentes executivos', 'Gestos refinados para relações importantes.', 'kitp-kit-executivo'),
     ('campanhas', 'Campanhas e promoções', 'Degustações, promoções e ações no ponto de venda.', 'conf-degustacao'),
-    ('lancamentos', 'Lançamentos', 'Peças para apresentar um produto ou uma novidade.', 'papelaria-cores'),
     ('fim-de-ano', 'Fim de ano', 'Presentes para encerrar o ano perto de quem importa.', 'kitp-kit-brinde'),
 ]
 # ocasiões com página própria: o card da coleção leva para ela (as demais abrem as ideias filtradas)
@@ -1194,30 +1296,41 @@ def kits_grandes(n):
     return 0 if n % 3 == 0 else 2 if n % 3 == 2 else min(n, 4)
 
 
-def kits_tipos_html():
-    """Uma seção por tipo de kit (KITS_TIPOS), com os cards no padrão kit_card. Kit sem foto em img/ fica fora (kit_foto); um
-    tipo sem nenhum kit com foto mantém a âncora, o título e o convite para pedir a composição."""
+def kits_grade_html():
+    """/kits-corporativos/: uma grade única, cada kit uma vez, com filtro por contexto (chips). As âncoras dos contextos
+    (#kits-escritorio…, usadas no menu e em links antigos) continuam valendo: abrem a grade já filtrada (site.js)."""
     tipos = [(sid, titulo, linha, [KITS_BY[s] for s in slugs if s in KITS_BY and kit_foto(s)]) for sid, titulo, linha, slugs in KITS_TIPOS]
-    num, html = {}, []   # num: slug -> número do kit na página (o mesmo quando o kit aparece em dois tipos)
-    for j, (sid, titulo, linha, kits) in enumerate(tipos):
-        g = kits_grandes(len(kits))
-        cards = ''.join(kit_card(num.setdefault(slug, len(num)), slug, name, desc, i < g) for i, (slug, name, desc) in enumerate(kits))
-        corpo = (f'<div class="kit-grid">{cards}</div>' if kits else
-                 '<p class="kit-vazio">Conte a ocasião e o público no pedido: a TaMa propõe a composição, a caixa e o cartão com a sua marca. '
-                 f'<a class="link" href="/solicitar-proposta/?tipo=kits&amp;interesse={urllib.parse.quote(titulo)}" data-track="cta_solicitar_proposta" data-track-label="{sid}" data-interesse="{titulo}">Solicitar proposta {ARROW}</a></p>')
-        ids = {t[0] for t in tipos}
-        apelidos = ''.join(f'<span id="{a}"></span>' for a, d in KITS_ANCORAS_ANTIGAS.items() if d == sid and a not in ids)
-        fim = ''
-        if j == len(tipos) - 1:   # depois do último tipo: outra composição e a nota das fotos de todos os kits da página
-            fim = (f'\n    <div class="kit-foot"><p class="muted">Prefere outra composição? Conte a ocasião e o público no pedido.</p>{cta_link(tipo="kits", track_label="kits-lista")}</div>'
-                   f'\n    <p class="note" style="margin-top:18px">{nota_kits([k for t in tipos for k in t[3]])}</p>')
-        html.append(f'''<section class="section kits-page kits-tipo{' ivory' if j % 2 else ''}{' um' if len(kits) == 1 else ''}" id="{sid}" aria-labelledby="{sid}-t">{apelidos}
+    ctx, ordem = {}, []
+    for sid, _t, _l, kits in tipos:
+        for k in kits:
+            if k[0] not in ctx:
+                ordem.append(k)
+            ctx.setdefault(k[0], []).append(sid)
+    titulo_de = {sid: t for sid, t, _l, _k in tipos}
+    chips = ('<button class="chip" type="button" data-kit-filtro="" aria-pressed="true">Todos</button>'
+             + ''.join(f'<button class="chip" type="button" data-kit-filtro="{sid}" aria-pressed="false">{esc(t)}</button>'
+                       for sid, t, _l, kits in tipos if kits))
+    cards = ''
+    for i, (slug, nome, desc) in enumerate(ordem):
+        card = kit_card(i, slug, nome, desc, False)
+        rotulo = ' · '.join(titulo_de[s] for s in ctx[slug])
+        card = card.replace('<article class="kit-card', f'<article data-ctx="{" ".join(ctx[slug])}" class="kit-card', 1)
+        card = re.sub(r'<p class="eyebrow">Kit \d+</p>', f'<p class="eyebrow">{esc(rotulo)}</p>', card, count=1)
+        cards += card
+    ancoras = ''.join(f'<span class="kit-ancora" id="{sid}" data-kit-ancora="{sid}"></span>' for sid, _t, _l, _k in tipos)
+    ancoras += ''.join(f'<span class="kit-ancora" id="{a}" data-kit-ancora="{d}"></span>' for a, d in KITS_ANCORAS_ANTIGAS.items() if a not in titulo_de)
+    linhas = {sid: l for sid, _t, l, _k in tipos}
+    return f'''<section class="section kits-grade" id="kits" aria-labelledby="kits-p-t">{ancoras}
   <div class="wrap">
-    <div class="kits-tipo-in"><div class="section-head"><h2 id="{sid}-t" class="section-title">{titulo}</h2><p class="muted">{linha}</p></div>
-    {corpo}</div>{fim}
+    <div class="section-head"><p class="eyebrow">Composições</p><h2 id="kits-p-t" class="section-title">Kits de referência para adaptar à sua marca</h2>
+      <p class="muted" data-kit-linha data-linhas="{esc(json.dumps(linhas, ensure_ascii=False))}">A TaMa ajusta peças, embalagem e cartão ao seu público, à ocasião e ao investimento, sempre com a marca da sua empresa.</p></div>
+    <div class="kit-filtros" role="group" aria-label="Filtrar kits por contexto">{chips}</div>
+    <p class="visually-hidden" role="status" data-kit-status></p>
+    <div class="kit-grid kit-grid-unica">{cards}</div>
+    <div class="kit-foot"><p class="muted">Prefere outra composição? Conte a ocasião e o público no pedido.</p>{cta_link(tipo="kits", track_label="kits-lista")}</div>
+    <p class="note" style="margin-top:18px">{nota_kits(ordem)}</p>
   </div>
-</section>''')
-    return '\n'.join(html)
+</section>'''
 
 
 def kits_block(compacto=False):
@@ -1276,13 +1389,9 @@ ANNOUNCE_SEASON = ('<p class="announce-season"><a href="/brindes-de-fim-de-ano/"
 
 
 def season_callout(where):
-    """Aviso de temporada nas páginas de Brindes, Kits e Catálogo (só dentro do período de site.config.json › temporada)."""
-    if SEASON != 'fim-de-ano':
-        return ''
-    return (f'<aside class="season-callout" aria-label="Temporada de fim de ano"><div class="wrap season-callout-in">'
-            f'<p><strong>Fim de ano</strong> Taças, copos e kits com a sua marca para agradecer clientes e equipes antes do recesso.</p>'
-            f'<a class="btn btn-line btn-sm" href="/brindes-de-fim-de-ano/" data-track="season_click" data-track-label="{where}">Ver presentes de fim de ano {ARROW}</a>'
-            f'</div></aside>')
+    """Aviso de temporada dentro das páginas: desligado no redesenho de 11/2026 (a barra do topo já avisa a temporada
+    em todas as páginas e a faixa repetida pesava entre o título e o conteúdo). Fica a função para as chamadas existentes."""
+    return ''
 
 
 # Menu da apresentação de 20/10: Brindes ▾ (tipos de peça), Kits ▾, Confecções ▾, Eventos corporativos ▾, Sobre e Blog.
@@ -1300,10 +1409,20 @@ MENU_KITS = [('Kit escritório', '#kits-escritorio'), ('Kit cozinha', '#kits-coz
 MENU_ATIVACOES = [('Buffet e decoração', '#fmt-buffet')]   # âncora de /eventos-corporativos/ (buffet e decoração unificados em 06/11/2026)
 
 
+# Áreas da TaMa no submenu Soluções (e na home): (endereço, nome, linha de apoio)
+SOLUCOES = [
+    ('/brindes-corporativos/', 'Brindes corporativos', 'Peças do dia a dia com a sua marca'),
+    ('/confeccoes-personalizadas/', 'Uniformes e confecções', 'Polos, camisetas, dólmãs e aventais'),
+    ('/kits-corporativos/', 'Kits corporativos', 'Composições com caixa e cartão'),
+    ('/eventos-corporativos/', 'Eventos corporativos', 'Buffet, decoração e materiais'),
+    ('/hotelaria-e-gastronomia/', 'Hotelaria e gastronomia', 'Mesa e serviços personalizados'),
+]
+
+
 def nav_menu(path):
-    """Menu principal (2ª linha do cabeçalho): Brindes ▾ (lista dos tipos de peça e, abaixo, as páginas de brindes),
-    Kits ▾, Confecções ▾, Eventos corporativos ▾, Sobre e Blog; os quatro painéis são listas no mesmo formato. Os painéis são botões com aria-expanded; no celular viram
-    acordeão. O grupo da página atual ganha aria-current="true" no botão, e o link da página, aria-current="page"."""
+    """Menu principal, na ordem do site publicado: Brindes ▾, Kits ▾, Confecções ▾, Eventos corporativos ▾, Sobre e Blog. Cada painel é um botão com aria-expanded
+    (clique e teclado; o hover só complementa no computador). No celular, os painéis viram acordeão. O grupo da página
+    atual ganha aria-current="true" no botão, e o link da página, aria-current="page"."""
     def cur(p, exato=False):
         return ' aria-current="page"' if (path == p if exato else path.startswith(p)) else ''
 
@@ -1313,36 +1432,41 @@ def nav_menu(path):
                 f'aria-controls="sub-{chave}" data-nav-toggle{atual}>{rotulo}<svg class="nav-caret" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5l3 3 3-3"/></svg></button>'
                 f'<div class="nav-sub" id="sub-{chave}"><div class="nav-sub-in">{painel}</div></div></div>')
 
+    def coluna(titulo, itens, cls=''):
+        return f'<div class="nav-col{" " + cls if cls else ""}"><p class="nav-col-t">{titulo}</p><ul class="nav-list">{itens}</ul></div>'
+
     por_tipo = {}
     for c in CATALOGO:
         por_tipo.setdefault(c['tipo'], []).append(c)
-    # página de um modelo (/catalogo/<id>/): vestuário marca Confecções; os demais modelos e o catálogo marcam Brindes
     m = re.match(r'^/catalogo/([^/]+)/$', path)
-    mod = CATALOGO_BY.get(m.group(1)) if m else None
-    conf_atual = path.startswith('/confeccoes-personalizadas/') or bool(mod and mod['categoria'] == 'vestuario')
-    brindes_atual = not conf_atual and path.startswith(('/brindes-corporativos/', '/hotelaria-e-gastronomia/', '/brindes-por-ocasiao/', '/brindes-de-fim-de-ano/', '/catalogo/'))
+    brindes_atual = (path.startswith(('/catalogo/', '/brindes-corporativos/', '/hotelaria-e-gastronomia/', '/brindes-por-ocasiao/', '/brindes-de-fim-de-ano/'))
+                     or bool(m))
 
+    # Brindes ▾: tipos de brinde (catálogo filtrado) e, ao lado, as páginas de brindes; "Catálogo completo" no rodapé
     tipos_b = ''.join(f'<li><a href="/catalogo/?tipo={k}#catalogo">{TIPO_ROTULO[k]}</a></li>'
                       for k in MENU_BRINDES if por_tipo.get(k) or (MENU_TIPOS_VAZIOS and k != 'tecnologia'))
     fim = (f'<li><a class="nav-season" href="/brindes-de-fim-de-ano/"{cur("/brindes-de-fim-de-ano/")}>Fim de ano <em>temporada</em></a></li>'
-           if SEASON == 'fim-de-ano' else '')
-    p_brindes = (f'<ul class="nav-list">{tipos_b}</ul>'
-                 f'<ul class="nav-list nav-list-pe"><li><a href="/brindes-corporativos/"{cur("/brindes-corporativos/")}>Brindes corporativos</a></li>'
-                 f'<li><a href="/hotelaria-e-gastronomia/"{cur("/hotelaria-e-gastronomia/")}>Hotelaria</a></li>'
-                 f'<li><a href="/brindes-por-ocasiao/"{cur("/brindes-por-ocasiao/")}>Por ocasião</a></li>{fim}</ul>'
-                 f'<a class="nav-sub-all" href="/catalogo/"{cur("/catalogo/", True)}>Catálogo completo {ARROW}</a>')
+           if SEASON == 'fim-de-ano' else f'<li><a href="/brindes-de-fim-de-ano/"{cur("/brindes-de-fim-de-ano/")}>Fim de ano</a></li>')
+    mais = (f'<li><a href="/brindes-corporativos/"{cur("/brindes-corporativos/")}>Brindes corporativos</a></li>'
+            f'<li><a href="/hotelaria-e-gastronomia/"{cur("/hotelaria-e-gastronomia/")}>Hotelaria</a></li>'
+            f'<li><a href="/brindes-por-ocasiao/"{cur("/brindes-por-ocasiao/")}>Por ocasião</a></li>' + fim)
+    p_brindes = (f'<div class="nav-cols">{coluna("Por tipo", tipos_b, "nav-col-tipos")}{coluna("Brindes", mais, "nav-col-mais")}</div>'
+                 f'<a class="nav-sub-all" href="/catalogo/"{cur("/catalogo/", True)}>Catálogo completo <small>{len(CATALOGO)} modelos</small> {ARROW}</a>')
     kits = ''.join(f'<li><a href="/kits-corporativos/{a}">{t}</a></li>' for t, a in MENU_KITS)
-    p_kits = f'<ul class="nav-list">{kits}</ul><a class="nav-sub-all" href="/kits-corporativos/"{cur("/kits-corporativos/")}>Ver todos os kits {ARROW}</a>'
+    p_kits = (f'<div class="nav-cols">{coluna("Por contexto", kits)}'
+              f'<div class="nav-col nav-col-nota"><p class="nav-col-t">Sob medida</p><p>Caixa, cartão e peças com a sua marca. Peça ajustes na composição, na embalagem e na quantidade.</p></div></div>'
+              f'<a class="nav-sub-all" href="/kits-corporativos/"{cur("/kits-corporativos/")}>Ver todos os kits {ARROW}</a>')
     conf = ''.join(f'<li><a href="/catalogo/?tipo={k}#catalogo">{t}</a></li>' for k, t in MENU_CONFECCOES if por_tipo.get(k))
-    p_conf = (f'<ul class="nav-list">{conf}</ul>'
+    p_conf = (f'<div class="nav-cols">{coluna("Peças", conf, "nav-col-conf")}</div>'
               f'<a class="nav-sub-all" href="/confeccoes-personalizadas/"{cur("/confeccoes-personalizadas/")}>Uniformes e confecções {ARROW}</a>')
-    ativ = ''.join(f'<li><a href="/eventos-corporativos/{a}">{t}</a></li>' for t, a in MENU_ATIVACOES)
-    p_ativ = f'<ul class="nav-list">{ativ}</ul><a class="nav-sub-all" href="/eventos-corporativos/"{cur("/eventos-corporativos/")}>Conhecer eventos corporativos {ARROW}</a>'
-    return (grupo('brindes', 'Brindes', p_brindes, brindes_atual, ' nav-main nav-drop')
+    p_eventos = (f'<div class="nav-cols">{coluna("Formatos", '<li><a href="/eventos-corporativos/#fmt-buffet">Buffet e decoração</a></li>', "nav-col-eventos")}</div>'
+                 f'<a class="nav-sub-all" href="/eventos-corporativos/"{cur("/eventos-corporativos/")}>Conhecer eventos corporativos {ARROW}</a>')
+    # mesma ordem do site publicado (pedido do cliente em 08/11/2026): Brindes, Kits, Confecções, Eventos, Sobre e Blog
+    return (grupo('brindes', 'Brindes', p_brindes, brindes_atual, ' nav-drop nav-wide')
             + grupo('kits', 'Kits', p_kits, path.startswith('/kits-corporativos/'), ' nav-drop')
-            + grupo('confeccoes', 'Confecções', p_conf, conf_atual, ' nav-drop')
-            + grupo('ativacoes', 'Eventos corporativos', p_ativ, path.startswith('/eventos-corporativos/'), ' nav-drop')
-            + f'<a class="nav-link nav-sep" href="/sobre/"{cur("/sobre/")}>Sobre</a>'
+            + grupo('confeccoes', 'Confecções', p_conf, path.startswith('/confeccoes-personalizadas/'), ' nav-drop')
+            + grupo('eventos', 'Eventos corporativos', p_eventos, path.startswith('/eventos-corporativos/'), ' nav-drop')
+            + f'<a class="nav-link" href="/sobre/"{cur("/sobre/")}>Sobre</a>'
             + f'<a class="nav-link" href="/blog/"{cur("/blog/")}>Blog</a>')
 
 
@@ -1373,25 +1497,32 @@ def busca_form(sid):
             f'{SEARCH_SVG}<input id="{sid}" name="q" type="search" placeholder="Buscar no catálogo: caneca, polo, kit…" autocomplete="off"></form>')
 
 
+# Sugestões da busca do cabeçalho: os pedidos mais comuns, a um toque (aparecem ao abrir a lupa)
+BUSCA_SUGESTOES = ('<div class="search-sug"><p class="search-hint">Mais procurados</p><ul class="tm-chips" role="list">'
+                   + ''.join(f'<li><a class="chip" href="{h}">{t}</a></li>' for t, h in [
+                       ('Kit boas-vindas', '/kits-corporativos/#kits-boas-vindas'), ('Garrafas', '/catalogo/?tipo=garrafas#catalogo'),
+                       ('Polos', '/catalogo/?tipo=polos#catalogo'), ('Canecas', '/catalogo/?tipo=canecas#catalogo'),
+                       ('Agendas', '/catalogo/?tipo=agendas#catalogo'), ('Fim de ano', '/brindes-de-fim-de-ano/')])
+                   + '</ul></div>')
+
+
 def header(path):
     links = nav_menu(path)
-    wa = (f'<a class="head-wa" href="https://wa.me/{WA}" data-track="whatsapp_click" rel="noopener">{CHAT}<span>WhatsApp</span></a>' if WA else '')
+    aviso = ANNOUNCE_SEASON if SEASON == 'fim-de-ano' else ''
     return f'''<a class="skip" href="#conteudo">Pular para o conteúdo</a>
-<aside class="announce" aria-label="Destaques da TaMa"><div class="wrap">{ANNOUNCE_SEASON if SEASON == 'fim-de-ano' else f'<p>{ASSINATURA}</p>'}<ul>{''.join(f'<li>{g}</li>' for g in GARANTIAS)}</ul></div></aside>
+{f'<aside class="announce" aria-label="Destaque da temporada"><div class="wrap">{aviso}</div></aside>' if aviso else ''}
 <header class="site-header">
   <div class="wrap header-row">
     <a class="brand" href="/" aria-label="TaMa Creative, página inicial">{LOGO_DECOR}</a>
-    {busca_form('busca-topo')}
+    <nav class="site-nav" id="site-nav" aria-label="Principal">{busca_form('busca-menu')}<div class="nav-links">{links}</div>{cta_link(cls='btn btn-wine nav-cta', track_label='menu-celular')}</nav>
     <div class="head-actions">
-      {wa}
-      <button class="icon-btn bag" type="button" data-open-drawer aria-label="Sua seleção de peças">{BAG_SVG}<span class="bag-label" aria-hidden="true">Seleção</span><span class="bag-count" data-sel-count hidden>0</span></button>
-      {cta_link('<span class="cta-long">Solicitar proposta</span><span class="cta-short">Proposta</span>', cls='btn btn-wine btn-sm head-cta', track_label='header')}
+      <div class="nav-group head-search-group no-hover"><button class="icon-btn" type="button" aria-expanded="false" aria-controls="sub-busca" data-nav-toggle aria-label="Buscar no catálogo">{SEARCH_SVG}</button>
+        <div class="nav-sub search-sub" id="sub-busca"><div class="nav-sub-in">{busca_form('busca-topo')}{BUSCA_SUGESTOES}</div></div></div>
+      <button class="icon-btn bag" type="button" data-open-drawer aria-label="Minha seleção">{BAG_SVG}<span class="bag-label" aria-hidden="true">Seleção</span><span class="bag-count" data-sel-count hidden>0</span></button>
+      {cta_link('<span class="cta-long">Solicitar proposta</span><span class="cta-short">Proposta</span>', cls='btn btn-wine btn-sm head-cta', track_label='header', arrow=False)}
       <button class="icon-btn menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Abrir menu"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="i-open" d="M4 8h16M4 16h16"/><path class="i-close" d="M6 6l12 12M18 6L6 18"/></svg></button>
     </div>
   </div>
-  <div class="nav-bar"><div class="wrap">
-    <nav class="site-nav" id="site-nav" aria-label="Principal">{busca_form('busca-menu')}{links}{cta_link(cls='btn btn-wine nav-cta', track_label='menu-celular')}</nav>
-  </div></div>
 </header>'''
 
 
@@ -1419,23 +1550,38 @@ def empresa_linha():
     return ' · '.join(partes)
 
 
-def footer():
-    sol = ''.join(f'<li><a href="{p}">{t}</a></li>' for p, t in NAV)   # as cinco áreas, com os nomes oficiais do menu
-    ocas = ''.join(f'<li><a href="{p}">{t}</a></li>' for p, t in [('/brindes-de-fim-de-ano/', 'Brindes de fim de ano'), ('/brindes-por-ocasiao/', 'Brindes por ocasião'), ('/catalogo/', 'Catálogo completo')])
-    contacts = contact_lines()
-    contact_col = ''.join(f'<li>{c}</li>' for c in contacts) + '<li><a href="/solicitar-proposta/">Solicitar proposta</a></li>'
+# Rodapé premium (pedido do cliente em 10/11/2026): um cartão escuro com cantos arredondados, recuado das bordas. Em cima,
+# o convite ("Vamos criar algo juntos?") com proposta e WhatsApp; no meio, a assinatura, a frase da TaMa, as redes e os
+# links de Explore; embaixo, direitos, privacidade e cookies, e a nota das imagens ilustrativas.
+EXPLORE = [('/catalogo/', 'Catálogo completo'), ('/kits-corporativos/', 'Kits corporativos'), ('/eventos-corporativos/', 'Eventos corporativos'),
+           ('/hotelaria-e-gastronomia/', 'Hotelaria e gastronomia'), ('/sobre/', 'Sobre a TaMa')]
+SETA_DIAG = '<svg class="i-arrow-up" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 17 17 7M9 7h8v8"/></svg>'
+BALAO = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3.5c-4.7 0-8.5 3.4-8.5 7.6 0 1.6.6 3.2 1.6 4.4L4 20.5l5.3-1.7c.9.3 1.8.4 2.7.4 4.7 0 8.5-3.4 8.5-7.6S16.7 3.5 12 3.5Z"/></svg>'
+
+
+def footer(tipo=None):
+    explore = ''.join(f'<li><a href="{p}">{t}</a></li>' for p, t in EXPLORE)
     empresa = empresa_linha()
-    return f'''<footer class="site-footer">
-  <div class="wrap footer-grid">
-    <div class="footer-brand"><a class="brand" href="/" aria-label="TaMa Creative, página inicial">{LOGO_DECOR}</a><p>{ASSINATURA} A TaMa seleciona as peças, personaliza com a marca da sua empresa e coordena os fornecedores até a entrega.</p>{redes_html()}</div>
-    <div><p class="footer-title">Soluções</p><ul class="footer-links">{sol}</ul></div>
-    <div><p class="footer-title">Ocasiões e catálogo</p><ul class="footer-links">{ocas}</ul></div>
-    <div><p class="footer-title">TaMa</p><ul class="footer-links"><li><a href="/sobre/">Sobre</a></li><li><a href="/blog/">Conteúdos</a></li><li><a href="/privacidade/">Privacidade</a></li><li><button class="link-btn" type="button" data-consent-open>Cookies</button></li></ul></div>
-    <div><p class="footer-title">Contato</p><ul class="footer-links">{contact_col}</ul></div>
-  </div>
-  <div class="wrap footer-bottom">
-    <div class="left">{SELO}<span>© {date.today().year} TaMa Creative{(' · ' + empresa) if empresa else ''}</span></div>
-    <span>{NOTE_RODAPE}</span>
+    wa = (f'<a class="btn fp-btn-line" href="https://wa.me/{WA}" data-track="whatsapp_click" data-track-label="rodape" rel="noopener">{BALAO}WhatsApp</a>'
+          if WA else '')
+    return f'''<footer class="site-footer fp">
+  <div class="fp-in">
+    <div class="fp-cta">
+      <p class="fp-kicker">Vamos criar algo juntos?</p>
+      <h2 class="fp-title">Sua próxima ideia merece acontecer.</h2>
+      <p class="fp-sub">Brindes, kits e experiências que conectam marcas e pessoas.</p>
+      <div class="fp-actions"><a class="btn btn-wine" href="/solicitar-proposta/{('?tipo=' + tipo) if tipo else ''}" data-track="cta_solicitar_proposta" data-track-label="rodape">Solicitar proposta {SETA_DIAG}</a>{wa}</div>
+    </div>
+    <div class="fp-mid">
+      <div class="footer-brand"><a class="brand" href="/" aria-label="TaMa Creative, página inicial">{LOGO_DECOR}</a>
+        <p>Curadoria de produtos, personalização e soluções para momentos que fazem a diferença.</p>{redes_html()}</div>
+      <nav class="fp-explore" aria-labelledby="fp-explore-t"><p class="footer-title" id="fp-explore-t">Explore</p><ul class="footer-links">{explore}</ul></nav>
+    </div>
+    <div class="fp-bottom">
+      <span>© {date.today().year} TaMa Creative{(' · ' + empresa) if empresa else ''}</span>
+      <span class="fp-legal"><a href="/privacidade/">Privacidade</a><span aria-hidden="true"> · </span><button class="link-btn" type="button" data-consent-open>Cookies</button></span>
+    </div>
+    <p class="fp-note">Imagens ilustrativas. Produtos e personalização sujeitos à confirmação na proposta.</p>
   </div>
 </footer>'''
 
@@ -1456,7 +1602,7 @@ GUIAS = {
 }
 
 
-def guias_block(chave, title='Guias para decidir com segurança', intro='Conteúdos da TaMa sobre como escolher, o que incluir e como respeitar as regras de quem recebe.'):
+def guias_block(chave, title='Leituras para escolher melhor', intro='Conteúdos da TaMa sobre como escolher, o que incluir e como respeitar as regras de quem recebe.'):
     """Artigos do blog relacionados à página (só os publicados; some quando nenhum estiver no ar)."""
     por_slug = {a['slug']: a for a in blog.ARTS if not a.get('noindex')}
     arts = [por_slug[s] for s in GUIAS.get(chave, []) if s in por_slug]
@@ -1472,13 +1618,11 @@ def guias_block(chave, title='Guias para decidir com segurança', intro='Conteú
 </section>'''
 
 
-def end_cta(title='Vamos dar forma à sua ideia?', text='Conte a ocasião, o público, a quantidade e a data: a TaMa responde com uma proposta de peças, personalização e condições.', tipo=None, eyebrow='Próximo passo', label='Solicitar proposta'):
-    """Fechamento de todas as páginas, sempre com a mesma estrutura: eyebrow, título em forma de pergunta, uma frase de
-    apoio e dois botões (Solicitar proposta e WhatsApp)."""
-    return f'''<section class="end-cta" aria-labelledby="cta-t">
-  <div class="wrap"><p class="eyebrow light">{eyebrow}</p><h2 id="cta-t">{title}</h2><p>{text}</p>
-  <div class="actions" style="justify-content:center">{cta_link(label, tipo=tipo, cls='btn btn-light', track_label='end-cta')}{wa_button('btn btn-glass')}</div></div>
-</section>'''
+def end_cta(title='Vamos conversar sobre o seu projeto?', text='Conte a ocasião, o público, a quantidade e a data. A TaMa responde com uma proposta.', tipo=None, eyebrow='Próximo passo', label='Solicitar proposta', vitrine=''):
+    """Fechamento das páginas: desde 10/11/2026 o convite fica só no rodapé premium (a seção "Próximo passo" repetia o
+    mesmo pedido logo acima dele). Fica a função para as chamadas existentes: ela só marca o tipo de pedido da página,
+    que o rodapé usa no botão "Solicitar proposta" (?tipo=...)."""
+    return f'<!--cta-tipo:{tipo}-->' if tipo else ''
 
 
 def wa_button(cls='btn btn-line', text='Conversar no WhatsApp'):
@@ -1676,13 +1820,12 @@ def shell(page, body):
 <meta name="description" content="{esc(page['description'])}">
 {canonical}
 <meta name="robots" content="{robots}">
-<link rel="preload" href="/fonts/dm-sans-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/fonts/playfair-display-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/sora-latin.woff2" as="font" type="font/woff2" crossorigin>
 {page.get('preload', '')}
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<meta name="theme-color" content="#FAF7F2">
+<meta name="theme-color" content="#FFFFFF">
 <meta property="og:type" content="{page.get('og_type', 'website')}">
 <meta property="og:locale" content="pt_BR">
 <meta property="og:site_name" content="TaMa Creative">
@@ -1708,7 +1851,7 @@ def shell(page, body):
 {crumbs(page['trail']) if page.get('trail') and not page.get('crumbs_inline') else ''}
 {body}
 </main>
-{footer()}
+{footer((re.search(r'<!--cta-tipo:([a-z-]+)-->', body) or [None, None])[1])}
 {DIALOGS.replace('{ARROW}', ARROW).replace('{LB_EYEBROW}', NOTA_TAMA_CURTA)}
 {wa_float}
 {consent}
@@ -1739,7 +1882,7 @@ ASSURANCES = f'''<ul class="garantias" aria-label="Como a TaMa trabalha">
 # marcas fictícias (Elo, Pulso, Arco) e caixas fora do bordô, para o cliente ver a marca dele, não a da TaMa.
 # As quebras de linha seguem o mockup; cada metade cabe numa linha mesmo no cartão mais estreito (~225 px, tablet).
 SECOES = SITE_DADOS.get('secoes') or {}
-FRENTES = [(f['link'], f['imagem'], f.get('posicao') or 'center', tuple(f['titulo']), tuple(f['texto']), f['chamada'])
+FRENTES = [(f['link'], f['imagem'], f.get('posicao') or 'center', tuple(f['titulo']), tuple(f['texto']), f['chamada'], f.get('alt') or '')
            for f in (SECOES.get('home-frentes') or {}).get('itens') or []]   # site.json › secoes › home-frentes (inventário › Páginas › Home)
 
 # /v2/: home da proposta 01 ("Soluções compactas"), referência docs/proposta-01/home-aprovada.png e medidas em
@@ -1850,14 +1993,22 @@ def v2_catalogo():
 </section>'''
 
 
-def v2_faq():
+def v2_faq(leituras=False):
     meio = (len(V2_FAQ) + 1) // 2
     col = lambda itens: ''.join(f'<details class="t-faq-item"><summary>{q}{v2_icone("mais", "t-mais")}</summary><p>{a}</p></details>' for q, a in itens)
+    extra = ''
+    if leituras:   # home: os guias do blog entram como "Leia também", no lugar de uma seção própria
+        por_slug = {a['slug']: a for a in blog.ARTS if not a.get('noindex')}
+        links = ''.join(f'<li><a class="link" href="{por_slug[s]["path"]}">{esc(por_slug[s].get("breadcrumb") or por_slug[s]["title"])} {ARROW}</a></li>'
+                        for s, _img in V2_GUIAS if s in por_slug)
+        if links:
+            extra = f'<div class="t-faq-read"><p class="eyebrow">Leia também</p><ul role="list">{links}</ul><a class="link" href="/blog/">Todos os guias {ARROW}</a></div>'
     return f'''<section class="t-faq" aria-labelledby="t-faq-t">
   <div class="wrap">
-    <h2 id="t-faq-t" class="t-h2 t-h2-sm">{arc("t-petala")}Perguntas frequentes</h2>
+    <h2 id="t-faq-t" class="t-h2 t-h2-sm">Perguntas frequentes</h2>
     <p class="t-sub">Respostas curtas para as dúvidas mais comuns sobre nossos brindes e processos.</p>
     <div class="t-faq-cols"><div>{col(V2_FAQ[:meio])}</div><div>{col(V2_FAQ[meio:])}</div></div>
+    {extra}
   </div>
 </section>'''
 
@@ -1889,7 +2040,7 @@ def frentes_section(titulo_visivel=False):
         f'    <a class="frente-card" href="{href}">{picture(img, "", sizes, style=f"object-position:{pos}")}'
         f'<div class="frente-info"><h3>{esc(t[0])} <br>{esc(t[1])}</h3><p>{esc(d[0])} <br>{esc(d[1])}</p>'
         f'<span class="frente-link">{esc(cta)} {ARROW}</span></div></a>'
-        for href, img, pos, t, d, cta in FRENTES)
+        for href, img, pos, t, d, cta, *_ in FRENTES)
     return f'''<section class="frentes" aria-labelledby="frentes-t">
   {'<div class="wrap"><h2 id="frentes-t" class="t-h2 t-frentes-title">O que a TaMa faz</h2></div>' if titulo_visivel else '<h2 id="frentes-t" class="visually-hidden">O que a TaMa faz</h2>'}
   <div class="wrap frentes-grid">
@@ -1958,23 +2109,264 @@ def hero_carousel(slides=None, label='Destaques da TaMa Creative', assurances=Tr
 {strip}'''
 
 
+# ------------------------------------------------------------------ home (redesenho de 11/2026)
+# Cena principal: a garrafa térmica real do catálogo, recortada do fundo (tools/recortar.py) e trocada por foto ao
+# escolher a cor. Só entram as cores com recorte limpo (img/recortes/); as demais seguem na página do produto.
+HERO_PRODUTO = 'garrafa-termica'
+HERO_CUT_SIZES = '(max-width: 700px) 70vw, 420px'   # mesma medida da imagem da cena (home_hero)
+
+
+def hero_cores():
+    c = CATALOGO_BY.get(HERO_PRODUTO)
+    if not c:
+        return None, []
+    cores = []
+    for nome, hexv, *resto in c['cores']:
+        foto = resto[0] if resto else None
+        rec = f'recorte-{foto}' if foto else None
+        if rec in IMAGES:
+            cores.append((nome, hexv, rec))
+    return c, cores
+
+
+def home_hero():
+    """Abertura da home no padrão da prévia aprovada ("Estudo de movimento / 03"), ampliada para seis peças reais do
+    catálogo (garrafa, agenda, caneta, polo, caneca e taça), recortadas do fundo (img/recortes/). Cada cena tem palavra
+    revelada letra a letra, entrada e efeito próprios (órbitas, folhas, assinatura, costura, vapor, brilho), reflexo de luz
+    no formato da peça e cores que trocam a foto real. Troca a cada 7 s, com pausa e escolha manual. Sem JavaScript, a
+    primeira cena fica parada e completa."""
+    temporada = (f'<a class="tm-hero-season" href="/brindes-de-fim-de-ano/" data-track="season_click" data-track-label="home-hero">'
+                 f'<span class="tm-dot" aria-hidden="true"></span>Fim de ano: presentes com a sua marca {ARROW}</a>' if SEASON == 'fim-de-ano' else '')
+    copy = f'''<div class="ms-copy">
+      <p class="eyebrow">Brindes, uniformes, kits e eventos</p>
+      <h1 id="tm-hero-t" class="ms-title">Uma ideia. <span>Muitas formas</span> de <em>marcar.</em></h1>
+      <p class="ms-lede">Brindes, uniformes, kits, eventos e peças para hotelaria com a identidade da sua empresa. A TaMa seleciona, personaliza e coordena tudo até a entrega.</p>
+      <div class="actions">{cta_link('Solicitar proposta', cls='btn btn-wine', track_label='home-hero')}<a class="btn btn-line" href="/catalogo/" data-track="home_hero_catalogo">Explorar o catálogo</a></div>
+      <div class="ms-detail"><span class="ms-line" aria-hidden="true"></span><div><small>Personalidade em cada detalhe</small><strong>Do primeiro olhar ao uso de todo dia.</strong></div></div>
+      {temporada}
+    </div>'''
+    cenas = []
+    for cls, slug, palavra, cat, mk, rotulo, curto in HERO_CENAS:
+        m = CATALOGO_BY.get(slug)
+        if not m:
+            continue
+        cores = [(nome, hexv, f'recorte-{resto[0]}') for nome, hexv, *resto in m['cores']
+                 if resto and f'recorte-{resto[0]}' in IMAGES and nome not in HERO_CORES_FORA.get(cls, ())]
+        cores.sort(key=lambda x: x[0] != HERO_COR_INICIAL.get(cls))   # cor de abertura da cena (as demais na ordem do catálogo)
+        if not cores:
+            continue
+        cenas.append((cls, m, cores, palavra, cat, mk, rotulo, curto))
+    if not cenas:
+        return f'<section class="ms-hero" aria-labelledby="tm-hero-t"><div class="wrap ms-hero-in">{copy}</div></section>'
+    sizes = '(max-width: 700px) 70vw, 420px'
+    deco = {
+        'garrafa': '<div class="ms-halo"></div><div class="ms-arc"></div>',
+        'agenda': '<div class="ms-halo"></div><div class="ms-sheet"></div><div class="ms-sheet ms-sheet2"></div><div class="ms-lines">' + ''.join(f'<i style="--i:{i}"></i>' for i in range(8)) + '</div>',
+        'caneta': ('<div class="ms-halo"></div><svg class="ms-sign" viewBox="0 0 600 220" preserveAspectRatio="none"><path pathLength="1" d="M20 150c40-60 70-90 95-70s-30 90 5 80 60-120 90-110-20 110 15 100 50-80 80-75 0 70 35 60 70-55 110-50 60 30 130 0"/></svg>'
+                   '<div class="ms-baseline"></div>'),
+        'polo': '<div class="ms-halo"></div><svg class="ms-stitch" viewBox="0 0 400 400"><circle pathLength="1" cx="200" cy="200" r="190"/></svg><div class="ms-weave"></div>',
+        'caneca': ('<div class="ms-halo"></div><svg class="ms-steam" viewBox="0 0 120 160">'
+                   + ''.join(f'<path style="--i:{i}" d="M{30 + i * 30} 150c-14-22 14-36 0-58s14-36 0-58"/>' for i in range(3)) + '</svg><div class="ms-saucer"></div>'),
+        'taca': '<div class="ms-halo"></div><div class="ms-bubbles">' + ''.join(f'<i style="--i:{i};--x:{(i * 37) % 100}%"></i>' for i in range(14)) + '</div><div class="ms-glint"></div>',
+    }
+    html, swg = '', ''
+    for i, (cls, m, cores, palavra, cat, mk, rotulo, curto) in enumerate(cenas):
+        nome0, _h, rec0 = cores[0]
+        alt = f'{m["nome"]} na cor {nome0.lower()}, com a marca TaMa'
+        img = cutout(rec0, alt, sizes, eager=(i == 0), cls='ms-img', attrs=f' data-alt-base="{esc(m["nome"])}"')
+        if i:   # as cenas seguintes já chegam carregadas (prioridade baixa): nenhuma cena aparece vazia na troca
+            img = img.replace(' loading="lazy"', ' loading="eager" fetchpriority="low"')
+        letras = ''.join(f'<span style="--l:{k}">{ch}</span>' for k, ch in enumerate(palavra))
+        html += (f'<div class="ms-scene ms-{cls}{" is-active" if i == 0 else ""}" data-scene="{i}" aria-hidden="{str(i != 0).lower()}">'
+                 f'<div class="ms-deco" aria-hidden="true">{deco.get(cls, "")}</div><div class="ms-floor" aria-hidden="true"></div>'
+                 f'<div class="ms-anchor"><div class="ms-tilt"><div class="ms-motion"><div class="ms-float">{img}<span class="ms-shine" aria-hidden="true"></span></div></div></div></div>'
+                 f'<div class="ms-word ms-word-line" aria-hidden="true">{letras}</div>'
+                 f'<span class="ms-marker ms-left" aria-hidden="true">{mk[0]}</span><span class="ms-marker ms-right" aria-hidden="true">{mk[1]}</span></div>')
+        if len(cores) > 1:
+            bts = ''
+            for j, (nome, hexv, rec) in enumerate(cores):
+                mm = IMAGES[rec]
+                webp = ', '.join(f'/img/{mm["stem"]}-{w}.webp {w}w' for w in mm['widths'])
+                avif = ', '.join(f'/img/{mm["stem"]}-{w}.avif {w}w' for w in mm['widths'])
+                bts += (f'<button type="button" style="--c:{hexv}" aria-pressed="{str(j == 0).lower()}" data-cor="{esc(nome)}" data-cor-slug="{color_slug(nome)}" '
+                        f'data-webp="{webp}" data-avif="{avif}" aria-label="{esc(nome)}"></button>')
+            swg += (f'<div class="ms-swatches" data-ms-swatches="{i}" role="group" aria-label="Cores: {esc(m["nome"])}"{"" if i == 0 else " hidden"}>'
+                    f'<span aria-hidden="true">Cor</span>{bts}</div>')
+    dados = [{'n': m['nome'], 'c': cat, 'u': m['url'], 'a': cores[0][1]} for cls, m, cores, palavra, cat, mk, rotulo, curto in cenas]
+    first = cenas[0]
+    n = len(cenas)
+    return f'''<section class="ms-hero" aria-labelledby="tm-hero-t">
+  <div class="wrap ms-hero-in">
+    {copy}
+    <div class="ms-stage" id="ms-stage" data-ms-stage data-cenas="{esc(json.dumps(dados, ensure_ascii=False))}" role="region" aria-roledescription="carrossel" aria-label="Peças do catálogo em movimento" style="--accent:{first[2][0][1]}">
+      <div class="ms-spot" aria-hidden="true"></div>
+      <div class="ms-topline"><span><i class="ms-live" aria-hidden="true"></i>Coleção em movimento</span><span class="ms-note">Fotos reais · marca TaMa como exemplo</span></div>
+      {html}
+      <div class="ms-info"><div><small data-ms-cat>{first[4]}</small><strong data-ms-name>{esc(first[1]["nome"])}</strong></div>
+        <a href="{first[1]["url"]}?cor={color_slug(first[2][0][0])}" data-ms-link>Conheça a peça {ARROW}</a></div>
+      {swg}
+      <span class="ms-caption" data-ms-caption aria-hidden="true">01 — {n:02d}</span>
+      <div class="ms-ticker" aria-hidden="true"><span data-ms-progress></span></div>
+    </div>
+  </div>
+</section>'''
+
+
+# (classe, modelo, palavra, rótulo da cena, marcadores, rótulo do botão, nome curto): cenas da abertura, na ordem
+# pedida pelo cliente em 08/11/2026. A cor de destaque de cada cena é a da cor escolhida da peça.
+HERO_CENAS = [
+    ('garrafa', 'garrafa-termica', 'PRESENÇA.', '01 / Para acompanhar', ('Design para<br>acompanhar', 'Sua marca.<br>Em movimento.'), '01 / Presença', 'Garrafa'),
+    ('agenda', 'agenda', 'IDEIAS.', '02 / Para organizar', ('Espaço para<br>o próximo passo', 'Ideias que<br>ganham forma.'), '02 / Ideias', 'Agenda'),
+    ('caneta', 'caneta-executiva-esferografica', 'TRAÇO.', '03 / Para assinar', ('Cada traço<br>com a sua marca', 'Detalhe que<br>fica na mão.'), '03 / Traço', 'Caneta'),
+    ('polo', 'polo-masculina', 'EQUIPE.', '04 / Para vestir', ('Identidade<br>que se veste', 'Sua equipe.<br>Uma só marca.'), '04 / Equipe', 'Polo'),
+    ('caneca', 'caneca', 'PAUSA.', '05 / Para o dia a dia', ('Presente em<br>toda pausa', 'Do café<br>à reunião.'), '05 / Pausa', 'Caneca'),
+    ('taca', 'taca-de-vinho', 'BRINDE.', '06 / Para celebrar', ('Para celebrar<br>juntos', 'Cada brinde.<br>Uma lembrança.'), '06 / Brinde', 'Taça'),
+]
+
+
+HERO_COR_INICIAL = {'garrafa': 'Azul royal', 'agenda': 'Caramelo', 'caneta': 'Bordô', 'polo': 'Verde', 'caneca': 'Laranja', 'taca': 'Turquesa'}   # uma cor diferente em cada peça
+# Cores fora da apresentação porque a foto tem a marca em outro tamanho ou posição (a troca de cor mostraria o logo
+# "pulando"); continuam no catálogo. Conferido lado a lado em 08/11/2026.
+HERO_CORES_FORA = {}   # desde 10/11/2026 todas as cores de cada peça saem da mesma foto-base (logo igual em posição e tamanho)
+
+
+# Galeria de coleções, "faixas que abrem" (escolha do cliente em 08/11/2026, rodada 2): a abertura já mostra as peças
+# recortadas, então a galeria usa fotos ambientadas de cada categoria (capas do blog, img/blog/) em faixas verticais; a
+# faixa em foco abre e mostra nome, quantidade de modelos e a seta. No celular vira uma lista que abre uma foto por vez.
+# O segundo valor é o ponto de foco da foto (object-position). Uma foto própria em img/galeria/<categoria>.* (marca TaMa,
+# guia em docs/rebrand/FOTOS-GALERIA.md) substitui a capa do blog. Categoria sem foto usa a de estúdio do 1º modelo.
+GALERIA_FOTOS = {'garrafas-copos': ('blog-capa-garrafas-personalizadas', '27% 62%'), 'vestuario': ('blog-capa-polo-personalizada', '66% 60%'),
+                 'canetas-escritorio': ('blog-capa-canetas-personalizadas', '62% 42%'), 'bolsas-embalagens': ('blog-capa-sacolas-personalizadas', '56% 42%'),
+                 'tecnologia': ('blog-capa-brindes-tecnologicos', '50% 45%'), 'cozinha-bar': ('blog-capa-tacas-personalizadas-formatos', '42% 40%'),
+                 'acessorios': ('blog-capa-necessaires-personalizadas', '60% 45%'), 'casa-bem-estar': ('blog-capa-jogos-americanos', '55% 52%'),
+                 'hotelaria-gastronomia': ('blog-capa-cardapios-personalizados', '60% 40%')}
+# ponto de foco das fotos próprias (img/galeria/); ajuste aqui se a peça ficar cortada na faixa fechada
+GALERIA_FOCO = {'garrafas-copos': '40% 50%', 'vestuario': '38% 55%', 'canetas-escritorio': '58% 45%', 'bolsas-embalagens': '46% 50%',
+                'tecnologia': '38% 50%', 'cozinha-bar': '44% 55%', 'acessorios': '42% 55%', 'casa-bem-estar': '60% 58%',
+                'hotelaria-gastronomia': '42% 60%'}   # fotos de 10/11/2026 (tools/galeria_fotos.py)
+GALERIA_ORDEM = ['garrafas-copos', 'vestuario', 'canetas-escritorio', 'bolsas-embalagens', 'tecnologia', 'cozinha-bar', 'acessorios', 'casa-bem-estar', 'hotelaria-gastronomia']
+
+
+def home_galeria():
+    itens = ''
+    cats = [k for k in GALERIA_ORDEM if k in CAT_PROD] + [k for k in CAT_PROD if k not in GALERIA_ORDEM]
+    cats = [k for k in cats if any(c['categoria'] == k for c in CATALOGO)]
+    total = len(cats)
+    for i, k in enumerate(cats):
+        mods = [c for c in CATALOGO if c['categoria'] == k]
+        foto, foco = GALERIA_FOTOS.get(k, ('', '50% 50%'))
+        if 'galeria-' + k in IMAGES:   # foto própria (img/galeria/<categoria>.*) tem prioridade sobre a capa do blog
+            foto, foco = 'galeria-' + k, GALERIA_FOCO.get(k, '50% 50%')
+        if foto not in IMAGES:
+            foto, foco = mods[0]['img'], '50% 50%'
+        img = picture(foto, '', '(max-width: 760px) 92vw, 62vw', cls='tm-strip-img', style=f'object-position:{foco}')
+        n = f'{i + 1:02d}'
+        itens += (f'<li class="tm-strip"{" data-on" if i == 0 else ""}><a class="tm-strip-a" href="/catalogo/?categoria={k}#catalogo">{img}'
+                  f'<span class="tm-strip-v" aria-hidden="true"><span class="tm-strip-n">{n}</span>{CAT_PROD[k]}</span>'
+                  f'<span class="tm-strip-cap"><span class="tm-strip-n">{n} / {total:02d}</span><span class="tm-strip-name">{CAT_PROD[k]}</span>'
+                  f'<span class="tm-strip-c">{len(mods)} modelos no catálogo</span><span class="tm-strip-go" aria-hidden="true">{ARROW}</span></span></a></li>')
+    return f'''<section class="section tm-gallery" aria-labelledby="tm-gal-t">
+  <div class="wrap">
+    <div class="tm-gal-head" data-reveal><div><p class="eyebrow">Galeria de coleções</p><h2 id="tm-gal-t" class="tm-h2">Encontre a sua <em>próxima ideia.</em></h2></div>
+      <a class="tm-gal-all" href="/catalogo/">Ver o catálogo completo {ARROW}</a></div>
+    <ul class="tm-strips" role="list" data-strips aria-label="Categorias do catálogo">{itens}</ul>
+  </div>
+</section>'''
+
+
+def home_frentes():
+    """As cinco frentes da TaMa (proposta C, escolhida em 08/11/2026): cinco arcos de foto lado a lado e uma única linha
+    bordô que passa pelos cinco na mesma altura, com um ponto em cada frente ("uma linguagem"). A linha se desenha
+    quando a seção aparece. Foto de site.json › secoes › home-frentes (inventário) e nome oficial de SOLUCOES."""
+    fotos = {f[0]: (f[1], f[2], f[6], ' '.join(x for x in f[4] if x)) for f in FRENTES}
+    itens = ''
+    for i, (href, nome, linha) in enumerate(SOLUCOES):
+        img, pos, alt, texto = fotos.get(href, (None, 'center', '', ''))
+        # a foto de cada arco pode ser trocada sozinha (site.json › secoes › home-frentes › imagem, 3:5), com o enquadramento
+        # em "posicao"; o texto sob o arco vem do mesmo item (o do menu, em SOLUCOES, fica como reserva)
+        foto = picture(img, alt, '(max-width: 560px) 72vw, (max-width: 860px) 40vw, 250px', style=f'object-position:{pos}') if img in IMAGES else ''
+        itens += (f'<li class="tm-front" style="--i:{i}" data-reveal><a href="{href}" class="tm-front-a">'
+                  f'<span class="tm-front-frame"><span class="tm-front-media">{foto}</span><span class="tm-front-dot" aria-hidden="true"></span></span>'
+                  f'<span class="tm-front-copy"><h3><span class="tm-front-n" aria-hidden="true">{i + 1:02d} —</span>&nbsp;{nome}</h3>'
+                  f'<span class="tm-front-d">{esc(texto or linha)}</span></span></a></li>')
+    return f'''<section class="section tm-fronts" aria-labelledby="tm-fronts-t">
+  <div class="wrap">
+    <div class="tm-head" data-reveal><p class="eyebrow">O que a TaMa faz</p><h2 id="tm-fronts-t" class="tm-h2">Cinco frentes, <em>uma linguagem.</em></h2></div>
+    <div class="tm-fronts-scroll" id="tm-fronts-lista"><ul class="tm-fronts-grid" role="list" data-fronts>{itens}</ul></div>
+    <div class="tm-fronts-nav" data-fronts-nav><button class="btn-circle" type="button" data-dir="-1" aria-controls="tm-fronts-lista" aria-label="Frente anterior"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button><button class="btn-circle" type="button" data-dir="1" aria-controls="tm-fronts-lista" aria-label="Próxima frente"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div>
+    <div class="tm-fronts-foot"><p>Do brinde do dia a dia ao evento completo: a mesma curadoria e a mesma atenção à sua marca em cada peça.</p>
+      <a class="tm-gal-all" href="/solicitar-proposta/">Solicitar proposta {ARROW}</a></div>
+  </div>
+</section>'''
+
+
+def home_garantias():
+    """Faixa curta logo abaixo da abertura: compromissos que o site já afirma (sem números, clientes ou prazos)."""
+    itens = [('Arte aprovada por você', 'antes de qualquer produção'), ('Proposta completa', 'peças, personalização e condições'),
+             ('Tudo em um pedido', 'brindes, kits, uniformes e eventos'), ('Coordenação até a entrega', 'com os fornecedores de cada peça')]
+    lis = ''.join(f'<li><strong>{t}</strong><span>{d}</span></li>' for t, d in itens)
+    return f'<section class="tm-assure" aria-label="Como a TaMa trabalha"><div class="wrap"><ul class="tm-assure-list" role="list">{lis}</ul></div></section>'
+
+
+def home_kits():
+    """Kits na home: três composições grandes, sem cartão (no espírito da galeria), e os contextos como atalhos."""
+    kits = [k for k in HOME_KITS if kit_foto(k[0])][:3]
+    if not kits:
+        return ''
+    itens = ''
+    for i, (slug, nome, desc) in enumerate(kits):
+        foto, marca, cor = kit_foto(slug)
+        alt = f'{nome}: {desc}' + (f' Marca fictícia {marca}; {cor}.' if marca else '')
+        interesse = nome if nome.startswith('Kit') else 'Kit ' + nome
+        itens += (f'<li class="tm-kit" data-reveal><a class="tm-kit-a" href="/solicitar-proposta/?tipo=kits&amp;interesse={urllib.parse.quote(interesse)}" '
+                  f'data-track="cta_solicitar_proposta" data-track-label="home-kit-{slug}" data-interesse="{esc(interesse)}">'
+                  f'<span class="tm-kit-media">{picture(foto, alt, "(max-width: 760px) calc(100vw - 32px), 420px")}</span>'
+                  f'<h3>{esc(nome)}</h3><span class="tm-kit-d">{esc(desc)}</span><span class="tm-kit-go">Pedir este kit {ARROW}</span></a></li>')
+    contextos = ''.join(f'<li><a class="chip" href="/kits-corporativos/#{a}">{esc(t)}</a></li>' for a, t, _l, _k in KITS_TIPOS)
+    return f'''<section class="section ivory tm-kits2" aria-labelledby="tm-kits-t">
+  <div class="wrap">
+    <div class="tm-head tm-head-row" data-reveal><div><p class="eyebrow">Kits corporativos</p><h2 id="tm-kits-t" class="tm-h2">Composições completas, <em>prontas para ajustar.</em></h2>
+      <p class="tm-sub">Caixa, cartão e peças com a sua marca. Troque peças, cores e quantidade na proposta.</p></div>
+      <a class="link" href="/kits-corporativos/">Ver todos os kits {ARROW}</a></div>
+    <ul class="tm-kits2-grid" role="list">{itens}</ul>
+    <nav class="tm-kits2-ctx" aria-label="Kits por contexto"><ul class="tm-chips" role="list">{contextos}</ul></nav>
+    <p class="note">{nota_kits(kits)}</p>
+  </div>
+</section>'''
+
+
+def home_vitrine_cores():
+    """Fecho da home: as cores reais da garrafa lado a lado (recortes), a cor dos produtos como expressão da marca."""
+    c, cores = hero_cores()
+    if len(cores) < 3:
+        return ''
+    itens = ''.join(f'<li style="--tint:{hexv}">{cutout(rec, "", "70px")}</li>' for _n, hexv, rec in cores)
+    return f'<ul class="tm-lineup" role="list" aria-hidden="true">{itens}</ul>'
+
+
 def page_home():
-    """Home da proposta 01 ("Soluções compactas"), aprovada pela cliente em 06/11/2026 (antes publicada em /v2/).
-    Medidas e decisões: docs/proposta-01/ (VISUAL.md, AJUSTES.md, AUDITORIA.md); estilos em body.v2."""
-    hero_img = v2_hero_dados()[0]
+    """Home do redesenho de 11/2026: cena com produto real, frentes, categorias, produtos, kits, processo, compromissos,
+    conteúdos, perguntas e chamada final (docs/REDESIGN.md)."""
+    c, cores = hero_cores()
+    preload = ''
+    if cores:
+        m = IMAGES[cores[0][2]]
+        srcs = ', '.join(f'/img/{m["stem"]}-{w}.avif {w}w' for w in m['widths'])
+        preload = f'<link rel="preload" as="image" type="image/avif" imagesrcset="{srcs}" imagesizes="{HERO_CUT_SIZES}" fetchpriority="high">'
     return {
-        'path': '/', 'title': 'Brindes corporativos, uniformes e kits | TaMa Creative', 'og': hero_img, 'body_class': 'v2',
+        'path': '/', 'title': 'Brindes corporativos, uniformes e kits | TaMa Creative', 'og': 'kits', 'body_class': 'home',
         'og_title': 'TaMa Creative · ' + ASSINATURA.rstrip('.'),
         'description': 'Brindes, uniformes, kits, eventos corporativos e peças de hotelaria com a marca da sua empresa. A TaMa seleciona, personaliza e coordena da escolha das peças à entrega.',
         'assunto': 'um projeto para a minha empresa',
-        'preload': preload_image(hero_img, V2_HERO_SIZES),
-        'body': v2_hero() + f'''
-{frentes_section(titulo_visivel=True)}
-{v2_catalogo()}
-{process_section('Como trabalhamos', 'Do briefing à entrega', 'Seis etapas, com a peça, a personalização e a arte aprovadas por você antes da produção.', 'home-como-t')}
-{v2_faq()}
-{v2_guias()}
-{end_cta()}''',
+        'preload': preload,
+        'body': home_hero() + f'''
+{home_garantias()}
+{home_galeria()}
+{home_frentes()}
+{home_kits()}
+{process_section('Como trabalhamos', 'Do briefing à entrega.', 'Seis etapas, com a peça, a personalização e a arte aprovadas por você antes da produção.', 'home-como-t')}
+{v2_faq(leituras=True)}
+{end_cta('Qual é a próxima ocasião da sua marca?', vitrine=home_vitrine_cores())}''',
     }
 
 
@@ -2037,13 +2429,13 @@ def page_brindes():
     </div>
   </div>
 </section>
-{process_section('Como trabalhamos', 'Do briefing à entrega do seu brinde', 'Seis etapas, com a peça, a personalização e a arte aprovadas por você antes da produção.', 'brindes-como-t')}
+{process_strip()}
 ''' + faq([
             ('Qual é a quantidade mínima?', 'Varia conforme a peça e a técnica de personalização. Informe a quantidade aproximada no pedido: a proposta indica as quantidades viáveis e alternativas.'),
             ('Quanto tempo leva?', 'Depende da produção e da personalização de cada peça. Por isso pedimos a data desejada já no primeiro contato e confirmamos o prazo na proposta.'),
             ('Vocês têm catálogo com preços?', 'O catálogo mostra modelos de referência, sem preços. A curadoria parte do seu objetivo, do público e do investimento disponível, e a proposta traz peças, quantidades e condições comerciais.'),
             ('Posso usar a arte da minha empresa?', 'Sim. A marca da sua empresa é aplicada nas peças pelos fornecedores, e a arte é enviada para a sua aprovação antes da produção.'),
-        ], title='Perguntas sobre brindes') + guias_block('brindes') + end_cta('Vamos escolher os brindes da sua marca?', 'Conte para quem são, a ocasião, a quantidade e a data: a TaMa propõe as peças, a personalização e a apresentação.', tipo='brindes'),
+        ], title='Perguntas sobre brindes') + guias_block('brindes') + end_cta('Vamos escolher os seus brindes?', 'Conte para quem são, a ocasião, a quantidade e a data: a TaMa propõe as peças, a personalização e a apresentação.', tipo='brindes'),
     }
 
 
@@ -2101,12 +2493,6 @@ def kits_hero(trail):
 
 
 # ícone de cada tipo de kit (âncora de kits.json); tipo novo cadastrado no admin usa o ícone de presente
-KITS_ICONES = {'kits-escritorio': 'caderno', 'kits-cozinha': 'talheres', 'kits-boas-vindas': 'acena', 'kits-executivo': 'maleta',
-               'kits-pausa': 'xicara', 'kits-fim-de-ano': 'taca'}
-
-
-def kits_atalhos():
-    return [(titulo, f'#{sid}', KITS_ICONES.get(sid, 'presente')) for sid, titulo, _l, _k in KITS_TIPOS]
 
 
 def page_kits():
@@ -2119,16 +2505,11 @@ def page_kits():
         'service': {'key': 'kits', 'name': 'Kits corporativos personalizados', 'type': 'Kits corporativos'},
         'preload': preload_image(topo, FOTO_HERO_SIZES),   # mesma imagem e sizes da foto do cabeçalho
         'crumbs_inline': True,   # o caminho fica sobre a área creme da foto, logo abaixo do cabeçalho do site
-        'body': kits_hero(trail) + '\n' + atalhos('Um kit para cada momento.', kits_atalhos(), 'kits-atalhos-t', linha=False) + season_callout('kits') + f'''
-<section class="section kits-intro" id="kits" aria-labelledby="kits-p-t" style="padding-top:clamp(24px,3vw,40px)">
+        'body': kits_hero(trail) + f'''
+{kits_grade_html()}
+<section class="section ivory" aria-labelledby="comp-t">
   <div class="wrap">
-    <div class="section-head"><p class="eyebrow">Kits corporativos</p><h2 id="kits-p-t" class="section-title">Kits de referência para adaptar à sua marca</h2><p class="muted">Composições organizadas por tipo de kit. A TaMa ajusta peças, embalagem e cartão ao seu público, à ocasião e ao investimento, sempre com a marca da sua empresa.</p></div>
-  </div>
-</section>
-{kits_tipos_html()}
-<section class="section on-dark" aria-labelledby="comp-t">
-  <div class="wrap">
-    <div class="section-head"><p class="eyebrow light">Como compomos</p><h2 id="comp-t" class="section-title">Três camadas em todo kit</h2><p class="muted">Uma regra simples para que o kit seja usado, lembrado e reconhecido.</p></div>
+    <div class="section-head"><p class="eyebrow">Como compomos</p><h2 id="comp-t" class="section-title">Três camadas em todo kit</h2><p class="muted">Uma regra simples para que o kit seja usado, lembrado e reconhecido.</p></div>
     <div class="cols-3">
       <div class="item" style="grid-template-columns:1fr">{arc()}<div><h3>Uma peça de uso diário</h3><p>Garrafa, caderno ou objeto de mesa. É o que faz a marca aparecer todo dia.</p></div></div>
       <div class="item" style="grid-template-columns:1fr">{arc()}<div><h3>Uma peça de afeto</h3><p>Manta, caneca ou um mimo de casa. É o que faz a pessoa lembrar de quem enviou.</p></div></div>
@@ -2136,7 +2517,7 @@ def page_kits():
     </div>
   </div>
 </section>
-{process_section('Do briefing à entrega', 'Como montamos o seu kit', 'Seis etapas, com a composição, a embalagem e a arte aprovadas por você antes da produção.', 'kit-m-t', verde=False)}
+{process_strip()}
 ''' + faq([
             ('O que colocar em um kit de boas-vindas?', 'Uma combinação que funciona: uma peça de uso diário (garrafa, caderno), um mimo que gere afeto (caneca, manta) e um material sobre a cultura da empresa, como uma carta de boas-vindas. A proposta ajusta a composição ao seu público.'),
             ('Dá para ter versões diferentes do mesmo kit?', 'Sim. A proposta pode prever versões por área ou ocasião, mantendo a mesma linguagem visual.'),
@@ -2150,7 +2531,7 @@ def page_kits():
 # (imagem, alt, eyebrow, linhas do título, destaque em itálico, apoio). Todas as fotos com marcas fictícias.
 OCC_HEROS = {k: (c['imagem'], c['alt'], esc(c['eyebrow']), [esc(x) for x in c['linhas']],
                  [esc(x) for x in c['destaque']] if len(c['destaque']) > 1 else esc(c['destaque'][0]), esc(c['texto']))
-             for k, c in (SECOES.get('ocasioes') or {}).items()}   # site.json › secoes › ocasioes (inventário › Páginas › Ocasiões)
+             for k, c in (SECOES.get('ocasioes') or {}).items() if k not in OCASIOES_FORA}   # site.json › secoes › ocasioes (inventário › Páginas › Ocasiões)
 
 def occ_hero(trail, k):
     img, alt, eyebrow, linhas, destaque, desc = OCC_HEROS[k]
@@ -2171,7 +2552,7 @@ def page_curadoria():
                  'itemListElement': [{'@type': 'ListItem', 'position': i + 1, 'name': c['nome'], 'url': SITE + (c.get('url') or '/catalogo/#' + c['slug'])} for i, c in enumerate(pecas)]}
     return {
         'path': '/brindes-por-ocasiao/', 'title': 'Brindes corporativos por ocasião | TaMa Creative',
-        'description': 'Ideias de brindes e presentes corporativos para boas-vindas, eventos, fim de ano, reconhecimento e lançamentos, com a marca da sua empresa. Monte a seleção.',
+        'description': 'Ideias de brindes e presentes corporativos para boas-vindas, eventos, presentes executivos, campanhas e fim de ano, com a marca da sua empresa. Monte a seleção.',
         'trail': [('/', 'Início'), ('/brindes-por-ocasiao/', 'Brindes por ocasião')],
         'service': {'key': 'ocasioes', 'name': 'Brindes e presentes corporativos por ocasião', 'type': 'Brindes corporativos'},
         'assunto': 'brindes e presentes por ocasião',
@@ -2200,7 +2581,7 @@ def page_curadoria():
     <div class="actions"><a class="btn btn-wine" href="/catalogo/">Ver o catálogo {ARROW}</a><a class="btn btn-line" href="/kits-corporativos/">Ver os kits</a></div>
   </div>
 </section>
-{end_cta(tipo='brindes')}''',
+{end_cta('Qual ocasião vem por aí?', tipo='brindes')}''',
     }
 
 
@@ -2269,12 +2650,12 @@ def page_confeccoes():
     </dl>
   </div>
 </section>
-{process_section('Como trabalhamos', 'Da peça escolhida ao uniforme entregue', 'Seis etapas, com tecido, modelagem, grade de tamanhos e arte aprovados por você antes da produção.', 'conf-como-t', cls='')}
+{process_strip()}
 ''' + faq([
             ('Bordado ou estampa: qual escolher?', 'O bordado costuma durar mais e transmite sofisticação, por isso funciona bem em polos e uniformes. A estampa permite mais cores e áreas maiores, o que combina com camisetas de campanha e eventos.'),
             ('Qual é a quantidade mínima?', 'Varia conforme a peça, o tecido e a técnica de personalização. Informe quantas pessoas e a grade aproximada no pedido: a proposta indica as quantidades viáveis.'),
             ('As peças seguem as cores da empresa?', 'Envie as cores da marca (manual ou códigos) no pedido: a proposta indica os tecidos e as cores disponíveis mais próximas, aprovados antes da produção. As cores do site são referências visuais.'),
-        ], title='Perguntas sobre uniformes e confecções') + end_cta('Vamos vestir a sua equipe com a sua marca?', 'Conte quem vai vestir, em que ocasião e quantas pessoas: a TaMa propõe as peças, o tecido e a personalização.', tipo='confeccoes'),
+        ], title='Perguntas sobre uniformes e confecções') + end_cta('Vamos vestir a sua equipe?', 'Conte quem vai vestir, em que ocasião e quantas pessoas: a TaMa propõe as peças, o tecido e a personalização.', tipo='confeccoes'),
     }
 
 
@@ -2340,7 +2721,7 @@ def ativ_evento_link(label):
 
 def ativ_hero(trail):
     return cab_hero(trail, 'ativacoes', cta_link(tipo='ativacoes', track_label='ativacoes-head') + '<a class="btn btn-line" href="#formatos">Conhecer os formatos</a>',
-                    sizes=ATIV_HERO_SIZES) + '\n' + atalhos('Uma ação para cada encontro.', ativ_atalhos(), 'ativ-atalhos-t', linha=False)
+                    sizes=ATIV_HERO_SIZES) + '\n' + atalhos('Formatos de evento.', ativ_atalhos(), 'ativ-atalhos-t', linha=False)
 
 
 def ativ_atalhos():
@@ -2368,7 +2749,7 @@ def page_ativacoes():
 </section>
 <section class="section" aria-labelledby="ativ-inclui-t">
   <div class="wrap split" style="align-items:start">
-    <div class="stack" style="gap:12px"><p class="eyebrow">O que pode fazer parte</p><h2 id="ativ-inclui-t" class="section-title">Tudo o que a ação precisa, com a sua marca</h2><p class="muted">O escopo de cada evento (materiais, equipe, logística e regras do local ou do organizador) é definido com você e confirmado na proposta.</p></div>
+    <div class="stack" style="gap:12px"><p class="eyebrow">O que pode fazer parte</p><h2 id="ativ-inclui-t" class="section-title">O que pode entrar no seu evento</h2><p class="muted">O escopo de cada evento (materiais, equipe, logística e regras do local ou do organizador) é definido com você e confirmado na proposta.</p></div>
     <dl class="pack">
       <div><dt>Uniformes da equipe</dt><dd>Camisetas, polos, aventais e bonés. <a class="link" href="/confeccoes-personalizadas/">Ver uniformes e confecções</a></dd></div>
       <div><dt>Brindes e amostras</dt><dd>Peças para entregar ao público, do copo à ecobag. <a class="link" href="/catalogo/">Ver o catálogo</a></dd></div>
@@ -2378,7 +2759,7 @@ def page_ativacoes():
   </div>
 </section>
 {vitrine('ativacoes', 'ativ-pecas-t', more=('/catalogo/', 'Ver o catálogo completo'))}
-{process_section('Como planejamos', 'Da ideia ao dia da ação', 'O objetivo da ação, o formato (local, duração e público esperado) e os materiais entram já no briefing. O cronograma e a entrega dos materiais são combinados na proposta, com a arte aprovada por você antes da produção.', 'ativ-como-t')}
+{process_strip()}
 ''' + faq([
             ('Que tipo de evento vocês atendem?', 'Degustações e promoções no ponto de venda, ações em feiras e eventos, eventos internos da empresa e, com parceiros especializados, buffet completo e decoração para eventos. Conte o objetivo, o público e o local: a proposta indica o formato e o que entra nele.'),
             ('Quem cuida da equipe e da logística?', 'Diga no pedido se a ação precisa de equipe, transporte ou montagem. A proposta separa o que a TaMa coordena e o que fica com a sua empresa, com o local ou com o organizador.'),
@@ -2427,12 +2808,12 @@ def page_hotelaria():
     </dl>
   </div>
 </section>
-{process_section('Como trabalhamos', 'Da escolha das peças à mesa', 'Seis etapas, com material, acabamento e arte aprovados por você antes da produção.', 'hot-como-t', cls='')}
+{process_strip()}
 ''' + faq([
             ('Quais peças vocês personalizam para restaurantes e hotéis?', 'Cardápios, porta-contas, jogos americanos, dólmãs, aventais, taças e copos, além de kits e brindes para clientes. Se a peça que você procura não está no catálogo, descreva no pedido.'),
             ('As peças aguentam o uso diário?', 'Conte no pedido a rotina das peças (lavagens, uso na cozinha, área externa): a proposta indica material, acabamento e cuidados.'),
             ('Bordado ou estampa nas dólmãs e aventais?', 'O bordado costuma ser usado em peças de uso contínuo; a estampa permite mais cores e áreas maiores. A técnica é definida no projeto.'),
-        ], title='Perguntas sobre hotelaria e gastronomia') + end_cta('Vamos levar a sua marca à mesa e à equipe?', 'Conte o tipo de casa, o número de mesas e de pessoas na equipe: a TaMa propõe as peças e a personalização.', tipo='hotelaria'),
+        ], title='Perguntas sobre hotelaria e gastronomia') + end_cta('Vamos levar a sua marca à mesa?', 'Conte o tipo de casa, o número de mesas e de pessoas na equipe: a TaMa propõe as peças e a personalização.', tipo='hotelaria'),
     }
 
 
@@ -2473,13 +2854,13 @@ def page_fim_de_ano():
 {vitrine('fim-brindar', 'brindar-t', more=('/catalogo/?ocasiao=fim-de-ano', 'Ver todos de fim de ano no catálogo'), sid='brindar', cls='ivory')}
 {kits_sec}
 {vitrine('fim-presentear', 'presentear-t', more=('/catalogo/', 'Ver o catálogo'), sid='presentear')}
-{process_section('Como planejamos', 'Do briefing à entrega antes do recesso', 'Para quem são os presentes, as peças, a embalagem e a mensagem do cartão entram no briefing e na proposta; a arte é aprovada por você antes da produção e a entrega segue os endereços e a data combinados.', 'fda-como-t', sid='personalizacao')}
+{process_section('Como planejamos', 'Como planejamos o fim de ano', 'Para quem são os presentes, as peças, a embalagem e a mensagem do cartão entram no briefing e na proposta; a arte é aprovada por você antes da produção e a entrega segue os endereços e a data combinados.', 'fda-como-t', sid='personalizacao', verde=False, cls='ivory')}
 """ + faq([
             ('Com quanto tempo de antecedência devo pedir?', 'Quanto antes, mais opções de peças, cores e embalagens. Informe a data de entrega no pedido e o prazo é confirmado na proposta.'),
             ('Dá para enviar para vários endereços?', 'Conte no pedido quantos destinos são e onde ficam: a proposta diz como a entrega é organizada.'),
             ('As taças podem levar a cor da minha marca?', 'Cada modelo tem cores de referência; cores, material e técnica de aplicação são confirmados na proposta.'),
             ('Posso misturar peças do catálogo num kit?', 'Sim. Selecione as peças no catálogo e envie com o pedido: a TaMa monta a composição, a caixa e o cartão.'),
-        ], title='Perguntas sobre o fim de ano') + guias_block('fim') + end_cta('Vamos montar o seu fim de ano?', 'Conte para quem são os presentes, quantas pessoas e a data de entrega: a TaMa propõe as peças, os kits e a embalagem com a sua marca.', tipo='kits'),
+        ], title='Perguntas sobre o fim de ano') + guias_block('fim') + end_cta('Vamos planejar o seu fim de ano?', 'Conte para quem são os presentes, quantas pessoas e a data de entrega: a TaMa propõe as peças, os kits e a embalagem com a sua marca.', tipo='kits'),
     }
 
 def sobre_cenas():
@@ -2523,15 +2904,12 @@ def page_sobre():
     </div>
   </div>
 </section>
-<section class="section question" aria-label="A pergunta que abre cada projeto">
-  <div class="wrap"><p class="eyebrow light">Ponto de partida</p><blockquote>O que queremos que as pessoas lembrem da sua marca?</blockquote><p style="margin-top:16px;max-width:36rem">É a pergunta que abre cada projeto. A resposta orienta a seleção das peças, a personalização e a execução.</p></div>
-</section>
 <section class="manifesto" aria-labelledby="ed-t">
   <div class="wrap">
     <div class="manifesto-head">
-      <p class="eyebrow light">O que nos move</p>
-      <h2 id="ed-t">Marca não é o que se diz. <em>É o que fica.</em></h2>
-      <p>Uma marca se constrói nos objetos que as pessoas escolhem manter por perto. É para esses momentos que a TaMa trabalha.</p>
+      <p class="eyebrow">Ponto de partida</p>
+      <h2 id="ed-t">Marca é <em>o que fica.</em></h2>
+      <p>Cada projeto começa com uma pergunta: o que queremos que as pessoas lembrem da sua marca? Uma marca se constrói nos objetos que as pessoas escolhem manter por perto, e é para esses momentos que a TaMa trabalha.</p>
     </div>
     <ol class="manifesto-cenas" role="list">
 {sobre_cenas()}
@@ -2576,7 +2954,7 @@ def page_proposta():
         'path': '/solicitar-proposta/', 'title': 'Solicitar proposta de brindes, kits e uniformes | TaMa',
         'description': 'Peça uma proposta de brindes corporativos, kits ou uniformes. Conte a ocasião e a TaMa Creative propõe as possibilidades.',
         'trail': [('/', 'Início'), ('/solicitar-proposta/', 'Solicitar proposta')], 'wp_type': 'ContactPage',
-        'body': text_head('Solicitar proposta', 'Vamos dar forma à sua ideia?', 'Conte a ocasião. A TaMa propõe as possibilidades. O formulário leva cerca de dois minutos.') + f'''
+        'body': text_head('Pedido de proposta', 'Conte o que você precisa.', 'Conte a ocasião. A TaMa propõe as possibilidades. O formulário leva cerca de dois minutos.') + f'''
 <section class="section" style="padding-top:0">
   <div class="wrap contact-grid">
     <div>
@@ -2593,16 +2971,17 @@ def page_proposta():
         <p class="interest-note" id="interest-note" hidden></p>
         <div class="form-grid">
           <div class="field"><label for="f-nome">Nome <span class="req" aria-hidden="true">*</span></label><input id="f-nome" name="nome" autocomplete="name" maxlength="120" required aria-describedby="f-nome-error"><p class="field-error" id="f-nome-error"></p></div>
-          <div class="field"><label for="f-empresa">Empresa</label><input id="f-empresa" name="empresa" autocomplete="organization" maxlength="160"></div>
+          <div class="field"><label for="f-empresa">Empresa <span class="opt">(opcional)</span></label><input id="f-empresa" name="empresa" autocomplete="organization" maxlength="160"></div>
           <div class="field full"><label for="f-contato">E-mail ou WhatsApp <span class="req" aria-hidden="true">*</span></label><input id="f-contato" name="contato" autocomplete="email" maxlength="160" required aria-describedby="f-contato-hint f-contato-error"><p class="hint" id="f-contato-hint">Para responder com a proposta. Telefone com DDD.</p><p class="field-error" id="f-contato-error"></p></div>
         </div>
         <fieldset class="fieldset" id="f-tipo" aria-describedby="f-tipo-error"><legend>Tipo de projeto <span class="req" aria-hidden="true">*</span></legend><div class="choices">{choices}</div><p class="field-error" id="f-tipo-error"></p></fieldset>
-        <div class="field" id="picked-wrap" hidden><span class="field-label">Peças selecionadas</span><ul class="picked-list" id="picked-list" aria-label="Peças selecionadas por você"></ul><input type="hidden" name="selecao" id="f-selecao"><a class="link" href="/brindes-por-ocasiao/">Adicionar mais peças {ARROW}</a></div>
+        <div class="field" id="picked-wrap" hidden><span class="field-label">Peças selecionadas</span><ul class="picked-list" id="picked-list" aria-label="Peças selecionadas por você"></ul><input type="hidden" name="selecao" id="f-selecao"><a class="link" href="/catalogo/">Adicionar mais peças {ARROW}</a></div>
+        <p class="so-peca" id="so-peca-incluir" hidden>Este pedido é só da peça escolhida. <button class="link-btn" type="button" data-incluir-selecao>Incluir também a sua seleção (<span data-incluir-n></span>)</button></p>
         <div class="form-grid">
-          <div class="field" data-show-for="brindes kits confeccoes ativacoes hotelaria integrado"><label for="f-qtd">Quantidade aproximada</label><input id="f-qtd" name="quantidade" type="number" min="1" inputmode="numeric" placeholder="Ex.: 80"></div>
-          <div class="field" data-show-for="brindes kits confeccoes ativacoes hotelaria integrado"><label for="f-data">Data desejada</label><input id="f-data" name="data" type="date"></div>
-          <div class="field full"><label for="f-orcamento">Orçamento estimado (opcional)</label><select id="f-orcamento" name="orcamento"><option value="">Prefiro não informar</option><option>Até R$ 5 mil</option><option>R$ 5 mil a R$ 20 mil</option><option>R$ 20 mil a R$ 50 mil</option><option>Acima de R$ 50 mil</option></select></div>
-          <div class="field full"><label for="f-objetivo">Objetivo do projeto <span class="req" aria-hidden="true">*</span></label><textarea id="f-objetivo" name="objetivo" maxlength="4000" required aria-describedby="f-objetivo-error" placeholder="Ex.: receber 40 novas pessoas em março com um kit que apresente a cultura da empresa."></textarea><p class="field-error" id="f-objetivo-error"></p></div>
+          <div class="field" data-show-for="brindes kits confeccoes ativacoes hotelaria integrado"><label for="f-qtd">Quantidade aproximada <span class="opt">(opcional)</span></label><input id="f-qtd" name="quantidade" type="number" min="1" inputmode="numeric" placeholder="Ex.: 80"></div>
+          <div class="field" data-show-for="brindes kits confeccoes ativacoes hotelaria integrado"><label for="f-data">Data desejada <span class="opt">(opcional)</span></label><input id="f-data" name="data" type="date"></div>
+          <div class="field full"><label for="f-orcamento">Orçamento estimado <span class="opt">(opcional)</span></label><select id="f-orcamento" name="orcamento"><option value="">Prefiro não informar</option><option>Até R$ 5 mil</option><option>R$ 5 mil a R$ 20 mil</option><option>R$ 20 mil a R$ 50 mil</option><option>Acima de R$ 50 mil</option></select></div>
+          <div class="field full"><label for="f-objetivo">Conte o objetivo <span class="opt">(opcional)</span></label><textarea id="f-objetivo" name="objetivo" maxlength="4000" aria-describedby="f-objetivo-error" placeholder="Ex.: receber 40 novas pessoas em março com um kit que apresente a cultura da empresa."></textarea><p class="field-error" id="f-objetivo-error"></p></div>
         </div>
         <div class="field"><label class="check" for="f-consent" style="text-transform:none;letter-spacing:0;font-weight:400;font-size:.9375rem"><input type="checkbox" id="f-consent" name="consentimento" value="sim" required aria-describedby="f-consent-error"> <span>Concordo que a TaMa use estes dados para responder ao meu pedido, conforme a <a href="/privacidade/">política de privacidade</a>.</span></label><p class="field-error" id="f-consent-error"></p></div>
         <div class="form-foot"><button class="btn btn-wine" type="submit" id="submit-btn">Enviar pedido {ARROW}</button><p class="form-status" id="form-status" role="status" aria-live="polite"></p></div>
@@ -2613,6 +2992,7 @@ def page_proposta():
     </div>
     <aside class="aside" aria-labelledby="depois-t">
       <div class="stack" style="gap:14px"><h2 id="depois-t">O que acontece depois</h2><ol><li><span>Lemos o seu pedido e, se precisar, fazemos perguntas rápidas.</span></li><li><span>Preparamos a proposta com solução, peças, quantidades e condições.</span></li><li><span>Você aprova a arte antes de qualquer peça entrar em produção.</span></li></ol></div>
+      <ul class="aside-assure" role="list"><li>Arte aprovada por você antes da produção</li><li>Proposta com peças, personalização e condições</li><li>Seus dados usados só para responder ao pedido</li></ul>
       {contact_block}
       {wa_button()}
     </aside>
@@ -2680,19 +3060,19 @@ def build_static():
     import io
     shutil.copytree(os.path.join(SRC, 'fonts'), os.path.join(DIST, 'fonts'), ignore=shutil.ignore_patterns('*.css'))
     copiar_videos()
-    write('favicon.svg', open(os.path.join(LOGOS, 'tama-favicon-64.svg'), encoding='utf-8').read())
+    write('favicon.svg', open(os.path.join(PETALA_DIR, 'favicon-64.svg'), encoding='utf-8').read())
     # arquivos públicos usados fora do site (ex.: logo da assinatura de e-mail): /email/...
     if os.path.isdir(os.path.join(SRC, 'email')):
         shutil.copytree(os.path.join(SRC, 'email'), os.path.join(DIST, 'email'), dirs_exist_ok=True)
-    write('favicon-32.png', resvg_py.svg_to_bytes(svg_path=os.path.join(LOGOS, 'tama-favicon-64.svg'), width=32), 'wb')
-    write('apple-touch-icon.png', resvg_py.svg_to_bytes(svg_path=os.path.join(LOGOS, 'tama-avatar-512.svg'), width=180), 'wb')
-    write('logo-512.png', resvg_py.svg_to_bytes(svg_path=os.path.join(LOGOS, 'tama-avatar-512.svg'), width=512), 'wb')
-    # Share image 1200x630: plum panel with the negative logo + kit photo
-    og = Image.new('RGB', (1200, 630), (101, 37, 61))
+    write('favicon-32.png', resvg_py.svg_to_bytes(svg_path=os.path.join(PETALA_DIR, 'favicon-64.svg'), width=32), 'wb')
+    write('apple-touch-icon.png', resvg_py.svg_to_bytes(svg_path=os.path.join(PETALA_DIR, 'avatar-512.svg'), width=180), 'wb')
+    write('logo-512.png', resvg_py.svg_to_bytes(svg_path=os.path.join(PETALA_DIR, 'avatar-512.svg'), width=512), 'wb')
+    # imagem de compartilhamento 1200 × 630: painel marfim com a assinatura (pétala) + foto do kit
+    og = Image.new('RGB', (1200, 630), (251, 248, 243))
     photo = Image.open(os.path.join(IMG_SRC, 'v2', 'hero-gift.webp')).convert('RGB')
     ph = photo.resize((1120, 630), Image.LANCZOS).crop((440, 0, 440 + 640, 630))
     og.paste(ph, (560, 0))
-    logo = Image.open(io.BytesIO(resvg_py.svg_to_bytes(svg_path=os.path.join(LOGOS, 'tama-logo-vertical-negativo.svg'), width=380))).convert('RGBA')
+    logo = Image.open(io.BytesIO(resvg_py.svg_to_bytes(svg_path=os.path.join(PETALA_DIR, 'lockup-positivo.svg'), width=400))).convert('RGBA')
     og.paste(logo, ((560 - logo.width) // 2, (630 - logo.height) // 2), logo)
     buf = io.BytesIO(); og.save(buf, 'JPEG', quality=86, optimize=True)
     write('og-default.jpg', buf.getvalue(), 'wb')
@@ -2775,7 +3155,8 @@ def main():
     conferir_imagens_site()
     fonts_css = open(os.path.join(SRC, 'fonts', 'fonts.css'), encoding='utf-8').read()
     masks = f':root{{--arc-mask:url("{ARC_MASK}");--pattern-mask:url("{pattern_uri()}")}}'
-    CSS = minify_css(fonts_css + masks + open(os.path.join(SRC, 'styles.css'), encoding='utf-8').read())
+    CSS = minify_css(fonts_css + masks + open(os.path.join(SRC, 'styles.css'), encoding='utf-8').read()
+                     + open(os.path.join(SRC, 'v3.css'), encoding='utf-8').read())   # v3.css: tokens e componentes do redesenho (11/2026), por cima do legado
     CSS_FILE = f'site.{hashlib.md5(CSS.encode()).hexdigest()[:8]}.css'
     write('assets/' + CSS_FILE, CSS)
     cat = catalog_json()

@@ -1512,26 +1512,38 @@ def empresa_linha():
     return ' · '.join(partes)
 
 
+# Rodapé premium (pedido do cliente em 10/11/2026): um cartão escuro com cantos arredondados, recuado das bordas. Em cima,
+# o convite ("Vamos criar algo juntos?") com proposta e WhatsApp; no meio, a assinatura, a frase da TaMa, as redes e os
+# links de Explore; embaixo, direitos, privacidade e cookies, e a nota das imagens ilustrativas.
+EXPLORE = [('/catalogo/', 'Catálogo completo'), ('/kits-corporativos/', 'Kits corporativos'), ('/eventos-corporativos/', 'Eventos corporativos'),
+           ('/hotelaria-e-gastronomia/', 'Hotelaria e gastronomia'), ('/sobre/', 'Sobre a TaMa')]
+SETA_DIAG = '<svg class="i-arrow-up" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 17 17 7M9 7h8v8"/></svg>'
+BALAO = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3.5c-4.7 0-8.5 3.4-8.5 7.6 0 1.6.6 3.2 1.6 4.4L4 20.5l5.3-1.7c.9.3 1.8.4 2.7.4 4.7 0 8.5-3.4 8.5-7.6S16.7 3.5 12 3.5Z"/></svg>'
+
+
 def footer():
-    prod = (''.join(f'<li><a href="/catalogo/?categoria={k}#catalogo">{v}</a></li>' for k, v in list(CAT_PROD.items())[:5] if any(c['categoria'] == k for c in CATALOGO))
-            + '<li><a href="/catalogo/">Catálogo completo</a></li><li><a href="/kits-corporativos/">Kits corporativos</a></li>')
-    sol = ''.join(f'<li><a href="{p}">{t}</a></li>' for p, t, _d in SOLUCOES if p != '/kits-corporativos/')
-    insp = ''.join(f'<li><a href="{p}">{t}</a></li>' for p, t in [('/brindes-de-fim-de-ano/', 'Brindes de fim de ano'), ('/brindes-por-ocasiao/', 'Brindes por ocasião'), ('/blog/', 'Guias e conteúdos')])
-    contacts = contact_lines()
-    contact_col = ''.join(f'<li>{c}</li>' for c in contacts) + '<li><a href="/solicitar-proposta/">Solicitar proposta</a></li>'
+    explore = ''.join(f'<li><a href="{p}">{t}</a></li>' for p, t in EXPLORE)
     empresa = empresa_linha()
-    return f'''<footer class="site-footer">
-  <div class="wrap footer-grid">
-    <div class="footer-brand"><a class="brand" href="/" aria-label="TaMa Creative, página inicial">{LOGO_DECOR}</a><p>{ASSINATURA} A TaMa seleciona as peças, personaliza com a marca da sua empresa e coordena os fornecedores até a entrega.</p>{redes_html()}</div>
-    <div><p class="footer-title">Produtos</p><ul class="footer-links">{prod}</ul></div>
-    <div><p class="footer-title">Soluções</p><ul class="footer-links">{sol}</ul></div>
-    <div><p class="footer-title">Inspirações</p><ul class="footer-links">{insp}</ul></div>
-    <div><p class="footer-title">TaMa</p><ul class="footer-links"><li><a href="/sobre/">Sobre</a></li><li><a href="/privacidade/">Privacidade</a></li><li><button class="link-btn" type="button" data-consent-open>Cookies</button></li></ul></div>
-    <div><p class="footer-title">Contato</p><ul class="footer-links">{contact_col}</ul></div>
-  </div>
-  <div class="wrap footer-bottom">
-    <div class="left">{petala('selo-petala')}<span>© {date.today().year} TaMa Creative{(' · ' + empresa) if empresa else ''}</span></div>
-    <span>{NOTE_RODAPE}</span>
+    wa = (f'<a class="btn fp-btn-line" href="https://wa.me/{WA}" data-track="whatsapp_click" data-track-label="rodape" rel="noopener">{BALAO}WhatsApp</a>'
+          if WA else '')
+    return f'''<footer class="site-footer fp">
+  <div class="fp-in">
+    <div class="fp-cta">
+      <p class="fp-kicker">Vamos criar algo juntos?</p>
+      <h2 class="fp-title">Sua próxima ideia merece acontecer.</h2>
+      <p class="fp-sub">Brindes, kits e experiências que conectam marcas e pessoas.</p>
+      <div class="fp-actions"><a class="btn btn-wine" href="/solicitar-proposta/" data-track="cta_solicitar_proposta" data-track-label="rodape">Solicitar proposta {SETA_DIAG}</a>{wa}</div>
+    </div>
+    <div class="fp-mid">
+      <div class="footer-brand"><a class="brand" href="/" aria-label="TaMa Creative, página inicial">{LOGO_DECOR}</a>
+        <p>Curadoria de produtos, personalização e soluções para momentos que fazem a diferença.</p>{redes_html()}</div>
+      <nav class="fp-explore" aria-labelledby="fp-explore-t"><p class="footer-title" id="fp-explore-t">Explore</p><ul class="footer-links">{explore}</ul></nav>
+    </div>
+    <div class="fp-bottom">
+      <span>© {date.today().year} TaMa Creative{(' · ' + empresa) if empresa else ''}</span>
+      <span class="fp-legal"><a href="/privacidade/">Privacidade</a><span aria-hidden="true"> · </span><button class="link-btn" type="button" data-consent-open>Cookies</button></span>
+    </div>
+    <p class="fp-note">Imagens ilustrativas. Produtos e personalização sujeitos à confirmação na proposta.</p>
   </div>
 </footer>'''
 

@@ -1157,3 +1157,39 @@ body { letter-spacing: -.005em; }
 .pdp-det-grid dd { margin: 0; font-size: .9375rem; line-height: 1.5; color: var(--c-ink-2); }
 .pdp-det-nota { display: flex; align-items: center; gap: 10px; margin: 20px 0 0; font-size: .875rem; color: var(--c-ink-2); }
 .pdp-det-nota svg { flex: none; width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; }
+/* ======================================================================
+   Rodapé premium (10/11/2026): cartão escuro arredondado, recuado das bordas da página
+   ====================================================================== */
+.site-footer.fp { background: transparent; color: var(--c-on-dark-2); padding: 0 clamp(8px, 1.6vw, 24px) clamp(8px, 1.6vw, 24px); }
+.fp-in { max-width: calc(var(--maxw) + 2 * var(--gutter) + 64px); margin-inline: auto; padding: clamp(32px, 4.4vw, 64px) clamp(22px, 4vw, 64px) clamp(24px, 3vw, 40px);
+  border-radius: clamp(20px, 2.4vw, 32px); background: var(--c-dark); }
+.fp-kicker { margin: 0 0 14px; font: 500 .8125rem/1.2 var(--f-text); letter-spacing: .08em; text-transform: uppercase; color: var(--c-on-dark-2); }
+.site-footer .fp-title { margin: 0; max-width: 20ch; font: 600 clamp(1.75rem, 1.2rem + 2.2vw, 3rem)/1.08 var(--f-display); letter-spacing: -.035em; color: #fff; text-wrap: balance; }
+.fp-sub { margin: 16px 0 0; max-width: 40em; font-size: var(--t-lead); color: var(--c-on-dark-2); }
+.fp-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 28px; }
+.fp-actions .btn { min-height: 56px; padding-inline: 28px; font-size: 1rem; }
+.fp-actions .i-arrow-up { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: transform var(--d-1) var(--ease); }
+.fp-actions .btn:hover .i-arrow-up { transform: translate(2px, -2px); }
+.fp-btn-line { background: transparent; color: #fff; border: 1px solid rgba(255, 255, 255, .28); }
+.fp-btn-line:hover { border-color: #fff; background: rgba(255, 255, 255, .06); }
+.fp-btn-line svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linejoin: round; }
+.fp-mid { display: grid; gap: 36px; margin-top: clamp(40px, 5vw, 72px); padding-top: clamp(32px, 4vw, 56px); border-top: 1px solid rgba(255, 255, 255, .12); }
+.fp .footer-brand { display: grid; gap: 18px; align-content: start; }
+.fp .footer-brand p { max-width: 30em; margin: 0; font-size: 1.0625rem; line-height: 1.6; color: var(--c-on-dark-2); }
+.fp .footer-social { display: flex; gap: 6px; margin: 4px 0 0 -10px; padding: 0; list-style: none; }
+.fp .footer-social a { display: grid; place-items: center; width: 44px; height: 44px; border: 0; border-radius: 50%; color: #fff; }
+.fp .footer-social a:hover { background: rgba(255, 255, 255, .08); }
+.fp .footer-social svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.fp .footer-title { margin: 0 0 14px; font: 600 .875rem/1.2 var(--f-text); letter-spacing: .08em; text-transform: uppercase; color: #fff; }
+.fp .footer-links { display: grid; gap: 4px; margin: 0; padding: 0; list-style: none; font-size: 1.0625rem; }
+.fp .footer-links a { display: inline-flex; align-items: center; min-height: 44px; color: var(--c-on-dark-2); }
+.fp .footer-links a:hover { color: #fff; text-decoration: none; }
+.fp-bottom { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 20px; margin-top: clamp(32px, 4vw, 56px); padding-top: 24px; border-top: 1px solid rgba(255, 255, 255, .12); font-size: .875rem; color: var(--c-on-dark-2); }
+.fp-legal { display: inline-flex; align-items: center; gap: 4px; }
+.fp-legal a, .fp-legal .link-btn { display: inline-flex; align-items: center; min-height: 44px; color: var(--c-on-dark-2); font: inherit; }
+.fp-legal a:hover, .fp-legal .link-btn:hover { color: #fff; }
+.fp-note { margin: 12px 0 0; font-size: .8125rem; color: #9E978F; }
+@media (min-width: 860px) {
+  .fp-mid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 48px; }
+}
+.fp-legal .link-btn { text-decoration: none; background: none; border: 0; padding: 0; cursor: pointer; }

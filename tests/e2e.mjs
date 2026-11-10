@@ -120,7 +120,7 @@ try {
     ok(await page.$$eval('.tm-fronts-grid .tm-front-a', a => a.map(x => x.getAttribute('href')).join() === '/brindes-corporativos/,/confeccoes-personalizadas/,/kits-corporativos/,/eventos-corporativos/,/hotelaria-e-gastronomia/'),
        'home apresenta as cinco áreas (brindes, confecções, kits, eventos, hotelaria)');
     const gal = await page.evaluate(() => ({ itens: [...document.querySelectorAll('.tm-strip-a')].map(a => a.getAttribute('href')), recortes: document.querySelectorAll('.tm-strips img[src*="/recorte-"]').length,
-      fotos: [...document.querySelectorAll('.tm-strip-img')].filter(i => /\/img\/blog-capa-/.test(i.currentSrc || i.src)).length, abertas: document.querySelectorAll('.tm-strip[data-on]').length,
+      fotos: [...document.querySelectorAll('.tm-strip-img')].filter(i => /\/img\/(blog-capa|galeria)-/.test(i.currentSrc || i.src)).length, abertas: document.querySelectorAll('.tm-strip[data-on]').length,
       nomes: [...document.querySelectorAll('.tm-strip-name')].map(n => n.textContent) }));
     ok(gal.itens.length >= 5 && gal.itens.every(h => /^\/catalogo\/\?categoria=[a-z-]+#catalogo$/.test(h)) && gal.recortes === 0 && gal.fotos >= 5 && gal.abertas === 1 && gal.nomes.every(Boolean),
       `home: galeria de coleções em faixas com ${gal.itens.length} categorias (fotos ambientadas, sem repetir os recortes da abertura), uma aberta, levando ao catálogo filtrado`);
@@ -472,7 +472,7 @@ try {
   ok(await page.evaluate(() => document.activeElement?.id === 'busca-topo') && await page.$eval('.header-row .head-search', f => f.getAttribute('action') === '/catalogo/' && f.querySelector('input[name="q"]')), 'busca do cabeçalho: abre pela lupa com o foco no campo (/catalogo/?q=)');
   await page.keyboard.press('Escape');
   ok(await page.$eval('[aria-controls="sub-busca"]', b => b.getAttribute('aria-expanded') === 'false' && document.activeElement === b), 'busca do cabeçalho: Esc fecha e devolve o foco à lupa');
-  ok(await page.$$eval('.site-footer .footer-links', ls => ls[1] && [...ls[1].querySelectorAll('a')].map(x => x.textContent.trim()).join() === 'Brindes corporativos,Uniformes e confecções,Eventos corporativos,Hotelaria e gastronomia') && await page.$eval('.site-footer a[href="/blog/"]', a => a.textContent === 'Guias e conteúdos'), 'rodapé: Soluções com os nomes do menu e o blog como "Guias e conteúdos"');
+  ok(await page.$$eval('.site-footer .footer-links a', a => a.map(x => x.textContent.trim()).join() === 'Catálogo completo,Kits corporativos,Eventos corporativos,Hotelaria e gastronomia,Sobre a TaMa') && await page.$eval('.site-footer .fp-actions a[href="/solicitar-proposta/"]', a => /Solicitar proposta/.test(a.textContent)), 'rodapé premium: convite com "Solicitar proposta" e os cinco links de Explore');
   ok(await page.$$eval('.foto-hero figcaption, .entrega-foto figcaption', f => f.length >= 1 && f.every(x => x.textContent === 'Imagem ilustrativa • Marca fictícia')) && await page.$$eval('.kits-grade .note', n => n.length === 1 && /^Imagens? ilustrativas?: (a marca TaMa e marcas fictícias aparecem|a marca (TaMa aparece|é fictícia e aparece)) como exemplo; no seu projeto, entra a marca da sua empresa\./.test(n[0].textContent)), 'kits: legenda padrão da marca fictícia no cabeçalho e uma nota padrão (marca TaMa e marcas fictícias como exemplo) depois da grade de kits');
   ok(await page.$$eval('a[href^="/branding-identidade-visual/"], a[href^="/projetos/"]', a => a.length === 0), 'nenhum link para branding ou projetos');
   await page.goto(BASE + '/confeccoes-personalizadas/', { waitUntil: 'networkidle0' });
@@ -663,11 +663,10 @@ try {
   ok(await fp.$$eval('#personalizacao .process-step', s => s.length === 6) && await fp.$$eval('.faq-list details', d => d.length === 4) && await fp.$$eval('a[href="/solicitar-proposta/?tipo=kits"]', a => a.length >= 2), 'fim de ano: as 6 etapas em #personalizacao, 4 perguntas e CTA final com tipo=kits');
   ok(await colorsHavePhoto(fp, '.studio-grid .product'), 'fim de ano: toda cor mostrada tem foto própria');
   await fp.goto(BASE + '/', { waitUntil: 'networkidle0' });
-  ok(await fp.$eval('.site-footer a[href="/brindes-de-fim-de-ano/"]', a => a.textContent === 'Brindes de fim de ano'), 'rodapé lista "Brindes de fim de ano" nas soluções');
   await fp.goto(BASE + '/', { waitUntil: 'networkidle0' });
   ok(await fp.$$eval('.tm-fronts-grid .tm-front-a', a => a.map(x => x.getAttribute('href')).join() === '/brindes-corporativos/,/confeccoes-personalizadas/,/kits-corporativos/,/eventos-corporativos/,/hotelaria-e-gastronomia/'), 'home apresenta as cinco áreas da TaMa');
   ok(await fp.$eval('meta[property="og:title"]', m => /brindes, uniformes, kits, eventos corporativos e hotelaria/i.test(m.content)), 'título de compartilhamento da home diz o que a TaMa oferece (as cinco áreas, como na assinatura)');
-  ok(await fp.$eval('.site-footer .footer-brand p', p => /^Brindes, uniformes, kits, eventos corporativos e hotelaria para empresas\./.test(p.textContent)) , 'assinatura do rodapé com as cinco áreas');
+  ok(await fp.$eval('.site-footer .footer-brand p', p => /^Curadoria de produtos, personalização e soluções/.test(p.textContent)), 'rodapé: frase da TaMa ao lado da assinatura');
   ok(await fp.$$eval('.end-cta', s => s.length === 1 && s[0].querySelector('.eyebrow').textContent === 'Próximo passo' && /\?$/.test(s[0].querySelector('h2').textContent) && s[0].querySelectorAll('.actions a').length === 2 && /^Solicitar proposta/.test(s[0].querySelector('.actions a').textContent.trim())), 'fechamento padrão: eyebrow, título em pergunta e dois botões (Solicitar proposta + WhatsApp)');
   await fp.evaluate(() => localStorage.setItem('tama-selecao', JSON.stringify([{ s: 'linha-polo', c: 'Preto' }, { s: 'caneca-de-ceramica', c: null }, { s: 'baralho-exclusivo', c: null }])));
   await fp.goto(BASE + '/solicitar-proposta/', { waitUntil: 'networkidle0' });
@@ -698,7 +697,7 @@ try {
     feature: document.querySelector('.post-feature h2 a')?.getAttribute('href'),
     posts: [...document.querySelectorAll('.post-feature h2 a, .post-card h3 a')].map(a => a.getAttribute('href')),
     navCurrent: document.querySelector('.site-nav a[aria-current="page"]')?.getAttribute('href'),
-    footer: !!document.querySelector('.site-footer a[href="/blog/"]'),
+    footer: !!document.querySelector('.site-footer'),
     rss: document.querySelector('link[rel="alternate"][type="application/rss+xml"]')?.getAttribute('href'),
     ld: JSON.parse(document.querySelector('script[type="application/ld+json"]').textContent)['@graph'].map(x => x['@type']),
   }));
@@ -727,7 +726,7 @@ try {
     return { n: bts.length, shown: !document.querySelector('[data-blog-filters]').hidden, pressed: kits.getAttribute('aria-pressed'), vis };
   });
   ok(filtro.shown && filtro.n === 5 && filtro.vis.length === 2 && filtro.vis.every(c => c === 'kits-e-boas-vindas'), 'filtros por categoria (Todos + 4) mostram só os guias da categoria');
-  ok(idx.navCurrent === '/blog/' && idx.footer, 'Blog no menu (página atual marcada) e no rodapé');
+  ok(idx.navCurrent === '/blog/' && idx.footer, 'Blog no menu (página atual marcada)');
   ok(idx.rss === '/blog/feed.xml' && idx.ld.includes('Blog') && idx.ld.includes('CollectionPage'), 'índice com RSS e JSON-LD Blog + CollectionPage');
   const blogBroken = [];
   for (const post of idx.posts) {

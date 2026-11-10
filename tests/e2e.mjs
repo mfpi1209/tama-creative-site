@@ -95,6 +95,12 @@ try {
       && (home.match(/class="tm-front[ "]/g) || []).length === 5 && (home.match(/<details class="t-faq-item"/g) || []).length === 6 && (home.match(/class="process-step"/g) || []).length === 6,
       'home: abertura em cenas, garantias, galeria de coleções, 5 frentes, kits, processo em 6 passos, 6 perguntas (com leituras) e chamada final, nessa ordem');
     ok(/^\/v2\/\s+\/\s+301/m.test(redir), '/v2/ (endereço da proposta) redireciona para a home');
+    // vídeo do banner (src/video/banner-kit.*): só na temporada, por cima da foto, com pôster e sem som
+    const temVideo = (await fetch(BASE + '/')).ok && home.includes('class="t-hero-video"');
+    // o banner em vídeo é da abertura anterior (t-hero); a home do redesenho abre com a cena do produto (ms-hero), sem vídeo
+    if (!home.includes('class="t-hero"')) ok(!temVideo, 'home do redesenho: abertura com a cena do produto, sem o banner em vídeo da home anterior');
+    else ok(SEASON === 'fim-de-ano' ? (temVideo && /<video class="t-hero-video" autoplay muted loop playsinline[^>]*poster="\/img\/hero\.[^"]+"/.test(home) && (home.match(/<source src="\/video\/banner-kit\.[a-f0-9]{8}\.(webm|mp4)"/g) || []).length === 2 && home.includes('<picture') && /Vídeo ilustrativo/.test(home)) : !temVideo,
+       SEASON === 'fim-de-ano' ? 'banner: vídeo em loop, sem som, com pôster e a foto como reserva (webm e mp4 com hash)' : 'banner fora da temporada: só a foto, sem vídeo');
     await page.setViewport({ width: 1280, height: 900 });
     await page.goto(BASE + '/', { waitUntil: 'networkidle0' });
     const hero = await page.evaluate(() => ({ h1s: document.querySelectorAll('h1').length, h1: document.querySelector('.ms-hero h1')?.textContent.replace(/\s+/g, ' ').trim(),

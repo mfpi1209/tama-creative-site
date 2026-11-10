@@ -1325,6 +1325,20 @@ body[data-service="ativacoes"] .foto-hero-photo figcaption { right: var(--gutter
 .ancora-antiga { display: block; height: 0; }
 #formatos .cols-2 > .item:last-child:nth-child(odd) { grid-column: 1 / -1; }
 #formatos .cols-2 > .item:last-child:nth-child(odd) > div { max-width: 64ch; }
+
+/* banner com vídeo (temporada): o vídeo cobre a foto, que fica por baixo como reserva e como pôster; com movimento
+   reduzido o vídeo não aparece */
+.t-hero-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 32%); mask-image: linear-gradient(90deg, transparent 0, #000 32%); }
+/* ligação suave entre o painel de texto e a foto/vídeo: esmaecimento mais longo e um véu de areia por cima da borda,
+   para casar as cores mesmo quando o fundo do clipe é mais claro que o painel */
+.t-hero-foto img { -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 32%); mask-image: linear-gradient(90deg, transparent 0, #000 32%); }
+.t-hero-foto::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(90deg, var(--t-sand) 0, color-mix(in srgb, var(--t-sand) 70%, transparent) 12%, transparent 38%); }
+@media (max-width: 1023px) {
+  .t-hero-video, .t-hero-foto img { -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 26%); mask-image: linear-gradient(180deg, transparent 0, #000 26%); }
+  .t-hero-foto::after { background: linear-gradient(180deg, var(--t-sand) 0, color-mix(in srgb, var(--t-sand) 70%, transparent) 10%, transparent 32%); }
+}
+@media (prefers-reduced-motion: reduce) { .t-hero-video { display: none; } }
+
 /* /v2/ (body.v2): home da proposta 01 "Soluções compactas" (pacote TAMA-kit-visual de 02/11/2026).
    Referência docs/proposta-01/home-aprovada.png; medidas de docs/proposta-01/VISUAL.md (desktop 1440: container
    1340, margens 50). Só nesta página: a home atual e as páginas internas não mudam. Fontes: as do site (serif e

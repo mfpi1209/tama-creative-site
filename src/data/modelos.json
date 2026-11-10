@@ -3337,6 +3337,294 @@
    },
    "titulo_seo": "Xícara de chá com pires personalizada | TaMa Creative",
    "descricao_seo": "Xícara de chá com pires e a marca da sua empresa, de formato elegante. Para recepções, hotéis, kits de chá e presentes de fim de ano."
+  },
+  {
+   "produto": "Camiseta premium",
+   "genero": "f",
+   "resumo": "Gola careca, caimento alinhado e uma cartela que vai dos tons básicos aos vibrantes: a camiseta premium é a base para uniformes, equipes de evento e coleções de marca própria que pedem um acabamento acima da camiseta promocional. Com muitas cores à disposição, fica fácil combinar a peça com a identidade da empresa. Tamanhos, cores e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Uniformes",
+    "Equipes de evento",
+    "Marca própria"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Camiseta premium personalizada | TaMa Creative",
+   "descricao_seo": "Camiseta premium com a marca da sua empresa, gola careca e muitas cores. Para uniformes, eventos e coleções de marca própria."
+  },
+  {
+   "produto": "Camiseta premium baby look",
+   "genero": "f",
+   "resumo": "Versão feminina da camiseta premium, com modelagem baby look, mais ajustada ao corpo, e manga curta. Combina com a versão masculina em uniformes e equipes de evento, para todo o time vestir a mesma cor e a mesma marca. Tamanhos, cores e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Uniformes",
+    "Equipes de evento",
+    "Ações promocionais"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Camiseta premium baby look personalizada | TaMa Creative",
+   "descricao_seo": "Camiseta premium baby look com a marca da sua empresa, modelagem feminina e muitas cores. Para uniformes e equipes de evento."
+  },
+  {
+   "produto": "Camiseta premium oversized",
+   "genero": "f",
+   "resumo": "Modelagem ampla, ombro caído e manga mais comprida: a camiseta oversized tem cara de coleção e funciona bem em lançamentos, lojas e ações com público jovem, em que a marca aparece numa peça que as pessoas querem usar no dia a dia. Tamanhos, cores e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Lançamentos",
+    "Marca própria",
+    "Público jovem"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Camiseta premium oversized personalizada | TaMa Creative",
+   "descricao_seo": "Camiseta premium oversized com a marca da sua empresa, modelagem ampla e ombro caído. Para lançamentos e coleções de marca própria."
+  },
+  {
+   "produto": "Camiseta oversized suedine",
+   "genero": "f",
+   "resumo": "Camiseta oversized de malha encorpada e toque aveludado, com gola canelada e modelagem ampla. Tem visual de coleção e estrutura para marcas que querem uma peça mais robusta em lançamentos, lojas e kits especiais. Tamanhos, cores e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Lançamentos",
+    "Marca própria",
+    "Kits especiais"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Camiseta oversized suedine personalizada | TaMa Creative",
+   "descricao_seo": "Camiseta oversized suedine com a marca da sua empresa, malha encorpada e modelagem ampla. Para lançamentos e coleções de marca própria."
+  },
+  {
+   "produto": "Camiseta premium manga longa",
+   "genero": "f",
+   "resumo": "A camiseta premium de manga longa mantém a gola careca e o caimento da linha premium, para dias mais frios, ambientes com ar-condicionado e uniformes de inverno. Também é uma boa camada por baixo de jaquetas em eventos ao ar livre. Tamanhos, cores e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Uniformes de inverno",
+    "Eventos ao ar livre",
+    "Equipes"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Camiseta premium manga longa personalizada | TaMa Creative",
+   "descricao_seo": "Camiseta premium de manga longa com a marca da sua empresa, gola careca. Para uniformes de inverno, equipes e eventos ao ar livre."
+  },
+  {
+   "produto": "Camiseta premium gola V",
+   "genero": "f",
+   "resumo": "Decote V e caimento alinhado: a camiseta premium gola V é uma opção um pouco mais elegante para uniformes de atendimento, recepção de eventos e equipes que ficam em contato com o público. Tamanhos, cores e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Uniformes",
+    "Atendimento",
+    "Eventos"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Camiseta premium gola V personalizada | TaMa Creative",
+   "descricao_seo": "Camiseta premium gola V com a marca da sua empresa, decote V e caimento alinhado. Para uniformes de atendimento e eventos."
+  },
+  {
+   "produto": "Camiseta premium long line",
+   "genero": "f",
+   "resumo": "Comprimento alongado, barra arredondada e gola com acabamento a fio: a camiseta long line tem visual urbano e entra bem em coleções de marca própria, lojas e ações com público jovem. Tamanhos, cores e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Marca própria",
+    "Público jovem",
+    "Lançamentos"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Camiseta premium long line personalizada | TaMa Creative",
+   "descricao_seo": "Camiseta premium long line com a marca da sua empresa, comprimento alongado e visual urbano. Para coleções de marca própria."
+  },
+  {
+   "produto": "Camiseta estonada",
+   "genero": "f",
+   "resumo": "Tingida e lavada para ganhar efeito desbotado e variações sutis de cor, a camiseta estonada tem visual vintage e cada peça fica um pouco diferente da outra. Dá personalidade a coleções de marca própria, camisetas de evento e presentes para equipes. Tamanhos, cores e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Marca própria",
+    "Eventos",
+    "Presentes para equipes"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Camiseta estonada personalizada | TaMa Creative",
+   "descricao_seo": "Camiseta estonada com a marca da sua empresa, efeito desbotado e visual vintage. Para coleções de marca própria, eventos e equipes."
+  },
+  {
+   "produto": "Camiseta estonada baby look",
+   "genero": "f",
+   "resumo": "Versão feminina da camiseta estonada, com modelagem baby look e o mesmo efeito desbotado de visual vintage. Combina com a versão masculina em coleções, eventos e presentes para equipes. Tamanhos, cores e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Marca própria",
+    "Eventos",
+    "Presentes para equipes"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Camiseta estonada baby look personalizada | TaMa Creative",
+   "descricao_seo": "Camiseta estonada baby look com a marca da sua empresa, modelagem feminina e efeito desbotado. Para coleções e eventos."
+  },
+  {
+   "produto": "Camiseta estonada oversized",
+   "genero": "f",
+   "resumo": "Modelagem ampla com o efeito desbotado da linha estonada: a camiseta oversized estonada tem visual de coleção e é uma peça que o público jovem usa fora do evento, levando a marca junto. Tamanhos, cores e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Marca própria",
+    "Público jovem",
+    "Lançamentos"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Camiseta estonada oversized personalizada | TaMa Creative",
+   "descricao_seo": "Camiseta estonada oversized com a marca da sua empresa, modelagem ampla e efeito desbotado. Para coleções e lançamentos."
+  },
+  {
+   "produto": "Camiseta vestido estonada",
+   "genero": "f",
+   "resumo": "Camiseta longa, com comprimento de vestido, decote arredondado e o efeito desbotado da linha estonada. Uma peça feminina para coleções de marca própria, lojas e ações de verão. Tamanhos, cores e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Marca própria",
+    "Lojas",
+    "Ações de verão"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Camiseta vestido estonada personalizada | TaMa Creative",
+   "descricao_seo": "Camiseta vestido estonada com a marca da sua empresa, comprimento de vestido e efeito desbotado. Para coleções de marca própria."
+  },
+  {
+   "produto": "Camiseta pima",
+   "genero": "f",
+   "resumo": "Toque muito macio, bom caimento e gola careca: a camiseta pima é a escolha para presentes a clientes, kits executivos e uniformes de linha mais sofisticada, em que o conforto da peça faz parte da experiência com a marca. Tamanhos, cores e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Presentes para clientes",
+    "Kits executivos",
+    "Uniformes"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Camiseta pima personalizada | TaMa Creative",
+   "descricao_seo": "Camiseta pima com a marca da sua empresa, toque muito macio e bom caimento. Para presentes a clientes, kits executivos e uniformes."
+  },
+  {
+   "produto": "Camiseta pima feminina",
+   "genero": "f",
+   "resumo": "Versão feminina da camiseta pima, com modelagem ajustada, toque muito macio e bom caimento. Combina com a versão masculina em kits executivos, presentes a clientes e uniformes de linha mais sofisticada. Tamanhos, cores e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Presentes para clientes",
+    "Kits executivos",
+    "Uniformes"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Camiseta pima feminina personalizada | TaMa Creative",
+   "descricao_seo": "Camiseta pima feminina com a marca da sua empresa, toque muito macio e modelagem ajustada. Para presentes e kits executivos."
+  },
+  {
+   "produto": "Camiseta tech modal",
+   "genero": "f",
+   "resumo": "Macia, leve e com elasticidade, a camiseta tech modal acompanha os movimentos e mantém o caimento ao longo do dia. É uma boa escolha para equipes que circulam muito, uniformes de atendimento e presentes a clientes. Tamanhos, cores e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Uniformes",
+    "Equipes de campo",
+    "Presentes para clientes"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Camiseta tech modal personalizada | TaMa Creative",
+   "descricao_seo": "Camiseta tech modal com a marca da sua empresa, macia, leve e com elasticidade. Para uniformes, equipes e presentes a clientes."
+  },
+  {
+   "produto": "Camiseta tech modal feminina",
+   "genero": "f",
+   "resumo": "Versão feminina da camiseta tech modal, macia, leve e com elasticidade, que mantém o caimento ao longo do dia. Combina com a versão masculina em uniformes de atendimento, equipes e presentes a clientes. Tamanhos, cores e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Uniformes",
+    "Equipes de campo",
+    "Presentes para clientes"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Camiseta tech modal feminina personalizada | TaMa Creative",
+   "descricao_seo": "Camiseta tech modal feminina com a marca da sua empresa, macia e com elasticidade. Para uniformes, equipes e presentes."
+  },
+  {
+   "produto": "Camiseta poliamida",
+   "genero": "f",
+   "resumo": "Leve, de secagem rápida e com boa respirabilidade, a camiseta de poliamida foi pensada para treinos e uso diário. Funciona bem em corridas corporativas, eventos esportivos e kits de bem-estar para colaboradores. Tamanhos, cores e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Corridas corporativas",
+    "Eventos esportivos",
+    "Kits de bem-estar"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Camiseta poliamida personalizada | TaMa Creative",
+   "descricao_seo": "Camiseta poliamida com a marca da sua empresa, leve e de secagem rápida. Para corridas corporativas, eventos esportivos e kits."
+  },
+  {
+   "produto": "Camiseta poliamida feminina",
+   "genero": "f",
+   "resumo": "Versão feminina da camiseta de poliamida, leve, de secagem rápida e com boa respirabilidade. Combina com a versão masculina em corridas corporativas, eventos esportivos e kits de bem-estar. Tamanhos, cores e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Corridas corporativas",
+    "Eventos esportivos",
+    "Kits de bem-estar"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Camiseta poliamida feminina personalizada | TaMa Creative",
+   "descricao_seo": "Camiseta poliamida feminina com a marca da sua empresa, leve e de secagem rápida. Para corridas, eventos esportivos e kits."
+  },
+  {
+   "produto": "Moletom blusão",
+   "genero": "m",
+   "resumo": "Gola careca, punhos e barra em ribana: o moletom blusão é a versão sem capuz do moletom, com visual mais limpo para uniformes de inverno, kits de boas-vindas e presentes de fim de ano que a equipe usa dentro e fora da empresa. Tamanhos, cores e aplicação da marca são confirmados na proposta.",
+   "usos": [
+    "Uniformes de inverno",
+    "Kits de boas-vindas",
+    "Presentes de fim de ano"
+   ],
+   "medidas": {
+    "valor": "",
+    "status": "a_confirmar"
+   },
+   "titulo_seo": "Moletom blusão personalizado | TaMa Creative",
+   "descricao_seo": "Moletom blusão com a marca da sua empresa, gola careca e punhos em ribana. Para uniformes de inverno, kits e presentes de fim de ano."
   }
  ]
 }

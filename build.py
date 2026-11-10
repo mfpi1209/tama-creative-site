@@ -889,6 +889,18 @@ def thumb(name, label, attrs):
             f'<img src="{img_url(name, "webp", 420)}" alt="" width="120" height="120" loading="lazy" decoding="async"></button>')
 
 
+# Ícones do card "Detalhes do produto" (página de cada modelo): traço fino, sem preenchimento (v3.css › .pdp-det-grid)
+_ICO = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">{}</svg>'
+ICONE_DET = {
+    'material': _ICO.format('<path d="m12 3 9 5-9 5-9-5 9-5Z"/><path d="m3 13 9 5 9-5"/>'),
+    'personalizacao': _ICO.format('<path d="M12 3a9 9 0 1 0 0 18c1 0 1.6-.8 1.6-1.7 0-.5-.2-.9-.5-1.2-.3-.3-.5-.7-.5-1.2 0-.9.8-1.7 1.7-1.7H16a5 5 0 0 0 5-5c0-4-4-7.2-9-7.2Z"/>'
+                                  '<circle cx="7.5" cy="11.5" r="1"/><circle cx="10" cy="7.5" r="1"/><circle cx="14.5" cy="7.5" r="1"/><circle cx="17" cy="11" r="1"/>'),
+    'prazo': _ICO.format('<path d="M20 11V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h5"/><path d="M8 2v4M16 2v4M4 10h16"/><circle cx="17" cy="17" r="4"/><path d="M17 15.3V17l1.1 1.1"/>'),
+    'medidas': _ICO.format('<path d="M3 17 17 3l4 4L7 21z"/><path d="m7.5 12.5 2 2M10.5 9.5l2 2M13.5 6.5l2 2"/>'),
+    'info': _ICO.format('<circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/>'),
+}
+
+
 def page_produto(c):
     """Página de cada modelo do catálogo (/catalogo/<nome>/): galeria (cores, grupo, verso), cor na URL (?cor=),
     zoom ao passar o mouse, seleção e pedido de proposta. Uma página por modelo; a cor não gera página própria."""
@@ -929,11 +941,11 @@ def page_produto(c):
                        + '</div>')
     base = c['base']
     mat, tec = base.get('material') or {}, base.get('tecnica') or {}
-    mat_txt = mat['valor'] if mat.get('status') == 'confirmado' and mat.get('valor') else 'A confirmar na proposta.'
-    tec_txt = tec['valor'] if tec.get('status') == 'confirmado' and tec.get('valor') else 'Definida na proposta, conforme o material, com a arte para aprovação.'
+    mat_txt = mat['valor'] if mat.get('status') == 'confirmado' and mat.get('valor') else 'Conforme o modelo escolhido'
+    tec_txt = tec['valor'] if tec.get('status') == 'confirmado' and tec.get('valor') else 'Técnica e arte definidas na proposta'
     info = c.get('info') or {}
     med = info.get('medidas') or {}
-    medidas = (f'<div><dt>Medidas</dt><dd>{esc(med["valor"])}</dd></div>' if med.get('status') == 'confirmado' and med.get('valor') else '')
+    medidas = (f'<div>{ICONE_DET["medidas"]}<dt>Medidas</dt><dd>{esc(med["valor"])}</dd></div>' if med.get('status') == 'confirmado' and med.get('valor') else '')
     usos = [u for u in (info.get('usos') or []) if u]
     usos_html = (f'<div class="pdp-usos"><p class="pdp-label">Ideal para</p><ul>{"".join(f"<li>{esc(u)}</li>" for u in usos)}</ul></div>' if usos else '')
     tipo = {'vestuario': 'confeccoes', 'hotelaria-gastronomia': 'hotelaria'}.get(c['categoria'], 'brindes')
@@ -990,12 +1002,16 @@ def page_produto(c):
         {usos_html}
       </div>
     </div>
-    <dl class="pdp-spec">
-      {medidas}
-      <div><dt>Material</dt><dd>{mat_txt}</dd></div>
-      <div><dt>Personalização</dt><dd>{tec_txt}</dd></div>
-      <div><dt>Quantidade e prazo</dt><dd>Informados na proposta, conforme o volume do pedido e a técnica.</dd></div>
-    </dl>
+    <section class="pdp-detalhes" aria-labelledby="pdp-detalhes-t">
+      <div class="pdp-det-head"><h2 id="pdp-detalhes-t">Detalhes do produto</h2><span>Informações para orçamento</span></div>
+      <dl class="pdp-det-grid">
+        {medidas}
+        <div>{ICONE_DET['material']}<dt>Material</dt><dd>{mat_txt}</dd></div>
+        <div>{ICONE_DET['personalizacao']}<dt>Personalização</dt><dd>{tec_txt}</dd></div>
+        <div>{ICONE_DET['prazo']}<dt>Quantidade e prazo</dt><dd>Confirmados conforme o pedido</dd></div>
+      </dl>
+      <p class="pdp-det-nota">{ICONE_DET['info']}As especificações finais são confirmadas antes da produção.</p>
+    </section>
     <p class="pdp-sobre">{CAT_TEXTO.get(c['categoria'], '')}</p>
     <p class="note">{NOTE_IMAGENS}</p>
   </div>

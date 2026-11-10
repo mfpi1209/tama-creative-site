@@ -496,16 +496,50 @@
     // do produto devolve a mesma lista).
     var CAT_PAG = 12, catLimite = (history.state && history.state.catLimite) || CAT_PAG;
     var catMaisBox = catBox.querySelector('[data-cat-mais-box]'), catMais = catBox.querySelector('[data-cat-mais]');
+    // um card passa nos filtros? "sem" ignora um grupo (para contar as opções desse grupo com os outros filtros aplicados)
+    var catPassa = function (p, st, sem) {
+      var hay = p.getAttribute('data-busca') || '', fams = (p.getAttribute('data-cores') || '').split(' ');
+      return (sem === 'categoria' || !st.cat || p.getAttribute('data-cat') === st.cat)
+        && (sem === 'tipo' || !st.tipo || p.getAttribute('data-tipo') === st.tipo)
+        && (sem === 'ocasiao' || !st.occ || (' ' + (p.getAttribute('data-occ') || '') + ' ').indexOf(' ' + st.occ + ' ') !== -1)
+        && (!st.q || st.q.split(' ').every(function (w) { return hay.indexOf(w) !== -1; }))
+        && (sem === 'cor' || !st.cores.length || st.cores.some(function (f) { return fams.indexOf(f) !== -1; }));
+    };
+    // o último clique vence: escolher uma categoria, um tipo ou uma ocasião tira os outros desses três que não têm modelo em
+    // comum com a escolha (ex.: veio do menu em "Canecas" e clicou em Vestuário: abre Vestuário, não "nenhum modelo")
+    var catGrupos = { categoria: 'cat', tipo: 'tipo', ocasiao: 'occ' };
+    var catResolver = function (st, g, v) {
+      var r = { ordem: st.ordem, q: st.q, cat: st.cat, tipo: st.tipo, occ: st.occ, cores: st.cores };
+      r[catGrupos[g]] = v;
+      if (v) Object.keys(catGrupos).forEach(function (h) {
+        if (h === g || !r[catGrupos[h]]) return;
+        var par = { q: '', cores: [], cat: '', tipo: '', occ: '' }; par[catGrupos[g]] = v; par[catGrupos[h]] = r[catGrupos[h]];
+        if (!catCards.some(function (p) { return catPassa(p, par); })) r[catGrupos[h]] = '';
+      });
+      return r;
+    };
+    // o número ao lado de cada opção é o que aparece ao clicar nela (com os outros filtros e a regra acima); antes era o
+    // do catálogo inteiro. Opção sem modelo (por cor ou busca) fica esmaecida, mas continua clicável
+    var catContar = function (st) {
+      Object.keys(catGrupos).forEach(function (g) {
+        catForm.querySelectorAll('input[name="' + g + '"]').forEach(function (i) {
+          var r = catResolver(st, g, i.value), k = 0;
+          catCards.forEach(function (p) { if (catPassa(p, r)) k++; });
+          var lab = i.closest('.cat-opt'), sm = lab && lab.querySelector('small');
+          if (sm) sm.textContent = k;
+          if (lab) lab.classList.toggle('is-zero', !k && !i.checked);
+        });
+      });
+      var cont = {};
+      catCards.forEach(function (p) { if (catPassa(p, st, 'cor')) (p.getAttribute('data-cores') || '').split(' ').forEach(function (f) { if (f) cont[f] = (cont[f] || 0) + 1; }); });
+      catForm.querySelectorAll('input[name="cor"]').forEach(function (i) { var lab = i.closest('.cat-opt'); if (lab) lab.classList.toggle('is-zero', !cont[i.value] && !i.checked); });
+    };
     var catApply = function (push) {
-      var st = catState(), n = 0, words = st.q ? st.q.split(' ') : [];
+      var st = catState(), n = 0;
       catOrdenar(st.ordem);
+      catContar(st);
       catCards.forEach(function (p) {
-        var hay = p.getAttribute('data-busca') || '', fams = (p.getAttribute('data-cores') || '').split(' ');
-        var ok = (!st.cat || p.getAttribute('data-cat') === st.cat)
-          && (!st.tipo || p.getAttribute('data-tipo') === st.tipo)
-          && (!st.occ || (' ' + (p.getAttribute('data-occ') || '') + ' ').indexOf(' ' + st.occ + ' ') !== -1)
-          && words.every(function (w) { return hay.indexOf(w) !== -1; })
-          && (!st.cores.length || st.cores.some(function (f) { return fams.indexOf(f) !== -1; }));
+        var ok = catPassa(p, st);
         p.hidden = !ok;
         p.classList.toggle('cat-fora', ok && n >= catLimite);
         if (ok) n++;
@@ -517,7 +551,7 @@
       });
       catBox.querySelectorAll('[data-cat-n]').forEach(function (el) { el.textContent = n; });
       document.getElementById('cat-count').lastChild.textContent = n === 1 ? ' modelo disponível para explorar' : ' modelos disponíveis para explorar';
-      if (catTitulo) catTitulo.textContent = catRotulo('categoria') || catRotulo('tipo') || catRotulo('ocasiao') || (st.q ? 'Resultados da busca' : 'Todos os modelos');
+      if (catTitulo) catTitulo.textContent = catRotulo('tipo') || catRotulo('categoria') || catRotulo('ocasiao') || (st.q ? 'Resultados da busca' : 'Todos os modelos');
       catBox.querySelectorAll('[data-cat-grp]').forEach(function (g) { if (st[g.getAttribute('data-cat-grp') === 'tipo' ? 'tipo' : 'occ']) g.open = true; });   // grupo com filtro ativo fica aberto
       document.getElementById('cat-vazio').hidden = n > 0;
       catOccBox.hidden = !st.occ;
@@ -544,7 +578,16 @@
     };
     var catTimerQ;
     catQ.addEventListener('input', function () { clearTimeout(catTimerQ); catTimerQ = setTimeout(function () { catLimite = CAT_PAG; catApply(true); }, 150); });
-    catForm.addEventListener('change', function () { catLimite = CAT_PAG; catApply(true); });
+    catForm.addEventListener('change', function (e) {
+      var g = e.target && e.target.name;
+      if (catGrupos[g]) {
+        var r = catResolver(catState(), g, e.target.value);
+        if (!r.cat) catForm.querySelector('input[name="categoria"][value=""]').checked = true;
+        if (!r.tipo) catSetTipo('');
+        if (!r.occ) catSetOcc('');
+      }
+      catLimite = CAT_PAG; catApply(true);
+    });
     if (catOrdem) catOrdem.addEventListener('change', function () { catLimite = CAT_PAG; catApply(true); });   // fica fora do <form> (atributo form): o change não sobe até ele
     catForm.addEventListener('submit', function (e) { e.preventDefault(); catQ.blur(); });
     catForm.addEventListener('reset', function () { setTimeout(function () { catLimite = CAT_PAG; catApply(true); }, 0); });   // o reset volta os radios para "Todas"

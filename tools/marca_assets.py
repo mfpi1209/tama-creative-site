@@ -188,7 +188,8 @@ def petala_assets():
     for nome, cor in [('simbolo-coral', CORAL_P), ('simbolo-bordo', BORDO_P), ('simbolo-grafite', GRAFITE), ('simbolo-branco', BRANCO)]:
         salvar(nome, svg(f'<path d="{PETALA}" fill="{cor}" transform="scale(4)"/>', 400, 400, margem=m), 2000, OUT_PETALA)
     for nome, ta, ma, sub, pet in [('lockup-positivo', GRAFITE, BORDO_P, GRAFITE, CORAL_P), ('lockup-negativo', BRANCO, BORDO_CLARO, BRANCO, CORAL_P),
-                                   ('lockup-grafite', GRAFITE, GRAFITE, GRAFITE, GRAFITE), ('lockup-branco', BRANCO, BRANCO, BRANCO, BRANCO)]:
+                                   ('lockup-grafite', GRAFITE, GRAFITE, GRAFITE, GRAFITE), ('lockup-branco', BRANCO, BRANCO, BRANCO, BRANCO),
+                                   ('lockup-branco-petala', BRANCO, BRANCO, BRANCO, CORAL_P)]:   # peças escuras: letras brancas, pétala coral
         g, w, h = lockup_petala(ta, ma, sub, pet)
         salvar(nome, svg(g, w, h, margem=m), 3000, OUT_PETALA)
     # favicon e avatar: a pétala em marfim sobre o bordô (legível em 16 px, na aba clara ou escura)

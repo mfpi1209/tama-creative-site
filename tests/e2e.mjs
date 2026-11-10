@@ -90,7 +90,7 @@ try {
   console.log('Home (redesenho de 11/2026)');
   {
     const home = await (await fetch(BASE + '/')).text(), redir = await (await fetch(BASE + '/_redirects')).text();
-    const ordem = ['class="ms-hero', 'class="tm-assure', 'class="section tm-gallery', 'class="section tm-fronts', 'class="section ivory tm-kits2', 'process-section', 'class="t-faq', 'class="end-cta'].map(k => home.indexOf(k));
+    const ordem = ['class="ms-hero', 'class="tm-assure', 'class="section tm-gallery', 'class="section tm-fronts', 'class="section ivory tm-kits2', 'process-section', 'class="t-faq', 'class="site-footer fp'].map(k => home.indexOf(k));
     ok(ordem.every((p, i) => p > 0 && (i === 0 || p > ordem[i - 1])) && !/name="robots" content="noindex/.test(home)
       && (home.match(/class="tm-front[ "]/g) || []).length === 5 && (home.match(/<details class="t-faq-item"/g) || []).length === 6 && (home.match(/class="process-step"/g) || []).length === 6,
       'home: abertura em cenas, garantias, galeria de coleções, 5 frentes, kits, processo em 6 passos, 6 perguntas (com leituras) e chamada final, nessa ordem');
@@ -472,7 +472,7 @@ try {
   ok(await page.evaluate(() => document.activeElement?.id === 'busca-topo') && await page.$eval('.header-row .head-search', f => f.getAttribute('action') === '/catalogo/' && f.querySelector('input[name="q"]')), 'busca do cabeçalho: abre pela lupa com o foco no campo (/catalogo/?q=)');
   await page.keyboard.press('Escape');
   ok(await page.$eval('[aria-controls="sub-busca"]', b => b.getAttribute('aria-expanded') === 'false' && document.activeElement === b), 'busca do cabeçalho: Esc fecha e devolve o foco à lupa');
-  ok(await page.$$eval('.site-footer .footer-links a', a => a.map(x => x.textContent.trim()).join() === 'Catálogo completo,Kits corporativos,Eventos corporativos,Hotelaria e gastronomia,Sobre a TaMa') && await page.$eval('.site-footer .fp-actions a[href="/solicitar-proposta/"]', a => /Solicitar proposta/.test(a.textContent)), 'rodapé premium: convite com "Solicitar proposta" e os cinco links de Explore');
+  ok(await page.$$eval('.site-footer .footer-links a', a => a.map(x => x.textContent.trim()).join() === 'Catálogo completo,Kits corporativos,Eventos corporativos,Hotelaria e gastronomia,Sobre a TaMa') && await page.$eval('.site-footer .fp-actions a[href^="/solicitar-proposta/"]', a => /Solicitar proposta/.test(a.textContent)), 'rodapé premium: convite com "Solicitar proposta" e os cinco links de Explore');
   ok(await page.$$eval('.foto-hero figcaption, .entrega-foto figcaption', f => f.length >= 1 && f.every(x => x.textContent === 'Imagem ilustrativa • Marca fictícia')) && await page.$$eval('.kits-grade .note', n => n.length === 1 && /^Imagens? ilustrativas?: (a marca TaMa e marcas fictícias aparecem|a marca (TaMa aparece|é fictícia e aparece)) como exemplo; no seu projeto, entra a marca da sua empresa\./.test(n[0].textContent)), 'kits: legenda padrão da marca fictícia no cabeçalho e uma nota padrão (marca TaMa e marcas fictícias como exemplo) depois da grade de kits');
   ok(await page.$$eval('a[href^="/branding-identidade-visual/"], a[href^="/projetos/"]', a => a.length === 0), 'nenhum link para branding ou projetos');
   await page.goto(BASE + '/confeccoes-personalizadas/', { waitUntil: 'networkidle0' });
@@ -667,7 +667,7 @@ try {
   ok(await fp.$$eval('.tm-fronts-grid .tm-front-a', a => a.map(x => x.getAttribute('href')).join() === '/brindes-corporativos/,/confeccoes-personalizadas/,/kits-corporativos/,/eventos-corporativos/,/hotelaria-e-gastronomia/'), 'home apresenta as cinco áreas da TaMa');
   ok(await fp.$eval('meta[property="og:title"]', m => /brindes, uniformes, kits, eventos corporativos e hotelaria/i.test(m.content)), 'título de compartilhamento da home diz o que a TaMa oferece (as cinco áreas, como na assinatura)');
   ok(await fp.$eval('.site-footer .footer-brand p', p => /^Curadoria de produtos, personalização e soluções/.test(p.textContent)), 'rodapé: frase da TaMa ao lado da assinatura');
-  ok(await fp.$$eval('.end-cta', s => s.length === 1 && s[0].querySelector('.eyebrow').textContent === 'Próximo passo' && /\?$/.test(s[0].querySelector('h2').textContent) && s[0].querySelectorAll('.actions a').length === 2 && /^Solicitar proposta/.test(s[0].querySelector('.actions a').textContent.trim())), 'fechamento padrão: eyebrow, título em pergunta e dois botões (Solicitar proposta + WhatsApp)');
+  ok(await fp.$$eval('.end-cta', s => s.length === 0) && await fp.$$eval('.site-footer .fp-actions a', a => a.length === 2 && /^Solicitar proposta/.test(a[0].textContent.trim())), 'fechamento: sem a seção "Próximo passo"; o convite fica no rodapé (Solicitar proposta + WhatsApp)');
   await fp.evaluate(() => localStorage.setItem('tama-selecao', JSON.stringify([{ s: 'linha-polo', c: 'Preto' }, { s: 'caneca-de-ceramica', c: null }, { s: 'baralho-exclusivo', c: null }])));
   await fp.goto(BASE + '/solicitar-proposta/', { waitUntil: 'networkidle0' });
   ok(await fp.$eval('#f-selecao', i => i.value === 'Polo masculina (Preto); Caneca (Vermelho)'), 'seleção salva com slugs antigos vira os modelos atuais, com a cor de abertura (ideia retirada sai)');

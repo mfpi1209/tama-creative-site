@@ -1521,7 +1521,7 @@ SETA_DIAG = '<svg class="i-arrow-up" viewBox="0 0 24 24" aria-hidden="true" focu
 BALAO = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3.5c-4.7 0-8.5 3.4-8.5 7.6 0 1.6.6 3.2 1.6 4.4L4 20.5l5.3-1.7c.9.3 1.8.4 2.7.4 4.7 0 8.5-3.4 8.5-7.6S16.7 3.5 12 3.5Z"/></svg>'
 
 
-def footer():
+def footer(tipo=None):
     explore = ''.join(f'<li><a href="{p}">{t}</a></li>' for p, t in EXPLORE)
     empresa = empresa_linha()
     wa = (f'<a class="btn fp-btn-line" href="https://wa.me/{WA}" data-track="whatsapp_click" data-track-label="rodape" rel="noopener">{BALAO}WhatsApp</a>'
@@ -1532,7 +1532,7 @@ def footer():
       <p class="fp-kicker">Vamos criar algo juntos?</p>
       <h2 class="fp-title">Sua próxima ideia merece acontecer.</h2>
       <p class="fp-sub">Brindes, kits e experiências que conectam marcas e pessoas.</p>
-      <div class="fp-actions"><a class="btn btn-wine" href="/solicitar-proposta/" data-track="cta_solicitar_proposta" data-track-label="rodape">Solicitar proposta {SETA_DIAG}</a>{wa}</div>
+      <div class="fp-actions"><a class="btn btn-wine" href="/solicitar-proposta/{('?tipo=' + tipo) if tipo else ''}" data-track="cta_solicitar_proposta" data-track-label="rodape">Solicitar proposta {SETA_DIAG}</a>{wa}</div>
     </div>
     <div class="fp-mid">
       <div class="footer-brand"><a class="brand" href="/" aria-label="TaMa Creative, página inicial">{LOGO_DECOR}</a>
@@ -1581,12 +1581,10 @@ def guias_block(chave, title='Leituras para escolher melhor', intro='Conteúdos 
 
 
 def end_cta(title='Vamos conversar sobre o seu projeto?', text='Conte a ocasião, o público, a quantidade e a data. A TaMa responde com uma proposta.', tipo=None, eyebrow='Próximo passo', label='Solicitar proposta', vitrine=''):
-    """Fechamento de todas as páginas, sempre com a mesma estrutura: eyebrow, título em forma de pergunta, uma frase de
-    apoio e dois botões (Solicitar proposta e WhatsApp)."""
-    return f'''<section class="end-cta" aria-labelledby="cta-t">
-  <div class="wrap"><p class="eyebrow light">{eyebrow}</p><h2 id="cta-t">{title}</h2><p>{text}</p>
-  <div class="actions" style="justify-content:center">{cta_link(label, tipo=tipo, cls='btn btn-light', track_label='end-cta')}{wa_button('btn btn-glass')}</div>{vitrine}</div>
-</section>'''
+    """Fechamento das páginas: desde 10/11/2026 o convite fica só no rodapé premium (a seção "Próximo passo" repetia o
+    mesmo pedido logo acima dele). Fica a função para as chamadas existentes: ela só marca o tipo de pedido da página,
+    que o rodapé usa no botão "Solicitar proposta" (?tipo=...)."""
+    return f'<!--cta-tipo:{tipo}-->' if tipo else ''
 
 
 def wa_button(cls='btn btn-line', text='Conversar no WhatsApp'):
@@ -1815,7 +1813,7 @@ def shell(page, body):
 {crumbs(page['trail']) if page.get('trail') and not page.get('crumbs_inline') else ''}
 {body}
 </main>
-{footer()}
+{footer((re.search(r'<!--cta-tipo:([a-z-]+)-->', body) or [None, None])[1])}
 {DIALOGS.replace('{ARROW}', ARROW).replace('{LB_EYEBROW}', NOTA_TAMA_CURTA)}
 {wa_float}
 {consent}

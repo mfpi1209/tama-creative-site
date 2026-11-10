@@ -364,8 +364,8 @@
    "itens": [
     {
      "link": "/brindes-corporativos/",
-     "imagem": "home-frente-brindes-v2",
-     "posicao": "center",
+     "imagem": "home-frente-brindes-v3",
+     "posicao": "50% 60%",
      "titulo": [
       "Brindes",
       "corporativos"
@@ -374,12 +374,13 @@
       "Presentes que aproximam,",
       "encantam e ficam."
      ],
-     "chamada": "Ver os brindes"
+     "chamada": "Ver os brindes",
+     "alt": "Garrafa térmica grafite com a assinatura TaMa, caderno azul-marinho com caneta prateada, caneca branca e caixa de presente clara sobre blocos de pedra. Imagem ilustrativa."
     },
     {
      "link": "/confeccoes-personalizadas/",
-     "imagem": "home-frente-confeccoes-v2",
-     "posicao": "center",
+     "imagem": "home-frente-confeccoes-v3",
+     "posicao": "100% 50%",
      "titulo": [
       "Uniformes e",
       "confecções"
@@ -388,12 +389,13 @@
       "Peças para equipes, ações",
       "e eventos."
      ],
-     "chamada": "Conhecer os uniformes"
+     "chamada": "Conhecer os uniformes",
+     "alt": "Camisa polo azul-marinho dobrada com a assinatura TaMa bordada no peito, dólmã branca, carretel de linha e amostras de tecido. Imagem ilustrativa."
     },
     {
      "link": "/kits-corporativos/",
-     "imagem": "home-frente-kits-v2",
-     "posicao": "center",
+     "imagem": "home-frente-kits-v3",
+     "posicao": "50% 55%",
      "titulo": [
       "Kits",
       "corporativos"
@@ -402,12 +404,13 @@
       "Caixa, peças e cartão",
       "com a sua marca."
      ],
-     "chamada": "Conhecer os kits"
+     "chamada": "Conhecer os kits",
+     "alt": "Caixa rígida cinza aberta com garrafa branca, caderno grafite, caneta, xícara, guardanapo de linho e cartão, com a assinatura TaMa na tampa. Imagem ilustrativa."
     },
     {
      "link": "/eventos-corporativos/",
-     "imagem": "secao-frente-4-202611022025",
-     "posicao": "74% center",
+     "imagem": "home-frente-eventos-v3",
+     "posicao": "52% 60%",
      "titulo": [
       "Eventos",
       "corporativos"
@@ -416,12 +419,13 @@
       "Buffet, decoração",
       "e ações com a sua marca."
      ],
-     "chamada": "Conhecer os eventos corporativos"
+     "chamada": "Conhecer os eventos corporativos",
+     "alt": "Itens para eventos: cordões com porta-crachás sem nome, copos reutilizáveis, ecobag de lona com a assinatura TaMa e necessaire. Imagem ilustrativa."
     },
     {
      "link": "/hotelaria-e-gastronomia/",
-     "imagem": "hot-header",
-     "posicao": "70% center",
+     "imagem": "home-frente-hotelaria-v3",
+     "posicao": "45% 55%",
      "titulo": [
       "Hotelaria e",
       "gastronomia"
@@ -430,7 +434,8 @@
       "Cardápios, porta-contas, jogos",
       "americanos e uniformes."
      ],
-     "chamada": "Conhecer as peças"
+     "chamada": "Conhecer as peças",
+     "alt": "Mesa de restaurante sem comida: cardápio de couro marrom com a assinatura TaMa em baixo-relevo, porta-contas, jogo americano de linho, porta-guardanapo dourado e embalagem kraft. Imagem ilustrativa."
     }
    ]
   },

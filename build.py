@@ -1844,7 +1844,7 @@ ASSURANCES = f'''<ul class="garantias" aria-label="Como a TaMa trabalha">
 # marcas fictícias (Elo, Pulso, Arco) e caixas fora do bordô, para o cliente ver a marca dele, não a da TaMa.
 # As quebras de linha seguem o mockup; cada metade cabe numa linha mesmo no cartão mais estreito (~225 px, tablet).
 SECOES = SITE_DADOS.get('secoes') or {}
-FRENTES = [(f['link'], f['imagem'], f.get('posicao') or 'center', tuple(f['titulo']), tuple(f['texto']), f['chamada'])
+FRENTES = [(f['link'], f['imagem'], f.get('posicao') or 'center', tuple(f['titulo']), tuple(f['texto']), f['chamada'], f.get('alt') or '')
            for f in (SECOES.get('home-frentes') or {}).get('itens') or []]   # site.json › secoes › home-frentes (inventário › Páginas › Home)
 
 # /v2/: home da proposta 01 ("Soluções compactas"), referência docs/proposta-01/home-aprovada.png e medidas em
@@ -1974,7 +1974,7 @@ def frentes_section(titulo_visivel=False):
         f'    <a class="frente-card" href="{href}">{picture(img, "", sizes, style=f"object-position:{pos}")}'
         f'<div class="frente-info"><h3>{esc(t[0])} <br>{esc(t[1])}</h3><p>{esc(d[0])} <br>{esc(d[1])}</p>'
         f'<span class="frente-link">{esc(cta)} {ARROW}</span></div></a>'
-        for href, img, pos, t, d, cta in FRENTES)
+        for href, img, pos, t, d, cta, *_ in FRENTES)
     return f'''<section class="frentes" aria-labelledby="frentes-t">
   {'<div class="wrap"><h2 id="frentes-t" class="t-h2 t-frentes-title">O que a TaMa faz</h2></div>' if titulo_visivel else '<h2 id="frentes-t" class="visually-hidden">O que a TaMa faz</h2>'}
   <div class="wrap frentes-grid">
@@ -2212,18 +2212,19 @@ def home_frentes():
     """As cinco frentes da TaMa (proposta C, escolhida em 08/11/2026): cinco arcos de foto lado a lado e uma única linha
     bordô que passa pelos cinco na mesma altura, com um ponto em cada frente ("uma linguagem"). A linha se desenha
     quando a seção aparece. Foto de site.json › secoes › home-frentes (inventário) e nome oficial de SOLUCOES."""
-    fotos = {f[0]: (f[1], f[2]) for f in FRENTES}
+    fotos = {f[0]: (f[1], f[2], f[6]) for f in FRENTES}
     itens = ''
     for i, (href, nome, linha) in enumerate(SOLUCOES):
-        img, pos = fotos.get(href, (None, 'center'))
-        foto = picture(img, '', '(max-width: 860px) 46vw, 250px', style=f'object-position:{pos}') if img in IMAGES else ''
+        img, pos, alt = fotos.get(href, (None, 'center', ''))
+        foto = picture(img, alt, '(max-width: 560px) 72vw, (max-width: 860px) 40vw, 250px', style=f'object-position:{pos}') if img in IMAGES else ''
         itens += (f'<li class="tm-front" style="--i:{i}" data-reveal><a href="{href}" class="tm-front-a">'
                   f'<span class="tm-front-frame"><span class="tm-front-media">{foto}</span><span class="tm-front-dot" aria-hidden="true"></span></span>'
                   f'<span class="tm-front-copy"><span class="tm-front-n" aria-hidden="true">{i + 1:02d}</span><h3>{nome}</h3><span class="tm-front-d">{linha}</span></span></a></li>')
     return f'''<section class="section tm-fronts" aria-labelledby="tm-fronts-t">
   <div class="wrap">
     <div class="tm-head" data-reveal><p class="eyebrow">O que a TaMa faz</p><h2 id="tm-fronts-t" class="tm-h2">Cinco frentes, <em>uma linguagem.</em></h2></div>
-    <div class="tm-fronts-scroll"><ul class="tm-fronts-grid" role="list" data-fronts>{itens}</ul></div>
+    <div class="tm-fronts-scroll" id="tm-fronts-lista"><ul class="tm-fronts-grid" role="list" data-fronts>{itens}</ul></div>
+    <div class="tm-fronts-nav" data-fronts-nav><button class="btn-circle" type="button" data-dir="-1" aria-controls="tm-fronts-lista" aria-label="Frente anterior"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button><button class="btn-circle" type="button" data-dir="1" aria-controls="tm-fronts-lista" aria-label="Próxima frente"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div>
     <div class="tm-fronts-foot"><p>Do brinde do dia a dia ao evento completo: a mesma curadoria e a mesma atenção à sua marca em cada peça.</p>
       <a class="tm-gal-all" href="/solicitar-proposta/">Solicitar proposta {ARROW}</a></div>
   </div>

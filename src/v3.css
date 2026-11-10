@@ -1193,3 +1193,27 @@ body { letter-spacing: -.005em; }
   .fp-mid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 48px; }
 }
 .fp-legal .link-btn { text-decoration: none; background: none; border: 0; padding: 0; cursor: pointer; }
+/* ======================================================================
+   Cinco frentes, refinamento de 10/11/2026 (briefing "Galeria de soluções"): mesma estrutura de arcos, fotos numa
+   só direção de arte, hover contido no arco, marcador com anel, entrada por arco e carrossel com setas no celular
+   ====================================================================== */
+.tm-front-media img { filter: none; transition: transform 550ms var(--ease); will-change: transform; }
+.tm-front-a:hover .tm-front-media img, .tm-front-a:focus-visible .tm-front-media img { filter: none; transform: scale(1.03); }
+.tm-front-dot { transition: background-color var(--d-3) var(--ease), box-shadow var(--d-3) var(--ease), transform var(--d-3) var(--ease); }
+.tm-front-a:hover .tm-front-dot, .tm-front-a:focus-visible .tm-front-dot { background: var(--c-brand); transform: scale(1.12); box-shadow: 0 0 0 5px color-mix(in srgb, var(--c-brand) 16%, transparent); }
+.js-reveal .tm-front[data-reveal] { transform: translateY(20px); transition-duration: 600ms; transition-delay: calc(var(--i, 0) * 90ms); }
+.js-reveal .tm-front[data-reveal].is-in { transform: none; }
+.tm-fronts-nav { display: none; }
+@media (max-width: 860px) {
+  .tm-fronts-grid { grid-template-columns: repeat(5, 40vw); }
+  .tm-fronts-nav { display: flex; justify-content: flex-end; gap: 10px; margin-top: 18px; }
+  .tm-fronts-nav .btn-circle:disabled { opacity: .35; cursor: default; }
+}
+@media (max-width: 560px) {
+  .tm-fronts-grid { grid-template-columns: repeat(5, 72vw); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tm-front-media img { transition: none; }
+  .tm-front-a:hover .tm-front-media img { transform: none; }
+  .js-reveal .tm-front[data-reveal] { transform: none; transition: none; }
+}

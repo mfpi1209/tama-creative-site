@@ -1152,8 +1152,28 @@
   g.classList.add('is-armed');
   var io = new IntersectionObserver(function (es) {
     if (es.some(function (e) { return e.isIntersecting; })) { g.classList.add('is-drawn'); io.disconnect(); }
-  }, { threshold: .35 });
+  }, { threshold: .12 });   // no celular a lista é ~3,6× mais larga que a tela: com .35 a linha nunca se desenhava
   io.observe(g);
+})();
+
+/* ---------- Cinco frentes no celular e no tablet: carrossel com setas (anterior/próxima) ---------- */
+(function () {
+  var nav = document.querySelector('[data-fronts-nav]'), box = document.getElementById('tm-fronts-lista');
+  if (!nav || !box) return;
+  var btns = nav.querySelectorAll('button');
+  function passo() { var li = box.querySelector('.tm-front'); return li ? li.getBoundingClientRect().width + parseFloat(getComputedStyle(li.parentNode).columnGap || 0) : box.clientWidth; }
+  function estado() {
+    var fim = box.scrollWidth - box.clientWidth - 2;
+    btns[0].disabled = box.scrollLeft <= 2; btns[1].disabled = box.scrollLeft >= fim;
+  }
+  nav.addEventListener('click', function (e) {
+    var b = e.target.closest('button'); if (!b) return;
+    var reduz = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    box.scrollBy({ left: passo() * +b.dataset.dir, behavior: reduz ? 'auto' : 'smooth' });
+  });
+  box.addEventListener('scroll', function () { window.requestAnimationFrame(estado); }, { passive: true });
+  window.addEventListener('resize', estado);
+  estado();
 })();
 
 /* ---------- Galeria de coleções: a faixa em foco abre (mouse, teclado ou toque) ---------- */

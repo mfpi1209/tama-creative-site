@@ -1158,11 +1158,10 @@ body { letter-spacing: -.005em; }
 .pdp-det-nota { display: flex; align-items: center; gap: 10px; margin: 20px 0 0; font-size: .875rem; color: var(--c-ink-2); }
 .pdp-det-nota svg { flex: none; width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; }
 /* ======================================================================
-   Rodapé premium (10/11/2026): cartão escuro arredondado, recuado das bordas da página
+   Rodapé premium (10/11/2026): faixa escura de ponta a ponta (sem cartão), conteúdo na largura do site
    ====================================================================== */
-.site-footer.fp { background: transparent; color: var(--c-on-dark-2); padding: 0 clamp(8px, 1.6vw, 24px) clamp(8px, 1.6vw, 24px); }
-.fp-in { max-width: calc(var(--maxw) + 2 * var(--gutter) + 64px); margin-inline: auto; padding: clamp(32px, 4.4vw, 64px) clamp(22px, 4vw, 64px) clamp(24px, 3vw, 40px);
-  border-radius: clamp(20px, 2.4vw, 32px); background: var(--c-dark); }
+.site-footer.fp { background: var(--c-dark); color: var(--c-on-dark-2); padding: 0; }
+.fp-in { max-width: calc(var(--maxw) + 2 * var(--gutter)); margin-inline: auto; padding: clamp(40px, 5vw, 80px) var(--gutter) clamp(24px, 3vw, 40px); }
 .fp-kicker { margin: 0 0 14px; font: 500 .8125rem/1.2 var(--f-text); letter-spacing: .08em; text-transform: uppercase; color: var(--c-on-dark-2); }
 .site-footer .fp-title { margin: 0; max-width: 20ch; font: 600 clamp(1.75rem, 1.2rem + 2.2vw, 3rem)/1.08 var(--f-display); letter-spacing: -.035em; color: #fff; text-wrap: balance; }
 .fp-sub { margin: 16px 0 0; max-width: 40em; font-size: var(--t-lead); color: var(--c-on-dark-2); }

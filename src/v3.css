@@ -1194,18 +1194,33 @@ body { letter-spacing: -.005em; }
 }
 .fp-legal .link-btn { text-decoration: none; background: none; border: 0; padding: 0; cursor: pointer; }
 /* ======================================================================
-   Cinco frentes, refinamento de 10/11/2026 (briefing "Galeria de soluções"): mesma estrutura de arcos, fotos numa
-   só direção de arte, hover contido no arco, marcador com anel, entrada por arco e carrossel com setas no celular
+   Cinco frentes, refinamento de 10/11/2026 (briefings "Galeria de soluções" e "Cinco frentes, paleta intensa"):
+   mesma estrutura de arcos, cinco fotos de fundo colorido sem filtro, linha bordô FORA da foto (entre o arco e o
+   título) com um marcador por frente, hover contido no arco, entrada por arco e carrossel com setas abaixo de 1024 px
    ====================================================================== */
-.tm-front-media img { filter: none; transition: transform 550ms var(--ease); will-change: transform; }
-.tm-front-a:hover .tm-front-media img, .tm-front-a:focus-visible .tm-front-media img { filter: none; transform: scale(1.03); }
-.tm-front-dot { transition: background-color var(--d-3) var(--ease), box-shadow var(--d-3) var(--ease), transform var(--d-3) var(--ease); }
+.tm-fronts-grid { --ease-arco: cubic-bezier(.25, .8, .25, 1); }
+.tm-front-a { gap: 14px; }
+.tm-front-frame { padding-bottom: 26px; }
+.tm-front-frame::before { top: auto; bottom: 12px; }
+.tm-front-dot { top: auto; bottom: 6px; margin: 0 0 0 -7px; transition: background-color 450ms var(--ease-arco), box-shadow 450ms var(--ease-arco), transform 450ms var(--ease-arco); }
 .tm-front-a:hover .tm-front-dot, .tm-front-a:focus-visible .tm-front-dot { background: var(--c-brand); transform: scale(1.12); box-shadow: 0 0 0 5px color-mix(in srgb, var(--c-brand) 16%, transparent); }
-.js-reveal .tm-front[data-reveal] { transform: translateY(20px); transition-duration: 600ms; transition-delay: calc(var(--i, 0) * 90ms); }
+.tm-front-media { border-radius: 999px 999px 14px 14px; }
+.tm-front-media img { filter: none; transition: transform 450ms var(--ease-arco); will-change: transform; }
+.tm-front-a:hover .tm-front-media img, .tm-front-a:focus-visible .tm-front-media img { filter: none; transform: scale(1.035); }
+.tm-front-copy h3 { transition: color 450ms var(--ease-arco); text-wrap: balance; }
+.tm-front-a:hover h3, .tm-front-a:focus-visible h3 { color: var(--c-brand); }
+.tm-front-copy h3 .tm-front-n { font-size: .8em; letter-spacing: .02em; }
+.tm-front-d { text-wrap: pretty; }
+.js-reveal .tm-front[data-reveal] { transform: translateY(16px); transition-duration: 600ms; transition-delay: calc(var(--i, 0) * 80ms); }
 .js-reveal .tm-front[data-reveal].is-in { transform: none; }
 .tm-fronts-nav { display: none; }
-@media (max-width: 860px) {
-  .tm-fronts-grid { grid-template-columns: repeat(5, 40vw); }
+@media (max-width: 1023px) {
+  .tm-fronts-scroll { overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: var(--gutter); margin-inline: calc(var(--gutter) * -1); padding-inline: var(--gutter); scrollbar-width: none; }
+  .tm-fronts-scroll::-webkit-scrollbar { display: none; }
+  .tm-fronts-grid { grid-template-columns: repeat(5, 28vw); width: max-content; padding-bottom: 4px; }   /* 3 arcos e a ponta do 4º */
+  .tm-front { scroll-snap-align: start; }
+  .tm-front:first-child .tm-front-frame::before { left: calc(var(--gutter) * -1); }
+  .tm-front:last-child .tm-front-frame::before { right: calc(var(--gutter) * -1); }
   .tm-fronts-nav { display: flex; justify-content: flex-end; gap: 10px; margin-top: 18px; }
   .tm-fronts-nav .btn-circle:disabled { opacity: .35; cursor: default; }
 }
@@ -1213,8 +1228,8 @@ body { letter-spacing: -.005em; }
   .tm-fronts-grid { grid-template-columns: repeat(5, 72vw); }
 }
 @media (prefers-reduced-motion: reduce) {
-  .tm-front-media img { transition: none; }
-  .tm-front-a:hover .tm-front-media img { transform: none; }
+  .tm-front-media img, .tm-front-dot, .tm-front-copy h3 { transition: none; }
+  .tm-front-a:hover .tm-front-media img, .tm-front-a:focus-visible .tm-front-media img { transform: none; }
   .js-reveal .tm-front[data-reveal] { transform: none; transition: none; }
 }
 

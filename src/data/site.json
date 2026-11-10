@@ -364,38 +364,38 @@
    "itens": [
     {
      "link": "/brindes-corporativos/",
-     "imagem": "home-frente-brindes-v3",
-     "posicao": "50% 60%",
+     "imagem": "home-frente-brindes-v4",
+     "posicao": "50% 50%",
      "titulo": [
       "Brindes",
       "corporativos"
      ],
      "texto": [
-      "Presentes que aproximam,",
-      "encantam e ficam."
+      "Garrafas, canecas, cadernos",
+      "e peças do dia a dia."
      ],
      "chamada": "Ver os brindes",
-     "alt": "Garrafa térmica grafite com a assinatura TaMa, caderno azul-marinho com caneta prateada, caneca branca e caixa de presente clara sobre blocos de pedra. Imagem ilustrativa."
+     "alt": "Garrafa térmica e caneca azul-marinho com a assinatura TaMa e caneta sobre base de pedra, em fundo azul-petróleo com folhas. Imagem ilustrativa."
     },
     {
      "link": "/confeccoes-personalizadas/",
-     "imagem": "home-frente-confeccoes-v3",
-     "posicao": "100% 50%",
+     "imagem": "home-frente-confeccoes-v4",
+     "posicao": "50% 50%",
      "titulo": [
       "Uniformes e",
       "confecções"
      ],
      "texto": [
-      "Peças para equipes, ações",
-      "e eventos."
+      "Polos, camisetas, dólmãs",
+      "e aventais com a sua marca."
      ],
      "chamada": "Conhecer os uniformes",
-     "alt": "Camisa polo azul-marinho dobrada com a assinatura TaMa bordada no peito, dólmã branca, carretel de linha e amostras de tecido. Imagem ilustrativa."
+     "alt": "Camisas polo azul-marinho e cinza dobradas, a azul com a assinatura TaMa bordada no peito, em fundo terracota. Imagem ilustrativa."
     },
     {
      "link": "/kits-corporativos/",
-     "imagem": "home-frente-kits-v3",
-     "posicao": "50% 55%",
+     "imagem": "home-frente-kits-v4",
+     "posicao": "50% 50%",
      "titulo": [
       "Kits",
       "corporativos"
@@ -405,37 +405,37 @@
       "com a sua marca."
      ],
      "chamada": "Conhecer os kits",
-     "alt": "Caixa rígida cinza aberta com garrafa branca, caderno grafite, caneta, xícara, guardanapo de linho e cartão, com a assinatura TaMa na tampa. Imagem ilustrativa."
+     "alt": "Caixa de presente aberta com a assinatura TaMa na tampa, garrafa preta, caderno de couro marrom e caneta, em fundo dourado. Imagem ilustrativa."
     },
     {
      "link": "/eventos-corporativos/",
-     "imagem": "home-frente-eventos-v3",
-     "posicao": "52% 60%",
+     "imagem": "home-frente-eventos-v4",
+     "posicao": "50% 50%",
      "titulo": [
       "Eventos",
       "corporativos"
      ],
      "texto": [
-      "Buffet, decoração",
-      "e ações com a sua marca."
+      "Brindes, kits para participantes,",
+      "credenciais e materiais para ativações."
      ],
      "chamada": "Conhecer os eventos corporativos",
-     "alt": "Itens para eventos: cordões com porta-crachás sem nome, copos reutilizáveis, ecobag de lona com a assinatura TaMa e necessaire. Imagem ilustrativa."
+     "alt": "Cordão vermelho com crachá, ecobag de lona e caderno com a assinatura TaMa, em fundo verde-profundo. Imagem ilustrativa."
     },
     {
      "link": "/hotelaria-e-gastronomia/",
-     "imagem": "home-frente-hotelaria-v3",
-     "posicao": "45% 55%",
+     "imagem": "home-frente-hotelaria-v4",
+     "posicao": "50% 50%",
      "titulo": [
       "Hotelaria e",
       "gastronomia"
      ],
      "texto": [
-      "Cardápios, porta-contas, jogos",
-      "americanos e uniformes."
+      "Cardápios, jogos americanos, porta-contas,",
+      "embalagens e materiais de apresentação."
      ],
      "chamada": "Conhecer as peças",
-     "alt": "Mesa de restaurante sem comida: cardápio de couro marrom com a assinatura TaMa em baixo-relevo, porta-contas, jogo americano de linho, porta-guardanapo dourado e embalagem kraft. Imagem ilustrativa."
+     "alt": "Capa de cardápio e porta-contas de couro marrom com a assinatura TaMa em baixo-relevo e guardanapo de tecido com anel dourado, em fundo rosa-antigo. Imagem ilustrativa."
     }
    ]
   },

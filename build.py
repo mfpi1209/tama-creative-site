@@ -290,7 +290,7 @@ CARROSSEL_HQ = {s['imagem'] for s in SITE_DADOS.get('carrossel') or [] if s.get(
 # fotos do carrossel mais estreitas que 1,9:1 que também já trazem o vazio do texto à esquerda (fim-header: a parede
 # iluminada ocupa o primeiro terço; a taça solta começa em ~37% da largura)
 CARROSSEL_RESPIRO = {s['imagem'] for s in SITE_DADOS.get('carrossel') or [] if s.get('respiro')}
-FOTOS_HQ = CARROSSEL_HQ | V2_FOTOS | {'home-frente-brindes-v2', 'home-frente-confeccoes-v2', 'home-frente-kits-v2', 'kits-header', 'kits-header-v3', 'conf-header', 'ativ-header', 'hot-header', 'brindes-header', 'brindes-entrega', 'fim-header', 'blog-header', 'sobre-header', 'ocasiao-boas-vindas', 'ocasiao-eventos', 'ocasiao-executivos', 'ocasiao-campanhas', 'ocasiao-lancamentos', 'ocasiao-reconhecimento', 'sobre-caderno', 'sobre-uniforme', 'sobre-caixa', 'slide-ativacoes'} | {c['imagem'] for c in (SITE_DADOS.get('cabecalhos') or {}).values() if c.get('imagem')} | {n for n in re.findall(r'"((?:topo|secao)-[a-z0-9-]+)"', json.dumps(SITE_DADOS.get('secoes') or {}))}   # fotos enviadas em alta pela TaMa, as dos cabeçalhos e as enviadas pelo inventário (site.json)
+FOTOS_HQ = CARROSSEL_HQ | V2_FOTOS | {'home-frente-brindes-v2', 'home-frente-confeccoes-v2', 'home-frente-kits-v2', 'kits-header', 'kits-header-v3', 'conf-header', 'ativ-header', 'hot-header', 'brindes-header', 'brindes-entrega', 'fim-header', 'blog-header', 'sobre-header', 'ocasiao-boas-vindas', 'ocasiao-eventos', 'ocasiao-executivos', 'ocasiao-campanhas', 'ocasiao-lancamentos', 'ocasiao-reconhecimento', 'sobre-caderno', 'sobre-uniforme', 'sobre-caixa', 'slide-ativacoes'} | {f.get('imagem') for f in ((SITE_DADOS.get('secoes') or {}).get('home-frentes') or {}).get('itens') or []} | {c['imagem'] for c in (SITE_DADOS.get('cabecalhos') or {}).values() if c.get('imagem')} | {n for n in re.findall(r'"((?:topo|secao)-[a-z0-9-]+)"', json.dumps(SITE_DADOS.get('secoes') or {}))}   # fotos enviadas em alta pela TaMa, as dos cabeçalhos e as enviadas pelo inventário (site.json)
 
 
 def build_images():
@@ -2250,14 +2250,17 @@ def home_frentes():
     """As cinco frentes da TaMa (proposta C, escolhida em 08/11/2026): cinco arcos de foto lado a lado e uma única linha
     bordô que passa pelos cinco na mesma altura, com um ponto em cada frente ("uma linguagem"). A linha se desenha
     quando a seção aparece. Foto de site.json › secoes › home-frentes (inventário) e nome oficial de SOLUCOES."""
-    fotos = {f[0]: (f[1], f[2], f[6]) for f in FRENTES}
+    fotos = {f[0]: (f[1], f[2], f[6], ' '.join(x for x in f[4] if x)) for f in FRENTES}
     itens = ''
     for i, (href, nome, linha) in enumerate(SOLUCOES):
-        img, pos, alt = fotos.get(href, (None, 'center', ''))
+        img, pos, alt, texto = fotos.get(href, (None, 'center', '', ''))
+        # a foto de cada arco pode ser trocada sozinha (site.json › secoes › home-frentes › imagem, 3:5), com o enquadramento
+        # em "posicao"; o texto sob o arco vem do mesmo item (o do menu, em SOLUCOES, fica como reserva)
         foto = picture(img, alt, '(max-width: 560px) 72vw, (max-width: 860px) 40vw, 250px', style=f'object-position:{pos}') if img in IMAGES else ''
         itens += (f'<li class="tm-front" style="--i:{i}" data-reveal><a href="{href}" class="tm-front-a">'
                   f'<span class="tm-front-frame"><span class="tm-front-media">{foto}</span><span class="tm-front-dot" aria-hidden="true"></span></span>'
-                  f'<span class="tm-front-copy"><span class="tm-front-n" aria-hidden="true">{i + 1:02d}</span><h3>{nome}</h3><span class="tm-front-d">{linha}</span></span></a></li>')
+                  f'<span class="tm-front-copy"><h3><span class="tm-front-n" aria-hidden="true">{i + 1:02d} —</span>&nbsp;{nome}</h3>'
+                  f'<span class="tm-front-d">{esc(texto or linha)}</span></span></a></li>')
     return f'''<section class="section tm-fronts" aria-labelledby="tm-fronts-t">
   <div class="wrap">
     <div class="tm-head" data-reveal><p class="eyebrow">O que a TaMa faz</p><h2 id="tm-fronts-t" class="tm-h2">Cinco frentes, <em>uma linguagem.</em></h2></div>

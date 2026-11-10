@@ -4,6 +4,14 @@ São 9 fotos ambientadas para as faixas da galeria da home, uma por categoria. T
 (pétala coral + "TaMa" + CREATIVE) aplicada na peça e cada categoria vem numa **cor diferente**. Elas substituem as
 capas do blog, que hoje misturam marcas fictícias (Nexo, Elo, Vera, Oliva).
 
+
+> **Atualização de 10/11/2026:** as 9 fotos já estão no site (`img/galeria/*.webp`), geradas pela API com
+> `python -I tools/galeria_fotos.py` (prompts e cores no próprio script). A direção mudou a pedido do cliente: em vez
+> de fundos neutros frios (a galeria ficava toda cinza/esverdeada), **cada categoria tem uma cor de peça diferente**
+> (cobalto, bordô, laranja, cru com verde, mostarda, madeira com rosé, caramelo, rosa-blush, marinho) sobre fundos claros
+> variados, com a assinatura pétala. Para refazer uma: `python -I tools/galeria_fotos.py <categoria>` e converta para
+> WebP. O roteiro abaixo (ChatGPT, manual) fica como alternativa.
+
 ## Como fazer (no ChatGPT)
 
 1. Abra uma conversa nova no ChatGPT e anexe os logos da pasta `logos` (arraste do Finder para a caixa de mensagem):

@@ -2149,7 +2149,9 @@ GALERIA_FOTOS = {'garrafas-copos': ('blog-capa-garrafas-personalizadas', '27% 62
                  'acessorios': ('blog-capa-necessaires-personalizadas', '60% 45%'), 'casa-bem-estar': ('blog-capa-jogos-americanos', '55% 52%'),
                  'hotelaria-gastronomia': ('blog-capa-cardapios-personalizados', '60% 40%')}
 # ponto de foco das fotos próprias (img/galeria/); ajuste aqui se a peça ficar cortada na faixa fechada
-GALERIA_FOCO = {}
+GALERIA_FOCO = {'garrafas-copos': '40% 50%', 'vestuario': '38% 55%', 'canetas-escritorio': '58% 45%', 'bolsas-embalagens': '46% 50%',
+                'tecnologia': '38% 50%', 'cozinha-bar': '44% 55%', 'acessorios': '42% 55%', 'casa-bem-estar': '60% 58%',
+                'hotelaria-gastronomia': '42% 60%'}   # fotos de 10/11/2026 (tools/galeria_fotos.py)
 GALERIA_ORDEM = ['garrafas-copos', 'vestuario', 'canetas-escritorio', 'bolsas-embalagens', 'tecnologia', 'cozinha-bar', 'acessorios', 'casa-bem-estar', 'hotelaria-gastronomia']
 
 
